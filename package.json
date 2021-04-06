@@ -1,6 +1,6 @@
 {
 	"name": "@jp-olvera/jp-viaducto-components",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Los componentes de este repositorio están diseñados particular de los proyectos de viaducto",
 	"main": "dist/index.js",
 	"scripts": {
@@ -55,7 +55,10 @@
 		"react-dom": "^17.0.1",
 		"style-loader": "^2.0.0",
 		"webpack": "^5.22.0",
-		"webpack-cli": "^4.5.0"
+		"webpack-cli": "^4.5.0",
+		"@testing-library/jest-dom": "^5.11.10",
+		"@testing-library/react": "^11.2.6",
+		"jest": "^26.6.3"
 	},
 	"files": [
 		"dist"
@@ -63,9 +66,5 @@
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org"
 	},
-	"dependencies": {
-		"@testing-library/jest-dom": "^5.11.10",
-		"@testing-library/react": "^11.2.6",
-		"jest": "^26.6.3"
-	}
+	"dependencies": {}
 }
