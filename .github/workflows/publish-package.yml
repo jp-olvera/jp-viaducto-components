@@ -3,7 +3,18 @@ on:
   release:
     types: [created]
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm build
+
   publish-to-npm:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,13 +23,12 @@ jobs:
         with:
           node-version: "12.x"
           registry-url: "https://registry.npmjs.org"
-      - run: npm ci
       - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   publish-grp:
-    needs: publish-to-npm
+    needs: [build, publish-to-npm]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,7 +36,6 @@ jobs:
         with:
           node-version: "12.x"
           registry-url: "https://npm.pkg.github.com/jp-olvera"
-      - run: npm ci
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
