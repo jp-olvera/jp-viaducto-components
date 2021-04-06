@@ -1,4 +1,4 @@
-name: Prepare for release
+name: Run tests and merge before publish package
 on:
   push:
     branches:
