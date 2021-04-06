@@ -1,10 +1,11 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from "react";
+import "@testing-library/jest-dom/extend-expect";
+import { render } from "@testing-library/react";
 
-import Spacer from '../';
+import { Spacer } from "../";
 
-describe('<Spacer/>', () => {
-  test('render', () => {
-    render(<Spacer />);
-  });
+describe("<Spacer/>", () => {
+	test("render", () => {
+		render(<Spacer />);
+	});
 });
