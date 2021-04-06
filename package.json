@@ -1,8 +1,8 @@
 {
   "name": "@jp-olvera/jp-viaducto-components",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Los componentes de este repositorio están diseñados particular de los proyectos de viaducto",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "jest",
     "build": "webpack --mode production --config config/webpack.config.js --progress",
@@ -61,7 +61,7 @@
     "jest": "^26.6.3"
   },
   "files": [
-    "dist"
+    "dist/*"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
