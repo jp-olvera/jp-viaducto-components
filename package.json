@@ -61,7 +61,7 @@
 		"dist"
 	],
 	"publishConfig": {
-		"registry": "https://npm.pkg.github.com"
+		"registry": "https://registry.npmjs.org"
 	},
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.11.10",
