@@ -1,3 +1,3 @@
 # jp-viaducto-components
 
-Los componentes de este repositorio están diseñados particular de los proyectos de viaducto
+Los componentes de este repositorio están diseñados específicamente para los proyectos de viaducto.
