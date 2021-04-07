@@ -5,6 +5,7 @@ const defaultColors = {
   default: '#937B3D',
   hover: '#AD9043',
   click: '#C3A24A',
+  text: '#000'
 };
 
 /**
@@ -13,12 +14,14 @@ const defaultColors = {
  * @param {String} size Size of the button
  * @param {String} colors Color of the button (with its states)
  * @param {Icon} icon Icon component for the button
+ * @param {Boolean} lead Indicates if the icon will be leading
  */
 const Button = ({
   label,
   size = SIZE.default,
   colors = defaultColors,
   icon = null,
+  lead = false,
   ...rest
 }) => {
   return (
@@ -29,8 +32,9 @@ const Button = ({
       hasIcon={icon !== null}
       {...rest}
     >
-      {icon !== null ? <span className="button-icon-span">{icon}</span> : null}
+      {icon !== null && lead && <span className="button-icon-span">{icon}</span>}
       <span>{label}</span>
+      {icon !== null && (!lead) && <span className="button-icon-span">{icon}</span>}
     </StyledButton>
   );
 };

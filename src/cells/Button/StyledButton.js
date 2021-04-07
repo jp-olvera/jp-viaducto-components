@@ -16,6 +16,7 @@ const StyledButton = styled.button`
   text-align: center;
   vertical-align: middle;
   height: 2.98em;
+  color: ${(props) => props.colors.text};
 
   ${(props) => getPadding(props)}
   ${(props) => getFontStyle(props)}
