@@ -13,7 +13,7 @@ import { StyledAnchor } from './StyledAnchor';
  */
 const Anchor = ({ label, href, size, family, color = null, icon = null, lead = false, ...rest }) => {
   return (
-    <StyledAnchor to={href} color={color} {...rest}>
+    <StyledAnchor href={href} color={color} size={size} family={family} {...rest}>
       {icon !== null && lead && icon}
       {label}
       {icon !== null && (!lead) && icon}
