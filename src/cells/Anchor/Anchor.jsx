@@ -6,10 +6,12 @@ import { StyledAnchor } from './StyledAnchor';
  * from Gatsby for pre-loa the page
  * @param {String} label Title or content of the component
  * @param {String} href The path of the page to visit
+ * @param {String} size The anchor size
+ * @param {String} size The anchor font-family
  * @param {Icon} icon The Icon component
  * @param {Boolean} lead Indicates if the icon will be leading
  */
-const Anchor = ({ label, href, color = null, icon = null, lead = false, ...rest }) => {
+const Anchor = ({ label, href, size, family, color = null, icon = null, lead = false, ...rest }) => {
   return (
     <StyledAnchor to={href} color={color} {...rest}>
       {icon !== null && lead && icon}
