@@ -5,19 +5,18 @@ const { text, breakpoints } = config;
 
 const StyledTitle = styled.h1`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=IBM+Plex+Sans&family=Manrope&display=swap');
-  font-family: ${({ family }) => family !== undefined ? `'${family}', sans-serif` : "'DM Sans', sans-serif;"};
+  font-family: ${({ family }) => family ? `'${family}', sans-serif` : "'DM Sans', sans-serif;"};
   font-weight: ${({ weight }) => weight || 'normal'};
   font-style: ${({ fontStyle }) => fontStyle || 'normal'};
   margin: ${({ margin }) => margin || '0'};
   font-size: ${({ level }) => getFontSize(level || '1')};
   text-align: ${({ align }) => align || 'left'};
-  letter-spacing: ${({ spacing }) => spacing || '0'}rem;
-  line-height: ${({ lineHeight }) => lineHeight !== null ? `${lineHeight}` : '1.77rem'};
-  color: ${({ color }) => (color !== undefined ? text[color] : text['dark'])};
+  letter-spacing: ${({ spacing }) => spacing || 'normal'};
+  line-height: ${({ lineHeight, level }) => lineHeight ? `${lineHeight}` : `calc(${getFontSize(level || '1')} * 1.5)`};
+  color: ${({ color }) => (text[color] || color || text['dark'])};
   @media (min-width: ${breakpoints.xl}) {
     font-size: ${({ level }) => getFontSize(level || '1', true)};
-    line-height: ${({ lineHeight }) =>
-    `calc(${lineHeight}rem * 1.3)` || '1.99rem'} !important;
+    line-height: ${({ lineHeight, level }) => lineHeight ? `${lineHeight}` : `calc(${getFontSize(level || '1', true)} * 1.5)`};
   }
 `;
 

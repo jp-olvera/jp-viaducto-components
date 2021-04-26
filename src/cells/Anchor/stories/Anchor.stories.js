@@ -4,6 +4,11 @@ import { Anchor } from "../index";
 export default {
   title: "Andamio/Cells/Anchor",
   component: Anchor,
+  argTypes: {
+    color: {
+      control: 'color',
+    },
+  },
 };
 
 const Template = args => <Anchor {...args} />;
@@ -15,6 +20,8 @@ Default.args = {
   href: "#",
   color: '#ff8c69',
   icon: "😎",
+  family: "Manrope",
+  size: "md"
 };
 
 export const Lead = Template.bind({});
@@ -24,7 +31,9 @@ Lead.args = {
   href: "#",
   color: '#ff8c69',
   icon: "🥵",
-  lead: true
+  lead: true,
+  family: "Manrope",
+  size: "md"
 };
 
 export const NoIcon = Template.bind({});
@@ -32,5 +41,7 @@ export const NoIcon = Template.bind({});
 NoIcon.args = {
   label: "Link",
   href: "#",
-  color: '#ff8c69'
+  color: '#ff8c69',
+  family: "Manrope",
+  size: "md"
 };

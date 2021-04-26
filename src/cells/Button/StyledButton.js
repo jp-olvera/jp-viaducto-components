@@ -4,19 +4,20 @@ import { SIZE, FONT_SIZE } from './constants';
 const spacing = config.spacing;
 
 const StyledButton = styled.button`
+  border: 1px solid ${(props) => props.colors.default};
+  background-color: ${(props) => props.colors.default};
+  color: ${(props) => props.colors.text};
+
   position: relative;
   align-items: center;
   display: inline-flex;
   justify-content: center;
-  border: 1px solid ${(props) => props.colors.default};
   border-radius: 2px;
   box-sizing: border-box;
-  background-color: ${(props) => props.colors.default};
   transition: background-color 0.15s ease-in-out;
   text-align: center;
   vertical-align: middle;
   height: 2.98em;
-  color: ${(props) => props.colors.text};
 
   ${(props) => getPadding(props)}
   ${(props) => getFontStyle(props)}

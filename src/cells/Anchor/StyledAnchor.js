@@ -6,11 +6,11 @@ const { spacing, text, breakpoints } = config;
 export const StyledAnchor = styled.a`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
   font-family: ${({ family }) => family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
+  color: ${({ color }) => (text[color] || color || '#005fb2')};
+  font-size: ${({ size }) => getSize(size)};
   box-sizing: border-box;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ color }) =>
-    color !== null ? text[color] : '#005fb2'} !important;
   &:hover {
     text-decoration: underline;
     svg {
@@ -34,8 +34,6 @@ export const StyledAnchor = styled.a`
     transition: transform 0.2s;
     height: 1em;
   }
-
-  font-size: ${({ size }) => getSize(size)};
 
   @media screen and (min-width: ${breakpoints.xl}) {
     font-size: ${({ size }) => getSize(size, true)};
