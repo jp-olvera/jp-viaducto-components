@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { Wrapper, StyledInput, Caption, IconFill, Info, Helper, getInputSize, getSize } from './StyledInput';
 import {
-  EyeClosed,
-  Eye,
-} from 'react-ikonate';
+  Wrapper,
+  StyledInput,
+  Caption,
+  IconFill,
+  Info,
+  Helper,
+  getInputSize,
+  getSize,
+} from './StyledInput';
+import { EyeClosed, Eye } from 'react-ikonate';
 import Icon from './Icon';
 
 /**
@@ -11,7 +17,7 @@ import Icon from './Icon';
  * @param {boolean} iconRequired Icon for mark input is required
  * @param {String} iconHelper Helper icon to support the user
  * @param {String} label The caption for the input
- * @param {String} border The border type for the input (full, bottom, overlaped)
+ * @param {String} border The border type for the input (full, bottom, overlap)
  * @param {boolean} disabled Set the input disabled
  * @param {String} size Set the width of the input
  * @param {String} type Set the input type (text, password, email, etc.)
@@ -20,48 +26,53 @@ import Icon from './Icon';
 const Input = ({
   iconRequired = false,
   label = null,
-  border = "default",
+  border = 'default',
   disabled = false,
-  size = "default",
-  type = "text",
+  size = 'default',
+  type = 'text',
   iconHelper = null,
-  displayName = "",
-  ...props }) => {
+  ...props
+}) => {
   const [open, setOpen] = useState(false);
-  const [pass, setPass] = useState(type === 'password' ? "password" : type);
+  const [pass, setPass] = useState(type);
   const toggleView = () => {
     setOpen(!open);
-    setPass(actual => actual === 'password' ? "text" : "password");
-  }
+    setPass((actual) => (actual === 'password' ? 'text' : 'password'));
+  };
   return (
-    <Wrapper htmlFor={props.id} size={size} disabled={disabled} border={border} label={label} displayName={displayName}>
+    <Wrapper
+      htmlFor={props.id}
+      size={size}
+      disabled={disabled}
+      border={border}
+      label={label}
+    >
       <StyledInput
         open={type === 'password' ? open : true}
         iconHelper={iconHelper}
         {...props}
         border={border}
         disabled={disabled}
-        type={type === 'password' ? pass : type}
+        type={pass}
         id={props.id}
-        required label={label}
-        placeholder={(label || props.placeholder) || 'Placeholder'}
+        required
+        label={label}
+        placeholder={label || props.placeholder || 'Placeholder'}
       />
-      {iconHelper !== null ?
+      {iconHelper !== null ? (
         <Helper border={border}>
           <Icon icon={iconHelper} />
-        </Helper> :
-        null
-      }
-      {
-        type === 'password' ?
-          <Info onClick={toggleView}>
-            {open ? <Eye /> : <EyeClosed />}
-          </Info> :
-          null
-      }
+        </Helper>
+      ) : null}
+      {type === 'password' ? (
+        <Info onClick={toggleView}>{open ? <Eye /> : <EyeClosed />}</Info>
+      ) : null}
       <Caption
         iconHelper={iconHelper !== null}
-        border={border} disabled={disabled} label={label}>
+        border={border}
+        disabled={disabled}
+        label={label}
+      >
         {label !== null ? <span>{label}</span> : null}
         {iconRequired ? <IconFill /> : null}
       </Caption>

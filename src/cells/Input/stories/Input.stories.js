@@ -1,28 +1,60 @@
-import React from "react";
+import React from 'react';
 import { A } from '..';
 
 export default {
-  title: "Andamio/Cells/Input",
-  component: A
+  title: 'Andamio/Cells/Input',
+  component: A,
+  argTypes: {
+    border: {
+      options: ['overlap', 'bottom', 'default'],
+      control: {
+        type: 'radio',
+      },
+    },
+    type: {
+      options: ['text', 'password'],
+      control: {
+        type: 'select',
+      },
+    },
+    size: {
+      options: ['default', 'sm', 'md', 'lg', 'full'],
+      control: {
+        type: 'select',
+      },
+    },
+    iconHelper: {
+      options: [
+        null,
+        'card',
+        'color',
+        'upload',
+        'date',
+        'search',
+        'data',
+        'phone',
+        'mail',
+        'time',
+        'grid',
+      ],
+      control: {
+        type: 'select',
+      },
+    },
+  },
 };
 
-const Template = args => <A {...args} />
-
+const Template = (args) => <A {...args} />;
 
 export const Default = Template.bind({});
 
 Default.args = {
-  size: "sm",
-  value: "Value (Disabled)",
-  label: "sm disabled with value",
+  size: 'default',
+  label: 'Label',
   iconRequired: false,
-  label: null,
-  border: "default",
+  border: 'default',
   disabled: false,
-  size: "default",
-  type: "text",
+  type: 'text',
   iconHelper: null,
-  displayName: "",
-  id: "input",
-  defaultValue: "hola"
-}
+  id: 'input',
+};

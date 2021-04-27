@@ -6,31 +6,31 @@ export default {
   component: Spacer,
   argTypes: {
     direction: {
+      options: ['vertical', 'horizontal'],
       control: {
         type: 'radio',
-        options: ['vertical', 'horizontal']
-      }
+      },
     },
     sb: {
       control: {
         type: 'color',
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 
-const Template = (args) => <Spacer {...args} />
+const Template = (args) => <Spacer {...args} />;
 
 export const Vertical = Template.bind({});
 
 Vertical.args = {
-  size: "sm",
-  sb: '#000'
-}
+  size: 'sm',
+  sb: '#000',
+};
 export const Horizontal = Template.bind({});
 
 Horizontal.args = {
-  size: "sm",
-  direction: "horizontal",
-  sb: '#000'
-}
+  size: 'sm',
+  direction: 'horizontal',
+  sb: '#000',
+};
