@@ -1,3 +1,4 @@
 import Input from "./Input";
+import Icon from "./Icon";
 
-export { Input as A };
+export { Input, Icon };

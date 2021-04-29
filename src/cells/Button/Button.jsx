@@ -17,7 +17,7 @@ const defaultColors = {
  * @param {Boolean} lead Indicates if the icon will be leading
  */
 const Button = ({
-  label,
+  label = null,
   size = SIZE.default,
   colors = defaultColors,
   icon = null,
@@ -28,8 +28,9 @@ const Button = ({
     <StyledButton
       size={size}
       colors={colors}
-      isIconOnly={!label && icon !== null}
+      isIconOnly={label === null && icon !== null}
       hasIcon={icon !== null}
+      lead={lead}
       {...rest}
     >
       {icon !== null && lead && <span className="button-icon-span">{icon}</span>}

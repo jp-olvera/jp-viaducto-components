@@ -8,13 +8,7 @@ export default {
     visibleOn: {
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
       control: {
-        type: 'radio',
-      },
-    },
-    after: {
-      options: [true, false],
-      control: {
-        type: 'radio',
+        type: 'select',
       },
     },
   },
@@ -30,4 +24,5 @@ export const Default = Template.bind({});
 
 Default.args = {
   visibleOn: 'xs',
+  after: false
 };

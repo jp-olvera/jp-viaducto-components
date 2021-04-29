@@ -7,296 +7,115 @@ const { text, spacing, breakpoints } = config;
 const borderColor = '#001D48';
 const iconColor = '#2329D6';
 
-export const Helper = styled.span`
-  & ${Icon} {
-    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-    font-family: 'DM Sans', sans-serif;
-    position: absolute;
-    bottom: 0;
-    color: ${iconColor};
-    top: ${spacing.micro};
-    left: ${spacing.xs};
-    display: inline-flex;
-    font-size: ${() => getSize('lg')};
-    font-weight: 400;
-    transform-origin: 0 0;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-    background: transparent;
-    cursor: default;
-    @media screen and (min-width: ${breakpoints.xl}) {
-      left: calc(${spacing.xs} * 1.125);
-      font-size: ${() => getSize('lg', true)};
-    }
-  }
-`;
-
-export const Info = styled.span`
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-  font-family: 'DM Sans', sans-serif;
-  position: relative;
-  display: inline-flex;
-  float: right;
-  margin-top: -2.5rem;
-  padding: ${spacing.xs};
-  font-size: ${() => getSize('md')};
-  color: ${iconColor};
-  font-weight: 400;
-  transition: all 0.3s ease;
-  justify-content: center;
-  opacity: 0;
-  align-items: center;
-  background: transparent;
-  user-select: none;
-  z-index: 2;
-  @media screen and (min-width: ${breakpoints.xl}) {
-    font-size: ${() => getSize('md', true)};
-    margin-top: -2.35rem;
-  }
-`;
 
 export const Wrapper = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
   font-family: 'DM Sans', sans-serif;
+  background-color: white;
+  box-sizing: border-box;
+  height: ${({ size }) => size === 'default' ? "2.488rem" : "2.986rem"};
   position: relative;
-  margin: 1rem 0;
-  width: ${() => getInputSize('full')};
-  /* overflow:  ${(props) =>
-    props.label && props.border === 'overlap' && !props.disabled
-      ? 'visible'
-      : 'hidden'}; */
-  transition: all 0.1s ease;
-  @media screen and (min-width: ${breakpoints.sm}) {
-    width: ${({ size }) => getInputSize(size || 'default')};
-  }
-`;
-
-export const Caption = styled.span`
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-  font-family: 'DM Sans', sans-serif;
-  position: absolute;
-  bottom: 1.4rem;
-  left: ${({ iconHelper }) => (iconHelper ? '2rem' : spacing.xs)};
-  font-size: ${() => getSize('md')};
-  color: ${text.mutedGray};
-  font-weight: 400;
-  transform-origin: 0 0;
-  transition: all 0.2s ease;
-  pointer-events: none;
-  user-select: none;
-  width: 90%;
-  background: transparent;
-  @media screen and (min-width: ${breakpoints.xl}) {
-    bottom: calc(0.875rem * 1.125);
-    top: calc(0.8rem * 1.125);
-    left: ${({ iconHelper }) =>
-      iconHelper ? 'calc(2rem * 1.125)' : `calc(${spacing.xs} * 1.125)`};
-    font-size: ${() => getSize('md', true)};
-  }
-`;
-
-export const IconFill = styled(RadioButton)`
-  font-size: ${() => getSize('lg')};
-  color: ${iconColor};
-  display: inline-flex;
-  float: right;
-  margin: 0.063rem 0.438rem;
-  transition: all 0.1s cubic-bezier(0.075, 0.82, 0.165, 1);
-  @media screen and (min-width: ${breakpoints.xl}) {
-    font-size: ${() => getSize('lg', true)};
-  }
-`;
-
-export const StyledInput = styled.input`
-  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-  font-family: 'DM Sans', sans-serif;
-  font-size: ${() => getSize('md')};
-  -webkit-appearance: none;
-  appearance: none;
   width: 100%;
-  height: 3rem;
-  font-family: inherit;
-  padding: ${(iconHelper) =>
-    `${spacing.xs} 2.1rem ${spacing.xs} ${
-      iconHelper !== null ? spacing.xs : '1.8rem'
-    }`};
-  font-weight: 400;
-  background: white;
-  ${({ border }) =>
-    border === 'bottom'
-      ? `border:0; border-bottom: 1px solid ${borderColor}`
-      : `border: 1px solid ${borderColor}`};
-  color: ${text.dark};
-  &::placeholder {
-    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    color: ${({ label }) => (label ? 'transparent' : text.mutedGray)};
-    user-select: none;
-    padding-left: ${({ iconHelper }) =>
-      iconHelper === null ? spacing.nano : '1.7rem'};
-  }
-  &:not(:placeholder-shown) {
-    & ${Caption} {
-      padding-top: ${spacing.nano};
-      transform: translate3d(0, -${spacing.xs}, 0) scale(0.6875);
-      @media screen and (min-width: ${breakpoints.xl}) {
-        padding-top: calc(${spacing.nano} * 1.125);
-        transform: translate3d(0, calc(-${spacing.xs} * 1.125), 0)
-          scale(calc(0.6875 * 1.125));
-      }
-    }
-  }
-  &:focus,
-  &:valid {
-    &::placeholder {
-      color: ${({ label }) => (label ? 'transparent' : text.mutedGray)};
-      user-select: none;
-      padding-left: ${({ iconHelper }) =>
-        iconHelper === null ? spacing.nano : '0rem'};
-    }
-    transition: all 0.1s cubic-bezier(0.12, 0, 0.39, 0);
-    transition: border 0.1s cubic-bezier(0.12, 0, 0.39, 0);
-    background: white;
-    height: calc(3rem - 2px);
+  
+  display: inline-flex;
+  align-items: flex-end;
+  
+  padding-bottom: ${({ size }) => size === 'large' ? spacing.sm : spacing.xs};
+
+  ${({ border }) => getBorderStyle(border)};
+  
+  .input{
+    border: none;
+    width: 100%;
+    background-color: inherit;
     outline: none;
-    letter-spacing: ${({ open }) => (open ? 'normal' : '0.25rem')};
-    ${({ border }) =>
-      border === 'bottom'
-        ? `border: none; border-bottom: 2px solid ${borderColor}`
-        : `border: 2px solid ${borderColor}`};
-    padding-bottom: ${(props) =>
-      props.label !== null
-        ? props.border === 'overlap'
-          ? spacing.xs
-          : 0
-        : spacing.xs} !important;
-    padding-left: ${({ iconHelper }) =>
-      iconHelper === null ? spacing.nano : '1.9rem'};
-    padding-top: ${spacing.sm};
-    & ~ ${Info} {
-      opacity: 1;
-      cursor: pointer;
-      user-select: all;
-    }
-    & ~ ${Helper} {
-      opacity: 1;
-      top: ${({ border }) => (border === 'full' ? ' 0.88rem' : spacing.micro)};
-    }
-    & ~ ${Caption} {
-      width: auto;
-      background: ${(props) =>
-        props.label && props.border === 'overlap' && !props.disabled
-          ? 'white'
-          : 'transparent'};
-      color: ${text.dark};
-      padding-top: ${spacing.nano};
-      padding-right: ${spacing.xs};
-      padding-left: ${({ border }) =>
-        border === 'overlap' ? spacing.xs : '0'};
-      transform: translate3d(
-          0,
-          ${({ border }) => (border === 'overlap' ? '-1.4rem' : '-0.8rem')},
-          0
-        )
-        scale(0.6875);
-      @media screen and (min-width: ${breakpoints.xl}) {
-        padding-top: calc(${spacing.nano} * 1.125);
-        padding-right: calc(${spacing.xs} * 1.125);
-        ${({ border }) => transform(border)}
-      }
-      & ${IconFill} {
-        display: inline-flex;
-        margin: 0 ${spacing.nano};
-      }
-    }
-    @media screen and (min-width: ${breakpoints.xl}) {
-      font-size: ${() => getSize('md', true)};
-      ${({ border }) =>
-        border === 'bottom'
-          ? `border: 0; border-bottom: calc(2px * 1.125) solid ${borderColor};`
-          : `border: calc(0.12rem * 1.125) solid ${borderColor};`};
-      padding-bottom: ${(props) =>
-        props.label !== null
-          ? props.border === 'overlap'
-            ? `calc(${spacing.xs} * 1.125)`
-            : 0
-          : `calc(${spacing.xs} * 1.125)`} !important;
-      padding-left: ${({ iconHelper }) =>
-        iconHelper === null
-          ? `calc(${spacing.xs} * 1.125)`
-          : 'calc(1.8rem * 1.125)'};
-      padding-top: calc(${spacing.sm} * 1.125);
-    }
+    font-size: 1rem;
+    padding: 0;
   }
-  @media screen and (min-width: ${breakpoints.xl}) {
-    font-size: ${() => getSize('md', true)};
-    height: calc(3rem * 1.125);
-    padding: calc(${spacing.xs} * 1.125) calc(2.1rem * 1.125)
-      calc(${spacing.xs} * 1.125)
-      ${({ iconHelper }) =>
-        iconHelper ? `calc(${spacing.xs} * 1.125)` : 'calc(1.8rem * 1.125)'};
-    ${({ border }) =>
-      border === 'bottom'
-        ? `border: none; border-bottom: calc(1px * 1.25) solid ${borderColor};`
-        : `border: calc(1px * 1.25) solid ${borderColor};`};
-  }
-  &:disabled {
-    background: ${text.lightGray};
-    color: ${text.mutedGray};
-    padding-bottom: 0;
-    ${(props) =>
-      props.value !== null
-        ? disabled
-        : props.border === 'bottom'
-        ? `border: none;
-                border-bottom: calc(1px * 1.25) solid ${borderColor};`
-        : `border: none;`};
-  }
-`;
 
-export const disabled = css`
-  & ~ ${Caption} {
-    width: auto;
-    color: ${text.mutedGray};
-    padding-top: ${spacing.nano};
-    padding-right: ${spacing.xs};
-    & ${IconFill} {
+  .icon{
+    padding: 0 ${spacing.xs};
+    display: inline-flex;
+    align-items: center;
+    color: ${iconColor};
+  }
+  
+  .input:focus ~ .label, .input:valid ~ .label {
+    top: ${({ border }) => border === 'overlap' ? ' -0.375rem' : '0'};
+    font-size: 0.688rem;
+    line-height: 0.688rem;
+    border: none;
+    padding: ${({ border }) => border === 'overlap' ? '0 5rem' : '0'};
+    outline: none;
+    left: ${({ hasIcon }) => hasIcon ? spacing.lg : spacing.xs};
+    .icon-required {
       display: inline-flex;
-      padding: 0 0 0 ${spacing.nano};
+      padding-left: ${spacing.nano};
     }
-    ${({ border }) =>
-      border === 'bottom'
-        ? `border: none; border-bottom: calc(1px * 1.25) solid ${borderColor};`
-        : `border: none;`};
-    transform: translate3d(0, -0.8rem, 0) scale(0.6875);
-    @media screen and (min-width: ${breakpoints.xl}) {
-      padding-top: calc(${spacing.nano} * 1.125);
-      padding-right: calc(${spacing.xs} * 1.125);
-      transform: translate3d(0, calc(-0.8rem * 1.125), 0)
-        scale(calc(0.6875 * 1.125));
+    
+  }
+
+  .label {
+    background: inherit;
+    color: #808080;
+    left: ${({ hasIcon }) => hasIcon ? spacing.lg : spacing.xs};
+    right: initial;
+    font-size: 1rem;
+    line-height: 1rem;
+    ${({ size }) => getTopLabel(size)};
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    transition: top .2s cubic-bezier(0.165, 0.84, 0.44, 1), font-size .2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    .icon-required {
+      padding-left: ${spacing.nano};
+      margin-left: auto;
+      margin-top: 1px;
     }
+  }
+
+  .is-invalid{
+    color: red;
+    padding: 0 ${spacing.xs};
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .is-valid{
+    color: #3AE25F;
+    padding: 0 ${spacing.xs};
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .input::placeholder {
+    
+  }
+  .input:not(:placeholder-shown) {
+    
+  }
+  .input:focus, .input:valid {
+    
+  }
+  
+  .input:disabled {
+  
   }
 `;
 
-export const getInputSize = (size, max = false) => {
-  switch (size) {
-    case 'sm':
-      return max ? 'calc(16.6875rem * 1.125)' : '16.6875rem';
-    case 'lg':
-      return max ? 'calc(23.1875rem * 1.125)' : '23.1875rem';
-    case 'md':
-      return max ? 'calc(19.9375rem * 1.125)' : '19.9375rem';
-    case 'full':
-      return '100%';
-    case 'default':
-    default:
-      return `clamp(16.6875rem, calc(16.6875rem + ((${
-        max ? 'calc(1vw * 1.125)' : '1vw'
-      } - 0.01rem) * 7.3034)), 23.1875rem)`;
+
+const getTopLabel = (size) => {
+  if (size === 'default') {
+    return css`
+      top: calc(1.244rem - .5rem);
+    `;
+  } else {
+    return css`
+      top: calc(1.493rem - .5rem);
+    `;
   }
-};
+}
+
 
 export const getSize = (size = 'md', max = false) => {
   switch (size) {
@@ -314,11 +133,26 @@ export const getSize = (size = 'md', max = false) => {
   }
 };
 
-const transform = (border) => {
-  return css`
-    transform: ${border === 'overlap'
-        ? 'translate3d(0, calc(-1.4rem * 1.125)), 0'
-        : 'translate3d(0, calc(-0.8rem * 1.125)), 0'}
-      scale(calc(0.6875 * 1.125));
-  `;
-};
+const getBorderStyle = (border) => {
+  let borderStyle = '';
+  switch (border) {
+    case 'bottom':
+      borderStyle = css`border-bottom: 0.063rem solid ${borderColor};`;
+      break;
+    case 'full':
+    case 'overlap':
+    default:
+      borderStyle = css`border: 0.063rem solid ${borderColor};`;
+      break;
+  }
+  return borderStyle;
+}
+
+// const transform = (border) => {
+//   return css`
+//     transform: ${border === 'overlap'
+//       ? 'translate3d(0, calc(-1.4rem * 1.125)), 0'
+//       : 'translate3d(0, calc(-0.8rem * 1.125)), 0'}
+//       scale(calc(0.6875 * 1.125));
+//   `;
+// };

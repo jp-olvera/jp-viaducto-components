@@ -21,10 +21,6 @@ const StyledButton = styled.button`
 
   ${(props) => getPadding(props)}
   ${(props) => getFontStyle(props)}
-  
-  @media screen and (min-width: 90rem) {
-    font-size: calc(1rem * 1.125);
-  }
 
   &:disabled {
     background-color: lightgrey;
@@ -62,7 +58,8 @@ const StyledButton = styled.button`
   }
 
   .button-icon-span {
-    margin-right: ${(p) => (p.isIconOnly ? '0' : '0.5em')};
+    margin-right: ${(p) => (!p.isIconOnly && p.lead ? '0.5rem' : '0')};
+    margin-left: ${(p) => (!p.isIconOnly && !p.lead ? '0.5rem' : '0')};
     align-items: center;
     height: 1em;
   }
@@ -74,33 +71,33 @@ const getPadding = (props) => {
     // not icon at all
     switch (props.size) {
       case SIZE.small:
-        padding = `0 ${spacing.sm}`;
+        padding = `0 ${spacing.sm} `;
         break;
       case SIZE.large:
-        padding = `0 ${spacing.lg}`;
+        padding = `0 ${spacing.lg} `;
         break;
       case SIZE.default:
       default:
-        padding = `0 ${spacing.md}`;
+        padding = `0 ${spacing.md} `;
         break;
     }
   } else {
     switch (props.size) {
       case SIZE.small:
-        padding = `0 ${spacing.sm}`;
+        padding = `0 ${spacing.sm} `;
         break;
       case SIZE.large:
-        padding = `0 ${spacing.md}`;
+        padding = `0 ${spacing.md} `;
         break;
       case SIZE.default:
       default:
-        padding = `0 ${spacing.md}`;
+        padding = `0 ${spacing.md} `;
         break;
     }
   }
   return css`
-    padding: ${padding};
-  `;
+padding: ${padding};
+`;
 };
 
 const getFontStyle = (props) => {
@@ -118,6 +115,9 @@ const getFontStyle = (props) => {
 
   return css`
     font-size: ${fontSize};
+    @media screen and (min-width: 90rem) {
+      font-size: calc(${fontSize} * 1.125);
+    }
   `;
 };
 export default StyledButton;

@@ -4,6 +4,43 @@ import { Title } from "..";
 export default {
   title: "Andamio/Cells/Title",
   component: Title,
+  argTypes: {
+    level: {
+      options: ['D1', 'D2', 'D3', 'D4', '1', '2', '3', '4', '5', '6'],
+      control: {
+        type: 'select',
+      },
+    },
+    fontStyle: {
+      options: ['normal', 'italic'],
+      control: {
+        type: 'select',
+      },
+    },
+    lineHeight: {
+      options: ['xs', 'sm', 'md', 'lg'],
+      control: {
+        type: 'select',
+      },
+    },
+    weight: {
+      options: ['normal', 'bold'],
+      control: {
+        type: 'select'
+      }
+    },
+    align: {
+      options: ['left', 'right', 'center'],
+      control: {
+        type: 'select'
+      }
+    },
+    color: {
+      control: {
+        type: 'color',
+      },
+    },
+  },
 };
 
 const Template = (args) => <Title {...args}>The quick brown fox jumps over the lazy dog</Title>;
@@ -23,26 +60,26 @@ HeadingCustom.args = {
   margin: "0",
   align: "left",
   spacing: "normal",
-  lineHeight: "",
-  color: "",
+  lineHeight: "md",
+  color: "#000",
 };
 
 
 export const Display = Template.bind({});
 
 Display.args = {
-  level: "d1",
+  level: "D1",
 };
 export const DisplayCustom = Template.bind({});
 
 DisplayCustom.args = {
-  level: "d1",
+  level: "D1",
   family: "DM Sans",
-  weight: "400",
+  weight: "normal",
   fontStyle: "normal",
   margin: "0",
   align: "left",
   spacing: "normal",
-  lineHeight: "",
+  lineHeight: "lg",
   color: "",
 };

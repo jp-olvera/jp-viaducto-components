@@ -8,6 +8,10 @@ export default {
     color: {
       control: 'color',
     },
+    size: {
+      options: ['xxs', 'xs', 'sm', 'md', 'lg'],
+      control: 'select'
+    },
   },
 };
 
@@ -21,7 +25,8 @@ Default.args = {
   color: '#ff8c69',
   icon: "😎",
   family: "Manrope",
-  size: "md"
+  size: "md",
+  lead: false
 };
 
 export const Lead = Template.bind({});
@@ -43,5 +48,7 @@ NoIcon.args = {
   href: "#",
   color: '#ff8c69',
   family: "Manrope",
-  size: "md"
+  size: "md",
+  lead: false,
+  icon: ''
 };

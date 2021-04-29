@@ -4,6 +4,43 @@ import { Paragraph } from "..";
 export default {
   title: "Andamio/Cells/Paragraph",
   component: Paragraph,
+  argTypes: {
+    color: {
+      control: {
+        type: 'color',
+      },
+    },
+    lineHeight: {
+      options: ['xs', 'sm', 'md', 'lg'],
+      control: {
+        type: 'select',
+      },
+    },
+    fontStyle: {
+      options: ['normal', 'italic'],
+      control: {
+        type: 'select',
+      },
+    },
+    weight: {
+      options: ['normal', 'bold'],
+      control: {
+        type: 'select'
+      }
+    },
+    align: {
+      options: ['left', 'right', 'center'],
+      control: {
+        type: 'select'
+      }
+    },
+    size: {
+      options: ['xxs', 'xs', 'sm', 'md', 'lg'],
+      control: {
+        type: 'select'
+      }
+    },
+  }
 };
 
 const Template = args => (
@@ -25,9 +62,8 @@ Custom.args = {
   family: "DM Sans",
   fontStyle: "normal",
   margin: "0",
-  weight: "400",
+  weight: "normal",
   spacing: "normal",
-  size: "1rem",
   color: "#000",
-  lineHeight: ""
+  lineHeight: "md"
 };

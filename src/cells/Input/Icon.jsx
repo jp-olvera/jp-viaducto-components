@@ -10,40 +10,46 @@ import {
   Envelope,
   Stopwatch,
   Grid,
+  ChatWarning,
+  OkCircle,
+  Error
 } from 'react-ikonate';
 
-export const getIcon = (icon) => {
+export const getIcon = (icon, size = "18px") => {
   switch (icon) {
     case 'card':
-      return <CreditCard />;
+      return <CreditCard fontSize={size} />;
     case 'color':
-      return <Drop />
+      return <Drop fontSize={size} />;
     case 'upload':
-      return <Upload />
+      return <Upload fontSize={size} />;
     case 'date':
-      return <Calendar />
+      return <Calendar fontSize={size} />;
     case 'search':
-      return <Search />
+      return <Search fontSize={size} />;
     case 'data':
-      return <Cut />
+      return <Cut fontSize={size} />;
     case 'phone':
-      return <Phone />
+      return <Phone fontSize={size} />;
     case 'mail':
-      return <Envelope />
+      return <Envelope fontSize={size} />;
     case 'time':
-      return <Stopwatch />
+      return <Stopwatch fontSize={size} />;
     case 'grid':
-      return <Grid />
+      return <Grid fontSize={size} />;
+    case 'warning':
+      return <ChatWarning fontSize={size} />;
+    case 'ok':
+      return <OkCircle fontSize={size} />;
+    case 'required':
+      return <Error fontSize={size} />;
     default:
       return null;
   }
-}
-
+};
 
 const Icon = ({ icon }) => {
-  return (
-    getIcon(icon)
-  );
-}
+  return getIcon(icon);
+};
 
 export default Icon;

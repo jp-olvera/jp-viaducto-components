@@ -11,6 +11,12 @@ export default {
         type: 'radio',
       },
     },
+    size: {
+      options: ["none", "nano", "micro", "tiny", "xs", "sm", "md", "lg", "xl", "xxl",],
+      control: {
+        type: 'select',
+      },
+    },
     sb: {
       control: {
         type: 'color',

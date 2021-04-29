@@ -12,11 +12,11 @@ const StyledParagraph = styled.p`
   letter-spacing: ${({ spacing }) => spacing || 'normal'};
   font-size: ${({ size }) => getSize(size)};
   text-align: ${({ align }) => align || 'left'};
-  line-height: ${({ lineHeight }) => lineHeight ? `${lineHeight}` : `calc(${getSize()} * 1.5)`};
+  line-height: ${({ lineHeight, size }) => getLineHeight(lineHeight, size, false)};
   color: ${({ color }) => (text[color] || color || text['dark'])};
   @media screen and (min-width: ${breakpoints.xl}) {
     font-size: ${({ size }) => getSize(size, true)};
-    line-height: ${({ lineHeight, size }) => lineHeight ? `${lineHeight}` : `calc(${getSize(size || 'md', true)} * 1.5)`};
+    line-height: ${({ lineHeight, size }) => getLineHeight(lineHeight, size, true)};
   }
 `;
 
@@ -35,6 +35,21 @@ const getSize = (size = 'md', max = false) => {
       return max ? 'calc(1rem * 1.125)' : '1rem';
   }
 }
+
+const getLineHeight = (lineHeight = 'md', size = 'md', max = false) => {
+  switch (lineHeight) {
+    case 'xs':
+      return `calc(${getSize(size, max)} * 1.15)`;
+    case 'sm':
+      return `calc(${getSize(size, max)} * 1.25)`;
+    case 'lg':
+      return `calc(${getSize(size, max)} * 1.75)`;
+    case 'md':
+    default:
+      return `calc(${getSize(size, max)} * 1.5)`;
+  }
+}
+
 
 export default StyledParagraph;
 export { getSize };
