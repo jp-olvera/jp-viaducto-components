@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ConfigContext } from '../../providers';
 import StyledHideable from './StyledHideable';
 
 /**
@@ -11,8 +12,14 @@ import StyledHideable from './StyledHideable';
  * @param {boolean} after Indicates if visible after the breakpoint, defaults to true
  */
 const Hideable = ({ visibleOn = null, after = true, children }) => {
+  const { configuration } = useContext(ConfigContext);
+
   return (
-    <StyledHideable visibleOn={visibleOn} after={after}>
+    <StyledHideable
+      visibleOn={visibleOn}
+      after={after}
+      configuration={configuration}
+    >
       {children}
     </StyledHideable>
   );

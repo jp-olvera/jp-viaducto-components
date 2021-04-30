@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pill } from '..';
+import { ConfigProvider } from '../../../providers';
 
 export default {
   title: 'Andamio/Cells/Pill',
@@ -18,7 +19,7 @@ export default {
   },
 };
 
-const Template = (args) => <Pill {...args} />;
+const Template = (args) => <ConfigProvider><Pill {...args} /></ConfigProvider>;
 
 const Icon = ({ icon = '🥵' }) => <p>{icon}</p>;
 const IconLead = ({ icon = '🥵' }) => <p>{icon}</p>;

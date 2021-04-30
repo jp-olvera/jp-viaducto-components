@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
-import config from '../../utils/config';
 import { SIZE, FONT_SIZE } from './constants';
-const spacing = config.spacing;
 
 const StyledButton = styled.button`
   border: 1px solid ${(props) => props.colors.default};
@@ -71,27 +69,27 @@ const getPadding = (props) => {
     // not icon at all
     switch (props.size) {
       case SIZE.small:
-        padding = `0 ${spacing.sm} `;
+        padding = `0 ${({ configuration }) => configuration.spacing.sm} `;
         break;
       case SIZE.large:
-        padding = `0 ${spacing.lg} `;
+        padding = `0 ${({ configuration }) => configuration.spacing.lg} `;
         break;
       case SIZE.default:
       default:
-        padding = `0 ${spacing.md} `;
+        padding = `0 ${({ configuration }) => configuration.spacing.md} `;
         break;
     }
   } else {
     switch (props.size) {
       case SIZE.small:
-        padding = `0 ${spacing.sm} `;
+        padding = `0 ${({ configuration }) => configuration.spacing.sm} `;
         break;
       case SIZE.large:
-        padding = `0 ${spacing.md} `;
+        padding = `0 ${({ configuration }) => configuration.spacing.md} `;
         break;
       case SIZE.default:
       default:
-        padding = `0 ${spacing.md} `;
+        padding = `0 ${({ configuration }) => configuration.spacing.md} `;
         break;
     }
   }

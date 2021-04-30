@@ -1,5 +1,6 @@
 import React from 'react';
 import { Spacer } from '..';
+import { ConfigProvider } from '../../../providers';
 
 export default {
   title: 'Andamio/Cells/Spacer',
@@ -25,7 +26,7 @@ export default {
   },
 };
 
-const Template = (args) => <Spacer {...args} />;
+const Template = (args) => <ConfigProvider><Spacer {...args} /></ConfigProvider>;
 
 export const Vertical = Template.bind({});
 

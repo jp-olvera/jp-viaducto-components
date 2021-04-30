@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ConfigContext } from '../../providers';
 import StyledParagraph from './StyledParagraph';
 
 /**
@@ -7,7 +8,13 @@ import StyledParagraph from './StyledParagraph';
  * @param {Object} props HTML attributes for P tag
  */
 const Paragraph = ({ children, columns, ...props }) => {
-  return <StyledParagraph columns={columns} {...props}>{children}</StyledParagraph>;
+  const { configuration } = useContext(ConfigContext);
+
+  return (
+    <StyledParagraph columns={columns} {...props} configuration={configuration}>
+      {children}
+    </StyledParagraph>
+  );
 };
 
 export default Paragraph;

@@ -1,4 +1,5 @@
 import React from "react";
+import { ConfigProvider } from "../../../providers";
 import { Avatar } from "../index";
 
 export default {
@@ -12,7 +13,7 @@ export default {
   },
 };
 
-const Template = args => <Avatar {...args} />;
+const Template = args => <ConfigProvider><Avatar {...args} /></ConfigProvider>;
 
 export const Default = Template.bind({});
 

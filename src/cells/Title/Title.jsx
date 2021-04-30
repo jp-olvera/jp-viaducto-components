@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ConfigContext } from '../../providers';
+
 import StyledTitle from './StyledTitle';
 
 /**
@@ -18,11 +20,14 @@ import StyledTitle from './StyledTitle';
  * @param {String} children Content of the title
  * @param {Object} props HTML attributes for HTML Heading tag
  */
-const Title = ({
-  children,
-  ...props
-}) => {
-  return <StyledTitle {...props}>{children}</StyledTitle>;
+const Title = ({ children, ...props }) => {
+  const { configuration } = useContext(ConfigContext);
+
+  return (
+    <StyledTitle configuration={configuration} {...props}>
+      {children}
+    </StyledTitle>
+  );
 };
 
 export default Title;

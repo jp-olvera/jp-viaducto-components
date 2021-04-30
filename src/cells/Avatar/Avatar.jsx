@@ -1,6 +1,8 @@
-import React from "react";
-import StyledAvatar from "./StyledAvatar";
-import { SIZE } from "./constants";
+import React, { useContext } from 'react';
+import { ConfigContext } from '../../providers';
+
+import StyledAvatar from './StyledAvatar';
+import { SIZE } from './constants';
 
 /**
  * Avatar component is a img HTML tag with a circular shape
@@ -9,7 +11,16 @@ import { SIZE } from "./constants";
  * @param {Object} rest HTML attributes of a img tag
  */
 const Avatar = ({ src, size = SIZE.default, ...rest }) => {
-	return <StyledAvatar src={src} {...rest} size={size} />;
+  const { configuration } = useContext(ConfigContext);
+
+  return (
+    <StyledAvatar
+      src={src}
+      {...rest}
+      size={size}
+      configuration={configuration}
+    />
+  );
 };
 
 export default Avatar;

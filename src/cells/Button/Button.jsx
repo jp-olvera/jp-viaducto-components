@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { ConfigContext } from '../../providers';
+
 import StyledButton from './StyledButton';
 import { SIZE } from './constants';
 const defaultColors = {
@@ -24,6 +27,8 @@ const Button = ({
   lead = false,
   ...rest
 }) => {
+  const { configuration } = useContext(ConfigContext);
+
   return (
     <StyledButton
       size={size}
@@ -31,6 +36,7 @@ const Button = ({
       isIconOnly={label === null && icon !== null}
       hasIcon={icon !== null}
       lead={lead}
+      configuration={configuration}
       {...rest}
     >
       {icon !== null && lead && <span className="button-icon-span">{icon}</span>}

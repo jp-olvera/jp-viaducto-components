@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
-import config from '../../utils/config';
-const { spacing, text, breakpoints } = config;
-
 export const StyledAnchor = styled.a`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
   font-family: ${({ family }) => family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
-  color: ${({ color }) => (text[color] || color || '#005fb2')};
+  color: ${({ configuration, color }) => (configuration.text[color] || color || '#005fb2')};
   font-size: ${({ size }) => getSize(size)};
   box-sizing: border-box;
   cursor: pointer;
@@ -30,12 +27,12 @@ export const StyledAnchor = styled.a`
     stroke: #005fb2;
     display: inline-block;
     vertical-align: middle;
-    margin-left: ${spacing.lg};
+    margin-left: ${({ configuration }) => configuration.spacing.lg};
     transition: transform 0.2s;
     height: 1em;
   }
 
-  @media screen and (min-width: ${breakpoints.xl}) {
+  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.xl}) {
     font-size: ${({ size }) => getSize(size, true)};
   }
   

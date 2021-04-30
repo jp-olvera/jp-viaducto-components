@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import config from '../../utils/config';
 
-const { text, breakpoints } = config;
 
 const StyledTitle = styled.h1`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=IBM+Plex+Sans&family=Manrope&display=swap');
@@ -13,8 +11,8 @@ const StyledTitle = styled.h1`
   text-align: ${({ align }) => align || 'left'};
   letter-spacing: ${({ spacing }) => spacing || 'normal'};
   line-height: ${({ lineHeight, level }) => getLineHeight(lineHeight, level, false)};
-  color: ${({ color }) => (text[color] || color || text['dark'])};
-  @media (min-width: ${breakpoints.xl}) {
+  color: ${({ configuration, color }) => (configuration.text[color] || color || configuration.text['dark'])};
+  @media (min-width: ${({ configuration }) => configuration.breakpoints.xl}) {
     font-size: ${({ level }) => getFontSize(level || '1', true)};
     line-height: ${({ lineHeight, level }) => getLineHeight(lineHeight, level, true)};
   }

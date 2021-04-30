@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 import config from '../../utils/config';
 
-const { spacing, breakpoints } = config;
-
 const StyledPill = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
   font-family: ${({ family }) => family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
@@ -14,24 +12,24 @@ const StyledPill = styled.div`
   font-size: ${({ size }) => getSize(size)};
   height: 1.875rem;
 
-  ${(p) => getPadding(p.hasIcon, p.hasIconLead, p.onlyText)}
+  ${(p) => getPadding(p.configuration.spacing, p.hasIcon, p.hasIconLead, p.onlyText)}
 
-  @media screen and (min-width: ${breakpoints.xl}){
+  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.xl}){
     font-size: ${({ size }) => getSize(size, true)};
   }
 	.span-icon{
-		margin-left: ${spacing.micro}
+		margin-left: ${({ configuration }) => configuration.spacing.micro}
 	}
 
 	.span-icon-lead{
-		margin-right: ${spacing.micro}
+		margin-right: ${({ configuration }) => configuration.spacing.micro}
 	}
 `;
 
-const getPadding = (hasIcon, hasIconLead, onlyText) => {
+const getPadding = (spacing, hasIcon, hasIconLead, onlyText) => {
   let padding = `0 ${spacing.xs}`
   if (hasIcon && hasIconLead) {
-    padding = `0 ${spacing.nano}`;
+    padding = `0 ${spacing.xl}`;
   }
   if (hasIconLead) {
     padding = `0 ${spacing.xs} 0 ${spacing.nano}`;

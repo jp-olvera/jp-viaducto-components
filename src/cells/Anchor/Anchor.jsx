@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ConfigContext } from '../../providers';
+
 import { StyledAnchor } from './StyledAnchor';
 
 /**
@@ -11,12 +13,30 @@ import { StyledAnchor } from './StyledAnchor';
  * @param {Icon} icon The Icon component
  * @param {Boolean} lead Indicates if the icon will be leading
  */
-const Anchor = ({ label, href, size, family, color = null, icon = null, lead = false, ...rest }) => {
+const Anchor = ({
+  label,
+  href,
+  size,
+  family,
+  color = null,
+  icon = null,
+  lead = false,
+  ...rest
+}) => {
+  const { configuration } = useContext(ConfigContext);
+
   return (
-    <StyledAnchor href={href} color={color} size={size} family={family} {...rest}>
+    <StyledAnchor
+      href={href}
+      color={color}
+      size={size}
+      family={family}
+      configuration={configuration}
+      {...rest}
+    >
       {icon !== null && lead && icon}
       {label}
-      {icon !== null && (!lead) && icon}
+      {icon !== null && !lead && icon}
     </StyledAnchor>
   );
 };

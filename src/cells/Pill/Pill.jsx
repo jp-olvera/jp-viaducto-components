@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ConfigContext } from '../../providers';
 
 import StyledPill from './StyledPill';
 
@@ -11,6 +12,8 @@ const Pill = ({
   size = 'md',
   family = 'Manrope'
 }) => {
+  const { configuration } = useContext(ConfigContext);
+
   return (
     <StyledPill
       hasIcon={icon !== null || icon !== ""}
@@ -20,6 +23,7 @@ const Pill = ({
       color={color}
       size={size}
       family={family}
+      configuration={configuration}
     >
       {iconLead !== null && <span className="span-icon-lead">{iconLead}</span>}
       <span >{label}</span>

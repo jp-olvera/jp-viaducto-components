@@ -1,4 +1,5 @@
 import React from "react";
+import { ConfigProvider } from "../../../providers";
 import { Anchor } from "../index";
 
 export default {
@@ -15,7 +16,7 @@ export default {
   },
 };
 
-const Template = args => <Anchor {...args} />;
+const Template = args => <ConfigProvider><Anchor {...args} /></ConfigProvider>;
 
 export const Default = Template.bind({});
 

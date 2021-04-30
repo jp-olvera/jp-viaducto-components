@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { ConfigContext } from '../../providers';
 import { getIcon } from './Icon';
 import ProgressBar from './ProgressBar';
 import { Wrapper } from './StyledInput';
-import { ConfigContext } from '../../providers';
 
 /**
  * Input component wrapped with label and span tags for better UX

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Hideable } from '..';
+import { ConfigProvider } from '../../../providers';
 
 export default {
   title: 'Andamio/Cells/Hideable',
@@ -15,9 +16,11 @@ export default {
 };
 
 const Template = (args) => (
-  <Hideable {...args}>
-    <p>🥵😈 (resize your window)</p>
-  </Hideable>
+  <ConfigProvider>
+    <Hideable {...args}>
+      <p>🥵😈 (resize your window)</p>
+    </Hideable>
+  </ConfigProvider>
 );
 
 export const Default = Template.bind({});

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import config from '../../utils/config';
 
-const { text, breakpoints } = config;
 const StyledParagraph = styled.p`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
   text-align: ${({ align }) => align || 'left'};
@@ -13,8 +11,8 @@ const StyledParagraph = styled.p`
   font-size: ${({ size }) => getSize(size)};
   text-align: ${({ align }) => align || 'left'};
   line-height: ${({ lineHeight, size }) => getLineHeight(lineHeight, size, false)};
-  color: ${({ color }) => (text[color] || color || text['dark'])};
-  @media screen and (min-width: ${breakpoints.xl}) {
+  color: ${({ color, configuration }) => (configuration.text[color] || color || configuration.text['dark'])};
+  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.xl}) {
     font-size: ${({ size }) => getSize(size, true)};
     line-height: ${({ lineHeight, size }) => getLineHeight(lineHeight, size, true)};
   }
