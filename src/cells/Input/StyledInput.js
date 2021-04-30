@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
+// import configuration from '../../utils/config';
 import { RadioButton } from 'react-ikonate';
-import config from '../../utils/config';
 import Icon from './Icon';
 
-const { text, spacing, breakpoints } = config;
+// const { spacing } = configuration;
+
 const borderColor = '#001D48';
 const iconColor = '#2329D6';
 
@@ -21,7 +22,7 @@ export const Wrapper = styled.div`
   display: inline-flex;
   align-items: flex-end;
   
-  padding-bottom: ${({ size }) => size === 'large' ? spacing.sm : spacing.xs};
+  padding-bottom: ${({ configuration, size }) => size === 'large' ? configuration.spacing.sm : configuration.spacing.xs};
 
   ${({ border }) => getBorderStyle(border)};
   
@@ -32,10 +33,11 @@ export const Wrapper = styled.div`
     outline: none;
     font-size: 1rem;
     padding: 0;
+    padding-left: ${({ configuration, hasIcon }) => hasIcon ? 0 : configuration.spacing.xs};
   }
 
   .icon{
-    padding: 0 ${spacing.xs};
+    padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;
     color: ${iconColor};
@@ -55,17 +57,17 @@ export const Wrapper = styled.div`
     color: #000;
     padding: 0;
     outline: none;
-    left: ${({ hasIcon }) => hasIcon ? spacing.lg : spacing.xs};
+    left: ${({ configuration, hasIcon }) => hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
     .icon-required {
       display: inline-flex;
-      padding-left: ${spacing.nano};
+      padding-left: ${({ configuration }) => configuration.spacing.nano};
     }
   }
 
   .label {
     background: inherit;
     color: #808080;
-    left: ${({ hasIcon }) => hasIcon ? spacing.lg : spacing.xs};
+    left: ${({ configuration, hasIcon }) => hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
     right: initial;
     font-size: 1rem;
     line-height: 1rem;
@@ -75,7 +77,7 @@ export const Wrapper = styled.div`
     user-select: none;
     transition: top .2s cubic-bezier(0.165, 0.84, 0.44, 1), font-size .2s cubic-bezier(0.165, 0.84, 0.44, 1);
     .icon-required {
-      padding-left: ${spacing.nano};
+      padding-left: ${({ configuration }) => configuration.spacing.nano};
       margin-left: auto;
       margin-top: 1px;
     }
@@ -83,7 +85,7 @@ export const Wrapper = styled.div`
 
   .is-invalid{
     color: red;
-    padding: 0 ${spacing.xs};
+    padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;
   }
@@ -96,14 +98,14 @@ export const Wrapper = styled.div`
 
   .is-valid{
     color: #3AE25F;
-    padding: 0 ${spacing.xs};
+    padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;
   }
 
   .icon-helper{
     color: ${iconColor};
-    padding: 0 ${spacing.xs};
+    padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;
   }
@@ -114,7 +116,6 @@ export const Wrapper = styled.div`
     pointer-events: none;
     user-select: none;
     & :not(:placeholder-shown) ~ .label{
-      
       top: ${({ border }) => border === 'overlap' ? ' -0.375rem' : '0'};
       font-size: 0.688rem;
       line-height: 0.688rem;
@@ -122,10 +123,10 @@ export const Wrapper = styled.div`
       color: #333;
       padding: 0;
       outline: none;
-      left: ${({ hasIcon }) => hasIcon ? spacing.lg : spacing.xs};
+      left: ${({ configuration, hasIcon }) => hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
       .icon-required {
         display: inline-flex;
-        padding-left: ${spacing.nano};
+        padding-left: ${({ configuration }) => configuration.spacing.nano};
       }
     }
   }
@@ -136,7 +137,7 @@ export const StyledProgressBar = styled.div`
   width: 100%;
   height: 0.188rem;
   gap: .5rem;
-  padding-left: ${spacing.xs};
+  padding-left: ${({ configuration }) => configuration.spacing.xs};
   box-sizing: border-box;
   .meter{
     background-color: #CECECE;

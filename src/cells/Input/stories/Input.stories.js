@@ -1,5 +1,6 @@
 import React from 'react';
-import { Input, Icon } from '..';
+import { Input } from '..';
+import { ConfigProvider } from '../../../providers';
 
 export default {
   title: 'Andamio/Cells/Input',
@@ -44,17 +45,32 @@ export default {
 
 const Template = (args) => {
   return (
-    <Input {...args} />
+    <ConfigProvider>
+      <Input {...args} />
+    </ConfigProvider>
+
   )
 };
 
-export const Default = Template.bind({});
+export const Text = Template.bind({});
 
-Default.args = {
-  label: 'Label',
-  id: "nombre",
+Text.args = {
+  label: 'Text',
+  id: "text",
+  type: "text",
+  isInvalid: false,
+  isValid: false,
+  required: false,
+  disabled: false
+};
+
+export const Password = Template.bind({});
+
+Password.args = {
+  label: 'Password',
+  id: "Password",
   type: "password",
-  icon: 'time',
+  icon: null,
   isInvalid: false,
   isValid: false,
   required: true,
