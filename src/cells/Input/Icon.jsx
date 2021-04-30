@@ -12,7 +12,9 @@ import {
   Grid,
   ChatWarning,
   OkCircle,
-  Error
+  Error,
+  EyeClosed,
+  Eye
 } from 'react-ikonate';
 
 export const getIcon = (icon, size = "18px") => {
@@ -43,6 +45,10 @@ export const getIcon = (icon, size = "18px") => {
       return <OkCircle fontSize={size} />;
     case 'required':
       return <Error fontSize={size} />;
+    case 'eye':
+      return <Eye fontSize={size} />;
+    case 'eye-closed':
+      return <EyeClosed fontSize={size} />;
     default:
       return null;
   }

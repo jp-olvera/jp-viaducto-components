@@ -11,7 +11,8 @@ const iconColor = '#2329D6';
 export const Wrapper = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
   font-family: 'DM Sans', sans-serif;
-  background-color: white;
+  background-color: ${({ disabled }) => disabled ? '#CECECE' : 'white'};
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'default'};
   box-sizing: border-box;
   height: ${({ size }) => size === 'default' ? "2.488rem" : "2.986rem"};
   position: relative;
@@ -39,20 +40,26 @@ export const Wrapper = styled.div`
     align-items: center;
     color: ${iconColor};
   }
-  
-  .input:focus ~ .label, .input:valid ~ .label {
+
+  .input{
+     & ::placeholder{
+      color: transparent;
+    }
+  }
+
+  .input:focus ~ .label, .input:valid ~ .label{
     top: ${({ border }) => border === 'overlap' ? ' -0.375rem' : '0'};
     font-size: 0.688rem;
     line-height: 0.688rem;
     border: none;
-    padding: ${({ border }) => border === 'overlap' ? '0 5rem' : '0'};
+    color: #000;
+    padding: 0;
     outline: none;
     left: ${({ hasIcon }) => hasIcon ? spacing.lg : spacing.xs};
     .icon-required {
       display: inline-flex;
       padding-left: ${spacing.nano};
     }
-    
   }
 
   .label {
@@ -81,6 +88,12 @@ export const Wrapper = styled.div`
     align-items: center;
   }
 
+  .input[type="password"]{
+    letter-spacing: .5rem;
+    font-weight: 800;
+    height: calc(100% - 1rem);
+  }
+
   .is-valid{
     color: #3AE25F;
     padding: 0 ${spacing.xs};
@@ -88,18 +101,32 @@ export const Wrapper = styled.div`
     align-items: center;
   }
 
-  .input::placeholder {
-    
+  .icon-helper{
+    color: ${iconColor};
+    padding: 0 ${spacing.xs};
+    display: inline-flex;
+    align-items: center;
   }
-  .input:not(:placeholder-shown) {
-    
-  }
-  .input:focus, .input:valid {
-    
-  }
-  
+
   .input:disabled {
-  
+    cursor: not-allowed;
+    background-color: #CECECE;
+    pointer-events: none;
+    user-select: none;
+    & :not(:placeholder-shown) ~ .label{
+      top: ${({ border }) => border === 'overlap' ? ' -0.375rem' : '0'};
+      font-size: 0.688rem;
+      line-height: 0.688rem;
+      border: none;
+      color: #333;
+      padding: 0;
+      outline: none;
+      left: ${({ hasIcon }) => hasIcon ? spacing.lg : spacing.xs};
+      .icon-required {
+        display: inline-flex;
+        padding-left: ${spacing.nano};
+      }
+    }
   }
 `;
 

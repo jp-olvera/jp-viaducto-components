@@ -3,8 +3,6 @@ import { getIcon } from './Icon';
 import {
   Wrapper
 } from './StyledInput';
-// import { EyeClosed, Eye } from 'react-ikonate';
-// import Icon from './Icon';
 
 /**
  * Input component wrapped with label and span tags for better UX
@@ -30,19 +28,19 @@ const Input = ({
   size = "default",
   ...props
 }) => {
-  // const [open, setOpen] = useState(false);
-  // const [pass, setPass] = useState(type);
-  // const toggleView = () => {
-  //   setOpen(!open);
-  //   setPass((actual) => (actual === 'password' ? 'text' : 'password'));
-  // };
+  const [open, setOpen] = useState(false);
+  const [inputType, setInputType] = useState(type);
+  const toggleView = () => {
+    setOpen(!open);
+    setInputType((actual) => (actual === 'password' ? 'text' : 'password'));
+  };
   return (
-    <Wrapper border={border} hasIcon={icon !== null} size={size}>
+    <Wrapper border={border} hasIcon={icon !== null} size={size} disabled={disabled}>
       {
         icon !== null && <span className="icon">{getIcon(icon)}</span>
       }
 
-      <input className="input" type={type} id={id} required />
+      <input className="input" type={inputType} id={id} required disabled={disabled} placeholder={disabled && props.value || label} />
 
       <label className="label" htmlFor={id}>
         <span>Label</span>
@@ -54,7 +52,10 @@ const Input = ({
       {
         isValid && <span className="is-valid">{getIcon('ok')}</span>
       }
-    </Wrapper>
+      {
+        type === 'password' && <span className="icon-helper" onClick={toggleView}> {inputType === 'password' ? getIcon('eye-closed') : getIcon('eye')}</span>
+      }
+    </Wrapper >
   );
 };
 

@@ -53,8 +53,10 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'Label',
   id: "nombre",
+  type: "password",
   icon: 'time',
   isInvalid: false,
   isValid: false,
-  required: true
+  required: true,
+  disabled: false
 };
