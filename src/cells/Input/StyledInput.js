@@ -114,6 +114,7 @@ export const Wrapper = styled.div`
     pointer-events: none;
     user-select: none;
     & :not(:placeholder-shown) ~ .label{
+      
       top: ${({ border }) => border === 'overlap' ? ' -0.375rem' : '0'};
       font-size: 0.688rem;
       line-height: 0.688rem;
@@ -130,6 +131,18 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const StyledProgressBar = styled.div`
+  display: inline-flex;
+  width: 100%;
+  height: 0.188rem;
+  gap: .5rem;
+  padding-left: ${spacing.xs};
+  box-sizing: border-box;
+  .meter{
+    background-color: #CECECE;
+    height: 0.625rem;
+  }
+`;
 
 const getTopLabel = (size) => {
   if (size === 'default') {
@@ -174,12 +187,3 @@ const getBorderStyle = (border) => {
   }
   return borderStyle;
 }
-
-// const transform = (border) => {
-//   return css`
-//     transform: ${border === 'overlap'
-//       ? 'translate3d(0, calc(-1.4rem * 1.125)), 0'
-//       : 'translate3d(0, calc(-0.8rem * 1.125)), 0'}
-//       scale(calc(0.6875 * 1.125));
-//   `;
-// };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getIcon } from './Icon';
+import ProgressBar from './ProgressBar';
 import {
   Wrapper
 } from './StyledInput';
@@ -30,70 +31,57 @@ const Input = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [inputType, setInputType] = useState(type);
+  const [inputValue, setInputValue] = useState(0);
   const toggleView = () => {
     setOpen(!open);
     setInputType((actual) => (actual === 'password' ? 'text' : 'password'));
   };
+  const change = (ev) => {
+    setInputValue(ev.target.value.length);
+  }
+  const getColor = (index) => {
+    switch (index) {
+      case 1:
+        return "red";
+      case 2:
+        return "orange";
+      case 3:
+        return "yellow";
+      case 4:
+        return "yellowgreen";
+      case 5:
+      default:
+        return "green";
+    }
+  }
   return (
-    <Wrapper border={border} hasIcon={icon !== null} size={size} disabled={disabled}>
-      {
-        icon !== null && <span className="icon">{getIcon(icon)}</span>
-      }
+    <>
+      <Wrapper border={border} hasIcon={icon !== null} size={size} disabled={disabled}>
+        {
+          icon !== null && <span className="icon">{getIcon(icon)}</span>
+        }
 
-      <input className="input" type={inputType} id={id} required disabled={disabled} placeholder={disabled && props.value || label} />
+        <input className="input" onChange={change} type={inputType} id={id} required disabled={disabled} placeholder={disabled && props.value || label} />
 
-      <label className="label" htmlFor={id}>
-        <span>Label</span>
-        {required && <span className="icon-required">{getIcon('required', '10px')}</span>}
-      </label>
+        <label className="label" htmlFor={id}>
+          <span>Label</span>
+          {required && <span className="icon-required">{getIcon('required', '10px')}</span>}
+        </label>
+        {
+          isInvalid && <span className="is-invalid">{getIcon('warning')}</span>
+        }
+        {
+          isValid && <span className="is-valid">{getIcon('ok')}</span>
+        }
+        {
+          type === 'password' && <span className="icon-helper" onClick={toggleView}> {inputType === 'password' ? getIcon('eye-closed') : getIcon('eye')}</span>
+        }
+      </Wrapper >
       {
-        isInvalid && <span className="is-invalid">{getIcon('warning')}</span>
+        type === 'password' && <ProgressBar currentProgress={inputValue} progressColor={getColor(inputValue)} />
       }
-      {
-        isValid && <span className="is-valid">{getIcon('ok')}</span>
-      }
-      {
-        type === 'password' && <span className="icon-helper" onClick={toggleView}> {inputType === 'password' ? getIcon('eye-closed') : getIcon('eye')}</span>
-      }
-    </Wrapper >
+    </>
   );
 };
 
 export default Input;
-
-// <Wrapper
-//   size={size}
-//   disabled={disabled}
-//   border={border}
-// >
-//   <StyledInput
-//     open={type === 'password' ? open : true}
-//     icon={icon}
-//     {...props}
-//     border={border}
-//     disabled={disabled}
-//     type={pass}
-//     id={props.id}
-//     required
-//     label={label}
-//     placeholder={label || props.placeholder}
-//   />
-//   {icon !== null ? (
-//     <Helper border={border}>
-//       <Icon icon={icon} />
-//     </Helper>
-//   ) : null}
-//   {type === 'password' ? (
-//     <Info onClick={toggleView}>{open ? <Eye /> : <EyeClosed />}</Info>
-//   ) : null}
-//   <StyledLabel
-//     htmlFor={props.id}
-//     icon={icon !== null}
-//     border={border}
-//     disabled={disabled}
-//     label={label}
-//   >
-//     {label !== null ? <span>{label}</span> : null}
-//     {iconRequired ? <IconFill /> : null}
-//   </StyledLabel>
-// </Wrapper>
