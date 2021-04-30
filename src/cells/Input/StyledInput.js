@@ -1,9 +1,6 @@
 import styled, { css } from 'styled-components';
-// import configuration from '../../utils/config';
 import { RadioButton } from 'react-ikonate';
 import Icon from './Icon';
-
-// const { spacing } = configuration;
 
 const borderColor = '#001D48';
 const iconColor = '#2329D6';

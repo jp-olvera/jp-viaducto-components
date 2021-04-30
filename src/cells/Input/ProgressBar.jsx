@@ -1,7 +1,9 @@
-import React from 'react';
-import { StyledProgressBar } from './StyledInput'
+import React, { useContext } from 'react';
+import { StyledProgressBar } from './StyledInput';
+import { ConfigContext } from '../../providers';
 
 const ProgressBar = ({ totalProgress = 6, progressColor = "#CECECE", currentProgress = 0 }) => {
+  const { configuration } = useContext(ConfigContext);
   const progressItems = () => {
     var items = [];
     for (var i = 0; i < totalProgress; i++) {
@@ -15,7 +17,7 @@ const ProgressBar = ({ totalProgress = 6, progressColor = "#CECECE", currentProg
     return items;
   }
   return (
-    <StyledProgressBar>
+    <StyledProgressBar configuration={configuration}>
       {progressItems()}
     </StyledProgressBar>
   );
