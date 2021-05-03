@@ -19,6 +19,7 @@ const Search = ({
   family = 'Roboto',
   colors = defaultColors,
   handleSearch = () => {},
+  options = [],
   id = 'search',
 }) => {
   const { configuration } = useContext(ConfigContext);
@@ -26,7 +27,7 @@ const Search = ({
   return (
     <StyledSearch configuration={configuration} family={family} colors={colors}>
       <input type="text" placeholder={placeholder} id={id} />
-      <Dropdown border={{ left: '1px solid #CECECE' }} />
+      <Dropdown border={{ left: '1px solid #CECECE' }} options={options} />
       <Button
         label={buttonLabel}
         lead

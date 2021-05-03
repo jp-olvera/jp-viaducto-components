@@ -21,6 +21,7 @@ const Checkbox = ({
       size={size}
       color={color}
       disabled={disabled}
+      data-testid={props.id}
     >
       {label}
       <input

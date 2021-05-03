@@ -18,6 +18,7 @@ const Switch = ({
       color={color}
       size={size}
       disabled={disabled}
+      data-testid={props.id}
     >
       <input
         type="checkbox"

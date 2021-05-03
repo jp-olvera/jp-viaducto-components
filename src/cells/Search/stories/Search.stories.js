@@ -10,7 +10,7 @@ export default {
       options: ['Manrope', 'Roboto', 'DM Sans'],
       control: { type: 'select' },
     },
-  }
+  },
 };
 
 const Template = (args) => {
@@ -24,8 +24,11 @@ const Template = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
-  placeholder: "Introduce el término de búsqueda",
-  buttonLabel: "Search",
-  id: "search",
-  handleSearch: () => { alert('Search') },
+  placeholder: 'Introduce el término de búsqueda',
+  buttonLabel: 'Search',
+  id: 'search',
+  handleSearch: () => {
+    alert('Search');
+  },
+  options: ['Razón Social', 'RFC', 'Nombre Comercial'],
 };
