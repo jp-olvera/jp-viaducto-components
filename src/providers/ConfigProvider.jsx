@@ -8,8 +8,12 @@ const ConfigProvider = ({ children }) => {
   // console.log(configuration)
   const updateConfig = (newConfig) => {
     setConfiguration((oldConfig) => ({ ...oldConfig, ...newConfig }));
-  }
-  return (<ConfigContext.Provider value={{ configuration, updateConfig }}>{children}</ConfigContext.Provider>)
-}
+  };
+  return (
+    <ConfigContext.Provider value={{ configuration, updateConfig }}>
+      {children}
+    </ConfigContext.Provider>
+  );
+};
 
 export default ConfigProvider;
