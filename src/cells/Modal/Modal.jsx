@@ -19,13 +19,14 @@ import { Close } from 'react-ikonate';
  */
 const Modal = ({
   title = '',
-  onReject,
-  onAccept,
+  onReject = null,
+  onAccept = null,
   maxWidth = '540px',
   breakpoint = '990px',
   active = false,
   height = '700px',
   overlayColor = 'rgba(255,255,255,0.5)',
+  backgroundColor = 'white',
   children,
 }) => {
   const { configuration } = useContext(ConfigContext);
@@ -82,6 +83,7 @@ const Modal = ({
         breakpoint={breakpoint}
         isActive={isActive}
         height={height}
+        backgroundColor={backgroundColor}
       >
         <div className="modal-header">
           <div style={{ marginRight: 'auto' }}>
@@ -102,32 +104,38 @@ const Modal = ({
           </button>
         </div>
         <div className="modal-content">{children}</div>
-        <div className="modal-bottom">
-          <Button
-            label="Cancel"
-            colors={{
-              default: '#D8DCE6',
-              click: '#D8DCE6',
-              active: '#F6F7F9',
-              hover: '#F6F7F9',
-              text: '#000',
-            }}
-            onClick={handleReject}
-          />
-          <div style={{ marginLeft: 'auto' }}>
-            <Button
-              label="Create Event"
-              colors={{
-                default: '#38B249',
-                click: '#38B249',
-                active: '#34AA44',
-                hover: '#34AA44',
-                text: 'white',
-              }}
-              onClick={handleAccept}
-            />
+        {onReject === null && onAccept === null ? null : (
+          <div className="modal-bottom">
+            {onReject !== null && (
+              <Button
+                label="Cancel"
+                colors={{
+                  default: '#F6F7F9',
+                  click: '#D8DCE6',
+                  active: '#D8DCE6',
+                  hover: '#D8DCE6',
+                  text: '#000',
+                }}
+                onClick={handleReject}
+              />
+            )}
+            {onAccept !== null && (
+              <div style={{ marginLeft: 'auto' }}>
+                <Button
+                  label="Create Event"
+                  colors={{
+                    default: '#38B249',
+                    click: '#38B249',
+                    active: '#34AA44',
+                    hover: '#34AA44',
+                    text: 'white',
+                  }}
+                  onClick={handleAccept}
+                />
+              </div>
+            )}
           </div>
-        </div>
+        )}
       </StyledModal>
     </div>
   );
