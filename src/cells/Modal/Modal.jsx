@@ -63,6 +63,7 @@ const Modal = ({
   };
   return (
     <div
+      data-testid="overlay"
       style={{
         alignItems: 'center',
         backgroundColor: overlayColor,
@@ -77,6 +78,7 @@ const Modal = ({
       }}
     >
       <StyledModal
+        data-testid="modal"
         ref={modalRef}
         configuration={configuration}
         maxWidth={maxWidth}
@@ -93,6 +95,7 @@ const Modal = ({
           </div>
           <button className="modal-close">
             <Close
+              data-testid="close-button"
               stroke="#9EA0A5"
               border={2}
               width="18px"
@@ -105,10 +108,11 @@ const Modal = ({
         </div>
         <div className="modal-content">{children}</div>
         {onReject === null && onAccept === null ? null : (
-          <div className="modal-bottom">
+          <div className="modal-bottom" data-testid="controls">
             {onReject !== null && (
               <Button
-                label="Cancel"
+                label="reject"
+                data-testid="reject"
                 colors={{
                   default: '#F6F7F9',
                   click: '#D8DCE6',
@@ -123,6 +127,7 @@ const Modal = ({
               <div style={{ marginLeft: 'auto' }}>
                 <Button
                   label="Create Event"
+                  data-testid="accept"
                   colors={{
                     default: '#38B249',
                     click: '#38B249',
