@@ -28,7 +28,10 @@ const StyledModal = styled.div`
   .modal-header {
     display: flex;
     border-bottom: 1px solid #eaedf3;
-    ${({ configuration }) => getPadding(configuration)}
+    border-radius: 5px 5px 0 0;
+
+    background-color: ${({ backgroundColor }) => backgroundColor};
+    ${({ configuration }) => getPadding(configuration)};
   }
   .modal-content {
     flex-grow: 1;
