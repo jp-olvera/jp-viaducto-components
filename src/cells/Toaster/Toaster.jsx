@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { ConfigContext } from '../../providers';
 import { Paragraph } from '../Paragraph';
 import StyledToaster from './StyledToaster';
@@ -7,9 +7,22 @@ import { Checkbox } from 'react-ikonate';
 const Toaster = ({ text, type, title, active = false }) => {
   const { configuration } = useContext(ConfigContext);
   const [isActive, setIsActive] = useState(true);
+
+  const ref = useRef();
+
   useEffect(() => {
     setIsActive(active);
   }, [active]);
+
+  useEffect(() => {
+    if (ref && ref.current) {
+      if (isActive) {
+        ref.current.style.setProperty('transform', 'translateX(0)');
+      } else {
+        ref.current.style.setProperty('transform', 'translateX(100%)');
+      }
+    }
+  }, [isActive]);
 
   let color = '#34AA44';
   switch (type) {
@@ -27,6 +40,7 @@ const Toaster = ({ text, type, title, active = false }) => {
   }
   return (
     <StyledToaster
+      ref={ref}
       backgoundColor={color}
       configuration={configuration}
       isActive={isActive}
