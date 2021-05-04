@@ -16,6 +16,7 @@ const Avatar = ({ src, size = SIZE.default, ...rest }) => {
   return (
     <StyledAvatar
       src={src}
+      alt={src}
       {...rest}
       size={size}
       configuration={configuration}

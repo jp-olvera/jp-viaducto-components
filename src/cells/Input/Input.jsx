@@ -83,7 +83,7 @@ const Input = ({
         />
 
         <label className="label" htmlFor={id}>
-          <span>Label</span>
+          <span>{label}</span>
           {required && (
             <span className="icon-required">{getIcon('required', '10px')}</span>
           )}

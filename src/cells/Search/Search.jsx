@@ -25,8 +25,18 @@ const Search = ({
   const { configuration } = useContext(ConfigContext);
 
   return (
-    <StyledSearch configuration={configuration} family={family} colors={colors}>
-      <input type="text" placeholder={placeholder} id={id} />
+    <StyledSearch
+      configuration={configuration}
+      family={family}
+      colors={colors}
+      data-testid={id}
+    >
+      <input
+        type="text"
+        placeholder={placeholder}
+        id={id}
+        data-testid={`input-${id}`}
+      />
       <Dropdown border={{ left: '1px solid #CECECE' }} options={options} />
       <Button
         label={buttonLabel}
@@ -34,6 +44,7 @@ const Search = ({
         icon={<SearchIcon color={colors.text} />}
         colors={colors}
         onClick={handleSearch}
+        data-testid={`button-${id}`}
       />
     </StyledSearch>
   );
