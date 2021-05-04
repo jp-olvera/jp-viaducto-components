@@ -30,4 +30,5 @@ Default.args = {
   text: 'Notification content',
   active: true,
   type: 'success',
+  top: true,
 };

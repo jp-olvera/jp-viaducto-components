@@ -1,15 +1,35 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { ConfigContext } from '../../providers/ConfigProvider';
 import { StyledNotification } from './StyledNotification';
 import { Checkbox, Close } from 'react-ikonate';
 import { Paragraph } from '../Paragraph';
 
-const Notification = ({ text, type = 'success', active = false }) => {
+const Notification = ({
+  text,
+  type = 'success',
+  active = false,
+  top = true,
+}) => {
   const { configuration } = useContext(ConfigContext);
   const [isActive, setIsActive] = useState(false);
+  const ref = useRef();
+
   useEffect(() => {
     setIsActive(active);
   }, [active]);
+
+  useEffect(() => {
+    if (ref && ref.current) {
+      if (isActive) {
+        ref.current.style.setProperty('transform', 'translateX(0)');
+      } else {
+        ref.current.style.setProperty(
+          'transform',
+          top ? 'translateY(-100%)' : 'translateY(100%)'
+        );
+      }
+    }
+  }, [isActive]);
 
   let color = '#34AA44';
   switch (type) {
@@ -31,6 +51,8 @@ const Notification = ({ text, type = 'success', active = false }) => {
       backgroundColor={color}
       configuration={configuration}
       data-testid="notification"
+      ref={ref}
+      top={top}
     >
       <span
         style={{
