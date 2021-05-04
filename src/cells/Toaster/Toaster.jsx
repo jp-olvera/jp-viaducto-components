@@ -4,7 +4,24 @@ import { Paragraph } from '../Paragraph';
 import StyledToaster from './StyledToaster';
 import { Close } from 'react-ikonate';
 import { Checkbox } from 'react-ikonate';
-const Toaster = ({ text, type, title, active = false }) => {
+
+/**
+ * A toast component, you can change ts position via top and right properties
+ * @param {string} text Text to be shown
+ * @param {string} type One of success/error/warning
+ * @param {string} title The title in the top
+ * @param {boolean} active Boolean that indicates if the toaster should be shown
+ * @param {boolean} top Boolean that indicates if the toaster should be in top, default is true
+ * @param {boolean} right Boolean that indicates if the toaster should be in right, default is true
+ */
+const Toaster = ({
+  text,
+  type,
+  title,
+  active = false,
+  top = true,
+  right = true,
+}) => {
   const { configuration } = useContext(ConfigContext);
   const [isActive, setIsActive] = useState(true);
 
@@ -19,7 +36,10 @@ const Toaster = ({ text, type, title, active = false }) => {
       if (isActive) {
         ref.current.style.setProperty('transform', 'translateX(0)');
       } else {
-        ref.current.style.setProperty('transform', 'translateX(100%)');
+        ref.current.style.setProperty(
+          'transform',
+          right ? 'translateX(100%)' : 'translateX(-100%)'
+        );
       }
     }
   }, [isActive]);
@@ -44,6 +64,8 @@ const Toaster = ({ text, type, title, active = false }) => {
       backgoundColor={color}
       configuration={configuration}
       isActive={isActive}
+      top={top}
+      right={right}
     >
       <div className="toaster-header">
         <span

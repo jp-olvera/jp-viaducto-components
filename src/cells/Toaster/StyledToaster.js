@@ -9,16 +9,16 @@ const StyledToaster = styled.div`
   border-radius: 5px;
   flex-direction: column;
   position: fixed;
-  right: 1rem;
-  top: 1rem;
+
+  ${({ top }) => getVerticalPosition(top)}
+  ${({ right }) => getHorizontalPosition(right)}
   width: 454px;
 
   transition: ${({ isActive }) =>
     isActive
       ? 'transform 0.3s ease-in-out, opacity 0.3s linear,visibility 0.3s linear;'
       : 'transform 0.3s ease-in-out, opacity 0s linear 0.3s,visibility 0s linear 0.3s;'};
-  /* transition:  */
-  /* transform: translateX(100%); */
+
   .toaster-header {
     align-items: center;
     box-sizing: border-box;
@@ -53,4 +53,24 @@ const StyledToaster = styled.div`
   }
 `;
 
+const getVerticalPosition = (top) => {
+  if (top) {
+    return css`
+      top: 1rem;
+    `;
+  }
+  return css`
+    bottom: 1rem;
+  `;
+};
+const getHorizontalPosition = (right) => {
+  if (right) {
+    return css`
+      right: 1rem;
+    `;
+  }
+  return css`
+    left: 1rem;
+  `;
+};
 export default StyledToaster;
