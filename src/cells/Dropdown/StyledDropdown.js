@@ -21,7 +21,6 @@ export const Activator = styled.button`
   color: inherit;
   cursor: pointer;
   display: flex;
-  font-size: inherit;
   margin: 0;
   min-width: 10.688rem;
   padding: 0.313rem 0;
@@ -31,12 +30,15 @@ export const Activator = styled.button`
   line-height: 1.375rem;
 
   .activator-text {
-    padding-left: 1.5rem;
+    padding-left: 1.2rem;
+  }
+  .small {
+    font-size: calc(1rem * 0.8);
   }
   .activator-icon {
     height: 1rem;
     margin-left: auto;
-    padding-right: 1.5rem;
+    padding-right: 1.2rem;
   }
 `;
 

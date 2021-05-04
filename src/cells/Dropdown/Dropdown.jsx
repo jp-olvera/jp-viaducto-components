@@ -19,6 +19,7 @@ const Dropdown = ({
   };
   const select = (label) => {
     selectedRef.current.innerHTML = label;
+    setIsOpen(false);
   };
   const dataList = options.map((button, index) => (
     <button value={button} key={button + index} onClick={() => select(button)}>
