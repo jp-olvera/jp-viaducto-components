@@ -19,7 +19,7 @@ export const StyledSearch = styled.div`
     font-family: ${({ family }) =>
       family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
   }
-  & > ${StyledDropdown} {
+  & > ${Wrapper} {
     width: 12.06rem;
   }
   & > input {
