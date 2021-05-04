@@ -1,11 +1,10 @@
 import React from 'react';
-import { ConfigProvider } from '../../../providers';
-
-import { Notification } from '..';
+import { Toaster } from '..';
+import ConfigProvider from '../../../providers/ConfigProvider';
 
 export default {
-  title: 'Andamio/cells/Notification',
-  component: Notification,
+  title: 'Andamio/Organisms/Toaster',
+  component: Toaster,
   argTypes: {
     type: {
       options: ['success', 'warning', 'error'],
@@ -19,7 +18,7 @@ export default {
 const Template = (args) => {
   return (
     <ConfigProvider>
-      <Notification {...args} />
+      <Toaster {...args} />
     </ConfigProvider>
   );
 };
@@ -27,8 +26,9 @@ const Template = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
-  text: 'Notification content',
+  text: 'El mensaje del Toaster',
+  title: 'Success',
   active: true,
-  type: 'success',
   top: true,
+  right: true,
 };

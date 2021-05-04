@@ -3,7 +3,7 @@ import { Search } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Search',
+  title: 'Andamio/Organisms/Search',
   component: Search,
   argTypes: {
     family: {

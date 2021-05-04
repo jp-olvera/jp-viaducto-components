@@ -3,7 +3,7 @@ import { Radio } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Radio',
+  title: 'Andamio/Cells/Controls/Radio',
   component: Radio,
   argTypes: {
     color: {
@@ -19,7 +19,7 @@ export default {
         type: 'select',
       },
     },
-  }
+  },
 };
 
 const Template = (args) => {

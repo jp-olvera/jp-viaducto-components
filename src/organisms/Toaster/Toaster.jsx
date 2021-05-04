@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { ConfigContext } from '../../providers';
-import { Paragraph } from '../Paragraph';
+import { Paragraph } from '../../cells/Paragraph';
 import StyledToaster from './StyledToaster';
 import { Close } from 'react-ikonate';
 import { Checkbox } from 'react-ikonate';

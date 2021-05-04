@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import StyledModal from './StyledModal';
-import { Title } from '../Title';
-import { Button } from '../Button';
+import { Title } from '../../cells/Title';
+import { Button } from '../../cells/Button';
 import { ConfigContext } from '../../providers';
 import { Close } from 'react-ikonate';
 
@@ -22,11 +22,15 @@ const Modal = ({
   onReject = null,
   onAccept = null,
   maxWidth = '540px',
-  breakpoint = '990px',
+  breakpoint = '320px',
   active = false,
   height = '700px',
   overlayColor = 'rgba(255,255,255,0.5)',
   backgroundColor = 'white',
+  headComponent = null,
+  acceptDisabled = false,
+  rejectDisabled = false,
+  allowClickOutside = true,
   children,
 }) => {
   const { configuration } = useContext(ConfigContext);
@@ -43,10 +47,12 @@ const Modal = ({
     setIsActive(false);
   };
   useEffect(() => {
-    if (isActive) {
-      document.addEventListener('click', clickOutsideHandler);
-    } else {
-      document.removeEventListener('click', clickOutsideHandler);
+    if (allowClickOutside) {
+      if (isActive) {
+        document.addEventListener('click', clickOutsideHandler);
+      } else {
+        document.removeEventListener('click', clickOutsideHandler);
+      }
     }
     return function cleanup() {
       document.removeEventListener('click', clickOutsideHandler);
@@ -87,13 +93,21 @@ const Modal = ({
         height={height}
         backgroundColor={backgroundColor}
       >
-        <div className="modal-header">
-          <div style={{ marginRight: 'auto' }}>
+        <div
+          className="modal-header"
+          style={{
+            flexDirection: headComponent !== null ? 'column-reverse' : 'row',
+          }}
+        >
+          <div>
             <Title level="4" weight="500">
               {title}
             </Title>
           </div>
-          <button className="modal-close">
+          {headComponent !== null ? (
+            <div style={{ width: '100%' }}>{headComponent}</div>
+          ) : null}
+          <button className="modal-close" style={{ marginLeft: 'auto' }}>
             <Close
               data-testid="close-button"
               stroke="#9EA0A5"
@@ -121,6 +135,7 @@ const Modal = ({
                   text: '#000',
                 }}
                 onClick={handleReject}
+                disabled={rejectDisabled}
               />
             )}
             {onAccept !== null && (
@@ -136,6 +151,7 @@ const Modal = ({
                     text: 'white',
                   }}
                   onClick={handleAccept}
+                  disabled={acceptDisabled}
                 />
               </div>
             )}

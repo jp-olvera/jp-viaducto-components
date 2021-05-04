@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { StyledDropdown } from '../Dropdown/StyledDropdown';
+import { StyledDropdown } from '../../cells/Dropdown/StyledDropdown';
 
 const height = '3.375rem',
   width = '45.625rem';

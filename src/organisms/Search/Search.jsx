@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { Search as SearchIcon } from 'react-ikonate';
 
 import { ConfigContext } from '../../providers';
-import { Button } from '../Button';
-import { Dropdown } from '../Dropdown';
+import { Button } from '../../cells/Button';
+import { Dropdown } from '../../cells/Dropdown';
 import { StyledSearch } from './StyledSearch';
 
 const defaultColors = {

@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { ConfigContext } from '../../providers/ConfigProvider';
 import { StyledNotification } from './StyledNotification';
 import { Checkbox, Close } from 'react-ikonate';
-import { Paragraph } from '../Paragraph';
+import { Paragraph } from '../../cells/Paragraph';
 
 const Notification = ({
   text,

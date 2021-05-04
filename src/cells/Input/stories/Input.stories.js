@@ -3,7 +3,7 @@ import { Input } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Input',
+  title: 'Andamio/Cells/Controls/Input',
   component: Input,
   argTypes: {
     border: {
@@ -38,8 +38,8 @@ export default {
     },
     size: {
       control: 'select',
-      options: ['default', 'large']
-    }
+      options: ['default', 'large'],
+    },
   },
 };
 
@@ -48,31 +48,30 @@ const Template = (args) => {
     <ConfigProvider>
       <Input {...args} />
     </ConfigProvider>
-
-  )
+  );
 };
 
 export const Text = Template.bind({});
 
 Text.args = {
   label: 'Text',
-  id: "text",
-  type: "text",
+  id: 'text',
+  type: 'text',
   isInvalid: false,
   isValid: false,
   required: false,
-  disabled: false
+  disabled: false,
 };
 
 export const Password = Template.bind({});
 
 Password.args = {
   label: 'Password',
-  id: "Password",
-  type: "password",
+  id: 'Password',
+  type: 'password',
   icon: null,
   isInvalid: false,
   isValid: false,
   required: true,
-  disabled: false
+  disabled: false,
 };

@@ -3,7 +3,7 @@ import { Checkbox } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Checkbox',
+  title: 'Andamio/Cells/Controls/Checkbox',
   component: Checkbox,
   argTypes: {
     color: {
@@ -19,7 +19,7 @@ export default {
         type: 'select',
       },
     },
-  }
+  },
 };
 
 const Template = (args) => {
@@ -36,5 +36,5 @@ Default.args = {
   label: 'Label',
   disabled: false,
   family: 'Manrope',
-  size: 'md'
+  size: 'md',
 };
