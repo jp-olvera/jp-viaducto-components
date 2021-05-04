@@ -1,12 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { ConfigContext } from '../../providers';
 import { Paragraph } from '../Paragraph';
 import StyledToaster from './StyledToaster';
 import { Close } from 'react-ikonate';
 import { Checkbox } from 'react-ikonate';
-const Toaster = ({ text, type, title }) => {
+const Toaster = ({ text, type, title, active = false }) => {
   const { configuration } = useContext(ConfigContext);
   const [isActive, setIsActive] = useState(true);
+  useEffect(() => {
+    setIsActive(active);
+  }, [active]);
+
   let color = '#34AA44';
   switch (type) {
     case 'success':
@@ -43,6 +47,7 @@ const Toaster = ({ text, type, title }) => {
         <div style={{ marginLeft: 'auto' }}>
           <button
             className="toaster-close"
+            data-testid="close-button"
             onClick={() => {
               setIsActive(false);
             }}
