@@ -29,4 +29,6 @@ Default.args = {
   text: 'El mensaje del Toaster',
   title: 'Success',
   active: true,
+  top: true,
+  right: true,
 };
