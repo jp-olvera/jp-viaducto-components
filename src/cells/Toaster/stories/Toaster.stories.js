@@ -28,4 +28,5 @@ export const Default = Template.bind({});
 Default.args = {
   text: 'El mensaje del Toaster',
   title: 'Success',
+  active: true,
 };
