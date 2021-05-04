@@ -3,7 +3,7 @@ import { Dropdown } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Dropdown',
+  title: 'Andamio/Cells/Controls/Dropdown',
   component: Dropdown,
   argTypes: {
     family: {

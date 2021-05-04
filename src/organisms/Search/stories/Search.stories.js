@@ -1,23 +1,14 @@
 import React from 'react';
-import { Checkbox } from '..';
+import { Search } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Controls/Checkbox',
-  component: Checkbox,
+  title: 'Andamio/Organisms/Search',
+  component: Search,
   argTypes: {
-    color: {
-      control: 'color',
-    },
     family: {
       options: ['Manrope', 'Roboto', 'DM Sans'],
       control: { type: 'select' },
-    },
-    size: {
-      options: ['lg', 'md', 'sm'],
-      control: {
-        type: 'select',
-      },
     },
   },
 };
@@ -25,7 +16,7 @@ export default {
 const Template = (args) => {
   return (
     <ConfigProvider>
-      <Checkbox {...args} />
+      <Search {...args} />
     </ConfigProvider>
   );
 };
@@ -33,8 +24,11 @@ const Template = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
-  label: 'Label',
-  disabled: false,
-  family: 'Manrope',
-  size: 'md',
+  placeholder: 'Introduce el término de búsqueda',
+  buttonLabel: 'Search',
+  id: 'search',
+  handleSearch: () => {
+    alert('Search');
+  },
+  options: ['Razón Social', 'RFC', 'Nombre Comercial'],
 };

@@ -3,7 +3,7 @@ import { Button } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Button',
+  title: 'Andamio/Cells/Controls/Button',
   component: Button,
   argTypes: {
     size: {
