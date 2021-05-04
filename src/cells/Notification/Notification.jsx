@@ -30,6 +30,7 @@ const Notification = ({ text, type = 'success', active = false }) => {
       isActive={isActive}
       backgroundColor={color}
       configuration={configuration}
+      data-testid="notification"
     >
       <span
         style={{
@@ -49,6 +50,7 @@ const Notification = ({ text, type = 'success', active = false }) => {
           onClick={() => {
             setIsActive(false);
           }}
+          data-testid="close-button"
         >
           <Close stroke="white" border={2} width="18px" height="18px" />
         </button>
