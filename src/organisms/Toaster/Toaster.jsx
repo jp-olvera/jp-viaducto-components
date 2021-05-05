@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { ConfigContext } from '../../providers';
 import { Paragraph } from '../../cells/Paragraph';
 import StyledToaster from './StyledToaster';
-import { Close } from 'react-ikonate';
-import { Checkbox } from 'react-ikonate';
+import { Close, Checkbox, Error, FolderWarning, Help } from 'react-ikonate';
+import { TypeIcon } from '../../cells/TypeIcon';
 
 /**
  * A toast component, you can change ts position via top and right properties
@@ -16,7 +16,7 @@ import { Checkbox } from 'react-ikonate';
  */
 const Toaster = ({
   text,
-  type,
+  type = 'success',
   title,
   active = false,
   top = true,
@@ -44,20 +44,14 @@ const Toaster = ({
     }
   }, [isActive]);
 
-  let color = '#34AA44';
-  switch (type) {
-    case 'success':
-      color = '#34AA44';
-      break;
-    case 'error':
-      color = 'red';
-      break;
-    case 'warning':
-      color = 'yellow';
-      break;
-    default:
-      break;
+  let color = configuration.text.success;
+  let k = type.toLowerCase();
+
+  const typeColors = ['success', 'warning', 'danger', 'info'];
+  if (typeColors.includes(type.toLowerCase())) {
+    color = configuration.text[k];
   }
+
   return (
     <StyledToaster
       ref={ref}
@@ -75,7 +69,13 @@ const Toaster = ({
             display: 'flex',
           }}
         >
-          <Checkbox stroke="white" border={2} width="18px" height="18px" />
+          <TypeIcon
+            type={type}
+            stroke="white"
+            border={2}
+            width="18px"
+            height="18px"
+          />
         </span>
         <Paragraph size="sm" color="white">
           {title}
