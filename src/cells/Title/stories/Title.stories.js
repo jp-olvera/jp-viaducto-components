@@ -36,6 +36,12 @@ export default {
         type: 'select',
       },
     },
+    verticalAlign: {
+      options: ['baseline', 'top', 'bottom', 'middle'],
+      control: {
+        type: 'select',
+      },
+    },
     color: {
       control: {
         type: 'color',
@@ -52,11 +58,7 @@ const Template = (args) => (
 
 export const Heading = Template.bind({});
 
-Heading.args = {};
-
-export const HeadingCustom = Template.bind({});
-
-HeadingCustom.args = {
+Heading.args = {
   level: '1',
   family: 'DM Sans',
   weight: '400',
@@ -66,23 +68,19 @@ HeadingCustom.args = {
   spacing: 'normal',
   lineHeight: 'md',
   color: '#000',
+  verticalAlign: 'baseline',
 };
-
 export const Display = Template.bind({});
 
 Display.args = {
   level: 'D1',
-};
-export const DisplayCustom = Template.bind({});
-
-DisplayCustom.args = {
-  level: 'D1',
   family: 'DM Sans',
-  weight: 'normal',
+  weight: '400',
   fontStyle: 'normal',
   margin: '0',
   align: 'left',
   spacing: 'normal',
-  lineHeight: 'lg',
-  color: '',
+  lineHeight: 'md',
+  color: '#000',
+  verticalAlign: 'baseline',
 };

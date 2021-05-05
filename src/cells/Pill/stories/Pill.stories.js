@@ -16,10 +16,18 @@ export default {
       control: { type: 'select' },
       options: ['xxs', 'xs', 'sm', 'md', 'lg'],
     },
+    verticalAlign: {
+      control: { type: 'select' },
+      options: ['baseline', 'top', 'bottom', 'middle'],
+    },
   },
 };
 
-const Template = (args) => <ConfigProvider><Pill {...args} /></ConfigProvider>;
+const Template = (args) => (
+  <ConfigProvider>
+    <Pill {...args} />
+  </ConfigProvider>
+);
 
 const Icon = ({ icon = '🥵' }) => <p>{icon}</p>;
 const IconLead = ({ icon = '🥵' }) => <p>{icon}</p>;
@@ -30,5 +38,6 @@ Default.args = {
   label: 'Pill',
   icon: Icon({ icon: '🥵' }).props.children,
   iconLead: IconLead({ icon: '😈' }).props.children,
-  family: "Manrope"
+  family: 'Manrope',
+  verticalAlign: 'baseline',
 };

@@ -97,6 +97,10 @@ export const ItemsContainer = styled.div`
   & .active-item {
     background-color: ${({ activeColor }) => activeColor} !important;
   }
+  @media screen and (min-width: ${({ configuration }) =>
+      configuration.breakpoints.md}) {
+    width: 100% !important;
+  }
 `;
 
 const getBorder = (borders = 'none') => {

@@ -22,6 +22,7 @@ const Search = ({
   handleSearch = () => {},
   options = [],
   id = 'search',
+  activeColor = '#ffd6ce',
 }) => {
   const { configuration } = useContext(ConfigContext);
 
@@ -38,7 +39,11 @@ const Search = ({
         id={id}
         data-testid={`input-${id}`}
       />
-      <Dropdown border={{ left: '1px solid #CECECE' }} options={options} />
+      <Dropdown
+        border={{ left: '1px solid #CECECE' }}
+        options={options}
+        activeColor={activeColor}
+      />
       <Button
         label={buttonLabel}
         lead

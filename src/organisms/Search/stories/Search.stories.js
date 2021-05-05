@@ -10,6 +10,9 @@ export default {
       options: ['Manrope', 'Roboto', 'DM Sans'],
       control: { type: 'select' },
     },
+    activeColor: {
+      control: 'color',
+    },
   },
 };
 
@@ -31,4 +34,5 @@ Default.args = {
     alert('Search');
   },
   options: ['Razón Social', 'RFC', 'Nombre Comercial'],
+  activeColor: '#ffd6ce',
 };

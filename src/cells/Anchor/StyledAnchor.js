@@ -2,10 +2,13 @@ import styled from 'styled-components';
 
 export const StyledAnchor = styled.a`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
-  font-family: ${({ family }) => family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
-  color: ${({ configuration, color }) => (configuration.text[color] || color || '#005fb2')};
+  font-family: ${({ family }) =>
+    family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
+  color: ${({ configuration, color }) =>
+    configuration.text[color] || color || '#005fb2'};
   font-size: ${({ size }) => getSize(size)};
   box-sizing: border-box;
+  vertical-align: ${({ verticalAlign }) => verticalAlign || 'baseline'};
   cursor: pointer;
   text-decoration: none;
   &:hover {
@@ -32,10 +35,10 @@ export const StyledAnchor = styled.a`
     height: 1em;
   }
 
-  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.xl}) {
+  @media screen and (min-width: ${({ configuration }) =>
+      configuration.breakpoints.xl}) {
     font-size: ${({ size }) => getSize(size, true)};
   }
-  
 `;
 
 const getSize = (size = 'md', max = false) => {
@@ -52,6 +55,6 @@ const getSize = (size = 'md', max = false) => {
     default:
       return max ? 'calc(1rem * 1.125)' : '1rem';
   }
-}
+};
 
 export default StyledAnchor;

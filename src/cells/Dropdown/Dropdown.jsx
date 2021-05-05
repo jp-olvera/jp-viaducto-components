@@ -89,6 +89,7 @@ const Dropdown = ({
         ref={dropdownListRef}
         aria-label="Configuraciones"
         activeColor={activeColor}
+        configuration={configuration}
       >
         {dataList.length > 0 && dataList}
       </ItemsContainer>

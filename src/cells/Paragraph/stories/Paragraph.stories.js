@@ -41,6 +41,10 @@ export default {
         type: 'select',
       },
     },
+    verticalAlign: {
+      control: { type: 'select' },
+      options: ['baseline', 'top', 'bottom', 'middle'],
+    },
   },
 };
 
@@ -55,11 +59,7 @@ const Template = (args) => (
 
 export const Default = Template.bind({});
 
-Default.args = {};
-
-export const Custom = Template.bind({});
-
-Custom.args = {
+Default.args = {
   size: 'sm',
   align: 'left',
   family: 'DM Sans',
@@ -69,4 +69,5 @@ Custom.args = {
   spacing: 'normal',
   color: '#000',
   lineHeight: 'md',
+  verticalAlign: 'baseline',
 };
