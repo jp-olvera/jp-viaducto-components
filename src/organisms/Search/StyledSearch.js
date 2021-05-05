@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import { Wrapper } from '../../cells/Dropdown/StyledDropdown';
+import { Wrapper, ItemsContainer } from '../../cells/Dropdown/StyledDropdown';
 
 const height = '3.375rem',
   width = '45.625rem';
 export const StyledSearch = styled.div`
-  width: ${width};
-  height: ${height};
+  width: 100%;
+  height: calc(${height} * 0.8);
   background-color: transparent;
   border: none;
   box-sizing: border-box;
@@ -19,18 +19,71 @@ export const StyledSearch = styled.div`
     font-family: ${({ family }) =>
       family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
   }
-  & > ${Wrapper} {
-    width: 12.06rem;
-  }
   & > input {
-    width: 25.188rem;
+    width: 60%;
     border: none;
     font-size: 1rem;
-    padding-left: 1.25rem;
+    padding-left: 0.5rem;
     height: 100%;
   }
+  & ${Wrapper} {
+    height: 100% !important;
+    padding: 0;
+    width: 1.5rem;
+    & > * {
+      width: 100%;
+    }
+  }
   & > button {
-    width: 8.5rem;
+    width: 32%;
     font-size: 1rem;
+  }
+  @media screen and (min-width: ${({ configuration }) =>
+      configuration.breakpoints.sm}) {
+    width: calc(${width} * 0.8);
+    height: calc(${height} * 0.8);
+    & > input {
+      width: calc(25.188rem * 0.8);
+      border: none;
+      font-size: 1rem;
+      padding-left: 1.25rem;
+      height: 100%;
+    }
+    & > button {
+      width: calc(8.5rem * 0.8);
+      font-size: 1rem;
+      height: 100%;
+    }
+    & ${Wrapper} {
+      height: 100%;
+      width: 12.06rem !important;
+      & ${ItemsContainer} {
+        width: 100% !important;
+      }
+    }
+  }
+  @media screen and (min-width: ${({ configuration }) =>
+      configuration.breakpoints.lg}) {
+    width: ${width};
+    height: ${height};
+    & ${Wrapper} {
+      width: 12.06rem !important;
+      height: 100%;
+      & ${ItemsContainer} {
+        width: 100% !important;
+      }
+    }
+    & > input {
+      width: 25.188rem;
+      border: none;
+      font-size: 1rem;
+      padding-left: 1.25rem;
+      height: 100%;
+    }
+    & > button {
+      width: 8.5rem;
+      font-size: 1rem;
+      height: 100%;
+    }
   }
 `;

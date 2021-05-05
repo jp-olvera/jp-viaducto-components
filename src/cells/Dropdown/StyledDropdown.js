@@ -14,31 +14,54 @@ export const Activator = styled.button`
   font-family: ${({ family }) =>
     family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
   box-sizing: border-box;
-  width: ${width};
-  height: ${height};
   align-items: center;
   background-color: inherit;
   color: inherit;
   cursor: pointer;
   display: flex;
   margin: 0;
-  min-width: 10.688rem;
   padding: 0.313rem 0;
   font-style: normal;
   font-weight: normal;
   font-size: 1rem;
+  height: 100%;
+  width: 1.5rem;
   line-height: 1.375rem;
-
-  .activator-text {
-    padding-left: 1.2rem;
-  }
   .small {
     font-size: calc(1rem * 0.8);
   }
   .activator-icon {
     height: 1rem;
-    margin-left: auto;
-    padding-right: 1.2rem;
+  }
+
+  @media screen and (min-width: ${({ configuration }) =>
+      configuration.breakpoints.sm}) {
+    min-width: 10.688rem;
+    width: calc(${width} * 0.8);
+    height: calc(${height} * 0.8);
+    .activator-text {
+      padding-left: 1.2rem;
+    }
+    .activator-icon {
+      height: 1rem;
+      margin-left: auto;
+      padding-right: 1.2rem;
+    }
+  }
+
+  @media screen and (min-width: ${({ configuration }) =>
+      configuration.breakpoints.lg}) {
+    width: ${width};
+    height: ${height};
+    margin: auto;
+    .activator-text {
+      padding-left: 1.2rem;
+    }
+    .activator-icon {
+      height: 1rem;
+      margin-left: auto;
+      padding-right: 1.2rem;
+    }
   }
 `;
 
@@ -54,7 +77,8 @@ export const ItemsContainer = styled.div`
   padding: 0;
   position: absolute;
   margin-top: 0.25rem;
-  width: ${width};
+  min-width: auto !important;
+  width: 7.5rem !important;
   left: 0;
   &.active {
     display: flex;
@@ -62,12 +86,16 @@ export const ItemsContainer = styled.div`
   }
   & > button {
     text-align: left;
-    padding-left: 0.875rem;
     font-size: inherit;
     background-color: inherit;
     border: none;
-    margin: 0.625rem 0;
+    padding: 0.625rem 0.5rem;
+    margin: 0.05rem 0;
+    height: 100%;
     cursor: pointer;
+  }
+  & .active-item {
+    background-color: ${({ activeColor }) => activeColor} !important;
   }
 `;
 

@@ -3,26 +3,35 @@ import React, { useContext, useState, useRef, useEffect } from 'react';
 import { ConfigContext } from '../../providers';
 import { Activator, Wrapper, ItemsContainer } from './StyledDropdown';
 import Icon from './sorting.svg';
+import { Hideable } from '../Hideable';
 
 const Dropdown = ({
   border = 'none',
   defaultText = 'Buscar por...',
   family = 'Roboto',
   options = [],
+  activeColor = '#ffd6ce',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSelected, setIsSelected] = useState(null);
   const activatorRef = useRef(null);
   const selectedRef = useRef(null);
   const dropdownListRef = useRef(null);
   const clickHandler = () => {
     setIsOpen(!isOpen);
   };
-  const select = (label) => {
+  const select = (label, index) => {
     selectedRef.current.innerHTML = label;
     setIsOpen(false);
+    setIsSelected(index);
   };
   const dataList = options.map((button, index) => (
-    <button value={button} key={button + index} onClick={() => select(button)}>
+    <button
+      className={`${isSelected === index ? 'active-item' : ''}`}
+      value={button}
+      key={button + index}
+      onClick={() => select(button, index)}
+    >
       {button}
     </button>
   ));
@@ -54,6 +63,7 @@ const Dropdown = ({
   return (
     <Wrapper configuration={configuration}>
       <Activator
+        configuration={configuration}
         family={family}
         border={border}
         aria-haspopup="true"
@@ -64,9 +74,11 @@ const Dropdown = ({
         onClick={clickHandler}
         ref={activatorRef}
       >
-        <span className="activator-text" ref={selectedRef}>
-          {defaultText}
-        </span>
+        <Hideable visibleOn="sm">
+          <span className="activator-text" ref={selectedRef}>
+            {defaultText}
+          </span>
+        </Hideable>
         <img className="activator-icon" src={Icon} alt="" />
       </Activator>
       <ItemsContainer
@@ -76,6 +88,7 @@ const Dropdown = ({
         data-cy="dropdown-itemList"
         ref={dropdownListRef}
         aria-label="Configuraciones"
+        activeColor={activeColor}
       >
         {dataList.length > 0 && dataList}
       </ItemsContainer>

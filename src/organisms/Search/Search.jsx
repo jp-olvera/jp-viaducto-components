@@ -3,6 +3,7 @@ import { Search as SearchIcon } from 'react-ikonate';
 
 import { ConfigContext } from '../../providers';
 import { Button } from '../../cells/Button';
+import { Hideable } from '../../cells/Hideable';
 import { Dropdown } from '../../cells/Dropdown';
 import { StyledSearch } from './StyledSearch';
 
