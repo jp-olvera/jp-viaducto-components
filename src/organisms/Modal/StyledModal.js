@@ -6,12 +6,15 @@ const StyledModal = styled.div`
   border: 1px solid #eaedf3;
   border-radius: 5px;
   flex-direction: column;
-  height: 300px;
-  height: ${({ height }) => height};
+  min-height: 30%;
+  height: 100%;
+  max-height: ${({ maxHeight }) => maxHeight};
   width: 100%;
   z-index: 1;
 
-  ${({ maxWidth, breakpoint }) => getMediaWidth(maxWidth, breakpoint)}
+  ${({ maxWidth, maxHeight, breakpoint }) =>
+    getMedia(maxWidth, maxHeight, breakpoint)}
+
   .modal-close {
     padding: 0;
     background-color: transparent;
@@ -31,30 +34,24 @@ const StyledModal = styled.div`
     border-radius: 5px 5px 0 0;
 
     background-color: ${({ backgroundColor }) => backgroundColor};
-    ${({ configuration }) => getPadding(configuration)};
+    padding: ${({ configuration }) =>
+      `${configuration.spacing.md} ${configuration.spacing.lg}`};
   }
   .modal-content {
     flex-grow: 1;
     overflow-y: auto;
-    ${({ configuration }) => getPadding(configuration)}
+    padding: ${({ configuration }) =>
+      `${configuration.spacing.md} ${configuration.spacing.lg}`};
   }
   .modal-bottom {
     border-top: 1px solid #eaedf3;
     display: flex;
-    ${({ configuration }) => getPadding(configuration)}
+    padding: ${({ configuration }) =>
+      `${configuration.spacing.md} ${configuration.spacing.lg}`};
   }
 `;
 
-export default StyledModal;
-
-const getPadding = (configuration) => {
-  return css`
-    padding: ${({ configuration }) =>
-      `${configuration.spacing.md} ${configuration.spacing.lg}`};
-  `;
-};
-
-const getMediaWidth = (maxWidth, breakpoint) => {
+const getMedia = (maxWidth, breakpoint) => {
   if (maxWidth && breakpoint) {
     return css`
       @media (min-width: ${breakpoint}) {
@@ -63,3 +60,5 @@ const getMediaWidth = (maxWidth, breakpoint) => {
     `;
   }
 };
+
+export default StyledModal;

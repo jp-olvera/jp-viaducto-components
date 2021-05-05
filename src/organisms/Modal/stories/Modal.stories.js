@@ -26,7 +26,7 @@ const Template = (args) => {
     <ConfigProvider>
       <h1>El contenido detrás del modal se vería de esta manera</h1>
       <Modal {...args}>
-        <div style={{ height: '100px' }}>
+        <div style={{ height: '800px', background: '#CECECE' }}>
           Aquí van los children. Si no proporcionas las funciones onReject y
           onAccept, no se mostrará la sección de controles
         </div>
@@ -35,7 +35,11 @@ const Template = (args) => {
   );
 };
 
-const AnotherComponent = ({ label }) => <h1>{label}</h1>;
+const AnotherComponent = ({ label }) => (
+  <div style={{ background: '#CECECE' }}>
+    <div style={{ background: '#CECECE' }}>{label}</div>
+  </div>
+);
 
 export const Default = Template.bind({});
 
@@ -62,6 +66,7 @@ NoControls.args = {
   acceptDisabled: false,
   rejectDisabled: false,
   allowClickOutside: true,
+  overlayColor: 'rgba(206,206,206, 0.5)',
 };
 
 export const WithHeadComponent = Template.bind({});

@@ -13,7 +13,7 @@ import { Close } from 'react-ikonate';
  * @param {string} width width the modal will take with afeter the display breakpoint specified is reached
  * @param {string} breakpoint display breakpoint where the modal will stop being 100% width
  * @param {boolean} active Specifies if the modal is gonna be visible at first
- * @param {string} height modal height
+ * @param {string} maxheight the max height the modal can take
  * @param {string} overlayColor Background color for the overlay
  * @returns
  */
@@ -24,7 +24,7 @@ const Modal = ({
   maxWidth = '540px',
   breakpoint = '320px',
   active = false,
-  height = '700px',
+  maxHeight = '700px',
   overlayColor = 'rgba(255,255,255,0.5)',
   backgroundColor = 'white',
   headComponent = null,
@@ -77,7 +77,7 @@ const Modal = ({
         height: '100%',
         justifyContent: 'center',
         left: '0',
-        position: 'absolute',
+        position: 'fixed',
         top: '0',
         width: '100%',
         overflowY: 'auto',
@@ -90,7 +90,7 @@ const Modal = ({
         maxWidth={maxWidth}
         breakpoint={breakpoint}
         isActive={isActive}
-        height={height}
+        maxHeight={maxHeight}
         backgroundColor={backgroundColor}
       >
         <div
