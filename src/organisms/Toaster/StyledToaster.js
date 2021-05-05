@@ -12,7 +12,8 @@ const StyledToaster = styled.div`
 
   ${({ top }) => getVerticalPosition(top)}
   ${({ right }) => getHorizontalPosition(right)}
-  width: 454px;
+  width: 100%;
+  max-width: 454px;
 
   transition: ${({ isActive }) =>
     isActive
@@ -57,20 +58,32 @@ const getVerticalPosition = (top) => {
   if (top) {
     return css`
       top: 1rem;
+      @media (max-width: 454px) {
+        top: 0;
+      }
     `;
   }
   return css`
     bottom: 1rem;
+    @media (max-width: 454px) {
+      bottom: 0;
+    }
   `;
 };
 const getHorizontalPosition = (right) => {
   if (right) {
     return css`
       right: 1rem;
+      @media (max-width: 454px) {
+        right: 0;
+      }
     `;
   }
   return css`
     left: 1rem;
+    @media (max-width: 454px) {
+      left: 0;
+    }
   `;
 };
 export default StyledToaster;
