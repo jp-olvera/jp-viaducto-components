@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components';
 export const StyledSwitch = styled.label`
   position: relative;
   display: inline-block;
-  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+  width: 100px;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   ${({ size }) => getSize(size).slider};
   & input {
     opacity: 0;
@@ -12,21 +13,22 @@ export const StyledSwitch = styled.label`
   }
   & .slider {
     position: absolute;
-    cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+    cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${({ disabled }) => disabled ? '#DDDDDD' : '#AAAAAA'};;
-    transition: .4s;
-    & :hover :before{
-      ${({ disabled }) => disabled ? "" : 'border: .25rem solid #444444'};
-      ${({ disabled }) => disabled ? "" : 'transition: 0.1s'};
-      ${({ size, disabled }) => disabled ? "" : getSize(size).slider_before_hover};
+    background-color: ${({ disabled }) => (disabled ? '#DDDDDD' : '#AAAAAA')};
+    transition: 0.4s;
+    & :hover :before {
+      ${({ disabled }) => (disabled ? '' : 'border: .25rem solid #444444')};
+      ${({ disabled }) => (disabled ? '' : 'transition: 0.1s')};
+      ${({ size, disabled }) =>
+        disabled ? '' : getSize(size).slider_before_hover};
     }
     & :before {
       position: absolute;
-      content: "";
+      content: '';
       background-color: white;
       ${({ size }) => getSize(size).slider_before};
     }
@@ -38,7 +40,7 @@ export const StyledSwitch = styled.label`
 
   input:disabled:checked + .slider {
     background-color: ${({ color }) => color};
-    opacity: .5;
+    opacity: 0.5;
   }
 
   input:checked + .slider:before {
@@ -87,7 +89,7 @@ const getSize = (size) => {
         slider_before: css`
           height: 1.6rem;
           width: 1.6rem;
-          left: 0.2rem;
+          /* left: 0.2rem; */
           bottom: 0.3rem;
         `,
         slider_before_hover: css`
@@ -124,4 +126,4 @@ const getSize = (size) => {
         `,
       };
   }
-}
+};

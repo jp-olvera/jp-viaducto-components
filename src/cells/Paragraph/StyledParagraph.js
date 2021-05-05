@@ -17,7 +17,6 @@ const StyledParagraph = styled.p`
     configuration.text[color] || color || configuration.text['dark']};
   @media screen and (min-width: ${({ configuration }) =>
       configuration.breakpoints.xl}) {
-    font-size: ${({ size }) => getSize(size, true)};
     line-height: ${({ lineHeight, size }) =>
       getLineHeight(lineHeight, size, true)};
   }

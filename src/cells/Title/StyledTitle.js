@@ -16,7 +16,6 @@ const StyledTitle = styled.h1`
     configuration.text[color] || color || configuration.text['dark']};
   vertical-align: ${({ verticalAlign }) => verticalAlign || 'baseline'};
   @media (min-width: ${({ configuration }) => configuration.breakpoints.xl}) {
-    font-size: ${({ level }) => getFontSize(level || '1', true)};
     line-height: ${({ lineHeight, level }) =>
       getLineHeight(lineHeight, level, true)};
   }

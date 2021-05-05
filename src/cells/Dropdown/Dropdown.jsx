@@ -6,17 +6,21 @@ import Icon from './sorting.svg';
 import { Hideable } from '../Hideable';
 
 const Dropdown = ({
+  activeColor = '#ffd6ce',
   border = 'none',
   defaultText = 'Buscar por...',
   family = 'Roboto',
   options = [],
-  activeColor = '#ffd6ce',
+  size = 'default',
+  height = null,
 }) => {
+  const { configuration } = useContext(ConfigContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(null);
   const activatorRef = useRef(null);
   const selectedRef = useRef(null);
   const dropdownListRef = useRef(null);
+  let newHeight = height || configuration.controlHeight[size];
   const clickHandler = () => {
     setIsOpen(!isOpen);
   };
@@ -31,6 +35,7 @@ const Dropdown = ({
       value={button}
       key={button + index}
       onClick={() => select(button, index)}
+      type="button"
     >
       {button}
     </button>
@@ -59,12 +64,12 @@ const Dropdown = ({
       document.removeEventListener('mouseup', clickOutsideHandler);
     };
   }, [isOpen]);
-  const { configuration } = useContext(ConfigContext);
   return (
-    <Wrapper configuration={configuration}>
+    <Wrapper configuration={configuration} height={newHeight}>
       <Activator
         configuration={configuration}
         family={family}
+        type="button"
         border={border}
         aria-haspopup="true"
         aria-controls="dropdown1"

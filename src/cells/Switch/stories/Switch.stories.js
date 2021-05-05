@@ -28,5 +28,5 @@ export const Default = Template.bind({});
 
 Default.args = {
   size: 'lg',
-  disabled: true,
+  disabled: false,
 };

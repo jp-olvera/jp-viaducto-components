@@ -4,11 +4,12 @@ import { ConfigContext } from '../../providers';
 
 import StyledButton from './StyledButton';
 import { SIZE } from './constants';
-const defaultColors = {
+
+let defaultColors = {
   default: '#937B3D',
   hover: '#AD9043',
   click: '#C3A24A',
-  text: '#000'
+  text: '#000',
 };
 
 /**
@@ -20,14 +21,22 @@ const defaultColors = {
  * @param {Boolean} lead Indicates if the icon will be leading
  */
 const Button = ({
-  label = null,
-  size = SIZE.default,
-  colors = defaultColors,
+  colors = null,
+  height = null,
   icon = null,
+  label = null,
   lead = false,
+  size = SIZE.default,
+  type = 'primary',
   ...rest
 }) => {
   const { configuration } = useContext(ConfigContext);
+  let newHeight = height || configuration.controlHeight[size];
+  if (colors) {
+    colors = colors;
+  } else {
+    colors = configuration.colors[type] || defaultColors;
+  }
 
   return (
     <StyledButton
@@ -37,11 +46,16 @@ const Button = ({
       hasIcon={icon !== null}
       lead={lead}
       configuration={configuration}
+      height={newHeight}
       {...rest}
     >
-      {icon !== null && lead && <span className="button-icon-span">{icon}</span>}
+      {icon !== null && lead && (
+        <span className="button-icon-span">{icon}</span>
+      )}
       <span>{label}</span>
-      {icon !== null && (!lead) && <span className="button-icon-span">{icon}</span>}
+      {icon !== null && !lead && (
+        <span className="button-icon-span">{icon}</span>
+      )}
     </StyledButton>
   );
 };

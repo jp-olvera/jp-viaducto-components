@@ -15,7 +15,7 @@ const StyledButton = styled.button`
   transition: background-color 0.15s ease-in-out;
   text-align: center;
   vertical-align: middle;
-  height: 2.98em;
+  height: ${({ height }) => height};
 
   ${(props) => getPadding(props)}
   ${(props) => getFontStyle(props)}
@@ -23,7 +23,10 @@ const StyledButton = styled.button`
   &:disabled {
     background-color: lightgrey;
     color: grey;
-    border: none;
+    border: 1px solid lightgrey;
+    .button-icon-span {
+      opacity: 0.5;
+    }
   }
 
   // just hover
@@ -94,8 +97,8 @@ const getPadding = (props) => {
     }
   }
   return css`
-padding: ${padding};
-`;
+    padding: ${padding};
+  `;
 };
 
 const getFontStyle = (props) => {
@@ -113,9 +116,9 @@ const getFontStyle = (props) => {
 
   return css`
     font-size: ${fontSize};
-    @media screen and (min-width: 90rem) {
+    /* @media screen and (min-width: 90rem) {
       font-size: calc(${fontSize} * 1.125);
-    }
+    } */
   `;
 };
 export default StyledButton;

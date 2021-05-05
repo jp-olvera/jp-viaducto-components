@@ -11,6 +11,11 @@ const config = {
     xl: '2.488rem',
     xxl: '2.986rem',
   },
+  controlHeight: {
+    small: '2.074rem',
+    default: '2.488rem',
+    large: '2.986rem',
+  },
   display: {
     mobile: {
       xs: '2.986rem',
@@ -41,31 +46,37 @@ const config = {
       default: '#937B3D',
       hover: '#AD9043',
       click: '#C3A24A',
+      text: '#000',
     },
     secondary: {
       default: '#573D3D',
       hover: '#744D4D',
       click: '#8A5E5E',
+      text: 'white',
     },
     info: {
       default: '#75CDFF',
       hover: '#90D7FF',
       click: '#D9F1FF',
+      text: '#000',
     },
     success: {
       default: '#31A74B',
       hover: '#2FBD4E',
       click: '#3AE25F',
+      text: '#000',
     },
     warning: {
       default: '#FFDF38',
       hover: '#FFEA7C',
       click: '#FFF1A5',
+      text: '#000',
     },
     danger: {
       default: '#FF0000',
       hover: '#FF5454',
       click: '#FF8686',
+      text: 'white',
     },
   },
   text: {

@@ -34,11 +34,6 @@ export const StyledAnchor = styled.a`
     transition: transform 0.2s;
     height: 1em;
   }
-
-  @media screen and (min-width: ${({ configuration }) =>
-      configuration.breakpoints.xl}) {
-    font-size: ${({ size }) => getSize(size, true)};
-  }
 `;
 
 const getSize = (size = 'md', max = false) => {

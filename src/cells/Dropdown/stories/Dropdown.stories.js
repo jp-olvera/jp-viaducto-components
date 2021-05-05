@@ -13,6 +13,10 @@ export default {
     activeColor: {
       control: 'color',
     },
+    size: {
+      control: 'select',
+      options: ['default', 'small', 'large'],
+    },
   },
 };
 

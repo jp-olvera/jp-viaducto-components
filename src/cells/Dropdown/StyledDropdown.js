@@ -1,32 +1,31 @@
 import styled, { css } from 'styled-components';
 
-const height = '3.375rem',
-  width = '12.06rem';
-
 export const Wrapper = styled.div`
   position: relative;
   display: inline-block;
+  box-sizing: border-box;
+  height: ${({ height }) => height};
 `;
 
 export const Activator = styled.button`
-  ${({ border }) => getBorder(border)}
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
-  font-family: ${({ family }) =>
-    family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
-  box-sizing: border-box;
+  ${({ border }) => getBorder(border)}
   align-items: center;
   background-color: inherit;
+  box-sizing: border-box;
+  display: flex;
   color: inherit;
   cursor: pointer;
-  display: flex;
-  margin: 0;
-  padding: 0.313rem 0;
+  font-family: ${({ family }) =>
+    family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
+  font-size: 1rem;
   font-style: normal;
   font-weight: normal;
-  font-size: 1rem;
   height: 100%;
-  width: 1.5rem;
   line-height: 1.375rem;
+  margin: 0;
+  padding: 0.313rem 0;
+  width: 1.5rem;
   .small {
     font-size: calc(1rem * 0.8);
   }
@@ -37,8 +36,8 @@ export const Activator = styled.button`
   @media screen and (min-width: ${({ configuration }) =>
       configuration.breakpoints.sm}) {
     min-width: 10.688rem;
-    width: calc(${width} * 0.8);
-    height: calc(${height} * 0.8);
+    height: 100%;
+    width: calc(12.06rem * 0.8);
     .activator-text {
       padding-left: 1.2rem;
     }
@@ -51,8 +50,8 @@ export const Activator = styled.button`
 
   @media screen and (min-width: ${({ configuration }) =>
       configuration.breakpoints.lg}) {
-    width: ${width};
-    height: ${height};
+    width: 12.06rem;
+    height: 100%;
     margin: auto;
     .activator-text {
       padding-left: 1.2rem;
@@ -73,26 +72,26 @@ export const ItemsContainer = styled.div`
   box-shadow: 0 0.063rem 0.188rem rgba(0, 0, 0, 0.04);
   color: black;
   display: none;
+  left: 0;
   margin: 0;
-  padding: 0;
-  position: absolute;
   margin-top: 0.25rem;
   min-width: auto !important;
+  padding: 0;
+  position: absolute;
   width: 7.5rem !important;
-  left: 0;
   &.active {
     display: flex;
     flex-direction: column;
   }
   & > button {
-    text-align: left;
-    font-size: inherit;
     background-color: inherit;
     border: none;
-    padding: 0.625rem 0.5rem;
-    margin: 0.05rem 0;
-    height: 100%;
     cursor: pointer;
+    font-size: inherit;
+    height: 100%;
+    margin: 0.05rem 0;
+    padding: 0.625rem 0.5rem;
+    text-align: left;
   }
   & .active-item {
     background-color: ${({ activeColor }) => activeColor} !important;

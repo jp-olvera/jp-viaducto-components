@@ -15,10 +15,6 @@ const StyledPill = styled.div`
   vertical-align: ${({ verticalAlign }) => verticalAlign};
   ${(p) =>
     getPadding(p.configuration.spacing, p.hasIcon, p.hasIconLead, p.onlyText)}
-  @media screen and
-    (min-width: ${({ configuration }) => configuration.breakpoints.xl}) {
-    font-size: ${({ size }) => getSize(size, true)};
-  }
   .span-icon {
     margin-left: ${({ configuration }) => configuration.spacing.micro};
   }
