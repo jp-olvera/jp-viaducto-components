@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { ConfigContext } from '../../providers/ConfigProvider';
 import { StyledNotification } from './StyledNotification';
-import { Checkbox, Close } from 'react-ikonate';
+import { Close } from 'react-ikonate';
 import { Paragraph } from '../../cells/Paragraph';
+import { TypeIcon } from '../../cells/TypeIcon';
 
 const Notification = ({
   text,
@@ -31,19 +32,12 @@ const Notification = ({
     }
   }, [isActive]);
 
-  let color = '#34AA44';
-  switch (type) {
-    case 'success':
-      color = '#34AA44';
-      break;
-    case 'error':
-      color = 'red';
-      break;
-    case 'warning':
-      color = 'yellow';
-      break;
-    default:
-      break;
+  let color = configuration.text.success;
+  let k = type.toLowerCase();
+
+  const typeColors = ['success', 'warning', 'danger', 'info'];
+  if (typeColors.includes(type.toLowerCase())) {
+    color = configuration.text[k];
   }
   return (
     <StyledNotification
@@ -61,7 +55,13 @@ const Notification = ({
           display: 'flex',
         }}
       >
-        <Checkbox stroke="white" border={2} width="18px" height="18px" />
+        <TypeIcon
+          type={type.toLowerCase()}
+          stroke="white"
+          border={2}
+          width="18px"
+          height="18px"
+        />
       </span>
       <Paragraph size="sm" color="white">
         {text}
