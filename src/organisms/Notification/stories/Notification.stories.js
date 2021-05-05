@@ -8,7 +8,7 @@ export default {
   component: Notification,
   argTypes: {
     type: {
-      options: ['success', 'warning', 'error'],
+      options: ['success', 'warning', 'danger', 'info'],
       control: {
         type: 'select',
       },

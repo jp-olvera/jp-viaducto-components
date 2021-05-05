@@ -7,7 +7,7 @@ export default {
   component: Toaster,
   argTypes: {
     type: {
-      options: ['success', 'warning', 'error'],
+      options: ['success', 'warning', 'info', 'danger'],
       control: {
         type: 'select',
       },
@@ -31,4 +31,5 @@ Default.args = {
   active: true,
   top: true,
   right: true,
+  type: 'success',
 };
