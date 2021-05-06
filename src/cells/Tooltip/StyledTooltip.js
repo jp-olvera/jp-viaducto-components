@@ -17,8 +17,7 @@ export const TooltipContainer = styled.div`
     border-radius: 0.375rem;
     word-break: break-word;
     hyphens: auto;
-    width: auto;
-    /* Position the tooltip text - see examples below! */
+    width: fit-content;
     position: absolute;
     z-index: 1;
     ${({ position }) => setPosition(position)}
@@ -67,7 +66,7 @@ const setArrow = (position, color) => {
         content: ' ';
         position: absolute;
         top: 50%;
-        left: 100%; /* To the right of the tooltip */
+        left: 100%;
         margin-top: -0.313rem;
         border-color: transparent transparent transparent ${color};
       `;
@@ -76,7 +75,7 @@ const setArrow = (position, color) => {
         content: ' ';
         position: absolute;
         top: 50%;
-        right: 100%; /* To the left of the tooltip */
+        right: 100%;
         margin-top: -0.313rem;
         border-color: transparent ${color} transparent transparent;
       `;
@@ -84,7 +83,7 @@ const setArrow = (position, color) => {
       return css`
         content: ' ';
         position: absolute;
-        bottom: 100%; /* At the top of the tooltip */
+        bottom: 100%;
         left: 50%;
         margin-left: -0.313rem;
         border-color: transparent transparent ${color} transparent;
@@ -94,7 +93,7 @@ const setArrow = (position, color) => {
       return css`
         content: ' ';
         position: absolute;
-        top: 100%; /* At the bottom of the tooltip */
+        top: 100%;
         left: 50%;
         margin-left: -0.313rem;
         border-color: ${color} transparent transparent transparent;
