@@ -27,6 +27,8 @@ const Input = ({
   isValid = false,
   id = 'input',
   size = 'default',
+  borderColor = '#001D48',
+  iconColor = '#2329D6',
   ...props
 }) => {
   const [open, setOpen] = useState(false);
@@ -69,6 +71,8 @@ const Input = ({
         size={size}
         disabled={disabled}
         configuration={configuration}
+        borderColor={borderColor}
+        iconColor={iconColor}
       >
         {icon !== null && <span className="icon">{getIcon(icon)}</span>}
 

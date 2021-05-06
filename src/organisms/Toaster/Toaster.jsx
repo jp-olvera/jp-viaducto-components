@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { ConfigContext } from '../../providers';
 import { Paragraph } from '../../cells/Paragraph';
+import { BareButton } from '../../cells/BareButton';
 import StyledToaster from './StyledToaster';
-import { Close, Checkbox, Error, FolderWarning, Help } from 'react-ikonate';
+import { Close } from 'react-ikonate';
 import { TypeIcon } from '../../cells/TypeIcon';
 
 /**
@@ -81,15 +82,14 @@ const Toaster = ({
           {title}
         </Paragraph>
         <div style={{ marginLeft: 'auto' }}>
-          <button
-            className="toaster-close"
+          <BareButton
             data-testid="close-button"
             onClick={() => {
               setIsActive(false);
             }}
           >
             <Close stroke="white" border={2} width="18px" height="18px" />
-          </button>
+          </BareButton>
         </div>
       </div>
       <div className="toaster-message">

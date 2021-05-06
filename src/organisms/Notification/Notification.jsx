@@ -4,6 +4,7 @@ import { StyledNotification } from './StyledNotification';
 import { Close } from 'react-ikonate';
 import { Paragraph } from '../../cells/Paragraph';
 import { TypeIcon } from '../../cells/TypeIcon';
+import { BareButton } from '../../cells/BareButton';
 
 const Notification = ({
   text,
@@ -67,15 +68,14 @@ const Notification = ({
         {text}
       </Paragraph>
       <div style={{ marginLeft: 'auto' }}>
-        <button
-          className="notification-close"
+        <BareButton
           onClick={() => {
             setIsActive(false);
           }}
           data-testid="close-button"
         >
           <Close stroke="white" border={2} width="18px" height="18px" />
-        </button>
+        </BareButton>
       </div>
     </StyledNotification>
   );

@@ -12,3 +12,4 @@ export * from './Spacer';
 export * from './Switch';
 export * from './Tab';
 export * from './Title';
+export * from './Tooltip';

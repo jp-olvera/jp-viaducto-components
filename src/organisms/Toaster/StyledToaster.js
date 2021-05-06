@@ -38,20 +38,6 @@ const StyledToaster = styled.div`
       `${configuration.spacing.md} ${configuration.spacing.md}`};
     width: calc(100% - 2px);
   }
-
-  .toaster-close {
-    background-color: transparent;
-    border: 1px solid transparent;
-    box-sizing: border-box;
-    cursor: pointer;
-    padding: 0;
-  }
-  .toaster-close:hover {
-    transform: translateY(-1px);
-  }
-  .toaster-close:active {
-    transform: translateY(0);
-  }
 `;
 
 const getVerticalPosition = (top) => {

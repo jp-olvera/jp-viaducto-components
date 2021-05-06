@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { ConfigContext } from '../../providers';
-
+import { Close } from 'react-ikonate';
 import StyledPill from './StyledPill';
-
+import { BareButton } from '../BareButton';
 const Pill = ({
   label = null,
   iconLead = null,
@@ -12,6 +12,7 @@ const Pill = ({
   size = 'md',
   family = 'Manrope',
   verticalAlign = 'baseline',
+  handleAction = () => {},
 }) => {
   const { configuration } = useContext(ConfigContext);
 
@@ -31,7 +32,15 @@ const Pill = ({
     >
       {iconLead !== null && <span className="span-icon-lead">{iconLead}</span>}
       <span>{label}</span>
-      {icon !== null && <span className="span-icon">{icon}</span>}
+      <BareButton onClick={handleAction} style={{ height: '100%' }}>
+        <span className="span-icon">
+          {icon === null || icon === '' ? (
+            <Close stroke="blue" border={2} width="18px" height="18px" />
+          ) : (
+            icon
+          )}
+        </span>
+      </BareButton>
     </StyledPill>
   );
 };

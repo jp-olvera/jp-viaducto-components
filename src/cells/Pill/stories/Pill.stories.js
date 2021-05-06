@@ -36,8 +36,10 @@ export const Default = Template.bind({});
 
 Default.args = {
   label: 'Pill',
-  icon: Icon({ icon: '🥵' }).props.children,
   iconLead: IconLead({ icon: '😈' }).props.children,
   family: 'Manrope',
   verticalAlign: 'baseline',
+  handleAction: () => {
+    alert('Pill action');
+  },
 };

@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import StyledModal from './StyledModal';
 import { Title } from '../../cells/Title';
 import { Button } from '../../cells/Button';
+import { BareButton } from '../../cells/BareButton';
 import { ConfigContext } from '../../providers';
 import { Close } from 'react-ikonate';
 
@@ -107,18 +108,19 @@ const Modal = ({
           {headComponent !== null ? (
             <div style={{ width: '100%' }}>{headComponent}</div>
           ) : null}
-          <button className="modal-close" style={{ marginLeft: 'auto' }}>
+          <BareButton
+            style={{ marginLeft: 'auto' }}
+            onClick={() => {
+              setIsActive(false);
+            }}
+          >
             <Close
               data-testid="close-button"
               stroke="#9EA0A5"
               border={2}
               width="18px"
-              height="18px"
-              onClick={() => {
-                setIsActive(false);
-              }}
             />
-          </button>
+          </BareButton>
         </div>
         <div className="modal-content">{children}</div>
         {onReject === null && onAccept === null ? null : (

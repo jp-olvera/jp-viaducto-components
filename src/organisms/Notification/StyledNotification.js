@@ -19,20 +19,6 @@ const StyledNotification = styled.div`
   width: 100%;
 
   ${({ top }) => getPosition(top)}
-
-  .notification-close {
-    background-color: transparent;
-    border: 1px solid transparent;
-    box-sizing: border-box;
-    cursor: pointer;
-    padding: 0;
-  }
-  .notification-close:hover {
-    transform: translateY(-1px);
-  }
-  .notification-close:active {
-    transform: translateY(0);
-  }
 `;
 
 const getPosition = (top) => {

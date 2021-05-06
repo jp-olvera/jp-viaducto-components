@@ -1,60 +1,60 @@
 import styled, { css } from 'styled-components';
-import { RadioButton } from 'react-ikonate';
-import Icon from './Icon';
-
-const borderColor = '#001D48';
-const iconColor = '#2329D6';
-
 
 export const Wrapper = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
   font-family: 'DM Sans', sans-serif;
-  background-color: ${({ disabled }) => disabled ? '#CECECE' : 'white'};
-  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'default'};
+  background-color: ${({ disabled }) => (disabled ? '#CECECE' : 'white')};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'default')};
   box-sizing: border-box;
-  height: ${({ size }) => size === 'default' ? "2.488rem" : "2.986rem"};
+  height: ${({ size }) => (size === 'default' ? '2.488rem' : '2.986rem')};
   position: relative;
   width: 100%;
-  
+
   display: inline-flex;
   align-items: flex-end;
-  
-  padding-bottom: ${({ configuration, size }) => size === 'large' ? configuration.spacing.sm : configuration.spacing.xs};
 
-  ${({ border }) => getBorderStyle(border)};
-  
-  .input{
+  padding-bottom: ${({ configuration, size }) =>
+    size === 'large' ? configuration.spacing.sm : configuration.spacing.xs};
+
+  ${({ border, configuration, borderColor }) =>
+    getBorderStyle(border, configuration.text[borderColor] || borderColor)};
+
+  .input {
     border: none;
     width: 100%;
     background-color: inherit;
     outline: none;
     font-size: 1rem;
     padding: 0;
-    padding-left: ${({ configuration, hasIcon }) => hasIcon ? 0 : configuration.spacing.xs};
+    padding-left: ${({ configuration, hasIcon }) =>
+      hasIcon ? 0 : configuration.spacing.xs};
   }
 
-  .icon{
+  .icon {
     padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;
-    color: ${iconColor};
+    color: ${({ iconColor, configuration }) =>
+      configuration.text[iconColor] || iconColor};
   }
 
-  .input{
-     & ::placeholder{
+  .input {
+    & ::placeholder {
       color: transparent;
     }
   }
 
-  .input:focus ~ .label, .input:valid ~ .label{
-    top: ${({ border }) => border === 'overlap' ? ' -0.375rem' : '0'};
+  .input:focus ~ .label,
+  .input:valid ~ .label {
+    top: ${({ border }) => (border === 'overlap' ? ' -0.375rem' : '0')};
     font-size: 0.688rem;
     line-height: 0.688rem;
     border: none;
     color: #000;
     padding: 0;
     outline: none;
-    left: ${({ configuration, hasIcon }) => hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
+    left: ${({ configuration, hasIcon }) =>
+      hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
     .icon-required {
       display: inline-flex;
       padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -64,7 +64,8 @@ export const Wrapper = styled.div`
   .label {
     background: inherit;
     color: #808080;
-    left: ${({ configuration, hasIcon }) => hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
+    left: ${({ configuration, hasIcon }) =>
+      hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
     right: initial;
     font-size: 1rem;
     line-height: 1rem;
@@ -72,7 +73,8 @@ export const Wrapper = styled.div`
     position: absolute;
     pointer-events: none;
     user-select: none;
-    transition: top .2s cubic-bezier(0.165, 0.84, 0.44, 1), font-size .2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+      font-size 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
     .icon-required {
       padding-left: ${({ configuration }) => configuration.spacing.nano};
       margin-left: auto;
@@ -80,28 +82,29 @@ export const Wrapper = styled.div`
     }
   }
 
-  .is-invalid{
+  .is-invalid {
     color: red;
     padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;
   }
 
-  .input[type="password"]{
-    letter-spacing: .5rem;
+  .input[type='password'] {
+    letter-spacing: 0.5rem;
     font-weight: 800;
     height: calc(100% - 1rem);
   }
 
-  .is-valid{
-    color: #3AE25F;
+  .is-valid {
+    color: #3ae25f;
     padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;
   }
 
-  .icon-helper{
-    color: ${iconColor};
+  .icon-helper {
+    color: ${({ iconColor, configuration }) =>
+      configuration.text[iconColor] || iconColor};
     padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;
@@ -109,18 +112,19 @@ export const Wrapper = styled.div`
 
   .input:disabled {
     cursor: not-allowed;
-    background-color: #CECECE;
+    background-color: #cecece;
     pointer-events: none;
     user-select: none;
-    & :not(:placeholder-shown) ~ .label{
-      top: ${({ border }) => border === 'overlap' ? ' -0.375rem' : '0'};
+    & :not(:placeholder-shown) ~ .label {
+      top: ${({ border }) => (border === 'overlap' ? ' -0.375rem' : '0')};
       font-size: 0.688rem;
       line-height: 0.688rem;
       border: none;
       color: #333;
       padding: 0;
       outline: none;
-      left: ${({ configuration, hasIcon }) => hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
+      left: ${({ configuration, hasIcon }) =>
+        hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
       .icon-required {
         display: inline-flex;
         padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -133,11 +137,11 @@ export const StyledProgressBar = styled.div`
   display: inline-flex;
   width: 100%;
   height: 0.188rem;
-  gap: .5rem;
+  gap: 0.5rem;
   padding-left: ${({ configuration }) => configuration.spacing.xs};
   box-sizing: border-box;
-  .meter{
-    background-color: #CECECE;
+  .meter {
+    background-color: #cecece;
     height: 0.625rem;
   }
 `;
@@ -145,15 +149,14 @@ export const StyledProgressBar = styled.div`
 const getTopLabel = (size) => {
   if (size === 'default') {
     return css`
-      top: calc(1.244rem - .5rem);
+      top: calc(1.244rem - 0.5rem);
     `;
   } else {
     return css`
-      top: calc(1.493rem - .5rem);
+      top: calc(1.493rem - 0.5rem);
     `;
   }
-}
-
+};
 
 export const getSize = (size = 'md', max = false) => {
   switch (size) {
@@ -171,17 +174,21 @@ export const getSize = (size = 'md', max = false) => {
   }
 };
 
-const getBorderStyle = (border) => {
+const getBorderStyle = (border, color) => {
   let borderStyle = '';
   switch (border) {
     case 'bottom':
-      borderStyle = css`border-bottom: 0.063rem solid ${borderColor};`;
+      borderStyle = css`
+        border-bottom: 0.063rem solid ${color};
+      `;
       break;
     case 'full':
     case 'overlap':
     default:
-      borderStyle = css`border: 0.063rem solid ${borderColor};`;
+      borderStyle = css`
+        border: 0.063rem solid ${color};
+      `;
       break;
   }
   return borderStyle;
-}
+};

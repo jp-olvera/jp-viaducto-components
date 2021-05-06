@@ -15,25 +15,13 @@ const StyledModal = styled.div`
   ${({ maxWidth, maxHeight, breakpoint }) =>
     getMedia(maxWidth, maxHeight, breakpoint)}
 
-  .modal-close {
-    padding: 0;
-    background-color: transparent;
-    border: 1px solid transparent;
-    cursor: pointer;
-    box-sizing: border-box;
-  }
-  .modal-close:hover {
-    transform: translateY(-1px);
-  }
-  .modal-close:active {
-    transform: translateY(0);
-  }
   .modal-header {
     display: flex;
     border-bottom: 1px solid #eaedf3;
     border-radius: 5px 5px 0 0;
 
     background-color: ${({ backgroundColor }) => backgroundColor};
+    border-color: ${({ backgroundColor }) => backgroundColor};
     padding: ${({ configuration }) =>
       `${configuration.spacing.md} ${configuration.spacing.lg}`};
   }
