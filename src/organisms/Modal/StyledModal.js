@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
+import getElevation from '../../utils/getElevation';
 
 const StyledModal = styled.div`
   background: white;
   display: ${({ isActive }) => (isActive ? 'flex' : 'none')};
-  border: 1px solid #eaedf3;
+  /* border: 1px solid #eaedf3; */
   border-radius: 5px;
   flex-direction: column;
   min-height: 30%;
@@ -11,6 +12,8 @@ const StyledModal = styled.div`
   max-height: ${({ maxHeight }) => maxHeight};
   width: 100%;
   z-index: 1;
+
+  ${(p) => getElevation(p.elevation, p.elevationDirection)}
 
   ${({ maxWidth, maxHeight, breakpoint }) =>
     getMedia(maxWidth, maxHeight, breakpoint)}

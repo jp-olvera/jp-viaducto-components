@@ -19,6 +19,27 @@ export default {
     backgroundColor: {
       control: 'color',
     },
+    elevation: {
+      options: [1, 2, 3],
+      control: {
+        type: 'select',
+      },
+    },
+    elevationDirection: {
+      options: [
+        'top',
+        'right',
+        'bottom',
+        'left',
+        'topRight',
+        'topLeft',
+        'bottomRight',
+        'bottomLeft',
+      ],
+      control: {
+        type: 'select',
+      },
+    },
   },
 };
 const Template = (args) => {

@@ -32,6 +32,8 @@ const Modal = ({
   acceptDisabled = false,
   rejectDisabled = false,
   allowClickOutside = true,
+  elevation = 1,
+  elevationDirection = '',
   children,
 }) => {
   const { configuration } = useContext(ConfigContext);
@@ -93,6 +95,8 @@ const Modal = ({
         isActive={isActive}
         maxHeight={maxHeight}
         backgroundColor={backgroundColor}
+        elevation={elevation}
+        elevationDirection={elevationDirection}
       >
         <div
           className="modal-header"
