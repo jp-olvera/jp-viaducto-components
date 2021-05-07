@@ -3,7 +3,12 @@ import StyledDrawer from './StyledDrawer';
 import { BareButton } from '../../cells';
 import { ConfigContext } from '../../providers';
 
-const Drawer = ({ active = false, children }) => {
+const Drawer = ({
+  active = false,
+  children,
+  elevation = 1,
+  elevationDirection = '',
+}) => {
   const [isActive, setIsActive] = useState(active);
   const { configuration } = useContext(ConfigContext);
   useEffect(() => {
@@ -14,7 +19,12 @@ const Drawer = ({ active = false, children }) => {
     setIsActive(false);
   };
   return (
-    <StyledDrawer active={isActive} configuration={configuration}>
+    <StyledDrawer
+      active={isActive}
+      configuration={configuration}
+      elevation={elevation}
+      elevationDirection={elevationDirection}
+    >
       <div className="close">
         <BareButton onClick={handleActive}>X</BareButton>
       </div>

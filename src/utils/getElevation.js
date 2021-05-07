@@ -66,7 +66,6 @@ function getElevation(e_nivel, e_direction = '') {
         spreadRadius = -2;
         break;
     }
-    console.log(blurRadius);
   }
   return css`
     box-shadow: ${xOffset}px ${yOffset}px ${blurRadius}px ${spreadRadius}px

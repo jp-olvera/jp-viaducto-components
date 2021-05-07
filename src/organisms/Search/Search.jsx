@@ -3,7 +3,6 @@ import { Search as SearchIcon } from 'react-ikonate';
 
 import { ConfigContext } from '../../providers';
 import { Button } from '../../cells/Button';
-import { Hideable } from '../../cells/Hideable';
 import { Dropdown } from '../../cells/Dropdown';
 import { StyledSearch } from './StyledSearch';
 
@@ -23,6 +22,8 @@ const Search = ({
   options = [],
   id = 'search',
   activeColor = '#ffd6ce',
+  elevation = 1,
+  elevationDirection = '',
 }) => {
   const { configuration } = useContext(ConfigContext);
 
@@ -32,6 +33,8 @@ const Search = ({
       family={family}
       colors={colors}
       data-testid={id}
+      elevation={elevation}
+      elevationDirection={elevationDirection}
     >
       <input
         type="text"

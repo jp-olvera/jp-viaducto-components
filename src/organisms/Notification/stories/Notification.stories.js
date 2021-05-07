@@ -13,6 +13,27 @@ export default {
         type: 'select',
       },
     },
+    elevation: {
+      options: [1, 2, 3],
+      control: {
+        type: 'select',
+      },
+    },
+    elevationDirection: {
+      options: [
+        'top',
+        'right',
+        'bottom',
+        'left',
+        'topRight',
+        'topLeft',
+        'bottomRight',
+        'bottomLeft',
+      ],
+      control: {
+        type: 'select',
+      },
+    },
   },
 };
 
@@ -31,4 +52,6 @@ Default.args = {
   active: true,
   type: 'success',
   top: true,
+  elevation: 1,
+  elevationDirection: 'top',
 };

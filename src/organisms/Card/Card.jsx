@@ -26,6 +26,8 @@ const Card = ({
   content = null,
   footer = null,
   onlyImage = false,
+  elevation = 1,
+  elevationDirection = '',
 }) => {
   const { configuration } = useContext(ConfigContext);
   const normalCard = () => (
@@ -33,6 +35,8 @@ const Card = ({
       configuration={configuration}
       onlyImage={(content === null && footer === null) || onlyImage}
       noImage={src === null}
+      elevation={elevation}
+      elevationDirection={elevationDirection}
     >
       {(src !== null || onlyImage) && (
         <img className="img" src={src} alt={src} />
@@ -87,7 +91,12 @@ const Card = ({
     </StyledNormalCard>
   );
   const collapsibleCard = () => (
-    <StyledCollapsibleCard isActive={collapsible} configuration={configuration}>
+    <StyledCollapsibleCard
+      isActive={collapsible}
+      configuration={configuration}
+      elevation={elevation}
+      elevationDirection={elevationDirection}
+    >
       <div className="size main-description">
         <div className="avatarWrapper">
           <Avatar src="https://i.pravatar.cc/50" alt="avatar" />

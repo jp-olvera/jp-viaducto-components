@@ -5,6 +5,29 @@ import { ConfigProvider } from '../../../providers';
 export default {
   title: 'Andamio/Organisms/Card',
   component: Card,
+  argTypes: {
+    elevationDirection: {
+      options: [
+        'top',
+        'right',
+        'bottom',
+        'left',
+        'topRight',
+        'topLeft',
+        'bottomRight',
+        'bottomLeft',
+      ],
+      control: {
+        type: 'select',
+      },
+    },
+    elevation: {
+      options: [1, 2, 3],
+      control: {
+        type: 'select',
+      },
+    },
+  },
 };
 
 const Template = (args) => {
@@ -27,6 +50,8 @@ Default.args = {
   content: '',
   footer: '',
   onlyImage: false,
+  elevation: 1,
+  elevationDirection: 'radial',
 };
 
 NoImage.args = {
@@ -36,6 +61,8 @@ NoImage.args = {
   content: '',
   footer: '',
   onlyImage: false,
+  elevation: 1,
+  elevationDirection: 'radial',
 };
 
 OnlyImage.args = {
@@ -45,6 +72,8 @@ OnlyImage.args = {
   content: null,
   footer: null,
   onlyImage: true,
+  elevation: 1,
+  elevationDirection: 'radial',
 };
 
 Collapsible.args = {
@@ -54,4 +83,6 @@ Collapsible.args = {
   content: '',
   footer: '',
   onlyImage: false,
+  elevation: 1,
+  elevationDirection: 'radial',
 };

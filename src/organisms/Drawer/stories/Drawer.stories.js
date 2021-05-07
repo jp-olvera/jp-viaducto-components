@@ -5,6 +5,29 @@ import { ConfigProvider } from '../../../providers';
 export default {
   title: 'Andamio/Organisms/Drawer',
   component: Drawer,
+  argTypes: {
+    elevationDirection: {
+      options: [
+        'top',
+        'right',
+        'bottom',
+        'left',
+        'topRight',
+        'topLeft',
+        'bottomRight',
+        'bottomLeft',
+      ],
+      control: {
+        type: 'select',
+      },
+    },
+    elevation: {
+      options: [1, 2, 3],
+      control: {
+        type: 'select',
+      },
+    },
+  },
 };
 
 const Template = (args) => {
@@ -57,4 +80,6 @@ export const Default = Template.bind({});
 
 Default.args = {
   active: true,
+  elevation: 1,
+  elevationDirection: 'left',
 };

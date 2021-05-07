@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import getElevation from '../../utils/getElevation';
 
 const StyledDrawer = styled.div`
   background: white;
@@ -9,6 +10,7 @@ const StyledDrawer = styled.div`
   position: fixed;
   top: 0;
   right: 0;
+  ${(p) => getElevation(p.elevation, p.elevationDirection)}
   transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   transform: ${(props) =>
     props.active ? 'translateX(0)' : 'translateX(100%)'};

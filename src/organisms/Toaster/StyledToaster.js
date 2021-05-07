@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
+import getElevation from '../../utils/getElevation';
 
 const StyledToaster = styled.div`
+  ${(p) => getElevation(p.elevation, p.elevationDirection)}
   display: flex;
   visibility: ${({ isActive }) => (isActive ? 'visible' : 'hidden')};
   opacity: ${({ isActive }) => (isActive ? 1 : 0)};

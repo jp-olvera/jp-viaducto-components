@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import getElevation from '../../utils/getElevation';
 
 export const StyledContent = styled.div`
   flex-grow: 1;
@@ -27,6 +28,7 @@ export const StyledNormalCard = styled.div`
   background-color: #ffffff;
   transition: 0.2s ease;
   box-sizing: border-box;
+  ${(p) => getElevation(p.elevation, p.elevationDirection)}
   height: ${({ onlyImage, noImage }) =>
     noImage ? '16.5rem' : onlyImage ? '25.25rem' : '29.625rem'};
   width: 100%;
@@ -87,8 +89,9 @@ export const StyledCollapsibleCard = styled.div`
   background-color: #ffffff;
   box-sizing: border-box;
   width: 100%;
+  ${(p) => getElevation(p.elevation, p.elevationDirection)}
   @media screen and (min-width: ${({ configuration }) =>
-      configuration.breakpoints.md}) {
+    configuration.breakpoints.md}) {
     max-width: 69.375rem;
     max-height: 17.813rem;
     .size {

@@ -13,6 +13,27 @@ export default {
     activeColor: {
       control: 'color',
     },
+    elevation: {
+      options: [1, 2, 3],
+      control: {
+        type: 'select',
+      },
+    },
+    elevationDirection: {
+      options: [
+        'top',
+        'right',
+        'bottom',
+        'left',
+        'topRight',
+        'topLeft',
+        'bottomRight',
+        'bottomLeft',
+      ],
+      control: {
+        type: 'select',
+      },
+    },
   },
 };
 
@@ -35,4 +56,6 @@ Default.args = {
   },
   options: ['Razón Social', 'RFC', 'Nombre Comercial'],
   activeColor: '#ffd6ce',
+  elevation: 1,
+  elevationDirection: 'top',
 };

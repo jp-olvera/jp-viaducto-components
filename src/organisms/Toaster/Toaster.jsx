@@ -22,6 +22,8 @@ const Toaster = ({
   active = false,
   top = true,
   right = true,
+  elevation = 1,
+  elevationDirection = '',
 }) => {
   const { configuration } = useContext(ConfigContext);
   const [isActive, setIsActive] = useState(true);
@@ -55,6 +57,8 @@ const Toaster = ({
 
   return (
     <StyledToaster
+      elevation={elevation}
+      elevationDirection={elevationDirection}
       ref={ref}
       backgoundColor={color}
       configuration={configuration}

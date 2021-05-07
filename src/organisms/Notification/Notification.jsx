@@ -11,6 +11,8 @@ const Notification = ({
   type = 'success',
   active = false,
   top = true,
+  elevation = 1,
+  elevationDirection = '',
 }) => {
   const { configuration } = useContext(ConfigContext);
   const [isActive, setIsActive] = useState(false);
@@ -48,6 +50,8 @@ const Notification = ({
       data-testid="notification"
       ref={ref}
       top={top}
+      elevation={elevation}
+      elevationDirection={elevationDirection}
     >
       <span
         style={{

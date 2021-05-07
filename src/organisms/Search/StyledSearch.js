@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { Wrapper, ItemsContainer } from '../../cells/Dropdown/StyledDropdown';
+import getElevation from '../../utils/getElevation';
 
 const height = '3.375rem',
   width = '45.625rem';
@@ -12,6 +13,7 @@ export const StyledSearch = styled.div`
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
+  ${(p) => getElevation(p.elevation, p.elevationDirection)}
   & > * {
     height: 100%;
     box-sizing: border-box;

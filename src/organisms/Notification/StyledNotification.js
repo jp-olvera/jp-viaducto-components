@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import getElevation from '../../utils/getElevation';
 
 const StyledNotification = styled.div`
   align-items: center;
@@ -17,7 +18,7 @@ const StyledNotification = styled.div`
     `${configuration.spacing.sm} ${configuration.spacing.xs}`};
   position: fixed;
   width: 100%;
-
+  ${(p) => getElevation(p.elevation, p.elevationDirection)}
   ${({ top }) => getPosition(top)}
 `;
 
