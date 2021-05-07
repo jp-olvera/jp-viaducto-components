@@ -1,6 +1,14 @@
 import React, { useContext, useState } from 'react';
 
-import { Anchor, Avatar, Button, Paragraph, Spacer, Title } from '../../cells';
+import {
+  Anchor,
+  Avatar,
+  Button,
+  Hideable,
+  Paragraph,
+  Spacer,
+  Title,
+} from '../../cells';
 import { ArrowRight, Time } from 'react-ikonate';
 
 import { ConfigContext } from '../../providers/';
@@ -87,21 +95,25 @@ const Card = ({
             <Paragraph size="lg" weight="500" family="Roboto">
               Designer
             </Paragraph>
-            <Paragraph size="sm" color="gray" family="Roboto">
-              Hays | City of London, United Kingdom
-            </Paragraph>
+            <Hideable visibleOn="sm">
+              <Paragraph size="sm" color="gray" family="Roboto">
+                Hays | City of London, United Kingdom
+              </Paragraph>
+            </Hideable>
           </div>
         </div>
         <div className="actions">
           <div className="sub">
-            <div className="imgs">
-              <img src="https://i.pravatar.cc/28" alt="avatar" />
-              <img src="https://i.pravatar.cc/28" alt="avatar" />
-              <img src="https://i.pravatar.cc/28" alt="avatar" />
-              <Paragraph family="Roboto" color="gray" size="sm">
-                3 people you know work here!
-              </Paragraph>
-            </div>
+            <Hideable visibleOn="sm">
+              <div className="imgs">
+                <img src="https://i.pravatar.cc/28" alt="avatar" />
+                <img src="https://i.pravatar.cc/28" alt="avatar" />
+                <img src="https://i.pravatar.cc/28" alt="avatar" />
+                <Paragraph family="Roboto" color="gray" size="sm">
+                  3 people you know work here!
+                </Paragraph>
+              </div>
+            </Hideable>
             <Button label="New" type="success" size="sm" />
           </div>
         </div>
@@ -124,40 +136,42 @@ const Card = ({
             />
           </div>
           <div className="size footer">
-            <div className="blocks">
-              <div className="block">
-                <Paragraph size="xs" color="gray" family="Roboto">
-                  Seniority Level
-                </Paragraph>
-                <Paragraph size="sm" family="Roboto">
-                  Not Applicable
-                </Paragraph>
+            <Hideable visibleOn="sm">
+              <div className="blocks">
+                <div className="block">
+                  <Paragraph size="xs" color="gray" family="Roboto">
+                    Seniority Level
+                  </Paragraph>
+                  <Paragraph size="sm" family="Roboto">
+                    Not Applicable
+                  </Paragraph>
+                </div>
+                <div className="block">
+                  <Paragraph size="xs" color="gray" family="Roboto">
+                    Industry
+                  </Paragraph>
+                  <Paragraph size="sm" family="Roboto">
+                    Financial Services
+                  </Paragraph>
+                </div>
+                <div className="block">
+                  <Paragraph size="xs" color="gray" family="Roboto">
+                    Employment Type
+                  </Paragraph>
+                  <Paragraph size="sm" family="Roboto">
+                    Temporary
+                  </Paragraph>
+                </div>
+                <div className="block">
+                  <Paragraph size="xs" color="gray" family="Roboto">
+                    Job Functions
+                  </Paragraph>
+                  <Paragraph size="sm" family="Roboto">
+                    Marketing
+                  </Paragraph>
+                </div>
               </div>
-              <div className="block">
-                <Paragraph size="xs" color="gray" family="Roboto">
-                  Industry
-                </Paragraph>
-                <Paragraph size="sm" family="Roboto">
-                  Financial Services
-                </Paragraph>
-              </div>
-              <div className="block">
-                <Paragraph size="xs" color="gray" family="Roboto">
-                  Employment Type
-                </Paragraph>
-                <Paragraph size="sm" family="Roboto">
-                  Temporary
-                </Paragraph>
-              </div>
-              <div className="block">
-                <Paragraph size="xs" color="gray" family="Roboto">
-                  Job Functions
-                </Paragraph>
-                <Paragraph size="sm" family="Roboto">
-                  Marketing
-                </Paragraph>
-              </div>
-            </div>
+            </Hideable>
             <Button label="Apply" type="success" />
           </div>
         </div>

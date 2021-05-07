@@ -29,7 +29,11 @@ export const StyledNormalCard = styled.div`
   box-sizing: border-box;
   height: ${({ onlyImage, noImage }) =>
     noImage ? '16.5rem' : onlyImage ? '25.25rem' : '29.625rem'};
-  width: 21.875rem;
+  width: 100%;
+  @media screen and (min-width: ${({ configuration }) =>
+      configuration.breakpoints.md}) {
+    width: 21.875rem;
+  }
   padding: ${({ onlyImage }) => (onlyImage ? '1.688rem' : '0')};
   display: flex;
   flex-direction: column;
@@ -60,11 +64,16 @@ export const StyledNormalCard = styled.div`
       padding: ${({ noImage }) => (noImage ? '0 1.2rem' : '0 2rem')};
       & > button {
         color: white;
-        width: 7.438rem;
+        width: 100%;
+        @media screen and (min-width: ${({ configuration }) =>
+            configuration.breakpoints.md}) {
+          width: 7.438rem;
+        }
       }
     }
   }
 `;
+
 export const Collapse = styled.div`
   .collapse {
     transition: 0.2s ease;
@@ -77,8 +86,16 @@ export const StyledCollapsibleCard = styled.div`
   transition: 0.2s ease;
   background-color: #ffffff;
   box-sizing: border-box;
-  max-width: 69.375rem;
-  max-height: 17.813rem;
+  width: 100%;
+  @media screen and (min-width: ${({ configuration }) =>
+      configuration.breakpoints.md}) {
+    max-width: 69.375rem;
+    max-height: 17.813rem;
+    .size {
+      width: 100%;
+      height: 6.125rem;
+    }
+  }
 
   /* Esto no */
   border: 0.063rem solid #eaedf3;
@@ -87,7 +104,7 @@ export const StyledCollapsibleCard = styled.div`
   /* esto sí */
   .size {
     width: 100%;
-    height: 6.125rem;
+    /* height: 6.125rem; */
   }
   .main-description {
     padding: ${({ configuration }) => configuration.spacing.lg};
@@ -125,9 +142,12 @@ export const StyledCollapsibleCard = styled.div`
   .full-description {
     box-sizing: border-box;
     padding: 0 ${({ configuration }) => configuration.spacing.lg};
+    width: 100%;
   }
   .footer {
-    padding: 0 ${({ configuration }) => configuration.spacing.lg};
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.5rem ${({ configuration }) => configuration.spacing.lg};
     border-top: 0.06rem solid #eaedf3;
     box-sizing: border-box;
     button {
