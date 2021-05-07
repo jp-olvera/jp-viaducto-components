@@ -36,6 +36,8 @@ function getElevation(e_nivel, e_direction = '') {
   }
 
   if (e_direction !== '') {
+    yOffset = 0;
+    xOffset = 0;
     let direction = e_direction.toLowerCase();
     if (direction.includes('top')) {
       yOffset = sizeLinearDirection * -1;
@@ -52,17 +54,20 @@ function getElevation(e_nivel, e_direction = '') {
 
     switch (nivel) {
       case 2:
-        spreadRadius = -3;
+        blurRadius = 6;
+        spreadRadius = -2;
         break;
       case 3:
-        spreadRadius = -3;
+        blurRadius = 8;
+        spreadRadius = -2;
+        break;
       default:
+        blurRadius = 4;
         spreadRadius = -2;
         break;
     }
+    console.log(blurRadius);
   }
-  console.log(yOffset);
-  // top: 0px -2px 4px -3px 1
   return css`
     box-shadow: ${xOffset}px ${yOffset}px ${blurRadius}px ${spreadRadius}px
       rgba(${red}, ${green}, ${blue}, ${opacity});
