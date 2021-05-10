@@ -1,21 +1,21 @@
 const path = require('path');
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'index.js',
+    // filename: 'index.js',
     libraryTarget: 'commonjs2',
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(t|j)sx?$/,
         exclude: /(node_modules|build|dist)/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
+          loader: 'ts-loader',
+          // options: {
+          //   presets: ['@babel/preset-env', '@babel/preset-react'],
+          // },
         },
       },
       {
@@ -50,7 +50,7 @@ module.exports = {
     },
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css'],
+    extensions: ['.js', '.jsx', '.ts', 'tsx', '.css'],
     alias: {
       react: path.resolve(__dirname, './node_modules/react'),
       'prop-types': path.resolve(__dirname, './node_modules/prop-types'),
