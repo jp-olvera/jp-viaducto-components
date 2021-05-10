@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '../../../test-utils';
 import '@testing-library/jest-dom/extend-expect';
 import { Dropdown } from '..';
 
-jest.mock('../sorting.svg', () => '');
+// jest.mock('sorting.svg', () => '');
 
 describe('<Dropdown/>', () => {
   test('should render an focusable activator to toggle the dropdown', () => {

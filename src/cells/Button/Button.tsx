@@ -22,7 +22,6 @@ interface ButtonInterface {
   lead?: boolean;
   height?: string;
   type?: string;
-  onClick?: Function;
   disabled?: boolean;
 }
 
@@ -42,7 +41,6 @@ const Button = ({
   lead = false,
   size = SIZE.default,
   type = 'primary',
-  onClick = () => {},
   ...rest
 }: ButtonInterface) => {
   const { configuration } = useContext(ConfigContext);
