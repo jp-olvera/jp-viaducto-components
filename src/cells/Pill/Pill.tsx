@@ -57,15 +57,15 @@ const Pill = ({
     >
       {iconLead !== null && <span className="span-icon-lead">{iconLead}</span>}
       <span>{label}</span>
-      <BareButton onClick={handleAction} style={{ height: '100%' }}>
         <span className="span-icon">
+      <BareButton onClick={handleAction} style={{ height: '100%', display: "flex" }}>
           {icon === null || icon === '' ? (
             <Close stroke="blue" strokeWidth={2} width="18px" height="18px" />
           ) : (
             icon
           )}
-        </span>
       </BareButton>
+        </span>
     </StyledPill>
   );
 };
