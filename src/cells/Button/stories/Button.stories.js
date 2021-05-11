@@ -12,7 +12,7 @@ export default {
         type: 'select',
       },
     },
-    type: {
+    variant: {
       options: ['primary', 'secondary', 'info', 'success', 'danger', 'warning'],
       control: {
         type: 'select',
@@ -37,7 +37,7 @@ Default.args = {
   lead: false,
   icon: Icon({ icon: '🥵' }).props.children,
   height: '',
-  type: 'primary',
+  variant: 'primary',
   colors: null,
   disabled: false,
 };
@@ -49,7 +49,7 @@ Custom.args = {
   lead: false,
   icon: Icon({ icon: '🥵' }).props.children,
   height: '',
-  type: 'primary',
+  variant: 'primary',
   colors: null,
   disabled: false,
 };
@@ -61,7 +61,7 @@ Small.args = {
   lead: false,
   icon: Icon({ icon: '🥵' }).props.children,
   height: '',
-  type: 'primary',
+  variant: 'primary',
 };
 
 export const IconOnly = Template.bind({});
@@ -71,7 +71,7 @@ IconOnly.args = {
   icon: Icon({ icon: '🥵' }).props.children,
   height: '',
   lead: false,
-  type: 'primary',
+  variant: 'primary',
 };
 export const CustomHeight = Template.bind({});
 
@@ -80,5 +80,5 @@ CustomHeight.args = {
   label: 'Button',
   height: '3.4rem',
   lead: false,
-  type: 'primary',
+  variant: 'primary',
 };
