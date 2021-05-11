@@ -5,26 +5,12 @@ import { ConfigContext } from '../../providers';
 import StyledButton from './StyledButton';
 import { SIZE } from './constants';
 
-let defaultColors = {
+const defaultColors = {
   default: '#937B3D',
   hover: '#AD9043',
   click: '#C3A24A',
   text: '#000',
 };
-
-// interface ButtonInterface {
-//   label?: string;
-//   size?: string;
-//   colors?:
-//     | { default: string; hover: string; click: string; text: string }
-//     | any;
-//   icon?: any;
-//   lead?: boolean;
-//   height?: string;
-//   type?: string;
-//   disabled?: boolean;
-//   onClick?: Function;
-// }
 
 /**
  * Button component overrides HTML button tag. This components accepts icons and/or labels
@@ -50,10 +36,8 @@ const Button = ({
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
-  let newHeight = height || configuration.controlHeight[size];
-  if (colors) {
-    colors = colors;
-  } else {
+  const newHeight = height || configuration.controlHeight[size];
+  if (!colors) {
     colors = configuration.colors[variant] || defaultColors;
   }
 

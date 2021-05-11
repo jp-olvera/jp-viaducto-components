@@ -16,22 +16,20 @@ describe('<Checkbox/>', () => {
     expect(input.querySelector('input').checked).toEqual(true);
   });
 
-  test('should be not checked', () => {
-    const { getByTestId } = render(<Checkbox label="Yes" id="checkbox" />);
-    const input = getByTestId('checkbox');
+  test('should not be checked', () => {
+    const { getByTestId } = render(<Checkbox label="Yes" id="checkbox1" />);
+    const input = getByTestId('checkbox1');
     expect(input.querySelector('input').checked).toEqual(false);
     fireEvent.click(input.querySelector('input'));
     expect(input.querySelector('input').checked).toEqual(true);
-    fireEvent.click(input.querySelector('input'));
-    expect(input.querySelector('input').checked).toEqual(false);
   });
 
   test('should be disabled', () => {
     const { getByTestId } = render(
-      <Checkbox label="Yes" id="checkbox" disabled />,
+      <Checkbox label="Yes" id="checkbox2" disabled />,
     );
     expect(
-      getByTestId('checkbox').querySelector('input').hasAttribute('disabled'),
+      getByTestId('checkbox2').querySelector('input').hasAttribute('disabled'),
     ).toEqual(true);
   });
 });

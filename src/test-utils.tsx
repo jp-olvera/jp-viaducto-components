@@ -1,14 +1,8 @@
-import React, { FC } from 'react';
-import { render, RenderOptions } from '@testing-library/react';
+import React from 'react';
+import { render } from '@testing-library/react';
 import { ConfigProvider } from './providers';
 
-// interface ProviderInterface {
-//   children: any;
-// }
-
-const AllTheProviders = ({ children }) => {
-  return <ConfigProvider>{children}</ConfigProvider>;
-};
+const AllTheProviders = ({ children }: any) => <ConfigProvider>{children}</ConfigProvider>;
 
 const customRender = (ui, options) =>
   render(ui, { wrapper: AllTheProviders, ...options });

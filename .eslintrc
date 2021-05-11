@@ -21,9 +21,9 @@
     "no-mixed-operators": 0,
     "import/no-unresolved": "off",
     "react/jsx-filename-extension": [
-      "error",
+      1,
       {
-        "extensions": [".js", ".jsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
     "no-restricted-properties": [

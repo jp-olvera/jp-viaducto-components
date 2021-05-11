@@ -4,32 +4,21 @@ import { render, screen } from '../../../test-utils';
 import { Card } from '..';
 
 jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
-
+const props = {
+  collapsible: false,
+  collapse: false,
+  src: 'https://homepages.cae.wisc.edu/~ece533/images/girl.png',
+  content: <h1>Body</h1>,
+  footer: <h2>Footer</h2>,
+  onlyImage: false,
+};
 describe('<Card/>', () => {
   test('should be visible', () => {
-    render(
-      <Card
-        collapsible={false}
-        collapse={false}
-        src="https://homepages.cae.wisc.edu/~ece533/images/girl.png"
-        content={<h1>Body</h1>}
-        footer={<h2>Footer</h2>}
-        onlyImage={false}
-      />,
-    );
+    render(<Card {...props} />);
     expect(screen.queryByText('45 min')).toBeInTheDocument();
   });
   test('render Card collapsible (large)', () => {
-    render(
-      <Card
-        collapsible
-        collapse={false}
-        src="https://homepages.cae.wisc.edu/~ece533/images/girl.png"
-        content={<h1>Body</h1>}
-        footer={<h2>Footer</h2>}
-        onlyImage={false}
-      />,
-    );
+    render(<Card {...props} collapsible />);
     expect(screen.queryByText('Designer')).toBeInTheDocument();
   });
 });
