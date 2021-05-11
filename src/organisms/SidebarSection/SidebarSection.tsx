@@ -36,20 +36,16 @@ const SidebarSection = ({
   const backRefButton = useRef<HTMLButtonElement>(null);
 
   const handleActive = (ev) => {
-    if (ev.type === 'click') {
+    if (ev.type === 'click' || ev.keyCode === 13 || ev.keyCode === 32) {
       setIsActive(!isActive);
-    } else {
-      if (ev.keyCode === 13 || ev.keyCode === 32) {
-        setIsActive(!isActive);
-      }
     }
   };
 
   const itemsList = items.map(({ label, url }, index) => (
-    <li className="b" role="button" tabIndex={0} key={url + index}>
+    <li className="b" role="button" tabIndex={0} key={`li-${url}-${index}`}>
       <>
         <Spacer size="sm" />
-        <Spacer size="xs" direction={'horizontal'} />
+        <Spacer size="xs" direction="horizontal" />
         {label}
         <Spacer size="sm" />
       </>
@@ -62,11 +58,16 @@ const SidebarSection = ({
     }
   }, [backRefButton, isActive]);
 
+  let dropClassName = '';
+
+  if (isDropdown) dropClassName = 'dropdown';
+  else if (isMenu) dropClassName = 'toggleMenu';
+
   return (
     <StyledSidebarSection>
       {separator && <hr />}
 
-      <div className={isDropdown ? 'dropdown' : isMenu ? 'toggleMenu' : ''}>
+      <div className={dropClassName}>
         {isDropdown || isMenu ? (
           <li
             className="b"
@@ -103,7 +104,7 @@ const SidebarSection = ({
       </div>
       {isMenu && isActive ? (
         <ul className={`submenu ${isActive ? 'active' : ''}`}>
-          <button onClick={handleActive} ref={backRefButton}>
+          <button onClick={handleActive} ref={backRefButton} type="button">
             {'←'} {title}
           </button>
           <Spacer size="xs" />

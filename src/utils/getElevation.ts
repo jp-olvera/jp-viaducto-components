@@ -4,10 +4,10 @@ const red = 102;
 const green = 102;
 const blue = 102;
 
-function getElevation(e_nivel: number, e_direction: string = '') {
+function getElevation(eNivel: number, eDirection: string = '') {
   let nivel = 1;
-  if (0 < e_nivel && e_nivel <= 3) {
-    nivel = e_nivel;
+  if (eNivel  > 0 && eNivel <= 3) {
+    nivel = eNivel;
   }
   let xOffset = 0;
   let yOffset = 1;
@@ -35,10 +35,10 @@ function getElevation(e_nivel: number, e_direction: string = '') {
       break;
   }
 
-  if (e_direction !== '') {
+  if (eDirection !== '') {
     yOffset = 0;
     xOffset = 0;
-    let direction = e_direction.toLowerCase();
+    const direction = eDirection.toLowerCase();
     if (direction.includes('top')) {
       yOffset = sizeLinearDirection * -1;
     }

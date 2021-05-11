@@ -4,7 +4,8 @@
   "plugins": ["import", "react"],
   "env": {
     "es6": true,
-    "jest": true
+    "jest": true,
+    "browser": true
   },
   "rules": {
     "semi": ["error", "always"],

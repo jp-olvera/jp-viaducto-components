@@ -21,8 +21,8 @@ const ProgressBar = ({
 }: ProgressBarInterface) => {
   const { configuration } = useContext(ConfigContext);
   const progressItems = () => {
-    var items: JSX.Element[] = [];
-    for (var i = 0; i < totalProgress; i++) {
+    let items: JSX.Element[] = [];
+    for (let i = 0; i < totalProgress; i++) {
       items.push(
         <div
           className={`meter`}

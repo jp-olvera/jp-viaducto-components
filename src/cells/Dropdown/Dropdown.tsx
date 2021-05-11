@@ -1,4 +1,6 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, {
+  useContext, useState, useRef, useEffect,
+} from 'react';
 
 import { ConfigContext } from '../../providers';
 import { Activator, Wrapper, ItemsContainer } from './StyledDropdown';
@@ -40,7 +42,7 @@ const Dropdown = ({
   const activatorRef = useRef<HTMLButtonElement>(null);
   const selectedRef = useRef<HTMLElement>(null);
   const dropdownListRef = useRef<HTMLDivElement>(null);
-  let newHeight = height || configuration.controlHeight[size];
+  const newHeight = height || configuration.controlHeight[size];
   const clickHandler = () => {
     setIsOpen(!isOpen);
   };
@@ -65,8 +67,8 @@ const Dropdown = ({
   const clickOutsideHandler = (event) => {
     if (dropdownListRef.current && activatorRef.current) {
       if (
-        dropdownListRef.current.contains(event.target) ||
-        activatorRef.current.contains(event.target)
+        dropdownListRef.current.contains(event.target)
+        || activatorRef.current.contains(event.target)
       ) {
         return;
       }

@@ -35,11 +35,11 @@ const config = {
     },
   },
   breakpoints: {
-    xs: '20rem', //'320px'
-    sm: '36rem', //'576px'
-    md: '48rem', //'768px'
-    lg: '62rem', //'992px'
-    xl: '90rem', //'1440px'
+    xs: '20rem', // '320px'
+    sm: '36rem', // '576px'
+    md: '48rem', // '768px'
+    lg: '62rem', // '992px'
+    xl: '90rem', // '1440px'
   },
   colors: {
     primary: {
