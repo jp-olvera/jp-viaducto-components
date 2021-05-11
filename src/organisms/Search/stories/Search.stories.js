@@ -49,9 +49,9 @@ Default.args = {
   placeholder: 'Introduce el término de búsqueda',
   buttonLabel: 'Search',
   id: 'search',
-  handleSearch: () => {
-    alert('Search');
-  },ctiveColor: '#ffd6{}ce',
+  haandleSearch: () => {},
+  options: ['Razón Social', 'RFC', 'Nombre Comercial'],
+  activeColor: '#ffd6ce',
   elevation: 1,
   elevationDirection: 'top',
 };

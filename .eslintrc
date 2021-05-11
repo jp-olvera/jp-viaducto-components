@@ -35,10 +35,9 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": false,
+        "devDependencies": true,
         "optionalDependencies": false,
-        "peerDependencies": false,
-        "packageDir": "./"
+        "peerDependencies": true
       }
     ],
     "linebreak-style": ["error", "unix"],
@@ -51,6 +50,7 @@
         "exceptions": []
       }
     ],
-    "react/jsx-one-expression-per-line": [0, { "allow": "single-child" }]
+    "react/jsx-one-expression-per-line": [0, { "allow": "single-child" }],
+    "object-curly-spacing": [0, "always"]
   }
 }

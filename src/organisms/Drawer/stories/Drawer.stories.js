@@ -34,31 +34,31 @@ const Template = (args) => (
   <ConfigProvider>
     <Drawer {...args}>
       <div style={{ height: '80px', background: 'green' }}>
-        <h3 style={{ margin: 0 }}>Aquí puedes poner lo que sea</h3>
+        <h3 style={{ margin: 0 }}>Hola</h3>
       </div>
       <div style={{ height: '80px', background: 'yellow' }}>
-        <h3 style={{ margin: 0 }}>Aquí puedes poner lo que sea</h3>
+        <h3 style={{ margin: 0 }}>Aquí</h3>
       </div>
       <div style={{ height: '80px', background: 'red' }}>
-        <h3 style={{ margin: 0 }}>Aquí puedes poner lo que sea</h3>
+        <h3 style={{ margin: 0 }}>Puedes</h3>
       </div>
       <div style={{ height: '80px', background: 'red' }}>
-        <h3 style={{ margin: 0 }}>Aquí puedes poner lo que sea</h3>
+        <h3 style={{ margin: 0 }}>Poner</h3>
       </div>
       <div style={{ height: '80px', background: 'yellow' }}>
-        <h3 style={{ margin: 0 }}>Aquí puedes poner lo que sea</h3>
+        <h3 style={{ margin: 0 }}>Lo</h3>
       </div>
       <div style={{ height: '80px', background: 'green' }}>
-        <h3 style={{ margin: 0 }}>Aquí puedes poner lo que sea</h3>
+        <h3 style={{ margin: 0 }}>Que</h3>
       </div>
       <div style={{ height: '80px', background: 'yellow' }}>
-        <h3 style={{ margin: 0 }}>Aquí puedes poner lo que sea</h3>
+        <h3 style={{ margin: 0 }}>Desees</h3>
       </div>
       <div style={{ height: '80px', background: 'red' }}>
-        <h3 style={{ margin: 0 }}>Aquí puedes poner lo que sea</h3>
+        <h3 style={{ margin: 0 }}>Como</h3>
       </div>
       <div style={{ height: '80px', background: 'blue' }}>
-        <h3 style={{ margin: 0 }}>Aquí puedes poner lo que sea</h3>
+        <h3 style={{ margin: 0 }}>Componente</h3>
       </div>
     </Drawer>
   </ConfigProvider>

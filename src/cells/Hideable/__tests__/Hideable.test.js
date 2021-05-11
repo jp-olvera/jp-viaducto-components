@@ -17,11 +17,7 @@ describe('<Hideable/>', () => {
     expect(screen.getByText('Also Hidden')).not.toBeVisible();
   });
   test('text inside should be visible with breakpoint passed', () => {
-    render(
-      <Hideable after={false} visibleOn="lg">
-        Hidden
-      </Hideable>
-    );
+    render(<Hideable after={false} visibleOn="lg">Hidden</Hideable>);
     expect(screen.getByText('Hidden')).toBeVisible();
   });
 });

@@ -7,7 +7,7 @@ jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
 
 describe('<Drawer/>', () => {
   test('should be visible', () => {
-    render(<Drawer active children={<h1>Title</h1>} />);
+    render(<Drawer active><h1>Title</h1></Drawer>);
     expect(screen.getByText('Title')).toBeVisible();
   });
 });

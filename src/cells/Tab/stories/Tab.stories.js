@@ -17,7 +17,5 @@ export const Default = Template.bind({});
 
 Default.args = {
   text: 'Zombie Patrol',
-  onClick: () => {
-    alert('Hi there!');
-  },
+  onClick: () => {},
 };

@@ -29,7 +29,7 @@ const Template = (args) => (
   </ConfigProvider>
 );
 
-const IconLead = ({ icon = '🥵' }) => <p>{icon}</p>;
+const IconLead = ({ icon }) => <p>{ icon }</p>;
 
 export const Default = Template.bind({});
 

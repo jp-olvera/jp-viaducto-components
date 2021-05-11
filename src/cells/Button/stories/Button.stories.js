@@ -27,7 +27,7 @@ const Template = (args) => (
   </ConfigProvider>
 );
 
-const Icon = ({ icon = '🥵' }) => <p>{icon}</p>;
+const Icon = ({ icon }) => <p>{ icon }</p>;
 
 export const Default = Template.bind({});
 

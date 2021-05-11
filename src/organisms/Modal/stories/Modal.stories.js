@@ -54,9 +54,9 @@ const Template = (args) => (
   </ConfigProvider>
 );
 
-const AnotherComponent = (props) => (
+const AnotherComponent = ({ label }) => (
   <div style={{ background: '#CECECE' }}>
-    <div style={{ background: '#CECECE' }}>{props.label}</div>
+    <div style={{ background: '#CECECE' }}>{ label }</div>
   </div>
 );
 
@@ -64,12 +64,8 @@ export const Default = Template.bind({});
 
 Default.args = {
   title: 'Aquí va el título de tu modal',
-  onReject: () => {
-    alert('Cancelar');
-  },
-  onAccept: () => {
-    alert('Listo');
-  },
+  onReject: () => {},
+  onAccept: () => {},
   active: true,
   acceptDisabled: false,
   rejectDisabled: false,
@@ -93,12 +89,8 @@ export const WithHeadComponent = Template.bind({});
 WithHeadComponent.args = {
   title: 'Aquí va el título de tu modal',
   active: true,
-  onReject: () => {
-    alerrt('Reject');
-  },
-  onAccept: () => {
-    alerrt('Acept');
-  },
+  onReject: () => {},
+  onAccept: () => {},
   headComponent: AnotherComponent({ label: 'This could be anything' }).props
     .children,
   acceptDisabled: false,
@@ -111,9 +103,7 @@ DisableClickOutside.args = {
   title: 'Aquí va el título de tu modal',
   active: true,
   onReject: null,
-  onAccept: () => {
-    alert('Hello!');
-  },
+  onAccept: () => {},
   allowClickOutside: false,
   acceptDisabled: false,
   rejectDisabled: false,
