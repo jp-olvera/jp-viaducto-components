@@ -21,7 +21,7 @@ const ProgressBar = ({
 }: ProgressBarInterface) => {
   const { configuration } = useContext(ConfigContext);
   const progressItems = () => {
-    let items: JSX.Element[] = [];
+    const items: JSX.Element[] = [];
     for (let i = 0; i < totalProgress; i++) {
       items.push(
         <div
