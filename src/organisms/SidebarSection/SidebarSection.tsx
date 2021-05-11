@@ -41,7 +41,7 @@ const SidebarSection = ({
     }
   };
 
-  const itemsList = items.map(({ label, url }, index) => (
+  const itemsList = items.map(({ label, url }) => (
     <li className="b" role="button" tabIndex={0} key={url}>
       <>
         <Spacer size="sm" />

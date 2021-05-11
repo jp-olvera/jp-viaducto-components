@@ -29,21 +29,19 @@ const Tab = ({
   activeTextColor = '#002F6C',
   onClick = () => {},
   ...rest
-}: TabInterface) => {
-  return (
-    <StyledTab
-      color={color}
-      hoverColor={hoverColor}
-      activeColor={activeColor}
-      activeTextColor={activeTextColor}
-      onClick={onClick}
-      {...rest}
-    >
-      <Paragraph size="lg" className="tab-text" color="darkGray">
-        {text}
-      </Paragraph>
-    </StyledTab>
-  );
-};
+}: TabInterface) => (
+  <StyledTab
+    color={color}
+    hoverColor={hoverColor}
+    activeColor={activeColor}
+    activeTextColor={activeTextColor}
+    onClick={onClick}
+    {...rest}
+  >
+    <Paragraph size="lg" className="tab-text" color="darkGray">
+      {text}
+    </Paragraph>
+  </StyledTab>
+);
 
 export default Tab;

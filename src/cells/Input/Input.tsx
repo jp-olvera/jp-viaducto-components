@@ -118,7 +118,7 @@ const Input = ({
         {isInvalid && <span className="is-invalid">{getIcon('warning')}</span>}
         {isValid && <span className="is-valid">{getIcon('ok')}</span>}
         {type === 'password' && (
-          <span className="icon-helper" onClick={toggleView} role="button">
+          <span className="icon-helper" onClick={toggleView} role="button" tabIndex={0}>
             {' '}
             {inputType === 'password' ? getIcon('eye-closed') : getIcon('eye')}
           </span>

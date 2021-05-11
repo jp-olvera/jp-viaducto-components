@@ -58,8 +58,6 @@ interface IconInterface {
   icon: string;
 }
 
-const Icon = ({ icon }: IconInterface) => {
-  return getIcon(icon);
-};
+const Icon = ({ icon }: IconInterface) => getIcon(icon);
 
 export default Icon;

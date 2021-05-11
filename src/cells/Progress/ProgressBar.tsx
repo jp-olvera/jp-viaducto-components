@@ -10,19 +10,17 @@ interface ProgressBarInterface {
 const ProgressBar = ({
   totalSteps = 100,
   completedSteps = 0,
-}: ProgressBarInterface) => {
-  return (
-    <StyledProgressBar
-      max={totalSteps}
-      value={completedSteps}
-      data-testid="loader"
-    >
-      <div className="progress-bar-container">
-        <div className="progress-bar stripes animated reverse slower">
-          <span className="progress-bar-inner"></span>
-        </div>
+}: ProgressBarInterface) => (
+  <StyledProgressBar
+    max={totalSteps}
+    value={completedSteps}
+    data-testid="loader"
+  >
+    <div className="progress-bar-container">
+      <div className="progress-bar stripes animated reverse slower">
+        <span className="progress-bar-inner" />
       </div>
-    </StyledProgressBar>
-  );
-};
+    </div>
+  </StyledProgressBar>
+);
 export default ProgressBar;

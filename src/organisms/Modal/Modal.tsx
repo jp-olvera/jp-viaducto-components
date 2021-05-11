@@ -1,10 +1,12 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, {
+  useContext, useState, useEffect, useRef,
+} from 'react';
+import { Close } from 'react-ikonate';
 import StyledModal from './StyledModal';
 import { Title } from '../../cells/Title';
 import { Button } from '../../cells/Button';
 import { BareButton } from '../../cells/BareButton';
 import { ConfigContext } from '../../providers';
-import { Close } from 'react-ikonate';
 
 interface ModalInterface {
   title: string;

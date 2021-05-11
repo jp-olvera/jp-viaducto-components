@@ -21,8 +21,6 @@ const StyledSidebarSection = styled.div`
 
   li {
     list-style: none;
-    /* padding: 0.75rem 0rem;
-		padding-left: 0.7rem; */
     box-sizing: border-box;
     position: relative;
     user-select: none;

@@ -39,6 +39,7 @@ const Paragraph = ({
       className={className}
       color={color}
       configuration={configuration}
+      size={size}
     >
       {children}
     </StyledParagraph>

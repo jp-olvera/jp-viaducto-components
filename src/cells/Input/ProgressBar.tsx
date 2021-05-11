@@ -25,13 +25,13 @@ const ProgressBar = ({
     for (let i = 0; i < totalProgress; i++) {
       items.push(
         <div
-          className={`meter`}
+          className="meter"
           key={i}
           style={{
             background: i + 1 <= currentProgress ? progressColor : '#CECECE',
             width: `calc(100% / ${totalProgress})`,
           }}
-        />
+        />,
       );
     }
     return items;

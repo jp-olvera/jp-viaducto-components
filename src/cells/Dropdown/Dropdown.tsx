@@ -57,7 +57,7 @@ const Dropdown = ({
     <button
       className={`${isSelected === index ? 'active-item' : ''}`}
       value={button}
-      key={button + index}
+      key={button}
       onClick={() => select(button, index)}
       type="button"
     >

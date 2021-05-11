@@ -37,14 +37,11 @@ const Button = ({
 }: any) => {
   const { configuration } = useContext(ConfigContext);
   const newHeight = height || configuration.controlHeight[size];
-  if (colors !== null) {
-    colors = configuration.colors[variant] || defaultColors;
-  }
 
   return (
     <StyledButton
       size={size}
-      colors={colors}
+      colors={colors || configuration.colors[variant] || defaultColors}
       isIconOnly={label === null && icon !== null}
       lead={lead}
       configuration={configuration}
