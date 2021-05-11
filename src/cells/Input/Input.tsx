@@ -106,6 +106,7 @@ const Input = ({
           required
           disabled={disabled}
           placeholder={(disabled && value) || label}
+          {...rest}
         />
 
         <label className="label" htmlFor={id}>
@@ -117,7 +118,7 @@ const Input = ({
         {isInvalid && <span className="is-invalid">{getIcon('warning')}</span>}
         {isValid && <span className="is-valid">{getIcon('ok')}</span>}
         {type === 'password' && (
-          <span className="icon-helper" onClick={toggleView}>
+          <span className="icon-helper" onClick={toggleView} role="button">
             {' '}
             {inputType === 'password' ? getIcon('eye-closed') : getIcon('eye')}
           </span>

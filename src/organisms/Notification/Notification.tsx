@@ -1,7 +1,9 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, {
+  useContext, useState, useEffect, useRef,
+} from 'react';
+import { Close } from 'react-ikonate';
 import { ConfigContext } from '../../providers/ConfigProvider';
 import { StyledNotification } from './StyledNotification';
-import { Close } from 'react-ikonate';
 import { Paragraph } from '../../cells/Paragraph';
 import { TypeIcon } from '../../cells/TypeIcon';
 import { BareButton } from '../../cells/BareButton';
@@ -47,14 +49,14 @@ const Notification = ({
       } else {
         ref.current.style.setProperty(
           'transform',
-          top ? 'translateY(-100%)' : 'translateY(100%)'
+          top ? 'translateY(-100%)' : 'translateY(100%)',
         );
       }
     }
   }, [isActive]);
 
   let color = configuration.text.success;
-  let k = type.toLowerCase();
+  const k = type.toLowerCase();
 
   const typeColors = ['success', 'warning', 'danger', 'info'];
   if (typeColors.includes(type.toLowerCase())) {

@@ -21,12 +21,10 @@ const StyledButton = styled.button`
  * @param {any} children Child component
  */
 
-const BareButton = ({ children, ...rest }) => {
-  return (
-    <StyledButton type="button" {...rest}>
-      {children}
-    </StyledButton>
-  );
-};
+const BareButton = ({ children, ...rest }: any) => (
+  <StyledButton type="button" {...rest}>
+    {children}
+  </StyledButton>
+);
 
 export default BareButton;

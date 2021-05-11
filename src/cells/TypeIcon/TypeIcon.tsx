@@ -1,8 +1,10 @@
 import React from 'react';
 
-import { Checkbox, Error, FolderWarning, Help } from 'react-ikonate';
+import {
+  Checkbox, Error, FolderWarning, Help,
+} from 'react-ikonate';
 
-const TypeIcon = ({ type, ...rest }) => {
+const TypeIcon = ({ type, ...rest }: any) => {
   switch (type) {
     case 'success':
       return <Checkbox {...rest} />;

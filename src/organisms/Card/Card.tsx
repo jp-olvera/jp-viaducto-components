@@ -1,5 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
+import { ArrowRight, Time } from 'react-ikonate';
 import {
   Anchor,
   Avatar,
@@ -9,9 +10,8 @@ import {
   Spacer,
   Title,
 } from '../../cells';
-import { ArrowRight, Time } from 'react-ikonate';
 
-import { ConfigContext } from '../../providers/';
+import { ConfigContext } from '../../providers';
 import {
   StyledNormalCard,
   StyledContent,
@@ -106,7 +106,7 @@ const Card = ({
       {footer !== null && !onlyImage && (
         <div className="footer">
           <div className="fakeFooter">
-            <Button label="Apply" type={'success'} />
+            <Button label="Apply" type="success" />
           </div>
         </div>
       )}

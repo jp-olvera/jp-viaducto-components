@@ -43,12 +43,10 @@ const Progress = ({
   ]);
 
   if (
-    completedSteps >= totalSteps ||
-    (currentStep === totalSteps && totalSteps > 0)
+    completedSteps >= totalSteps
+    || (currentStep === totalSteps && totalSteps > 0)
   ) {
-    return (
-      <OkCircle color="#3AE25F" fontSize={'25px'} data-testid="ok_circle" />
-    );
+    return <OkCircle color="#3AE25F" fontSize="25px" data-testid="ok_circle" />;
   }
   if (loader === 'circle' || loader === null) {
     return (

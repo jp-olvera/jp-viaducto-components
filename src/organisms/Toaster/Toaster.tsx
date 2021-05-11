@@ -1,9 +1,11 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, {
+  useContext, useState, useEffect, useRef,
+} from 'react';
+import { Close } from 'react-ikonate';
 import { ConfigContext } from '../../providers';
 import { Paragraph } from '../../cells/Paragraph';
 import { BareButton } from '../../cells/BareButton';
 import StyledToaster from './StyledToaster';
-import { Close } from 'react-ikonate';
 import { TypeIcon } from '../../cells/TypeIcon';
 
 interface ToasterInterface {
@@ -54,14 +56,14 @@ const Toaster = ({
       } else {
         ref.current.style.setProperty(
           'transform',
-          right ? 'translateX(100%)' : 'translateX(-100%)'
+          right ? 'translateX(100%)' : 'translateX(-100%)',
         );
       }
     }
   }, [isActive]);
 
   let color = configuration.text.success;
-  let k = type.toLowerCase();
+  const k = type.toLowerCase();
 
   const typeColors = ['success', 'warning', 'danger', 'info'];
   if (typeColors.includes(type.toLowerCase())) {

@@ -32,12 +32,12 @@ const Button = ({
   lead = false,
   size = SIZE.default,
   variant = 'primary',
-  type="button",
+  type = 'button',
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
   const newHeight = height || configuration.controlHeight[size];
-  if (!colors) {
+  if (colors !== null) {
     colors = configuration.colors[variant] || defaultColors;
   }
 
