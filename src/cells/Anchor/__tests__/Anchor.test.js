@@ -8,14 +8,14 @@ describe('<Anchor/>', () => {
   test('should render properly', () => {
     render(
       <Anchor
-        label={'Link'}
-        href={'#'}
-        color={'red'}
-        icon={'😎'}
-        family={'Manrope'}
-        size={'md'}
+        label="Link"
+        href="#"
+        color="red"
+        icon="😎"
+        family="Manrope"
+        size="md"
         lead={false}
-      />
+      />,
     );
     expect(screen.getByText(/Link/g)).toBeVisible();
   });
@@ -23,13 +23,13 @@ describe('<Anchor/>', () => {
   test('render with no icon', () => {
     render(
       <Anchor
-        label={'Link'}
-        href={'#'}
-        color={'red'}
-        family={'Manrope'}
-        size={'md'}
+        label="Link"
+        href="#"
+        color="red"
+        family="Manrope"
+        size="md"
         lead={false}
-      />
+      />,
     );
     expect(screen.queryByText('😎')).not.toBeInTheDocument();
   });

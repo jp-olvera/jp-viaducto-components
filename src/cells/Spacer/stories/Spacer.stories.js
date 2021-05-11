@@ -13,7 +13,7 @@ export default {
       },
     },
     size: {
-      options: ["none", "nano", "micro", "tiny", "xs", "sm", "md", "lg", "xl", "xxl",],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       control: {
         type: 'select',
       },

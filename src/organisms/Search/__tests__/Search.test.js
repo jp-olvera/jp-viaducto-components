@@ -2,7 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/react';
 import { render, screen, fireEvent } from '../../../test-utils';
-import { Search } from '../';
+import { Search } from '..';
 
 jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
 
@@ -15,8 +15,8 @@ describe('<Search/>', () => {
         buttonLabel="Search"
         handleSearch={handleClick}
         options={options}
-        id={'search'}
-      />
+        id="search"
+      />,
     );
     expect(screen.getByTestId('search')).toBeVisible();
   });
@@ -28,26 +28,26 @@ describe('<Search/>', () => {
         buttonLabel="Search"
         handleSearch={handleClick}
         options={options}
-        id={'search'}
-      />
+        id="search"
+      />,
     );
-    fireEvent.click(screen.getByTestId(`button-search`));
+    fireEvent.click(screen.getByTestId('button-search'));
     expect(handleClick).toBeCalled();
   });
 
   test('should write in input search', () => {
     const value = 'Search this value';
     const { getByTestId } = render(
-      <Search buttonLabel="Search" options={options} id={'search'} />
+      <Search buttonLabel="Search" options={options} id="search" />,
     );
-    const input = getByTestId(`input-search`);
-    fireEvent.change(input, { target: { value: value } });
+    const input = getByTestId('input-search');
+    fireEvent.change(input, { target: { value } });
     expect(input.value).toContain(value);
   });
 
   test('should display dropdown', () => {
     const { getByTestId } = render(
-      <Search buttonLabel="Search" options={options} id={'search'} />
+      <Search buttonLabel="Search" options={options} id="search" />,
     );
     const activator = getByTestId('dropdown-activator');
     activator.click();

@@ -37,13 +37,11 @@ export default {
   },
 };
 
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <Search {...args} />
-    </ConfigProvider>
-  );
-};
+const Template = (args) => (
+  <ConfigProvider>
+    <Search {...args} />
+  </ConfigProvider>
+);
 
 export const Default = Template.bind({});
 

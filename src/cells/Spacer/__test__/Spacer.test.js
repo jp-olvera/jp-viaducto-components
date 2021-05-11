@@ -2,11 +2,11 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '../../../test-utils';
 
-import { Spacer } from '../';
+import { Spacer } from '..';
 
 describe('<Spacer/>', () => {
   test('should render properly', () => {
-    const { container } = render(<Spacer sb={'#000'} />);
+    const { container } = render(<Spacer sb="#000" />);
     expect(container).not.toBeNull();
   });
 

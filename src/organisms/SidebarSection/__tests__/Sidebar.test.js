@@ -6,7 +6,7 @@ import { SidebarSection } from '..';
 jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
 
 describe('<SidebarSection/>', () => {
-  let items = [
+  const items = [
     {
       label: 'title',
       url: 'url',
@@ -24,12 +24,12 @@ describe('<SidebarSection/>', () => {
     render(
       <SidebarSection
         items={items}
-        separator={true}
-        title={'Comida'}
-        isDropdown={true}
+        separator
+        title="Comida"
+        isDropdown
         isMenu={false}
-        lead={true}
-      />
+        lead
+      />,
     );
     expect(screen.getByText('Comida')).toBeVisible();
   });
@@ -37,12 +37,12 @@ describe('<SidebarSection/>', () => {
     render(
       <SidebarSection
         items={items}
-        separator={true}
-        title={'Comida'}
+        separator
+        title="Comida"
         isDropdown={false}
         isMenu={false}
-        lead={true}
-      />
+        lead
+      />,
     );
     expect(screen.getByText('menu')).toBeVisible();
   });
@@ -50,12 +50,12 @@ describe('<SidebarSection/>', () => {
     render(
       <SidebarSection
         items={items}
-        separator={true}
-        title={'Comida'}
-        isDropdown={true}
+        separator
+        title="Comida"
+        isDropdown
         isMenu={false}
-        lead={true}
-      />
+        lead
+      />,
     );
     expect(screen.queryByText('menu')).not.toBeInTheDocument();
     fireEvent.click(screen.getByText('Comida'));
@@ -65,12 +65,12 @@ describe('<SidebarSection/>', () => {
     render(
       <SidebarSection
         items={items}
-        separator={true}
-        title={'Comida'}
+        separator
+        title="Comida"
         isDropdown={false}
-        isMenu={true}
-        lead={true}
-      />
+        isMenu
+        lead
+      />,
     );
     expect(screen.queryByText('menu')).not.toBeInTheDocument();
     fireEvent.click(screen.getByText('Comida'));

@@ -7,13 +7,11 @@ export default {
   component: Tab,
 };
 
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <Tab {...args} />
-    </ConfigProvider>
-  );
-};
+const Template = (args) => (
+  <ConfigProvider>
+    <Tab {...args} />
+  </ConfigProvider>
+);
 
 export const Default = Template.bind({});
 

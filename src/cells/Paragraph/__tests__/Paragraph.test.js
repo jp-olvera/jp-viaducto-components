@@ -2,7 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/react';
 import { render, screen } from '../../../test-utils';
-import { Paragraph } from '../';
+import { Paragraph } from '..';
 
 describe('<Paragraph/>', () => {
   test('should render properly', () => {

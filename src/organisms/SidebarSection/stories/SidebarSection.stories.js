@@ -7,13 +7,11 @@ export default {
   component: SidebarSection,
 };
 
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <SidebarSection {...args} />
-    </ConfigProvider>
-  );
-};
+const Template = (args) => (
+  <ConfigProvider>
+    <SidebarSection {...args} />
+  </ConfigProvider>
+);
 
 export const Default = Template.bind({});
 

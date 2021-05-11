@@ -1,11 +1,11 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
-import { Radio } from '../';
+import { Radio } from '..';
 
 describe('<Radio/>', () => {
   test('should render properly', () => {
-    render(<Radio label="Radio" data-testid="aa"></Radio>);
+    render(<Radio label="Radio" data-testid="aa" />);
     expect(screen.getByText('Radio')).toBeVisible();
   });
 
@@ -18,10 +18,10 @@ describe('<Radio/>', () => {
 
   test('should be disabled', () => {
     const { getByTestId } = render(
-      <Radio label="Yes" id="radio" disabled={true} />
+      <Radio label="Yes" id="radio" disabled />,
     );
     expect(
-      getByTestId('radio').querySelector('input').hasAttribute('disabled')
+      getByTestId('radio').querySelector('input').hasAttribute('disabled'),
     ).toEqual(true);
   });
 });

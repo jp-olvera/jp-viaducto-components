@@ -15,20 +15,20 @@ describe('<Card/>', () => {
         content={<h1>Body</h1>}
         footer={<h2>Footer</h2>}
         onlyImage={false}
-      />
+      />,
     );
     expect(screen.queryByText('45 min')).toBeInTheDocument();
   });
   test('render Card collapsible (large)', () => {
     render(
       <Card
-        collapsible={true}
+        collapsible
         collapse={false}
         src="https://homepages.cae.wisc.edu/~ece533/images/girl.png"
         content={<h1>Body</h1>}
         footer={<h2>Footer</h2>}
         onlyImage={false}
-      />
+      />,
     );
     expect(screen.queryByText('Designer')).toBeInTheDocument();
   });

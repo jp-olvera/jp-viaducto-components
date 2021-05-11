@@ -27,9 +27,9 @@ describe('<Switch/>', () => {
   });
 
   test('should be disabled', () => {
-    const { getByTestId } = render(<Switch id="Switch" disabled={true} />);
+    const { getByTestId } = render(<Switch id="Switch" disabled />);
     expect(
-      getByTestId('Switch').querySelector('input').hasAttribute('disabled')
+      getByTestId('Switch').querySelector('input').hasAttribute('disabled'),
     ).toEqual(true);
   });
 });

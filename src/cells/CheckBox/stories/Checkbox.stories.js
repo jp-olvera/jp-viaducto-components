@@ -22,13 +22,11 @@ export default {
   },
 };
 
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <Checkbox {...args} />
-    </ConfigProvider>
-  );
-};
+const Template = (args) => (
+  <ConfigProvider>
+    <Checkbox {...args} />
+  </ConfigProvider>
+);
 
 export const Default = Template.bind({});
 

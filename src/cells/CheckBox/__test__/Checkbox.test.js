@@ -1,11 +1,11 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
-import { Checkbox } from '../';
+import { Checkbox } from '..';
 
 describe('<Checkbox/>', () => {
   test('should render properly', () => {
-    render(<Checkbox label="Checkbox" data-testid="aa"></Checkbox>);
+    render(<Checkbox label="Checkbox" data-testid="aa" />);
     expect(screen.getByText('Checkbox')).toBeVisible();
   });
 
@@ -28,10 +28,10 @@ describe('<Checkbox/>', () => {
 
   test('should be disabled', () => {
     const { getByTestId } = render(
-      <Checkbox label="Yes" id="checkbox" disabled={true} />
+      <Checkbox label="Yes" id="checkbox" disabled />,
     );
     expect(
-      getByTestId('checkbox').querySelector('input').hasAttribute('disabled')
+      getByTestId('checkbox').querySelector('input').hasAttribute('disabled'),
     ).toEqual(true);
   });
 });

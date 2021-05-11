@@ -36,13 +36,11 @@ export default {
   },
 };
 
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <Toaster {...args} />
-    </ConfigProvider>
-  );
-};
+const Template = (args) => (
+  <ConfigProvider>
+    <Toaster {...args} />
+  </ConfigProvider>
+);
 
 export const Default = Template.bind({});
 

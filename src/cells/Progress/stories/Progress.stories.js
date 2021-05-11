@@ -13,13 +13,11 @@ export default {
   },
 };
 
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <Progress {...args} />
-    </ConfigProvider>
-  );
-};
+const Template = (args) => (
+  <ConfigProvider>
+    <Progress {...args} />
+  </ConfigProvider>
+);
 
 export const Default = Template.bind({});
 

@@ -22,14 +22,12 @@ export default {
   },
 };
 
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <Radio {...args} />
-      <Radio {...args} />
-    </ConfigProvider>
-  );
-};
+const Template = (args) => (
+  <ConfigProvider>
+    <Radio {...args} />
+    <Radio {...args} />
+  </ConfigProvider>
+);
 
 export const Default = Template.bind({});
 

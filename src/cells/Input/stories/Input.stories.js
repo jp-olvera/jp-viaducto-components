@@ -43,13 +43,11 @@ export default {
   },
 };
 
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <Input {...args} />
-    </ConfigProvider>
-  );
-};
+const Template = (args) => (
+  <ConfigProvider>
+    <Input {...args} />
+  </ConfigProvider>
+);
 
 export const Text = Template.bind({});
 

@@ -2,7 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/react';
 import { render, screen, fireEvent } from '../../../test-utils';
-import { Tab } from '../';
+import { Tab } from '..';
 
 describe('<Tab/>', () => {
   const handleFn = jest.fn();

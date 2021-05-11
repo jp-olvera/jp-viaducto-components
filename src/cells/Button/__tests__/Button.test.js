@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
-import { Button } from '../';
+import { Button } from '..';
 
 describe('<Button/>', () => {
   test('should render properly', () => {

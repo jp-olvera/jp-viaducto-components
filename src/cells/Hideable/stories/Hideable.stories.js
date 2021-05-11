@@ -27,5 +27,5 @@ export const Default = Template.bind({});
 
 Default.args = {
   visibleOn: 'xs',
-  after: false
+  after: false,
 };

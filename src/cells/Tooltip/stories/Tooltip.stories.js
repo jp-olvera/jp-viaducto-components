@@ -20,32 +20,30 @@ export default {
   },
 };
 
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          height: '50vh',
-          width: '50%',
-        }}
-      >
-        <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
-          <Tooltip {...args}>
-            <Input label="Input" id="example1" size="lg" />
-          </Tooltip>
-        </div>
-        <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
-          <Tooltip {...args}>
-            <Input label="Input" id="example2" />
-          </Tooltip>
-        </div>
+const Template = (args) => (
+  <ConfigProvider>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: '50vh',
+        width: '50%',
+      }}
+    >
+      <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
+        <Tooltip {...args}>
+          <Input label="Input" id="example1" size="lg" />
+        </Tooltip>
       </div>
-    </ConfigProvider>
-  );
-};
+      <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
+        <Tooltip {...args}>
+          <Input label="Input" id="example2" />
+        </Tooltip>
+      </div>
+    </div>
+  </ConfigProvider>
+);
 
 export const Default = Template.bind({});
 

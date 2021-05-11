@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../';
+import { Card } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
@@ -30,13 +30,11 @@ export default {
   },
 };
 
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <Card {...args} />
-    </ConfigProvider>
-  );
-};
+const Template = (args) => (
+  <ConfigProvider>
+    <Card {...args} />
+  </ConfigProvider>
+);
 
 export const Default = Template.bind({});
 export const NoImage = Template.bind({});

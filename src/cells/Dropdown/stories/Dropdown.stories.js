@@ -20,13 +20,11 @@ export default {
   },
 };
 
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <Dropdown {...args} />
-    </ConfigProvider>
-  );
-};
+const Template = (args) => (
+  <ConfigProvider>
+    <Dropdown {...args} />
+  </ConfigProvider>
+);
 
 export const Default = Template.bind({});
 

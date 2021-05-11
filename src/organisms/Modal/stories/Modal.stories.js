@@ -42,19 +42,17 @@ export default {
     },
   },
 };
-const Template = (args) => {
-  return (
-    <ConfigProvider>
-      <h1>El contenido detrás del modal se vería de esta manera</h1>
-      <Modal {...args}>
-        <div style={{ height: '800px', background: '#CECECE' }}>
-          Aquí van los children. Si no proporcionas las funciones onReject y
-          onAccept, no se mostrará la sección de controles
-        </div>
-      </Modal>
-    </ConfigProvider>
-  );
-};
+const Template = (args) => (
+  <ConfigProvider>
+    <h1>El contenido detrás del modal se vería de esta manera</h1>
+    <Modal {...args}>
+      <div style={{ height: '800px', background: '#CECECE' }}>
+        Aquí van los children. Si no proporcionas las funciones onReject y
+        onAccept, no se mostrará la sección de controles
+      </div>
+    </Modal>
+  </ConfigProvider>
+);
 
 const AnotherComponent = ({ label }) => (
   <div style={{ background: '#CECECE' }}>

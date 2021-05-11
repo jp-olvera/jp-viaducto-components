@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '../../../test-utils';
 import '@testing-library/jest-dom/extend-expect';
-import { Hideable } from '../';
+import { Hideable } from '..';
 
 describe('<Hideable/>', () => {
   test('text inside should not be visible', () => {
@@ -20,7 +20,7 @@ describe('<Hideable/>', () => {
     render(
       <Hideable after={false} visibleOn="lg">
         Hidden
-      </Hideable>
+      </Hideable>,
     );
     expect(screen.getByText('Hidden')).toBeVisible();
   });

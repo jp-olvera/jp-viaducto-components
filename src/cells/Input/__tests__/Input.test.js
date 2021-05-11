@@ -2,12 +2,12 @@ import React from 'react';
 import { render, fireEvent, screen } from '../../../test-utils';
 import '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { Input } from '../';
+import { Input } from '..';
 
 describe('<Input/>', () => {
   test('should render input', () => {
     const { container } = render(
-      <Input size="md" label="Im the input tested" />
+      <Input size="md" label="Im the input tested" />,
     );
     const input = container.querySelector('.input');
     expect(input).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe('<Input/>', () => {
 
   test('should render input another value', () => {
     const { container } = render(
-      <Input size="md" label="Im the input tested" />
+      <Input size="md" label="Im the input tested" />,
     );
     const input = container.querySelector('.input');
     expect(input.value).not.toBe('New value');
@@ -23,7 +23,7 @@ describe('<Input/>', () => {
 
   test('should render input and change the value', () => {
     const { container } = render(
-      <Input size="md" label="Im the input tested" />
+      <Input size="md" label="Im the input tested" />,
     );
     const input = container.querySelector('.input');
     fireEvent.change(input, { target: { value: 'New Value' } });
@@ -38,7 +38,7 @@ describe('<Input/>', () => {
 
   test('should render input type password and reveal value after click', () => {
     const { container } = render(
-      <Input type="password" placeholder="Im the input tested" />
+      <Input type="password" placeholder="Im the input tested" />,
     );
     const input = container.querySelector('.input');
     expect(input.type).toBe('password');
