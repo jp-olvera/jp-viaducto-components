@@ -10,7 +10,7 @@ interface StyledButtonInterface {
   readonly icon?: any;
   readonly lead?: boolean;
   readonly height?: string;
-  readonly type?: string;
+  readonly variant?: string;
   readonly block?: boolean;
   readonly isIconOnly?: boolean;
   readonly configuration?: any;

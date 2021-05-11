@@ -45,7 +45,8 @@ const Button = ({
   label = '',
   lead = false,
   size = SIZE.default,
-  type = 'primary',
+  variant = 'primary',
+  type="button",
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
@@ -53,7 +54,7 @@ const Button = ({
   if (colors) {
     colors = colors;
   } else {
-    colors = configuration.colors[type] || defaultColors;
+    colors = configuration.colors[variant] || defaultColors;
   }
 
   return (
@@ -64,6 +65,7 @@ const Button = ({
       lead={lead}
       configuration={configuration}
       height={newHeight}
+      type={type}
       {...rest}
     >
       {icon !== null && lead && (
