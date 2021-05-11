@@ -77,22 +77,6 @@ const getFontSize = (level: string, max: boolean = false) => {
   }
 };
 
-const getPillSize = (size = 'md', max = false) => {
-  switch (size) {
-    case 'xxs':
-      return max ? 'calc(0.5rem * 1.125)' : '0.5rem';
-    case 'xs':
-      return max ? 'calc(0.694rem * 1.125)' : '0.694rem';
-    case 'sm':
-      return max ? 'calc(0.83rem * 1.125)' : '0.83rem';
-    case 'lg':
-      return max ? 'calc(1.2rem * 1.125)' : '1.2rem';
-    case 'md':
-    default:
-      return max ? 'calc(1rem * 1.125)' : '1rem';
-  }
-};
-
 const getRadioSizes = (size) => {
   switch (size) {
     case 'sm':
@@ -188,6 +172,5 @@ export {
   getLineHeight,
   getFontSize,
   getRadioSizes,
-  getPillSize,
   getCheckSizes,
 };

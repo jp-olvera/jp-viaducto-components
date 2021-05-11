@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { getPillSize } from '../../utils/getSizes';
+import { getSize } from '../../utils/getSizes';
 
 interface StyledPillI {
   readonly family: string;
@@ -21,7 +21,7 @@ const StyledPill = styled.div<StyledPillI>`
   background-color: ${(p) => p.background};
   border-radius: 100px;
   color: ${(p) => p.color};
-  font-size: ${({ size }) => getPillSize(size)};
+  font-size: ${({ size }) => getSize(size)};
   height: 1.875rem;
   vertical-align: ${({ verticalAlign }) => verticalAlign};
   ${(p) =>
