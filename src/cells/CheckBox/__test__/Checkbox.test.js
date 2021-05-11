@@ -12,16 +12,18 @@ describe('<Checkbox/>', () => {
   test('should be checked', () => {
     const { getByTestId } = render(<Checkbox label="Yes" id="checkbox" />);
     const input = getByTestId('checkbox');
-    fireEvent.click(input.querySelector('input'));
-    expect(input.querySelector('input').checked).toEqual(true);
+    const selector = input.querySelector('input');
+    fireEvent.click(selector);
+    expect(selector.checked).toEqual(true);
   });
 
   test('should not be checked', () => {
     const { getByTestId } = render(<Checkbox label="Yes" id="checkbox1" />);
     const input = getByTestId('checkbox1');
-    expect(input.querySelector('input').checked).toEqual(false);
-    fireEvent.click(input.querySelector('input'));
-    expect(input.querySelector('input').checked).toEqual(true);
+    const selector = input.querySelector('input');
+    expect(selector.checked).toEqual(false);
+    fireEvent.click(selector);
+    expect(selector.checked).toEqual(true);
   });
 
   test('should be disabled', () => {
