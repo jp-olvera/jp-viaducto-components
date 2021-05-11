@@ -51,9 +51,7 @@ Default.args = {
   id: 'search',
   handleSearch: () => {
     alert('Search');
-  },
-  options: ['Razón Social', 'RFC', 'Nombre Comercial'],
-  activeColor: '#ffd6ce',
+  },ctiveColor: '#ffd6{}ce',
   elevation: 1,
   elevationDirection: 'top',
 };

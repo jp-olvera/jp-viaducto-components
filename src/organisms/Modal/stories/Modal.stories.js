@@ -54,9 +54,9 @@ const Template = (args) => (
   </ConfigProvider>
 );
 
-const AnotherComponent = ({ label }) => (
+const AnotherComponent = (props) => (
   <div style={{ background: '#CECECE' }}>
-    <div style={{ background: '#CECECE' }}>{label}</div>
+    <div style={{ background: '#CECECE' }}>{props.label}</div>
   </div>
 );
 

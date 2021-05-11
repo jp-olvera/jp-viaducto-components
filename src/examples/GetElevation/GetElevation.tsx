@@ -3,7 +3,12 @@ import styled from 'styled-components';
 import ConfigProvider from '../../providers/ConfigProvider';
 import getElevation from '../../utils/getElevation';
 
-const Box = styled.div`
+interface IB {
+  elevation: number;
+  direction?: string;
+}
+
+const Box = styled.div<IB>`
   margin: 1rem;
   width: 25%;
   height: 50px;
@@ -14,7 +19,7 @@ const Box = styled.div`
   box-sizing: border-box;
   ${(p) => getElevation(p.elevation, p.direction)}
 `;
-const GetElevation = ({ elevation = 1 }) => {
+const GetElevation = ({ elevation = 1 }: any) => {
   return (
     <ConfigProvider>
       <div>

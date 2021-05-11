@@ -9,18 +9,18 @@ describe('<Hideable/>', () => {
     expect(screen.getByText('Hidden')).not.toBeVisible();
   });
   test('text inside should be visible', () => {
-    render(<Hideable after={false}>Hidden</Hideable>);
-    expect(screen.getByText('Hidden')).toBeVisible();
+    render(<Hideable after={false}>Not Hidden</Hideable>);
+    expect(screen.getByText('Not Hidden')).toBeVisible();
   });
-  test('text inside should not be visible', () => {
-    render(<Hideable visibleOn="sm">Hidden</Hideable>);
-    expect(screen.getByText('Hidden')).not.toBeVisible();
+  test('text inside should not be visible with breakpoint passed', () => {
+    render(<Hideable visibleOn="sm">Also Hidden</Hideable>);
+    expect(screen.getByText('Also Hidden')).not.toBeVisible();
   });
-  test('text inside should be visible', () => {
+  test('text inside should be visible with breakpoint passed', () => {
     render(
       <Hideable after={false} visibleOn="lg">
         Hidden
-      </Hideable>,
+      </Hideable>
     );
     expect(screen.getByText('Hidden')).toBeVisible();
   });

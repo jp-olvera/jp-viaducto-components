@@ -2,12 +2,7 @@ import React from 'react';
 import FormExample from '../FormExample';
 import { ConfigProvider } from '../../../providers';
 import {
-  Button,
-  Checkbox,
-  Dropdown,
-  Input,
   Paragraph,
-  Switch,
   Title,
 } from '../../../cells';
 
@@ -24,7 +19,7 @@ export default {
   },
 };
 
-const Template = (args) => (
+const Template = () => (
   <ConfigProvider>
     <FormExample />
   </ConfigProvider>

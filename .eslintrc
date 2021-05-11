@@ -41,6 +41,16 @@
         "packageDir": "./"
       }
     ],
-    "linebreak-style": ["error", "unix"]
+    "linebreak-style": ["error", "unix"],
+    "react/jsx-props-no-spreading": [
+      0,
+      {
+        "html": "ignore",
+        "custom": "ignore",
+        "explicitSpread": "ignore",
+        "exceptions": []
+      }
+    ],
+    "react/jsx-one-expression-per-line": [0, { "allow": "single-child" }]
   }
 }

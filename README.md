@@ -1,10 +1,12 @@
 # jp-viaducto-components
 
-# Instalación
+## Instalación
 
-npm install @jp-olvera/jp-viaducto-components
+```js
+  npm install @jp-olvera/jp-viaducto-components
+```
 
-# Uso
+## Uso
 
 Envuelve tu aplicación con el ConfigProvider y empieza a usar los componentes dentro de él
 
@@ -25,7 +27,7 @@ ReactDOM.render(
 );
 ```
 
-# Sobreescribir configuraciones
+## Sobreescribir configuraciones
 
 A través de nuestro contexto ConfigContext puedes obtener acceso a las configuraciones y a una función que te permita sobreescribirlas
 
@@ -54,6 +56,6 @@ const App = () => {
 };
 ```
 
-# Storybook
+## Storybook
 
 Encuentra la documentación de los componentes en [Nuestro Storybook](https://jp-olvera.github.io/jp-viaducto-components/?path=/story/andamio-cells-anchor--default)

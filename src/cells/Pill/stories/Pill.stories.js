@@ -29,7 +29,6 @@ const Template = (args) => (
   </ConfigProvider>
 );
 
-const Icon = ({ icon = '🥵' }) => <p>{icon}</p>;
 const IconLead = ({ icon = '🥵' }) => <p>{icon}</p>;
 
 export const Default = Template.bind({});
@@ -39,7 +38,5 @@ Default.args = {
   iconLead: IconLead({ icon: '😈' }).props.children,
   family: 'Manrope',
   verticalAlign: 'baseline',
-  handleAction: () => {
-    alert('Pill action');
-  },
+  handleAction: () => {},
 };
