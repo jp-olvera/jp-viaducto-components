@@ -6,7 +6,7 @@ const blue = 102;
 
 function getElevation(eNivel: number, eDirection: string = '') {
   let nivel = 1;
-  if (eNivel  > 0 && eNivel <= 3) {
+  if (eNivel > 0 && eNivel <= 3) {
     nivel = eNivel;
   }
   let xOffset = 0;
