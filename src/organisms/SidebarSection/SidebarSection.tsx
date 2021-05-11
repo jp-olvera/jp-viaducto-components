@@ -42,7 +42,7 @@ const SidebarSection = ({
   };
 
   const itemsList = items.map(({ label, url }, index) => (
-    <li className="b" role="button" tabIndex={0} key={`li-${url}-${index}`}>
+    <li className="b" role="button" tabIndex={0} key={url}>
       <>
         <Spacer size="sm" />
         <Spacer size="xs" direction="horizontal" />
