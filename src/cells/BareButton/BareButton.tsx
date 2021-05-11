@@ -16,6 +16,11 @@ const StyledButton = styled.button`
   }
 `;
 
+/**
+ * BareButton is a component at the top of the parent component
+ * @param {any} children Child component
+ */
+
 const BareButton = ({ children, ...rest }) => {
   return (
     <StyledButton type="button" {...rest}>

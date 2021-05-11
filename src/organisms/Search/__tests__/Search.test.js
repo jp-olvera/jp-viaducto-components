@@ -4,7 +4,7 @@ import '@testing-library/react';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Search } from '../';
 
-// jest.mock('../../Dropdown/sorting.svg', () => '');
+jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
 
 const options = ['Razón Social', 'RFC', 'Nombre Comercial'];
 describe('<Search/>', () => {

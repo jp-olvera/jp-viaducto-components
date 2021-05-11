@@ -4,6 +4,18 @@ import { Close } from 'react-ikonate';
 import StyledPill from './StyledPill';
 import { BareButton } from '../BareButton';
 
+/**
+ * Pill component
+ * @param {string} label Text in the label
+ * @param {any} iconLead Icon as a first child component
+ * @param {string} icon Icon as the last child component
+ * @param {string} background Color of the pill
+ * @param {string} color Text color
+ * @param {string} size Size of the pill
+ * @param {string} family Font family
+ * @param {string} verticalAlign Vertical align in the pill
+ * @param {string} handleAction Action to execute
+ */
 interface PillInterface {
   label: string;
   iconLead: any;

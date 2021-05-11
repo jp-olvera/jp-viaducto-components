@@ -23,6 +23,7 @@ interface ButtonInterface {
   height?: string;
   type?: string;
   disabled?: boolean;
+  onClick?: Function;
 }
 
 /**
@@ -32,6 +33,10 @@ interface ButtonInterface {
  * @param {String} colors Color of the button (with its states)
  * @param {Icon} icon Icon component for the button
  * @param {Boolean} lead Indicates if the icon will be leading
+ * @param {string} height Size of the component
+ * @param {string} type Button type (for the color)
+ * @param {boolean} disabled Enable/Disable button
+ * @param {Function} onClick Action to execute
  */
 const Button = ({
   colors = null,
@@ -41,6 +46,7 @@ const Button = ({
   lead = false,
   size = SIZE.default,
   type = 'primary',
+  onClick = () => {},
   ...rest
 }: ButtonInterface) => {
   const { configuration } = useContext(ConfigContext);

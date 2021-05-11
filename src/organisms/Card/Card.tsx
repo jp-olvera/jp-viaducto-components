@@ -19,6 +19,17 @@ import {
   Collapse,
 } from './StyledCard';
 
+/**
+ * Card component
+ * @param {boolean} collapsible Attribute for render large/short card
+ * @param {boolean} collapse Attribute for collapse card
+ * @param {any} src Source of the image of top image
+ * @param {any} content Body component
+ * @param {any} footer Footer component
+ * @param {boolean} onlyImage Attribute for make only image card
+ * @param {number} elevation Elevation indicator for shadows data
+ * @param {string} elevationDirection Light indicator for shadows data
+ */
 interface CardInterface {
   collapsible: boolean;
   collapse: boolean;

@@ -25,6 +25,8 @@ interface ToasterInterface {
  * @param {boolean} active Boolean that indicates if the toaster should be shown
  * @param {boolean} top Boolean that indicates if the toaster should be in top, default is true
  * @param {boolean} right Boolean that indicates if the toaster should be in right, default is true
+ * @param {number} elevation Elevation indicator for shadows data
+ * @param {string} elevationDirection Light indicator for shadows data
  */
 const Toaster = ({
   text,

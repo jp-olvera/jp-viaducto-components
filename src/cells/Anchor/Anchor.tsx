@@ -19,8 +19,9 @@ interface AnchorInterface {
  * @param {String} label Title or content of the component
  * @param {String} href The path of the page to visit
  * @param {String} size The anchor size
- * @param {String} size The anchor font-family
- * @param {Icon} icon The Icon component
+ * @param {String} family The anchor font-family
+ * @param {any} icon The Icon component
+ * @param {string} color The color of the anchor
  * @param {Boolean} lead Indicates if the icon will be leading
  */
 const Anchor = ({

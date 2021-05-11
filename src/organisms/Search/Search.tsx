@@ -12,7 +12,19 @@ const defaultColors = {
   click: '#0066ff',
   text: '#FFFFFF',
 };
-
+/**
+ * Search component with Button, Input and Dropdown Cells
+ * @param {string} buttonLabel Label fot the Button component
+ * @param {string} placeholder Placeholder for the Input component
+ * @param {string} family Font family for the text of the whole component
+ * @param {any} colors Colors for the Button component (could be only text or an object)
+ * @param {Function} handleSearch Action to execute when click the Button
+ * @param {array} options Options for the Dropdown component
+ * @param {string} id Input's id
+ * @param {string} activeColor Color for the options when it's active
+ * @param {number} elevation Elevation indicator for shadows data
+ * @param {string} elevationDirection Light indicator for shadows data
+ */
 interface SearchInterface {
   buttonLabel: string;
   placeholder: string;

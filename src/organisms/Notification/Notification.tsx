@@ -6,6 +6,15 @@ import { Paragraph } from '../../cells/Paragraph';
 import { TypeIcon } from '../../cells/TypeIcon';
 import { BareButton } from '../../cells/BareButton';
 
+/**
+ * Notification component with close button
+ * @param {string} text Text label for the notification
+ * @param {string} type Notification type (danger, success, warning)
+ * @param {boolean} active Attribute for shown/hide component
+ * @param {boolean} top Set to true for stick at top or false to stick in bottom
+ * @param {number} elevation Elevation indicator for shadows data
+ * @param {string} elevationDirection Light indicator for shadows data
+ */
 interface NotificationInterface {
   text: string;
   type: string;

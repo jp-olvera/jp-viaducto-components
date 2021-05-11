@@ -6,14 +6,19 @@ import { Wrapper } from './StyledInput';
 
 /**
  * Input component wrapped with label and span tags for better UX
- * @param {boolean} required Icon for mark input is required
- * @param {String} icon Helper icon to support the user
  * @param {String} label The caption for the input
  * @param {String} border The border type for the input (full, bottom, overlap)
  * @param {boolean} disabled Set the input disabled
- * @param {String} size Set the height of the input
  * @param {String} type Set the input type (text, password, email, etc.)
- * @param {Object} rest HTML attributes for input tag
+ * @param {String} icon Helper icon to support the user
+ * @param {boolean} required Icon for mark input is required
+ * @param {String} size Set the height of the input
+ * @param {boolean} isInvalid set the input invalid
+ * @param {boolean} isValid set the input valid
+ * @param {string} id set the id for the input
+ * @param {string} borderColor set the color border
+ * @param {string} iconColor set the icon helper
+ * @param {any} value the value for the input
  */
 
 interface InputInterface {
@@ -23,13 +28,12 @@ interface InputInterface {
   type: string;
   icon: any;
   required: boolean;
+  size: string;
   isInvalid: boolean;
   isValid: boolean;
   id: string;
-  size: string;
   borderColor: string;
   iconColor: string;
-  configuration?: any;
   value?: any;
 }
 

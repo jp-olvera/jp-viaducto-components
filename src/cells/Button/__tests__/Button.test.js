@@ -14,24 +14,4 @@ describe('<Button/>', () => {
     button.focus();
     expect(button).toHaveFocus();
   });
-
-  test('should call onClick function once', () => {
-    const handleClick = jest.fn();
-    render(<Button label="Continue" onClick={handleClick} />);
-    const button = screen.getByRole('button');
-    button.focus();
-    expect(button).toHaveFocus();
-    fireEvent.click(button);
-    expect(handleClick).toHaveBeenCalled();
-  });
-
-  test('should not call onClick function', () => {
-    const handleClick = jest.fn();
-    render(<Button label="Continue" onClick={handleClick} disabled={true} />);
-    const button = screen.getByRole('button');
-    button.focus();
-    expect(button).not.toHaveFocus();
-    fireEvent.click(button);
-    expect(handleClick).not.toHaveBeenCalled();
-  });
 });

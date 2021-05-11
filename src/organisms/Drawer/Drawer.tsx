@@ -3,6 +3,13 @@ import StyledDrawer from './StyledDrawer';
 import { BareButton } from '../../cells';
 import { ConfigContext } from '../../providers';
 
+/**
+ * Drawer component
+ * @param {boolean} active Attribute to show/hide drawer
+ * @param {any} children Children component inside the drawer
+ * @param {number} elevation Elevation indicator for shadows data
+ * @param {string} elevationDirection Light indicator for shadows data
+ */
 interface DrawerInterface {
   active: boolean;
   children: any;

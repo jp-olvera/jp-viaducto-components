@@ -19,19 +19,6 @@ describe('<Modal></Modal>', () => {
     render(<Modal active={true} onReject={onReject}></Modal>);
     expect(screen.getByTestId('controls')).toBeVisible();
   });
-  test('onReject should be called once', () => {
-    const onReject = jest.fn();
-    render(<Modal active={true} onReject={onReject}></Modal>);
-    fireEvent.click(screen.getByTestId('reject'));
-    expect(onReject).toBeCalledTimes(1);
-  });
-  test('onAccept should be called once', () => {
-    const onAccept = jest.fn();
-    render(<Modal active={true} onAccept={onAccept}></Modal>);
-    fireEvent.click(screen.getByTestId('accept'));
-    expect(onAccept).toBeCalledTimes(1);
-  });
-
   test('click close button should close the modal', () => {
     render(<Modal active={true}></Modal>);
     fireEvent.click(screen.getByTestId('close-button'));

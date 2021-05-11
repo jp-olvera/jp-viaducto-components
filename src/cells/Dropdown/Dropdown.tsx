@@ -5,6 +5,16 @@ import { Activator, Wrapper, ItemsContainer } from './StyledDropdown';
 import Icon from './sorting.svg';
 import { Hideable } from '../Hideable';
 
+/**
+ * Dropdown component
+ * @param {string} activeColor Active color for the option selected
+ * @param {any} border border painted
+ * @param {string} defaultText Text to show without any option selected
+ * @param {string} family font family for the dropdown
+ * @param {string} options options in the dropdown
+ * @param {string} size size of the dropdown
+ * @param {string} height size of the dropdown
+ */
 interface DropdownInterface {
   activeColor?: string;
   border?: any;

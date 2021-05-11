@@ -3,6 +3,15 @@ import React, { useContext, useState } from 'react';
 import { ConfigContext } from '../../providers';
 import { StyledLabel, CheckMark } from './StyledCheckbox';
 
+/**
+ * Checkbox input component
+ * @param {string} label Label for the input
+ * @param {boolean} disabled Enable/disable input
+ * @param {string} family Font family fot the input
+ * @param {string} size Size of the input
+ * @param {string} id ID for the input
+ * @param {string} color Color for the checkbox
+ */
 interface CheckboxInterface {
   label: string;
   disabled: boolean;

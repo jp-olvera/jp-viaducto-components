@@ -3,6 +3,17 @@ import { Paragraph, Spacer } from '../../cells';
 
 import StyledSidebarSection from './StyledSidebarSection';
 
+/**
+ * Sidebar elements for a Sidebar Section
+ *
+ * @param {array} items Objects array for make sections in the sidebar
+ * @param {boolean} separator Horizontal top separator for each section
+ * @param {string} title Title's section
+ * @param {boolean} isDropdown Attribute for clickable section top/bottom
+ * @param {boolean} isMenu Attribute for clickable section left/right
+ * @param {boolean} lead Attribute for place icon first
+ */
+
 interface SidebarSectionInterface {
   items: { label: string; url: string }[];
   separator: boolean;

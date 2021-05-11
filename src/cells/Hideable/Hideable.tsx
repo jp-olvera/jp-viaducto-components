@@ -16,6 +16,7 @@ interface HideableInterface {
  * and hidden after the specified breakpoint, breakpoints are based on your configuration
  * @param {string} visibleOn Breakpoint from which it's gonna be visible
  * @param {boolean} after Indicates if visible after the breakpoint, defaults to true
+ * @param {any} children Component to render as child
  */
 const Hideable = ({
   visibleOn = null,

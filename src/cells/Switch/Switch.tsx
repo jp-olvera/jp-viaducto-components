@@ -3,6 +3,13 @@ import React, { useState, useContext } from 'react';
 import { ConfigContext } from '../../providers';
 import { StyledSwitch } from './StyledSwitch';
 
+/**
+ * Switch component as input
+ * @param {boolean} disabled Enable/disable input
+ * @param {string} size Size of the input
+ * @param {string} id ID fot the input
+ * @param {string} color Color for the switch
+ */
 interface SwitchInterface {
   color: string;
   size: string;
