@@ -12,19 +12,19 @@ let defaultColors = {
   text: '#000',
 };
 
-interface ButtonInterface {
-  label?: string;
-  size?: string;
-  colors?:
-    | { default: string; hover: string; click: string; text: string }
-    | any;
-  icon?: any;
-  lead?: boolean;
-  height?: string;
-  type?: string;
-  disabled?: boolean;
-  onClick?: Function;
-}
+// interface ButtonInterface {
+//   label?: string;
+//   size?: string;
+//   colors?:
+//     | { default: string; hover: string; click: string; text: string }
+//     | any;
+//   icon?: any;
+//   lead?: boolean;
+//   height?: string;
+//   type?: string;
+//   disabled?: boolean;
+//   onClick?: Function;
+// }
 
 /**
  * Button component overrides HTML button tag. This components accepts icons and/or labels
@@ -46,9 +46,8 @@ const Button = ({
   lead = false,
   size = SIZE.default,
   type = 'primary',
-  onClick = () => {},
   ...rest
-}: ButtonInterface) => {
+}: any) => {
   const { configuration } = useContext(ConfigContext);
   let newHeight = height || configuration.controlHeight[size];
   if (colors) {
