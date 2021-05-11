@@ -12,16 +12,18 @@ describe('<Switch/>', () => {
   test('should be selected', () => {
     const { getByTestId } = render(<Switch id="Switch" />);
     const input = getByTestId('Switch');
-    fireEvent.click(input.querySelector('input'));
-    expect(input.querySelector('input').checked).toEqual(true);
+    const selector = input.querySelector('input');
+    fireEvent.click(selector);
+    expect(selector.checked).toEqual(true);
   });
 
   test('should be not checked', () => {
-    const { getByTestId } = render(<Switch id="switch" />);
+    const { getByTestId } = render(<Switch id="switch1" />);
     const input = getByTestId('switch1');
-    expect(input.querySelector('input').checked).toEqual(false);
-    fireEvent.click(input.querySelector('input'));
-    expect(input.querySelector('input').checked).toEqual(true);
+    const selector = input.querySelector('input');
+    expect(selector.checked).toEqual(false);
+    fireEvent.click(selector);
+    expect(selector.checked).toEqual(true);
   });
 
   test('should be disabled', () => {
