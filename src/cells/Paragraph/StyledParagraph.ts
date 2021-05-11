@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { getSize, getLineHeight } from '../../utils/getSizes';
+
 interface StyledParagraphI {
   readonly align?: string;
   readonly family?: string;
@@ -35,36 +37,6 @@ const StyledParagraph = styled.p<StyledParagraphI>`
   }
   vertical-align: ${({ verticalAlign }) => verticalAlign || 'baseline'};
 `;
-
-const getSize = (size = 'md', max = false) => {
-  switch (size) {
-    case 'xxs':
-      return max ? 'calc(0.5rem * 1.125)' : '0.5rem';
-    case 'xs':
-      return max ? 'calc(0.694rem * 1.125)' : '0.694rem';
-    case 'sm':
-      return max ? 'calc(0.83rem * 1.125)' : '0.83rem';
-    case 'lg':
-      return max ? 'calc(1.2rem * 1.125)' : '1.2rem';
-    case 'md':
-    default:
-      return max ? 'calc(1rem * 1.125)' : '1rem';
-  }
-};
-
-const getLineHeight = (lineHeight = 'md', size = 'md', max = false) => {
-  switch (lineHeight) {
-    case 'xs':
-      return `calc(${getSize(size, max)} * 1.15)`;
-    case 'sm':
-      return `calc(${getSize(size, max)} * 1.25)`;
-    case 'lg':
-      return `calc(${getSize(size, max)} * 1.75)`;
-    case 'md':
-    default:
-      return `calc(${getSize(size, max)} * 1.5)`;
-  }
-};
 
 export default StyledParagraph;
 export { getSize };

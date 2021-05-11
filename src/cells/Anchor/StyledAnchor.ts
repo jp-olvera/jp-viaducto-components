@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { getSize } from '../../utils/getSizes';
+
 interface AnchorProps {
   readonly family?: string;
   readonly configuration?: any;
@@ -44,21 +46,5 @@ export const StyledAnchor = styled.a<AnchorProps>`
     height: 1em;
   }
 `;
-
-const getSize = (size: string = 'md', max: boolean = false) => {
-  switch (size) {
-    case 'xxs':
-      return max ? 'calc(0.5rem * 1.125)' : '0.5rem';
-    case 'xs':
-      return max ? 'calc(0.694rem * 1.125)' : '0.694rem';
-    case 'sm':
-      return max ? 'calc(0.83rem * 1.125)' : '0.83rem';
-    case 'lg':
-      return max ? 'calc(1.2rem * 1.125)' : '1.2rem';
-    case 'md':
-    default:
-      return max ? 'calc(1rem * 1.125)' : '1rem';
-  }
-};
 
 export default StyledAnchor;

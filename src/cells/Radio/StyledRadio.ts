@@ -1,4 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+
+import { getSize, getRadioSizes } from '../../utils/getSizes';
 
 export const CheckMark = styled.span``;
 
@@ -26,39 +28,40 @@ export const StyledLabel = styled.label<StyledLabelI>`
     cursor: pointer;
     height: 0;
     width: 0;
+    & :checked ~ ${CheckMark} {
+      background-color: ${({ color }) => color};
+      border: 0.125rem solid ${({ color }) => color};
+    }
+    & :disabled:checked ~ ${CheckMark} {
+      background-color: ${({ color }) => color};
+      opacity: 0.5;
+      border: 0.125rem solid ${({ color }) => color};
+    }
+    & :checked ~ ${CheckMark}:after {
+      display: block;
+    }
+    & :checked:hover ~ ${CheckMark} {
+      background-color: #444444;
+      border-color: #444444;
+    }
+    & :disabled:hover ~ ${CheckMark}:after {
+      background-color: ${({ color }) => color};
+      opacity: 0.5;
+    }
+    & :disabled {
+      border-color: #cecece;
+      cursor: not-allowed;
+      & :hover {
+        cursor: not-allowed;
+        border-color: #cecece;
+      }
+    }
   }
   & :hover input ~ ${CheckMark} {
     background-color: transparent;
     border: ${({ disabled }) => (disabled ? '' : '0.125rem solid #444444')};
   }
-  & input:checked ~ ${CheckMark} {
-    background-color: ${({ color }) => color};
-    border: 0.125rem solid ${({ color }) => color};
-  }
-  & input:disabled:checked ~ ${CheckMark} {
-    background-color: ${({ color }) => color};
-    opacity: 0.5;
-    border: 0.125rem solid ${({ color }) => color};
-  }
-  & input:checked ~ ${CheckMark}:after {
-    display: block;
-  }
-  & input:checked:hover ~ ${CheckMark} {
-    background-color: #444444;
-    border-color: #444444;
-  }
-  & input:disabled:hover ~ ${CheckMark}:after {
-    background-color: ${({ color }) => color};
-    opacity: 0.5;
-  }
-  & input:disabled {
-    border-color: #cecece;
-    cursor: not-allowed;
-    & :hover {
-      cursor: not-allowed;
-      border-color: #cecece;
-    }
-  }
+
   & ${CheckMark} {
     position: absolute;
     top: 0;
@@ -69,7 +72,7 @@ export const StyledLabel = styled.label<StyledLabelI>`
     & :hover:after {
       background-color: white;
     }
-    &:after {
+    & :after {
       content: '';
       position: absolute;
       background-color: transparent;
@@ -84,54 +87,3 @@ export const StyledLabel = styled.label<StyledLabelI>`
     background: white;
   }
 `;
-
-const getSize = (size = 'lg', max = false) => {
-  switch (size) {
-    case 'sm':
-      return max ? 'calc(0.83rem * 1.125)' : '0.83rem';
-    case 'md':
-      return max ? 'calc(1rem * 1.125)' : '1rem';
-    case 'lg':
-    default:
-      return max ? 'calc(1.2rem * 1.125)' : '1.2rem';
-  }
-};
-
-const getRadioSizes = (size) => {
-  switch (size) {
-    case 'sm':
-      return {
-        circle: css`
-          height: 1.1rem;
-          width: 1.1rem;
-        `,
-        circle_after: css`
-          width: 0.35rem;
-          height: 0.35rem;
-        `,
-      };
-    case 'md':
-      return {
-        circle: css`
-          height: 1.3rem;
-          width: 1.3rem;
-        `,
-        circle_after: css`
-          width: 0.55rem;
-          height: 0.55rem;
-        `,
-      };
-    case 'lg':
-    default:
-      return {
-        circle: css`
-          height: 1.5rem;
-          width: 1.5rem;
-        `,
-        circle_after: css`
-          width: 0.75rem;
-          height: 0.75rem;
-        `,
-      };
-  }
-};

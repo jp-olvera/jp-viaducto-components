@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
-import config from '../../utils/config';
+
+import { getPillSize } from '../../utils/getSizes';
+
 interface StyledPillI {
   readonly family: string;
   readonly background: string;
@@ -19,7 +21,7 @@ const StyledPill = styled.div<StyledPillI>`
   background-color: ${(p) => p.background};
   border-radius: 100px;
   color: ${(p) => p.color};
-  font-size: ${({ size }) => getSize(size)};
+  font-size: ${({ size }) => getPillSize(size)};
   height: 1.875rem;
   vertical-align: ${({ verticalAlign }) => verticalAlign};
   ${(p) =>
@@ -51,22 +53,6 @@ const getPadding = (spacing, hasIcon, hasIconLead, onlyText) => {
   return css`
     padding: ${padding};
   `;
-};
-
-const getSize = (size = 'md', max = false) => {
-  switch (size) {
-    case 'xxs':
-      return max ? 'calc(0.5rem * 1.125)' : '0.5rem';
-    case 'xs':
-      return max ? 'calc(0.694rem * 1.125)' : '0.694rem';
-    case 'sm':
-      return max ? 'calc(0.83rem * 1.125)' : '0.83rem';
-    case 'lg':
-      return max ? 'calc(1.2rem * 1.125)' : '1.2rem';
-    case 'md':
-    default:
-      return max ? 'calc(1rem * 1.125)' : '1rem';
-  }
 };
 
 export default StyledPill;

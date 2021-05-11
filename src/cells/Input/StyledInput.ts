@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { getSize } from '../../utils/getSizes';
+
 interface WrapperInterface {
   readonly disabled?: boolean;
   readonly hasIcon?: boolean;
@@ -37,6 +39,30 @@ export const Wrapper = styled.div<WrapperInterface>`
     padding: 0;
     padding-left: ${({ configuration, hasIcon }) =>
       hasIcon ? 0 : configuration.spacing.xs};
+    & ::placeholder {
+      color: transparent;
+    }
+    & :disabled {
+      cursor: not-allowed;
+      background-color: #cecece;
+      pointer-events: none;
+      user-select: none;
+      & :not(:placeholder-shown) ~ .label {
+        top: ${({ border }) => (border === 'overlap' ? ' -0.375rem' : '0')};
+        font-size: 0.688rem;
+        line-height: 0.688rem;
+        border: none;
+        color: #333;
+        padding: 0;
+        outline: none;
+        left: ${({ configuration, hasIcon }) =>
+          hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
+        .icon-required {
+          display: inline-flex;
+          padding-left: ${({ configuration }) => configuration.spacing.nano};
+        }
+      }
+    }
   }
 
   .icon {
@@ -45,12 +71,6 @@ export const Wrapper = styled.div<WrapperInterface>`
     align-items: center;
     color: ${({ iconColor, configuration }) =>
       configuration.text[iconColor] || iconColor};
-  }
-
-  .input {
-    & ::placeholder {
-      color: transparent;
-    }
   }
 
   .input:focus ~ .label,
@@ -118,28 +138,6 @@ export const Wrapper = styled.div<WrapperInterface>`
     display: inline-flex;
     align-items: center;
   }
-
-  .input:disabled {
-    cursor: not-allowed;
-    background-color: #cecece;
-    pointer-events: none;
-    user-select: none;
-    & :not(:placeholder-shown) ~ .label {
-      top: ${({ border }) => (border === 'overlap' ? ' -0.375rem' : '0')};
-      font-size: 0.688rem;
-      line-height: 0.688rem;
-      border: none;
-      color: #333;
-      padding: 0;
-      outline: none;
-      left: ${({ configuration, hasIcon }) =>
-        hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
-      .icon-required {
-        display: inline-flex;
-        padding-left: ${({ configuration }) => configuration.spacing.nano};
-      }
-    }
-  }
 `;
 
 interface StyledProgressBarI {
@@ -167,22 +165,6 @@ const getTopLabel = (size) => {
     return css`
       top: calc(1.493rem - 0.5rem);
     `;
-  }
-};
-
-export const getSize = (size: string = 'md', max: boolean = false) => {
-  switch (size) {
-    case 'xxs':
-      return max ? 'calc(0.5rem * 1.125)' : '0.5rem';
-    case 'xs':
-      return max ? 'calc(0.694rem * 1.125)' : '0.694rem';
-    case 'sm':
-      return max ? 'calc(0.83rem * 1.125)' : '0.83rem';
-    case 'lg':
-      return max ? 'calc(1.2rem * 1.125)' : '1.2rem';
-    case 'md':
-    default:
-      return max ? 'calc(1rem * 1.125)' : '1rem';
   }
 };
 
