@@ -1,64 +1,46 @@
 {
-    "parser": "babel-eslint",
-    "extends": [
-        "eslint:recommended",
-        "airbnb"
+  "parser": "babel-eslint",
+  "extends": ["eslint:recommended", "airbnb"],
+  "plugins": ["import", "react"],
+  "env": {
+    "es6": true,
+    "jest": true
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "comma-dangle": ["error", "always-multiline"],
+    "import/newline-after-import": [
+      "error",
+      {
+        "count": 1
+      }
     ],
-    "plugins": [
-        "import",
-        "react"
+    "max-len": "off",
+    "import/no-absolute-path": 0,
+    "import/extensions": 0,
+    "no-mixed-operators": 0,
+    "import/no-unresolved": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx"]
+      }
     ],
-    "env": {
-        "es6": true,
-        "jest": true
-    },
-    "rules": {
-        "semi": [
-            "error",
-            "always"
-        ],
-        "comma-dangle": [
-            "error",
-            "always-multiline"
-        ],
-        "import/newline-after-import": [
-            "error",
-            {
-                "count": 1
-            }
-        ],
-        "max-len": "off",
-        "import/no-absolute-path": 0,
-        "import/extensions": 0,
-        "no-mixed-operators": 0,
-        "import/no-unresolved": "off",
-        "react/jsx-filename-extension": [
-            "error",
-            {
-                "extensions": [
-                    ".js",
-                    ".jsx"
-                ]
-            }
-        ],
-        "no-restricted-properties": [
-            "error",
-            {
-                "property": "lenght"
-            }
-        ],
-        "import/no-extraneous-dependencies": [
-            "error",
-            {
-                "devDependencies": false,
-                "optionalDependencies": false,
-                "peerDependencies": false,
-                "packageDir": "./"
-            }
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ]
-    }
+    "no-restricted-properties": [
+      "error",
+      {
+        "property": "lenght"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": false,
+        "optionalDependencies": false,
+        "peerDependencies": false,
+        "packageDir": "./"
+      }
+    ],
+    "linebreak-style": ["error", "unix"]
+  }
 }
