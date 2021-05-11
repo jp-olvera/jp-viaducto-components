@@ -1,3 +1,3 @@
-import Hideable from "./Hideable";
+import Hideable from './Hideable';
 
 export { Hideable };
