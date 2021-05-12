@@ -47,7 +47,7 @@ const Radio = ({
       color={color}
       disabled={disabled}
       data-testid={id}
-    spacing={spacing}
+      spacing={spacing}
       {...props}
     >
       {label}

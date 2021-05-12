@@ -20,9 +20,21 @@ export default {
       },
     },
     spacing: {
-      options: ["none","nano","micro","tiny","xs","sm","md","lg","xl","xxl","xxxl"],
-      control: 'select'
-    }
+      options: [
+        'none',
+        'nano',
+        'micro',
+        'tiny',
+        'xs',
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        'xxl',
+        'xxxl',
+      ],
+      control: 'select',
+    },
   },
 };
 

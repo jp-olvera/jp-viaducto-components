@@ -19,7 +19,8 @@ export const StyledLabel = styled.label<StyledLabelI>`
   display: block;
   color: ${({ disabled }) => (disabled ? '#CCCCCC' : '#000')};
   position: relative;
-  ${({ configuration, spacing, size }) => getRadioPadding(configuration, spacing, size)};
+  ${({ configuration, spacing, size }) =>
+    getRadioPadding(configuration, spacing, size)};
   margin-bottom: ${({ configuration }) => configuration.spacing.sm};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   user-select: none;

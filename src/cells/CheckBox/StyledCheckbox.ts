@@ -19,7 +19,8 @@ export const StyledLabel = styled.label<StyledLabelInterface>`
   display: inline-block;
   color: ${({ disabled }) => (disabled ? '#CCCCCC' : '#000')};
   position: relative;
-  ${({configuration, spacing, size})=>getCheckPadding(configuration, spacing, size)};
+  ${({ configuration, spacing, size }) =>
+    getCheckPadding(configuration, spacing, size)};
   box-sizing: border-box;
   margin-bottom: ${({ configuration }) => configuration.spacing.sm};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
