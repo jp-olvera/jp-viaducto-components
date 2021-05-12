@@ -14,11 +14,15 @@ export default {
       control: { type: 'select' },
     },
     size: {
-      options: ['lg', 'md', 'sm'],
+      options: ['sm', 'md', 'lg', 'xl'],
       control: {
         type: 'select',
       },
     },
+    spacing: {
+      options: ["none","nano","micro","tiny","xs","sm","md","lg","xl","xxl","xxxl"],
+      control: 'select'
+    }
   },
 };
 
@@ -34,5 +38,5 @@ Default.args = {
   label: 'Label',
   disabled: false,
   family: 'Manrope',
-  size: 'md',
+  size: 'xl',
 };

@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
-import { getSize, getRadioSizes } from '../../utils/getSizes';
+import { getSize, getRadioSizes, getRadioPadding } from '../../utils/getSizes';
 
 export const CheckMark = styled.span``;
 
 interface StyledLabelI {
-  readonly family: string;
-  readonly size: string;
-  readonly disabled: boolean;
-  readonly configuration: any;
+  readonly family?: string;
+  readonly size?: any;
+  readonly disabled?: boolean;
+  readonly configuration?: any;
+  readonly spacing?: any;
 }
 export const StyledLabel = styled.label<StyledLabelI>`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
@@ -18,7 +19,7 @@ export const StyledLabel = styled.label<StyledLabelI>`
   display: block;
   color: ${({ disabled }) => (disabled ? '#CCCCCC' : '#000')};
   position: relative;
-  padding: 0.15rem 0 0 ${({ configuration }) => configuration.spacing.lg};
+  ${({ configuration, spacing, size }) => getRadioPadding(configuration, spacing, size)};
   margin-bottom: ${({ configuration }) => configuration.spacing.sm};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   user-select: none;
@@ -80,9 +81,8 @@ export const StyledLabel = styled.label<StyledLabelI>`
     }
   }
   & ${CheckMark}:after {
-    top: 0.375rem;
-    left: 0.375rem;
     ${({ size }) => getRadioSizes(size).circle_after}
+    ${({ size }) => getRadioSizes(size).circle_position}
     border-radius: 50%;
     background: white;
   }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { getSize, getCheckSizes } from '../../utils/getSizes';
+import { getSize, getCheckSizes, getCheckPadding } from '../../utils/getSizes';
 
 export const CheckMark = styled.span``;
 
@@ -9,16 +9,17 @@ interface StyledLabelInterface {
   readonly size?: string;
   readonly disabled?: boolean;
   readonly configuration?: any;
+  readonly spacing?: string;
 }
 export const StyledLabel = styled.label<StyledLabelInterface>`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
   font-family: ${({ family }) =>
     family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
-  font-size: ${({ size }) => getSize(size)};
+  font-size: ${({ size }) => getSize(size === 'xl' ? 'lg' : size)};
   display: inline-block;
   color: ${({ disabled }) => (disabled ? '#CCCCCC' : '#000')};
   position: relative;
-  padding: 0.6rem 0 0 3.5rem;
+  ${({configuration, spacing, size})=>getCheckPadding(configuration, spacing, size)};
   box-sizing: border-box;
   margin-bottom: ${({ configuration }) => configuration.spacing.sm};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};

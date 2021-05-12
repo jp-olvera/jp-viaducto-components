@@ -10,8 +10,10 @@ const config = {
     lg: '2.074rem',
     xl: '2.488rem',
     xxl: '2.986rem',
+    xxxl: '3.5rem',
   },
   controlHeight: {
+    xsmall: '1.2rem',
     small: '2.074rem',
     default: '2.488rem',
     large: '2.986rem',

@@ -12,6 +12,7 @@ import { StyledLabel, CheckMark } from './StyledRadio';
  * @param {string} id ID fot the input
  * @param {string} name HTML name attribute for the input
  * @param {string} color Color for the radio
+ * @param {string} spacing Spacing for the radio
  */
 interface RadioInterface {
   label: string;
@@ -21,6 +22,7 @@ interface RadioInterface {
   size: string;
   color: string;
   id: string;
+  spacing?: string;
 }
 
 const Radio = ({
@@ -31,6 +33,7 @@ const Radio = ({
   size = 'lg',
   color = '#9060EB',
   id,
+  spacing,
   ...props
 }: RadioInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -44,6 +47,7 @@ const Radio = ({
       color={color}
       disabled={disabled}
       data-testid={id}
+    spacing={spacing}
       {...props}
     >
       {label}

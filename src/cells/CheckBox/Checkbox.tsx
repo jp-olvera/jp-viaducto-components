@@ -11,14 +11,16 @@ import { StyledLabel, CheckMark } from './StyledCheckbox';
  * @param {string} size Size of the input
  * @param {string} id ID for the input
  * @param {string} color Color for the checkbox
+ * @param {string} spacing Spacing for the checkbox
  */
 interface CheckboxInterface {
-  label: string;
-  disabled: boolean;
-  family: string;
-  size: string;
-  id: string;
-  color: string;
+  label?: string;
+  disabled?: boolean;
+  family?: string;
+  size?: string;
+  id?: string;
+  color?: string;
+  spacing?: string;
 }
 
 const Checkbox = ({
@@ -28,6 +30,7 @@ const Checkbox = ({
   size = 'lg',
   color = '#9060EB',
   id,
+  spacing,
   ...props
 }: CheckboxInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -41,6 +44,7 @@ const Checkbox = ({
       color={color}
       disabled={disabled}
       data-testid={id}
+      spacing={spacing}
       {...props}
     >
       {label}

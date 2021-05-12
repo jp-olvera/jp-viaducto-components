@@ -48,8 +48,7 @@ const Template = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  label:
-    'Pero nunca ese grito de guerra. Entre hermanos repita el cañón. Solo cante, ya libre, la Tierra. Su himno santo de paz y de unión.',
+  label: 'Esto es un tooltip',
   active: true,
-  position: 'bottom',
+  position: 'right',
 };

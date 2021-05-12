@@ -8,23 +8,28 @@ interface TooltipContainerI {
   readonly configuration: any;
 }
 export const TooltipContainer = styled.div<TooltipContainerI>`
+  transition: all 0.05s;
   font-family: ${({ family }) =>
-    family ? `'${family}', sans-serif` : 'inherit'};
-  font-size: 0.9rem;
+  family ? `'${family}', sans-serif` : 'inherit'};
   position: relative;
   display: inline-block;
   & .tooltip {
-    opacity: ${({ active }) => (active ? '1' : ' 0')};
-    transition: opacity 0.2s;
+    transition: all 0.05s;
     background-color: ${({ color }) => color};
-    color: ${({ textColor, configuration }) =>
-      configuration.text[textColor] || textColor};
     text-align: center;
     padding: 0.313rem;
     border-radius: 0.375rem;
     word-break: break-word;
     hyphens: auto;
+    opacity: ${({ active }) => (active ? '1' : ' 0')};
+    min-width: 10rem;
+    word-break: break-all;
+    overflow-wrap: break-word;
     width: fit-content;
+    height: ${({ active }) => (active ? 'auto' : ' 0')};
+    font-size: ${({ active }) => (active ? '0.9rem' : ' 0')};
+    color: ${({ textColor, configuration, active }) =>
+      active ? (configuration.text[textColor] || textColor) : "transparent"};
     position: absolute;
     z-index: 1;
     ${({ position }) => setPosition(position)}

@@ -18,6 +18,41 @@ export default {
         type: 'select',
       },
     },
+    iconSpacing: {
+      options: [
+        "none",
+        "nano",
+        "micro",
+        "tiny",
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "xxl",
+      ],
+      control: {
+        type: 'select',
+      },
+    },
+    horizontalSpacing: {
+      options: [
+        "none",
+        "nano",
+        "micro",
+        "tiny",
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "xxl",
+        "xxxl",
+      ],
+      control: {
+        type: 'select',
+      },
+    },
   },
 };
 
@@ -40,6 +75,7 @@ Default.args = {
   variant: 'primary',
   colors: null,
   disabled: false,
+  block: false
 };
 export const Custom = Template.bind({});
 
@@ -52,6 +88,7 @@ Custom.args = {
   variant: 'primary',
   colors: null,
   disabled: false,
+  iconSpace: "xs"
 };
 export const Small = Template.bind({});
 

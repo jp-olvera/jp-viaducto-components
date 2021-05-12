@@ -18,6 +18,7 @@ interface TabInterface {
   hoverColor: string;
   activeColor: string;
   activeTextColor: string;
+  horizontalSpacing: null | string;
   onClick: Function;
 }
 
@@ -27,6 +28,7 @@ const Tab = ({
   hoverColor = '#4F83CC',
   activeColor = '#01579B',
   activeTextColor = '#002F6C',
+  horizontalSpacing = null,
   onClick = () => {},
   ...rest
 }: TabInterface) => (
@@ -36,6 +38,8 @@ const Tab = ({
     activeColor={activeColor}
     activeTextColor={activeTextColor}
     onClick={onClick}
+    horizontalSpacing={horizontalSpacing}
+  
     {...rest}
   >
     <Paragraph size="lg" className="tab-text" color="darkGray">

@@ -19,12 +19,15 @@ export default {
         type: 'select',
       },
     },
+    spacing: {
+      options: ["none","nano","micro","tiny","xs","sm","md","lg","xl","xxl","xxxl"],
+      control: 'select'
+    }
   },
 };
 
 const Template = (args) => (
   <ConfigProvider>
-    <Radio {...args} />
     <Radio {...args} />
   </ConfigProvider>
 );

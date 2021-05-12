@@ -33,6 +33,9 @@ const Button = ({
   size = SIZE.default,
   variant = 'primary',
   type = 'button',
+  iconSpacing = "xs",
+  horizontalSpacing = null,
+  block= false,
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
@@ -42,18 +45,21 @@ const Button = ({
     <StyledButton
       size={size}
       colors={colors || configuration.colors[variant] || defaultColors}
-      isIconOnly={label === null && icon !== null}
+      isIconOnly={label === '' && icon !== null}
       lead={lead}
       configuration={configuration}
       height={newHeight}
       type={type}
+      iconSpacing={iconSpacing}
+      horizontalSpacing={horizontalSpacing}
+      block={block}
       {...rest}
     >
-      {icon !== null && lead && (
+      {icon !== null && icon !== "" && lead && (
         <span className="button-icon-span">{icon}</span>
       )}
       <span>{label}</span>
-      {icon !== null && !lead && (
+      {icon !== null && icon !== "" && !lead && (
         <span className="button-icon-span">{icon}</span>
       )}
     </StyledButton>
