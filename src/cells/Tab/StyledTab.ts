@@ -1,30 +1,37 @@
 import styled, { css } from "styled-components";
-
 interface StyledTabI {
-  readonly hoverColor: string;
   readonly activeTextColor: string;
   readonly activeColor: string;
   readonly onClick: any;
-  readonly horizontalSpacing: null | string;
+  readonly hoverColor?: any;
+  readonly horizontalSpacing?: null | string;
+  readonly verticalSpacing: string;
+  readonly configuration: any;
+	readonly lead: boolean;
+  readonly iconSpacing: string;
+	
 }
 
 const StyledTab = styled.button<StyledTabI>`
-  align-items: center;
   background-color: transparent;
   border: none;
   box-sizing: border-box;
   cursor: pointer;
-  /* display: flex; */
-  display: inline-flex;
-  height: 58px;
-  padding: 0;
+  height: calc(${({ configuration, verticalSpacing }) => configuration.spacing[verticalSpacing] || configuration.spacing.sm} * 5);
+  min-height: calc(${({ configuration }) => configuration.spacing.micro} * 5);
   position: relative;
-  .tab-text {
+	
+  ${(props) => getPaddingTransition(props)};
+	.tab-text{
+    transition: all 0.2s ease-in-out;
     transform: translateY(0);
-    transition: transform 0.2s ease-in;
-  }
-
-  &:after {
+	}
+	.tab-icon-span{
+		margin-right: ${(p) => p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
+    margin-left: ${(p) => !p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
+		display: inline;
+	}
+  & :after {
     background-color: ${({ color }) => color};
     bottom: 0;
     content: "";
@@ -33,12 +40,11 @@ const StyledTab = styled.button<StyledTabI>`
     position: absolute;
     width: 100%;
   }
-  &:hover {
-    /* align-items: flex-start; */
-    transition: align-items 0.2s ease-in, padding 0.2s ease-in;
-		${(props) => getPaddingTransition(props)};
-    &:after {
-      content: "";
+
+  & :hover {
+    transition: all 0.2s ease-in-out;
+    & :after {
+      content: '';
       height: 3px;
       width: 100%;
       position: absolute;
@@ -46,20 +52,24 @@ const StyledTab = styled.button<StyledTabI>`
       left: 0;
       background-color: ${({ hoverColor }) => hoverColor};
     }
-    /* .tab-text {
-      transform: translateY(-10px);
-      transition: transform 0.2s ease-in;
-    } */
-  }
-  &:active,
-  :focus {
-    p {
-      color: ${({ activeTextColor }) => activeTextColor};
+    & .tab-text{
+      transition: all 0.2s ease-in-out;
+      transform: translateY(-${({ configuration, verticalSpacing }) => configuration.spacing[verticalSpacing] || configuration.spacing.sm});
     }
-		${(props) => getPaddingTransition(props)};
+  }
+
+  & :active,:focus {
+		p {
+      color: ${({ activeTextColor }) => activeTextColor};
+		}
+    .tab-text {
+      transition: all 0.2s ease-in;
+      transform: translateY(-${({ configuration, verticalSpacing }) => configuration.spacing[verticalSpacing] || configuration.spacing.sm})
+    }
 
     &:after {
       content: "";
+      transition: all 0.2s ease-in;
       height: 4px;
       width: 100%;
       position: absolute;
@@ -67,20 +77,13 @@ const StyledTab = styled.button<StyledTabI>`
       left: 0;
       background-color: ${({ activeColor }) => activeColor};
     }
-    /* .tab-text {
-      transform: translateY(-10px);
-      transition: transform 0.2s ease-in;
-    } */
   }
 `;
 
 const getPaddingTransition = (props) => {
-  if (props.horizontalSpacing !== null) {
-    return css`
-      padding: 0 ${props.configuration.spacing[props.horizontalSpacing]};
+  return css`
+      padding: 0 ${props.configuration.spacing[props.horizontalSpacing] || props.configuration.spacing.none};
       transition: padding 0.2s ease-in;
     `;
-  }
-  return css``;
 };
 export default StyledTab;

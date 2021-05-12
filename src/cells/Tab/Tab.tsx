@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Paragraph } from '../Paragraph';
 import StyledTab from './StyledTab';
 
+import { ConfigContext } from '../../providers';
 /**
  *
  * @param {string} text Text to show
@@ -12,40 +13,61 @@ import StyledTab from './StyledTab';
  * @param {function} onClick function to call when tab is clicked
  */
 
-interface TabInterface {
-  text: string;
-  color: string;
-  hoverColor: string;
-  activeColor: string;
-  activeTextColor: string;
-  horizontalSpacing: null | string;
-  onClick: Function;
-}
+// interface TabInterface {
+//   text?: string;
+//   color?: string;
+//   type?: string;
+//   horizontalSpacing?: null | string;
+//   verticalSpacing?: string;
+//   onClick: Function;
+// }
 
 const Tab = ({
   text = '',
-  color = '#F1F1F1',
-  hoverColor = '#4F83CC',
-  activeColor = '#01579B',
-  activeTextColor = '#002F6C',
-  horizontalSpacing = null,
-  onClick = () => {},
+  type='tab',
+  horizontalSpacing = 'sm',
+  verticalSpacing = 'sm',
+  onClick = () => { },
+  icon = null,
+  lead = false,
+  iconSpacing = 'xs',
   ...rest
-}: TabInterface) => (
-  <StyledTab
-    color={color}
-    hoverColor={hoverColor}
-    activeColor={activeColor}
-    activeTextColor={activeTextColor}
-    onClick={onClick}
-    horizontalSpacing={horizontalSpacing}
-  
-    {...rest}
-  >
-    <Paragraph size="lg" className="tab-text" color="darkGray">
-      {text}
-    </Paragraph>
-  </StyledTab>
-);
+}: any) => {
+  const { configuration } = useContext(ConfigContext);
+
+  const color= configuration.colors[type].default;
+  const hoverColor= configuration.colors[type].click;
+  const activeColor= configuration.colors[type].hover;
+  const activeTextColor= configuration.colors[type].hover;
+  return (
+    <StyledTab
+      color={color}
+      hoverColor={hoverColor}
+      activeColor={activeColor}
+      activeTextColor={activeTextColor}
+      onClick={onClick}
+      horizontalSpacing={horizontalSpacing}
+      verticalSpacing={verticalSpacing}
+      configuration={configuration}
+      iconSpacing={iconSpacing}
+
+      lead={lead}
+      {...rest}
+    >
+      <div className="tab-text" style={{display: 'flex', alignItems: 'center'}}>
+
+      {icon !== null && icon !== '' && lead && (
+        <span className="tab-icon-span">{icon}</span>
+        )}
+      <Paragraph size="lg" color="darkGray">
+        {text}
+      </Paragraph>
+      {icon !== null && icon !== '' && !lead && (
+        <span className="tab-icon-span">{icon}</span>
+        )}
+        </div>
+    </StyledTab>
+  );
+};
 
 export default Tab;

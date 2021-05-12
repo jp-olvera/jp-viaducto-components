@@ -80,6 +80,12 @@ const config = {
       click: '#FF8686',
       text: 'white',
     },
+    tab: {
+      default : '#F1F1F1',
+      click: '#4F83CC',
+      hover : '#01579B',
+      text : '#000',
+    }
   },
   text: {
     danger: '#B71C1C',
