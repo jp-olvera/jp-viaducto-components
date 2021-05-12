@@ -1,15 +1,25 @@
 {
   "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "airbnb"],
-  "plugins": ["import", "react"],
-  "env": {
-    "es6": true,
-    "jest": true,
-    "browser": true
+  "extends": [
+    "eslint:recommended",
+    "airbnb"
+  ],
+  "plugins": [
+    "import",
+    "react"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
   },
   "rules": {
-    "semi": ["error", "always"],
-    "comma-dangle": ["error", "always-multiline"],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
     "import/newline-after-import": [
       "error",
       {
@@ -24,7 +34,12 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
       }
     ],
     "no-restricted-properties": [
@@ -41,7 +56,10 @@
         "peerDependencies": true
       }
     ],
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": [
+      "off",
+      "unix"
+    ],
     "react/jsx-props-no-spreading": [
       0,
       {
@@ -51,7 +69,16 @@
         "exceptions": []
       }
     ],
-    "react/jsx-one-expression-per-line": [0, { "allow": "single-child" }],
-    "object-curly-spacing": [0, "always"]
+    "react/jsx-one-expression-per-line": [
+      0,
+      {
+        "allow": "single-child"
+      }
+    ],
+    "object-curly-spacing": [
+      0,
+      "always"
+    ],
+    "react/prop-types": 0
   }
 }
