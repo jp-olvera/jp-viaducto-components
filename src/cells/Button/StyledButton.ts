@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { SIZE, FONT_SIZE } from './constants';
 
 interface StyledButtonInterface {
-	readonly iconSpacing: string;
-	readonly horizontalSpacing: null | string;
+  readonly horizontalSpacing: null | string;
+  readonly iconSpacing: string;
   readonly label?: string;
   readonly size?: string;
   readonly colors?:
@@ -36,7 +36,7 @@ const StyledButton = styled.button<StyledButtonInterface>`
       ? css`
           height: ${height};
         `
-      : null};
+      : css``};
   ${(props) => getPadding(props)}
   ${(props) => getFontStyle(props)}
     &:disabled {
@@ -78,46 +78,48 @@ const StyledButton = styled.button<StyledButtonInterface>`
   }
 
   .button-icon-span {
-    margin-right: ${(p) => (!p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
-    margin-left: ${(p) => (!p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
+    margin-right: ${(p) =>
+      !p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
+    margin-left: ${(p) =>
+      !p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
     align-items: center;
     height: 1em;
   }
 `;
 
 const getPadding = (props) => {
-	let padding = '';
-	if (props.horizontalSpacing !== null) {
-		padding = `0 ${props.configuration.spacing[props.horizontalSpacing]}`
-	}else if (!props.isIconOnly) {
+  let padding = '';
+  if (props.horizontalSpacing !== null) {
+    padding = `0 ${props.configuration.spacing[props.horizontalSpacing]}`;
+  } else if (!props.isIconOnly) {
     // not icon at all
     switch (props.size) {
       case SIZE.small:
-				padding = `0 ${props.configuration.spacing["sm"]} `;
+        padding = `0 ${props.configuration.spacing['sm']} `;
         break;
       case SIZE.large:
-        padding = `0 ${props.configuration.spacing["lg"]} `;
+        padding = `0 ${props.configuration.spacing['lg']} `;
         break;
       case SIZE.default:
       default:
-        padding = `0 ${props.configuration.spacing["md"]} `;
+        padding = `0 ${props.configuration.spacing['md']} `;
         break;
     }
   } else {
     switch (props.size) {
       case SIZE.small:
-        padding = `0 ${props.configuration.spacing["sm"]} `;
+        padding = `0 ${props.configuration.spacing['sm']} `;
         break;
       case SIZE.large:
-        padding = `0 ${props.configuration.spacing["lg"]} `;
+        padding = `0 ${props.configuration.spacing['lg']} `;
         break;
       case SIZE.default:
       default:
-        padding = `0 ${props.configuration.spacing["md"]} `;
+        padding = `0 ${props.configuration.spacing['md']} `;
         break;
     }
-	}
-	
+  }
+
   return css`
     padding: ${padding};
   `;
@@ -138,9 +140,6 @@ const getFontStyle = (props) => {
 
   return css`
     font-size: ${fontSize};
-    /* @media screen and (min-width: 90rem) {
-      font-size: calc(${fontSize} * 1.125);
-    } */
   `;
 };
 export default StyledButton;

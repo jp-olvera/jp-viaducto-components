@@ -33,9 +33,9 @@ const Button = ({
   size = SIZE.default,
   variant = 'primary',
   type = 'button',
-  iconSpacing = "xs",
+  iconSpacing = 'xs',
   horizontalSpacing = null,
-  block= false,
+  block = false,
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
@@ -55,11 +55,11 @@ const Button = ({
       block={block}
       {...rest}
     >
-      {icon !== null && icon !== "" && lead && (
+      {icon !== null && icon !== '' && lead && (
         <span className="button-icon-span">{icon}</span>
       )}
       <span>{label}</span>
-      {icon !== null && icon !== "" && !lead && (
+      {icon !== null && icon !== '' && !lead && (
         <span className="button-icon-span">{icon}</span>
       )}
     </StyledButton>

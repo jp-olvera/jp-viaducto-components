@@ -20,16 +20,16 @@ export default {
     },
     iconSpacing: {
       options: [
-        "none",
-        "nano",
-        "micro",
-        "tiny",
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
+        'none',
+        'nano',
+        'micro',
+        'tiny',
+        'xs',
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        'xxl',
       ],
       control: {
         type: 'select',
@@ -37,17 +37,17 @@ export default {
     },
     horizontalSpacing: {
       options: [
-        "none",
-        "nano",
-        "micro",
-        "tiny",
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-        "xxxl",
+        'none',
+        'nano',
+        'micro',
+        'tiny',
+        'xs',
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        'xxl',
+        'xxxl',
       ],
       control: {
         type: 'select',
@@ -62,7 +62,7 @@ const Template = (args) => (
   </ConfigProvider>
 );
 
-const Icon = ({ icon }) => <p>{ icon }</p>;
+const Icon = ({ icon }) => <p>{icon}</p>;
 
 export const Default = Template.bind({});
 
@@ -75,7 +75,7 @@ Default.args = {
   variant: 'primary',
   colors: null,
   disabled: false,
-  block: false
+  block: false,
 };
 export const Custom = Template.bind({});
 
@@ -88,7 +88,7 @@ Custom.args = {
   variant: 'primary',
   colors: null,
   disabled: false,
-  iconSpace: "xs"
+  iconSpace: 'xs',
 };
 export const Small = Template.bind({});
 
