@@ -10,7 +10,7 @@ interface TooltipContainerI {
 export const TooltipContainer = styled.div<TooltipContainerI>`
   transition: all 0.05s;
   font-family: ${({ family }) =>
-  family ? `'${family}', sans-serif` : 'inherit'};
+    family ? `'${family}', sans-serif` : 'inherit'};
   position: relative;
   display: inline-block;
   & .tooltip {
@@ -29,7 +29,7 @@ export const TooltipContainer = styled.div<TooltipContainerI>`
     height: ${({ active }) => (active ? 'auto' : ' 0')};
     font-size: ${({ active }) => (active ? '0.9rem' : ' 0')};
     color: ${({ textColor, configuration, active }) =>
-      active ? (configuration.text[textColor] || textColor) : "transparent"};
+    active ? (configuration.text[textColor] || textColor) : "transparent"};
     position: absolute;
     z-index: 1;
     ${({ position }) => setPosition(position)}
