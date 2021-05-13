@@ -2,7 +2,7 @@ name: Run tests and merge before publish package
 on:
   push:
     branches:
-      - 'staging'
+      - "staging"
 
 jobs:
   merge-branch:
@@ -14,10 +14,13 @@ jobs:
         run: npm ci
 
       - name: Run all tests
-        run: npm run test --coverage
+        run: npx jest --coverage
 
       - name: Send coverage
-        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -a ${{ secrets.CODACY_API_TOKEN }} -t ${{ secrets.CODACY_PROJECT_TOKEN }} -r ./coverage/lcov.info
+        run: |
+          pwd
+          ls
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -a ${{ secrets.CODACY_API_TOKEN }} -t ${{ secrets.CODACY_PROJECT_TOKEN }} -r $(pwd)/coverage/lcov.info
 
       - name: Merge staging
         uses: devmasx/merge-branch@v1.3.1
