@@ -17,6 +17,8 @@ jobs:
         run: npm run test --coverage
 
       - name: Send coverage
+        run: pwd
+        run: ls
         run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -a ${{ secrets.CODACY_API_TOKEN }} -t ${{ secrets.CODACY_PROJECT_TOKEN }} -r $(pwd)/coverage/lcov.info
 
       - name: Merge staging
