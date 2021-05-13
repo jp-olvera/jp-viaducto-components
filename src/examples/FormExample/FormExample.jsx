@@ -8,7 +8,9 @@ const FormExample = () => (
   <form style={{ display: 'inline-flex' }}>
     <Button label="Continuar" />
     <Input label="example-input" />
-    <Checkbox label="Hola" size="md" />
+    <div>
+      <Switch />
+    </div>
     <Dropdown
       options={[1, 2, 3]}
       border={{
@@ -18,9 +20,7 @@ const FormExample = () => (
         left: '1px solid black',
       }}
     />
-    <div>
-      <Switch />
-    </div>
+    <Checkbox label="Hola" size="lg" />
   </form>
 );
 

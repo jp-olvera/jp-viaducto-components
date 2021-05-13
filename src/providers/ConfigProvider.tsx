@@ -11,7 +11,7 @@ interface ConfigContextInterface {
 }
 export const ConfigContext = createContext<ConfigContextInterface>({
   configuration: {},
-  updateConfig: () => {},
+  updateConfig: Function,
 });
 
 const ConfigProvider = ({ children }: ConfigProviderInterface) => {

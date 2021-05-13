@@ -1,3 +1,5 @@
+/* eslint-env jest */
+
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/react';
@@ -12,10 +14,10 @@ describe('<Search/>', () => {
     const handleClick = jest.fn();
     render(
       <Search
-        buttonLabel="Search"
+        buttonLabel='Search 1'
         handleSearch={handleClick}
         options={options}
-        id="search"
+        id='search'
       />,
     );
     expect(screen.getByTestId('search')).toBeVisible();
@@ -25,10 +27,10 @@ describe('<Search/>', () => {
     const handleClick = jest.fn().mockReturnValue(() => null);
     render(
       <Search
-        buttonLabel="Search"
+        buttonLabel='Search 2'
         handleSearch={handleClick}
         options={options}
-        id="search"
+        id='search'
       />,
     );
     fireEvent.click(screen.getByTestId('button-search'));
@@ -38,7 +40,7 @@ describe('<Search/>', () => {
   test('should write in input search', () => {
     const value = 'Search this value';
     const { getByTestId } = render(
-      <Search buttonLabel="Search" options={options} id="search" />,
+      <Search buttonLabel='Search 3' options={options} id='search' />,
     );
     const input = getByTestId('input-search');
     fireEvent.change(input, { target: { value } });
@@ -46,12 +48,22 @@ describe('<Search/>', () => {
   });
 
   test('should display dropdown', () => {
+    const handleClick = jest.fn();
     const { getByTestId } = render(
-      <Search buttonLabel="Search" options={options} id="search" />,
+      <Search buttonLabel='Search 4' options={options} id='search' handleSearch={handleClick} />,
     );
     const activator = getByTestId('dropdown-activator');
     activator.click();
     expect(getByTestId('dropdown-itemList')).toBeVisible();
     expect(screen.getByText('RFC')).toBeVisible();
+  });
+
+  test('should display dropdown with no props', () => {
+    const { getByTestId } = render(
+      <Search />,
+    );
+    const activator = getByTestId('dropdown-activator');
+    activator.click();
+    expect(getByTestId('dropdown-itemList')).toBeVisible();
   });
 });

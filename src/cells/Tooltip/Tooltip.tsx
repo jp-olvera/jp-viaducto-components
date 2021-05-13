@@ -43,7 +43,7 @@ const Tooltip = ({
       family={family}
     >
       {children}
-      <span className="tooltip">{label}</span>
+      <span className='tooltip'>{label}</span>
     </TooltipContainer>
   );
 };

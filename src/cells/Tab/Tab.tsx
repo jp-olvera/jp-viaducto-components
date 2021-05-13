@@ -13,21 +13,12 @@ import { ConfigContext } from '../../providers';
  * @param {function} onClick function to call when tab is clicked
  */
 
-// interface TabInterface {
-//   text?: string;
-//   color?: string;
-//   type?: string;
-//   horizontalSpacing?: null | string;
-//   verticalSpacing?: string;
-//   onClick: Function;
-// }
-
 const Tab = ({
   text = '',
-  type='tab',
+  type = 'tab',
   horizontalSpacing = 'sm',
   verticalSpacing = 'sm',
-  onClick = () => { },
+  onClick,
   icon = null,
   lead = false,
   iconSpacing = 'xs',
@@ -35,10 +26,10 @@ const Tab = ({
 }: any) => {
   const { configuration } = useContext(ConfigContext);
 
-  const color= configuration.colors[type].default;
-  const hoverColor= configuration.colors[type].click;
-  const activeColor= configuration.colors[type].hover;
-  const activeTextColor= configuration.colors[type].hover;
+  const color = configuration.colors[type].default;
+  const hoverColor = configuration.colors[type].click;
+  const activeColor = configuration.colors[type].hover;
+  const activeTextColor = configuration.colors[type].hover;
   return (
     <StyledTab
       color={color}
@@ -50,22 +41,23 @@ const Tab = ({
       verticalSpacing={verticalSpacing}
       configuration={configuration}
       iconSpacing={iconSpacing}
-
       lead={lead}
       {...rest}
     >
-      <div className="tab-text" style={{display: 'flex', alignItems: 'center'}}>
-
-      {icon !== null && icon !== '' && lead && (
-        <span className="tab-icon-span">{icon}</span>
+      <div
+        className='tab-text'
+        style={{ display: 'flex', alignItems: 'center' }}
+      >
+        {icon !== null && icon !== '' && lead && (
+          <span className='tab-icon-span'>{icon}</span>
         )}
-      <Paragraph size="lg" color="darkGray">
-        {text}
-      </Paragraph>
-      {icon !== null && icon !== '' && !lead && (
-        <span className="tab-icon-span">{icon}</span>
+        <Paragraph size='lg' color='darkGray'>
+          {text}
+        </Paragraph>
+        {icon !== null && icon !== '' && !lead && (
+          <span className='tab-icon-span'>{icon}</span>
         )}
-        </div>
+      </div>
     </StyledTab>
   );
 };

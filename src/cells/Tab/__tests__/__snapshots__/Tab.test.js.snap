@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tab/> should render default props 1`] = `
+<div>
+  <button
+    class="StyledTab-sc-7ood0w-0 fyMQXT"
+    color="#F1F1F1"
+  >
+    <div
+      class="tab-text"
+      style="display: flex; align-items: center;"
+    >
+      <p
+        class="StyledParagraph-dbd4lw-0 bHJWOX"
+        color="darkGray"
+      />
+    </div>
+  </button>
+</div>
+`;

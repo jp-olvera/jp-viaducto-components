@@ -29,12 +29,12 @@ interface DropdownInterface {
 
 const Dropdown = ({
   activeColor = '#ffd6ce',
-  border = 'none',
+  border,
   defaultText = 'Buscar por...',
-  family = 'Roboto',
+  family,
   options = [],
   size = 'default',
-  height = 'default',
+  height,
 }: DropdownInterface) => {
   const { configuration } = useContext(ConfigContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +59,7 @@ const Dropdown = ({
       value={button}
       key={button}
       onClick={() => select(button, index)}
-      type="button"
+      type='button'
     >
       {button}
     </button>
@@ -95,30 +95,30 @@ const Dropdown = ({
       <Activator
         configuration={configuration}
         family={family}
-        type="button"
+        type='button'
         border={border}
-        aria-haspopup="true"
-        aria-controls="dropdown1"
-        aria-selected="true"
-        data-testid="dropdown-activator"
-        id="dropdown-activator"
+        aria-haspopup='true'
+        aria-controls='dropdown1'
+        aria-selected='true'
+        data-testid='dropdown-activator'
+        id='dropdown-activator'
         onClick={clickHandler}
         ref={activatorRef}
       >
-        <Hideable visibleOn="sm">
-          <span className="activator-text" ref={selectedRef}>
+        <Hideable visibleOn='sm'>
+          <span className='activator-text' ref={selectedRef}>
             {defaultText}
           </span>
         </Hideable>
-        <img className="activator-icon" src={Icon} alt="" />
+        <img className='activator-icon' src={Icon} alt='' />
       </Activator>
       <ItemsContainer
-        id="dropdown1"
+        id='dropdown1'
         className={isOpen ? 'active' : ''}
-        data-testid="dropdown-itemList"
-        data-cy="dropdown-itemList"
+        data-testid='dropdown-itemList'
+        data-cy='dropdown-itemList'
         ref={dropdownListRef}
-        aria-label="Configuraciones"
+        aria-label='Configuraciones'
         activeColor={activeColor}
         configuration={configuration}
       >

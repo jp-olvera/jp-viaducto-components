@@ -43,7 +43,7 @@ const Search = ({
   placeholder = 'Introduce el término de búsqueda',
   family = 'Roboto',
   colors = defaultColors,
-  handleSearch = () => {},
+  handleSearch,
   options = [],
   id = 'search',
   activeColor = '#ffd6ce',
@@ -62,7 +62,7 @@ const Search = ({
       elevationDirection={elevationDirection}
     >
       <input
-        type="text"
+        type='text'
         placeholder={placeholder}
         id={id}
         data-testid={`input-${id}`}

@@ -1,4 +1,5 @@
 /* eslint-env jest */
+
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '../../../test-utils';
@@ -32,5 +33,37 @@ describe('<Tooltip/>', () => {
       </Tooltip>,
     );
     expect(screen.queryByText(props.label)).not.toBeVisible();
+  });
+  test('should render bottom tooltip', () => {
+    render(
+      <Tooltip {...props} position='bottom'>
+        <Container />
+      </Tooltip>,
+    );
+    expect(screen.queryByText(props.label)).toBeVisible();
+  });
+  test('should render left tooltip', () => {
+    render(
+      <Tooltip {...props} position='left'>
+        <Container />
+      </Tooltip>,
+    );
+    expect(screen.queryByText(props.label)).toBeVisible();
+  });
+  test('should render right tooltip', () => {
+    render(
+      <Tooltip {...props} position='right'>
+        <Container />
+      </Tooltip>,
+    );
+    expect(screen.queryByText(props.label)).toBeVisible();
+  });
+  test('should render default tooltip', () => {
+    const { container } = render(
+      <Tooltip>
+        <Container />
+      </Tooltip>,
+    );
+    expect(container).toBeVisible();
   });
 });

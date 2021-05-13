@@ -14,11 +14,11 @@ const ProgressBar = ({
   <StyledProgressBar
     max={totalSteps}
     value={completedSteps}
-    data-testid="loader"
+    data-testid='loader'
   >
-    <div className="progress-bar-container">
-      <div className="progress-bar stripes animated reverse slower">
-        <span className="progress-bar-inner" />
+    <div className='progress-bar-container'>
+      <div className='progress-bar stripes animated reverse slower'>
+        <span className='progress-bar-inner' />
       </div>
     </div>
   </StyledProgressBar>

@@ -48,7 +48,8 @@ export const Wrapper = styled.div<WrapperInterface>`
       pointer-events: none;
       user-select: none;
       & :not(:placeholder-shown) ~ .label {
-        top: ${({ border }) => (border === 'overlap' ? ' -0.375rem' : '0')};
+        background: transparent;
+        top: ${({ border }) => (border === 'overlap' ? ' -0.375rem' : border === 'outside' ? '-0.9rem' : '0')};
         font-size: 0.688rem;
         line-height: 0.688rem;
         border: none;
@@ -75,15 +76,15 @@ export const Wrapper = styled.div<WrapperInterface>`
 
   .input:focus ~ .label,
   .input:valid ~ .label {
-    top: ${({ border }) => (border === 'overlap' ? ' -0.375rem' : '0')};
+    top: ${({ border }) => (border === 'overlap' ? ' -0.375rem' : border === 'outside' ? '-0.9rem' : '0')};
     font-size: 0.688rem;
     line-height: 0.688rem;
     border: none;
     color: #000;
     padding: 0;
     outline: none;
-    left: ${({ configuration, hasIcon }) =>
-      hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
+    left: ${({ configuration, hasIcon, border }) =>
+      hasIcon && border !== 'outside' ? configuration.spacing.lg : configuration.spacing.xs};
     .icon-required {
       display: inline-flex;
       padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -176,7 +177,6 @@ const getBorderStyle = (border: string, color: string) => {
         border-bottom: 0.063rem solid ${color};
       `;
       break;
-    case 'full':
     case 'overlap':
     default:
       borderStyle = css`

@@ -80,8 +80,9 @@ const Toaster = ({
       isActive={isActive}
       top={top}
       right={right}
+      timingFunction={configuration.transitionTimingFunction}
     >
-      <div className="toaster-header">
+      <div className='toaster-header'>
         <span
           style={{
             marginRight: configuration.spacing.sm,
@@ -91,28 +92,28 @@ const Toaster = ({
         >
           <TypeIcon
             type={type}
-            stroke="white"
+            stroke='white'
             border={2}
-            width="18px"
-            height="18px"
+            width='18px'
+            height='18px'
           />
         </span>
-        <Paragraph size="sm" color="white">
+        <Paragraph size='sm' color='white'>
           {title}
         </Paragraph>
         <div style={{ marginLeft: 'auto' }}>
           <BareButton
-            data-testid="close-button"
+            data-testid='close-button'
             onClick={() => {
               setIsActive(false);
             }}
           >
-            <Close stroke="white" strokeWidth={2} width="18px" height="18px" />
+            <Close stroke='white' strokeWidth={2} width='18px' height='18px' />
           </BareButton>
         </div>
       </div>
-      <div className="toaster-message">
-        <Paragraph size="sm" weight="bold">
+      <div className='toaster-message'>
+        <Paragraph size='sm' weight='bold'>
           {text}
         </Paragraph>
       </div>

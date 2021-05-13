@@ -26,7 +26,7 @@ const defaultColors = {
  */
 const Button = ({
   colors = null,
-  height = 'default',
+  height,
   icon = null,
   label = '',
   lead = false,
@@ -56,11 +56,11 @@ const Button = ({
       {...rest}
     >
       {icon !== null && icon !== '' && lead && (
-        <span className="button-icon-span">{icon}</span>
+        <span className='button-icon-span'>{icon}</span>
       )}
       <span>{label}</span>
       {icon !== null && icon !== '' && !lead && (
-        <span className="button-icon-span">{icon}</span>
+        <span className='button-icon-span'>{icon}</span>
       )}
     </StyledButton>
   );

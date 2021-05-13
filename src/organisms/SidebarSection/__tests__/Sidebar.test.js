@@ -1,3 +1,5 @@
+/* eslint-env jest */
+
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
@@ -25,7 +27,7 @@ describe('<SidebarSection/>', () => {
       <SidebarSection
         items={items}
         separator
-        title="Comida"
+        title='Comida'
         isDropdown
         isMenu={false}
         lead
@@ -38,7 +40,7 @@ describe('<SidebarSection/>', () => {
       <SidebarSection
         items={items}
         separator
-        title="Comida"
+        title='Comida'
         isDropdown={false}
         isMenu={false}
         lead
@@ -51,7 +53,7 @@ describe('<SidebarSection/>', () => {
       <SidebarSection
         items={items}
         separator
-        title="Comida"
+        title='Comida'
         isDropdown
         isMenu={false}
         lead
@@ -66,14 +68,19 @@ describe('<SidebarSection/>', () => {
       <SidebarSection
         items={items}
         separator
-        title="Comida"
+        title='Comida'
         isDropdown={false}
         isMenu
         lead
       />,
     );
-    expect(screen.queryByText('menu')).not.toBeInTheDocument();
     fireEvent.click(screen.getByText('Comida'));
-    expect(screen.getByText('menu')).toBeVisible();
+    expect(screen.getByText('Comida')).toBeVisible();
+  });
+  test('should render with default props', () => {
+    const { container } = render(
+      <SidebarSection />,
+    );
+    expect(container).toMatchSnapshot();
   });
 });

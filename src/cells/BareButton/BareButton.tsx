@@ -22,7 +22,7 @@ const StyledButton = styled.button`
  */
 
 const BareButton = ({ children, ...rest }: any) => (
-  <StyledButton type="button" {...rest}>
+  <StyledButton type='button' {...rest}>
     {children}
   </StyledButton>
 );

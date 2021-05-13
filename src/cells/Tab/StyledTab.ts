@@ -9,7 +9,6 @@ interface StyledTabI {
   readonly configuration: any;
 	readonly lead: boolean;
   readonly iconSpacing: string;
-	
 }
 
 const StyledTab = styled.button<StyledTabI>`

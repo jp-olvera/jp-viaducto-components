@@ -16,21 +16,21 @@ const CircleLoader = ({
   currentProgress = 0,
   radius = 0,
 }: CircleLoaderInterface) => (
-  <StyledLoader data-testid="loader">
-    <svg width="25px" height="25px">
+  <StyledLoader data-testid='loader'>
+    <svg width='25px' height='25px'>
       <circle
         strokeWidth={strokeWidth}
-        stroke="#CECECE"
-        fill="transparent"
+        stroke='#CECECE'
+        fill='transparent'
         r={radius}
         cx={12.5}
         cy={12.5}
       />
       <circle
-        className="progress-ring__circle"
+        className='progress-ring__circle'
         strokeWidth={strokeWidth}
-        fill="transparent"
-        stroke="#a7ffba"
+        fill='transparent'
+        stroke='#a7ffba'
         strokeDasharray={`${circumference} ${circumference}`}
         r={radius}
         cx={12.5}
@@ -40,10 +40,10 @@ const CircleLoader = ({
         }}
       />
       <circle
-        className="progress-ring__circle"
+        className='progress-ring__circle'
         strokeWidth={strokeWidth}
-        fill="transparent"
-        stroke="#3AE25F"
+        fill='transparent'
+        stroke='#3AE25F'
         strokeDasharray={`${circumference} ${circumference}`}
         style={{
           strokeDashoffset: currentProgress,

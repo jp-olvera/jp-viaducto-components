@@ -3,6 +3,7 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/react';
+import { Help } from 'react-ikonate';
 import { render, screen } from '../../../test-utils';
 import { Anchor } from '..';
 
@@ -10,13 +11,13 @@ describe('<Anchor/>', () => {
   test('should render properly', () => {
     render(
       <Anchor
-        label="Link"
-        href="#"
-        color="red"
-        icon="😎"
-        family="Manrope"
-        size="md"
-        lead={false}
+        label='Link'
+        href='#'
+        color='red'
+        icon={<Help />}
+        family='Manrope'
+        size='md'
+        lead
       />,
     );
     expect(screen.getByText(/Link/g)).toBeVisible();
@@ -25,11 +26,11 @@ describe('<Anchor/>', () => {
   test('render with no icon', () => {
     render(
       <Anchor
-        label="Link"
-        href="#"
-        color="red"
-        family="Manrope"
-        size="md"
+        label='Link'
+        href='#'
+        color='red'
+        family='Manrope'
+        size='md'
         lead={false}
       />,
     );

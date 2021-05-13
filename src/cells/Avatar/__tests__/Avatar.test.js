@@ -1,3 +1,5 @@
+/* eslint-env jest */
+
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/react';
@@ -6,11 +8,11 @@ import { Avatar } from '..';
 
 describe('<Search/>', () => {
   test('should render properly', () => {
-    render(<Avatar src="123" />);
+    render(<Avatar src='123' />);
     expect(screen.queryByAltText('123')).toBeVisible();
   });
   test('should render another image', () => {
-    render(<Avatar src="pathtofile" />);
+    render(<Avatar src='pathtofile' />);
     expect(screen.queryByAltText('pathtofile')).toBeVisible();
   });
 });

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { SIZE, FONT_SIZE } from './constants';
 
 interface StyledButtonInterface {
-  readonly horizontalSpacing: null | string;
+  readonly horizontalSpacing: string;
   readonly iconSpacing: string;
   readonly label?: string;
   readonly size?: string;
@@ -31,13 +31,9 @@ const StyledButton = styled.button<StyledButtonInterface>`
   transition: background-color 0.15s ease-in-out;
   text-align: center;
   vertical-align: middle;
-  ${({ height }) =>
-    height !== undefined
-      ? css`
-          height: ${height};
-        `
-      : css``};
-  ${(props) => getPadding(props)}
+
+  ${(props) => getLateralPadding(props)}
+  ${(props) => getHeight(props)}
   ${(props) => getFontStyle(props)}
     &:disabled {
     background-color: lightgrey;
@@ -87,7 +83,7 @@ const StyledButton = styled.button<StyledButtonInterface>`
   }
 `;
 
-const getPadding = (props) => {
+const getLateralPadding = (props) => {
   let padding = '';
   if (props.horizontalSpacing !== null) {
     padding = `0 ${props.configuration.spacing[props.horizontalSpacing]}`;
@@ -125,6 +121,27 @@ const getPadding = (props) => {
   `;
 };
 
+const getHeight = (props) => {
+  let height = '2.488rem';
+  if (props.height !== undefined) {
+    height = `${props.height}`;
+  } else {    
+    switch (props.size) {
+      case SIZE.small:
+        height = '2.073rem';
+        break;
+      case SIZE.large:
+        height = '2.986rem';
+        break;
+      default:
+        break;
+    }
+  }
+  return css`
+    height: ${height};
+  `;
+};
+
 const getFontStyle = (props) => {
   let fontSize = FONT_SIZE.default;
   switch (props.size) {
@@ -142,4 +159,5 @@ const getFontStyle = (props) => {
     font-size: ${fontSize};
   `;
 };
+
 export default StyledButton;

@@ -41,16 +41,21 @@ const SidebarSection = ({
     }
   };
 
-  const itemsList = items.map(({ label, url }) => (
-    <li className="b" role="button" tabIndex={0} key={url}>
-      <>
-        <Spacer size="sm" />
-        <Spacer size="xs" direction="horizontal" />
-        {label}
-        <Spacer size="sm" />
-      </>
-    </li>
-  ));
+  const itemsList = () => {
+    if (items !== null && items && items.length > 0) {
+      return items.map(({ label, url }) => (
+        <li className='b' role='button' tabIndex={0} key={url}>
+          <>
+            <Spacer size='sm' />
+            <Spacer size='xs' direction='horizontal' />
+            {label}
+            <Spacer size='sm' />
+          </>
+        </li>
+      ));
+    }
+    return [];
+  };
 
   useEffect(() => {
     if (isMenu && isActive && backRefButton.current) {
@@ -70,44 +75,44 @@ const SidebarSection = ({
       <div className={dropClassName}>
         {isDropdown || isMenu ? (
           <li
-            className="b"
+            className='b'
             onClick={handleActive}
             tabIndex={0}
             ref={activatorRef}
             onKeyUp={handleActive}
           >
-            <Spacer size="sm" />
+            <Spacer size='sm' />
             <span className={`${lead ? 'd' : 'c'}`}>
-              <Spacer size="micro" direction="horizontal" />
+              <Spacer size='micro' direction='horizontal' />
               {lead && <Paragraph>🥵</Paragraph>}
-              {lead && <Spacer size="sm" direction="horizontal" />}
-              <Paragraph color="#2e2a2a" weight="600">
+              {lead && <Spacer size='sm' direction='horizontal' />}
+              <Paragraph color='#2e2a2a' weight='600'>
                 {title}
               </Paragraph>
-              {!lead && <Paragraph margin="0 0 0 auto">🥵</Paragraph>}
+              {!lead && <Paragraph margin='0 0 0 auto'>🥵</Paragraph>}
             </span>
-            <Spacer size="sm" />
+            <Spacer size='sm' />
           </li>
         ) : (
           title !== null && (
             <li>
-              <Paragraph color="#2e2a2a" weight="600">
+              <Paragraph color='#2e2a2a' weight='600'>
                 {title}
               </Paragraph>
             </li>
           )
         )}
-        {!isDropdown && !isMenu ? <ul>{itemsList}</ul> : null}
+        {!isDropdown && !isMenu ? <ul>{itemsList()}</ul> : null}
         {isDropdown && isActive ? (
-          <ul className="nested-list">{itemsList}</ul>
+          <ul className='nested-list'>{itemsList()}</ul>
         ) : null}
       </div>
       {isMenu && isActive ? (
         <ul className={`submenu ${isActive ? 'active' : ''}`}>
-          <button onClick={handleActive} ref={backRefButton} type="button">
+          <button onClick={handleActive} ref={backRefButton} type='button'>
             {'←'} {title}
           </button>
-          <Spacer size="xs" />
+          <Spacer size='xs' />
           {itemsList}
         </ul>
       ) : null}

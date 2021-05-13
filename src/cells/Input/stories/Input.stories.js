@@ -7,7 +7,7 @@ export default {
   component: Input,
   argTypes: {
     border: {
-      options: ['overlap', 'bottom', 'default'],
+      options: ['outside', 'overlap', 'bottom', 'default'],
       control: {
         type: 'select',
       },

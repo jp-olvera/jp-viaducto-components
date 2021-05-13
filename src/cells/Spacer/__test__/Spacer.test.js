@@ -1,3 +1,5 @@
+/* eslint-env jest */
+
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render } from '../../../test-utils';
@@ -6,7 +8,7 @@ import { Spacer } from '..';
 
 describe('<Spacer/>', () => {
   test('should render properly', () => {
-    const { container } = render(<Spacer sb="#000" />);
+    const { container } = render(<Spacer sb='#000' />);
     expect(container).not.toBeNull();
   });
 
@@ -16,7 +18,7 @@ describe('<Spacer/>', () => {
   });
 
   test('should render Spacer horizontal', () => {
-    const { container } = render(<Spacer direction="horizontal" />);
+    const { container } = render(<Spacer direction='horizontal' />);
     expect(container).not.toBeNull();
   });
 });

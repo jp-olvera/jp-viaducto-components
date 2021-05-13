@@ -121,20 +121,16 @@ export const ItemsContainer = styled.div<ItemsContainerInterface>`
 `;
 
 const getBorder = (borders: any = 'none') => {
-  if (borders === 'none')
+  if (borders === 'none' || borders === null)
     return css`
       border: none;
     `;
-
   var border = '';
-  if (borders.top !== '' || borders.top !== null)
-    border += `border-top: ${borders.top || 'none'}; `;
-  if (borders.right !== '' || borders.right !== null)
-    border += `border-right: ${borders.right || 'none'}; `;
-  if (borders.bottom !== '' || borders.bottom !== null)
-    border += `border-bottom: ${borders.bottom || 'none'}; `;
-  if (borders.left !== '' || borders.left !== null)
-    border += `border-left: ${borders.left || 'none'}; `;
+  border += `border-top: ${borders.top || 'none'}; `;
+  border += `border-right: ${borders.right || 'none'}; `;
+  border += `border-bottom: ${borders.bottom || 'none'}; `;
+  border += `border-left: ${borders.left || 'none'}; `;
+    
   return css`
     ${border}
   `;

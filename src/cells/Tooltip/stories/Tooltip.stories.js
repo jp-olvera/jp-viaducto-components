@@ -33,12 +33,12 @@ const Template = (args) => (
     >
       <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
         <Tooltip {...args}>
-          <Input label="Input" id="example1" size="lg" />
+          <Input label='Input' id='example1' size='lg' />
         </Tooltip>
       </div>
       <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
         <Tooltip {...args}>
-          <Input label="Input" id="example2" />
+          <Input label='Input' id='example2' />
         </Tooltip>
       </div>
     </div>

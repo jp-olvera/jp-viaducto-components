@@ -41,7 +41,7 @@ const Input = ({
   label = '',
   border = 'default',
   disabled = false,
-  type = 'text',
+  type,
   icon = null,
   required = true,
   isInvalid = false,
@@ -63,9 +63,11 @@ const Input = ({
     setInputType(type);
   }, []);
 
-  const toggleView = () => {
-    setOpen(!open);
-    setInputType((actual) => (actual === 'password' ? 'text' : 'password'));
+  const toggleView = (ev) => {
+    if (ev.type === 'click' || ev.keyCode === 13 || ev.keyCode === 32) {
+      setOpen(!open);
+      setInputType((actual) => (actual === 'password' ? 'text' : 'password'));
+    }
   };
   const change = (ev) => {
     setInputValue(ev.target.value.length);
@@ -96,10 +98,10 @@ const Input = ({
         borderColor={borderColor}
         iconColor={iconColor}
       >
-        {icon !== null && <span className="icon">{getIcon(icon)}</span>}
+        {icon !== null && <span className='icon'>{getIcon(icon)}</span>}
 
         <input
-          className="input"
+          className='input'
           onChange={change}
           type={open ? inputType : type}
           id={id}
@@ -109,16 +111,23 @@ const Input = ({
           {...rest}
         />
 
-        <label className="label" htmlFor={id}>
+        <label className='label' htmlFor={id}>
           <span>{label}</span>
           {required && (
-            <span className="icon-required">{getIcon('required', '10px')}</span>
+            <span className='icon-required'>{getIcon('required', '10px')}</span>
           )}
         </label>
-        {isInvalid && <span className="is-invalid">{getIcon('warning')}</span>}
-        {isValid && <span className="is-valid">{getIcon('ok')}</span>}
+        {isInvalid && <span className='is-invalid'>{getIcon('warning')}</span>}
+        {isValid && <span className='is-valid'>{getIcon('ok')}</span>}
         {type === 'password' && (
-          <span className="icon-helper" onClick={toggleView} role="button" tabIndex={0}>
+          <span
+            className='icon-helper'
+            data-testid='type-switch'
+            onClick={toggleView}
+            onKeyUp={toggleView}
+            role='button'
+            tabIndex={0}
+          >
             {' '}
             {inputType === 'password' ? getIcon('eye-closed') : getIcon('eye')}
           </span>
