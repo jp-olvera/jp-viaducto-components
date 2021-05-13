@@ -1,6 +1,6 @@
 {
   "name": "@jp-olvera/jp-viaducto-components",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Los componentes de este repositorio están diseñados particular de los proyectos de viaducto",
   "main": "dist/index.js",
   "scripts": {
@@ -73,7 +73,9 @@
     "typescript": "^4.2.4",
     "url-loader": "^4.1.1",
     "webpack": "^5.22.0",
-    "webpack-cli": "^4.5.0"
+    "webpack-cli": "^4.5.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "files": [
     "dist"
