@@ -37,6 +37,7 @@ Default.args = {
   size: 'md',
   lead: false,
   verticalAlign: 'baseline',
+  transition: 'ease'
 };
 
 export const Lead = Template.bind({});
@@ -50,6 +51,7 @@ Lead.args = {
   family: 'Manrope',
   size: 'md',
   verticalAlign: 'baseline',
+  transition: 'ease'
 };
 
 export const NoIcon = Template.bind({});
@@ -63,4 +65,5 @@ NoIcon.args = {
   lead: false,
   icon: '',
   verticalAlign: 'baseline',
+  transition: 'ease'
 };

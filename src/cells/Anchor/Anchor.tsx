@@ -11,6 +11,7 @@ interface AnchorInterface {
   color?: string;
   icon?: any;
   lead?: boolean;
+  transition?: string;
 }
 
 /**

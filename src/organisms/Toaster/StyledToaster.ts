@@ -10,7 +10,7 @@ interface StyledToasterI {
   readonly right: boolean;
   readonly configuration: any;
   readonly ref: any;
-  readonly timingFunction: string;
+  readonly transition?: string;
 }
 const StyledToaster = styled.div<StyledToasterI>`
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
@@ -28,11 +28,7 @@ const StyledToaster = styled.div<StyledToasterI>`
   width: 100%;
   max-width: 454px;
 
-  transition: ${({ isActive, timingFunction }) =>
-    isActive
-      ? `transform 0.3s ${timingFunction}, opacity 0.3s ${timingFunction},visibility 0.3s ${timingFunction};`
-      : `transform 0.3s ${timingFunction}, opacity 0s ${timingFunction} 0.3s,visibility 0s ${timingFunction} 0.3s;`};
-
+  transition: all .2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
   .toaster-header {
     align-items: center;
     box-sizing: border-box;

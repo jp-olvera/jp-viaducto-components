@@ -82,6 +82,7 @@ Default.args = {
   horizontalSpacing: 'sm',
   verticalSpacing: 'sm',
   type: 'tab',
+  transition: 'ease',
 };
 export const WithIcon = Template.bind({});
 
@@ -93,5 +94,6 @@ WithIcon.args = {
   type: 'tab',
   icon: Icon({ icon: '🥵' }).props.children,
   lead: false,
+  transition: 'ease',
   iconSpacing: 'xs',
 };

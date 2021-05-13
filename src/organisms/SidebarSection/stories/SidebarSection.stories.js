@@ -41,4 +41,5 @@ Default.args = {
   isDropdown: false,
   isMenu: false,
   lead: false,
+  transition: 'ease'
 };

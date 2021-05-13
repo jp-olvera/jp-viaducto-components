@@ -6,15 +6,16 @@ interface TooltipContainerI {
   readonly active: boolean;
   readonly position: string;
   readonly configuration: any;
+  readonly transition?: string;
 }
 export const TooltipContainer = styled.div<TooltipContainerI>`
-  transition: all 0.05s;
+  transition: all 0.05s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
   font-family: ${({ family }) =>
     family ? `'${family}', sans-serif` : 'inherit'};
   position: relative;
   display: inline-block;
   & .tooltip {
-    transition: all 0.05s;
+    transition: all 0.05s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     background-color: ${({ color }) => color};
     text-align: center;
     padding: 0.313rem;

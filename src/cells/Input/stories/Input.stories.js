@@ -59,6 +59,7 @@ Text.args = {
   isValid: false,
   required: false,
   disabled: false,
+  transition: 'ease'
 };
 
 export const Password = Template.bind({});
@@ -72,4 +73,5 @@ Password.args = {
   isValid: false,
   required: true,
   disabled: false,
+  transition: 'ease'
 };

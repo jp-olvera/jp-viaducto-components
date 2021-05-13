@@ -9,6 +9,7 @@ interface StyledTabI {
   readonly configuration: any;
 	readonly lead: boolean;
   readonly iconSpacing: string;
+  readonly transition?: string;
 }
 
 const StyledTab = styled.button<StyledTabI>`
@@ -22,7 +23,7 @@ const StyledTab = styled.button<StyledTabI>`
 	
   ${(props) => getPaddingTransition(props)};
 	.tab-text{
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     transform: translateY(0);
 	}
 	.tab-icon-span{
@@ -41,7 +42,7 @@ const StyledTab = styled.button<StyledTabI>`
   }
 
   & :hover {
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     & :after {
       content: '';
       height: 3px;
@@ -52,7 +53,7 @@ const StyledTab = styled.button<StyledTabI>`
       background-color: ${({ hoverColor }) => hoverColor};
     }
     & .tab-text{
-      transition: all 0.2s ease-in-out;
+      transition: all 0.2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
       transform: translateY(-${({ configuration, verticalSpacing }) => configuration.spacing[verticalSpacing] || configuration.spacing.sm});
     }
   }
@@ -62,13 +63,13 @@ const StyledTab = styled.button<StyledTabI>`
       color: ${({ activeTextColor }) => activeTextColor};
 		}
     .tab-text {
-      transition: all 0.2s ease-in;
+      transition: all 0.2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
       transform: translateY(-${({ configuration, verticalSpacing }) => configuration.spacing[verticalSpacing] || configuration.spacing.sm})
     }
 
     &:after {
       content: "";
-      transition: all 0.2s ease-in;
+      transition: all 0.2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
       height: 4px;
       width: 100%;
       position: absolute;
@@ -82,7 +83,7 @@ const StyledTab = styled.button<StyledTabI>`
 const getPaddingTransition = (props) => {
   return css`
       padding: 0 ${props.configuration.spacing[props.horizontalSpacing] || props.configuration.spacing.none};
-      transition: padding 0.2s ease-in;
+      transition: padding 0.2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     `;
 };
 export default StyledTab;

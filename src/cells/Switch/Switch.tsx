@@ -15,6 +15,7 @@ interface SwitchInterface {
   size: string;
   disabled: boolean;
   id: string;
+  transition?: string;
 }
 
 const Switch = ({
@@ -22,6 +23,7 @@ const Switch = ({
   size = 'lg',
   disabled = false,
   id,
+  ...rest
 }: SwitchInterface) => {
   const { configuration } = useContext(ConfigContext);
   const [check, setCheck] = useState(false);
@@ -34,6 +36,7 @@ const Switch = ({
       disabled={disabled}
       data-testid={id}
       check={check}
+      {...rest}
     >
       <input
         type="checkbox"

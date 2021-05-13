@@ -38,7 +38,7 @@ export const Wrapper = styled.div<WrapperInterface>`
     font-size: 1rem;
     padding: 0;
     padding-left: ${({ configuration, hasIcon }) =>
-      hasIcon ? 0 : configuration.spacing.xs};
+    hasIcon ? 0 : configuration.spacing.xs};
     & ::placeholder {
       color: transparent;
     }
@@ -57,7 +57,7 @@ export const Wrapper = styled.div<WrapperInterface>`
         padding: 0;
         outline: none;
         left: ${({ configuration, hasIcon }) =>
-          hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
+    hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
         .icon-required {
           display: inline-flex;
           padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -71,7 +71,7 @@ export const Wrapper = styled.div<WrapperInterface>`
     display: inline-flex;
     align-items: center;
     color: ${({ iconColor, configuration }) =>
-      configuration.text[iconColor] || iconColor};
+    configuration.text[iconColor] || iconColor};
   }
 
   .input:focus ~ .label,
@@ -84,7 +84,7 @@ export const Wrapper = styled.div<WrapperInterface>`
     padding: 0;
     outline: none;
     left: ${({ configuration, hasIcon, border }) =>
-      hasIcon && border !== 'outside' ? configuration.spacing.lg : configuration.spacing.xs};
+    hasIcon && border !== 'outside' ? configuration.spacing.lg : configuration.spacing.xs};
     .icon-required {
       display: inline-flex;
       padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -95,7 +95,7 @@ export const Wrapper = styled.div<WrapperInterface>`
     background: inherit;
     color: #808080;
     left: ${({ configuration, hasIcon }) =>
-      hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
+    hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
     right: initial;
     font-size: 1rem;
     line-height: 1rem;
@@ -103,8 +103,7 @@ export const Wrapper = styled.div<WrapperInterface>`
     position: absolute;
     pointer-events: none;
     user-select: none;
-    transition: top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
-      font-size 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all .2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     .icon-required {
       padding-left: ${({ configuration }) => configuration.spacing.nano};
       margin-left: auto;
@@ -134,7 +133,7 @@ export const Wrapper = styled.div<WrapperInterface>`
 
   .icon-helper {
     color: ${({ iconColor, configuration }) =>
-      configuration.text[iconColor] || iconColor};
+    configuration.text[iconColor] || iconColor};
     padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;

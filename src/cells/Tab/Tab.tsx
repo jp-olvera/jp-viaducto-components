@@ -22,6 +22,7 @@ const Tab = ({
   icon = null,
   lead = false,
   iconSpacing = 'xs',
+  transition,
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
@@ -42,6 +43,7 @@ const Tab = ({
       configuration={configuration}
       iconSpacing={iconSpacing}
       lead={lead}
+      transition={transition}
       {...rest}
     >
       <div

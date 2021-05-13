@@ -10,6 +10,7 @@ interface ProgressInterface {
   completedSteps: number;
   currentStep: number;
   loader: string;
+  transition?: string;
 }
 
 const Progress = ({
@@ -17,6 +18,7 @@ const Progress = ({
   completedSteps = 0,
   currentStep = 0,
   loader = 'circle',
+  ...rest
 }: ProgressInterface) => {
   const strokeWidth = 2;
   const width = 25;
@@ -56,16 +58,17 @@ const Progress = ({
         actualProgress={actualProgress}
         currentProgress={currentProgress}
         circumference={circumference}
+        {...rest}
       />
     );
   }
   if (loader === 'progress') {
     return (
-      <ProgressBar totalSteps={totalSteps} completedSteps={completedSteps} />
+      <ProgressBar totalSteps={totalSteps} completedSteps={completedSteps} {...rest} />
     );
   }
   if (loader === 'steps') {
-    return <StepLoader completed={completedSteps} totalSteps={totalSteps} />;
+    return <StepLoader completed={completedSteps} totalSteps={totalSteps} {...rest} />;
   }
   return (
     <CircleLoader
@@ -74,6 +77,7 @@ const Progress = ({
       actualProgress={actualProgress}
       currentProgress={currentProgress}
       circumference={circumference}
+      {...rest}
     />
   );
 };

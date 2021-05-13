@@ -21,6 +21,7 @@ interface SidebarSectionInterface {
   isDropdown: boolean;
   isMenu: boolean;
   lead: boolean;
+  transition?: string;
 }
 
 const SidebarSection = ({
@@ -30,6 +31,7 @@ const SidebarSection = ({
   isDropdown = false,
   isMenu = false,
   lead = false,
+  ...rest
 }: SidebarSectionInterface) => {
   const [isActive, setIsActive] = useState(false);
   const activatorRef = useRef<HTMLLIElement>(null);
@@ -44,7 +46,7 @@ const SidebarSection = ({
   const itemsList = () => {
     if (items !== null && items && items.length > 0) {
       return items.map(({ label, url }) => (
-        <li className='b' role='button' tabIndex={0} key={url}>
+        <li className='b' role='button' tabIndex={0} key={label}>
           <>
             <Spacer size='sm' />
             <Spacer size='xs' direction='horizontal' />
@@ -69,7 +71,7 @@ const SidebarSection = ({
   else if (isMenu) dropClassName = 'toggleMenu';
 
   return (
-    <StyledSidebarSection>
+    <StyledSidebarSection {...rest}>
       {separator && <hr />}
 
       <div className={dropClassName}>

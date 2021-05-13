@@ -15,6 +15,7 @@ interface DrawerInterface {
   children: any;
   elevation: number;
   elevationDirection: string;
+  transition?: string;
 }
 
 const Drawer = ({
@@ -22,6 +23,7 @@ const Drawer = ({
   children,
   elevation = 1,
   elevationDirection = '',
+  ...rest
 }: DrawerInterface) => {
   const [isActive, setIsActive] = useState(active);
   const { configuration } = useContext(ConfigContext);
@@ -38,6 +40,7 @@ const Drawer = ({
       configuration={configuration}
       elevation={elevation}
       elevationDirection={elevationDirection}
+      {...rest}
     >
       <div className="close">
         <BareButton onClick={handleActive}>X</BareButton>
