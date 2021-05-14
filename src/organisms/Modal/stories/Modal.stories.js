@@ -56,7 +56,7 @@ const Template = (args) => (
 
 const AnotherComponent = ({ label }) => (
   <div style={{ background: '#CECECE' }}>
-    <div style={{ background: '#CECECE' }}>{ label }</div>
+    <div style={{ background: '#CECECE' }}>{label}</div>
   </div>
 );
 
@@ -64,8 +64,8 @@ export const Default = Template.bind({});
 
 Default.args = {
   title: 'Aquí va el título de tu modal',
-  onReject: () => {},
-  onAccept: () => {},
+  onReject: () => { },
+  onAccept: () => { },
   active: true,
   acceptDisabled: false,
   rejectDisabled: false,
@@ -89,8 +89,8 @@ export const WithHeadComponent = Template.bind({});
 WithHeadComponent.args = {
   title: 'Aquí va el título de tu modal',
   active: true,
-  onReject: () => {},
-  onAccept: () => {},
+  onReject: () => { },
+  onAccept: () => { },
   headComponent: AnotherComponent({ label: 'This could be anything' }).props
     .children,
   acceptDisabled: false,
@@ -103,7 +103,7 @@ DisableClickOutside.args = {
   title: 'Aquí va el título de tu modal',
   active: true,
   onReject: null,
-  onAccept: () => {},
+  onAccept: () => { },
   allowClickOutside: false,
   acceptDisabled: false,
   rejectDisabled: false,

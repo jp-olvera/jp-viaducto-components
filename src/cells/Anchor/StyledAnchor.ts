@@ -9,6 +9,7 @@ interface AnchorProps {
   readonly size?: string;
   readonly verticalAlign?: string;
   readonly href?: string;
+  readonly transition?: string;
 }
 
 export const StyledAnchor = styled.a<AnchorProps>`
@@ -42,7 +43,7 @@ export const StyledAnchor = styled.a<AnchorProps>`
     display: inline-block;
     vertical-align: middle;
     margin-left: ${(props) => props.configuration.spacing.lg};
-    transition: transform 0.2s;
+    transition: transform 0.2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     height: 1em;
   }
 `;

@@ -8,11 +8,11 @@ import { Button } from '..';
 
 describe('<Button/>', () => {
   test('should render properly', () => {
-    render(<Button label='Continue' size='large' />);
+    render(<Button label='Continue' />);
   });
 
   test('should have focus', () => {
-    render(<Button label='Accept' size='small' horizontalSpacing='sm' />);
+    render(<Button label='Accept' size='large' />);
     const button = screen.getByRole('button');
     button.focus();
     expect(button).toHaveFocus();
@@ -22,7 +22,7 @@ describe('<Button/>', () => {
     const handleClick = jest.fn();
     const Icon = 'Icon';
     render(
-      <Button label='Accept' size='small' onClick={handleClick} icon={Icon} />,
+      <Button label='Accept' size='small' onClick={handleClick} icon={Icon} colors={null} block leftSpacing={null} />,
     );
     fireEvent.click(screen.getByRole('button'));
     expect(handleClick).toHaveBeenCalled();
@@ -31,7 +31,7 @@ describe('<Button/>', () => {
   test('should not call onClick function when is disabled', () => {
     const handleClick = jest.fn();
     const Icon = 'Icon';
-    render(<Button onClick={handleClick} disabled icon={Icon} size='large' />);
+    render(<Button onClick={handleClick} disabled label='label' size='default' leftSpacing={null} icon={Icon} />);
     fireEvent.click(screen.getByRole('button'));
     expect(handleClick).not.toHaveBeenCalled();
   });
@@ -44,7 +44,16 @@ describe('<Button/>', () => {
         onClick={mockFn}
         label='Button Test'
         icon={IconButton}
-        horizontalSpacing='small'
+        leftSpacing='sm'
+        size='small'
+        colors={{
+          default: '#937B3D',
+          hover: '#AD9043',
+          click: '#C3A24A',
+          text: '#000',
+        }}
+        height={undefined}
+        rightSpacing='sm'
       />,
     );
     expect(screen.queryByText('Button Test')).toBeInTheDocument();
@@ -52,7 +61,25 @@ describe('<Button/>', () => {
 
   test('should render button with isIconOnly props and lg padding props', () => {
     const OnlyIcon = 'OnlyIcon';
-    render(<Button icon={OnlyIcon} horizontalSpacing='large' size='large' height='48px' />);
+    render(<Button icon={OnlyIcon} leftSpacing='large' height={undefined} size='default' />);
+    expect(screen.queryByRole('button')).toBeInTheDocument();
+  });
+
+  test('should render button with isIconOnly props and lg padding props', () => {
+    const OnlyIcon = 'OnlyIcon';
+    render(<Button icon={OnlyIcon} leftSpacing='large' size='small' height='48px' />);
+    expect(screen.queryByRole('button')).toBeInTheDocument();
+  });
+
+  test('should render button with isIconOnly props and small props', () => {
+    const OnlyIcon = 'OnlyIcon';
+    render(<Button icon={OnlyIcon} size='large' />);
+    expect(screen.queryByRole('button')).toBeInTheDocument();
+  });
+
+  test('should render button with isIconOnly props and default props', () => {
+    const OnlyIcon = 'OnlyIcon';
+    render(<Button icon={OnlyIcon} size='large' />);
     expect(screen.queryByRole('button')).toBeInTheDocument();
   });
 

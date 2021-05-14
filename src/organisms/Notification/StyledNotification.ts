@@ -9,6 +9,7 @@ interface StyledNotificationI {
   readonly elevation: number;
   readonly elevationDirection: string;
   readonly top: boolean;
+  readonly transition?: string;
 }
 const StyledNotification = styled.div<StyledNotificationI>`
   align-items: center;
@@ -17,10 +18,7 @@ const StyledNotification = styled.div<StyledNotificationI>`
   box-sizing: border-box;
   display: flex;
   visibility: ${({ isActive }) => (isActive ? 'visible' : 'hidden')};
-  transition: ${({ isActive }) =>
-    isActive
-      ? 'transform 0.2s ease-in-out'
-      : 'transform 0.2s ease-in-out, visibility 0.2s linear 0.2s'};
+  transition: all 0.2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
   height: 48px;
   left: 0;
   padding: ${({ configuration }) =>

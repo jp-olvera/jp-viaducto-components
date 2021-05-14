@@ -39,6 +39,7 @@ interface CardInterface {
   onlyImage: boolean;
   elevation: number;
   elevationDirection: string;
+  transition?: string;
 }
 
 const Card = ({
@@ -50,6 +51,7 @@ const Card = ({
   onlyImage,
   elevation = 1,
   elevationDirection = '',
+  ...rest
 }: CardInterface) => {
   const { configuration } = useContext(ConfigContext);
   const normalCard = () => (
@@ -59,13 +61,14 @@ const Card = ({
       noImage={src === null}
       elevation={elevation}
       elevationDirection={elevationDirection}
+      {...rest}
     >
       {(src !== null || onlyImage) && (
         <img className='img' src={src} alt={src} />
       )}
 
       {content !== null && !onlyImage && (
-        <StyledContent noImage={src === null}>
+        <StyledContent noImage={src === null} {...rest}>
           <div className='fakeContent'>
             <div style={{ marginBottom: '1.063rem' }}>
               <Title family='Roboto' level='5' weight='500'>
@@ -118,6 +121,7 @@ const Card = ({
       configuration={configuration}
       elevation={elevation}
       elevationDirection={elevationDirection}
+      {...rest}
     >
       <div className='size main-description'>
         <div className='avatarWrapper'>
@@ -149,7 +153,7 @@ const Card = ({
           </div>
         </div>
       </div>
-      <Collapse collapse={collapse}>
+      <Collapse collapse={collapse} configuration={configuration} {...rest}>
         <div className='collapse'>
           <div className='size full-description'>
             <Paragraph family='Roboto' color='#6B6C6F' size='sm'>

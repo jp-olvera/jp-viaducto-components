@@ -53,4 +53,5 @@ Default.args = {
   type: 'success',
   elevation: 1,
   elevationDirection: 'top',
+  transition: 'ease',
 };

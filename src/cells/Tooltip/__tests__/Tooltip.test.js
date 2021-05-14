@@ -28,7 +28,7 @@ describe('<Tooltip/>', () => {
 
   test('should not be visible', () => {
     render(
-      <Tooltip {...props} active={false}>
+      <Tooltip {...props} family={null} active={false}>
         <Container />
       </Tooltip>,
     );

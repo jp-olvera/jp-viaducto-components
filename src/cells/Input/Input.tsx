@@ -35,6 +35,7 @@ interface InputInterface {
   borderColor: string;
   iconColor: string;
   value?: any;
+  transition?: string;
 }
 
 const Input = ({
@@ -97,6 +98,7 @@ const Input = ({
         configuration={configuration}
         borderColor={borderColor}
         iconColor={iconColor}
+        {...rest}
       >
         {icon !== null && <span className='icon'>{getIcon(icon)}</span>}
 

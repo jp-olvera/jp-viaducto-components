@@ -17,6 +17,7 @@ interface ToasterInterface {
   right: boolean;
   elevation: number;
   elevationDirection: string;
+  transition?: string;
 }
 
 /**
@@ -39,6 +40,7 @@ const Toaster = ({
   right = true,
   elevation = 1,
   elevationDirection = '',
+  ...rest
 }: ToasterInterface) => {
   const { configuration } = useContext(ConfigContext);
   const [isActive, setIsActive] = useState(true);
@@ -80,7 +82,7 @@ const Toaster = ({
       isActive={isActive}
       top={top}
       right={right}
-      timingFunction={configuration.transitionTimingFunction}
+      {...rest}
     >
       <div className='toaster-header'>
         <span

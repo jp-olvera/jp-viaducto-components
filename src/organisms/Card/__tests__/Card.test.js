@@ -24,7 +24,7 @@ describe('<Card/>', () => {
     expect(screen.queryByText('Designer')).toBeInTheDocument();
   });
   test('render Card with default props and create snapshot', () => {
-    const { container } = render(<Card />);
+    const { container } = render(<Card collapse />);
     expect(container).toMatchSnapshot();
   });
   test('render Card with onlyImage', () => {
@@ -33,7 +33,6 @@ describe('<Card/>', () => {
         footer={null}
         contet={null}
         src='https://homepages.cae.wisc.edu/~ece533/images/girl.png'
-        onlyImage
         collapse={false}
       />,
     );
@@ -41,13 +40,13 @@ describe('<Card/>', () => {
   });
   test('render Card with noImage', () => {
     const { container } = render(
-      <Card footer={null} contet={null} collapse src={null} />,
+      <Card footer={null} contet={null} collapse={false} src={null} />,
     );
     expect(container).toBeInTheDocument();
   });
   test('render Card with props and collapse false', () => {
     const { container } = render(
-      <Card {...props} collapse={false} />,
+      <Card {...props} collapse={false} onlyImage />,
     );
     expect(container).toBeInTheDocument();
   });

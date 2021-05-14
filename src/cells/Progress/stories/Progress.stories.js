@@ -26,4 +26,5 @@ Default.args = {
   completedSteps: 4,
   currentStep: 2,
   loader: 'circle',
+  transition: 'ease',
 };

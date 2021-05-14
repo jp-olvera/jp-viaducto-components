@@ -24,6 +24,7 @@ interface NotificationInterface {
   top: boolean;
   elevation: number;
   elevationDirection: string;
+  transition?: string;
 }
 
 const Notification = ({
@@ -33,6 +34,7 @@ const Notification = ({
   top = true,
   elevation = 1,
   elevationDirection = '',
+  ...rest
 }: NotificationInterface) => {
   const { configuration } = useContext(ConfigContext);
   const [isActive, setIsActive] = useState(false);
@@ -72,6 +74,7 @@ const Notification = ({
       top={top}
       elevation={elevation}
       elevationDirection={elevationDirection}
+      {...rest}
     >
       <span
         style={{

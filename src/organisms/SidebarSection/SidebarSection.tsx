@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { ConfigContext } from '../../providers';
 import { Paragraph, Spacer } from '../../cells';
 
 import StyledSidebarSection from './StyledSidebarSection';
@@ -21,6 +22,7 @@ interface SidebarSectionInterface {
   isDropdown: boolean;
   isMenu: boolean;
   lead: boolean;
+  transition?: string;
 }
 
 const SidebarSection = ({
@@ -30,11 +32,12 @@ const SidebarSection = ({
   isDropdown = false,
   isMenu = false,
   lead = false,
+  ...rest
 }: SidebarSectionInterface) => {
   const [isActive, setIsActive] = useState(false);
   const activatorRef = useRef<HTMLLIElement>(null);
   const backRefButton = useRef<HTMLButtonElement>(null);
-
+  const { configuration } = useContext(ConfigContext);
   const handleActive = (ev) => {
     if (ev.type === 'click' || ev.keyCode === 13 || ev.keyCode === 32) {
       setIsActive(!isActive);
@@ -44,7 +47,7 @@ const SidebarSection = ({
   const itemsList = () => {
     if (items !== null && items && items.length > 0) {
       return items.map(({ label, url }) => (
-        <li className='b' role='button' tabIndex={0} key={url}>
+        <li className='b' role='button' tabIndex={0} key={label}>
           <>
             <Spacer size='sm' />
             <Spacer size='xs' direction='horizontal' />
@@ -69,7 +72,7 @@ const SidebarSection = ({
   else if (isMenu) dropClassName = 'toggleMenu';
 
   return (
-    <StyledSidebarSection>
+    <StyledSidebarSection {...rest} configuration={configuration}>
       {separator && <hr />}
 
       <div className={dropClassName}>

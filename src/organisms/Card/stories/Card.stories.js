@@ -50,6 +50,7 @@ Default.args = {
   onlyImage: false,
   elevation: 1,
   elevationDirection: 'radial',
+  transition: 'ease',
 };
 
 NoImage.args = {
@@ -61,6 +62,7 @@ NoImage.args = {
   onlyImage: false,
   elevation: 1,
   elevationDirection: 'radial',
+  transition: 'ease',
 };
 
 OnlyImage.args = {
@@ -72,6 +74,7 @@ OnlyImage.args = {
   onlyImage: true,
   elevation: 1,
   elevationDirection: 'radial',
+  transition: 'ease',
 };
 
 Collapsible.args = {
@@ -83,4 +86,5 @@ Collapsible.args = {
   onlyImage: false,
   elevation: 1,
   elevationDirection: 'radial',
+  transition: 'ease',
 };

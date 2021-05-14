@@ -2,13 +2,14 @@ import styled, { css } from 'styled-components';
 import { SIZE, FONT_SIZE } from './constants';
 
 interface StyledButtonInterface {
-  readonly horizontalSpacing: string;
+  readonly leftSpacing: string | null;
+  readonly rightSpacing: string | null;
   readonly iconSpacing: string;
   readonly label?: string;
   readonly size?: string;
   readonly colors?:
-    | { default: string; hover: string; click: string; text: string }
-    | any;
+  | { default: string; hover: string; click: string; text: string }
+  | any;
   readonly icon?: any;
   readonly lead?: boolean;
   readonly height?: string;
@@ -16,6 +17,7 @@ interface StyledButtonInterface {
   readonly block?: boolean;
   readonly isIconOnly?: boolean;
   readonly configuration?: any;
+  readonly transition?: string;
 }
 
 const StyledButton = styled.button<StyledButtonInterface>`
@@ -28,9 +30,8 @@ const StyledButton = styled.button<StyledButtonInterface>`
   justify-content: center;
   border-radius: 2px;
   box-sizing: border-box;
-  transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
   text-align: center;
-  vertical-align: middle;
 
   ${(props) => getLateralPadding(props)}
   ${(props) => getHeight(props)}
@@ -66,7 +67,6 @@ const StyledButton = styled.button<StyledButtonInterface>`
 
   span {
     display: inline-flex;
-    align-items: center;
   }
 
   svg {
@@ -75,19 +75,19 @@ const StyledButton = styled.button<StyledButtonInterface>`
 
   .button-icon-span {
     margin-right: ${(p) =>
-      !p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
+    !p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
     margin-left: ${(p) =>
-      !p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
-    align-items: center;
-    height: 1em;
+    !p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
   }
 `;
 
 const getLateralPadding = (props) => {
   let padding = '';
-  if (props.horizontalSpacing !== null) {
-    padding = `0 ${props.configuration.spacing[props.horizontalSpacing]}`;
-  } else if (!props.isIconOnly) {
+	if (props.leftSpacing !== null || props.rightSpacing !== null) {
+		const l = props.leftSpacing !== null ? props.configuration.spacing[props.leftSpacing] : '0';
+		const r = props.rightSpacing !== null ? props.configuration.spacing[props.rightSpacing] : '0';
+    padding = `0 ${r} 0 ${l}`;
+	} else if (!props.isIconOnly) {
     // not icon at all
     switch (props.size) {
       case SIZE.small:
@@ -125,7 +125,7 @@ const getHeight = (props) => {
   let height = '2.488rem';
   if (props.height !== undefined) {
     height = `${props.height}`;
-  } else {    
+  } else {
     switch (props.size) {
       case SIZE.small:
         height = '2.073rem';

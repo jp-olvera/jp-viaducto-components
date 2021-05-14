@@ -6,7 +6,8 @@ interface StyledDrawerI {
   readonly elevationDirection: string;
   readonly active: boolean;
   readonly configuration: any;
-}
+  readonly transition?: string;
+};
 
 const StyledDrawer = styled.div<StyledDrawerI>`
   background: white;
@@ -18,7 +19,7 @@ const StyledDrawer = styled.div<StyledDrawerI>`
   top: 0;
   right: 0;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
-  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.3s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
   transform: ${(props) =>
     props.active ? 'translateX(0)' : 'translateX(100%)'};
   width: 100%;
@@ -26,7 +27,7 @@ const StyledDrawer = styled.div<StyledDrawerI>`
   @media (min-width: ${({ configuration }) => configuration.breakpoints.sm}) {
     width: 22.25rem;
     transform: ${(props) =>
-      props.active ? 'translateX(0)' : 'translateX(100%)'};
+    props.active ? 'translateX(0)' : 'translateX(100%)'};
   }
   .close {
     padding: 0.48rem 1.875rem 0.48rem 1.875rem;

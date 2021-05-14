@@ -12,7 +12,7 @@ describe('<Search/>', () => {
     expect(screen.queryByAltText('123')).toBeVisible();
   });
   test('should render another image', () => {
-    render(<Avatar src='pathtofile' />);
+    render(<Avatar src='pathtofile' size='large' />);
     expect(screen.queryByAltText('pathtofile')).toBeVisible();
   });
 });

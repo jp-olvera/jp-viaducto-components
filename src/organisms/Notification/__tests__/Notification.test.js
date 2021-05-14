@@ -12,7 +12,7 @@ describe('<Notification/>', () => {
   });
 
   test('should close the notification when clicking the button', () => {
-    render(<Notification text='Mensaje' active />);
+    render(<Notification text='Mensaje' active top={false} />);
     expect(screen.getByText('Mensaje')).toBeVisible();
     fireEvent.click(screen.getByTestId('close-button'));
     expect(screen.getByText('Mensaje')).not.toBeVisible();

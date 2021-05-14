@@ -21,6 +21,7 @@ interface TooltipInterface {
   color?: string;
   textColor?: string;
   family?: string;
+  transition?: string;
 }
 
 const Tooltip = ({
@@ -31,6 +32,7 @@ const Tooltip = ({
   color = '#C4C4C4',
   textColor = '#000',
   family = 'Roboto',
+  ...rest
 }: TooltipInterface) => {
   const { configuration } = useContext(ConfigContext);
   return (
@@ -41,6 +43,7 @@ const Tooltip = ({
       color={color}
       textColor={textColor}
       family={family}
+      {...rest}
     >
       {children}
       <span className='tooltip'>{label}</span>

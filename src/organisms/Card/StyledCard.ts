@@ -33,17 +33,18 @@ interface StyledNormalCardI {
   readonly onlyImage: boolean;
   readonly noImage: boolean;
   readonly configuration: any;
+  readonly transition?: string;
 }
 export const StyledNormalCard = styled.div<StyledNormalCardI>`
   background-color: #ffffff;
-  transition: 0.2s ease;
+	transition: ${({ configuration, transition }) => `0.2s ${transition || configuration.transitionTimingFunction}`};
   box-sizing: border-box;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
   height: ${({ onlyImage, noImage }) =>
     noImage ? '16.5rem' : onlyImage ? '25.25rem' : '29.625rem'};
   width: 100%;
   @media screen and (min-width: ${({ configuration }) =>
-      configuration.breakpoints.md}) {
+    configuration.breakpoints.md}) {
     width: 21.875rem;
   }
   padding: ${({ onlyImage }) => (onlyImage ? '1.688rem' : '0')};
@@ -78,7 +79,7 @@ export const StyledNormalCard = styled.div<StyledNormalCardI>`
         color: white;
         width: 100%;
         @media screen and (min-width: ${({ configuration }) =>
-            configuration.breakpoints.md}) {
+    configuration.breakpoints.md}) {
           width: 7.438rem;
         }
       }
@@ -86,9 +87,14 @@ export const StyledNormalCard = styled.div<StyledNormalCardI>`
   }
 `;
 
-export const Collapse = styled.div<{ collapse: boolean }>`
+interface ColI{
+  collapse?: boolean;
+  transition?: string;
+  configuration?: any;
+}
+export const Collapse = styled.div<ColI>`
   .collapse {
-    transition: 0.2s ease;
+		transition: ${({ configuration, transition }) => `0.2s ${transition || configuration.transitionTimingFunction}`};
     opacity: ${({ collapse }) => (collapse ? '0' : 1)};
     height: ${({ collapse }) => (collapse ? '0' : 'auto')};
   }
@@ -97,11 +103,12 @@ export const Collapse = styled.div<{ collapse: boolean }>`
 interface StyledCollapsibleCardI {
   elevation: number;
   elevationDirection: string;
-  configuration: any;
+  configuration?: any;
   isActive: boolean;
+  transition?: string;
 }
 export const StyledCollapsibleCard = styled.div<StyledCollapsibleCardI>`
-  transition: 0.2s ease;
+  transition: ${({ configuration, transition }) => `0.2s ${transition || configuration.transitionTimingFunction}`};
   background-color: #ffffff;
   box-sizing: border-box;
   width: 100%;

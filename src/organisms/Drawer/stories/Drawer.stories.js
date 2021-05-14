@@ -70,4 +70,5 @@ Default.args = {
   active: true,
   elevation: 1,
   elevationDirection: 'left',
+  transition: 'ease',
 };

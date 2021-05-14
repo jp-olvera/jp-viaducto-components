@@ -25,16 +25,21 @@ describe('<Tab/>', () => {
 
   test('should call function', () => {
     const { getByText } = render(
-      <Tab text='tab' onClick={handleFn} icon={<Help />} lead />,
+      <Tab
+        text='tab'
+        onClick={handleFn}
+        icon={<Help />}
+        lead
+        verticalSpacing={null}
+        horizontalSpacing={null}
+      />,
     );
     fireEvent.click(getByText('tab'));
     expect(handleFn).toHaveBeenCalled();
   });
 
   test('should render default props', () => {
-    const { container } = render(
-      <Tab />,
-    );
+    const { container } = render(<Tab />);
     expect(container).toMatchSnapshot();
   });
 });

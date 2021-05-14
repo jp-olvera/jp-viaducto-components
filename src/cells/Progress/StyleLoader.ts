@@ -3,11 +3,16 @@ import { Title } from '../Title';
 
 let size = '25px';
 
-const StyledLoader = styled.div`
+interface SLI {
+  configuration?: any;
+  transition?: string;
+}
+
+const StyledLoader = styled.div<SLI>`
   width: ${size};
   height: ${size};
   .progress-ring__circle {
-    transition: stroke-dashoffset 0.35s;
+    transition: stroke-dashoffset 0.35s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
   }
@@ -22,13 +27,15 @@ interface StyledStepProgressI {
   readonly family?: string;
 }
 
-export const StyledStepProgress = styled(Title)<StyledStepProgressI>`
+export const StyledStepProgress = styled(Title) <StyledStepProgressI>`
   color: ${({ isFinished }) => (isFinished ? 'green' : 'gray')};
 `;
 
 interface StyledProgressBarI {
   readonly max: number;
   readonly value: number;
+  readonly transition?: string;
+  readonly configuration?: any;
 }
 export const StyledProgressBar = styled.div<StyledProgressBarI>`
   & .progress-bar {
@@ -60,7 +67,7 @@ export const StyledProgressBar = styled.div<StyledProgressBarI>`
     animation-direction: reverse;
   }
   & .progress-bar-inner {
-    transition: width 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: width 1s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     display: block;
     height: 0.6rem;
     width: ${({ max, value }) => ((value * 100) / max).toFixed(0)}%;

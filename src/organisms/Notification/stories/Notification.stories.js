@@ -52,4 +52,5 @@ Default.args = {
   top: true,
   elevation: 1,
   elevationDirection: 'top',
+  transition: 'ease',
 };
