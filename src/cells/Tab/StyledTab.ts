@@ -83,7 +83,7 @@ const StyledTab = styled.button<StyledTabI>`
 const getPaddingTransition = (props) => {
   return css`
       padding: 0 ${props.configuration.spacing[props.horizontalSpacing] || props.configuration.spacing.none};
-      transition: padding 0.2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+      transition: padding 0.2s ${props.transition || props.configuration.transitionTimingFunction};
     `;
 };
 export default StyledTab;

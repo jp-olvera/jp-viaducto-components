@@ -32,10 +32,9 @@ interface InputInterface {
   isInvalid: boolean;
   isValid: boolean;
   id: string;
-  borderColor: string;
-  iconColor: string;
+  borderColor: any;
+  iconColor: any;
   value?: any;
-  transition?: string;
 }
 
 const Input = ({
@@ -94,10 +93,10 @@ const Input = ({
         border={border}
         hasIcon={icon !== null}
         size={size}
-        disabled={disabled}
         configuration={configuration}
         borderColor={borderColor}
         iconColor={iconColor}
+        disabled={disabled}
         {...rest}
       >
         {icon !== null && <span className='icon'>{getIcon(icon)}</span>}
