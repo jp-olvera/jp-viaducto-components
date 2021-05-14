@@ -35,8 +35,28 @@ export default {
         type: 'select',
       },
     },
-    horizontalSpacing: {
+    leftSpacing: {
       options: [
+        null,
+        'none',
+        'nano',
+        'micro',
+        'tiny',
+        'xs',
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        'xxl',
+        'xxxl',
+      ],
+      control: {
+        type: 'select',
+      },
+    },
+    rightSpacing: {
+      options: [
+        null,
         'none',
         'nano',
         'micro',

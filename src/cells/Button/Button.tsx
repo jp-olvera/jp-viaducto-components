@@ -34,7 +34,8 @@ const Button = ({
   variant = 'primary',
   type = 'button',
   iconSpacing = 'xs',
-  horizontalSpacing = null,
+  leftSpacing = null,
+  rightSpacing = null,
   block = false,
   ...rest
 }: any) => {
@@ -51,7 +52,8 @@ const Button = ({
       height={newHeight}
       type={type}
       iconSpacing={iconSpacing}
-      horizontalSpacing={horizontalSpacing}
+      leftSpacing={leftSpacing}
+      rightSpacing={rightSpacing}
       block={block}
       {...rest}
     >

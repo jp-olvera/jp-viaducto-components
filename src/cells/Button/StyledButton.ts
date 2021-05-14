@@ -2,7 +2,8 @@ import styled, { css } from 'styled-components';
 import { SIZE, FONT_SIZE } from './constants';
 
 interface StyledButtonInterface {
-  readonly horizontalSpacing: string;
+  readonly leftSpacing: string | null;
+  readonly rightSpacing: string | null;
   readonly iconSpacing: string;
   readonly label?: string;
   readonly size?: string;
@@ -86,9 +87,11 @@ const StyledButton = styled.button<StyledButtonInterface>`
 
 const getLateralPadding = (props) => {
   let padding = '';
-  if (props.horizontalSpacing !== null) {
-    padding = `0 ${props.configuration.spacing[props.horizontalSpacing]}`;
-  } else if (!props.isIconOnly) {
+	if (props.leftSpacing !== null || props.rightSpacing !== null) {
+		const l = props.leftSpacing !== null ? props.configuration.spacing[props.leftSpacing] : '0';
+		const r = props.rightSpacing !== null ? props.configuration.spacing[props.rightSpacing] : '0';
+    padding = `0 ${r} 0 ${l}`;
+	} else if (!props.isIconOnly) {
     // not icon at all
     switch (props.size) {
       case SIZE.small:
