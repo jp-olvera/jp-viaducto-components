@@ -22,7 +22,6 @@ export const StyledLabel = styled.label<StyledLabelInterface>`
   ${({ configuration, spacing, size }) =>
     getCheckPadding(configuration, spacing, size)};
   box-sizing: border-box;
-  margin-bottom: ${({ configuration }) => configuration.spacing.sm};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   user-select: none;
   & input {

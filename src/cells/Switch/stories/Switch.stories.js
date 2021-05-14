@@ -29,5 +29,5 @@ export const Default = Template.bind({});
 Default.args = {
   size: 'lg',
   disabled: false,
-  transition: 'ease'
+  transition: 'ease',
 };

@@ -43,7 +43,7 @@ describe('<Input/>', () => {
         type='password'
         placeholder='Im the input tested'
         label='password'
-        border='bottom'
+        border={null}
       />,
     );
     const input = container.querySelector('.input');

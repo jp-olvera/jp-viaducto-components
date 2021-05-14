@@ -16,7 +16,7 @@ describe('<Toaster/>', () => {
     expect(screen.getByText('Mensaje 2')).not.toBeVisible();
   });
   test('render with default props', () => {
-    render(<Toaster text='Mensaje 3' />);
+    render(<Toaster text='Mensaje 3' type='noExist' />);
     fireEvent.click(screen.getByTestId('close-button'));
     expect(screen.getByText('Mensaje 3')).not.toBeVisible();
   });

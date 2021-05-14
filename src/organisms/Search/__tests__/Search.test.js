@@ -60,7 +60,7 @@ describe('<Search/>', () => {
 
   test('should display dropdown with no props', () => {
     const { getByTestId } = render(
-      <Search />,
+      <Search family={null} />,
     );
     const activator = getByTestId('dropdown-activator');
     activator.click();

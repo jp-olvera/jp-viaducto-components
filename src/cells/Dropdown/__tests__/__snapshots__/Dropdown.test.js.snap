@@ -33,7 +33,7 @@ exports[`<Dropdown/> should render with default props and border left none 1`] =
     </button>
     <div
       aria-label="Configuraciones"
-      class="StyledDropdown__ItemsContainer-sc-1btfu08-2 dkkVlo"
+      class="StyledDropdown__ItemsContainer-sc-1btfu08-2 hTsRlx"
       data-cy="dropdown-itemList"
       data-testid="dropdown-itemList"
       id="dropdown1"
@@ -73,7 +73,7 @@ exports[`<Dropdown/> should render with default props and borders 1`] = `
     </button>
     <div
       aria-label="Configuraciones"
-      class="StyledDropdown__ItemsContainer-sc-1btfu08-2 dkkVlo"
+      class="StyledDropdown__ItemsContainer-sc-1btfu08-2 hTsRlx"
       data-cy="dropdown-itemList"
       data-testid="dropdown-itemList"
       id="dropdown1"

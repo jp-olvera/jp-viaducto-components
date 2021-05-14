@@ -10,6 +10,7 @@ interface WrapperInterface {
   readonly border: string;
   readonly iconColor: string;
   readonly borderColor: string;
+  readonly transition: string;
 }
 export const Wrapper = styled.div<WrapperInterface>`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
@@ -92,7 +93,7 @@ export const Wrapper = styled.div<WrapperInterface>`
   }
 
   .label {
-    background: inherit;
+    background: ${({border}) => border = 'outside' ? 'transparent' : 'inherit'};
     color: #808080;
     left: ${({ configuration, hasIcon }) =>
     hasIcon ? configuration.spacing.lg : configuration.spacing.xs};

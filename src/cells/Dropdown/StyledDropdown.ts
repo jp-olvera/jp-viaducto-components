@@ -97,6 +97,7 @@ export const ItemsContainer = styled.div<ItemsContainerInterface>`
   padding: 0;
   position: absolute;
   width: 7.5rem !important;
+	z-index: 1;
   &.active {
     display: flex;
     flex-direction: column;

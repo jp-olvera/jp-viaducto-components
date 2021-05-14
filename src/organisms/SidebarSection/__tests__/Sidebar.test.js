@@ -43,7 +43,7 @@ describe('<SidebarSection/>', () => {
         title='Comida'
         isDropdown={false}
         isMenu={false}
-        lead
+        lead={false}
       />,
     );
     expect(screen.getByText('menu')).toBeVisible();
@@ -63,7 +63,7 @@ describe('<SidebarSection/>', () => {
     fireEvent.click(screen.getByText('Comida'));
     expect(screen.getByText('menu')).toBeVisible();
   });
-  test('should render option after menu click', () => {
+  test('should render option after menu keycode 13 press', () => {
     render(
       <SidebarSection
         items={items}
@@ -74,12 +74,26 @@ describe('<SidebarSection/>', () => {
         lead
       />,
     );
-    fireEvent.click(screen.getByText('Comida'));
+    fireEvent.keyUp(screen.getByText('Comida'), { key: '13', code: '13', keyCode: '13' });
+    expect(screen.getByText('Comida')).toBeVisible();
+  });
+
+  test('should render option after menu keycode 32 press', () => {
+    render(
+      <SidebarSection
+        items={items}
+        separator
+        title='Comida'
+        isDropdown={false}
+        isMenu
+      />,
+    );
+    fireEvent.keyUp(screen.getByText('Comida'), { key: '32', code: '32', keyCode: '32' });
     expect(screen.getByText('Comida')).toBeVisible();
   });
   test('should render with default props', () => {
     const { container } = render(
-      <SidebarSection />,
+      <SidebarSection lead={false} />,
     );
     expect(container).toMatchSnapshot();
   });

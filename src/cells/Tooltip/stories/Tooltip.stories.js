@@ -51,5 +51,5 @@ Default.args = {
   label: 'Esto es un tooltip',
   active: true,
   position: 'right',
-  transition: 'ease'
+  transition: 'ease',
 };

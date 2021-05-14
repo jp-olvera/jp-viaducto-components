@@ -32,7 +32,6 @@ const StyledButton = styled.button<StyledButtonInterface>`
   box-sizing: border-box;
   transition: background-color 0.15s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
   text-align: center;
-  vertical-align: middle;
 
   ${(props) => getLateralPadding(props)}
   ${(props) => getHeight(props)}
@@ -68,7 +67,6 @@ const StyledButton = styled.button<StyledButtonInterface>`
 
   span {
     display: inline-flex;
-    align-items: center;
   }
 
   svg {
@@ -80,8 +78,6 @@ const StyledButton = styled.button<StyledButtonInterface>`
     !p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
     margin-left: ${(p) =>
     !p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
-    align-items: center;
-    height: 1em;
   }
 `;
 

@@ -3,7 +3,7 @@
 exports[`<Card/> render Card with default props and create snapshot 1`] = `
 <div>
   <div
-    class="StyledCard__StyledNormalCard-sc-15ny05r-1 hzljXY"
+    class="StyledCard__StyledNormalCard-sc-15ny05r-1 finvRP"
     elevation="1"
   >
     <img
@@ -109,7 +109,7 @@ exports[`<Card/> render Card with default props and create snapshot 1`] = `
         class="fakeFooter"
       >
         <button
-          class="StyledButton-hwi8uc-0 fTpsA-d"
+          class="StyledButton-hwi8uc-0 jpQrgq"
           height="2.488rem"
           type="success"
         >

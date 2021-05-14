@@ -24,4 +24,11 @@ describe('<Radio/>', () => {
       getByTestId('radio').querySelector('input').hasAttribute('disabled'),
     ).toEqual(true);
   });
+
+  test('should render without label', () => {
+    const { getByTestId } = render(<Radio id='radio' disabled family={null} />);
+    expect(
+      getByTestId('radio').querySelector('input').hasAttribute('disabled'),
+    ).toEqual(true);
+  });
 });

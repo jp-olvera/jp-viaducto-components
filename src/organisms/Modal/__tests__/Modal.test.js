@@ -7,7 +7,7 @@ import { Modal } from '..';
 
 describe('<Modal></Modal>', () => {
   test('should not be visible', () => {
-    render(<Modal />);
+    render(<Modal headComponent='AAA' onAccept={null} maxWidth={null} onReject={null} breakpoint={null} allowClickOutside={false} />);
     expect(screen.getByTestId('overlay')).not.toBeVisible();
     expect(screen.getByTestId('modal')).not.toBeVisible();
   });
@@ -32,5 +32,17 @@ describe('<Modal></Modal>', () => {
     fireEvent.click(screen.getByTestId('overlay'));
     expect(screen.getByTestId('overlay')).not.toBeVisible();
     expect(screen.getByTestId('modal')).not.toBeVisible();
+  });
+  test('should call onAccept function', () => {
+    const onAccept = jest.fn();
+    render(<Modal active onAccept={onAccept} />);
+    fireEvent.click(screen.getByTestId('accept'));
+    expect(onAccept).toBeCalled();
+  });
+  test('should call onReject function', () => {
+    const onReject = jest.fn();
+    render(<Modal active onReject={onReject} />);
+    fireEvent.click(screen.getByTestId('reject'));
+    expect(onReject).toBeCalled();
   });
 });

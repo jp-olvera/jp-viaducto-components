@@ -12,7 +12,7 @@ describe('<Switch/>', () => {
   });
 
   test('should be selected', () => {
-    const { getByTestId } = render(<Switch id='Switch' />);
+    const { getByTestId } = render(<Switch id='Switch' transition='ease' />);
     const input = getByTestId('Switch');
     const selector = input.querySelector('input');
     fireEvent.click(selector);
@@ -29,9 +29,20 @@ describe('<Switch/>', () => {
   });
 
   test('should be disabled', () => {
-    const { getByTestId } = render(<Switch id='Switch1' disabled />);
+    const { getByTestId } = render(
+      <Switch id='Switch1' size='sm' disabled transition={null} />,
+    );
     expect(
       getByTestId('Switch1').querySelector('input').hasAttribute('disabled'),
     ).toEqual(true);
+  });
+
+  test('should not be disabled', () => {
+    const { getByTestId } = render(
+      <Switch id='Switch1' size='md' disabled={false} transition={null} />,
+    );
+    expect(
+      getByTestId('Switch1').querySelector('input').hasAttribute('disabled'),
+    ).toEqual(false);
   });
 });

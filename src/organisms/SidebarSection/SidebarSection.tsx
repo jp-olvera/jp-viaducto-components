@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { ConfigContext } from '../../providers';
 import { Paragraph, Spacer } from '../../cells';
 
 import StyledSidebarSection from './StyledSidebarSection';
@@ -36,7 +37,7 @@ const SidebarSection = ({
   const [isActive, setIsActive] = useState(false);
   const activatorRef = useRef<HTMLLIElement>(null);
   const backRefButton = useRef<HTMLButtonElement>(null);
-
+  const { configuration } = useContext(ConfigContext);
   const handleActive = (ev) => {
     if (ev.type === 'click' || ev.keyCode === 13 || ev.keyCode === 32) {
       setIsActive(!isActive);
@@ -71,7 +72,7 @@ const SidebarSection = ({
   else if (isMenu) dropClassName = 'toggleMenu';
 
   return (
-    <StyledSidebarSection {...rest}>
+    <StyledSidebarSection {...rest} configuration={configuration}>
       {separator && <hr />}
 
       <div className={dropClassName}>

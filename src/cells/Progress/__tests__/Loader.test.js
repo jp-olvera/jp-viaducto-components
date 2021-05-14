@@ -65,6 +65,23 @@ describe('Progress component', () => {
       container.querySelector('.progress-bar-container'),
     ).toBeInTheDocument();
   });
+  test('should have equal values', () => {
+    const { container } = render(
+      <Progress
+        loader='progress'
+        totalSteps={3}
+        completedSteps={3}
+        currentStep={3}
+      />,
+    );
+    expect(container).toBeInTheDocument();
+  });
+  test('should render default props', () => {
+    const { container } = render(
+      <Progress />,
+    );
+    expect(container).toBeInTheDocument();
+  });
 });
 
 describe('StepLoader component', () => {
@@ -126,7 +143,7 @@ describe('<ProgressBar/>', () => {
 
 describe('<StepLoader/>', () => {
   test('should render StepLoader and create snapshot', () => {
-    render(<StepLoader />);
+    render(<StepLoader loader={null} />);
     expect(screen.getByTestId('loader')).toMatchSnapshot();
   });
   test('should render StepLoader and create snapshot with props', () => {

@@ -1,16 +1,22 @@
 import React from 'react';
-
+import { Help } from 'react-ikonate';
 import {
-  Button, Checkbox, Dropdown, Input, Switch,
+  Button, Checkbox, Dropdown, Input, Switch, Spacer,
 } from '../../cells';
 
 const FormExample = () => (
-  <form style={{ display: 'inline-flex' }}>
-    <Button label="Continuar" />
-    <Input label="example-input" />
+  <form style={{ padding: '0.5rem', width: '80%', background: 'pink' }}>
+    <Spacer size="sm"/>
+    <Input label='example-input' border='outside' />
+    <Spacer size="md"/>
+    <Input label='example-input' border='outside' />
+    <Spacer size="sm"/>
+
     <div>
       <Switch />
     </div>
+    <Spacer size="sm"/>
+
     <Dropdown
       options={[1, 2, 3]}
       border={{
@@ -20,7 +26,11 @@ const FormExample = () => (
         left: '1px solid black',
       }}
     />
-    <Checkbox label="Hola" size="lg" />
+    <Spacer size="sm"/>
+
+    <Checkbox label='Hola' size='lg' />
+    <Spacer size="sm"/>
+    <Button label='Continuar' block icon={<Help />} />
   </form>
 );
 

@@ -153,7 +153,7 @@ const Card = ({
           </div>
         </div>
       </div>
-      <Collapse collapse={collapse} {...rest}>
+      <Collapse collapse={collapse} configuration={configuration} {...rest}>
         <div className='collapse'>
           <div className='size full-description'>
             <Paragraph family='Roboto' color='#6B6C6F' size='sm'>

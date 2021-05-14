@@ -36,4 +36,9 @@ describe('<Anchor/>', () => {
     );
     expect(screen.queryByText('😎')).not.toBeInTheDocument();
   });
+
+  test('render with default props', () => {
+    const { container } = render(<Anchor family={null} color={null} />);
+    expect(container).toBeInTheDocument();
+  });
 });
