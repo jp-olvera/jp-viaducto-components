@@ -33,10 +33,11 @@ export const Wrapper = styled.div<WrapperInterface>`
   .input {
     border: none;
     width: 100%;
-    background-color: inherit;
+    background: inherit;
     outline: none;
     font-size: 1rem;
     padding: 0;
+    padding-right: ${({ configuration }) => configuration.spacing.tiny};
     padding-left: ${({ configuration, hasIcon }) =>
     hasIcon ? 0 : configuration.spacing.xs};
     & ::placeholder {
@@ -92,7 +93,7 @@ export const Wrapper = styled.div<WrapperInterface>`
   }
 
   .label {
-    background: ${({border}) => border = 'outside' ? 'transparent' : 'inherit'};
+    background: ${({border}) => border === 'outside' ? 'transparent' : 'inherit'};
     color: #808080;
     left: ${({ configuration, hasIcon }) =>
     hasIcon ? configuration.spacing.lg : configuration.spacing.xs};

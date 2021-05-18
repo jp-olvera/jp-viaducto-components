@@ -51,7 +51,7 @@ const Checkbox = ({
       <input
         onChange={() => setCheck(!check)}
         disabled={disabled}
-        type="checkbox"
+        type='checkbox'
         id={id}
       />
       <CheckMark />
