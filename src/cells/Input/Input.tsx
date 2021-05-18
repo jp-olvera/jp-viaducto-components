@@ -22,19 +22,22 @@ import { Wrapper } from './StyledInput';
  */
 
 interface InputInterface {
-  label: string;
-  border: string;
-  disabled: boolean;
-  type: string;
-  icon: any;
-  required: boolean;
-  size: string;
-  isInvalid: boolean;
-  isValid: boolean;
-  id: string;
-  borderColor: any;
-  iconColor: any;
+  label?: string;
+  border?: string;
+  disabled?: boolean;
+  type?: string;
+  icon?: any;
+  required?: boolean;
+  size?: string;
+  isInvalid?: boolean;
+  isValid?: boolean;
+  id?: string;
+  borderColor?: any;
+  iconColor?: any;
   value?: any;
+  onChange?: any;
+  defaultValue?: any;
+  style?: any;
 }
 
 const Input = ({
@@ -43,7 +46,7 @@ const Input = ({
   disabled = false,
   type,
   icon = null,
-  required = true,
+  required,
   isInvalid = false,
   isValid = false,
   id = 'input',
@@ -51,6 +54,8 @@ const Input = ({
   borderColor = '#001D48',
   iconColor = '#2329D6',
   value = null,
+  onChange = () => { },
+  defaultValue,
   ...rest
 }: InputInterface) => {
   const [open, setOpen] = useState(false);
@@ -103,7 +108,8 @@ const Input = ({
 
         <input
           className='input'
-          onChange={change}
+          onChange={onChange}
+          onKeyUp={change}
           type={open ? inputType : type}
           id={id}
           required

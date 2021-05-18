@@ -42,10 +42,10 @@ const Drawer = ({
       elevationDirection={elevationDirection}
       {...rest}
     >
-      <div className="close">
+      <div className='close'>
         <BareButton onClick={handleActive}>X</BareButton>
       </div>
-      <div className="drawer-content">{children}</div>
+      <div className='drawer-content'>{children}</div>
     </StyledDrawer>
   );
 };
