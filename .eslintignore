@@ -1,3 +1,5 @@
 *.css
-build
-/**/*.d.ts
+build/
+dist/
+node_modules/
+react-table-config.d.ts
