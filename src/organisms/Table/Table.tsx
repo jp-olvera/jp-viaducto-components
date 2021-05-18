@@ -5,7 +5,7 @@ import React, {
   forwardRef,
   useRef,
   useState,
-} from "react";
+} from 'react';
 import {
   useTable,
   useRowSelect,
@@ -14,10 +14,10 @@ import {
   useAsyncDebounce,
   usePagination,
   useColumnOrder,
-} from "react-table";
-import { Button, Input } from "../../cells";
-import { ConfigContext } from "../../providers";
-import { StyledTable } from "./StyledTable";
+} from 'react-table';
+import { Button, Input } from '../../cells';
+import { ConfigContext } from '../../providers';
+import { StyledTable } from './StyledTable';
 
 interface TableInterface {
   background?: string;
@@ -63,7 +63,7 @@ const GlobalFilter = ({ globalFilter, setGlobalFilter }) => {
     <Input
       label='Search'
       icon='search'
-      value={definitionValue || ""}
+      value={definitionValue || ''}
       onChange={(e: any) => {
         setValue(e.target.value);
         onChangeVal(e.target.value);
@@ -103,9 +103,9 @@ const Table = ({ columns, data, zebra }: any) => {
     (hooks: any) => {
       hooks.visibleColumns.push((oldColumns: any) => [
         {
-          id: "selection",
+          id: 'selection',
           Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div style={{ userSelect: "none" }}>
+            <div style={{ userSelect: 'none' }}>
               Select all
               <span>
                 <IndeterminateCheckbox
@@ -116,7 +116,7 @@ const Table = ({ columns, data, zebra }: any) => {
             </div>
           ),
           Cell: ({ row }) => (
-            <div style={{ width: "100%", height: "100%", display: "block" }}>
+            <div style={{ width: '100%', height: '100%', display: 'block' }}>
               <IndeterminateCheckbox
                 {...row.getToggleRowSelectedProps()}
                 size='sm'
@@ -132,17 +132,17 @@ const Table = ({ columns, data, zebra }: any) => {
   const handleDragEnter = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.target.classList.contains("dropzone")) {
-      e.target.classList.add("dragColor");
-      e.target.classList.remove("dragNocolor");
+    if (e.target.classList.contains('dropzone')) {
+      e.target.classList.add('dragColor');
+      e.target.classList.remove('dragNocolor');
     }
   };
   const handleDragLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.target.classList.contains("dropzone")) {
-      e.target.classList.remove("dragColor");
-      e.target.classList.add("dragNocolor");
+    if (e.target.classList.contains('dropzone')) {
+      e.target.classList.remove('dragColor');
+      e.target.classList.add('dragNocolor');
     }
   };
   const handleDragOver = (e) => {
@@ -153,9 +153,9 @@ const Table = ({ columns, data, zebra }: any) => {
   const handleDrop = (e, id) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.target.classList.contains("dropzone")) {
-      e.target.classList.remove("dragColor");
-      e.target.classList.add("dragNocolor");
+    if (e.target.classList.contains('dropzone')) {
+      e.target.classList.remove('dragColor');
+      e.target.classList.add('dragNocolor');
       if (draggedId && id) {
         let id1, id2;
         for (let i = 0; i < visibleColumns.length; i++) {
@@ -165,28 +165,28 @@ const Table = ({ columns, data, zebra }: any) => {
             id2 = i;
           }
         }
-        let newOrder = visibleColumns.map(d => d.id);
+        const newOrder = visibleColumns.map((d) => d.id);
         newOrder[id2] = draggedId;
         newOrder[id1] = id;
         setColumnOrder(newOrder);
       }
     }
-    // console.log("Lo soltaste en:", id);
+    // console.log('Lo soltaste en:', id);
   };
 
   const handleDragStart = (e, id) => {
     e.stopPropagation();
-    // console.log("Estás moviendo:", id);
-    e.target.classList.add("dragStart");
-    e.target.classList.remove("dragEnd");
+    // console.log('Estás moviendo:', id);
+    e.target.classList.add('dragStart');
+    e.target.classList.remove('dragEnd');
     setDraggedId(id);
   };
 
   const handleDragEnd = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    e.target.classList.remove("dragStart");
-    e.target.classList.add("dragEnd");
+    e.target.classList.remove('dragStart');
+    e.target.classList.add('dragEnd');
   };
 
   return (
@@ -202,12 +202,12 @@ const Table = ({ columns, data, zebra }: any) => {
             </th>
           </tr>
           {headerGroups.map(
-            (headerGroup: any) =>
-              headerGroup.headers[0].Header !== "" && (
+            (headerGroup: any) => headerGroup.headers[0].Header !== ''
+              && (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column: any) => (
                     <th
-                      draggable={column?.id === "selection" ? false : true}
+                      draggable={column?.id === 'selection'}
                       onDrop={(ev) => {
                         handleDrop(ev, column.id);
                       }}
@@ -221,13 +221,13 @@ const Table = ({ columns, data, zebra }: any) => {
                       className='dropzone'
                       {...column.getHeaderProps(column.getSortByToggleProps())}
                     >
-                      {column.render("Header")}
+                      {column.render('Header')}
                       <span>
                         {column.isSorted
                           ? column.isSortedDesc
-                            ? " 🔽"
-                            : " 🔼"
-                          : ""}
+                            ? ' 🔽'
+                            : ' 🔼'
+                          : ''}
                       </span>
                     </th>
                   ))}
@@ -235,20 +235,20 @@ const Table = ({ columns, data, zebra }: any) => {
               ),
           )}
         </thead>
-        <tbody {...getTableBodyProps()} className={zebra ? "zebra" : ""}>
+        <tbody {...getTableBodyProps()} className={zebra ? 'zebra' : ''}>
           {page.map((row: any) => {
             prepareRow(row);
             return (
               <tr
                 {...row.getRowProps()}
-                className={`${row.isSelected ? "selected" : ""}`}
+                className={`${row.isSelected ? 'selected' : ''}`}
               >
                 {row.cells.map((cell: any) => (
                   <td
                     {...cell.getCellProps()}
-                    className={typeof cell.value === "number" ? "size" : ""}
+                    className={typeof cell.value === 'number' ? 'size' : ''}
                   >
-                    {cell.render("Cell")}
+                    {cell.render('Cell')}
                   </td>
                 ))}
               </tr>
@@ -288,10 +288,10 @@ const Table = ({ columns, data, zebra }: any) => {
                   disabled={!canNextPage}
                 />
                 <span className='page'>
-                  Page{" "}
+                  Page{' '}
                   <strong>
                     {pageIndex + 1} of {pageOptions.length}
-                  </strong>{" "}
+                  </strong>{' '}
                 </span>
                 <span>
                   <Input
@@ -304,7 +304,7 @@ const Table = ({ columns, data, zebra }: any) => {
                         : 0;
                       gotoPage(newPage);
                     }}
-                    style={{ width: "300px" }}
+                    style={{ width: '300px' }}
                   />
                 </span>
                 <select
@@ -353,20 +353,20 @@ const Wrapper = ({
   const columns = useMemo(
     () => [
       {
-        Header: "First name",
-        accessor: "firstName",
+        Header: 'First name',
+        accessor: 'firstName',
       },
       {
-        Header: "Last name",
-        accessor: "lastName",
+        Header: 'Last name',
+        accessor: 'lastName',
       },
       {
-        Header: "Salary",
-        accessor: "salary",
+        Header: 'Salary',
+        accessor: 'salary',
       },
       {
-        Header: "Percent",
-        accessor: "percent",
+        Header: 'Percent',
+        accessor: 'percent',
       },
     ],
     [],
@@ -376,107 +376,107 @@ const Wrapper = ({
       {
         salary: 1881.2,
         percent: 51,
-        firstName: "Juan",
-        lastName: "Olvera",
-        id: "OAUTH|FEWFEW",
+        firstName: 'Juan',
+        lastName: 'Olvera',
+        id: 'OAUTH|FEWFEW',
       },
       {
         salary: 802.2,
         percent: 52,
-        firstName: "Jorge",
-        lastName: "Rojas",
-        id: "OAUTH|sdfdgtr",
+        firstName: 'Jorge',
+        lastName: 'Rojas',
+        id: 'OAUTH|sdfdgtr',
       },
       {
         salary: 803.2,
         percent: 53,
-        firstName: "Lalo",
-        lastName: "Mora",
-        id: "OAUTH|661615",
+        firstName: 'Lalo',
+        lastName: 'Mora',
+        id: 'OAUTH|661615',
       },
       {
         salary: 43.2,
         percent: 54,
-        firstName: "José",
-        lastName: "José",
-        id: "OAUTH|661615",
+        firstName: 'José',
+        lastName: 'José',
+        id: 'OAUTH|661615',
       },
       {
         salary: 84.2,
         percent: 55,
-        firstName: "Ana",
-        lastName: "Bárbara",
-        id: "OAUTH|66161sdf",
+        firstName: 'Ana',
+        lastName: 'Bárbara',
+        id: 'OAUTH|66161sdf',
       },
       {
         salary: 80.2,
         percent: 56,
-        firstName: "Leo",
-        lastName: "Dan",
-        id: "OAUTH|661615sd",
+        firstName: 'Leo',
+        lastName: 'Dan',
+        id: 'OAUTH|661615sd',
       },
       {
         salary: 834.2,
         percent: 85,
-        firstName: "Leo",
-        lastName: "Arcos",
-        id: "OAUTH|661sdfs615",
+        firstName: 'Leo',
+        lastName: 'Arcos',
+        id: 'OAUTH|661sdfs615',
       },
       {
         salary: 30.2,
         percent: 100,
-        firstName: "Vicente",
-        lastName: "Fernández",
-        id: "OAUTH|6616aa15",
+        firstName: 'Vicente',
+        lastName: 'Fernández',
+        id: 'OAUTH|6616aa15',
       },
       {
         salary: 60.2,
         percent: 1,
-        firstName: "Chalino",
-        lastName: "Sánchez",
-        id: "OAUTH|a125615",
+        firstName: 'Chalino',
+        lastName: 'Sánchez',
+        id: 'OAUTH|a125615',
       },
       {
         salary: 870.2,
         percent: 0,
-        firstName: "Jennifer",
-        lastName: "Rivera",
-        id: "OAUTH|s1s25615",
+        firstName: 'Jennifer',
+        lastName: 'Rivera',
+        id: 'OAUTH|s1s25615',
       },
       {
         salary: 888.2,
         percent: 50,
-        firstName: "Lola",
-        lastName: "Beltrán",
-        id: "OAUTH|c125615",
+        firstName: 'Lola',
+        lastName: 'Beltrán',
+        id: 'OAUTH|c125615',
       },
       {
         salary: 67.2,
         percent: 5,
-        firstName: "Benito",
-        lastName: "Juárez",
-        id: "OAUTH|v125615",
+        firstName: 'Benito',
+        lastName: 'Juárez',
+        id: 'OAUTH|v125615',
       },
       {
         salary: 88.2,
         percent: 550,
-        firstName: "Ricardo",
-        lastName: "Anaya",
-        id: "OAUTH|b125615",
+        firstName: 'Ricardo',
+        lastName: 'Anaya',
+        id: 'OAUTH|b125615',
       },
       {
         salary: 996.2,
         percent: 3,
-        firstName: "Mariana",
-        lastName: "Rodríguez",
-        id: "OAUTH|n125615",
+        firstName: 'Mariana',
+        lastName: 'Rodríguez',
+        id: 'OAUTH|n125615',
       },
       {
         salary: 80.2,
         percent: 50,
-        firstName: "Bronco",
-        lastName: "El gigante de América",
-        id: "OAUTH|h125615",
+        firstName: 'Bronco',
+        lastName: 'El gigante de América',
+        id: 'OAUTH|h125615',
       },
     ],
     [],
