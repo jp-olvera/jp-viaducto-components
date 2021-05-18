@@ -207,7 +207,7 @@ const Table = ({ columns, data, zebra }: any) => {
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column: any) => (
                     <th
-                      draggable={column?.id === 'selection'}
+                      draggable={column.id !== 'selection'}
                       onDrop={(ev) => {
                         handleDrop(ev, column.id);
                       }}
