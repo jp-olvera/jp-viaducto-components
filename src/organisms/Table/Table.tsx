@@ -14,8 +14,21 @@ import {
   useAsyncDebounce,
   usePagination,
   useColumnOrder,
+  useBlockLayout,
+  useResizeColumns,
+  useExpanded,
 } from 'react-table';
-import { Button, Input } from '../../cells';
+import {
+  Apps,
+  ArrowUp,
+  ArrowDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from 'react-ikonate';
+
+import { Button, Input, Avatar } from '../../cells';
 import { ConfigContext } from '../../providers';
 import { StyledTable } from './StyledTable';
 
@@ -32,11 +45,11 @@ interface TableInterface {
   verticalSpacing: string;
   horizontalSpacing: string;
   align?: string;
-  tableElevation?: number;
-  tableElevationDirection?: string;
   colorSelected?: string;
   borderColor?: string;
   headerElevation?: number;
+  minHeight?: string;
+  headerPadding?: string;
 }
 const IndeterminateCheckbox = forwardRef(
   ({ indeterminate, ...rest }: any, ref: any) => {
@@ -71,7 +84,22 @@ const GlobalFilter = ({ globalFilter, setGlobalFilter }) => {
     />
   );
 };
-const Table = ({ columns, data, zebra }: any) => {
+
+const Table = ({
+  columns: userColumns,
+  data,
+  padding,
+  renderRowSubComponent,
+  zebra,
+}: any) => {
+  const defaultColumn = useMemo(
+    () => ({
+      minWidth: 160,
+      width: 179,
+      maxWidth: 400,
+    }),
+    [],
+  );
   const {
     getTableProps,
     getTableBodyProps,
@@ -89,16 +117,22 @@ const Table = ({ columns, data, zebra }: any) => {
     setGlobalFilter,
     setColumnOrder,
     visibleColumns,
+    allColumns,
+    getToggleHideAllColumnsProps,
     state: { pageIndex, pageSize, globalFilter },
   } = useTable(
     {
-      columns,
+      columns: userColumns,
       data,
+      defaultColumn,
     },
     useGlobalFilter,
     useSortBy,
+    useExpanded,
     usePagination,
     useColumnOrder,
+    useBlockLayout,
+    useResizeColumns,
     useRowSelect,
     (hooks: any) => {
       hooks.visibleColumns.push((oldColumns: any) => [
@@ -133,29 +167,28 @@ const Table = ({ columns, data, zebra }: any) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.target.classList.contains('dropzone')) {
-      e.target.classList.add('dragColor');
-      e.target.classList.remove('dragNocolor');
+      e.target.parentNode.classList.add('dragColor');
+      e.target.parentNode.classList.remove('dragNocolor');
     }
   };
   const handleDragLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.target.classList.contains('dropzone')) {
-      e.target.classList.remove('dragColor');
-      e.target.classList.add('dragNocolor');
+      e.target.parentNode.classList.remove('dragColor');
+      e.target.parentNode.classList.add('dragNocolor');
     }
   };
   const handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
   };
-
   const handleDrop = (e, id) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.target.classList.contains('dropzone')) {
-      e.target.classList.remove('dragColor');
-      e.target.classList.add('dragNocolor');
+      e.target.parentNode.classList.remove('dragColor');
+      e.target.parentNode.classList.add('dragNocolor');
       if (draggedId && id) {
         let id1, id2;
         for (let i = 0; i < visibleColumns.length; i++) {
@@ -172,86 +205,132 @@ const Table = ({ columns, data, zebra }: any) => {
       }
     }
     // console.log('Lo soltaste en:', id);
+    // console.log(e.target);
   };
-
   const handleDragStart = (e, id) => {
     e.stopPropagation();
     // console.log('Estás moviendo:', id);
-    e.target.classList.add('dragStart');
-    e.target.classList.remove('dragEnd');
+    e.target.parentNode.classList.add('dragStart');
+    e.target.parentNode.classList.remove('dragEnd');
     setDraggedId(id);
   };
-
   const handleDragEnd = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    e.target.classList.remove('dragStart');
-    e.target.classList.add('dragEnd');
+    e.target.parentNode.classList.remove('dragStart');
+    e.target.parentNode.classList.add('dragEnd');
   };
 
   return (
     <>
+      <div style={{ marginBottom: '1rem' }}>
+        <div>
+          <IndeterminateCheckbox {...getToggleHideAllColumnsProps()} /> Toggle
+          All
+        </div>
+        {allColumns.map((column) => (
+          <div key={column.id}>
+            <label htmlFor={column.id}>
+              <input
+                id={column.id}
+                type='checkbox'
+                {...column.getToggleHiddenProps()}
+              />{' '}
+              {column.id === 'selection' ? 'Selection' : column.Header}
+            </label>
+          </div>
+        ))}
+        <br />
+        <GlobalFilter
+          globalFilter={globalFilter}
+          setGlobalFilter={setGlobalFilter}
+        />
+        <br />
+      </div>
       <table {...getTableProps()}>
         <thead>
-          <tr>
-            <th colSpan={10}>
-              <GlobalFilter
-                globalFilter={globalFilter}
-                setGlobalFilter={setGlobalFilter}
-              />
-            </th>
-          </tr>
           {headerGroups.map(
-            (headerGroup: any) => headerGroup.headers[0].Header !== ''
-              && (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column: any) => (
-                    <th
-                      draggable={column.id !== 'selection'}
-                      onDrop={(ev) => {
-                        handleDrop(ev, column.id);
-                      }}
-                      onDragOver={handleDragOver}
-                      onDragEnter={handleDragEnter}
-                      onDragStart={(ev) => {
-                        handleDragStart(ev, column.id);
-                      }}
-                      onDragLeave={handleDragLeave}
-                      onDragEnd={handleDragEnd}
-                      className='dropzone'
-                      {...column.getHeaderProps(column.getSortByToggleProps())}
-                    >
+            (headerGroup: any) => headerGroup.headers[0].Header !== '' && (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column: any) => (
+                <th
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: '100%',
+                      padding: `${padding || '.9rem'}`,
+                    }}
+                    draggable={column.id !== 'selection'}
+                    onDragStart={(ev) => {
+                      handleDragStart(ev, column.id);
+                    }}
+                    onDragOver={handleDragOver}
+                    onDragEnter={handleDragEnter}
+                    onDragLeave={handleDragLeave}
+                    onDrop={(ev) => {
+                      handleDrop(ev, column.id);
+                    }}
+                    onDragEnd={handleDragEnd}
+                    className={column.id !== 'selection' ? 'dropzone' : ''}
+                  >
+                    <Apps />
+                    <span style={{ marginRight: 'auto' }}>
                       {column.render('Header')}
-                      <span>
-                        {column.isSorted
-                          ? column.isSortedDesc
-                            ? ' 🔽'
-                            : ' 🔼'
-                          : ''}
-                      </span>
-                    </th>
-                  ))}
-                </tr>
-              ),
+                    </span>
+
+                    {column.isSorted ? (
+                      column.isSortedDesc ? (
+                        <ArrowDown />
+                      ) : (
+                        <ArrowUp />
+                      )
+                    ) : (
+                      '  '
+                    )}
+                  </div>
+                  <div
+                    {...column.getResizerProps()}
+                    className={`resizer ${
+                      column.isResizing ? 'isResizing' : ''
+                    }`}
+                  />
+                </th>
+              ))}
+            </tr>
+            ),
           )}
         </thead>
         <tbody {...getTableBodyProps()} className={zebra ? 'zebra' : ''}>
-          {page.map((row: any) => {
+          {page.map((row: any, index: number) => {
             prepareRow(row);
+            const props = row.getRowProps();
             return (
-              <tr
-                {...row.getRowProps()}
-                className={`${row.isSelected ? 'selected' : ''}`}
-              >
-                {row.cells.map((cell: any) => (
-                  <td
-                    {...cell.getCellProps()}
-                    className={typeof cell.value === 'number' ? 'size' : ''}
-                  >
-                    {cell.render('Cell')}
-                  </td>
-                ))}
-              </tr>
+              <React.Fragment key={`Row${index}`}>
+                <tr
+                  {...props}
+                  className={`${row.isSelected ? 'selected' : ''}`}
+                  {...row.getToggleRowExpandedProps()}
+                >
+                  {row.cells.map((cell: any) => (
+                    <td
+                      {...cell.getCellProps()}
+                      className={typeof cell.value === 'number' ? 'size' : ''}
+                    >
+                      {cell.render('Cell')}
+                    </td>
+                  ))}
+                </tr>
+                {row.isExpanded ? (
+                  <tr>
+                    <td colSpan={visibleColumns.length}>
+                      {renderRowSubComponent({ row })}
+                    </td>
+                  </tr>
+                ) : null}
+              </React.Fragment>
             );
           })}
         </tbody>
@@ -261,14 +340,14 @@ const Table = ({ columns, data, zebra }: any) => {
               <div className='pagination'>
                 <Button
                   variant='info'
-                  icon='<<'
+                  icon={<ChevronsLeft />}
                   onClick={() => gotoPage(0)}
                   type='button'
                   disabled={!canPreviousPage}
                 />
                 <Button
                   variant='info'
-                  icon='<'
+                  icon={<ChevronLeft />}
                   type='button'
                   onClick={() => previousPage()}
                   disabled={!canPreviousPage}
@@ -278,11 +357,11 @@ const Table = ({ columns, data, zebra }: any) => {
                   type='button'
                   onClick={() => nextPage()}
                   disabled={!canNextPage}
-                  icon='>'
+                  icon={<ChevronRight />}
                 />
                 <Button
                   variant='info'
-                  icon='>>'
+                  icon={<ChevronsRight />}
                   type='button'
                   onClick={() => gotoPage(pageCount - 1)}
                   disabled={!canNextPage}
@@ -340,12 +419,12 @@ const Wrapper = ({
   zebreHoverColor,
   verticalSpacing,
   align,
-  tableElevation = 1,
-  tableElevationDirection,
   horizontalSpacing,
   colorSelected,
+  headerElevation = 0,
   borderColor,
-  headerElevation = 1,
+  minHeight = '4.8rem',
+  headerPadding,
   ...rest
 }: TableInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -425,7 +504,7 @@ const Wrapper = ({
       {
         salary: 30.2,
         percent: 100,
-        firstName: 'Vicente',
+        firstName: <Avatar src='https://i.pravatar.cc/50' />,
         lastName: 'Fernández',
         id: 'OAUTH|6616aa15',
       },
@@ -481,6 +560,10 @@ const Wrapper = ({
     ],
     [],
   );
+  const renderRowSubComponent = React.useCallback(
+    ({ row }) => <p>{row.values.firstName}</p>,
+    [],
+  );
   return (
     <StyledTable
       configuration={configuration}
@@ -495,15 +578,21 @@ const Wrapper = ({
       verticalSpacing={verticalSpacing}
       horizontalSpacing={horizontalSpacing}
       align={align}
-      tableElevation={tableElevation}
-      tableElevationDirection={tableElevationDirection}
       headerElevation={headerElevation}
       colorSelected={colorSelected}
       borderColor={borderColor}
+      minHeight={minHeight}
       {...rest}
     >
-      <Table columns={columns} data={data} zebra={zebra} />
+      <Table
+        columns={columns}
+        data={data}
+        zebra={zebra}
+        renderRowSubComponent={renderRowSubComponent}
+        padding={headerPadding}
+      />
     </StyledTable>
   );
 };
+
 export default Wrapper;
