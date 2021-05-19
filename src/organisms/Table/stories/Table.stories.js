@@ -52,7 +52,7 @@ export default {
       },
     },
     headerElevation: {
-      options: [1, 2, 3],
+      options: [0, 1, 2, 3],
       control: {
         type: 'select',
       },
@@ -127,7 +127,6 @@ const Template = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  background: '#fff',
   headerColor: '#fff',
   colorSelected: '#ffd37c',
   textHeaderColor: '#000',
@@ -141,7 +140,7 @@ Default.args = {
   verticalSpacing: 'sm',
   horizontalSpacing: 'sm',
   align: 'left',
-  tableElevation: 1,
-  tableElevationDirection: 'bottom',
   headerElevation: 1,
+  minHeight: '4.8rem',
+  headerPadding: '.9rem',
 };

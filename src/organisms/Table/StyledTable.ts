@@ -15,55 +15,80 @@ interface TableI {
   verticalSpacing: string;
   horizontalSpacing: string;
   align?: string;
-  tableElevation: number;
-  tableElevationDirection?: string;
   headerElevation: number;
   colorSelected?: string;
   borderColor?: string;
+  minHeight?: string;
 }
-export const StyledTable = styled.div<TableI>`
+export const StyledTable = styled.div < TableI > `
   box-sizing: border-box;
   width: fit-content;
   .size {
     text-align: right;
   }
-  .dragStart{
-    transition: all .2s ease;
+  .dragStart {
+    transition: all 0.2s ease;
     opacity: 0.4;
   }
 
-  .dragEnd{
-    transition: all .2s ease;
+  .dragEnd {
+    transition: all 0.2s ease;
     opacity: 1;
   }
 
   .dragColor {
-    transition: all .2s ease;
+    transition: all 0.2s ease;
     filter: brightness(85%);
   }
 
-  .dragNocolor{
-    transition: all .2s ease;
+  .dragNocolor {
+    transition: all 0.2s ease;
     filter: brightness(100%);
   }
-
+  .dropzone {
+    svg {
+      pointer-events: none;
+    }
+    span {
+      pointer-events: none;
+    }
+  }
+  .resizer {
+    display: inline-block;
+    background: transparent;
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(50%);
+    cursor: col-resize;
+    z-index: 1;
+    touch-action: none;
+    &.isResizing {
+      width: 10px;
+      background-color: ${({ colorSelected }) => colorSelected || '#ffd37c'};
+      box-shadow: 1px 1px 12px
+        ${({ colorSelected }) => colorSelected || '#ffd37c'};
+    }
+    &:hover {
+      width: 5px;
+      background-color: ${({ colorSelected }) => colorSelected || '#ffd37c'};
+    }
+  }
   & * {
     box-sizing: border-box;
     font-family: 'Roboto', monospace;
   }
-  @media screen and (max-width: ${({ configuration }) =>
-      configuration.breakpoints.md}) {
+  @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.md}) {
     display: block;
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
   & > table {
-    ${(p) =>
-      getElevation(
-        p.tableElevation || 1,
-        p.tableElevationDirection || 'bottom',
-      )};
+    display: grid;
+    border-collapse: collapse;
     .pagination {
       align-items: center;
       display: inline-flex;
@@ -79,24 +104,24 @@ export const StyledTable = styled.div<TableI>`
     padding: 0;
     margin: 0;
     border-spacing: 0;
-    background-color: ${({ background }) => background || '#fff'};
+    background-color: ${({ background }) => background};
     thead,
     tbody,
     tfoot {
       background-color: inherit;
-      background-color: ${({ background }) => background || '#fff'};
+      background-color: ${({ background }) => background || 'transparent'};
     }
     thead {
+      tr {
+        width: 100% !important;
+      }
       th {
-        @media screen and (min-width: ${({ configuration }) =>
-            configuration.breakpoints.md}) {
-              ${(p) =>
-                getElevation(
-                  p.headerElevation || 1, 'bottom',
-                )};
+        @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.md}) {
+          ${(p) => (p.headerElevation > 0
+    ? getElevation(p.headerElevation, 'bottom')
+    : null)};
         }
-        ${({ headerFixed }) =>
-          headerFixed ? 'position: sticky; top: 0;' : 'position: relative;'};
+        ${({ headerFixed }) => (headerFixed ? 'position: sticky; top: 0;' : 'position: relative;')};
         background-color: ${({ headerColor }) => headerColor || '#fff'};
         color: ${({ textHeaderColor }) => textHeaderColor || '#000'};
       }
@@ -111,8 +136,7 @@ export const StyledTable = styled.div<TableI>`
         ${({ configuration }) => configuration.transitionTimingFunction};
       background-color: inherit;
       & :hover {
-        background-color: ${({ zebraHover, zebreHoverColor }) =>
-          zebraHover ? zebreHoverColor || 'inherit' : ''} !important;
+        background-color: ${({ zebraHover, zebreHoverColor }) => (zebraHover ? zebreHoverColor || 'inherit' : '')} !important;
         opacity: ${({ zebra }) => (zebra ? '.89' : '1')};
         transition: all 0.2s
           ${({ configuration }) => configuration.transitionTimingFunction};
@@ -124,14 +148,16 @@ export const StyledTable = styled.div<TableI>`
       }
     }
     ${({ border, borderColor }) => getBorder(border, borderColor)};
-
-    td,
-    th {
+    td {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    td {
       text-align: ${({ align }) => align || 'left'};
-      padding: ${({ configuration, verticalSpacing, horizontalSpacing }) =>
-        `${configuration.spacing[verticalSpacing] || 0} ${
-          configuration.spacing[horizontalSpacing] || 0
-        }`};
+      padding: ${({ configuration, verticalSpacing, horizontalSpacing }) => `${configuration.spacing[verticalSpacing] || 0} ${
+    configuration.spacing[horizontalSpacing] || 0
+  }`};
       background-color: inherit;
     }
     .zebra > tr:nth-of-type(odd) {
@@ -140,8 +166,7 @@ export const StyledTable = styled.div<TableI>`
     tbody,
     thead {
       tr > td:first-child {
-        @media screen and (max-width: ${({ configuration }) =>
-            configuration.breakpoints.md}) {
+        @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.md}) {
           position: sticky;
           z-index: 9;
           background-color: inherit;
@@ -149,8 +174,7 @@ export const StyledTable = styled.div<TableI>`
         }
       }
       tr > th:first-child {
-        @media screen and (max-width: ${({ configuration }) =>
-            configuration.breakpoints.md}) {
+        @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.md}) {
           position: sticky;
           z-index: 9;
           background-color: inherit;
@@ -166,6 +190,10 @@ export const StyledTable = styled.div<TableI>`
         border: none !important;
       }
     }
+    tbody > tr > td {
+      overflow: hidden;
+      min-height: ${({ minHeight }) => minHeight} !important;
+    }
   }
 `;
 
@@ -176,9 +204,9 @@ export const getBorder = (
   switch (border) {
     case 'none':
       return css`
-        tr > td,
+        tbody > tr > td,
         tbody > tr:first-child > td,
-        tr > td:last-child {
+        tbody > tr > td:last-child {
           border: none;
         }
       `;
@@ -193,25 +221,33 @@ export const getBorder = (
       `;
     case 'horizontal':
       return css`
-        tr > td {
+        tbody > tr {
           border-bottom: 1px solid ${borderColor};
         }
-        tbody > tr:first-child > td {
+        tbody > tr:first-child {
           border-top: 1px solid ${borderColor};
+        }
+        tbody > tr:last-child {
+          border-bottom: 1px solid ${borderColor};
         }
       `;
     case 'all':
     default:
       return css`
-        tr > td {
+        tbody > tr {
           border-left: 1px solid ${borderColor};
-          border-bottom: 1px solid ${borderColor};
+          border-right: 1px solid ${borderColor};
         }
-        tbody > tr:first-child > td {
+        tbody > tr:first-child {
           border-top: 1px solid ${borderColor};
         }
-        tr > td:last-child {
+        tbody > tr > td {
           border-right: 1px solid ${borderColor};
+          border-bottom: 1px solid ${borderColor};
+        }
+        tbody > tr > :last-child {
+          border: none;
+          border-bottom: 1px solid ${borderColor};
         }
       `;
   }
