@@ -23,9 +23,16 @@ interface TableI {
 export const StyledTable = styled.div < TableI > `
   box-sizing: border-box;
   width: fit-content;
+
+  & * {
+    box-sizing: border-box;
+    font-family: 'Roboto', monospace;
+  }
+
   .size {
     text-align: right;
   }
+
   .dragStart {
     transition: all 0.2s ease;
     opacity: 0.4;
@@ -45,6 +52,7 @@ export const StyledTable = styled.div < TableI > `
     transition: all 0.2s ease;
     filter: brightness(100%);
   }
+
   .dropzone {
     svg {
       pointer-events: none;
@@ -53,6 +61,7 @@ export const StyledTable = styled.div < TableI > `
       pointer-events: none;
     }
   }
+
   .resizer {
     display: inline-block;
     background: transparent;
@@ -65,30 +74,29 @@ export const StyledTable = styled.div < TableI > `
     cursor: col-resize;
     z-index: 1;
     touch-action: none;
-    &.isResizing {
+    & .isResizing {
       width: 10px;
       background-color: ${({ colorSelected }) => colorSelected || '#ffd37c'};
       box-shadow: 1px 1px 12px
         ${({ colorSelected }) => colorSelected || '#ffd37c'};
     }
-    &:hover {
+    & :hover {
       width: 5px;
       background-color: ${({ colorSelected }) => colorSelected || '#ffd37c'};
     }
   }
-  & * {
-    box-sizing: border-box;
-    font-family: 'Roboto', monospace;
-  }
+
   @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.md}) {
     display: block;
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+
   & > table {
     display: grid;
     border-collapse: collapse;
+
     .pagination {
       align-items: center;
       display: inline-flex;
@@ -100,20 +108,23 @@ export const StyledTable = styled.div < TableI > `
         padding: 0 ${({ configuration }) => configuration.spacing.xs};
       }
     }
-    box-sizing: border-box;
     padding: 0;
     margin: 0;
     border-spacing: 0;
     background-color: ${({ background }) => background};
+
     thead,
     tbody,
     tfoot {
-      background-color: inherit;
-      background-color: ${({ background }) => background || 'transparent'};
+      background-color: ${({ background }) => background};
     }
+
     thead {
       tr {
         width: 100% !important;
+        & :hover {
+          background-color: transparent !important;
+        }
       }
       th {
         @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.md}) {
@@ -126,9 +137,11 @@ export const StyledTable = styled.div < TableI > `
         color: ${({ textHeaderColor }) => textHeaderColor || '#000'};
       }
     }
+
     .selected > td {
       background-color: ${({ colorSelected }) => colorSelected || '#ffd37c'};
     }
+
     tr {
       padding: 0;
       margin: 0;
@@ -142,18 +155,11 @@ export const StyledTable = styled.div < TableI > `
           ${({ configuration }) => configuration.transitionTimingFunction};
       }
     }
-    thead {
-      tr:hover {
-        background-color: transparent !important;
-      }
-    }
     ${({ border, borderColor }) => getBorder(border, borderColor)};
     td {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-    }
-    td {
       text-align: ${({ align }) => align || 'left'};
       padding: ${({ configuration, verticalSpacing, horizontalSpacing }) => `${configuration.spacing[verticalSpacing] || 0} ${
     configuration.spacing[horizontalSpacing] || 0
@@ -165,20 +171,19 @@ export const StyledTable = styled.div < TableI > `
     }
     tbody,
     thead {
-      tr > td:first-child {
-        @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.md}) {
-          position: sticky;
-          z-index: 9;
-          background-color: inherit;
-          left: 0;
+      & tr {
+        @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.lg}) {
+          display: flex;
         }
       }
-      tr > th:first-child {
-        @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.md}) {
-          position: sticky;
-          z-index: 9;
-          background-color: inherit;
+      & > tr > td:first-child,
+      > tr > th:first-child {
+        @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.lg}) {
+          position: sticky !important;
+          z-index: 9999;
+          background-color: inherit !important;
           left: 0;
+          ${() => getElevation(1, 'right')};
         }
       }
     }
