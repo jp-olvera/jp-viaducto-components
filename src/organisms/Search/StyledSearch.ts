@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Wrapper, ItemsContainer } from '../../cells/Dropdown/StyledDropdown';
+import StyledSelect from '../../cells/Select/StyledSelect';
 import getElevation from '../../utils/getElevation';
 
 const height = '3.375rem',
@@ -36,7 +36,7 @@ export const StyledSearch = styled.div<StyledSearchI>`
     padding-left: 0.5rem;
     height: 100%;
   }
-  & ${Wrapper} {
+  & ${StyledSelect} {
     height: 100% !important;
     padding: 0;
     width: 1.5rem;
@@ -64,24 +64,18 @@ export const StyledSearch = styled.div<StyledSearchI>`
       font-size: 1rem;
       height: 100%;
     }
-    & ${Wrapper} {
+    & ${StyledSelect} {
       height: 100%;
       width: 12.06rem !important;
-      & ${ItemsContainer} {
-        width: 100% !important;
-      }
     }
   }
   @media screen and (min-width: ${({ configuration }) =>
       configuration.breakpoints.lg}) {
     width: ${width};
     height: ${height};
-    & ${Wrapper} {
+    & ${StyledSelect} {
       width: 12.06rem !important;
       height: 100%;
-      & ${ItemsContainer} {
-        width: 100% !important;
-      }
     }
     & > input {
       width: 25.188rem;

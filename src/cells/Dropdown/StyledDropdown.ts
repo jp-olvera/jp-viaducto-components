@@ -19,7 +19,7 @@ export const Wrapper = styled.div<WrapperInterface>`
 `;
 export const Activator = styled.button<ActivatorInterface>`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
-  ${({ border }) => getBorder(border)}
+  ${({ border }) => getBorder(border)};
   align-items: center;
   background-color: inherit;
   box-sizing: border-box;
@@ -84,23 +84,30 @@ interface ItemsContainerInterface {
 
 export const ItemsContainer = styled.div<ItemsContainerInterface>`
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  transition: all 0.2s
+    ${({ configuration }) => configuration.transitionTimingFunction};
   background: #ffffff;
   border: 0.063rem solid #eaedf3;
   box-sizing: border-box;
   box-shadow: 0 0.063rem 0.188rem rgba(0, 0, 0, 0.04);
   color: black;
-  display: none;
+  display: flex;
   left: 0;
   margin: 0;
   margin-top: 0.25rem;
   min-width: auto !important;
   padding: 0;
   position: absolute;
+  opacity: 0;
+  visibility: hidden;
   width: 7.5rem !important;
-	z-index: 1;
+  z-index: 1;
   &.active {
-    display: flex;
     flex-direction: column;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.2s
+      ${({ configuration }) => configuration.transitionTimingFunction};
   }
   & > button {
     background-color: inherit;
@@ -121,7 +128,7 @@ export const ItemsContainer = styled.div<ItemsContainerInterface>`
   }
 `;
 
-const getBorder = (borders: any = 'none') => {
+export const getBorder = (borders: any = 'none') => {
   if (borders === 'none' || borders === null)
     return css`
       border: none;
@@ -131,7 +138,7 @@ const getBorder = (borders: any = 'none') => {
   border += `border-right: ${borders.right || 'none'}; `;
   border += `border-bottom: ${borders.bottom || 'none'}; `;
   border += `border-left: ${borders.left || 'none'}; `;
-    
+
   return css`
     ${border}
   `;

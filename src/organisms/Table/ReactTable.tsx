@@ -5,8 +5,8 @@ import {
   useTable,
   useRowSelect,
   useSortBy,
-  useGlobalFilter,
-  useAsyncDebounce,
+  // useGlobalFilter,
+  // useAsyncDebounce,
   usePagination,
   useColumnOrder,
   useBlockLayout,
@@ -22,8 +22,10 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  Settings,
 } from 'react-ikonate';
-import { Input, Button } from '../../cells';
+import { Input, Button, Select } from '../../cells';
+import { Modal } from '../../organisms';
 
 const IndeterminateCheckbox = forwardRef(
   ({ indeterminate, ...rest }: any, ref: any) => {
@@ -40,24 +42,24 @@ const IndeterminateCheckbox = forwardRef(
   },
 );
 
-const GlobalFilter = ({ globalFilter, setGlobalFilter }) => {
-  const [definitionValue, setValue] = useState(globalFilter);
-  const onChangeVal = useAsyncDebounce((e) => {
-    setGlobalFilter(e);
-  }, 0);
+// const GlobalFilter = ({ globalFilter, setGlobalFilter }) => {
+//   const [definitionValue, setValue] = useState(globalFilter);
+//   const onChangeVal = useAsyncDebounce((e) => {
+//     setGlobalFilter(e || undefined);
+//   }, 200);
 
-  return (
-    <Input
-      label='Search'
-      icon='search'
-      value={definitionValue || ''}
-      onChange={(e: any) => {
-        setValue(e.target.value);
-        onChangeVal(e.target.value);
-      }}
-    />
-  );
-};
+//   return (
+//     <Input
+//       label='Search'
+//       icon='search'
+//       value={definitionValue || ''}
+//       onChange={(e: any) => {
+//         setValue(e.target.value);
+//         onChangeVal(e.target.value);
+//       }}
+//     />
+//   );
+// };
 
 const Table = ({
   columns: userColumns,
@@ -65,6 +67,16 @@ const Table = ({
   padding,
   renderRowSubComponent,
   zebra,
+  // withGlobalFilter,
+  buttonVariantColor,
+  selectSize,
+  selectHeight,
+  selectBorder,
+  selectFontSize,
+  selectFontFamily,
+  selectBackground,
+  selectColor,
+  selectRadius,
 }: any) => {
   const defaultColumn = useMemo(
     () => ({
@@ -74,7 +86,10 @@ const Table = ({
     }),
     [],
   );
-
+  const [activeModal, setActiveModal] = useState(false);
+  const showModal = () => {
+    setActiveModal(!activeModal);
+  };
   const {
     getTableProps,
     getTableBodyProps,
@@ -89,12 +104,12 @@ const Table = ({
     nextPage,
     previousPage,
     setPageSize,
-    setGlobalFilter,
+    // setGlobalFilter,
     setColumnOrder,
     visibleColumns,
     allColumns,
     getToggleHideAllColumnsProps,
-    state: { pageIndex, pageSize, globalFilter },
+    state: { pageIndex, pageSize },
   } = useTable(
     {
       columns: userColumns,
@@ -102,7 +117,7 @@ const Table = ({
       defaultColumn,
     },
     useFilters,
-    useGlobalFilter,
+    // useGlobalFilter,
     useSortBy,
     useExpanded,
     usePagination,
@@ -181,12 +196,9 @@ const Table = ({
         setColumnOrder(newOrder);
       }
     }
-    // console.log('Lo soltaste en:', id);
-    // console.log(e.target);
   };
   const handleDragStart = (e, id) => {
     e.stopPropagation();
-    // console.log('Estás moviendo:', id);
     e.target.parentNode.classList.add('dragStart');
     e.target.parentNode.classList.remove('dragEnd');
     setDraggedId(id);
@@ -201,27 +213,12 @@ const Table = ({
   return (
     <>
       <div style={{ marginBottom: '1rem' }}>
-        <div>
-          <IndeterminateCheckbox {...getToggleHideAllColumnsProps()} /> Toggle
-          All
-        </div>
-        {allColumns.map((column) => (
-          <div key={column.id}>
-            <label htmlFor={column.id}>
-              <input
-                id={column.id}
-                type='checkbox'
-                {...column.getToggleHiddenProps()}
-              />{' '}
-              {column.id === 'selection' ? 'Selection' : column.Header}
-            </label>
-          </div>
-        ))}
-        <br />
-        <GlobalFilter
-          globalFilter={globalFilter}
-          setGlobalFilter={setGlobalFilter}
-        />
+        {/* {withGlobalFilter ? (
+          <GlobalFilter
+            globalFilter={globalFilter}
+            setGlobalFilter={setGlobalFilter}
+          />
+        ) : null} */}
         <br />
       </div>
       <table {...getTableProps()}>
@@ -272,9 +269,6 @@ const Table = ({
                       column.isResizing ? 'isResizing' : ''
                     }`}
                   />
-                  <div>
-                    {column.canFilter ? column.render('Filter') : null}
-                  </div>
                 </th>
               ))}
             </tr>
@@ -290,22 +284,29 @@ const Table = ({
                 <tr
                   {...props}
                   className={`${row.isSelected ? 'selected' : ''}`}
-                  {...row.getToggleRowExpandedProps()}
                 >
                   {row.cells.map((cell: any) => (
                     <td
                       {...cell.getCellProps()}
-                      className={typeof cell.value === 'number' ? 'size' : ''}
+                      onClick={
+                        cell.column.id === 'selection'
+                          ? () => null
+                          : () => {
+                            row.toggleRowExpanded();
+                          }
+                      }
+                      onKeyUp={() => {}}
+                      className={`${
+                        typeof cell.value === 'number' ? 'size' : ''
+                      } ${cell.column.id !== 'selection' ? 'pointer' : ''}`}
                     >
                       {cell.render('Cell')}
                     </td>
                   ))}
                 </tr>
                 {row.isExpanded ? (
-                  <tr>
-                    <td colSpan={visibleColumns.length}>
-                      {renderRowSubComponent({ row })}
-                    </td>
+                  <tr className='expandible'>
+                    <td>{renderRowSubComponent({ row })}</td>
                   </tr>
                 ) : null}
               </React.Fragment>
@@ -317,28 +318,28 @@ const Table = ({
             <td colSpan={10}>
               <div className='pagination'>
                 <Button
-                  variant='info'
+                  variant={buttonVariantColor}
                   icon={<ChevronsLeft />}
                   onClick={() => gotoPage(0)}
                   type='button'
                   disabled={!canPreviousPage}
                 />
                 <Button
-                  variant='info'
+                  variant={buttonVariantColor}
                   icon={<ChevronLeft />}
                   type='button'
                   onClick={() => previousPage()}
                   disabled={!canPreviousPage}
                 />
                 <Button
-                  variant='info'
+                  variant={buttonVariantColor}
                   type='button'
                   onClick={() => nextPage()}
                   disabled={!canNextPage}
                   icon={<ChevronRight />}
                 />
                 <Button
-                  variant='info'
+                  variant={buttonVariantColor}
                   icon={<ChevronsRight />}
                   type='button'
                   onClick={() => gotoPage(pageCount - 1)}
@@ -361,10 +362,20 @@ const Table = ({
                         : 0;
                       gotoPage(newPage);
                     }}
+                    max={pageOptions.length}
+                    min={pageIndex + 1}
                     style={{ width: '300px' }}
                   />
                 </span>
-                <select
+                <Select
+                  border={selectBorder}
+                  size={selectSize}
+                  height={selectHeight}
+                  fontSize={selectFontSize}
+                  fontFamily={selectFontFamily}
+                  background={selectBackground}
+                  color={selectColor}
+                  radius={selectRadius}
                   value={pageSize}
                   onChange={(e) => {
                     setPageSize(Number(e.target.value));
@@ -375,12 +386,46 @@ const Table = ({
                       Show {newPageSize}
                     </option>
                   ))}
-                </select>
+                </Select>
+                <Button
+                  onClick={showModal}
+                  type='button'
+                  variant={buttonVariantColor}
+                  icon={<Settings />}
+                  iconSpacing='none'
+                  leftSpacing='sm'
+                  rightSpacing='sm'
+                />
               </div>
             </td>
           </tr>
         </tfoot>
       </table>
+      <Modal
+        title='Customize your table'
+        active={activeModal}
+        handleActive={showModal}
+        maxHeight='500px'
+        maxWidth='500px'
+      >
+        <div>
+          <IndeterminateCheckbox {...getToggleHideAllColumnsProps()} /> Toggle
+          All
+        </div>
+        {allColumns.map((column) => (
+          <div key={column.id}>
+            <label htmlFor={column.id}>
+              <input
+                id={column.id}
+                type='checkbox'
+                {...column.getToggleHiddenProps()}
+              />{' '}
+              {column.id === 'selection' ? 'Selection' : column.Header}
+            </label>
+            {column.canFilter ? column.render('Filter') : null}
+          </div>
+        ))}
+      </Modal>
     </>
   );
 };

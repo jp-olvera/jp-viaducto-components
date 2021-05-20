@@ -22,7 +22,7 @@ interface DropdownInterface {
   border?: any;
   defaultText?: string;
   family?: string;
-  options?: string[];
+  options?: any[];
   size?: string;
   height?: string;
 }
@@ -35,16 +35,33 @@ const Dropdown = ({
   options = [],
   size = 'default',
   height,
+  ...rest
 }: DropdownInterface) => {
   const { configuration } = useContext(ConfigContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(null);
   const activatorRef = useRef<HTMLButtonElement>(null);
+  const wrapperRef = useRef<HTMLButtonElement>(null);
   const selectedRef = useRef<HTMLElement>(null);
   const dropdownListRef = useRef<HTMLDivElement>(null);
   const newHeight = height || configuration.controlHeight[size];
   const clickHandler = () => {
     setIsOpen(!isOpen);
+    if (dropdownListRef && dropdownListRef.current && wrapperRef.current) {
+      const bounding = dropdownListRef.current.getBoundingClientRect();
+      const bottom = wrapperRef.current.clientHeight || '2.4rem';
+      // console.log(bounding);
+      // console.log(window.innerHeight);
+      // console.log(document.documentElement.clientHeight);
+      if (
+        bounding.bottom
+        > (window.innerHeight || document.documentElement.clientHeight)
+      ) {
+        console.log(wrapperRef.current.clientHeight);
+        dropdownListRef.current.style.bottom = `calc(${bottom}px + 0.5rem`;
+        // console.log(' Estás fuera mai fren');
+      }
+    }
   };
   const select = (label: string, index: any) => {
     if (selectedRef.current) {
@@ -91,7 +108,7 @@ const Dropdown = ({
     };
   }, [isOpen]);
   return (
-    <Wrapper height={newHeight}>
+    <Wrapper height={newHeight} {...rest} ref={wrapperRef}>
       <Activator
         configuration={configuration}
         family={family}
