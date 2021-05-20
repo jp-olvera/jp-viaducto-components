@@ -1,6 +1,6 @@
 {
   "name": "@jp-olvera/jp-viaducto-components",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Los componentes de este repositorio están diseñados particular de los proyectos de viaducto",
   "main": "dist/index.js",
   "scripts": {
