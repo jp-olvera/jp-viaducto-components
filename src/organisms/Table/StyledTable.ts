@@ -81,13 +81,13 @@ export const StyledTable = styled.div < TableI > `
     cursor: col-resize;
     z-index: 1;
     touch-action: none;
-    & .isResizing {
+    &.isResizing {
       width: 10px;
       background-color: ${({ colorSelected }) => colorSelected || '#ffd37c'};
       box-shadow: 1px 1px 12px
         ${({ colorSelected }) => colorSelected || '#ffd37c'};
     }
-    & :hover {
+    &:hover {
       width: 5px;
       background-color: ${({ colorSelected }) => colorSelected || '#ffd37c'};
     }
@@ -165,7 +165,7 @@ export const StyledTable = styled.div < TableI > `
     thead {
       tr {
         width: 100% !important;
-        & :hover {
+        &:hover {
           background-color: transparent !important;
         }
       }
@@ -192,7 +192,7 @@ export const StyledTable = styled.div < TableI > `
       transition: all 0.2s
         ${({ configuration }) => configuration.transitionTimingFunction};
       background-color: inherit;
-      & :hover {
+      &:hover {
         background-color: ${({ zebraHover, zebraHoverColor }) => (zebraHover ? zebraHoverColor || 'inherit' : '')} !important;
         opacity: ${({ zebra }) => (zebra ? '.89' : '1')};
         transition: all 0.2s
@@ -229,10 +229,10 @@ export const StyledTable = styled.div < TableI > `
       }
     }
     tfoot > tr {
-      & :hover {
+      &:hover {
         background-color: transparent !important;
       }
-      & td {
+      &td {
         border: none !important;
       }
     }
