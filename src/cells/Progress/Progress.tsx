@@ -44,31 +44,26 @@ const Progress = ({
     setActualProgress,
   ]);
 
-  if (
-    completedSteps >= totalSteps
-    || (currentStep === totalSteps && totalSteps > 0)
-  ) {
+  if (completedSteps >= totalSteps || currentStep === totalSteps) {
     return <OkCircle color='#3AE25F' fontSize='25px' data-testid='ok_circle' />;
   }
-  if (loader === 'circle' || loader === null) {
+  if (loader === 'progress') {
     return (
-      <CircleLoader
-        radius={radius}
-        strokeWidth={strokeWidth}
-        actualProgress={actualProgress}
-        currentProgress={currentProgress}
-        circumference={circumference}
+      <ProgressBar
+        totalSteps={totalSteps}
+        completedSteps={completedSteps}
         {...rest}
       />
     );
   }
-  if (loader === 'progress') {
-    return (
-      <ProgressBar totalSteps={totalSteps} completedSteps={completedSteps} {...rest} />
-    );
-  }
   if (loader === 'steps') {
-    return <StepLoader completed={completedSteps} totalSteps={totalSteps} {...rest} />;
+    return (
+      <StepLoader
+        completed={completedSteps}
+        totalSteps={totalSteps}
+        {...rest}
+      />
+    );
   }
   return (
     <CircleLoader

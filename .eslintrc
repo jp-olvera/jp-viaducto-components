@@ -1,25 +1,13 @@
 {
   "parser": "babel-eslint",
-  "extends": [
-    "eslint:recommended",
-    "airbnb"
-  ],
-  "plugins": [
-    "import",
-    "react"
-  ],
+  "extends": ["eslint:recommended", "airbnb"],
+  "plugins": ["import", "react"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
   "rules": {
-    "semi": [
-      "error",
-      "always"
-    ],
-    "comma-dangle": [
-      "error",
-      "always-multiline"
-    ],
+    "semi": ["error", "always"],
+    "comma-dangle": ["error", "always-multiline"],
     "import/newline-after-import": [
       "error",
       {
@@ -34,12 +22,7 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
     "no-restricted-properties": [
@@ -56,10 +39,7 @@
         "peerDependencies": true
       }
     ],
-    "linebreak-style": [
-      "off",
-      "unix"
-    ],
+    "linebreak-style": ["off", "unix"],
     "react/jsx-props-no-spreading": [
       0,
       {
@@ -75,10 +55,7 @@
         "allow": "single-child"
       }
     ],
-    "object-curly-spacing": [
-      0,
-      "always"
-    ],
+    "object-curly-spacing": [0, "always"],
     "react/prop-types": 0,
     "no-undef": 0,
     "quotes": [2, "single", "avoid-escape"],
@@ -86,6 +63,15 @@
     "jsx-a11y/no-noninteractive-element-to-interactive-role": 0,
     "jsx-a11y/no-noninteractive-element-interactions": 0,
     "jsx-a11y/no-noninteractive-tabindex": 0,
-    "no-plusplus":0
+    "no-plusplus": 0,
+    "import/prefer-default-export": 0,
+    "no-use-before-define": 0,
+    "no-nested-ternary": 0,
+    "no-unused-vars": 1,
+    "no-sequences": "error",
+    "one-var": [0, "initializations"],
+    "one-var-declaration-per-line": [0, "initializations"],
+    "implicit-arrow-linebrak": 0,
+    "react/no-array-index-key": 0
   }
 }

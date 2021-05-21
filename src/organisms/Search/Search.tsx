@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 import { Search as SearchIcon } from 'react-ikonate';
 
 import { ConfigContext } from '../../providers';
-import { Button } from '../../cells/Button';
-import { Dropdown } from '../../cells/Dropdown';
+import { Button, Select } from '../../cells';
 import { StyledSearch } from './StyledSearch';
 
 const defaultColors = {
@@ -36,6 +35,7 @@ interface SearchInterface {
   activeColor: string;
   elevation: number;
   elevationDirection: string;
+  handleChange?: Function;
 }
 
 const Search = ({
@@ -49,6 +49,7 @@ const Search = ({
   activeColor = '#ffd6ce',
   elevation = 1,
   elevationDirection = '',
+  handleChange,
 }: SearchInterface) => {
   const { configuration } = useContext(ConfigContext);
 
@@ -67,11 +68,18 @@ const Search = ({
         id={id}
         data-testid={`input-${id}`}
       />
-      <Dropdown
+      <Select
         border={{ left: '1px solid #CECECE' }}
-        options={options}
         activeColor={activeColor}
-      />
+        onChange={handleChange}
+        data-testid='select'
+      >
+        {options.map((option: string) => (
+          <option value={option} key={option}>
+            {option}
+          </option>
+        ))}
+      </Select>
       <Button
         label={buttonLabel}
         lead

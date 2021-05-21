@@ -28,7 +28,7 @@ const Button = ({
   colors = null,
   height,
   icon = null,
-  label = '',
+  label,
   lead = false,
   size = SIZE.default,
   variant = 'primary',
@@ -46,7 +46,7 @@ const Button = ({
     <StyledButton
       size={size}
       colors={colors || configuration.colors[variant] || defaultColors}
-      isIconOnly={label === '' && icon !== null}
+      isIconOnly={label === null && icon !== null}
       lead={lead}
       configuration={configuration}
       height={newHeight}

@@ -5,12 +5,11 @@ import { getSize } from '../../utils/getSizes';
 interface WrapperInterface {
   readonly disabled?: boolean;
   readonly hasIcon?: boolean;
-  readonly size: string;
-  readonly configuration: any;
+  readonly size?: string;
+  readonly configuration?: any;
   readonly border: string;
-  readonly iconColor: string;
-  readonly borderColor: string;
-  readonly transition: string;
+  readonly iconColor?: any;
+  readonly borderColor?: any;
 }
 export const Wrapper = styled.div<WrapperInterface>`
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
@@ -34,10 +33,11 @@ export const Wrapper = styled.div<WrapperInterface>`
   .input {
     border: none;
     width: 100%;
-    background-color: inherit;
+    background: inherit;
     outline: none;
     font-size: 1rem;
     padding: 0;
+    padding-right: ${({ configuration }) => configuration.spacing.tiny};
     padding-left: ${({ configuration, hasIcon }) =>
     hasIcon ? 0 : configuration.spacing.xs};
     & ::placeholder {
@@ -93,7 +93,7 @@ export const Wrapper = styled.div<WrapperInterface>`
   }
 
   .label {
-    background: ${({border}) => border = 'outside' ? 'transparent' : 'inherit'};
+    background: ${({border}) => border === 'outside' ? 'transparent' : 'inherit'};
     color: #808080;
     left: ${({ configuration, hasIcon }) =>
     hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
@@ -104,7 +104,7 @@ export const Wrapper = styled.div<WrapperInterface>`
     position: absolute;
     pointer-events: none;
     user-select: none;
-    transition: all .2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: all .2s ease;
     .icon-required {
       padding-left: ${({ configuration }) => configuration.spacing.nano};
       margin-left: auto;

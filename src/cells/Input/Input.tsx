@@ -22,20 +22,24 @@ import { Wrapper } from './StyledInput';
  */
 
 interface InputInterface {
-  label: string;
-  border: string;
-  disabled: boolean;
-  type: string;
-  icon: any;
-  required: boolean;
-  size: string;
-  isInvalid: boolean;
-  isValid: boolean;
-  id: string;
-  borderColor: string;
-  iconColor: string;
+  label?: string;
+  border?: string;
+  disabled?: boolean;
+  type?: string;
+  icon?: any;
+  required?: boolean;
+  size?: string;
+  isInvalid?: boolean;
+  isValid?: boolean;
+  id?: string;
+  borderColor?: any;
+  iconColor?: any;
   value?: any;
-  transition?: string;
+  onChange?: any;
+  defaultValue?: any;
+  min?: number;
+  max?: number;
+  style?: any;
 }
 
 const Input = ({
@@ -44,7 +48,7 @@ const Input = ({
   disabled = false,
   type,
   icon = null,
-  required = true,
+  required,
   isInvalid = false,
   isValid = false,
   id = 'input',
@@ -52,6 +56,10 @@ const Input = ({
   borderColor = '#001D48',
   iconColor = '#2329D6',
   value = null,
+  onChange = () => {},
+  defaultValue,
+  min,
+  max,
   ...rest
 }: InputInterface) => {
   const [open, setOpen] = useState(false);
@@ -94,22 +102,25 @@ const Input = ({
         border={border}
         hasIcon={icon !== null}
         size={size}
-        disabled={disabled}
         configuration={configuration}
         borderColor={borderColor}
         iconColor={iconColor}
+        disabled={disabled}
         {...rest}
       >
         {icon !== null && <span className='icon'>{getIcon(icon)}</span>}
 
         <input
           className='input'
-          onChange={change}
+          onChange={onChange}
+          onKeyUp={change}
           type={open ? inputType : type}
           id={id}
           required
           disabled={disabled}
           placeholder={(disabled && value) || label}
+          min={min}
+          max={max}
           {...rest}
         />
 

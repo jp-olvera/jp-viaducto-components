@@ -10,6 +10,7 @@ export * from './Paragraph';
 export * from './Pill';
 export * from './Progress';
 export * from './Radio';
+export * from './Select';
 export * from './Spacer';
 export * from './Switch';
 export * from './Tab';
