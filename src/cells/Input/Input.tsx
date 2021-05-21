@@ -37,6 +37,8 @@ interface InputInterface {
   value?: any;
   onChange?: any;
   defaultValue?: any;
+  min?: number;
+  max?: number;
   style?: any;
 }
 
@@ -54,8 +56,10 @@ const Input = ({
   borderColor = '#001D48',
   iconColor = '#2329D6',
   value = null,
-  onChange = () => { },
+  onChange = () => {},
   defaultValue,
+  min,
+  max,
   ...rest
 }: InputInterface) => {
   const [open, setOpen] = useState(false);
@@ -115,6 +119,8 @@ const Input = ({
           required
           disabled={disabled}
           placeholder={(disabled && value) || label}
+          min={min}
+          max={max}
           {...rest}
         />
 

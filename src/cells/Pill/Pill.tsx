@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { ConfigContext } from '../../providers';
 import { Close } from 'react-ikonate';
+import { ConfigContext } from '../../providers';
 import StyledPill from './StyledPill';
 import { BareButton } from '../BareButton';
 
@@ -25,7 +25,7 @@ interface PillInterface {
   size: string;
   family: string;
   verticalAlign: string;
-  handleAction: Function;
+  handleAction: Function | null;
 }
 
 const Pill = ({
@@ -37,7 +37,7 @@ const Pill = ({
   size = 'md',
   family = 'Manrope',
   verticalAlign = 'baseline',
-  handleAction = () => {},
+  handleAction,
 }: PillInterface) => {
   const { configuration } = useContext(ConfigContext);
 
@@ -55,17 +55,20 @@ const Pill = ({
       configuration={configuration}
       verticalAlign={verticalAlign}
     >
-      {iconLead !== null && <span className="span-icon-lead">{iconLead}</span>}
+      {iconLead !== null && <span className='span-icon-lead'>{iconLead}</span>}
       <span>{label}</span>
-        <span className="span-icon">
-      <BareButton onClick={handleAction} style={{ height: '100%', display: "flex" }}>
+      <span className='span-icon'>
+        <BareButton
+          onClick={handleAction}
+          style={{ height: '100%', display: 'flex' }}
+        >
           {icon === null || icon === '' ? (
-            <Close stroke="blue" strokeWidth={2} width="18px" height="18px" />
+            <Close stroke='blue' strokeWidth={2} width='18px' height='18px' />
           ) : (
             icon
           )}
-      </BareButton>
-        </span>
+        </BareButton>
+      </span>
     </StyledPill>
   );
 };

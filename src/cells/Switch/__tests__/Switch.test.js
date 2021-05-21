@@ -45,4 +45,11 @@ describe('<Switch/>', () => {
       getByTestId('Switch1').querySelector('input').hasAttribute('disabled'),
     ).toEqual(false);
   });
+  test('should fire hover event', () => {
+    const { getByTestId, container } = render(
+      <Switch disabled={false} />,
+    );
+    fireEvent.mouseOver(getByTestId('slider'));
+    expect(container).toMatchSnapshot();
+  });
 });

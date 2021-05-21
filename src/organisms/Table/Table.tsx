@@ -1,88 +1,123 @@
 import React, { useContext, useMemo } from 'react';
 
-import { dummyColumns, dummyData } from './dummy_data';
 import Table from './ReactTable';
 import { ConfigContext } from '../../providers';
 import { StyledTable } from './StyledTable';
 
 interface TableInterface {
+  align?: string;
   background?: string;
-  headerColor?: string;
-  textHeaderColor?: string;
-  headerFixed?: boolean;
   border?: string;
+  borderColor?: string;
+  columns: [any];
+  colorSelected?: string;
+  data: [any];
+  headerColor?: string;
+  headerElevation?: number;
+  headerFixed?: boolean;
+  headerPadding?: string;
+  horizontalSpacing: string;
+  minHeight?: string;
+  textHeaderColor?: string;
+  verticalSpacing: string;
+  withGlobalFilter: boolean;
   zebra?: boolean;
   zebraHover?: boolean;
   zebraColor?: string;
-  zebreHoverColor?: string;
-  verticalSpacing: string;
-  horizontalSpacing: string;
-  align?: string;
-  colorSelected?: string;
-  borderColor?: string;
-  headerElevation?: number;
-  minHeight?: string;
-  headerPadding?: string;
+  zebraHoverColor?: string;
+  fontSize?: string;
+  family?: string;
+  buttonVariantColor?: any;
+  selectSize?: any;
+  selectHeight?: any;
+  selectBorder?: any;
+  selectFontFamily?: any;
+  selectBackground?: any;
+  selectColor?: any;
+  selectRadius?: any;
 }
 
 const Wrapper = ({
+  align = 'left',
   background = '#fff',
-  headerColor,
-  textHeaderColor,
-  headerFixed,
-  border,
-  zebra,
-  zebraHover,
-  zebraColor,
-  zebreHoverColor,
-  verticalSpacing,
-  align,
-  horizontalSpacing,
-  colorSelected,
+  border = 'all',
+  borderColor = '#eaecef',
+  colorSelected = '#FFF1A5',
+  columns,
+  data,
+  headerColor = '#fff',
   headerElevation = 0,
-  borderColor,
-  minHeight = '4.8rem',
+  headerFixed = false,
   headerPadding,
+  horizontalSpacing = 'sm',
+  minHeight = '4.8rem',
+  textHeaderColor = '#5A5A5A',
+  verticalSpacing = 'sm',
+  withGlobalFilter = true,
+  zebra = true,
+  zebraHover = true,
+  zebraColor = '#F6F8FA',
+  zebraHoverColor = '#D1D5DA',
+  fontSize = 'md',
+  family,
+  buttonVariantColor,
+  selectSize,
+  selectHeight,
+  selectBorder,
+  selectFontFamily,
+  selectBackground,
+  selectColor,
+  selectRadius,
   ...rest
 }: TableInterface) => {
   const { configuration } = useContext(ConfigContext);
 
-  const newColumns = useMemo(() => dummyColumns, []);
-  const newData = useMemo(() => dummyData, []);
+  const newColumns = useMemo(() => columns, []);
+  const newData = useMemo(() => data, []);
+
   const renderRowSubComponent = React.useCallback(
-    ({ row }) => (
-      <div style={{ width: '100%' }}>
-        <p>{row.values.firstName}</p>
-      </div>
-    ),
+    ({ row }) => <p>{row.values.firstName}</p>,
     [],
   );
+
   return (
     <StyledTable
-      configuration={configuration}
+      align={align}
       background={background}
-      headerColor={headerColor}
-      textHeaderColor={textHeaderColor}
-      headerFixed={headerFixed}
       border={border}
+      borderColor={borderColor}
+      configuration={configuration}
+      colorSelected={colorSelected}
+      headerColor={headerColor}
+      headerElevation={headerElevation}
+      headerFixed={headerFixed}
+      horizontalSpacing={horizontalSpacing}
+      minHeight={minHeight}
+      textHeaderColor={textHeaderColor}
       zebraHover={zebraHover}
       zebraColor={zebraColor}
-      zebreHoverColor={zebreHoverColor}
+      zebraHoverColor={zebraHoverColor}
       verticalSpacing={verticalSpacing}
-      horizontalSpacing={horizontalSpacing}
-      align={align}
-      headerElevation={headerElevation}
-      colorSelected={colorSelected}
-      borderColor={borderColor}
-      minHeight={minHeight}
+      fontSize={fontSize}
+      family={family}
       {...rest}
     >
       <Table
         columns={newColumns}
         data={newData}
-        zebra={zebra}
-        renderRowSubComponent={renderRowSubComponent}
         padding={headerPadding}
+        renderRowSubComponent={renderRowSubComponent}
+        withGlobalFilter={withGlobalFilter}
+        zebra={zebra}
+        buttonVariantColor={buttonVariantColor}
+        selectSize={selectSize}
+        selectHeight={selectHeight}
+        selectBorder={selectBorder}
+        selectFontSize={fontSize}
+        selectFontFamily={selectFontFamily}
+        selectBackground={selectBackground}
+        selectColor={selectColor}
+        selectRadius={selectRadius}
       />
     </StyledTable>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from '..';
 import { ConfigProvider } from '../../../providers';
+import { dummyColumns, dummyData } from './StoryData';
 
 export default {
   title: 'Andamio/Organisms/Table',
@@ -115,6 +116,22 @@ export default {
         type: 'select',
       },
     },
+    fontSize: {
+      options: ['xxs', 'xs', 'sm', 'md', 'lg'],
+      control: {
+        type: 'select',
+      },
+    },
+    buttonVariantColor: {
+      options: ['primary', 'secondary', 'info', 'success', 'danger', 'warning'],
+      control: 'select',
+    },
+    selectSize: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+    },
+    selectBackground: {control: 'color'},
+    selectColor: { control: 'color' },
   },
 };
 
@@ -127,20 +144,32 @@ const Template = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  headerColor: '#fff',
-  colorSelected: '#ffd37c',
-  textHeaderColor: '#000',
   borderColor: '#eaecef',
   border: 'all',
+  colorSelected: '#ffd37c',
+  columns: dummyColumns,
+  data: dummyData,
+  headerColor: '#fff',
   headerFixed: true,
+  horizontalSpacing: 'sm',
+  align: 'left',
+  headerElevation: 1,
+  headerPadding: '.9rem',
+  minHeight: '4.8rem',
+  textHeaderColor: '#5A5A5A',
   zebra: true,
   zebraHover: true,
   zebraColor: '#F6F8FA',
   zebreHoverColor: '#D1D5DA',
   verticalSpacing: 'sm',
-  horizontalSpacing: 'sm',
-  align: 'left',
-  headerElevation: 1,
-  minHeight: '4.8rem',
-  headerPadding: '.9rem',
+  fontSize: 'md',
+  family: 'Roboto',
+  buttonVariantColor: 'secondary',
+  selectBorder: {
+    top: '1px solid black',
+    right: '1px solid black',
+    bottom: '1px solid black',
+    left: '1px solid black',
+  },
+  selectSize: 'md',
 };

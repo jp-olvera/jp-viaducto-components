@@ -1,6 +1,4 @@
-import React, {
-  useContext, useState, useEffect, useRef,
-} from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { Close } from 'react-ikonate';
 import StyledModal from './StyledModal';
 import { Title } from '../../cells/Title';
@@ -9,22 +7,23 @@ import { BareButton } from '../../cells/BareButton';
 import { ConfigContext } from '../../providers';
 
 interface ModalInterface {
-  title: string;
-  onReject: Function;
-  onAccept: Function;
-  maxWidth: string;
-  breakpoint: string;
-  active: boolean;
-  maxHeight: string;
-  overlayColor: string;
-  backgroundColor: string;
-  headComponent: any;
-  acceptDisabled: boolean;
-  rejectDisabled: boolean;
-  allowClickOutside: boolean;
-  elevation: number;
-  elevationDirection: string;
-  children: any;
+  title?: string;
+  onReject?: Function | null;
+  onAccept?: Function | null;
+  maxWidth?: string;
+  breakpoint?: string;
+  active?: boolean;
+  handleActive?: Function;
+  maxHeight?: string;
+  overlayColor?: string;
+  backgroundColor?: string;
+  headComponent?: any;
+  acceptDisabled?: boolean;
+  rejectDisabled?: boolean;
+  allowClickOutside?: boolean;
+  elevation?: number;
+  elevationDirection?: string;
+  children?: any;
 }
 
 /**
@@ -41,11 +40,12 @@ interface ModalInterface {
  */
 const Modal = ({
   title = '',
-  onReject,
-  onAccept,
+  onReject = null,
+  onAccept = null,
   maxWidth = '540px',
   breakpoint = '320px',
   active = false,
+  handleActive = () => {},
   maxHeight = '700px',
   overlayColor = 'rgba(255,255,255,0.5)',
   backgroundColor = 'white',
@@ -59,20 +59,16 @@ const Modal = ({
 }: ModalInterface) => {
   const { configuration } = useContext(ConfigContext);
   const modalRef = useRef<HTMLElement>(null);
-  const [isActive, setIsActive] = useState(false);
-  useEffect(() => {
-    setIsActive(active);
-  }, [active]);
 
   const clickOutsideHandler = (event) => {
     if (modalRef.current && modalRef.current.contains(event.target)) {
       return;
     }
-    setIsActive(false);
+    handleActive();
   };
   useEffect(() => {
     if (allowClickOutside) {
-      if (isActive) {
+      if (active) {
         document.addEventListener('click', clickOutsideHandler);
       } else {
         document.removeEventListener('click', clickOutsideHandler);
@@ -81,23 +77,23 @@ const Modal = ({
     return function cleanup() {
       document.removeEventListener('click', clickOutsideHandler);
     };
-  }, [isActive]);
+  }, [active]);
 
   const handleReject = () => {
-    onReject();
-    setIsActive(false);
+    if (onReject !== null) onReject();
+    handleActive();
   };
   const handleAccept = () => {
-    onAccept();
-    setIsActive(false);
+    if (onAccept !== null) onAccept();
+    handleActive();
   };
   return (
     <div
-      data-testid="overlay"
+      data-testid='overlay'
       style={{
         alignItems: 'center',
         backgroundColor: overlayColor,
-        display: isActive ? 'flex' : 'none',
+        display: active ? 'flex' : 'none',
         height: '100%',
         justifyContent: 'center',
         left: '0',
@@ -105,55 +101,51 @@ const Modal = ({
         top: '0',
         width: '100%',
         overflowY: 'auto',
+        zIndex: 9999,
       }}
     >
       <StyledModal
-        data-testid="modal"
+        data-testid='modal'
         ref={modalRef}
         configuration={configuration}
         maxWidth={maxWidth}
         breakpoint={breakpoint}
-        isActive={isActive}
+        isActive={active}
         maxHeight={maxHeight}
         backgroundColor={backgroundColor}
         elevation={elevation}
         elevationDirection={elevationDirection}
       >
         <div
-          className="modal-header"
+          className='modal-header'
           style={{
             flexDirection: headComponent !== null ? 'column-reverse' : 'row',
           }}
         >
           <div>
-            <Title level="4" weight="500">
+            <Title level='4' weight='500'>
               {title}
             </Title>
           </div>
           {headComponent !== null ? (
             <div style={{ width: '100%' }}>{headComponent}</div>
           ) : null}
-          <BareButton
-            style={{ marginLeft: 'auto' }}
-            onClick={() => {
-              setIsActive(false);
-            }}
-          >
+          <BareButton style={{ marginLeft: 'auto' }} onClick={handleActive}>
             <Close
-              data-testid="close-button"
-              stroke="#9EA0A5"
+              data-testid='close-button'
+              stroke='#9EA0A5'
               strokeWidth={2}
-              width="18px"
+              width='18px'
             />
           </BareButton>
         </div>
-        <div className="modal-content">{children}</div>
+        <div className='modal-content'>{children}</div>
         {onReject === null && onAccept === null ? null : (
-          <div className="modal-bottom" data-testid="controls">
+          <div className='modal-bottom' data-testid='controls'>
             {onReject !== null && (
               <Button
-                label="reject"
-                data-testid="reject"
+                label='reject'
+                data-testid='reject'
                 colors={{
                   default: '#F6F7F9',
                   click: '#D8DCE6',
@@ -168,8 +160,8 @@ const Modal = ({
             {onAccept !== null && (
               <div style={{ marginLeft: 'auto' }}>
                 <Button
-                  label="Create Event"
-                  data-testid="accept"
+                  label='Create Event'
+                  data-testid='accept'
                   colors={{
                     default: '#38B249',
                     click: '#38B249',

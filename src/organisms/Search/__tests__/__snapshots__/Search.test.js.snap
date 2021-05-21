@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Search/> should render properly with no options 1`] = `
+<div
+  class="StyledSearch-ku5ztu-0 iofugL"
+  data-testid="searchNoOptions"
+  elevation="1"
+>
+  <input
+    data-testid="input-searchNoOptions"
+    id="searchNoOptions"
+    placeholder="Introduce el término de búsqueda"
+    type="text"
+  />
+  <select
+    class="StyledSelect-tky0tx-0 fvmyjt"
+    data-testid="select"
+  />
+  <button
+    class="StyledButton-hwi8uc-0 ksOpRY"
+    data-testid="button-searchNoOptions"
+    height="2.488rem"
+    type="button"
+  >
+    <span
+      class="button-icon-span"
+    >
+      <svg
+        aria-labelledby="searchIconTitle"
+        color="#FFFFFF"
+        fill="none"
+        height="1em"
+        role="img"
+        stroke="currentColor"
+        stroke-linecap="square"
+        stroke-linejoin="miter"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="1em"
+      >
+        <title
+          id="searchIconTitle"
+        >
+          Search
+        </title>
+        <path
+          d="M14.4121122,14.4121122 L20,20"
+        />
+        <circle
+          cx="10"
+          cy="10"
+          r="6"
+        />
+      </svg>
+    </span>
+    <span>
+      Search 1
+    </span>
+  </button>
+</div>
+`;

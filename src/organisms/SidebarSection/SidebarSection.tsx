@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, {
+  useState, useRef, useEffect, useContext,
+} from 'react';
 import { ConfigContext } from '../../providers';
 import { Paragraph, Spacer } from '../../cells';
 
@@ -26,7 +28,7 @@ interface SidebarSectionInterface {
 }
 
 const SidebarSection = ({
-  items,
+  items = [],
   separator = false,
   title,
   isDropdown = false,
@@ -42,22 +44,6 @@ const SidebarSection = ({
     if (ev.type === 'click' || ev.keyCode === 13 || ev.keyCode === 32) {
       setIsActive(!isActive);
     }
-  };
-
-  const itemsList = () => {
-    if (items !== null && items && items.length > 0) {
-      return items.map(({ label, url }) => (
-        <li className='b' role='button' tabIndex={0} key={label}>
-          <>
-            <Spacer size='sm' />
-            <Spacer size='xs' direction='horizontal' />
-            {label}
-            <Spacer size='sm' />
-          </>
-        </li>
-      ));
-    }
-    return [];
   };
 
   useEffect(() => {
@@ -105,9 +91,35 @@ const SidebarSection = ({
             </li>
           )
         )}
-        {!isDropdown && !isMenu ? <ul>{itemsList()}</ul> : null}
+        {!isDropdown && !isMenu ? (
+          <ul>
+            {items.length > 0
+              && items.map(({ label }) => (
+                <li className='b' role='button' tabIndex={0} key={label}>
+                  <>
+                    <Spacer size='sm' />
+                    <Spacer size='xs' direction='horizontal' />
+                    {label}
+                    <Spacer size='sm' />
+                  </>
+                </li>
+              ))}
+          </ul>
+        ) : null}
         {isDropdown && isActive ? (
-          <ul className='nested-list'>{itemsList()}</ul>
+          <ul className='nested-list'>
+            {items.length > 0
+              && items.map(({ label }) => (
+                <li className='b' role='button' tabIndex={0} key={label}>
+                  <>
+                    <Spacer size='sm' />
+                    <Spacer size='xs' direction='horizontal' />
+                    {label}
+                    <Spacer size='sm' />
+                  </>
+                </li>
+              ))}
+          </ul>
         ) : null}
       </div>
       {isMenu && isActive ? (
@@ -116,7 +128,15 @@ const SidebarSection = ({
             {'←'} {title}
           </button>
           <Spacer size='xs' />
-          {itemsList}
+          {items.length > 0
+            && items.map(({ label }) => (
+              <li className='b' role='button' tabIndex={0} key={label}>
+                <Spacer size='sm' />
+                <Spacer size='xs' direction='horizontal' />
+                {label}
+                <Spacer size='sm' />
+              </li>
+            ))}
         </ul>
       ) : null}
     </StyledSidebarSection>

@@ -21,17 +21,17 @@ describe('<Modal></Modal>', () => {
     render(<Modal active onReject={onReject} />);
     expect(screen.getByTestId('controls')).toBeVisible();
   });
-  test('click close button should close the modal', () => {
-    render(<Modal active />);
+  test('click close button should call handleActive function', () => {
+    const handleActive = jest.fn();
+    render(<Modal active handleActive={handleActive} />);
     fireEvent.click(screen.getByTestId('close-button'));
-    expect(screen.getByTestId('overlay')).not.toBeVisible();
-    expect(screen.getByTestId('modal')).not.toBeVisible();
+    expect(handleActive).toBeCalled();
   });
-  test('click on the overlay should close the modal', () => {
-    render(<Modal active />);
+  test('click on the overlay should call handleActive function', () => {
+    const handleActive = jest.fn();
+    render(<Modal active handleActive={handleActive} />);
     fireEvent.click(screen.getByTestId('overlay'));
-    expect(screen.getByTestId('overlay')).not.toBeVisible();
-    expect(screen.getByTestId('modal')).not.toBeVisible();
+    expect(handleActive).toBeCalled();
   });
   test('should call onAccept function', () => {
     const onAccept = jest.fn();

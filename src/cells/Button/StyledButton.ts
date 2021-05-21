@@ -8,8 +8,8 @@ interface StyledButtonInterface {
   readonly label?: string;
   readonly size?: string;
   readonly colors?:
-  | { default: string; hover: string; click: string; text: string }
-  | any;
+    | { default: string; hover: string; click: string; text: string }
+    | any;
   readonly icon?: any;
   readonly lead?: boolean;
   readonly height?: string;
@@ -30,7 +30,9 @@ const StyledButton = styled.button<StyledButtonInterface>`
   justify-content: center;
   border-radius: 2px;
   box-sizing: border-box;
-  transition: background-color 0.15s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+  transition: background-color 0.15s
+    ${({ configuration, transition }) =>
+      transition || configuration.transitionTimingFunction};
   text-align: center;
 
   ${(props) => getLateralPadding(props)}
@@ -75,19 +77,19 @@ const StyledButton = styled.button<StyledButtonInterface>`
 
   .button-icon-span {
     margin-right: ${(p) =>
-    !p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
+      !p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
     margin-left: ${(p) =>
-    !p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
+      !p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
   }
 `;
 
 const getLateralPadding = (props) => {
   let padding = '';
-	if (props.leftSpacing !== null || props.rightSpacing !== null) {
-		const l = props.leftSpacing !== null ? props.configuration.spacing[props.leftSpacing] : '0';
-		const r = props.rightSpacing !== null ? props.configuration.spacing[props.rightSpacing] : '0';
+  if (props.leftSpacing !== null || props.rightSpacing !== null) {
+    const l = props.configuration.spacing[props.leftSpacing] || '0';
+    const r = props.configuration.spacing[props.rightSpacing] || '0';
     padding = `0 ${r} 0 ${l}`;
-	} else if (!props.isIconOnly) {
+  } else if (!props.isIconOnly) {
     // not icon at all
     switch (props.size) {
       case SIZE.small:
@@ -125,17 +127,6 @@ const getHeight = (props) => {
   let height = '2.488rem';
   if (props.height !== undefined) {
     height = `${props.height}`;
-  } else {
-    switch (props.size) {
-      case SIZE.small:
-        height = '2.073rem';
-        break;
-      case SIZE.large:
-        height = '2.986rem';
-        break;
-      default:
-        break;
-    }
   }
   return css`
     height: ${height};

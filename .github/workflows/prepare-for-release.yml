@@ -14,7 +14,7 @@ jobs:
         run: npm ci
 
       - name: Run all tests
-        run: npx jest --coverage -u
+        run: npm run test:coverage
 
       - name: Send coverage
         run: |

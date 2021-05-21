@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import getElevation from '../../utils/getElevation';
+import { getSize } from '../../utils/getSizes';
 
 interface TableI {
   configuration?: any;
@@ -11,7 +12,7 @@ interface TableI {
   zebra?: boolean;
   zebraHover?: boolean;
   zebraColor?: string;
-  zebreHoverColor?: string;
+  zebraHoverColor?: string;
   verticalSpacing: string;
   horizontalSpacing: string;
   align?: string;
@@ -19,16 +20,15 @@ interface TableI {
   colorSelected?: string;
   borderColor?: string;
   minHeight?: string;
+  fontSize?: string;
+  family?: string;
 }
 export const StyledTable = styled.div < TableI > `
   box-sizing: border-box;
   width: fit-content;
-
-  & * {
-    box-sizing: border-box;
-    font-family: 'Roboto', monospace;
+  * {
+    font-size: ${({ fontSize }) => getSize(fontSize)};
   }
-
   .size {
     text-align: right;
   }
@@ -62,6 +62,13 @@ export const StyledTable = styled.div < TableI > `
     }
   }
 
+  .td-data {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+  }
+
   .resizer {
     display: inline-block;
     background: transparent;
@@ -86,6 +93,29 @@ export const StyledTable = styled.div < TableI > `
     }
   }
 
+  .draggable-list {
+    li {
+      box-sizing: border-box;
+      list-style: none;
+      margin: 0;
+      margin-bottom: 0.5rem;
+      padding: 0.35rem 0;
+    }
+  }
+  .sortable-dropzone {
+    border: 1px solid transparent;
+  }
+  .drag-sort-active {
+    box-sizing: border-box;
+    border: 1px solid #4ca1af !important;
+    opacity: 0.8;
+    color: rgba(0, 0, 0, 0.2);
+  }
+  .drag-sort-enter {
+    box-sizing: border-box;
+    border: 1px dashed #4ca1af !important;
+  }
+
   @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.md}) {
     display: block;
     width: 100%;
@@ -94,8 +124,22 @@ export const StyledTable = styled.div < TableI > `
   }
 
   & > table {
+    box-sizing: border-box;
+    font-family: ${({ family }) => (family ? `${family}, monospace` : "'Roboto', monospace")};
     display: grid;
     border-collapse: collapse;
+
+    .expandible {
+      flex-grow: 1;
+      & > td {
+        position: relative !important;
+        width: 100%;
+      }
+    }
+
+    .pointer {
+      cursor: pointer;
+    }
 
     .pagination {
       align-items: center;
@@ -104,7 +148,6 @@ export const StyledTable = styled.div < TableI > `
       gap: 0.4rem;
       margin: 0.4rem;
       .page {
-        min-width: 6rem;
         padding: 0 ${({ configuration }) => configuration.spacing.xs};
       }
     }
@@ -145,11 +188,12 @@ export const StyledTable = styled.div < TableI > `
     tr {
       padding: 0;
       margin: 0;
+      display: flex;
       transition: all 0.2s
         ${({ configuration }) => configuration.transitionTimingFunction};
       background-color: inherit;
       & :hover {
-        background-color: ${({ zebraHover, zebreHoverColor }) => (zebraHover ? zebreHoverColor || 'inherit' : '')} !important;
+        background-color: ${({ zebraHover, zebraHoverColor }) => (zebraHover ? zebraHoverColor || 'inherit' : '')} !important;
         opacity: ${({ zebra }) => (zebra ? '.89' : '1')};
         transition: all 0.2s
           ${({ configuration }) => configuration.transitionTimingFunction};
@@ -171,17 +215,14 @@ export const StyledTable = styled.div < TableI > `
     }
     tbody,
     thead {
-      & tr {
-        @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.lg}) {
-          display: flex;
-        }
-      }
       & > tr > td:first-child,
       > tr > th:first-child {
         @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.lg}) {
           position: sticky !important;
-          z-index: 9999;
-          background-color: inherit !important;
+          z-index: 1;
+          .selected > td {
+            background-color: ${({ colorSelected }) => colorSelected || 'inherit'} !important;
+          }
           left: 0;
           ${() => getElevation(1, 'right')};
         }
