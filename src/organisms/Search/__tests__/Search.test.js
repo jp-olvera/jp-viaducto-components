@@ -22,6 +22,17 @@ describe('<Search/>', () => {
     );
     expect(screen.getByTestId('search')).toBeVisible();
   });
+  test('should render properly with no options', () => {
+    const handleClick = jest.fn();
+    render(
+      <Search
+        buttonLabel='Search 1'
+        handleSearch={handleClick}
+        id='searchNoOptions'
+      />,
+    );
+    expect(screen.getByTestId('searchNoOptions')).toMatchSnapshot();
+  });
 
   test('call function on button press', () => {
     const handleClick = jest.fn().mockReturnValue(() => null);
@@ -52,18 +63,18 @@ describe('<Search/>', () => {
     const { getByTestId } = render(
       <Search buttonLabel='Search 4' options={options} id='search' handleSearch={handleClick} />,
     );
-    const activator = getByTestId('dropdown-activator');
+    const activator = getByTestId('select');
     activator.click();
-    expect(getByTestId('dropdown-itemList')).toBeVisible();
     expect(screen.getByText('RFC')).toBeVisible();
   });
 
   test('should display dropdown with no props', () => {
-    const { getByTestId } = render(
-      <Search family={null} />,
+    const {queryByText, getByTestId} = render(
+      <Search family={null} options={['option1', 'option2']} />,
     );
-    const activator = getByTestId('dropdown-activator');
+    const activator = getByTestId('select');
     activator.click();
-    expect(getByTestId('dropdown-itemList')).toBeVisible();
+    expect(queryByText('option1')).toBeInTheDocument();
+    expect(queryByText('option1')).toBeInTheDocument();
   });
 });

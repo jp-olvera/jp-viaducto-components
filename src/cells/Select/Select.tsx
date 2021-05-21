@@ -3,7 +3,7 @@ import StyledSelect from './StyledSelect';
 import { ConfigContext } from '../../providers';
 
 const Select = ({
-  size = 'default',
+  size = 'lg',
   height,
   border,
   children,
@@ -28,6 +28,7 @@ const Select = ({
       color={color}
       radius={radius}
       {...rest}
+      data-testid='select'
     >
       {children}
     </StyledSelect>

@@ -32,6 +32,7 @@ describe('<Card/>', () => {
       <Card
         footer={null}
         contet={null}
+        onlyImage={false}
         src='https://homepages.cae.wisc.edu/~ece533/images/girl.png'
         collapse={false}
       />,

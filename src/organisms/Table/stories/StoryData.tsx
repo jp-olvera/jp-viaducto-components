@@ -129,20 +129,28 @@ export const dummyColumns = [
     Header: 'First name',
     accessor: 'firstName',
     Filter: DefaultColumnFilter,
+    prefix: '>',
+    sufix: null,
   },
   {
     Header: 'Last name',
     accessor: 'lastName',
     Filter: DefaultColumnFilter,
+    prefix: null,
+    sufix: null,
   },
   {
     Header: 'Salary',
     accessor: 'salary',
     Filter: DefaultColumnFilter,
+    prefix: '$',
+    sufix: null,
   },
   {
     Header: 'Percent',
     accessor: 'percent',
     Filter: DefaultColumnFilter,
+    prefix: null,
+    sufix: '%',
   },
 ];

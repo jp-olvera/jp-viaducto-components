@@ -24,7 +24,9 @@ import {
   ChevronsRight,
   Settings,
 } from 'react-ikonate';
-import { Input, Button, Select } from '../../cells';
+import {
+  Input, Button, Select, Paragraph,
+} from '../../cells';
 import { Modal } from '../../organisms';
 
 const IndeterminateCheckbox = forwardRef(
@@ -161,6 +163,8 @@ const Table = ({
     if (e.target.classList.contains('dropzone')) {
       e.target.parentNode.classList.add('dragColor');
       e.target.parentNode.classList.remove('dragNocolor');
+    } else if (e.target.classList.contains('sortable-dropzone')) {
+      e.target.classList.add('drag-sort-enter');
     }
   };
   const handleDragLeave = (e) => {
@@ -169,6 +173,8 @@ const Table = ({
     if (e.target.classList.contains('dropzone')) {
       e.target.parentNode.classList.remove('dragColor');
       e.target.parentNode.classList.add('dragNocolor');
+    } else if (e.target.classList.contains('sortable-dropzone')) {
+      e.target.classList.remove('drag-sort-enter');
     }
   };
   const handleDragOver = (e) => {
@@ -178,9 +184,17 @@ const Table = ({
   const handleDrop = (e, id) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.target.classList.contains('dropzone')) {
-      e.target.parentNode.classList.remove('dragColor');
-      e.target.parentNode.classList.add('dragNocolor');
+    const { classList } = e.target;
+    if (
+      classList.contains('dropzone')
+      || classList.contains('sortable-dropzone')
+    ) {
+      if (classList.contains('dropzone')) {
+        e.target.parentNode.classList.remove('dragColor');
+        e.target.parentNode.classList.add('dragNocolor');
+      } else {
+        e.target.classList.remove('drag-sort-enter');
+      }
       if (draggedId && id) {
         let id1, id2;
         for (let i = 0; i < visibleColumns.length; i++) {
@@ -199,17 +213,26 @@ const Table = ({
   };
   const handleDragStart = (e, id) => {
     e.stopPropagation();
-    e.target.parentNode.classList.add('dragStart');
-    e.target.parentNode.classList.remove('dragEnd');
+    const { classList } = e.target;
+    if (classList.contains('dropzone')) {
+      e.target.parentNode.classList.add('dragStart');
+      e.target.parentNode.classList.remove('dragEnd');
+    } else if (classList.contains('sortable-dropzone')) {
+      e.target.classList.add('drag-sort-active');
+    }
     setDraggedId(id);
   };
   const handleDragEnd = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    e.target.parentNode.classList.remove('dragStart');
-    e.target.parentNode.classList.add('dragEnd');
+    const { classList } = e.target;
+    if (classList.contains('dropzone')) {
+      e.target.parentNode.classList.remove('dragStart');
+      e.target.parentNode.classList.add('dragEnd');
+    } else {
+      e.target.classList.remove('drag-sort-active');
+    }
   };
-
   return (
     <>
       <div style={{ marginBottom: '1rem' }}>
@@ -300,7 +323,20 @@ const Table = ({
                         typeof cell.value === 'number' ? 'size' : ''
                       } ${cell.column.id !== 'selection' ? 'pointer' : ''}`}
                     >
-                      {cell.render('Cell')}
+                      {typeof cell.value === 'string'
+                      || typeof cell.value === 'number' ? (
+                        <span className='td-data'>
+                          <Paragraph weight='bold'>
+                            {cell.column.prefix}
+                          </Paragraph>
+                          <Paragraph>{cell.render('Cell')}</Paragraph>
+                          <Paragraph weight='bold'>
+                            {cell.column.sufix}
+                          </Paragraph>
+                        </span>
+                        ) : (
+                          cell.render('Cell')
+                        )}
                     </td>
                   ))}
                 </tr>
@@ -319,6 +355,9 @@ const Table = ({
               <div className='pagination'>
                 <Button
                   variant={buttonVariantColor}
+                  leftSpacing='md'
+                  iconSpacing='none'
+                  rightSpacing='md'
                   icon={<ChevronsLeft />}
                   onClick={() => gotoPage(0)}
                   type='button'
@@ -326,6 +365,9 @@ const Table = ({
                 />
                 <Button
                   variant={buttonVariantColor}
+                  leftSpacing='md'
+                  iconSpacing='none'
+                  rightSpacing='md'
                   icon={<ChevronLeft />}
                   type='button'
                   onClick={() => previousPage()}
@@ -333,6 +375,9 @@ const Table = ({
                 />
                 <Button
                   variant={buttonVariantColor}
+                  leftSpacing='md'
+                  iconSpacing='none'
+                  rightSpacing='md'
                   type='button'
                   onClick={() => nextPage()}
                   disabled={!canNextPage}
@@ -340,6 +385,9 @@ const Table = ({
                 />
                 <Button
                   variant={buttonVariantColor}
+                  leftSpacing='md'
+                  iconSpacing='none'
+                  rightSpacing='md'
                   icon={<ChevronsRight />}
                   type='button'
                   onClick={() => gotoPage(pageCount - 1)}
@@ -412,19 +460,35 @@ const Table = ({
           <IndeterminateCheckbox {...getToggleHideAllColumnsProps()} /> Toggle
           All
         </div>
-        {allColumns.map((column) => (
-          <div key={column.id}>
-            <label htmlFor={column.id}>
-              <input
-                id={column.id}
-                type='checkbox'
-                {...column.getToggleHiddenProps()}
-              />{' '}
-              {column.id === 'selection' ? 'Selection' : column.Header}
-            </label>
-            {column.canFilter ? column.render('Filter') : null}
-          </div>
-        ))}
+        <ul className='draggable-list'>
+          {allColumns.map((column) => (
+            <li
+              key={column.id}
+              draggable={column.id !== 'selection'}
+              onDragStart={(ev) => {
+                handleDragStart(ev, column.id);
+              }}
+              onDragOver={handleDragOver}
+              onDragEnter={handleDragEnter}
+              onDragLeave={handleDragLeave}
+              onDrop={(ev) => {
+                handleDrop(ev, column.id);
+              }}
+              onDragEnd={handleDragEnd}
+              className={column.id !== 'selection' ? 'sortable-dropzone' : ''}
+            >
+              <label htmlFor={column.id}>
+                <input
+                  id={column.id}
+                  type='checkbox'
+                  {...column.getToggleHiddenProps()}
+                />{' '}
+                {column.id === 'selection' ? 'Selection' : column.Header}
+              </label>
+              {column.canFilter ? column.render('Filter') : null}
+            </li>
+          ))}
+        </ul>
       </Modal>
     </>
   );

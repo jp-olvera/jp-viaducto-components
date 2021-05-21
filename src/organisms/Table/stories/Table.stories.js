@@ -171,4 +171,5 @@ Default.args = {
     bottom: '1px solid black',
     left: '1px solid black',
   },
+  selectSize: 'md',
 };

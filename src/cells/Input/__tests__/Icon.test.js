@@ -54,6 +54,10 @@ describe('<Icon/>', () => {
     render(<Icon icon='ok' />);
     expect(screen.queryByText('ok')).not.toBeInTheDocument();
   });
+  test('should be visible with required icon', () => {
+    render(<Icon icon='required' />);
+    expect(screen.queryByText('error')).not.toBeInTheDocument();
+  });
   test('should not render Icon', () => {
     render(<Icon />);
     expect(screen.queryByText('time')).not.toBeInTheDocument();

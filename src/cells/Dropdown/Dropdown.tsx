@@ -17,15 +17,6 @@ import { Hideable } from '../Hideable';
  * @param {string} size size of the dropdown
  * @param {string} height size of the dropdown
  */
-interface DropdownInterface {
-  activeColor?: string;
-  border?: any;
-  defaultText?: string;
-  family?: string;
-  options?: any[];
-  size?: string;
-  height?: string;
-}
 
 const Dropdown = ({
   activeColor = '#ffd6ce',
@@ -36,7 +27,7 @@ const Dropdown = ({
   size = 'default',
   height,
   ...rest
-}: DropdownInterface) => {
+}: any) => {
   const { configuration } = useContext(ConfigContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(null);
@@ -50,14 +41,10 @@ const Dropdown = ({
     if (dropdownListRef && dropdownListRef.current && wrapperRef.current) {
       const bounding = dropdownListRef.current.getBoundingClientRect();
       const bottom = wrapperRef.current.clientHeight || '2.4rem';
-      // console.log(bounding);
-      // console.log(window.innerHeight);
-      // console.log(document.documentElement.clientHeight);
       if (
         bounding.bottom
         > (window.innerHeight || document.documentElement.clientHeight)
       ) {
-        console.log(wrapperRef.current.clientHeight);
         dropdownListRef.current.style.bottom = `calc(${bottom}px + 0.5rem`;
         // console.log(' Estás fuera mai fren');
       }

@@ -83,6 +83,7 @@ describe('<Input/>', () => {
         border='outside'
         size='large'
         icon='IconCool'
+        required
       />,
     );
     const input = container.querySelector('.input');
@@ -98,6 +99,10 @@ describe('<Input/>', () => {
 
   test('should be <ProgressBar/> rendered', () => {
     const { container } = render(<ProgressBar />);
+    expect(container).toBeDefined();
+  });
+  test('should be <ProgressBar/> rendered with Color', () => {
+    const { container } = render(<ProgressBar currentProgress={3} />);
     expect(container).toBeDefined();
   });
 });

@@ -72,6 +72,7 @@ const Search = ({
         border={{ left: '1px solid #CECECE' }}
         activeColor={activeColor}
         onChange={handleChange}
+        data-testid='select'
       >
         {options.map((option: string) => (
           <option value={option} key={option}>

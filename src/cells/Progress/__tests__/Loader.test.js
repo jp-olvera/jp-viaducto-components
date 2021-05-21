@@ -78,7 +78,7 @@ describe('Progress component', () => {
   });
   test('should render default props', () => {
     const { container } = render(
-      <Progress />,
+      <Progress loader={null} />,
     );
     expect(container).toBeInTheDocument();
   });

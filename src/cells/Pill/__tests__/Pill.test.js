@@ -12,7 +12,7 @@ describe('<Pill/>', () => {
     expect(screen.queryByText('Pill')).toBeVisible();
   });
   test('should render Pill with icon', () => {
-    render(<Pill label='Accept' icon='' iconLead='' handleAction={null} family={null} />);
+    render(<Pill label='Accept' icon='Cion' iconLead={null} handleAction={null} family={null} />);
     expect(screen.queryByText('Accept')).toBeVisible();
   });
   test('should render Pill with icon lead', () => {
@@ -20,7 +20,7 @@ describe('<Pill/>', () => {
     expect(screen.queryByText('=>')).toBeVisible();
   });
   test('should render Pill without label with icon lead', () => {
-    render(<Pill iconLead='Icon' family='Roboto' />);
+    render(<Pill iconLead='Icon' icon={null} family='Roboto' />);
     expect(screen.queryByText('Icon')).toBeVisible();
   });
   test('should render Pill with several props', () => {

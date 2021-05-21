@@ -12,7 +12,9 @@ export const StyledSwitch = styled.label<StyledSwitchI>`
   display: inline-block;
   width: 100px;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  transition: 0.1s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+  transition: 0.1s
+    ${({ configuration, transition }) =>
+      transition || configuration.transitionTimingFunction};
   ${({ size }) => getSize(size).slider};
   & input {
     opacity: 0;
@@ -27,10 +29,17 @@ export const StyledSwitch = styled.label<StyledSwitchI>`
     right: 0;
     bottom: 0;
     background-color: ${({ disabled }) => (disabled ? '#DDDDDD' : '#AAAAAA')};
-    transition: 0.4s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: 0.4s
+      ${({ configuration, transition }) =>
+        transition || configuration.transitionTimingFunction};
     & :hover :before {
       ${({ disabled }) => (disabled ? '' : 'border: .25rem solid #444444')};
-      ${({ disabled }) => (disabled ? '' : `transition: .1s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction}`)};
+      ${({ disabled, configuration, transition }) =>
+        disabled
+          ? ''
+          : `transition: .1s ${
+              transition || configuration.transitionTimingFunction
+            }`};
       ${({ size, disabled }) =>
         disabled ? '' : getSize(size).slider_before_hover};
     }
@@ -39,7 +48,9 @@ export const StyledSwitch = styled.label<StyledSwitchI>`
       content: '';
       background-color: white;
       ${({ size }) => getSize(size).slider_before};
-      transition: 0.1s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+      transition: 0.1s
+        ${({ configuration, transition }) =>
+          transition || configuration.transitionTimingFunction};
     }
   }
 
@@ -53,7 +64,9 @@ export const StyledSwitch = styled.label<StyledSwitchI>`
   }
 
   input:checked + .slider:before {
-    transition: 0.1s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: 0.1s
+      ${({ configuration, transition }) =>
+        transition || configuration.transitionTimingFunction};
     ${({ size }) => getSize(size).slider_translate};
   }
 

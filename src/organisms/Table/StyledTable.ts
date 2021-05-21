@@ -26,7 +26,9 @@ interface TableI {
 export const StyledTable = styled.div < TableI > `
   box-sizing: border-box;
   width: fit-content;
-
+  * {
+    font-size: ${({ fontSize }) => getSize(fontSize)};
+  }
   .size {
     text-align: right;
   }
@@ -60,6 +62,13 @@ export const StyledTable = styled.div < TableI > `
     }
   }
 
+  .td-data {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+  }
+
   .resizer {
     display: inline-block;
     background: transparent;
@@ -84,6 +93,29 @@ export const StyledTable = styled.div < TableI > `
     }
   }
 
+  .draggable-list {
+    li {
+      box-sizing: border-box;
+      list-style: none;
+      margin: 0;
+      margin-bottom: 0.5rem;
+      padding: 0.35rem 0;
+    }
+  }
+  .sortable-dropzone {
+    border: 1px solid transparent;
+  }
+  .drag-sort-active {
+    box-sizing: border-box;
+    border: 1px solid #4ca1af !important;
+    opacity: 0.8;
+    color: rgba(0, 0, 0, 0.2);
+  }
+  .drag-sort-enter {
+    box-sizing: border-box;
+    border: 1px dashed #4ca1af !important;
+  }
+
   @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.md}) {
     display: block;
     width: 100%;
@@ -94,7 +126,6 @@ export const StyledTable = styled.div < TableI > `
   & > table {
     box-sizing: border-box;
     font-family: ${({ family }) => (family ? `${family}, monospace` : "'Roboto', monospace")};
-    font-size: ${({ fontSize }) => getSize(fontSize)};
     display: grid;
     border-collapse: collapse;
 

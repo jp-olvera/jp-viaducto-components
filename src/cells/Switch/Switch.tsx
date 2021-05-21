@@ -39,12 +39,12 @@ const Switch = ({
       {...rest}
     >
       <input
-        type="checkbox"
+        type='checkbox'
         id={id}
         onChange={() => setCheck(!check)}
         disabled={disabled}
       />
-      <span className="slider round" />
+      <span className='slider round' data-testid='slider' />
     </StyledSwitch>
   );
 };

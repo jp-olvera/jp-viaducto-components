@@ -45,7 +45,7 @@ describe('<Button/>', () => {
         label='Button Test'
         icon={IconButton}
         leftSpacing='sm'
-        size='small'
+        size='large'
         colors={{
           default: '#937B3D',
           hover: '#AD9043',
@@ -67,13 +67,13 @@ describe('<Button/>', () => {
 
   test('should render button with isIconOnly props and lg padding props', () => {
     const OnlyIcon = 'OnlyIcon';
-    render(<Button icon={OnlyIcon} leftSpacing='large' size='small' height='48px' />);
+    render(<Button icon={OnlyIcon} leftSpacing='large' size='large' height='48px' />);
     expect(screen.queryByRole('button')).toBeInTheDocument();
   });
 
   test('should render button with isIconOnly props and small props', () => {
     const OnlyIcon = 'OnlyIcon';
-    render(<Button icon={OnlyIcon} size='large' />);
+    render(<Button icon={OnlyIcon} size='small' label={null} leftSpacing={null} rightSpacing={null} />);
     expect(screen.queryByRole('button')).toBeInTheDocument();
   });
 
@@ -84,7 +84,17 @@ describe('<Button/>', () => {
   });
 
   test('should render button with label props and small padding props', () => {
-    render(<Button icon={<Help />} size='small' label='Not only Icon' />);
+    render(<Button icon={<Help />} size='small' label='Not only Icon' height={undefined} />);
     expect(screen.queryByRole('button')).toBeInTheDocument();
+  });
+
+  test('should render button with no padding lateral large and default', () => {
+    const props = {
+      label: null, leftSpacing: null, rightSpacing: null, height: undefined, colors: null, variant: null,
+    };
+    render(<Button icon={<Help />} size='large' {...props} />);
+    expect(screen.queryByRole('button')).toBeInTheDocument();
+    const { container} = render(<Button icon={<Help />} size='default' {...props} />);
+    expect(container).toBeInTheDocument();
   });
 });
