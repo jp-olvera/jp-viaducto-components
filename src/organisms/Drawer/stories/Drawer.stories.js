@@ -6,8 +6,33 @@ export default {
   title: 'Andamio/Organisms/Drawer',
   component: Drawer,
   argTypes: {
+    active: {
+      description: 'Toaster status tha indicates if it should be shown',
+      type: { name: 'boolean', required: true },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    elevation: {
+      description: 'The elevation level it should take, one of 1/2/3',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 1 },
+      },
+      options: [1, 2, 3],
+      control: {
+        type: 'select',
+      },
+    },
     elevationDirection: {
+      description: "The elevation direction, if '' direction goes everywhere",
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "''" },
+      },
       options: [
+        '',
         'top',
         'right',
         'bottom',
@@ -21,17 +46,20 @@ export default {
         type: 'select',
       },
     },
-    elevation: {
-      options: [1, 2, 3],
-      control: {
-        type: 'select',
-      },
+    transition: {
+      description: 'Linear transition to use',
+      type: { name: 'string' },
+      table: { type: { summary: 'string' }, defaultValue: { summary: 'ease' } },
     },
   },
 };
 
 const Template = (args) => (
   <ConfigProvider>
+    <h1 style={{ color: 'red ' }}>
+      Utiliza el control de <b>active</b> para mostrar y ocultar el drawer
+    </h1>
+    <p>Resto del contenido</p>
     <Drawer {...args}>
       <div style={{ height: '80px', background: 'green' }}>
         <h3 style={{ margin: 0 }}>Hola</h3>
@@ -67,7 +95,7 @@ const Template = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  active: true,
+  active: false,
   elevation: 1,
   elevationDirection: 'left',
   transition: 'ease',

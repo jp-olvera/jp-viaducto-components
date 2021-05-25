@@ -45,9 +45,9 @@ interface CardInterface {
 const Card = ({
   collapsible,
   collapse,
-  src,
-  content,
-  footer,
+  src = null,
+  content = null,
+  footer = null,
   onlyImage,
   elevation = 1,
   elevationDirection = '',

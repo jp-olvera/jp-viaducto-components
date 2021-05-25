@@ -8,16 +8,17 @@ import StyledTitle from './StyledTitle';
  * This components uses level arguent to decide the sie o the title
  * you can use values from 1 to 6 for cases like h1, h2, h3 ...
  * or u can use alues from D1 - D4
- * @param {String} family value for font-family
- * @param {String} weight value for weight
- * @param {String} margin value for margin
- * @param {String} children value for children
  * @param {String} level value for title size, values between 1 - 6 or D1 - D4
- * @param {String} align value for align
+ * @param {String} family value for font-family
+ * @param {String} fontStyle value for font-style property
+ * @param {String} lineHeight value for line-height property
+ * @param {String} margin value for margin
  * @param {Number} spacing value for leter-spacing, it'l be used with rem units
- * @param {String} lineHeight value for line-height
+ * @param {String} weight value for weight
+ * @param {String} align value for align
+ * @param {String} verticalAlign value for vertical-align property
  * @param {String} color value for color
- * @param {String} children Content of the title
+ * @param {String} children value for children
  * @param {Object} props HTML attributes for HTML Heading tag
  */
 

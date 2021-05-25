@@ -12,12 +12,18 @@ interface ProgressInterface {
   loader: string;
   transition?: string;
 }
-
+/**
+ * Progress component indicator for set the visual steps completed
+ * @param {String} loader Type of loder to render
+ * @param {String} completedSteps Indicates the number of completed steps as a light green
+ * @param {String} currentStep Indicates actual step as a dark green
+ * @param {String} totalSteps Indicates (and divides the progress indicator) the total steps
+ */
 const Progress = ({
   totalSteps = 0,
   completedSteps = 0,
   currentStep = 0,
-  loader = 'circle',
+  loader,
   ...rest
 }: ProgressInterface) => {
   const strokeWidth = 2;

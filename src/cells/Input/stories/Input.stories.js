@@ -5,20 +5,36 @@ import { ConfigProvider } from '../../../providers';
 export default {
   title: 'Andamio/Cells/Controls/Input',
   component: Input,
+  parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
     border: {
+      description: 'Set the border for the input',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'default' },
+      },
       options: ['outside', 'overlap', 'bottom', 'default'],
       control: {
         type: 'select',
       },
     },
     type: {
-      options: ['text', 'password'],
+      description: 'Set input type',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'text' },
+      },
+      options: ['text', 'password', 'number'],
       control: {
         type: 'select',
       },
     },
     icon: {
+      description: 'Add an icon helper',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'null' },
+      },
       options: [
         null,
         'card',
@@ -37,8 +53,69 @@ export default {
       },
     },
     size: {
+      description: 'Set the size (height) of the input',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'default' },
+      },
       control: 'select',
       options: ['default', 'large'],
+    },
+    disabled: {
+      description: 'Disables the input',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    isInvalid: {
+      description: 'Set an icon to indicate invalid input',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    isValid: {
+      description: 'Set an icon to indicate valid input',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    label: {
+      description: 'Set the label of the input',
+      type: { summary: 'String', required: true },
+      table: {
+        defaultValue: { summary: '' },
+      },
+    },
+    required: {
+      description: 'Set an icon to indicate the input as required',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    transition: {
+      description: 'Set the transitionTimingFunction',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'ease' },
+      },
+    },
+    borderColor: {
+      description: 'Set the border color (if the border is defined)',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
+    iconColor: {
+      description: 'Set the icon color (if the border is defined)',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
     },
   },
 };
@@ -53,20 +130,20 @@ export const Text = Template.bind({});
 
 Text.args = {
   label: 'Text',
-  id: 'text',
   type: 'text',
   isInvalid: false,
   isValid: false,
   required: false,
   disabled: false,
   transition: 'ease',
+  borderColor: null,
+  iconColor: null,
 };
 
 export const Password = Template.bind({});
 
 Password.args = {
   label: 'Password',
-  id: 'Password',
   type: 'password',
   icon: null,
   isInvalid: false,
@@ -74,4 +151,6 @@ Password.args = {
   required: true,
   disabled: false,
   transition: 'ease',
+  borderColor: null,
+  iconColor: null,
 };

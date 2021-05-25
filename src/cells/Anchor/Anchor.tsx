@@ -19,11 +19,12 @@ interface AnchorInterface {
  * from Gatsby for pre-loa the page
  * @param {String} label Title or content of the component
  * @param {String} href The path of the page to visit
+ * @param {string} color The color of the anchor
  * @param {String} size The anchor size
  * @param {String} family The anchor font-family
  * @param {any} icon The Icon component
- * @param {string} color The color of the anchor
  * @param {Boolean} lead Indicates if the icon will be leading
+ * @param {String} transition Indicates the transitionTimingFunction
  */
 const Anchor = ({
   label,

@@ -14,15 +14,20 @@ interface AvatarInterface {
  * Avatar component is a img HTML tag with a circular shape
  * @param {String} src The path of the image
  * @param {size} size The size of the image (large or default)
- * @param {Object} rest HTML attributes of a img tag
+ * @param {string} alt alt attribute
  */
-const Avatar = ({ src, size = SIZE.default, ...rest }: AvatarInterface) => {
+const Avatar = ({
+  src,
+  alt,
+  size = SIZE.default,
+  ...rest
+}: AvatarInterface) => {
   const { configuration } = useContext(ConfigContext);
 
   return (
     <StyledAvatar
       src={src}
-      alt={src}
+      alt={alt || src}
       size={size}
       configuration={configuration}
       {...rest}

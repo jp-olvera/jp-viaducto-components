@@ -25,6 +25,7 @@ interface SidebarSectionInterface {
   isMenu: boolean;
   lead: boolean;
   transition?: string;
+  icon?: any;
 }
 
 const SidebarSection = ({
@@ -34,6 +35,7 @@ const SidebarSection = ({
   isDropdown = false,
   isMenu = false,
   lead = false,
+  icon = null,
   ...rest
 }: SidebarSectionInterface) => {
   const [isActive, setIsActive] = useState(false);
@@ -73,12 +75,16 @@ const SidebarSection = ({
             <Spacer size='sm' />
             <span className={`${lead ? 'd' : 'c'}`}>
               <Spacer size='micro' direction='horizontal' />
-              {lead && <Paragraph>🥵</Paragraph>}
-              {lead && <Spacer size='sm' direction='horizontal' />}
+              {lead && icon !== null && <Paragraph>{icon}</Paragraph>}
+              {lead && icon !== null && (
+                <Spacer size='sm' direction='horizontal' />
+              )}
               <Paragraph color='#2e2a2a' weight='600'>
                 {title}
               </Paragraph>
-              {!lead && <Paragraph margin='0 0 0 auto'>🥵</Paragraph>}
+              {!lead && icon !== null && (
+                <Paragraph margin='0 0 0 auto'>{icon}</Paragraph>
+              )}
             </span>
             <Spacer size='sm' />
           </li>

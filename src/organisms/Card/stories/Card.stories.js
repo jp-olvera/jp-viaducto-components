@@ -6,8 +6,25 @@ export default {
   title: 'Andamio/Organisms/Card',
   component: Card,
   argTypes: {
+    elevation: {
+      description: 'The elevation level it should take, one of 1/2/3',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 1 },
+      },
+      options: [1, 2, 3],
+      control: {
+        type: 'select',
+      },
+    },
     elevationDirection: {
+      description: "The elevation direction, if '' direction goes everywhere",
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: "''" },
+      },
       options: [
+        '',
         'top',
         'right',
         'bottom',
@@ -21,11 +38,53 @@ export default {
         type: 'select',
       },
     },
-    elevation: {
-      options: [1, 2, 3],
-      control: {
-        type: 'select',
+    src: {
+      description: 'Source of the image of top image',
+      type: { name: 'string' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: null },
       },
+    },
+    collapsible: {
+      description: 'Attribute for render large/short card',
+      type: { name: 'boolean', required: true },
+      table: {
+        type: { summary: 'boolean' },
+      },
+    },
+    collapse: {
+      description: 'Attribute for collapse card',
+      type: { name: 'boolean', required: true },
+      table: {
+        type: { summary: 'boolean' },
+      },
+    },
+    content: {
+      description: 'Body component',
+      type: { required: true },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
+    footer: {
+      description: 'Footer component',
+      type: { required: true },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
+    onlyImage: {
+      description: 'Footer component',
+      table: {
+        defaultValue: { summary: null },
+        type: { summary: 'boolean' },
+      },
+    },
+    transition: {
+      description: 'Linear transition to use',
+      type: { name: 'string' },
+      table: { type: { summary: 'string' }, defaultValue: { summary: 'ease' } },
     },
   },
 };

@@ -35,11 +35,11 @@ export const Wrapper = styled.div<WrapperInterface>`
     width: 100%;
     background: inherit;
     outline: none;
-    font-size: 1rem;
+    font-size: 1rem !important;
     padding: 0;
     padding-right: ${({ configuration }) => configuration.spacing.tiny};
     padding-left: ${({ configuration, hasIcon }) =>
-    hasIcon ? 0 : configuration.spacing.xs};
+      hasIcon ? 0 : configuration.spacing.xs};
     & ::placeholder {
       color: transparent;
     }
@@ -50,7 +50,12 @@ export const Wrapper = styled.div<WrapperInterface>`
       user-select: none;
       & :not(:placeholder-shown) ~ .label {
         background: transparent;
-        top: ${({ border }) => (border === 'overlap' ? ' -0.375rem' : border === 'outside' ? '-0.9rem' : '0')};
+        top: ${({ border }) =>
+          border === 'overlap'
+            ? ' -0.375rem'
+            : border === 'outside'
+            ? '-0.9rem'
+            : '0'};
         font-size: 0.688rem;
         line-height: 0.688rem;
         border: none;
@@ -58,7 +63,7 @@ export const Wrapper = styled.div<WrapperInterface>`
         padding: 0;
         outline: none;
         left: ${({ configuration, hasIcon }) =>
-    hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
+          hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
         .icon-required {
           display: inline-flex;
           padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -72,20 +77,27 @@ export const Wrapper = styled.div<WrapperInterface>`
     display: inline-flex;
     align-items: center;
     color: ${({ iconColor, configuration }) =>
-    configuration.text[iconColor] || iconColor};
+      configuration.text[iconColor] || iconColor};
   }
 
   .input:focus ~ .label,
   .input:valid ~ .label {
-    top: ${({ border }) => (border === 'overlap' ? ' -0.375rem' : border === 'outside' ? '-0.9rem' : '0')};
-    font-size: 0.688rem;
+    top: ${({ border }) =>
+      border === 'overlap'
+        ? ' -0.375rem'
+        : border === 'outside'
+        ? '-0.9rem'
+        : '0'};
+    font-size: 0.688rem !important;
     line-height: 0.688rem;
     border: none;
     color: #000;
     padding: 0;
     outline: none;
     left: ${({ configuration, hasIcon, border }) =>
-    hasIcon && border !== 'outside' ? configuration.spacing.lg : configuration.spacing.xs};
+      hasIcon && border !== 'outside'
+        ? configuration.spacing.lg
+        : configuration.spacing.xs};
     .icon-required {
       display: inline-flex;
       padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -93,10 +105,11 @@ export const Wrapper = styled.div<WrapperInterface>`
   }
 
   .label {
-    background: ${({border}) => border === 'outside' ? 'transparent' : 'inherit'};
+    background: ${({ border }) =>
+      border === 'outside' ? 'transparent' : 'inherit'};
     color: #808080;
     left: ${({ configuration, hasIcon }) =>
-    hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
+      hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
     right: initial;
     font-size: 1rem;
     line-height: 1rem;
@@ -104,7 +117,7 @@ export const Wrapper = styled.div<WrapperInterface>`
     position: absolute;
     pointer-events: none;
     user-select: none;
-    transition: all .2s ease;
+    transition: all 0.2s ease;
     .icon-required {
       padding-left: ${({ configuration }) => configuration.spacing.nano};
       margin-left: auto;
@@ -134,7 +147,7 @@ export const Wrapper = styled.div<WrapperInterface>`
 
   .icon-helper {
     color: ${({ iconColor, configuration }) =>
-    configuration.text[iconColor] || iconColor};
+      configuration.text[iconColor] || iconColor};
     padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;

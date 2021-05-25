@@ -5,11 +5,32 @@ import { ConfigProvider } from '../../../providers';
 export default {
   title: 'Andamio/Cells/Hideable',
   component: Hideable,
+  parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
     visibleOn: {
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      description: 'Breakpoint from which it is gonna be visible',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+      options: [null, 'xs', 'sm', 'md', 'lg', 'xl'],
       control: {
         type: 'select',
+      },
+    },
+    after: {
+      description: 'Indicates if visible after the breakpoint selected',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: true },
+      },
+    },
+    children: {
+      description:
+        'The Element to be wrapped, this element will be invisible when the screen hits the breakpoint',
+      type: { summary: 'JSX Element', required: true },
+      table: {
+        defaultValue: { summary: null },
       },
     },
   },
