@@ -26,9 +26,7 @@ export default {
     family: {
       description: 'Set the font family',
       type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: 'Roboto' },
-      },
+      control: 'text',
     },
     handleAction: {
       description:
@@ -81,6 +79,5 @@ Default.args = {
   color: '#000',
   size: 'md',
   iconLead: IconLead({ icon: '😈' }).props.children,
-  family: 'Manrope',
   handleAction: () => {},
 };

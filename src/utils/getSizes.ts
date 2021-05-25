@@ -25,8 +25,9 @@ const getLineHeight = (lineHeight = 'md', size = 'md', max = false) => {
     case 'lg':
       return `calc(${getSize(size, max)} * 1.75)`;
     case 'md':
-    default:
       return `calc(${getSize(size, max)} * 1.5)`;
+    default:
+      return 'normal';
   }
 };
 
@@ -219,20 +220,26 @@ const getCheckPadding = (configuration: any, spacing: any, size: any) => {
   switch (size) {
     case 'sm':
       return css`
-        padding: 0.1rem ${configuration.spacing[spacing] || configuration.spacing.lg};
+        ${`padding: 0.1rem ${
+    configuration.spacing[spacing] || configuration.spacing.lg
+  };`};
       `;
     case 'md':
     default:
       return css`
-        padding: ${configuration.spacing.tiny} ${configuration.spacing[spacing] || configuration.spacing.xl};
+        ${`padding: ${configuration.spacing.tiny} ${
+    configuration.spacing[spacing] || configuration.spacing.xl
+  };`};
       `;
     case 'lg':
       return css`
-        padding: ${configuration.spacing.tiny} ${configuration.spacing[spacing] || configuration.spacing.xxl};
+        ${`padding: ${configuration.spacing.tiny}
+          ${configuration.spacing[spacing] || configuration.spacing.xxl}`};
       `;
     case 'xl':
       return css`
-        padding: ${configuration.spacing.sm} ${configuration.spacing[spacing] || configuration.spacing.xxxl};
+        ${`padding: ${configuration.spacing.sm}
+          ${configuration.spacing[spacing] || configuration.spacing.xxxl}`};
       `;
   }
 };

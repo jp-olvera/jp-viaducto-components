@@ -1,19 +1,11 @@
 import styled, { css } from 'styled-components';
 
-import { getSize } from '../../utils/getSizes';
-
-interface WrapperInterface {
-  readonly disabled?: boolean;
-  readonly hasIcon?: boolean;
-  readonly size?: string;
-  readonly configuration?: any;
-  readonly border: string;
-  readonly iconColor?: any;
-  readonly borderColor?: any;
-}
-export const Wrapper = styled.div<WrapperInterface>`
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-  font-family: 'DM Sans', sans-serif;
+export const Wrapper = styled.div < any > `
+  ${(p) => (p.family !== null
+    ? css`
+          font-family: ${p.family};
+        `
+    : css``)};
   background-color: ${({ disabled }) => (disabled ? '#CECECE' : 'white')};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'default')};
   box-sizing: border-box;
@@ -24,11 +16,9 @@ export const Wrapper = styled.div<WrapperInterface>`
   display: inline-flex;
   align-items: flex-end;
 
-  padding-bottom: ${({ configuration, size }) =>
-    size === 'large' ? configuration.spacing.sm : configuration.spacing.xs};
+  padding-bottom: ${({ configuration, size }) => (size === 'large' ? configuration.spacing.sm : configuration.spacing.xs)};
 
-  ${({ border, configuration, borderColor }) =>
-    getBorderStyle(border, configuration.text[borderColor] || borderColor)};
+  ${({ border, configuration, borderColor }) => getBorderStyle(border, configuration.text[borderColor] || borderColor)};
 
   .input {
     border: none;
@@ -38,8 +28,7 @@ export const Wrapper = styled.div<WrapperInterface>`
     font-size: 1rem !important;
     padding: 0;
     padding-right: ${({ configuration }) => configuration.spacing.tiny};
-    padding-left: ${({ configuration, hasIcon }) =>
-      hasIcon ? 0 : configuration.spacing.xs};
+    padding-left: ${({ configuration, hasIcon }) => (hasIcon ? 0 : configuration.spacing.xs)};
     & ::placeholder {
       color: transparent;
     }
@@ -50,20 +39,18 @@ export const Wrapper = styled.div<WrapperInterface>`
       user-select: none;
       & :not(:placeholder-shown) ~ .label {
         background: transparent;
-        top: ${({ border }) =>
-          border === 'overlap'
-            ? ' -0.375rem'
-            : border === 'outside'
-            ? '-0.9rem'
-            : '0'};
+        top: ${({ border }) => (border === 'overlap'
+    ? ' -0.375rem'
+    : border === 'outside'
+      ? '-0.9rem'
+      : '0')};
         font-size: 0.688rem;
         line-height: 0.688rem;
         border: none;
         color: #333;
         padding: 0;
         outline: none;
-        left: ${({ configuration, hasIcon }) =>
-          hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
+        left: ${({ configuration, hasIcon }) => (hasIcon ? configuration.spacing.lg : configuration.spacing.xs)};
         .icon-required {
           display: inline-flex;
           padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -76,28 +63,25 @@ export const Wrapper = styled.div<WrapperInterface>`
     padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;
-    color: ${({ iconColor, configuration }) =>
-      configuration.text[iconColor] || iconColor};
+    color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
   }
 
   .input:focus ~ .label,
   .input:valid ~ .label {
-    top: ${({ border }) =>
-      border === 'overlap'
-        ? ' -0.375rem'
-        : border === 'outside'
-        ? '-0.9rem'
-        : '0'};
+    top: ${({ border }) => (border === 'overlap'
+    ? ' -0.375rem'
+    : border === 'outside'
+      ? '-0.9rem'
+      : '0')};
     font-size: 0.688rem !important;
     line-height: 0.688rem;
     border: none;
     color: #000;
     padding: 0;
     outline: none;
-    left: ${({ configuration, hasIcon, border }) =>
-      hasIcon && border !== 'outside'
-        ? configuration.spacing.lg
-        : configuration.spacing.xs};
+    left: ${({ configuration, hasIcon, border }) => (hasIcon && border !== 'outside'
+    ? configuration.spacing.lg
+    : configuration.spacing.xs)};
     .icon-required {
       display: inline-flex;
       padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -105,11 +89,9 @@ export const Wrapper = styled.div<WrapperInterface>`
   }
 
   .label {
-    background: ${({ border }) =>
-      border === 'outside' ? 'transparent' : 'inherit'};
+    background: ${({ border }) => (border === 'outside' ? 'transparent' : 'inherit')};
     color: #808080;
-    left: ${({ configuration, hasIcon }) =>
-      hasIcon ? configuration.spacing.lg : configuration.spacing.xs};
+    left: ${({ configuration, hasIcon }) => (hasIcon ? configuration.spacing.lg : configuration.spacing.xs)};
     right: initial;
     font-size: 1rem;
     line-height: 1rem;
@@ -146,18 +128,14 @@ export const Wrapper = styled.div<WrapperInterface>`
   }
 
   .icon-helper {
-    color: ${({ iconColor, configuration }) =>
-      configuration.text[iconColor] || iconColor};
+    color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
     padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: inline-flex;
     align-items: center;
   }
 `;
 
-interface StyledProgressBarI {
-  readonly configuration: any;
-}
-export const StyledProgressBar = styled.div<StyledProgressBarI>`
+export const StyledProgressBar = styled.div < any > `
   display: inline-flex;
   width: 100%;
   height: 0.188rem;
@@ -175,15 +153,14 @@ const getTopLabel = (size) => {
     return css`
       top: calc(1.244rem - 0.5rem);
     `;
-  } else {
-    return css`
-      top: calc(1.493rem - 0.5rem);
-    `;
   }
+  return css`
+    top: calc(1.493rem - 0.5rem);
+  `;
 };
 
 const getBorderStyle = (border: string, color: string) => {
-  var borderStyle = css``;
+  let borderStyle = css``;
   switch (border) {
     case 'bottom':
       borderStyle = css`

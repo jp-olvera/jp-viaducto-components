@@ -18,9 +18,7 @@ export default {
     family: {
       description: 'Set the font family',
       type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: 'Manrope' },
-      },
+      control: 'text',
     },
     size: {
       description: 'Set the size of the component',
@@ -91,6 +89,5 @@ Default.args = {
   label: 'Label',
   disabled: false,
   name: 'radio',
-  family: 'Manrope',
   size: 'lg',
 };

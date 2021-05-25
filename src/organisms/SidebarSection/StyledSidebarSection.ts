@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-interface SideI{
+interface SideI {
   configuration?: any;
   transition?: string;
 }
 
-const StyledSidebarSection = styled.div<SideI>`
+const StyledSidebarSection = styled.div < SideI > `
   padding: 0;
   min-width: 16.625rem;
   width: 100%;
@@ -70,7 +70,8 @@ const StyledSidebarSection = styled.div<SideI>`
     height: 100%;
     opacity: 1;
     overflow: hidden;
-    transition: all .3s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: all 0.3s
+      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
   }
 
   .toggleMenu {
@@ -83,7 +84,8 @@ const StyledSidebarSection = styled.div<SideI>`
     top: 0;
     left: 0;
     transform: translateX(100%);
-    transition: transform 0.2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: transform 0.2s
+      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     height: -webkit-fill-available;
     background-color: white;
     @media screen and (min-width: 49rem) {
@@ -93,7 +95,8 @@ const StyledSidebarSection = styled.div<SideI>`
   .active {
     width: 100%;
     transform: translateX(0);
-    transition: transform 0.2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: transform 0.2s
+      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     & > button {
       width: 100%;
       text-align: left;

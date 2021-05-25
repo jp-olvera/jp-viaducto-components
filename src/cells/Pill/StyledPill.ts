@@ -2,20 +2,12 @@ import styled, { css } from 'styled-components';
 
 import { getSize } from '../../utils/getSizes';
 
-interface StyledPillI {
-  readonly family: string;
-  readonly background: string;
-  readonly size: string;
-  readonly verticalAlign: string;
-  readonly configuration: any;
-  readonly hasIcon: boolean;
-  readonly hasIconLead: boolean;
-  readonly onlyText: boolean;
-}
-const StyledPill = styled.div<StyledPillI>`
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
-  font-family: ${({ family }) =>
-    family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
+const StyledPill = styled.div < any > `
+  ${(p) => (p.family !== null
+    ? css`
+          font-family: ${p.family};
+        `
+    : css``)};
   align-items: center;
   display: inline-flex;
   background-color: ${(p) => p.background};
@@ -24,8 +16,7 @@ const StyledPill = styled.div<StyledPillI>`
   font-size: ${({ size }) => getSize(size)};
   height: 1.875rem;
   vertical-align: ${({ verticalAlign }) => verticalAlign};
-  ${(p) =>
-    getPadding(p.configuration.spacing, p.hasIcon, p.hasIconLead, p.onlyText)}
+  ${(p) => getPadding(p.configuration.spacing, p.hasIcon, p.hasIconLead, p.onlyText)}
   .span-icon {
     margin-left: ${({ configuration }) => configuration.spacing.micro};
   }

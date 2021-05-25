@@ -18,7 +18,7 @@ interface RadioInterface {
   label: string;
   disabled: boolean;
   name: string;
-  family: string;
+  family?: string | null;
   size: string;
   color: string;
   id: string;
@@ -29,7 +29,7 @@ const Radio = ({
   label = '',
   disabled = false,
   name = 'radio',
-  family = 'Manrope',
+  family = null,
   size = 'lg',
   color = '#9060EB',
   id,

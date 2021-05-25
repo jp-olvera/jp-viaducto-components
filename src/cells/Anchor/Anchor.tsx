@@ -7,7 +7,7 @@ interface AnchorInterface {
   label?: string;
   href?: string;
   size?: string;
-  family?: string;
+  family?: string | null;
   color?: string;
   icon?: any;
   lead?: boolean;
@@ -30,7 +30,7 @@ const Anchor = ({
   label,
   href,
   size = 'md',
-  family = 'Manrope',
+  family = null,
   color = 'dark',
   icon = null,
   lead = false,
