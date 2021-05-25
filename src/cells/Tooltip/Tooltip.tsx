@@ -5,13 +5,13 @@ import { ConfigContext } from '../../providers/ConfigProvider';
 
 /**
  * Tooltip component
- * @param {any} children Child component
- * @param {string} label Text in the tooltip
- * @param {boolean} active Show/hide the tooltip
  * @param {string} position Set the position of the tooltip
  * @param {string} color Color of the background
  * @param {string} textColor Text color
  * @param {string} family Font family
+ * @param {string} label Text in the tooltip
+ * @param {boolean} active Show/hide the tooltip
+ * @param {any} children Child component
  */
 interface TooltipInterface {
   children?: any;

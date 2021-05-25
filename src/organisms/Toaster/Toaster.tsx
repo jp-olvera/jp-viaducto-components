@@ -32,14 +32,14 @@ interface ToasterInterface {
  * @param {string} elevationDirection Light indicator for shadows data
  */
 const Toaster = ({
-  text,
-  type = 'success',
-  title,
   active = false,
-  top = true,
-  right = true,
   elevation = 1,
   elevationDirection = '',
+  right = true,
+  text,
+  title,
+  top = true,
+  type = 'success',
   ...rest
 }: ToasterInterface) => {
   const { configuration } = useContext(ConfigContext);

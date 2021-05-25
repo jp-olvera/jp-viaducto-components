@@ -5,14 +5,14 @@ import { StyledLabel, CheckMark } from './StyledRadio';
 
 /**
  * Radio input component
- * @param {string} label Label for the input
- * @param {boolean} disabled Enable/disable input
+ * @param {string} color Color for the radio
  * @param {string} family Font family fot the input
  * @param {string} size Size of the input
- * @param {string} id ID fot the input
+ * @param {string} spacing Set the horizontal spacing between the label (if it is defined) and the radio
+ * @param {boolean} disabled Enable/disable input
+ * @param {string} label Label for the input
  * @param {string} name HTML name attribute for the input
- * @param {string} color Color for the radio
- * @param {string} spacing Spacing for the radio
+ * @param {string} id ID fot the input
  */
 interface RadioInterface {
   label: string;
@@ -55,7 +55,7 @@ const Radio = ({
         name={name}
         onChange={() => setCheck(!check)}
         disabled={disabled}
-        type="radio"
+        type='radio'
         id={id}
       />
       <CheckMark />

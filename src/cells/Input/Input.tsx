@@ -6,15 +6,15 @@ import { Wrapper } from './StyledInput';
 
 /**
  * Input component wrapped with label and span tags for better UX
- * @param {String} label The caption for the input
  * @param {String} border The border type for the input (full, bottom, overlap)
- * @param {boolean} disabled Set the input disabled
  * @param {String} type Set the input type (text, password, email, etc.)
  * @param {String} icon Helper icon to support the user
- * @param {boolean} required Icon for mark input is required
  * @param {String} size Set the height of the input
+ * @param {boolean} disabled Set the input disabled
  * @param {boolean} isInvalid set the input invalid
  * @param {boolean} isValid set the input valid
+ * @param {String} label The caption for the input
+ * @param {boolean} required Icon for mark input is required
  * @param {string} id set the id for the input
  * @param {string} borderColor set the color border
  * @param {string} iconColor set the icon helper
@@ -46,20 +46,16 @@ const Input = ({
   label = '',
   border = 'default',
   disabled = false,
-  type,
+  type = 'text',
   icon = null,
-  required,
   isInvalid = false,
   isValid = false,
-  id = 'input',
   size = 'default',
+  required,
   borderColor = '#001D48',
   iconColor = '#2329D6',
   value = null,
   onChange = () => {},
-  defaultValue,
-  min,
-  max,
   ...rest
 }: InputInterface) => {
   const [open, setOpen] = useState(false);
@@ -115,16 +111,16 @@ const Input = ({
           onChange={onChange}
           onKeyUp={change}
           type={open ? inputType : type}
-          id={id}
+          id={rest.id}
           required
           disabled={disabled}
           placeholder={(disabled && value) || label}
-          min={min}
-          max={max}
+          min={rest.min}
+          max={rest.max}
           {...rest}
         />
 
-        <label className='label' htmlFor={id}>
+        <label className='label' htmlFor={rest.id}>
           <span>{label}</span>
           {required && (
             <span className='icon-required'>{getIcon('required', '10px')}</span>

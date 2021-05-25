@@ -36,6 +36,10 @@ interface ModalInterface {
  * @param {boolean} active Specifies if the modal is gonna be visible at first
  * @param {string} maxheight the max height the modal can take
  * @param {string} overlayColor Background color for the overlay
+ * @param {string} backgroundColor Background color for the modal content
+ * @param {boolean} acceptDisabled Specifies if the accept button should be disabled
+ * @param {boolean} rejectDisabled Specifies if the reject button should be disabled
+ * @param {boolean} allowClickOutside Specifies if the modal could be closed when clicking outside
  * @returns
  */
 const Modal = ({

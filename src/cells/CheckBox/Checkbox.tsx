@@ -7,10 +7,10 @@ import { StyledLabel, CheckMark } from './StyledCheckbox';
  * Checkbox input component
  * @param {string} label Label for the input
  * @param {boolean} disabled Enable/disable input
+ * @param {string} color Color for the checkbox
  * @param {string} family Font family fot the input
  * @param {string} size Size of the input
  * @param {string} id ID for the input
- * @param {string} color Color for the checkbox
  * @param {string} spacing Spacing for the checkbox
  */
 interface CheckboxInterface {

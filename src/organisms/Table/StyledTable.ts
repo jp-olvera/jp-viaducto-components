@@ -26,9 +26,6 @@ interface TableI {
 export const StyledTable = styled.div < TableI > `
   box-sizing: border-box;
   width: fit-content;
-  * {
-    font-size: ${({ fontSize }) => getSize(fontSize)};
-  }
   .size {
     text-align: right;
   }
@@ -100,6 +97,7 @@ export const StyledTable = styled.div < TableI > `
       margin: 0;
       margin-bottom: 0.5rem;
       padding: 0.35rem 0;
+      font-size: ${({ fontSize }) => getSize(fontSize)};
     }
   }
   .sortable-dropzone {
@@ -128,7 +126,7 @@ export const StyledTable = styled.div < TableI > `
     font-family: ${({ family }) => (family ? `${family}, monospace` : "'Roboto', monospace")};
     display: grid;
     border-collapse: collapse;
-
+    font-size: ${({ fontSize }) => getSize(fontSize)};
     .expandible {
       flex-grow: 1;
       & > td {

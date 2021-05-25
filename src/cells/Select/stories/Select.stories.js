@@ -5,19 +5,59 @@ import { ConfigProvider } from '../../../providers';
 export default {
   title: 'Andamio/Cells/Controls/Select',
   component: Select,
+  parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
     size: {
+      description: 'Set size of the select component',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'sm' },
+      },
       control: 'select',
       options: ['sm', 'md', 'lg'],
     },
     fontSize: {
+      description: 'Set the font size',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'md' },
+      },
       options: ['xxs', 'xs', 'sm', 'md', 'lg'],
       control: {
         type: 'select',
       },
     },
-    background: {control: 'color'},
-    color: { control: 'color' },
+    background: {
+      description: 'Set background color for the select component',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: '#fff' },
+      },
+      control: 'color',
+    },
+    color: {
+      description: 'Set font color for the select component',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: '#000' },
+      },
+      control: 'color',
+    },
+    radius: {
+      description:
+        'Set border radius property (if is a number, border radius will be set as "rem", if it is a string will be set as marked)',
+      type: { summary: 'Number/String', required: false },
+      table: {
+        defaultValue: { summary: 0 },
+      },
+    },
+    border: {
+      description: 'Set the border(s) of the component',
+      type: { summary: 'Object(top, bottom, left, right)', required: false },
+      table: {
+        defaultValue: { summary: 'none' },
+      },
+    },
   },
 };
 
@@ -46,5 +86,5 @@ Default.args = {
   fontFamily: 'Roboto',
   background: '#fff',
   color: '#000',
-  radius: null,
+  radius: '',
 };
