@@ -32,9 +32,7 @@ export default {
     family: {
       description: 'Set the font family',
       type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: 'Manrope' },
-      },
+      control: 'text',
     },
     size: {
       description: 'Set size of the checkbox',
@@ -83,7 +81,6 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'Label',
   disabled: false,
-  family: 'Manrope',
   size: 'xl',
   color: '#9060EB',
 };

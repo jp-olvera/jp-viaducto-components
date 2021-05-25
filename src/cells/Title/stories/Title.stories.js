@@ -21,9 +21,9 @@ export default {
     family: {
       description: 'Font family',
       table: {
-        defaultValue: { summary: "'DM Sans', sans-serif" },
         type: { summary: 'string' },
       },
+      control: 'text',
     },
     fontStyle: {
       description: 'value for font-style property',
@@ -117,7 +117,6 @@ export const Heading = Template.bind({});
 
 Heading.args = {
   level: '1',
-  family: 'DM Sans',
   weight: '400',
   fontStyle: 'normal',
   margin: '0',
@@ -131,7 +130,6 @@ export const Display = Template.bind({});
 
 Display.args = {
   level: 'D1',
-  family: 'DM Sans',
   weight: '400',
   fontStyle: 'normal',
   margin: '0',

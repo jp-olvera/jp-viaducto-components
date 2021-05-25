@@ -1,18 +1,14 @@
 import styled from 'styled-components';
 import { Title } from '../Title';
 
-let size = '25px';
+const size = '25px';
 
-interface SLI {
-  configuration?: any;
-  transition?: string;
-}
-
-const StyledLoader = styled.div<SLI>`
+const StyledLoader = styled.div < any > `
   width: ${size};
   height: ${size};
   .progress-ring__circle {
-    transition: stroke-dashoffset 0.35s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: stroke-dashoffset 0.35s
+      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
   }
@@ -21,23 +17,10 @@ const StyledLoader = styled.div<SLI>`
   }
 `;
 
-interface StyledStepProgressI {
-  readonly isFinished?: boolean;
-  readonly level?: string;
-  readonly family?: string;
-}
-
-export const StyledStepProgress = styled(Title) <StyledStepProgressI>`
+export const StyledStepProgress = styled(Title) < any > `
   color: ${({ isFinished }) => (isFinished ? 'green' : 'gray')};
 `;
-
-interface StyledProgressBarI {
-  readonly max: number;
-  readonly value: number;
-  readonly transition?: string;
-  readonly configuration?: any;
-}
-export const StyledProgressBar = styled.div<StyledProgressBarI>`
+export const StyledProgressBar = styled.div < any > `
   & .progress-bar {
     background-color: #1a1a1a;
     height: 1.25rem;
@@ -67,7 +50,8 @@ export const StyledProgressBar = styled.div<StyledProgressBarI>`
     animation-direction: reverse;
   }
   & .progress-bar-inner {
-    transition: width 1s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: width 1s
+      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     display: block;
     height: 0.6rem;
     width: ${({ max, value }) => ((value * 100) / max).toFixed(0)}%;

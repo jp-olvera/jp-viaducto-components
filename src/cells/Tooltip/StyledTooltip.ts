@@ -1,21 +1,14 @@
 import styled, { css } from 'styled-components';
 
-interface TooltipContainerI {
-  readonly family: string;
-  readonly textColor: string;
-  readonly active: boolean;
-  readonly position: string;
-  readonly configuration: any;
-  readonly transition?: string;
-}
-export const TooltipContainer = styled.div<TooltipContainerI>`
-  transition: all 0.05s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
-  font-family: ${({ family }) =>
-    family ? `'${family}', sans-serif` : 'inherit'};
+export const TooltipContainer = styled.div < any > `
+  transition: all 0.05s
+    ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+  font-family: ${({ family }) => (family ? `'${family}', sans-serif` : 'inherit')};
   position: relative;
   display: inline-block;
   & .tooltip {
-    transition: all 0.05s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: all 0.05s
+      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     background-color: ${({ color }) => color};
     text-align: center;
     padding: 0.313rem;
@@ -29,8 +22,7 @@ export const TooltipContainer = styled.div<TooltipContainerI>`
     width: fit-content;
     height: ${({ active }) => (active ? 'auto' : ' 0')};
     font-size: ${({ active }) => (active ? '0.9rem' : ' 0')};
-    color: ${({ textColor, configuration, active }) =>
-    active ? (configuration.text[textColor] || textColor) : "transparent"};
+    color: ${({ textColor, configuration, active }) => (active ? configuration.text[textColor] || textColor : 'transparent')};
     position: absolute;
     z-index: 1;
     ${({ position }) => setPosition(position)}

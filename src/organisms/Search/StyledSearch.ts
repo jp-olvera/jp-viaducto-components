@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import StyledSelect from '../../cells/Select/StyledSelect';
 import getElevation from '../../utils/getElevation';
@@ -6,14 +6,7 @@ import getElevation from '../../utils/getElevation';
 const height = '3.375rem',
   width = '45.625rem';
 
-interface StyledSearchI {
-  readonly elevation: number;
-  readonly elevationDirection: string;
-  readonly family: string;
-  readonly configuration: any;
-  readonly colors: any;
-}
-export const StyledSearch = styled.div<StyledSearchI>`
+export const StyledSearch = styled.div < any > `
   width: 100%;
   height: calc(${height} * 0.8);
   background-color: transparent;
@@ -25,9 +18,11 @@ export const StyledSearch = styled.div<StyledSearchI>`
   & > * {
     height: 100%;
     box-sizing: border-box;
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
-    font-family: ${({ family }) =>
-      family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
+    ${(p) => (p.family !== null
+    ? css`
+            font-family: ${p.family};
+          `
+    : css``)};
   }
   & > input {
     width: 60%;
@@ -48,8 +43,7 @@ export const StyledSearch = styled.div<StyledSearchI>`
     width: 32%;
     font-size: 1rem;
   }
-  @media screen and (min-width: ${({ configuration }) =>
-      configuration.breakpoints.sm}) {
+  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.sm}) {
     width: calc(${width} * 0.8);
     height: calc(${height} * 0.8);
     & > input {
@@ -69,8 +63,7 @@ export const StyledSearch = styled.div<StyledSearchI>`
       width: 12.06rem !important;
     }
   }
-  @media screen and (min-width: ${({ configuration }) =>
-      configuration.breakpoints.lg}) {
+  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.lg}) {
     width: ${width};
     height: ${height};
     & ${StyledSelect} {

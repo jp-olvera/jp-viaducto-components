@@ -26,7 +26,7 @@ const defaultColors = {
 interface SearchInterface {
   buttonLabel: string;
   placeholder: string;
-  family: string;
+  family?: string | null;
   colors: any;
   handleSearch: Function;
   options: string[];
@@ -39,7 +39,7 @@ interface SearchInterface {
 const Search = ({
   buttonLabel = 'Search',
   placeholder = 'Introduce el término de búsqueda',
-  family = 'Roboto',
+  family = null,
   colors = defaultColors,
   handleSearch,
   options = [],

@@ -21,7 +21,7 @@ interface PillInterface {
   background: string;
   color: string;
   size: string;
-  family: string;
+  family?: string | null;
   verticalAlign: string;
   handleAction: Function | null;
 }
@@ -33,7 +33,7 @@ const Pill = ({
   background = '#C4C4C4',
   color = '#000',
   size = 'md',
-  family = 'Manrope',
+  family = null,
   verticalAlign = 'baseline',
   handleAction,
 }: PillInterface) => {

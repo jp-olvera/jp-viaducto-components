@@ -1,18 +1,7 @@
 import styled, { css } from 'styled-components';
 import getElevation from '../../utils/getElevation';
 
-interface StyledModalI {
-  readonly isActive: boolean;
-  readonly maxHeight: string;
-  readonly elevation: number;
-  readonly elevationDirection: string;
-  readonly maxWidth: string;
-  readonly breakpoint: string;
-  readonly backgroundColor: string;
-  readonly configuration: any;
-  readonly ref: any;
-}
-const StyledModal = styled.div<StyledModalI>`
+const StyledModal = styled.div < any > `
   background: white;
   display: ${({ isActive }) => (isActive ? 'flex' : 'none')};
   /* border: 1px solid #eaedf3; */
@@ -35,20 +24,17 @@ const StyledModal = styled.div<StyledModalI>`
 
     background-color: ${({ backgroundColor }) => backgroundColor};
     border-color: ${({ backgroundColor }) => backgroundColor};
-    padding: ${({ configuration }) =>
-      `${configuration.spacing.md} ${configuration.spacing.lg}`};
+    padding: ${({ configuration }) => `${configuration.spacing.md} ${configuration.spacing.lg}`};
   }
   .modal-content {
     flex-grow: 1;
     overflow-y: auto;
-    padding: ${({ configuration }) =>
-      `${configuration.spacing.md} ${configuration.spacing.lg}`};
+    padding: ${({ configuration }) => `${configuration.spacing.md} ${configuration.spacing.lg}`};
   }
   .modal-bottom {
     border-top: 1px solid #eaedf3;
     display: flex;
-    padding: ${({ configuration }) =>
-      `${configuration.spacing.md} ${configuration.spacing.lg}`};
+    padding: ${({ configuration }) => `${configuration.spacing.md} ${configuration.spacing.lg}`};
   }
 `;
 

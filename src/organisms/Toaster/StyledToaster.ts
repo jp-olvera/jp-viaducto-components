@@ -1,18 +1,7 @@
 import styled, { css } from 'styled-components';
 import getElevation from '../../utils/getElevation';
 
-interface StyledToasterI {
-  readonly elevation: number;
-  readonly elevationDirection: string;
-  readonly isActive: boolean;
-  readonly backgoundColor: string;
-  readonly top: boolean;
-  readonly right: boolean;
-  readonly configuration: any;
-  readonly ref: any;
-  readonly transition?: string;
-}
-const StyledToaster = styled.div<StyledToasterI>`
+const StyledToaster = styled.div < any > `
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
   display: flex;
   visibility: ${({ isActive }) => (isActive ? 'visible' : 'hidden')};
@@ -28,13 +17,13 @@ const StyledToaster = styled.div<StyledToasterI>`
   width: 100%;
   max-width: 454px;
 
-  transition: all .2s ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+  transition: all 0.2s
+    ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
   .toaster-header {
     align-items: center;
     box-sizing: border-box;
     display: flex;
-    padding: ${({ configuration }) =>
-      `${configuration.spacing.sm} ${configuration.spacing.xs}`};
+    padding: ${({ configuration }) => `${configuration.spacing.sm} ${configuration.spacing.xs}`};
   }
 
   .toaster-message {
@@ -43,8 +32,7 @@ const StyledToaster = styled.div<StyledToasterI>`
     border-radius: 3px;
     box-sizing: border-box;
     margin-bottom: 1px;
-    padding: ${({ configuration }) =>
-      `${configuration.spacing.md} ${configuration.spacing.md}`};
+    padding: ${({ configuration }) => `${configuration.spacing.md} ${configuration.spacing.md}`};
     width: calc(100% - 2px);
   }
 `;

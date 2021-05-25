@@ -22,7 +22,7 @@ const Dropdown = ({
   activeColor = '#ffd6ce',
   border,
   defaultText = 'Buscar por...',
-  family,
+  family = null,
   options = [],
   size = 'default',
   height,
