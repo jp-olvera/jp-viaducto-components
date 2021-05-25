@@ -21,7 +21,7 @@ interface ParagraphInterface {
   color?: string;
   size?: string;
   align?: string;
-  family?: string;
+  family?: string | null;
   configuration?: any;
   fontStyle?: string;
   margin?: string;

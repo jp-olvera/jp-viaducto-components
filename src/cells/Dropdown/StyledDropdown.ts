@@ -1,24 +1,17 @@
 import styled, { css } from 'styled-components';
 
-interface ActivatorInterface {
-  readonly configuration?: any;
-  readonly border?: string;
-  readonly family?: string;
-  readonly height?: string;
-}
-
-interface WrapperInterface {
-  readonly height: string;
-}
-
-export const Wrapper = styled.div<WrapperInterface>`
+export const Wrapper = styled.div < any > `
   position: relative;
   display: inline-block;
   box-sizing: border-box;
   height: ${({ height }) => height};
 `;
-export const Activator = styled.button<ActivatorInterface>`
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Manrope&display=swap');
+export const Activator = styled.button < any > `
+  ${(p) => (p.family !== null
+    ? css`
+          font-family: ${p.family};
+        `
+    : css``)};
   ${({ border }) => getBorder(border)};
   align-items: center;
   background-color: inherit;
@@ -26,8 +19,7 @@ export const Activator = styled.button<ActivatorInterface>`
   display: flex;
   color: inherit;
   cursor: pointer;
-  font-family: ${({ family }) =>
-    family ? `'${family}', sans-serif` : "'Manrope', sans-serif;"};
+  font-family: ${({ family }) => (family ? `'${family}', sans-serif` : "'Manrope', sans-serif;")};
   font-size: 1rem;
   font-style: normal;
   font-weight: normal;
@@ -43,8 +35,7 @@ export const Activator = styled.button<ActivatorInterface>`
     height: 1rem;
   }
 
-  @media screen and (min-width: ${({ configuration }) =>
-      configuration.breakpoints.sm}) {
+  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.sm}) {
     min-width: 10.688rem;
     height: 100%;
     width: calc(12.06rem * 0.8);
@@ -58,8 +49,7 @@ export const Activator = styled.button<ActivatorInterface>`
     }
   }
 
-  @media screen and (min-width: ${({ configuration }) =>
-      configuration.breakpoints.lg}) {
+  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.lg}) {
     width: 12.06rem;
     height: 100%;
     margin: auto;
@@ -74,16 +64,12 @@ export const Activator = styled.button<ActivatorInterface>`
   }
 `;
 
-interface ItemsContainerInterface {
-  readonly configuration?: any;
-  readonly activeColor?: string;
-  readonly id?: string;
-  readonly className: string;
-  readonly ref?: any;
-}
-
-export const ItemsContainer = styled.div<ItemsContainerInterface>`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+export const ItemsContainer = styled.div < any > `
+  ${(p) => (p.family !== null
+    ? css`
+          font-family: ${p.family};
+        `
+    : css``)};
   transition: all 0.2s
     ${({ configuration }) => configuration.transitionTimingFunction};
   background: #ffffff;
@@ -122,18 +108,18 @@ export const ItemsContainer = styled.div<ItemsContainerInterface>`
   & .active-item {
     background-color: ${({ activeColor }) => activeColor} !important;
   }
-  @media screen and (min-width: ${(props) =>
-      props.configuration.breakpoints.md}) {
+  @media screen and (min-width: ${(props) => props.configuration.breakpoints.md}) {
     width: 100% !important;
   }
 `;
 
 export const getBorder = (borders: any = 'none') => {
-  if (borders === 'none' || borders === null)
+  if (borders === 'none' || borders === null) {
     return css`
       border: none;
     `;
-  var border = '';
+  }
+  let border = '';
   border += `border-top: ${borders.top || 'none'}; `;
   border += `border-right: ${borders.right || 'none'}; `;
   border += `border-bottom: ${borders.bottom || 'none'}; `;

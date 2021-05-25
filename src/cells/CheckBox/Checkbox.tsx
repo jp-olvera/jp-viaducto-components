@@ -16,7 +16,7 @@ import { StyledLabel, CheckMark } from './StyledCheckbox';
 interface CheckboxInterface {
   label?: string;
   disabled?: boolean;
-  family?: string;
+  family?: string | null;
   size?: string;
   id?: string;
   color?: string;
@@ -26,7 +26,7 @@ interface CheckboxInterface {
 const Checkbox = ({
   label = '',
   disabled = false,
-  family = 'Manrope',
+  family = null,
   size = 'lg',
   color = '#9060EB',
   id,

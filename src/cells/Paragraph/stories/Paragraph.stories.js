@@ -90,8 +90,9 @@ export default {
       description: 'Set the font family',
       type: { summary: 'String', required: false },
       table: {
-        defaultValue: { summary: 'DM Sans' },
+        type: { summary: 'string' },
       },
+      control: 'text',
     },
   },
 };
@@ -110,7 +111,6 @@ export const Default = Template.bind({});
 Default.args = {
   size: 'md',
   align: 'left',
-  family: 'DM Sans',
   fontStyle: 'normal',
   margin: '0',
   weight: 'normal',

@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 import getElevation from '../../utils/getElevation';
 
-interface StyledContentI {
-  readonly noImage: boolean;
-}
-export const StyledContent = styled.div<StyledContentI>`
+export const StyledContent = styled.div < any > `
   flex-grow: 1;
   padding: ${({ noImage }) => (noImage ? '1.2rem' : '1.688rem')};
   background-color: #ffffff;
@@ -27,24 +24,14 @@ export const StyledContent = styled.div<StyledContentI>`
   }
 `;
 
-interface StyledNormalCardI {
-  readonly elevation: number;
-  readonly elevationDirection: string;
-  readonly onlyImage: boolean;
-  readonly noImage: boolean;
-  readonly configuration: any;
-  readonly transition?: string;
-}
-export const StyledNormalCard = styled.div<StyledNormalCardI>`
+export const StyledNormalCard = styled.div < any > `
   background-color: #ffffff;
-	transition: ${({ configuration, transition }) => `0.2s ${transition || configuration.transitionTimingFunction}`};
+  transition: ${({ configuration, transition }) => `0.2s ${transition || configuration.transitionTimingFunction}`};
   box-sizing: border-box;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
-  height: ${({ onlyImage, noImage }) =>
-    noImage ? '16.5rem' : onlyImage ? '25.25rem' : '29.625rem'};
+  height: ${({ onlyImage, noImage }) => (noImage ? '16.5rem' : onlyImage ? '25.25rem' : '29.625rem')};
   width: 100%;
-  @media screen and (min-width: ${({ configuration }) =>
-    configuration.breakpoints.md}) {
+  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.md}) {
     width: 21.875rem;
   }
   padding: ${({ onlyImage }) => (onlyImage ? '1.688rem' : '0')};
@@ -78,8 +65,7 @@ export const StyledNormalCard = styled.div<StyledNormalCardI>`
       & > button {
         color: white;
         width: 100%;
-        @media screen and (min-width: ${({ configuration }) =>
-    configuration.breakpoints.md}) {
+        @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.md}) {
           width: 7.438rem;
         }
       }
@@ -87,14 +73,14 @@ export const StyledNormalCard = styled.div<StyledNormalCardI>`
   }
 `;
 
-interface ColI{
+interface ColI {
   collapse?: boolean;
   transition?: string;
   configuration?: any;
 }
-export const Collapse = styled.div<ColI>`
+export const Collapse = styled.div < ColI > `
   .collapse {
-		transition: ${({ configuration, transition }) => `0.2s ${transition || configuration.transitionTimingFunction}`};
+    transition: ${({ configuration, transition }) => `0.2s ${transition || configuration.transitionTimingFunction}`};
     opacity: ${({ collapse }) => (collapse ? '0' : 1)};
     height: ${({ collapse }) => (collapse ? '0' : 'auto')};
   }
@@ -107,14 +93,13 @@ interface StyledCollapsibleCardI {
   isActive: boolean;
   transition?: string;
 }
-export const StyledCollapsibleCard = styled.div<StyledCollapsibleCardI>`
+export const StyledCollapsibleCard = styled.div < StyledCollapsibleCardI > `
   transition: ${({ configuration, transition }) => `0.2s ${transition || configuration.transitionTimingFunction}`};
   background-color: #ffffff;
   box-sizing: border-box;
   width: 100%;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
-  @media screen and (min-width: ${({ configuration }) =>
-    configuration.breakpoints.md}) {
+  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.md}) {
     max-width: 69.375rem;
     max-height: 17.813rem;
     .size {

@@ -1,15 +1,7 @@
 import styled from 'styled-components';
 import getElevation from '../../utils/getElevation';
 
-interface StyledDrawerI {
-  readonly elevation: number;
-  readonly elevationDirection: string;
-  readonly active: boolean;
-  readonly configuration: any;
-  readonly transition?: string;
-}
-
-const StyledDrawer = styled.div<StyledDrawerI>`
+const StyledDrawer = styled.div < any > `
   background: white;
   box-shadow: rgb(255 255 255) 0 5rem 0,
     rgb(9 30 66 / 8%) -0.313rem -0.125rem 0.438rem;
@@ -20,16 +12,13 @@ const StyledDrawer = styled.div<StyledDrawerI>`
   right: 0;
   ${(p) => getElevation(p.elevation, p.elevationDirection)};
   transition: transform 0.3s
-    ${({ configuration, transition }) =>
-      transition || configuration.transitionTimingFunction};
-  transform: ${(props) =>
-    props.active ? 'translateX(0)' : 'translateX(100%)'};
+    ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+  transform: ${(props) => (props.active ? 'translateX(0)' : 'translateX(100%)')};
   width: 100%;
 
   @media (min-width: ${({ configuration }) => configuration.breakpoints.sm}) {
     width: 22.25rem;
-    transform: ${(props) =>
-      props.active ? 'translateX(0)' : 'translateX(100%)'};
+    transform: ${(props) => (props.active ? 'translateX(0)' : 'translateX(100%)')};
   }
   .close {
     padding: 0.48rem 1.875rem 0.48rem 1.875rem;

@@ -43,8 +43,9 @@ export default {
       description: 'The font family of the anchor',
       type: { summary: 'string', required: false },
       table: {
-        defaultValue: { summary: 'Manrope' },
+        type: { summary: 'string' },
       },
+      control: 'text',
     },
     icon: {
       description: 'Set an icon with the label',
@@ -98,7 +99,6 @@ Lead.args = {
   color: '#ff8c69',
   icon: '🥵',
   lead: true,
-  family: 'Manrope',
   size: 'md',
   transition: 'ease',
 };
@@ -109,7 +109,6 @@ NoIcon.args = {
   label: 'Link',
   href: '#',
   color: '#ff8c69',
-  family: 'Manrope',
   size: 'md',
   lead: false,
   icon: '',

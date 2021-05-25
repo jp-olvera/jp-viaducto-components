@@ -23,7 +23,7 @@ import StyledTitle from './StyledTitle';
  */
 
 interface TitleInterface {
-  family?: string;
+  family?: string | null;
   children: any;
   align?: string;
   color?: string;
@@ -37,7 +37,7 @@ interface TitleInterface {
 }
 
 const Title = ({
-  family = 'Manrope',
+  family = null,
   children,
   level = '1',
   color = 'dark',

@@ -1,26 +1,7 @@
 import styled, { css } from 'styled-components';
 import { SIZE, FONT_SIZE } from './constants';
 
-interface StyledButtonInterface {
-  readonly leftSpacing: string | null;
-  readonly rightSpacing: string | null;
-  readonly iconSpacing: string;
-  readonly label?: string;
-  readonly size?: string;
-  readonly colors?:
-    | { default: string; hover: string; click: string; text: string }
-    | any;
-  readonly icon?: any;
-  readonly lead?: boolean;
-  readonly height?: string;
-  readonly variant?: string;
-  readonly block?: boolean;
-  readonly isIconOnly?: boolean;
-  readonly configuration?: any;
-  readonly transition?: string;
-}
-
-const StyledButton = styled.button<StyledButtonInterface>`
+const StyledButton = styled.button < any > `
   border: 1px solid ${(props) => props.colors.default};
   background-color: ${(props) => props.colors.default};
   color: ${(props) => props.colors.text};
@@ -31,8 +12,7 @@ const StyledButton = styled.button<StyledButtonInterface>`
   border-radius: 2px;
   box-sizing: border-box;
   transition: background-color 0.15s
-    ${({ configuration, transition }) =>
-      transition || configuration.transitionTimingFunction};
+    ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
   text-align: center;
 
   ${(props) => getLateralPadding(props)}
@@ -61,9 +41,8 @@ const StyledButton = styled.button<StyledButtonInterface>`
     background-color: ${(props) => props.colors.click};
   }
 
-  ${(props) =>
-    props.block &&
-    css`
+  ${(props) => props.block
+    && css`
       width: 100%;
     `}
 
@@ -76,10 +55,8 @@ const StyledButton = styled.button<StyledButtonInterface>`
   }
 
   .button-icon-span {
-    margin-right: ${(p) =>
-      !p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
-    margin-left: ${(p) =>
-      !p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
+    margin-right: ${(p) => (!p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
+    margin-left: ${(p) => (!p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
   }
 `;
 
@@ -93,27 +70,27 @@ const getLateralPadding = (props) => {
     // not icon at all
     switch (props.size) {
       case SIZE.small:
-        padding = `0 ${props.configuration.spacing['sm']} `;
+        padding = `0 ${props.configuration.spacing.sm} `;
         break;
       case SIZE.large:
-        padding = `0 ${props.configuration.spacing['lg']} `;
+        padding = `0 ${props.configuration.spacing.lg} `;
         break;
       case SIZE.default:
       default:
-        padding = `0 ${props.configuration.spacing['md']} `;
+        padding = `0 ${props.configuration.spacing.md} `;
         break;
     }
   } else {
     switch (props.size) {
       case SIZE.small:
-        padding = `0 ${props.configuration.spacing['sm']} `;
+        padding = `0 ${props.configuration.spacing.sm} `;
         break;
       case SIZE.large:
-        padding = `0 ${props.configuration.spacing['lg']} `;
+        padding = `0 ${props.configuration.spacing.lg} `;
         break;
       case SIZE.default:
       default:
-        padding = `0 ${props.configuration.spacing['md']} `;
+        padding = `0 ${props.configuration.spacing.md} `;
         break;
     }
   }

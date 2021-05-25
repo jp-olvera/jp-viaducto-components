@@ -1,17 +1,10 @@
 import React, { useContext } from 'react';
-import { ConfigContext } from '../../providers';
 import styled from 'styled-components';
-interface BoxI {
-  readonly direction?: string;
-  readonly configuration: any;
-  readonly size: string;
-  readonly sb?: string;
-}
-const Box = styled.div<BoxI>`
-  width: ${(p) =>
-    p.direction === 'horizontal' ? p.configuration.spacing[p.size] : '100%'};
-  height: ${(p) =>
-    p.direction === 'vertical' ? p.configuration.spacing[p.size] : '100%'};
+import { ConfigContext } from '../../providers';
+
+const Box = styled.div < any > `
+  width: ${(p) => (p.direction === 'horizontal' ? p.configuration.spacing[p.size] : '100%')};
+  height: ${(p) => (p.direction === 'vertical' ? p.configuration.spacing[p.size] : '100%')};
   display: ${(p) => (p.direction === 'vertical' ? 'block' : 'inline-block')};
   border: ${({ sb }) => (sb !== null ? `2px solid ${sb}` : 'none')};
 `;

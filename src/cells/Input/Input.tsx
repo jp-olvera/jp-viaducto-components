@@ -40,6 +40,7 @@ interface InputInterface {
   min?: number;
   max?: number;
   style?: any;
+  family?: string | null;
 }
 
 const Input = ({
@@ -56,6 +57,7 @@ const Input = ({
   iconColor = '#2329D6',
   value = null,
   onChange = () => {},
+  family,
   ...rest
 }: InputInterface) => {
   const [open, setOpen] = useState(false);
@@ -102,6 +104,7 @@ const Input = ({
         borderColor={borderColor}
         iconColor={iconColor}
         disabled={disabled}
+        family={family}
         {...rest}
       >
         {icon !== null && <span className='icon'>{getIcon(icon)}</span>}

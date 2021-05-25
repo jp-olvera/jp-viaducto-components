@@ -10,9 +10,7 @@ export default {
     family: {
       description: 'Set the font family',
       type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: 'Manrope' },
-      },
+      control: 'text',
     },
     activeColor: {
       description: 'Set a color when an option is selected',
@@ -77,7 +75,6 @@ Default.args = {
     bottom: '1px solid black',
     left: '1px solid black',
   },
-  family: 'Manrope',
   defaultText: 'Buscar por...',
   options: ['Razón Social', 'RFC', 'Nombre Comercial'],
   activeColor: '#ffd6ce',
