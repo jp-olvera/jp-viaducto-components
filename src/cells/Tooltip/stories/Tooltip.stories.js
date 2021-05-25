@@ -8,14 +8,57 @@ export default {
   component: Tooltip,
   argTypes: {
     position: {
+      description:
+        'Set the position of the tooltip, top, left, right or bottom',
+      table: {
+        defaultValue: { summary: 'top' },
+        type: { summary: 'string' },
+      },
       control: 'select',
       options: ['top', 'right', 'left', 'bottom'],
     },
-    color: { control: 'color' },
-    textColor: { control: 'color' },
+    color: {
+      description: 'Color of the background',
+      table: {
+        defaultValue: { summary: '#C4C4C4' },
+        type: { summary: 'string' },
+      },
+      control: 'color',
+    },
+    textColor: {
+      description: 'Text color',
+      table: {
+        defaultValue: { summary: '#C4C4C4' },
+        type: { summary: 'string' },
+      },
+      control: 'color',
+    },
     family: {
-      options: ['Inherit', 'Manrope', 'Roboto', 'DM Sans'],
-      control: { type: 'select' },
+      description: 'Font family',
+      table: {
+        defaultValue: { summary: 'Roboto' },
+        type: { summary: 'string' },
+      },
+      control: 'text',
+    },
+    label: {
+      description: 'Text in the tooltip',
+      table: {
+        defaultValue: { summary: 'Tooltip' },
+        type: { summary: 'string' },
+      },
+    },
+    active: {
+      description: 'Show/hide the tooltip',
+      table: {
+        defaultValue: { summary: false },
+        type: { summary: 'boolean' },
+      },
+    },
+    transition: {
+      description: 'Linear transition to use',
+      type: { name: 'string' },
+      table: { type: { summary: 'string' }, defaultValue: { summary: 'ease' } },
     },
   },
 };

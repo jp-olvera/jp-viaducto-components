@@ -13,26 +13,26 @@ const Box = styled.div<BoxI>`
   height: ${(p) =>
     p.direction === 'vertical' ? p.configuration.spacing[p.size] : '100%'};
   display: ${(p) => (p.direction === 'vertical' ? 'block' : 'inline-block')};
-  border: ${({ sb }) => (sb ? `2px solid ${sb}` : 'none')};
+  border: ${({ sb }) => (sb !== null ? `2px solid ${sb}` : 'none')};
 `;
 
 /**
  * A component that renders a spacer element
- * @param {string} size size of the spacing
  * @param {string} direction direction of the spacing
+ * @param {string} size size of the spacing
  * @param {boolean} sb border color for storybook
  */
 
 interface SpacerInterface {
   size: string;
   direction?: string;
-  sb?: string;
+  sb?: any;
 }
 
 const Spacer = ({
   size = 'none',
   direction = 'vertical',
-  sb,
+  sb = null,
 }: SpacerInterface) => {
   const { configuration } = useContext(ConfigContext);
   return (

@@ -6,15 +6,13 @@ import { BareButton } from '../BareButton';
 
 /**
  * Pill component
- * @param {string} label Text in the label
- * @param {any} iconLead Icon as a first child component
- * @param {string} icon Icon as the last child component
  * @param {string} background Color of the pill
  * @param {string} color Text color
- * @param {string} size Size of the pill
  * @param {string} family Font family
- * @param {string} verticalAlign Vertical align in the pill
  * @param {string} handleAction Action to execute
+ * @param {any} iconLead Icon as a first child component
+ * @param {string} label Text in the label
+ * @param {string} size Size of the pill
  */
 interface PillInterface {
   label: string;
@@ -29,7 +27,7 @@ interface PillInterface {
 }
 
 const Pill = ({
-  label = '',
+  label,
   iconLead = null,
   icon = null,
   background = '#C4C4C4',

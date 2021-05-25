@@ -20,7 +20,6 @@ const defaultColors = {
  * @param {Function} handleSearch Action to execute when click the Button
  * @param {array} options Options for the Dropdown component
  * @param {string} id Input's id
- * @param {string} activeColor Color for the options when it's active
  * @param {number} elevation Elevation indicator for shadows data
  * @param {string} elevationDirection Light indicator for shadows data
  */
@@ -32,7 +31,6 @@ interface SearchInterface {
   handleSearch: Function;
   options: string[];
   id: string;
-  activeColor: string;
   elevation: number;
   elevationDirection: string;
   handleChange?: Function;
@@ -46,7 +44,6 @@ const Search = ({
   handleSearch,
   options = [],
   id = 'search',
-  activeColor = '#ffd6ce',
   elevation = 1,
   elevationDirection = '',
   handleChange,
@@ -70,7 +67,6 @@ const Search = ({
       />
       <Select
         border={{ left: '1px solid #CECECE' }}
-        activeColor={activeColor}
         onChange={handleChange}
         data-testid='select'
       >

@@ -5,20 +5,57 @@ import { ConfigProvider } from '../../../providers';
 export default {
   title: 'Andamio/Cells/Controls/Button',
   component: Button,
+  parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
+    label: {
+      description: 'Title or content of the component',
+      type: { summary: 'string', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
     size: {
+      description: 'Size (large) of the button',
+      type: { summary: 'string', required: false },
+      table: {
+        defaultValue: { summary: 'default' },
+      },
       options: ['small', 'default', 'large'],
       control: {
         type: 'select',
       },
     },
     variant: {
+      description: 'Button variant (color)',
+      type: { summary: 'string', required: false },
+      table: {
+        defaultValue: { summary: 'primary' },
+      },
       options: ['primary', 'secondary', 'info', 'success', 'danger', 'warning'],
       control: {
         type: 'select',
       },
     },
+    colors: {
+      description: 'Overrides the variant color type',
+      type: {
+        summary: 'Object = {default, text, hover, click}',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
     iconSpacing: {
+      description:
+        'The horizontal spacing between the label and icon (if both are defined)',
+      type: {
+        summary: 'string',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: 'none' },
+      },
       options: [
         'none',
         'nano',
@@ -36,6 +73,14 @@ export default {
       },
     },
     leftSpacing: {
+      description: 'Left spacing between the content and the button',
+      type: {
+        summary: 'string',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: 'none' },
+      },
       options: [
         null,
         'none',
@@ -55,6 +100,14 @@ export default {
       },
     },
     rightSpacing: {
+      description: 'Right spacing between the content and the button',
+      type: {
+        summary: 'string',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: null },
+      },
       options: [
         null,
         'none',
@@ -71,6 +124,59 @@ export default {
       ],
       control: {
         type: 'select',
+      },
+    },
+    transition: {
+      description: 'Set the transitionTimingFunction',
+      type: {
+        summary: 'string',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: 'ease' },
+      },
+    },
+    icon: {
+      description: 'Set an icon with the label',
+      type: { summary: 'JSX Element / String', required: false },
+      table: {
+        defaultValue: { summary: 'null' },
+      },
+    },
+    height: {
+      description: 'Set button height',
+      type: { summary: 'string', required: false },
+      table: {
+        defaultValue: { summary: 'null' },
+      },
+    },
+    disabled: {
+      description: 'Set the button as disabled',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    block: {
+      description: 'Set button with as 100% of the container',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    lead: {
+      description:
+        'Set the icon (if it is provided) at the begining of the component (before the label)',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    onClick: {
+      description: 'Handles the action to take when the button is pressed',
+      type: { summary: 'Function', required: false },
+      table: {
+        defaultValue: { summary: null },
       },
     },
   },
@@ -97,6 +203,7 @@ Default.args = {
   disabled: false,
   block: false,
   transition: 'ease',
+  onClick: () => {},
 };
 export const Custom = Template.bind({});
 
@@ -111,6 +218,7 @@ Custom.args = {
   disabled: false,
   iconSpace: 'xs',
   transition: 'ease',
+  onClick: () => {},
 };
 export const Small = Template.bind({});
 
@@ -122,6 +230,7 @@ Small.args = {
   height: '',
   variant: 'primary',
   transition: 'ease',
+  onClick: () => {},
 };
 
 export const IconOnly = Template.bind({});
@@ -133,6 +242,7 @@ IconOnly.args = {
   lead: false,
   variant: 'primary',
   transition: 'ease',
+  onClick: () => {},
 };
 export const CustomHeight = Template.bind({});
 
@@ -143,4 +253,5 @@ CustomHeight.args = {
   lead: false,
   variant: 'primary',
   transition: 'ease',
+  onClick: () => {},
 };

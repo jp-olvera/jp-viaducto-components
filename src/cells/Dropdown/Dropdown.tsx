@@ -9,12 +9,12 @@ import { Hideable } from '../Hideable';
 
 /**
  * Dropdown component
+ * @param {string} family font family for the dropdown
  * @param {string} activeColor Active color for the option selected
+ * @param {string} size size of the dropdown
  * @param {any} border border painted
  * @param {string} defaultText Text to show without any option selected
- * @param {string} family font family for the dropdown
  * @param {string} options options in the dropdown
- * @param {string} size size of the dropdown
  * @param {string} height size of the dropdown
  */
 

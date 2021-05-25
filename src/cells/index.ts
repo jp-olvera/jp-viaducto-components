@@ -16,3 +16,6 @@ export * from './Switch';
 export * from './Tab';
 export * from './Title';
 export * from './Tooltip';
+
+// TODO: Quitar los font family dinámicos de todo
+// TODO: Darle más estilos al Toaster
