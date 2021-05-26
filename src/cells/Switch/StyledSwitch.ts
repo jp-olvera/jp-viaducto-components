@@ -40,8 +40,8 @@ export const StyledSwitch = styled.label < any > `
     width: ${({ size }) => switchSize(size).width};
     background-color: darkgray;
     transition: background-color 0.2s ease;
-    &:hover:not(:disabled) {
-      &:after:not(:disabled) {
+    &:hover {
+      &:after {
         box-sizing: border-box;
         left: ${({ size }) => switchSize(size).gutter};
         top: ${({ size }) => switchSize(size).gutter};
