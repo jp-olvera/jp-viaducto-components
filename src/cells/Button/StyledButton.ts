@@ -1,15 +1,26 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { SIZE, FONT_SIZE } from './constants';
 
+const turnOn = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
 const StyledButton = styled.button < any > `
-  border: 1px solid ${(props) => props.colors.default};
+  ${(props) => borderColor(props)};
   background-color: ${(props) => props.colors.default};
   color: ${(props) => props.colors.text};
   position: relative;
   align-items: center;
   display: inline-flex;
+  flex-direction: ${(props) => (props.lead ? 'row' : 'row-reverse')};
   justify-content: center;
-  border-radius: 2px;
+  border-radius: 0.375rem;
   box-sizing: border-box;
   transition: background-color 0.15s
     ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
@@ -58,10 +69,30 @@ const StyledButton = styled.button < any > `
     margin-right: ${(p) => (!p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
     margin-left: ${(p) => (!p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
     font-size: calc(1em * 1.2);
+    .turnOn {
+      animation: ${turnOn} 1s linear infinite;
+    }
   }
 `;
 
-const getLateralPadding = (props) => {
+const borderColor = (props: any) => {
+  if (props.isValid) {
+    return css`
+      border: 3px solid green;
+    `;
+  }
+  // DON'T CHANGE THIS TO !props.isInvalid
+  if (props.isValid === false) {
+    return css`
+      border: 3px solid red;
+    `;
+  }
+  return css`
+    border: 1px solid ${props.colors.default};
+  `;
+};
+
+const getLateralPadding = (props: any) => {
   let padding = '';
   if (props.leftSpacing !== null || props.rightSpacing !== null) {
     const l = props.configuration.spacing[props.leftSpacing] || '0';

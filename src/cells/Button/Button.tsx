@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Circle } from 'react-ikonate';
+import { getIcon } from '../Input/Icon';
 import { ConfigContext } from '../../providers';
 import StyledButton from './StyledButton';
 import { SIZE } from './constants';
@@ -40,6 +41,7 @@ const Button = ({
   lead = false,
   leftSpacing = null,
   isLoading = false,
+  isValid = null,
   rightSpacing = null,
   size = SIZE.default,
   type = 'button',
@@ -62,20 +64,21 @@ const Button = ({
       leftSpacing={leftSpacing}
       rightSpacing={rightSpacing}
       block={block}
+      isValid={isValid}
       disabled={disabled || isLoading}
       {...rest}
     >
-      {(isLoading && lead) || (hasIcon && lead) ? (
+      {hasIcon || isLoading ? (
         <span className='button-icon-span'>
-          {isLoading ? <Circle /> : icon}
+          {isValid && getIcon('ok', 'inherit', 'green', '2px')}
+          {isValid === false && getIcon('cancel', 'inherit', 'red', '2px')}
+          {isLoading && isValid === null && (
+            <Circle className='turnOn' strokeDasharray='20' />
+          )}
+          {isValid === null && !isLoading && icon}
         </span>
       ) : null}
       <span>{label}</span>
-      {(isLoading && !lead) || (hasIcon && !lead) ? (
-        <span className='button-icon-span'>
-          {isLoading ? <Circle /> : icon}
-        </span>
-      ) : null}
     </StyledButton>
   );
 };

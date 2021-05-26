@@ -180,6 +180,25 @@ export default {
         defaultValue: { summary: null },
       },
     },
+    isLoading: {
+      description: 'Set the button disabled with an icon',
+      type: { summary: 'boolean', required: false },
+      table: {
+        type: { summary: 'boolean|string' },
+      },
+    },
+    isValid: {
+      description: 'Set the button with green border and Ok icon',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: null },
+        type: { summary: 'boolean' },
+      },
+      options: [null, true, false],
+      control: {
+        type: 'select',
+      },
+    },
   },
 };
 
@@ -256,6 +275,18 @@ CustomHeight.args = {
   transition: 'ease',
   onClick: () => {},
 };
+export const LoadingButton = Template.bind({});
+
+LoadingButton.args = {
+  size: 'large',
+  label: 'Button',
+  lead: false,
+  variant: 'primary',
+  transition: 'ease',
+  onClick: () => {},
+  isLoading: true,
+};
+
 export const StateButton = Template.bind({});
 
 StateButton.args = {
@@ -265,5 +296,6 @@ StateButton.args = {
   variant: 'primary',
   transition: 'ease',
   onClick: () => {},
-  isLoading: true,
+  isLoading: false,
+  isValid: true,
 };

@@ -30,6 +30,18 @@ describe('<Icon/>', () => {
     render(<Icon icon='data' />);
     expect(screen.getByTitle('Cut')).toBeInTheDocument();
   });
+  test('should be visible with loading Icon', () => {
+    render(<Icon icon='loading' />);
+    expect(screen).not.toBeNull();
+  });
+  test('should be visible with data Icon', () => {
+    render(<Icon icon='verified' />);
+    expect(screen).not.toBeNull();
+  });
+  test('should be visible with data Icon', () => {
+    render(<Icon icon='cancel' />);
+    expect(screen).not.toBeNull();
+  });
   test('should be visible with phone icon', () => {
     render(<Icon icon='phone' />);
     expect(screen.queryByText('phone')).not.toBeInTheDocument();
