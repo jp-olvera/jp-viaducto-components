@@ -1,4 +1,5 @@
 import React from 'react';
+import { Play } from 'react-ikonate';
 import { Button } from '..';
 import { ConfigProvider } from '../../../providers';
 
@@ -179,6 +180,25 @@ export default {
         defaultValue: { summary: null },
       },
     },
+    isLoading: {
+      description: 'Set the button disabled with an icon',
+      type: { summary: 'boolean', required: false },
+      table: {
+        type: { summary: 'boolean|string' },
+      },
+    },
+    isValid: {
+      description: 'Set the button with green border and Ok icon',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: null },
+        type: { summary: 'boolean' },
+      },
+      options: [null, true, false],
+      control: {
+        type: 'select',
+      },
+    },
   },
 };
 
@@ -196,7 +216,7 @@ Default.args = {
   label: 'Button',
   size: 'default',
   lead: false,
-  icon: Icon({ icon: '🥵' }).props.children,
+  icon: Icon({ icon: <Play /> }).props.children,
   height: '',
   variant: 'primary',
   colors: null,
@@ -211,7 +231,7 @@ Custom.args = {
   label: 'Button',
   size: 'default',
   lead: false,
-  icon: Icon({ icon: '🥵' }).props.children,
+  icon: Icon({ icon: <Play /> }).props.children,
   height: '',
   variant: 'primary',
   colors: null,
@@ -226,7 +246,7 @@ Small.args = {
   label: 'Button',
   size: 'small',
   lead: false,
-  icon: Icon({ icon: '🥵' }).props.children,
+  icon: Icon({ icon: <Play /> }).props.children,
   height: '',
   variant: 'primary',
   transition: 'ease',
@@ -237,7 +257,7 @@ export const IconOnly = Template.bind({});
 
 IconOnly.args = {
   size: 'large',
-  icon: Icon({ icon: '🥵' }).props.children,
+  icon: Icon({ icon: <Play /> }).props.children,
   height: '',
   lead: false,
   variant: 'primary',
@@ -254,4 +274,28 @@ CustomHeight.args = {
   variant: 'primary',
   transition: 'ease',
   onClick: () => {},
+};
+export const LoadingButton = Template.bind({});
+
+LoadingButton.args = {
+  size: 'large',
+  label: 'Button',
+  lead: false,
+  variant: 'primary',
+  transition: 'ease',
+  onClick: () => {},
+  isLoading: true,
+};
+
+export const StateButton = Template.bind({});
+
+StateButton.args = {
+  size: 'large',
+  label: 'Button',
+  lead: false,
+  variant: 'primary',
+  transition: 'ease',
+  onClick: () => {},
+  isLoading: false,
+  isValid: true,
 };

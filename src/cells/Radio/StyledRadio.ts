@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { getSize, getRadioSizes, getRadioPadding } from '../../utils/getSizes';
-
-export const CheckMark = styled.span``;
+import { getSize, getRadioSizes } from '../../utils/getSizes';
 
 export const StyledLabel = styled.label < any > `
   ${(p) => (p.family !== null
@@ -10,75 +8,46 @@ export const StyledLabel = styled.label < any > `
           font-family: ${p.family};
         `
     : css``)};
-  font-size: ${({ size }) => getSize(size)};
-  display: block;
-  color: ${({ disabled }) => (disabled ? '#CCCCCC' : '#000')};
-  position: relative;
-  ${({ configuration, spacing, size }) => getRadioPadding(configuration, spacing, size)};
-  margin-bottom: ${({ configuration }) => configuration.spacing.sm};
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  user-select: none;
+  font-size: ${({ fontSize }) => getSize(fontSize)};
+
   & input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-    & :checked ~ ${CheckMark} {
-      background-color: ${({ color }) => color};
-      border: 0.125rem solid ${({ color }) => color};
+    &:not(:disabled) {
+      cursor: pointer;
     }
-    & :disabled:checked ~ ${CheckMark} {
-      background-color: ${({ color }) => color};
-      opacity: 0.5;
-      border: 0.125rem solid ${({ color }) => color};
-    }
-    & :checked ~ ${CheckMark}:after {
-      display: block;
-    }
-    & :checked:hover ~ ${CheckMark} {
+    ${(p) => getRadioSizes(p.size).circle};
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    margin-top: -0.25rem;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border: 0.125rem solid #ccc;
+    transition: 0.2s ease-in-out;
+    transition-property: background-color, border;
+    &:hover:not(:disabled) {
+      background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ccircle%20fill%3D%22%23fff%22%20cx%3D%228%22%20cy%3D%228%22%20r%3D%222%22%20%2F%3E%0A%3C%2Fsvg%3E);
+      ${(p) => getRadioSizes(p.size).circle_size};
       background-color: #444444;
-      border-color: #444444;
     }
-    & :disabled:hover ~ ${CheckMark}:after {
+    &:checked {
+      background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ccircle%20fill%3D%22%23fff%22%20cx%3D%228%22%20cy%3D%228%22%20r%3D%222%22%20%2F%3E%0A%3C%2Fsvg%3E);
+      ${(p) => getRadioSizes(p.size).circle_size};
       background-color: ${({ color }) => color};
-      opacity: 0.5;
-    }
-    & :disabled {
-      border-color: #cecece;
-      cursor: not-allowed;
-      & :hover {
-        cursor: not-allowed;
-        border-color: #cecece;
+      border-color: transparent;
+      &:hover {
+        background-color: #444444;
       }
     }
-  }
-  & :hover input ~ ${CheckMark} {
-    background-color: transparent;
-    border: ${({ disabled }) => (disabled ? '' : '0.125rem solid #444444')};
-  }
-
-  & ${CheckMark} {
-    position: absolute;
-    top: 0;
-    left: 0;
-    ${({ size }) => getRadioSizes(size).circle}
-    border: 0.125rem solid #CCCCCC;
-    border-radius: 50%;
-    & :hover:after {
-      background-color: white;
+    &:disabled {
+      background-color: #cecece;
+      cursor: not-allowed;
+      &:hover {
+        background-color: #cecece;
+      }
     }
-    & :after {
-      content: '';
-      position: absolute;
-      background-color: transparent;
-      display: none;
-    }
-  }
-  & ${CheckMark}:after {
-    ${({ size }) => getRadioSizes(size).circle_after}
-    ${({ size }) => getRadioSizes(size).circle_position}
-    border-radius: 50%;
-    background: white;
   }
 `;

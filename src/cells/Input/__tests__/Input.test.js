@@ -8,7 +8,7 @@ import ProgressBar from '../ProgressBar';
 describe('<Input/>', () => {
   test('should render input', () => {
     const { container } = render(
-      <Input size='md' label='Im the input tested' />,
+      <Input size='md' label='Im the input tested' family={null} />,
     );
     const input = container.querySelector('.input');
     expect(input).toBeInTheDocument();
@@ -93,7 +93,9 @@ describe('<Input/>', () => {
   });
 
   test('should render input disabled', () => {
-    const { container } = render(<Input disabled label='disabled' icon='Icon' border='overlap' />);
+    const { container } = render(
+      <Input disabled label='disabled' icon='Icon' border='overlap' />,
+    );
     expect(container).toBeDefined();
   });
 

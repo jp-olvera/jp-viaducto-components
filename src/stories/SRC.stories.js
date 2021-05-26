@@ -160,6 +160,24 @@ export const Usage = () => (
           `}
         </code>
       </pre>
+      <Spacer size='md' />
+      <Title level='3' color='darkGray'>
+        Table
+      </Title>
+      <Spacer size='md' />
+      <Paragraph>
+        This project uses{' '}
+        <Anchor
+          label='react table'
+          href='https://react-table.tanstack.com/'
+          color='#ff8c69'
+          target='_blank'
+          size='md'
+        />
+        , we just add styling for easier implementation. Any coments or issues
+        related with the table is better going with the team of the library. If
+        you want more information about go with them and take a look.
+      </Paragraph>
     </div>
   </ConfigProvider>
 );

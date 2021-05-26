@@ -1,6 +1,6 @@
 {
   "name": "@jp-olvera/jp-viaducto-components",
-  "version": "4.0.0",
+  "version": "4.0.2",
   "description": "Los componentes de este repositorio están diseñados particular de los proyectos de viaducto",
   "main": "dist/index.js",
   "scripts": {
@@ -16,7 +16,16 @@
     "type": "git",
     "url": "git+https://github.com/jp-olvera/jp-viaducto-components.git"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "ecosystem-react",
+    "styled-components",
+    "viaducto",
+    "design-system",
+    "react-component",
+    "react-component",
+    "awesome"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {

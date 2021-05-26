@@ -1,139 +1,87 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
+const hover = '0.125rem';
 export const StyledSwitch = styled.label < any > `
-  position: relative;
-  display: inline-block;
-  width: 100px;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  transition: 0.1s
-    ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
-  ${({ size }) => getSize(size).slider};
-  & input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+  * {
+    box-sizing: border-box;
+    transition: all 0.2s ease;
   }
-  & .slider {
+  display: block;
+  position: relative;
+  padding-left: ${({ size }) => switchSize(size).width};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  user-select: none;
+  input {
     position: absolute;
-    cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    &:checked {
+      & ~ span {
+        background-color: ${({ color, disabled }) => (disabled ? '#a6a6a6' : color)};
+
+        &:after {
+          left: calc(
+            ${({ size }) => switchSize(size).width} -
+              calc(${({ size }) => switchSize(size).width} / 2)
+          );
+          background-color: ${({ disabled }) => (disabled ? '#cecece' : '#fff')};
+        }
+      }
+    }
+  }
+  span {
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: ${({ disabled }) => (disabled ? '#DDDDDD' : '#AAAAAA')};
-    transition: 0.4s
-      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
-    & :hover :before {
-      ${({ disabled }) => (disabled ? '' : 'border: .25rem solid #444444')};
-      ${({ disabled, configuration, transition }) => (disabled
-    ? ''
-    : `transition: .1s ${
-      transition || configuration.transitionTimingFunction
-    }`)};
-      ${({ size, disabled }) => (disabled ? '' : getSize(size).slider_before_hover)};
+    height: ${({ size }) => switchSize(size).height};
+    border-radius: 1.563rem;
+    width: ${({ size }) => switchSize(size).width};
+    background-color: darkgray;
+    transition: background-color 0.2s ease;
+    &:hover:not(:disabled) {
+      &:after:not(:disabled) {
+        box-sizing: border-box;
+        left: ${({ size }) => switchSize(size).gutter};
+        top: ${({ size }) => switchSize(size).gutter};
+        width: ${({ size }) => `calc(calc(${switchSize(size).width} / 2) - ${
+    switchSize(size).gutter
+  })`};
+        height: ${({ size }) => `calc(calc(${switchSize(size).width} / 2) - ${
+    switchSize(size).gutter
+  })`};
+        border: ${hover} solid #444444;
+      }
     }
-    & :before {
-      position: absolute;
+    &:after {
       content: '';
+      position: absolute;
+      left: ${({ size }) => switchSize(size).gutter};
+      top: ${({ size }) => switchSize(size).gutter};
+      width: ${({ size }) => `calc(calc(${switchSize(size).width} / 2) - ${
+    switchSize(size).gutter
+  })`};
+      height: ${({ size }) => `calc(calc(${switchSize(size).width} / 2) - ${
+    switchSize(size).gutter
+  })`};
+      border-radius: 50%;
       background-color: white;
-      ${({ size }) => getSize(size).slider_before};
-      transition: 0.1s
-        ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+      transition: left 0.2s ease;
     }
-  }
-
-  input:checked + .slider {
-    background-color: ${({ color }) => color};
-  }
-
-  input:disabled:checked + .slider {
-    background-color: ${({ color }) => color};
-    opacity: 0.5;
-  }
-
-  input:checked + .slider:before {
-    transition: 0.1s
-      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
-    ${({ size }) => getSize(size).slider_translate};
-  }
-
-  .slider.round {
-    border-radius: 2.125rem;
-  }
-
-  .slider.round:before {
-    border-radius: 50%;
   }
 `;
 
-const getSize = (size) => {
+export const switchSize = (size: string) => {
   switch (size) {
     case 'sm':
-      return {
-        slider: css`
-          width: 3.35rem;
-          height: 1.95rem;
-        `,
-        slider_before: css`
-          height: 1.5rem;
-          width: 1.5rem;
-          left: 0.2rem;
-          bottom: 0.23rem;
-        `,
-        slider_before_hover: css`
-          height: 1.5rem;
-          width: 1.5rem;
-          left: 0rem;
-          bottom: 0rem;
-        `,
-        slider_translate: css`
-          transform: translateX(1.5rem);
-        `,
-      };
+      return { width: '1.8rem', height: '1rem', gutter: '0.1rem' };
     case 'md':
-      return {
-        slider: css`
-          width: 3.55rem;
-          height: 2.15rem;
-        `,
-        slider_before: css`
-          height: 1.6rem;
-          width: 1.6rem;
-          /* left: 0.2rem; */
-          bottom: 0.3rem;
-        `,
-        slider_before_hover: css`
-          height: 1.6rem;
-          width: 1.6rem;
-          left: 0rem;
-          bottom: 0rem;
-        `,
-        slider_translate: css`
-          transform: translateX(1.5rem);
-        `,
-      };
+      return { width: '2.8rem', height: '1.75rem', gutter: '0.313rem' };
     case 'lg':
     default:
-      return {
-        slider: css`
-          width: 3.75rem;
-          height: 2.25rem;
-        `,
-        slider_before: css`
-          height: 1.625rem;
-          width: 1.625rem;
-          left: 0.25rem;
-          bottom: 0.344rem;
-        `,
-        slider_before_hover: css`
-          height: 1.625rem;
-          width: 1.625rem;
-          left: 0rem;
-          bottom: 0.05rem;
-        `,
-        slider_translate: css`
-          transform: translateX(1.625rem);
-        `,
-      };
+      return { width: '3.75rem', height: '2.25rem', gutter: '0.313rem' };
+    case 'xl':
+      return { width: '5rem', height: '3rem', gutter: '0.5rem' };
   }
 };

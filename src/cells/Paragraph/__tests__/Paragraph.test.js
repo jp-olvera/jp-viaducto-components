@@ -8,7 +8,11 @@ import { Paragraph } from '..';
 
 describe('<Paragraph/>', () => {
   test('should render properly', () => {
-    render(<Paragraph color='green'>Dummy text</Paragraph>);
+    render(
+      <Paragraph color='green' family={null}>
+        Dummy text
+      </Paragraph>,
+    );
     expect(screen.queryByText('Dummy text')).toBeVisible();
   });
   test('should render another text', () => {

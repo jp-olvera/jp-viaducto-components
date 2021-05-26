@@ -17,6 +17,7 @@ describe('<Search/>', () => {
         buttonLabel='Search 1'
         handleSearch={handleClick}
         options={options}
+        family='Roboto'
         id='search'
       />,
     );
@@ -61,7 +62,12 @@ describe('<Search/>', () => {
   test('should display dropdown', () => {
     const handleClick = jest.fn();
     const { getByTestId } = render(
-      <Search buttonLabel='Search 4' options={options} id='search' handleSearch={handleClick} />,
+      <Search
+        buttonLabel='Search 4'
+        options={options}
+        id='search'
+        handleSearch={handleClick}
+      />,
     );
     const activator = getByTestId('select');
     activator.click();
@@ -69,7 +75,7 @@ describe('<Search/>', () => {
   });
 
   test('should display dropdown with no props', () => {
-    const {queryByText, getByTestId} = render(
+    const { queryByText, getByTestId } = render(
       <Search family={null} options={['option1', 'option2']} />,
     );
     const activator = getByTestId('select');

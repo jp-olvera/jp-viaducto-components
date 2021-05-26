@@ -37,14 +37,11 @@ export default {
       },
     },
     lineHeight: {
-      description: 'Size variation for line-height property',
+      description:
+        'Size variation for line-height property, could be "xs", "sm", "md", "lg" or set your preferred value',
       table: {
         defaultValue: { summary: 'md' },
         type: { summary: 'string' },
-      },
-      options: ['xs', 'sm', 'md', 'lg'],
-      control: {
-        type: 'select',
       },
     },
     margin: {

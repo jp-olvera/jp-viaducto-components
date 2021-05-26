@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-
+import { Circle } from 'react-ikonate';
+import { getIcon } from '../Input/Icon';
 import { ConfigContext } from '../../providers';
-
 import StyledButton from './StyledButton';
 import { SIZE } from './constants';
 
@@ -31,24 +31,26 @@ const defaultColors = {
  * @param {Function} onClick Action to execute
  */
 const Button = ({
+  block = false,
   colors = null,
+  disabled = false,
   height = null,
   icon = null,
+  iconSpacing = 'xs',
   label = null,
   lead = false,
-  size = SIZE.default,
-  variant = 'primary',
-  type = 'button',
-  iconSpacing = 'xs',
   leftSpacing = null,
+  isLoading = false,
+  isValid = null,
   rightSpacing = null,
-  block = false,
-  disabled = false,
+  size = SIZE.default,
+  type = 'button',
+  variant = 'primary',
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
   const newHeight = height || configuration.controlHeight[size];
-
+  const hasIcon = icon !== null && icon !== '';
   return (
     <StyledButton
       size={size}
@@ -62,16 +64,21 @@ const Button = ({
       leftSpacing={leftSpacing}
       rightSpacing={rightSpacing}
       block={block}
-      disabled={disabled}
+      isValid={isValid}
+      disabled={disabled || isLoading}
       {...rest}
     >
-      {icon !== null && icon !== '' && lead && (
-        <span className='button-icon-span'>{icon}</span>
-      )}
+      {hasIcon || isLoading ? (
+        <span className='button-icon-span'>
+          {isValid && getIcon('ok', 'inherit', 'green', '2px')}
+          {isValid === false && getIcon('cancel', 'inherit', 'red', '2px')}
+          {isLoading && isValid === null && (
+            <Circle className='turnOn' strokeDasharray='20' />
+          )}
+          {isValid === null && !isLoading && icon}
+        </span>
+      ) : null}
       <span>{label}</span>
-      {icon !== null && icon !== '' && !lead && (
-        <span className='button-icon-span'>{icon}</span>
-      )}
     </StyledButton>
   );
 };
