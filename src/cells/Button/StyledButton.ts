@@ -57,6 +57,7 @@ const StyledButton = styled.button < any > `
   .button-icon-span {
     margin-right: ${(p) => (!p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
     margin-left: ${(p) => (!p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
+    font-size: calc(1em * 1.2);
   }
 `;
 

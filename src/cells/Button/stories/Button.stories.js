@@ -1,4 +1,5 @@
 import React from 'react';
+import { Play } from 'react-ikonate';
 import { Button } from '..';
 import { ConfigProvider } from '../../../providers';
 
@@ -196,7 +197,7 @@ Default.args = {
   label: 'Button',
   size: 'default',
   lead: false,
-  icon: Icon({ icon: '🥵' }).props.children,
+  icon: Icon({ icon: <Play /> }).props.children,
   height: '',
   variant: 'primary',
   colors: null,
@@ -211,7 +212,7 @@ Custom.args = {
   label: 'Button',
   size: 'default',
   lead: false,
-  icon: Icon({ icon: '🥵' }).props.children,
+  icon: Icon({ icon: <Play /> }).props.children,
   height: '',
   variant: 'primary',
   colors: null,
@@ -226,7 +227,7 @@ Small.args = {
   label: 'Button',
   size: 'small',
   lead: false,
-  icon: Icon({ icon: '🥵' }).props.children,
+  icon: Icon({ icon: <Play /> }).props.children,
   height: '',
   variant: 'primary',
   transition: 'ease',
@@ -237,7 +238,7 @@ export const IconOnly = Template.bind({});
 
 IconOnly.args = {
   size: 'large',
-  icon: Icon({ icon: '🥵' }).props.children,
+  icon: Icon({ icon: <Play /> }).props.children,
   height: '',
   lead: false,
   variant: 'primary',
@@ -254,4 +255,15 @@ CustomHeight.args = {
   variant: 'primary',
   transition: 'ease',
   onClick: () => {},
+};
+export const StateButton = Template.bind({});
+
+StateButton.args = {
+  size: 'large',
+  label: 'Button',
+  lead: false,
+  variant: 'primary',
+  transition: 'ease',
+  onClick: () => {},
+  isLoading: true,
 };

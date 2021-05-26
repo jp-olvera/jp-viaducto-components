@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import StyledLoader from './StyleLoader';
-import { ConfigContext } from '../../providers/ConfigProvider'
+import { ConfigContext } from '../../providers/ConfigProvider';
 
 interface CircleLoaderInterface {
   strokeWidth: number;
@@ -19,7 +19,7 @@ const CircleLoader = ({
   radius = 0,
   ...rest
 }: CircleLoaderInterface) => {
-  const { configuration } = useContext(ConfigContext)
+  const { configuration } = useContext(ConfigContext);
   return (
     <StyledLoader data-testid='loader' configuration={configuration} {...rest}>
       <svg width='25px' height='25px'>
@@ -59,7 +59,7 @@ const CircleLoader = ({
         />
       </svg>
     </StyledLoader>
-  )
+  );
 };
 
 export default CircleLoader;

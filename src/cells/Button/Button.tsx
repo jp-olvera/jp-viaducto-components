@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-
+import { Circle } from 'react-ikonate';
 import { ConfigContext } from '../../providers';
-
 import StyledButton from './StyledButton';
 import { SIZE } from './constants';
 
@@ -31,24 +30,25 @@ const defaultColors = {
  * @param {Function} onClick Action to execute
  */
 const Button = ({
+  block = false,
   colors = null,
+  disabled = false,
   height = null,
   icon = null,
+  iconSpacing = 'xs',
   label = null,
   lead = false,
-  size = SIZE.default,
-  variant = 'primary',
-  type = 'button',
-  iconSpacing = 'xs',
   leftSpacing = null,
+  isLoading = false,
   rightSpacing = null,
-  block = false,
-  disabled = false,
+  size = SIZE.default,
+  type = 'button',
+  variant = 'primary',
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
   const newHeight = height || configuration.controlHeight[size];
-
+  const hasIcon = icon !== null && icon !== '';
   return (
     <StyledButton
       size={size}
@@ -62,16 +62,20 @@ const Button = ({
       leftSpacing={leftSpacing}
       rightSpacing={rightSpacing}
       block={block}
-      disabled={disabled}
+      disabled={disabled || isLoading}
       {...rest}
     >
-      {icon !== null && icon !== '' && lead && (
-        <span className='button-icon-span'>{icon}</span>
-      )}
+      {(isLoading && lead) || (hasIcon && lead) ? (
+        <span className='button-icon-span'>
+          {isLoading ? <Circle /> : icon}
+        </span>
+      ) : null}
       <span>{label}</span>
-      {icon !== null && icon !== '' && !lead && (
-        <span className='button-icon-span'>{icon}</span>
-      )}
+      {(isLoading && !lead) || (hasIcon && !lead) ? (
+        <span className='button-icon-span'>
+          {isLoading ? <Circle /> : icon}
+        </span>
+      ) : null}
     </StyledButton>
   );
 };

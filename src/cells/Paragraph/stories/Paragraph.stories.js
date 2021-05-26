@@ -18,14 +18,11 @@ export default {
       },
     },
     lineHeight: {
-      description: 'Defines the line height of the paragraph',
-      type: { summary: 'String', required: false },
+      description:
+        'Size variation for line-height property, could be "xs", "sm", "md", "lg" or set your preferred value',
       table: {
         defaultValue: { summary: 'md' },
-      },
-      options: ['xs', 'sm', 'md', 'lg'],
-      control: {
-        type: 'select',
+        type: { summary: 'string' },
       },
     },
     fontStyle: {

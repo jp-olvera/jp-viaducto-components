@@ -7,22 +7,8 @@ export default {
   component: Checkbox,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
-    label: {
-      description: 'Set the label for the checkbox',
-      type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: null },
-      },
-    },
-    disabled: {
-      description: 'Set the checkbox disabled/enabled',
-      type: { summary: 'Boolean', required: false },
-      table: {
-        defaultValue: { summary: false },
-      },
-    },
     color: {
-      description: 'Set th switch active color',
+      description: 'Set the active/checked color',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: '#9060EB' },
@@ -34,23 +20,34 @@ export default {
       type: { summary: 'String', required: false },
       control: 'text',
     },
-    size: {
-      description: 'Set size of the checkbox',
+    fontSize: {
+      description: 'Set a font size for the label (if it is defined)',
       type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'md' },
+      },
+      options: ['xxs', 'xs', 'sm', 'md', 'lg'],
+      control: {
+        type: 'select',
+      },
+    },
+    checkSize: {
+      description: 'Set the size of the component',
+      type: { summary: 'String', required: true },
       table: {
         defaultValue: { summary: 'lg' },
       },
-      options: ['sm', 'md', 'lg', 'xl'],
+      options: ['xl', 'lg', 'md', 'sm'],
       control: {
         type: 'select',
       },
     },
     spacing: {
       description:
-        'Set horizontal spacing between the checkbox and the label (if it is defined)',
-      type: { summary: 'string', required: false },
+        'Set the horizontal spacing between the label (if it is defined) and the checkbox',
+      type: { summary: 'String', required: false },
       table: {
-        defaultValue: { summary: 'xxl' },
+        defaultValue: { summary: 'none' },
       },
       options: [
         'none',
@@ -67,6 +64,27 @@ export default {
       ],
       control: 'select',
     },
+    disabled: {
+      description: 'Set the checkbox as disabled',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    label: {
+      description: 'Set a label for the checkbox',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
+    change: {
+      description: 'Trigger an action when checkbox changes the state',
+      type: { summary: 'Function(void)', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
   },
 };
 
@@ -81,6 +99,9 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'Label',
   disabled: false,
-  size: 'xl',
+  checkSize: 'lg',
+  spacing: 'none',
   color: '#9060EB',
+  fontSize: 'md',
+  change: () => {},
 };
