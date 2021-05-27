@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonStates from '../ButtonStates';
 
 export default {
-  title: 'Andamio/Examples/ButtonStates',
+  title: 'Examples/ButtonStates',
   component: ButtonStates,
 };
 

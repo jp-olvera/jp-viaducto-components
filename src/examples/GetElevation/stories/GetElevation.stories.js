@@ -2,7 +2,7 @@ import React from 'react';
 import GetElevation from '../GetElevation';
 
 export default {
-  title: 'Andamio/Examples/GetElevation',
+  title: 'Examples/GetElevation',
   component: GetElevation,
   argTypes: {
     elevation: {

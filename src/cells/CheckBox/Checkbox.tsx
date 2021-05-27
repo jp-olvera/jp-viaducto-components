@@ -10,8 +10,10 @@ import { StyledLabel } from './StyledCheckbox';
  * @param {boolean} disabled Enable/disable input
  * @param {string} color Color for the checkbox
  * @param {string} family Font family fot the input
- * @param {string} size Size of the input
+ * @param {string} checkSize Size of the input
+ * @param {string} fontSize Font size of the input
  * @param {string} id ID for the input
+ * @param {Function} onChange Trigger an action
  * @param {string} spacing Spacing for the checkbox
  */
 interface CheckboxInterface {
@@ -23,7 +25,7 @@ interface CheckboxInterface {
   id?: string;
   color?: string;
   spacing?: string;
-  change?: Function;
+  onChange?: Function;
 }
 
 const Checkbox = ({
@@ -34,7 +36,7 @@ const Checkbox = ({
   fontSize = 'md',
   color = '#9060EB',
   id,
-  change = () => {},
+  onChange = () => {},
   spacing = 'none',
   ...props
 }: CheckboxInterface) => {
@@ -55,7 +57,7 @@ const Checkbox = ({
       <input
         onChange={() => {
           setCheck(!check);
-          change();
+          onChange();
         }}
         disabled={disabled}
         type='checkbox'

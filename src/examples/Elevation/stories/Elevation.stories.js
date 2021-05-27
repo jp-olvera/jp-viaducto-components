@@ -2,7 +2,7 @@ import React from 'react';
 import Elevation from '../Elevation';
 
 export default {
-  title: 'Andamio/Examples/Elevation',
+  title: 'Examples/Elevation',
   component: Elevation,
 };
 

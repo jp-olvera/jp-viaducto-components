@@ -78,7 +78,7 @@ export default {
         defaultValue: { summary: null },
       },
     },
-    change: {
+    onChange: {
       description: 'Trigger an action when checkbox changes the state',
       type: { summary: 'Function(void)', required: false },
       table: {
@@ -103,5 +103,5 @@ Default.args = {
   spacing: 'none',
   color: '#9060EB',
   fontSize: 'md',
-  change: () => {},
+  onChange: () => {},
 };
