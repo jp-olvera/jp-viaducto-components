@@ -5,6 +5,8 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Radio } from '..';
 
+jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
+
 describe('<Radio/>', () => {
   test('should render properly', () => {
     render(<Radio label='Radio' data-testid='aa' />);
@@ -12,7 +14,9 @@ describe('<Radio/>', () => {
   });
 
   test('should be selected', () => {
-    const { getByTestId } = render(<Radio label='Yes' id='radio' />);
+    const { getByTestId } = render(
+      <Radio label='Yes' id='radio' family='Roboto' />,
+    );
     const input = getByTestId('radio');
     fireEvent.click(input.querySelector('input'));
     expect(input.querySelector('input').checked).toEqual(true);

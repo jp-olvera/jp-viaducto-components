@@ -7,7 +7,7 @@ import { Switch } from '..';
 
 describe('<Switch/>', () => {
   test('should render properly', () => {
-    render(<Switch id='Switch' />);
+    render(<Switch id='Switch' size='xl' />);
     expect(screen.getByTestId('Switch')).toBeVisible();
   });
 
@@ -46,9 +46,7 @@ describe('<Switch/>', () => {
     ).toEqual(false);
   });
   test('should fire hover event', () => {
-    const { getByTestId, container } = render(
-      <Switch disabled={false} />,
-    );
+    const { getByTestId, container } = render(<Switch disabled={false} />);
     fireEvent.mouseOver(getByTestId('slider'));
     expect(container).toMatchSnapshot();
   });

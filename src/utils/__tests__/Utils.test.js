@@ -8,8 +8,6 @@ import {
   getFontSize,
   getRadioSizes,
   getCheckSizes,
-  getRadioPadding,
-  getCheckPadding,
 } from '../getSizes';
 
 describe('getElevation file', () => {
@@ -65,9 +63,10 @@ describe('getSizes file', () => {
       );
     });
     test('should return xs size props', () => {
-      expect(getLineHeight('xs')).toEqual(
-        'calc(1rem * 1.15)',
-      );
+      expect(getLineHeight('xs')).toEqual('calc(1rem * 1.15)');
+    });
+    test('should return default size props', () => {
+      expect(getLineHeight('100%')).not.toBeNull();
     });
   });
 
@@ -128,8 +127,7 @@ describe('getSizes file', () => {
     test('should have default radio props', () => {
       const smallProps = {
         circle: ['height:1.5rem;width:1.5rem;'],
-        circle_after: ['width:0.75rem;height:0.75rem;'],
-        circle_position: ['top:0.375rem;left:0.375rem;'],
+        circle_size: ['background-size:2.688rem;'],
       };
 
       expect(getRadioSizes()).toEqual(smallProps);
@@ -137,54 +135,28 @@ describe('getSizes file', () => {
     test('should have sm radio props', () => {
       const defaultProps = {
         circle: ['height:0.9rem;width:0.9rem;'],
-        circle_after: ['width:0.55rem;height:0.55rem;'],
-        circle_position: ['top:0.16rem;left:0.16rem;'],
+        circle_size: ['background-size:1.25rem;'],
       };
       expect(getRadioSizes('sm')).toEqual(defaultProps);
     });
     test('should have md radio props', () => {
       const mdProps = {
         circle: ['height:1.2rem;width:1.2rem;'],
-        circle_after: ['width:0.7rem;height:0.7rem;'],
-        circle_position: ['top:0.24rem;left:0.24rem;'],
+        circle_size: ['background-size:2.063rem;'],
       };
       expect(getRadioSizes('md')).toEqual(mdProps);
     });
-  });
-
-  describe('getRadioPadding function', () => {
-    const configurationMock = {
-      spacing: {
-        nano: '0.5rem',
-        lg: '3rem',
-        md: '1rem',
-      },
-    };
-    test('should have sm padding props and large spacing', () => {
-      expect(getRadioPadding(configurationMock, 'lg', 'sm')).toContain('3rem');
+    test('should have lg radio props', () => {
+      expect(getRadioSizes('lg')).not.toBeNull();
     });
-    test('should have default padding props with nano spacing', () => {
-      expect(getRadioPadding(configurationMock, 'nano')).toContain('0.5rem');
-    });
-    test('should have md padding props with md spacing', () => {
-      expect(getRadioPadding(configurationMock, 'md', 'md')).toContain('1rem');
-    });
-    test('should have md padding props with default spacing', () => {
-      expect(getRadioPadding(configurationMock, 'null', 'md')).toContain('calc(1rem * 1.5)');
-    });
-    test('should have default args', () => {
-      expect(getRadioPadding(configurationMock, null, 'sm')).toContain('1rem');
+    test('should have xl radio props', () => {
+      expect(getRadioSizes('xl')).not.toBeNull();
     });
   });
 
   describe('getCheckSizes function', () => {
     test('should have lg checkbox props with large height', () => {
-      const checkboxLarge = {
-        circle: ['height:', ';width:', ';'],
-        circle_after: ['top:0rem;left:0.75rem;'],
-        circle_after_size: ['width:0.625rem;height:1.563rem;'],
-      };
-      expect(getCheckSizes('lg', 'large')).toEqual(checkboxLarge);
+      expect(getCheckSizes('lg', 'large')).not.toBeNull();
     });
     test('should have sm checkbox props with large height', () => {
       expect(getCheckSizes('sm', 'large')).not.toBeNull();
@@ -194,32 +166,6 @@ describe('getSizes file', () => {
     });
     test('should have xl checkbox props with large height', () => {
       expect(getCheckSizes('xl', 'large')).not.toBeNull();
-    });
-  });
-
-  describe('getCheckPadding function', () => {
-    const configurationMock = {
-      spacing: {
-        nano: '0.5rem',
-        lg: '3rem',
-        md: '1rem',
-      },
-    };
-    test('should have sm size', () => {
-      expect(getCheckPadding(configurationMock, 'nano', 'sm')).not.toBeNull();
-      expect(getCheckPadding(configurationMock, null, 'sm')).not.toBeNull();
-    });
-    test('should have md size', () => {
-      expect(getCheckPadding(configurationMock, 'nano', 'md')).not.toBeNull();
-      expect(getCheckPadding(configurationMock, null, 'md')).not.toBeNull();
-    });
-    test('should have lg size', () => {
-      expect(getCheckPadding(configurationMock, 'nano', 'lg')).not.toBeNull();
-      expect(getCheckPadding(configurationMock, null, 'lg')).not.toBeNull();
-    });
-    test('should have xl size', () => {
-      expect(getCheckPadding(configurationMock, 'nano', 'xl')).not.toBeNull();
-      expect(getCheckPadding(configurationMock, null, 'xl')).not.toBeNull();
     });
   });
 });

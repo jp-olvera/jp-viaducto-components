@@ -85,6 +85,10 @@ export const SomeComponent = () => {
 }
 ```
 
+## Table
+
+Este proyecto utiliza [React Table](https://react-table.tanstack.com/), nosotros brindamos estilos para que sea aún más fácil su implementación. Cualquier comentario, issue, etc. que sea directamente ligado a Table no tendrá mucho que ver con nosotros. Ve a darle un vistazo a su librería para más información.
+
 ## Configuraciones default
 
 ``` js

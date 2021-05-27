@@ -13,7 +13,7 @@ export default {
       table: {
         defaultValue: { summary: 'lg' },
       },
-      options: ['sm', 'md', 'lg'],
+      options: ['sm', 'md', 'lg', 'xl'],
       control: {
         type: 'select',
       },
@@ -33,11 +33,11 @@ export default {
         defaultValue: { summary: false },
       },
     },
-    transition: {
-      description: 'Defines the transitionTimingFunction',
-      type: { summary: 'String', required: false },
+    change: {
+      description: 'Trigger an action when switch changes the state',
+      type: { summary: 'Function(void)', required: false },
       table: {
-        defaultValue: { summary: 'ease' },
+        defaultValue: { summary: null },
       },
     },
   },
@@ -45,7 +45,9 @@ export default {
 
 const Template = (args) => (
   <ConfigProvider>
-    <Switch {...args} />
+    <div>
+      <Switch {...args} />;
+    </div>
   </ConfigProvider>
 );
 
@@ -54,6 +56,6 @@ export const Default = Template.bind({});
 Default.args = {
   size: 'lg',
   disabled: false,
-  transition: 'ease',
   color: '#9060EB',
+  change: () => {},
 };

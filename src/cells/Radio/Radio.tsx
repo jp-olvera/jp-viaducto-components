@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
+import { Spacer } from '..';
 
 import { ConfigContext } from '../../providers';
-import { StyledLabel, CheckMark } from './StyledRadio';
+import { StyledLabel } from './StyledRadio';
 
 /**
  * Radio input component
@@ -19,10 +20,12 @@ interface RadioInterface {
   disabled: boolean;
   name: string;
   family?: string | null;
-  size: string;
+  radioSize: string;
+  fontSize: string;
   color: string;
   id: string;
   spacing?: string;
+  change?: Function;
 }
 
 const Radio = ({
@@ -30,35 +33,41 @@ const Radio = ({
   disabled = false,
   name = 'radio',
   family = null,
-  size = 'lg',
+  radioSize = 'lg',
   color = '#9060EB',
   id,
-  spacing,
+  spacing = 'none',
+  fontSize,
+  change = () => {},
   ...props
 }: RadioInterface) => {
   const { configuration } = useContext(ConfigContext);
   const [check, setCheck] = useState(false);
+
   return (
     <StyledLabel
       htmlFor={id}
       configuration={configuration}
       family={family}
-      size={size}
+      radioSize={radioSize}
+      fontSize={fontSize}
       color={color}
       disabled={disabled}
       data-testid={id}
-      spacing={spacing}
       {...props}
     >
-      {label}
       <input
         name={name}
-        onChange={() => setCheck(!check)}
+        onChange={() => {
+          setCheck(!check);
+          change();
+        }}
         disabled={disabled}
         type='radio'
         id={id}
       />
-      <CheckMark />
+      <Spacer size={spacing} direction='horizontal' />
+      {label}
     </StyledLabel>
   );
 };

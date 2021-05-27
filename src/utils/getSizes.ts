@@ -27,7 +27,7 @@ const getLineHeight = (lineHeight = 'md', size = 'md', max = false) => {
     case 'md':
       return `calc(${getSize(size, max)} * 1.5)`;
     default:
-      return 'normal';
+      return lineHeight;
   }
 };
 
@@ -86,13 +86,8 @@ const getRadioSizes = (size: string) => {
           height: 0.9rem;
           width: 0.9rem;
         `,
-        circle_after: css`
-          width: 0.55rem;
-          height: 0.55rem;
-        `,
-        circle_position: css`
-          top: 0.16rem;
-          left: 0.16rem;
+        circle_size: css`
+          background-size: 1.25rem;
         `,
       };
     case 'md':
@@ -101,13 +96,8 @@ const getRadioSizes = (size: string) => {
           height: 1.2rem;
           width: 1.2rem;
         `,
-        circle_after: css`
-          width: 0.7rem;
-          height: 0.7rem;
-        `,
-        circle_position: css`
-          top: 0.24rem;
-          left: 0.24rem;
+        circle_size: css`
+          background-size: 2.063rem;
         `,
       };
     case 'lg':
@@ -117,139 +107,69 @@ const getRadioSizes = (size: string) => {
           height: 1.5rem;
           width: 1.5rem;
         `,
-        circle_after: css`
-          width: 0.75rem;
-          height: 0.75rem;
-        `,
-        circle_position: css`
-          top: 0.375rem;
-          left: 0.375rem;
-        `,
-      };
-  }
-};
-
-const getRadioPadding = (configuration: any, spacing: string, size: any) => {
-  switch (size) {
-    case 'sm':
-      return css`
-        padding: 0 ${configuration.spacing[spacing] || configuration.spacing.md};
-      `;
-    case 'md':
-      return css`
-        padding: 0
-          ${configuration.spacing[spacing]
-          || `calc(${configuration.spacing.md} * 1.5)`};
-      `;
-    case 'lg':
-    default:
-      return css`
-        padding: 0 0 0.12rem
-          ${configuration.spacing[spacing] || configuration.spacing.lg};
-      `;
-  }
-};
-
-const getCheckSizes = (size: any, height: any) => {
-  switch (size) {
-    case 'sm':
-      return {
-        circle: css`
-          height: calc(${height.xsmall} * 1.2);
-          width: calc(${height.xsmall} * 1.2);
-        `,
-        circle_after: css`
-          top: 0rem;
-          left: 0.4rem;
-        `,
-        circle_after_size: css`
-          width: 0.25rem;
-          height: 0.8rem;
-        `,
-      };
-    case 'md':
-    default:
-      return {
-        circle: css`
-          height: ${height.small};
-          width: ${height.small};
-        `,
-        circle_after: css`
-          top: 0.3rem;
-          left: 0.7rem;
-        `,
-        circle_after_size: css`
-          width: 0.25rem;
-          height: 0.8rem;
-        `,
-      };
-    case 'lg':
-      return {
-        circle: css`
-          height: ${height.default};
-          width: ${height.default};
-        `,
-        circle_after: css`
-          top: 0rem;
-          left: 0.75rem;
-        `,
-        circle_after_size: css`
-          width: 0.625rem;
-          height: 1.563rem;
+        circle_size: css`
+          background-size: 2.688rem;
         `,
       };
     case 'xl':
       return {
         circle: css`
-          height: ${height.large};
-          width: ${height.large};
+          height: 2rem;
+          width: 2rem;
         `,
-        circle_after: css`
-          top: 0.313rem;
-          left: 1rem;
-        `,
-        circle_after_size: css`
-          width: 0.625rem;
-          height: 1.563rem;
+        circle_size: css`
+          background-size: 3.625rem;
         `,
       };
   }
 };
 
-const getCheckPadding = (configuration: any, spacing: any, size: any) => {
+const getCheckSizes = (size: string) => {
   switch (size) {
     case 'sm':
-      return css`
-        ${`padding: 0.1rem ${
-    configuration.spacing[spacing] || configuration.spacing.lg
-  };`};
-      `;
+      return {
+        mark: css`
+          height: 0.9rem;
+          width: 0.9rem;
+        `,
+        mark_size: css`
+          background-size: 0.8rem;
+        `,
+      };
     case 'md':
-    default:
-      return css`
-        ${`padding: ${configuration.spacing.tiny} ${
-    configuration.spacing[spacing] || configuration.spacing.xl
-  };`};
-      `;
+      return {
+        mark: css`
+          height: 1.2rem;
+          width: 1.2rem;
+        `,
+        mark_size: css`
+          background-size: 1rem;
+        `,
+      };
     case 'lg':
-      return css`
-        ${`padding: ${configuration.spacing.tiny}
-          ${configuration.spacing[spacing] || configuration.spacing.xxl}`};
-      `;
+    default:
+      return {
+        mark: css`
+          height: 1.5rem;
+          width: 1.5rem;
+        `,
+        mark_size: css`
+          background-size: 1.5rem;
+        `,
+      };
     case 'xl':
-      return css`
-        ${`padding: ${configuration.spacing.sm}
-          ${configuration.spacing[spacing] || configuration.spacing.xxxl}`};
-      `;
+      return {
+        mark: css`
+          height: 2rem;
+          width: 2rem;
+        `,
+        mark_size: css`
+          background-size: 2rem;
+        `,
+      };
   }
 };
 
 export {
-  getSize,
-  getLineHeight,
-  getFontSize,
-  getRadioSizes,
-  getCheckSizes,
-  getRadioPadding,
-  getCheckPadding,
+  getSize, getLineHeight, getFontSize, getRadioSizes, getCheckSizes,
 };

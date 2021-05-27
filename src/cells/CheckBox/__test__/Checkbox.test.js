@@ -5,9 +5,11 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Checkbox } from '..';
 
+jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
+
 describe('<Checkbox/>', () => {
   test('should render properly', () => {
-    render(<Checkbox label='Checkbox' data-testid='aa' />);
+    render(<Checkbox label='Checkbox' data-testid='aa' family='Roboto' />);
     expect(screen.getByText('Checkbox')).toBeVisible();
   });
 
@@ -20,7 +22,9 @@ describe('<Checkbox/>', () => {
   });
 
   test('should not be checked', () => {
-    const { getByTestId } = render(<Checkbox label='Yes' id='checkbox1' family={null} size='lg' />);
+    const { getByTestId } = render(
+      <Checkbox label='Yes' id='checkbox1' family={null} size='lg' />,
+    );
     const input = getByTestId('checkbox1');
     const selector = input.querySelector('input');
     expect(selector.checked).toEqual(false);
@@ -37,11 +41,11 @@ describe('<Checkbox/>', () => {
     ).toEqual(true);
   });
   test('should be render withour label', () => {
-    const { getByTestId } = render(
-      <Checkbox id='checkboxNoLabel' disabled />,
-    );
+    const { getByTestId } = render(<Checkbox id='checkboxNoLabel' disabled />);
     expect(
-      getByTestId('checkboxNoLabel').querySelector('input').hasAttribute('disabled'),
+      getByTestId('checkboxNoLabel')
+        .querySelector('input')
+        .hasAttribute('disabled'),
     ).toEqual(true);
   });
 });

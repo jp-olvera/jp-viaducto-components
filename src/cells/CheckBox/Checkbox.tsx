@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
 
+import { Spacer } from '..';
 import { ConfigContext } from '../../providers';
-import { StyledLabel, CheckMark } from './StyledCheckbox';
+import { StyledLabel } from './StyledCheckbox';
 
 /**
  * Checkbox input component
@@ -17,20 +18,24 @@ interface CheckboxInterface {
   label?: string;
   disabled?: boolean;
   family?: string | null;
-  size?: string;
+  checkSize?: string;
+  fontSize?: string;
   id?: string;
   color?: string;
   spacing?: string;
+  change?: Function;
 }
 
 const Checkbox = ({
   label = '',
   disabled = false,
   family = null,
-  size = 'lg',
+  checkSize = 'lg',
+  fontSize = 'md',
   color = '#9060EB',
   id,
-  spacing,
+  change = () => {},
+  spacing = 'none',
   ...props
 }: CheckboxInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -40,21 +45,24 @@ const Checkbox = ({
       htmlFor={id}
       configuration={configuration}
       family={family}
-      size={size}
+      checkSize={checkSize}
+      fontSize={fontSize}
       color={color}
       disabled={disabled}
       data-testid={id}
-      spacing={spacing}
       {...props}
     >
-      {label}
       <input
-        onChange={() => setCheck(!check)}
+        onChange={() => {
+          setCheck(!check);
+          change();
+        }}
         disabled={disabled}
         type='checkbox'
         id={id}
       />
-      <CheckMark />
+      <Spacer size={spacing} direction='horizontal' />
+      {label}
     </StyledLabel>
   );
 };

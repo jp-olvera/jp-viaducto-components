@@ -48,7 +48,7 @@ const config = {
       default: '#937B3D',
       hover: '#AD9043',
       click: '#C3A24A',
-      text: '#000',
+      text: '#fff',
     },
     secondary: {
       default: '#573D3D',

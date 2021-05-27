@@ -12,7 +12,7 @@ exports[`<Dropdown/> should render with default props and border left none 1`] =
       aria-controls="dropdown1"
       aria-haspopup="true"
       aria-selected="true"
-      class="StyledDropdown__Activator-sc-1btfu08-1 jCbyI"
+      class="StyledDropdown__Activator-sc-1btfu08-1 jVWbcI"
       data-testid="dropdown-activator"
       id="dropdown-activator"
       type="button"
@@ -33,7 +33,7 @@ exports[`<Dropdown/> should render with default props and border left none 1`] =
     </button>
     <div
       aria-label="Configuraciones"
-      class="StyledDropdown__ItemsContainer-sc-1btfu08-2 rwKHN"
+      class="StyledDropdown__ItemsContainer-sc-1btfu08-2 icXbal"
       data-cy="dropdown-itemList"
       data-testid="dropdown-itemList"
       id="dropdown1"
@@ -52,7 +52,7 @@ exports[`<Dropdown/> should render with default props and borders 1`] = `
       aria-controls="dropdown1"
       aria-haspopup="true"
       aria-selected="true"
-      class="StyledDropdown__Activator-sc-1btfu08-1 gWXWQt"
+      class="StyledDropdown__Activator-sc-1btfu08-1 gPTejF"
       data-testid="dropdown-activator"
       id="dropdown-activator"
       type="button"
@@ -73,7 +73,7 @@ exports[`<Dropdown/> should render with default props and borders 1`] = `
     </button>
     <div
       aria-label="Configuraciones"
-      class="StyledDropdown__ItemsContainer-sc-1btfu08-2 rwKHN"
+      class="StyledDropdown__ItemsContainer-sc-1btfu08-2 icXbal"
       data-cy="dropdown-itemList"
       data-testid="dropdown-itemList"
       id="dropdown1"

@@ -3,14 +3,14 @@
 exports[`<SidebarSection/> should render with default props 1`] = `
 <div>
   <div
-    class="StyledSidebarSection-sc-12e8js3-0 qIphq"
+    class="StyledSidebarSection-sc-12e8js3-0 faboMe"
   >
     <div
       class=""
     >
       <li>
         <p
-          class="StyledParagraph-dbd4lw-0 eBiuNa"
+          class="StyledParagraph-dbd4lw-0 hbPPXL"
           color="#2e2a2a"
         />
       </li>

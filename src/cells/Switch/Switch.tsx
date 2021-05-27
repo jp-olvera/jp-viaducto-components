@@ -15,7 +15,7 @@ interface SwitchInterface {
   size: string;
   disabled: boolean;
   id: string;
-  transition?: string;
+  change?: Function;
 }
 
 const Switch = ({
@@ -23,6 +23,7 @@ const Switch = ({
   size = 'lg',
   disabled = false,
   id,
+  change = () => {},
   ...rest
 }: SwitchInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -41,7 +42,10 @@ const Switch = ({
       <input
         type='checkbox'
         id={id}
-        onChange={() => setCheck(!check)}
+        onChange={() => {
+          setCheck(!check);
+          change();
+        }}
         disabled={disabled}
       />
       <span className='slider round' data-testid='slider' />

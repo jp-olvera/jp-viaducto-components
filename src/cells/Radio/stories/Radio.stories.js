@@ -20,13 +20,24 @@ export default {
       type: { summary: 'String', required: false },
       control: 'text',
     },
-    size: {
+    fontSize: {
+      description: 'Set a font size for the label (if it is defined)',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'md' },
+      },
+      options: ['xxs', 'xs', 'sm', 'md', 'lg'],
+      control: {
+        type: 'select',
+      },
+    },
+    radioSize: {
       description: 'Set the size of the component',
       type: { summary: 'String', required: true },
       table: {
         defaultValue: { summary: 'lg' },
       },
-      options: ['lg', 'md', 'sm'],
+      options: ['xl', 'lg', 'md', 'sm'],
       control: {
         type: 'select',
       },
@@ -67,6 +78,13 @@ export default {
         defaultValue: { summary: null },
       },
     },
+    change: {
+      description: 'Trigger an action when radio changes the state',
+      type: { summary: 'Function(void)', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
     name: {
       description: 'Set a name for many radio components',
       type: { summary: 'String', required: true },
@@ -80,6 +98,7 @@ export default {
 const Template = (args) => (
   <ConfigProvider>
     <Radio {...args} />
+    <Radio {...args} />
   </ConfigProvider>
 );
 
@@ -89,5 +108,9 @@ Default.args = {
   label: 'Label',
   disabled: false,
   name: 'radio',
-  size: 'lg',
+  radioSize: 'lg',
+  fontSize: 'md',
+  color: '#9060EB',
+  spacing: 'none',
+  change: () => {},
 };
