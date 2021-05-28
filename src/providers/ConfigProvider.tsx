@@ -22,24 +22,20 @@ const ConfigProvider = ({ children }: ConfigProviderInterface) => {
   const updateConfig = (newConfig: any) => {
     setConfiguration((oldConfig) => ({ ...oldConfig, ...newConfig }));
   };
-  const placements = [
-    'bottom-left',
-    'bottom-center',
-    'bottom-right',
-    'top-left',
-    'top-center',
-    'top-right',
-  ];
+  const placements = {
+    'bottom-left': 'bottom-left',
+    'bottom-center': 'bottom-center',
+    'bottom-right': 'bottom-right',
+    'top-left': 'top-left',
+    'top-center': 'top-center',
+    'top-right': 'top-right',
+  };
 
   return (
     <ConfigContext.Provider value={{ configuration, updateConfig }}>
       <ToastProvider
         components={{ Toast: Toaster }}
-        placement={
-          placements.includes(configuration.toasterPlacement)
-            ? configuration.toasterPlacement
-            : 'top-right'
-        }
+        placement={placements[configuration.toasterPlacement || 'top-right']}
       >
         {children}
       </ToastProvider>
