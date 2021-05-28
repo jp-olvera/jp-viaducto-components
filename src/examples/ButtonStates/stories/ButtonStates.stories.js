@@ -1,7 +1,7 @@
 import React from 'react';
 import { Play } from 'react-ikonate';
 import ButtonStates from '../ButtonStates';
-import { Button, ToastProvider, Toaster } from '../../..';
+import { Button } from '../../..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
