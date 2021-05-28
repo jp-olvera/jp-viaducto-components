@@ -74,4 +74,18 @@ describe('<Icon/>', () => {
     render(<Icon />);
     expect(screen.queryByText('time')).not.toBeInTheDocument();
   });
+  describe('render cards svgs', () => {
+    test('should render visa svg', () => {
+      const { container } = render(<Icon icon='visa' />);
+      expect(container).not.toBeNull();
+    });
+    test('should render mastercard svg', () => {
+      const { container } = render(<Icon icon='mastercard' />);
+      expect(container).not.toBeNull();
+    });
+    test('should render american-express svg', () => {
+      const { container } = render(<Icon icon='american-express' />);
+      expect(container).not.toBeNull();
+    });
+  });
 });

@@ -5,8 +5,6 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Checkbox } from '..';
 
-jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
-
 describe('<Checkbox/>', () => {
   test('should render properly', () => {
     render(<Checkbox label='Checkbox' data-testid='aa' family='Roboto' />);

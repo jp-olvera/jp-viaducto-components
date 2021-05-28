@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 
-import ConfigProvider from '../../providers/ConfigProvider';
-import { Button, Toaster } from '../..';
+// import ConfigProvider from '../../providers/ConfigProvider';
+import { Button } from '../../cells';
+import { Toaster, useToasts } from '../../organisms';
 
 const ButtonStates = () => {
   const [toaster, setToaster] = useState(false);
   const [loading, setloading] = useState(false);
-  const [valid, setvalid] = useState(false);
+  const [valid, setvalid] = useState<any>();
+  const { addToast } = useToasts();
   return (
-    <ConfigProvider>
+    <>
       <div
         style={{
           display: 'flex',
@@ -19,9 +21,9 @@ const ButtonStates = () => {
         }}
       >
         <Button
-          label='valid button'
+          label='Try me'
           iconSpacing='none'
-          variant='info'
+          shapeColor='info'
           isLoading={loading}
           isValid={valid}
           onClick={() => {
@@ -29,43 +31,37 @@ const ButtonStates = () => {
             setTimeout(() => {
               setToaster(true);
               setloading(false);
-              setvalid(false);
+              setvalid(!valid);
               setTimeout(() => {
                 setToaster(false);
+                setvalid(null);
               }, 2500);
             }, 2000);
           }}
         />
         <Button
-          label='invalid button'
+          label='Try me'
           iconSpacing='none'
-          variant='info'
+          shapeColor='info'
           isLoading={loading}
-          isInvalid={valid}
-          onClick={() => {
-            setloading(true);
-            setTimeout(() => {
-              setToaster(true);
-              setloading(false);
-              setvalid(true);
-              setTimeout(() => {
-                setToaster(false);
-              }, 2500);
-            }, 2000);
-          }}
+          isValid={valid}
+          onClick={() => addToast('khgggggggggggggggggggggggggggggggggggggggggggg', {
+            appearance: 'info',
+            autoDismiss: false,
+          })}
         />
       </div>
       <Toaster
         active={toaster}
-        text={!valid ? 'Valid' : 'Invalid'}
-        type={!valid ? 'success' : 'danger'}
+        text={valid ? 'Valid' : 'Invalid'}
+        type={valid ? 'success' : 'danger'}
         title='toaster'
         top
         right
         elevation={1}
         elevationDirection='circular'
       />
-    </ConfigProvider>
+    </>
   );
 };
 

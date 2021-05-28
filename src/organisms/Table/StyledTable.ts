@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import styled, { css } from 'styled-components';
 import getElevation from '../../utils/getElevation';
 import { getSize } from '../../utils/getSizes';

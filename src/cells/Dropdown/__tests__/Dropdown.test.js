@@ -5,12 +5,11 @@ import { render, screen } from '../../../test-utils';
 import '@testing-library/jest-dom/extend-expect';
 import { Dropdown } from '..';
 
-jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
 const options = ['1', '2', '3'];
 
 describe('<Dropdown/>', () => {
   test('should render an focusable activator to toggle the dropdown', () => {
-    const dropdown = render(<Dropdown options={options} />);
+    const dropdown = render(<Dropdown options={options} family={null} />);
     expect(dropdown.getByTestId('dropdown-activator')).toBeInTheDocument();
     const activator = dropdown.getByTestId('dropdown-activator');
     activator.focus();

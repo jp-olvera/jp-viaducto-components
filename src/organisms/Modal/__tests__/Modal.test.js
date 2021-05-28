@@ -7,7 +7,16 @@ import { Modal } from '..';
 
 describe('<Modal></Modal>', () => {
   test('should not be visible', () => {
-    render(<Modal headComponent='AAA' onAccept={null} maxWidth={null} onReject={null} breakpoint={null} allowClickOutside={false} />);
+    render(
+      <Modal
+        headComponent='AAA'
+        onAccept={null}
+        maxWidth={null}
+        onReject={null}
+        breakpoint={null}
+        allowClickOutside={false}
+      />,
+    );
     expect(screen.getByTestId('overlay')).not.toBeVisible();
     expect(screen.getByTestId('modal')).not.toBeVisible();
   });

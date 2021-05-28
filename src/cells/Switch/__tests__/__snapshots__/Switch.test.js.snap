@@ -3,7 +3,7 @@
 exports[`<Switch/> should fire hover event 1`] = `
 <div>
   <label
-    class="StyledSwitch-sc-10hvevw-0 hDDaiJ"
+    class="StyledSwitch-sc-10hvevw-0 fVHHRx"
     color="#9060EB"
   >
     <input

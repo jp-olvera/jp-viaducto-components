@@ -6,9 +6,8 @@ import '@testing-library/react';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Search } from '..';
 
-jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
-
 const options = ['Razón Social', 'RFC', 'Nombre Comercial'];
+
 describe('<Search/>', () => {
   test('should render properly', () => {
     const handleClick = jest.fn();

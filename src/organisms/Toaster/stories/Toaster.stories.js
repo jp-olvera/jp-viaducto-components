@@ -1,10 +1,11 @@
-import React from 'react';
-import { Toaster } from '..';
-import ConfigProvider from '../../../providers/ConfigProvider';
+import React, { useContext } from 'react';
+import { useToasts } from '..';
+import { Button } from '../../../cells';
+import { ConfigProvider, ConfigContext } from '../../../providers';
 
 export default {
   title: 'Andamio/Organisms/Toaster',
-  component: Toaster,
+  component: YourWrapper,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
     active: {
@@ -47,14 +48,6 @@ export default {
         type: 'select',
       },
     },
-    right: {
-      description: 'Boolean that indicates if it should appear on the right',
-      type: { name: 'boolean', required: true },
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-    },
     text: {
       description: 'Text to be shown',
       type: { name: 'string', required: true },
@@ -67,14 +60,6 @@ export default {
       type: { name: 'string', required: true },
       table: {
         type: { summary: 'string' },
-      },
-    },
-    top: {
-      description: 'Boolean that indicates if it should appear on the top',
-      type: { name: 'boolean', required: true },
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
       },
     },
     type: {
@@ -96,10 +81,94 @@ export default {
     },
   },
 };
+const YourWrapper = ({ text, ...rest }) => {
+  const { addToast } = useToasts();
+  const { updateConfig } = useContext(ConfigContext);
+
+  return (
+    <div
+      align='center'
+      style={{
+        width: '100%',
+        justifyContent: 'center',
+        alignContent: 'center',
+        flexShrink: 1,
+      }}
+    >
+      <Button
+        variant='ghost'
+        label='top-left'
+        iconSpacing='none'
+        onClick={() => {
+          updateConfig({ toasterPlacement: 'top-left' });
+          addToast(text, { ...rest });
+        }}
+      />
+      <br />
+      <Button
+        variant='ghost'
+        label='top-right'
+        iconSpacing='none'
+        onClick={() => {
+          updateConfig({ toasterPlacement: 'top-right' });
+          addToast(text, { ...rest });
+        }}
+      />
+      <br />
+      <Button
+        variant='ghost'
+        label='top-center'
+        iconSpacing='none'
+        onClick={() => {
+          updateConfig({ toasterPlacement: 'top-center' });
+          addToast(text, { ...rest });
+        }}
+      />
+      <br />
+      <Button
+        variant='ghost'
+        label='bottom-left'
+        iconSpacing='none'
+        onClick={() => {
+          updateConfig({ toasterPlacement: 'bottom-left' });
+          addToast(text, { ...rest });
+        }}
+      />
+      <br />
+      <Button
+        variant='ghost'
+        label='bottom-right'
+        iconSpacing='none'
+        onClick={() => {
+          updateConfig({ toasterPlacement: 'bottom-right' });
+          addToast(text, { ...rest });
+        }}
+      />
+      <br />
+      <Button
+        variant='ghost'
+        label='bottom-center'
+        iconSpacing='none'
+        onClick={() => {
+          updateConfig({ toasterPlacement: 'bottom-center' });
+          addToast(text, { ...rest });
+        }}
+      />
+
+      <br />
+      <Button
+        label='Show toaster'
+        iconSpacing='none'
+        shapeColor='success'
+        onClick={() => addToast(text, { ...rest })}
+      />
+    </div>
+  );
+};
 
 const Template = (args) => (
   <ConfigProvider>
-    <Toaster {...args} />
+    <YourWrapper {...args} />
   </ConfigProvider>
 );
 
@@ -108,11 +177,8 @@ export const Default = Template.bind({});
 Default.args = {
   text: 'El mensaje del Toaster',
   title: 'Success',
-  active: true,
-  top: true,
-  right: true,
   type: 'success',
   elevation: 1,
-  elevationDirection: 'top',
-  transition: 'ease',
+  elevationDirection: 'bottom',
+  transition: 'cubic-bezier(0.2, 0, 0, 1)',
 };

@@ -1,24 +1,11 @@
-import React, {
-  useContext, useState, useEffect, useRef,
-} from 'react';
+import React, { useContext, useRef } from 'react';
+
 import { Close } from 'react-ikonate';
 import { ConfigContext } from '../../providers';
 import { Paragraph } from '../../cells/Paragraph';
 import { BareButton } from '../../cells/BareButton';
 import StyledToaster from './StyledToaster';
 import { TypeIcon } from '../../cells/TypeIcon';
-
-interface ToasterInterface {
-  text: string;
-  type: string;
-  title: string;
-  active: boolean;
-  top: boolean;
-  right: boolean;
-  elevation: number;
-  elevationDirection: string;
-  transition?: string;
-}
 
 /**
  * A toast component, you can change ts position via top and right properties
@@ -32,41 +19,22 @@ interface ToasterInterface {
  * @param {string} elevationDirection Light indicator for shadows data
  */
 const Toaster = ({
-  active = false,
+  onDismiss,
+  placement,
+  transitionState,
   elevation = 1,
   elevationDirection = '',
-  right = true,
-  text,
-  title,
-  top = true,
+  title = '',
   type = 'success',
+  transition = 'cubic-bezier(0.2, 0, 0, 1)',
+  children,
   ...rest
-}: ToasterInterface) => {
+}: any) => {
   const { configuration } = useContext(ConfigContext);
-  const [isActive, setIsActive] = useState(true);
-
   const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    setIsActive(active);
-  }, [active]);
-
-  useEffect(() => {
-    if (ref && ref.current) {
-      if (isActive) {
-        ref.current.style.setProperty('transform', 'translateX(0)');
-      } else {
-        ref.current.style.setProperty(
-          'transform',
-          right ? 'translateX(100%)' : 'translateX(-100%)',
-        );
-      }
-    }
-  }, [isActive]);
-
   let color = configuration.text.success;
-  const k = type.toLowerCase();
 
+  const k = type.toLowerCase();
   const typeColors = ['success', 'warning', 'danger', 'info'];
   if (typeColors.includes(type.toLowerCase())) {
     color = configuration.text[k];
@@ -79,9 +47,9 @@ const Toaster = ({
       ref={ref}
       backgoundColor={color}
       configuration={configuration}
-      isActive={isActive}
-      top={top}
-      right={right}
+      placement={placement}
+      transitionState={transitionState}
+      transition={transition}
       {...rest}
     >
       <div className='toaster-header'>
@@ -104,19 +72,14 @@ const Toaster = ({
           {title}
         </Paragraph>
         <div style={{ marginLeft: 'auto' }}>
-          <BareButton
-            data-testid='close-button'
-            onClick={() => {
-              setIsActive(false);
-            }}
-          >
+          <BareButton data-testid='close-button' onClick={onDismiss}>
             <Close stroke='white' strokeWidth={2} width='18px' height='18px' />
           </BareButton>
         </div>
       </div>
       <div className='toaster-message'>
         <Paragraph size='sm' weight='bold'>
-          {text}
+          {children}
         </Paragraph>
       </div>
     </StyledToaster>

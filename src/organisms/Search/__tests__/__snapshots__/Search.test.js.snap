@@ -17,7 +17,7 @@ exports[`<Search/> should render properly with no options 1`] = `
     data-testid="select"
   />
   <button
-    class="StyledButton-hwi8uc-0 cKrbaE"
+    class="StyledButton-hwi8uc-0 fNSYC"
     data-testid="button-searchNoOptions"
     height="2.488rem"
     type="button"

@@ -5,8 +5,6 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Drawer } from '..';
 
-jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
-
 describe('<Drawer/>', () => {
   test('should be visible', () => {
     render(

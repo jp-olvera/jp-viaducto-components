@@ -20,7 +20,13 @@ describe('<ConfigProvider/>', () => {
       .fn()
       .mockImplementation(() => ({ spacing: { hola: '1rem' } }));
     const useStateMock = jest.spyOn(React, 'useState');
-    useStateMock.mockImplementation((init) => [{ ...init, ...{ spacing: { hola: 1 } } }, setState]);
+    useStateMock.mockImplementation((init) => [
+      {
+        ...init,
+        ...{ spacing: { hola: 1 }, toasterPlacement: 'centerFailed' },
+      },
+      setState,
+    ]);
     const { container } = render(
       <ConfigProvider>
         <div>AAAAA</div>
