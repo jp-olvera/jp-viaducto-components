@@ -11,10 +11,33 @@ const turnOn = keyframes`
   }
 `;
 
+const loadingIda = keyframes`
+  from {
+    width: 0;
+    left: 0;
+  }
+  25% {
+    width: 100%;
+    left: 0;
+  }
+  50% {
+    width: 0%;
+    left: 100%;
+  }
+  75%{
+    width: 100%;
+    left: 0;
+  }
+  to {
+    width: 0;
+    left: 0;
+  }
+`;
+
 const StyledButton = styled.button < any > `
   ${(props) => borderColor(props)};
-  background-color: ${(props) => props.colors.default};
-  color: ${(props) => props.colors.text};
+  background-color: ${(props) => (props.variant === 'solid' ? props.colors.default : 'transparent')};
+  color: ${(props) => (props.variant === 'solid' ? props.colors.text : props.colors.default)};
   position: relative;
   align-items: center;
   display: inline-flex;
@@ -30,26 +53,24 @@ const StyledButton = styled.button < any > `
   ${(props) => getHeight(props)}
   ${(props) => getFontStyle(props)}
     &:disabled {
-    background-color: lightgrey;
-    color: grey;
-    border: 1px solid lightgrey;
-    .button-icon-span {
-      opacity: 0.5;
-    }
+    opacity: ${(props) => (props.isLoading ? '1' : '0.65')};
   }
 
   // just hover
   &:not([disabled]):hover {
     background-color: ${(props) => props.colors.hover};
     cursor: pointer;
-  }
-
-  &:focus {
-    background-color: ${(props) => props.colors.hover};
+    ${(props) => (props.variant !== 'solid' ? `color: ${props.colors.text}` : null)}
   }
 
   &:not([hover]):not([disabled]):active {
     background-color: ${(props) => props.colors.click};
+    color: ${(props) => (props.variant !== 'solid' ? props.colors.text : props.colors.default)};
+  }
+
+  &:focus {
+    box-shadow: ${(props) => props.colors.shadow || props.colors.click} 0px 0px
+      0px 3px;
   }
 
   ${(props) => props.block
@@ -68,10 +89,20 @@ const StyledButton = styled.button < any > `
   .button-icon-span {
     margin-right: ${(p) => (!p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
     margin-left: ${(p) => (!p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
-    font-size: calc(1em * 1.2);
+    font-size: calc(1em * 1);
     .turnOn {
       animation: ${turnOn} 1s linear infinite;
     }
+  }
+
+  .status {
+    width: 100%;
+    height: 15%;
+    position: absolute;
+    bottom: -0.063rem;
+    border-radius: 0.375rem;
+    background-color: ${(props) => props.colors.click};
+    animation: ${loadingIda} 2s ease-in-out infinite;
   }
 `;
 
@@ -81,14 +112,15 @@ const borderColor = (props: any) => {
       border: 3px solid green;
     `;
   }
-  // DON'T CHANGE THIS TO !props.isInvalid
+  // DON'T CHANGE THIS TO !props.isValid
   if (props.isValid === false) {
     return css`
       border: 3px solid red;
     `;
   }
   return css`
-    border: 1px solid ${props.colors.default};
+    border: 0.063rem solid
+      ${props.variant === 'ghost' ? 'transparent' : props.colors.default};
   `;
 };
 

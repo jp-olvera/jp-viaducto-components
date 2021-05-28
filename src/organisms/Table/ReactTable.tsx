@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import React, {
   useMemo, useEffect, forwardRef, useRef, useState,
 } from 'react';

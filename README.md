@@ -85,6 +85,40 @@ export const SomeComponent = () => {
 }
 ```
 
+## Toaster
+We are using a customized toaster based on the [react-toast-notification](https://www.npmjs.com/package/react-toast-notifications) library, so you can import the useToasts hook directly from our library.
+
+```js
+
+import { useToasts, Button } from '@jp-olvera/jp-viaducto-components';
+
+const SomeComponent = ({ text, ...rest }) => {
+  const { addToast } = useToasts();
+  const { updateConfig } = useContext(ConfigContext);
+
+  // If you want to change the toaster placement
+  // you should update the toasterPlacement property via our updateConfig function
+  updateConfig({ toasterPlacement: 'top-left' });
+
+  return (
+    <Button
+      variant='ghost'
+      label='top-left'
+      iconSpacing='none'
+      onClick={() => {
+        addToast('The text in the content', {
+          title: 'A title or empty if not provided',
+          type: 'success', // also danger|warning|info
+          elevation: 1, // default value
+          elevationDirection: 'bottom', //default value
+          transition: 'cubic-bezier(0.2, 0, 0, 1)', // default value
+        });
+      }}
+    />
+  );
+}
+```
+
 ## Table
 
 Este proyecto utiliza [React Table](https://react-table.tanstack.com/), nosotros brindamos estilos para que sea aún más fácil su implementación. Cualquier comentario, issue, etc. que sea directamente ligado a Table no tendrá mucho que ver con nosotros. Ve a darle un vistazo a su librería para más información.
@@ -203,6 +237,7 @@ const config = {
     white: '#FFFFFF',
   },
   transitionTimingFunction: 'ease',
+  toasterPlacement: 'top-right',
 };
 
 ```

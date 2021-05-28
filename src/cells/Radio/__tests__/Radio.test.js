@@ -5,8 +5,6 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Radio } from '..';
 
-jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
-
 describe('<Radio/>', () => {
   test('should render properly', () => {
     render(<Radio label='Radio' data-testid='aa' />);

@@ -49,42 +49,49 @@ const config = {
       hover: '#AD9043',
       click: '#C3A24A',
       text: '#fff',
+      shadow: 'rgba(147, 123, 62, 0.53)',
     },
     secondary: {
       default: '#573D3D',
       hover: '#744D4D',
       click: '#8A5E5E',
       text: 'white',
+      shadow: 'rgba(87, 61, 61, 0.53)',
     },
     info: {
       default: '#75CDFF',
       hover: '#90D7FF',
       click: '#D9F1FF',
       text: '#000',
+      shadow: 'rgba(117, 205, 255, 0.53)',
     },
     success: {
       default: '#31A74B',
       hover: '#2FBD4E',
       click: '#3AE25F',
       text: '#000',
+      shadow: 'rgba(49, 167, 75, 0.53)',
     },
     warning: {
       default: '#FFDF38',
       hover: '#FFEA7C',
       click: '#FFF1A5',
       text: '#000',
+      shadow: 'rgba(255, 223, 56, 0.53)',
     },
     danger: {
       default: '#FF0000',
       hover: '#FF5454',
       click: '#FF8686',
       text: 'white',
+      shadow: 'rgba(255, 0, 0, 0.53)',
     },
     tab: {
       default: '#F1F1F1',
       click: '#4F83CC',
       hover: '#01579B',
       text: '#000',
+      shadow: 'rgba(1, 87, 155, 0.53)',
     },
   },
   text: {
@@ -109,6 +116,7 @@ const config = {
     white: '#FFFFFF',
   },
   transitionTimingFunction: 'ease',
+  toasterPlacement: 'top-right',
 };
 
 export default config;

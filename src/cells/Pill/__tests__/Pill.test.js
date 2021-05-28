@@ -12,11 +12,21 @@ describe('<Pill/>', () => {
     expect(screen.queryByText('Pill')).toBeVisible();
   });
   test('should render Pill with icon', () => {
-    render(<Pill label='Accept' icon='Cion' iconLead={null} handleAction={null} family={null} />);
+    render(
+      <Pill
+        label='Accept'
+        icon='Cion'
+        iconLead={null}
+        handleAction={null}
+        family={null}
+      />,
+    );
     expect(screen.queryByText('Accept')).toBeVisible();
   });
   test('should render Pill with icon lead', () => {
-    render(<Pill label='Accept' iconLead='=>' icon='lol' handleAction={() => { }} />);
+    render(
+      <Pill label='Accept' iconLead='=>' icon='lol' handleAction={() => {}} />,
+    );
     expect(screen.queryByText('=>')).toBeVisible();
   });
   test('should render Pill without label with icon lead', () => {
@@ -24,7 +34,17 @@ describe('<Pill/>', () => {
     expect(screen.queryByText('Icon')).toBeVisible();
   });
   test('should render Pill with several props', () => {
-    render(<Pill icon='iconBig' label={null} background='#000' color='red' size='sm' verticalAlign='middle' iconLead='😊' />);
+    render(
+      <Pill
+        icon='iconBig'
+        label={null}
+        background='#000'
+        color='red'
+        size='sm'
+        verticalAlign='middle'
+        iconLead='😊'
+      />,
+    );
     expect(screen.queryByText('iconBig')).toBeVisible();
   });
 });

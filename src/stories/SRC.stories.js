@@ -13,7 +13,7 @@ export const Intro = () => (
   <div style={{ maxWidth: '992px', padding: '1%' }}>
     <ConfigProvider>
       <Spacer size='md' />
-      <div style={{ fontFamily: 'Roboto ' }}>
+      <div style={{ fontFamily: 'Arial ' }}>
         <Title level='d4' lineHeight='normal' color='dark'>
           Ahoy! Welcome to Andamio components
         </Title>
@@ -100,7 +100,7 @@ Intro.parameters = {
 
 export const Usage = () => (
   <ConfigProvider>
-    <div style={{ fontFamily: 'Roboto', maxWidth: '992px', padding: '1%' }}>
+    <div style={{ fontFamily: 'Arial', maxWidth: '992px', padding: '1%' }}>
       <Title level='1' color='darkGray'>
         Installation
       </Title>
@@ -188,7 +188,7 @@ Usage.parameters = {
 
 export const Configuration = () => (
   <ConfigProvider>
-    <div style={{ fontFamily: 'Roboto', maxWidth: '992px', padding: '1%' }}>
+    <div style={{ fontFamily: 'Arial', maxWidth: '992px', padding: '1%' }}>
       <Title level='1' color='darkGray'>
         Overwrite configuration
       </Title>

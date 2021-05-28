@@ -1,4 +1,5 @@
 const path = require('path');
+
 module.exports = {
   entry: './src/index.ts',
   devtool: 'inline-source-map',
@@ -50,6 +51,12 @@ module.exports = {
       amd: 'styled-components',
       root: 'styled-components',
     },
+    'react-toast-notifications': {
+      commonjs: 'react-toast-notifications',
+      commonjs2: 'react-toast-notifications',
+      amd: 'react-toast-notifications',
+      root: 'react-toast-notifications',
+    },
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
@@ -58,7 +65,11 @@ module.exports = {
       'prop-types': path.resolve(__dirname, './node_modules/prop-types'),
       'styled-components': path.resolve(
         __dirname,
-        '../node_modules/styled-components'
+        '../node_modules/styled-components',
+      ),
+      'react-toast-notifications': path.resolve(
+        __dirname,
+        '../node_modules/react-toast-notifications',
       ),
     },
   },

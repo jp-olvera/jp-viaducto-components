@@ -125,6 +125,7 @@ const Dropdown = ({
         aria-label='Configuraciones'
         activeColor={activeColor}
         configuration={configuration}
+        family={family}
       >
         {dataList.length > 0 && dataList}
       </ItemsContainer>

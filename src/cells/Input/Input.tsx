@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
+import creditCardType, { types as CardType } from 'credit-card-type';
+
 import { ConfigContext } from '../../providers';
 import { getIcon } from './Icon';
 import ProgressBar from './ProgressBar';
 import { Wrapper } from './StyledInput';
+
+creditCardType.resetModifications();
 
 /**
  * Input component wrapped with label and span tags for better UX
@@ -55,50 +59,51 @@ const Input = ({
   required,
   borderColor = '#001D48',
   iconColor = '#2329D6',
-  value = null,
+  value = '',
   onChange = () => {},
   family,
   ...rest
 }: InputInterface) => {
   const [open, setOpen] = useState(false);
   const [inputType, setInputType] = useState(type);
-  const [inputValue, setInputValue] = useState(0);
+  const [inputValue, setInputValue] = useState<any>(0);
+  const [cardType, setCardType] = useState('card');
   const { configuration } = useContext(ConfigContext);
+  const [newValue, setNewValue] = useState<any>(value);
 
   useEffect(() => {
     setOpen(false);
     setInputType(type);
   }, []);
 
-  const toggleView = (ev) => {
+  const toggleView = (ev: any) => {
     if (ev.type === 'click' || ev.keyCode === 13 || ev.keyCode === 32) {
       setOpen(!open);
       setInputType((actual) => (actual === 'password' ? 'text' : 'password'));
     }
   };
-  const change = (ev) => {
-    setInputValue(ev.target.value.length);
+
+  const setCardIcon = (ev: any) => {
+    const { value: val }: { value: string } = ev.target;
+    creditCardType(val).map((card) => {
+      if (
+        card.type === CardType.MASTERCARD
+        || card.type === CardType.VISA
+        || card.type === CardType.AMERICAN_EXPRESS
+      ) {
+        setCardType(card.type);
+      } else {
+        setCardType('card');
+      }
+      return true;
+    });
   };
-  const getColor = (index) => {
-    switch (index) {
-      case 1:
-        return 'red';
-      case 2:
-        return 'orange';
-      case 3:
-        return 'yellow';
-      case 4:
-        return 'yellowgreen';
-      case 5:
-      default:
-        return 'green';
-    }
-  };
+
   return (
     <>
       <Wrapper
         border={border}
-        hasIcon={icon !== null}
+        hasIcon={icon !== null || type === 'card'}
         size={size}
         configuration={configuration}
         borderColor={borderColor}
@@ -107,30 +112,47 @@ const Input = ({
         family={family}
         {...rest}
       >
-        {icon !== null && <span className='icon'>{getIcon(icon)}</span>}
-
+        {(icon !== null || type === 'card') && (
+          <span className='icon'>
+            {getIcon(type === 'card' ? cardType : icon)}
+          </span>
+        )}
         <input
           className='input'
-          onChange={onChange}
-          onKeyUp={change}
-          type={open ? inputType : type}
+          onChange={(ev) => {
+            onChange();
+            setInputValue(ev.target.value.length);
+            setCardIcon(ev);
+            setNewValue(
+              type === 'card'
+                ? mask(ev.target.value.replace(/([^0-9])/g, ''), 4, '-').slice(
+                  0,
+                  cardType === 'american-express' ? 21 : 19,
+                )
+                : ev.target.value,
+            );
+          }}
+          type={open ? inputType : type === 'card' ? 'tel' : type}
+          autoComplete={type === 'card' ? 'cc-number' : ''}
+          x-autocompletetype={type === 'card' ? 'cc-number' : ''}
           id={rest.id}
           required
           disabled={disabled}
           placeholder={(disabled && value) || label}
           min={rest.min}
+          value={newValue}
           max={rest.max}
           {...rest}
         />
-
         <label className='label' htmlFor={rest.id}>
           <span>{label}</span>
           {required && (
-            <span className='icon-required'>{getIcon('required', '10px')}</span>
+            <span className='icon-required'>{getIcon('required', '8px')}</span>
           )}
         </label>
         {isInvalid && <span className='is-invalid'>{getIcon('warning')}</span>}
         {isValid && <span className='is-valid'>{getIcon('ok')}</span>}
+        {required && <span className='is-required'>{getIcon('required')}</span>}
         {type === 'password' && (
           <span
             className='icon-helper'
@@ -156,3 +178,32 @@ const Input = ({
 };
 
 export default Input;
+
+export const getColor = (index: number) => {
+  switch (index) {
+    case 1:
+      return 'red';
+    case 2:
+      return 'orange';
+    case 3:
+      return 'yellow';
+    case 4:
+      return 'yellowgreen';
+    case 5:
+    default:
+      return 'green';
+  }
+};
+
+export const mask = (value: string, limit: number, separator: string = '-') => {
+  const output: string[] = [];
+  for (let i = 0; i < value.length; i++) {
+    if (i !== 0 && i % limit === 0) {
+      output.push(separator);
+    }
+
+    output.push(value[i]);
+  }
+
+  return output.join('');
+};
