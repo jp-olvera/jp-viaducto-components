@@ -6,18 +6,104 @@ import { render, screen, fireEvent } from '../../../test-utils';
 import { Toaster } from '..';
 
 describe('<Toaster/>', () => {
-  test('should be visible', () => {
-    render(<Toaster text='Mensaje 1' active top={false} right={false} elevation={3} />);
+  test('should render default toaster properly', () => {
+    render(<Toaster elevation={3}>Mensaje 1</Toaster>);
     expect(screen.getByText('Mensaje 1')).toBeVisible();
   });
-  test('click close button should close the toaster', () => {
-    render(<Toaster text='Mensaje 2' active right={false} type='danger' elevation={3} />);
+
+  test('should call onDismiss function when clicking close button', () => {
+    const onDismiss = jest.fn();
+    render(
+      <Toaster type='danger' elevation={3} onDismiss={onDismiss}>
+        Mensaje 2
+      </Toaster>,
+    );
     fireEvent.click(screen.getByTestId('close-button'));
-    expect(screen.getByText('Mensaje 2')).not.toBeVisible();
+    expect(onDismiss).toBeCalledTimes(1);
   });
-  test('render with default props', () => {
-    render(<Toaster text='Mensaje 3' type='noExist' />);
-    fireEvent.click(screen.getByTestId('close-button'));
-    expect(screen.getByText('Mensaje 3')).not.toBeVisible();
+
+  test('should render danger toaster properly', () => {
+    render(
+      <Toaster elevation={3} type='danger'>
+        Mensaje 1
+      </Toaster>,
+    );
+    expect(screen.getByText('Mensaje 1')).toBeVisible();
+  });
+  test('should render warning toaster properly', () => {
+    render(
+      <Toaster elevation={3} type='warning'>
+        Mensaje 1
+      </Toaster>,
+    );
+    expect(screen.getByText('Mensaje 1')).toBeVisible();
+  });
+  test('should render info toaster properly', () => {
+    render(
+      <Toaster elevation={3} type='info'>
+        Mensaje 1
+      </Toaster>,
+    );
+    expect(screen.getByText('Mensaje 1')).toBeVisible();
+  });
+
+  test('should render with entering transition state', () => {
+    render(
+      <Toaster
+        elevation={3}
+        type='info'
+        placement='top-right'
+        transitionState='entering'
+      >
+        Mensaje 1
+      </Toaster>,
+    );
+    expect(screen.getByText('Mensaje 1')).toBeVisible();
+  });
+  test('should render with entered transition state', () => {
+    render(
+      <Toaster
+        elevation={3}
+        type='info'
+        placement='top-left'
+        transitionState='entered'
+      >
+        Mensaje 1
+      </Toaster>,
+    );
+    expect(screen.getByText('Mensaje 1')).toBeVisible();
+  });
+  test('should not be visible with exiting transition state', () => {
+    render(
+      <Toaster
+        elevation={3}
+        type='info'
+        placement='top-left'
+        transitionState='exiting'
+      >
+        Mensaje 1
+      </Toaster>,
+    );
+    expect(screen.getByText('Mensaje 1')).not.toBeVisible();
+  });
+  test('should not be visible with exited transition state', () => {
+    render(
+      <Toaster
+        elevation={3}
+        type='info'
+        placement='top-center'
+        transitionState='exited'
+      >
+        Mensaje 1
+      </Toaster>,
+    );
+    expect(screen.getByText('Mensaje 1')).not.toBeVisible();
+  });
+
+  test('should render with default props', () => {
+    const { container } = render(
+      <Toaster type='thisShouldFallInTheDefault'>Mensaje 3</Toaster>,
+    );
+    expect(container).not.toBeNull();
   });
 });

@@ -16,7 +16,8 @@ const defaultColors = {
  * Button component overrides HTML button tag. This components accepts icons and/or labels
  * @param {String} label Label for the button
  * @param {String} size Size of the button
- * @param {String} variant Button variant (color)
+ * @param {String} shapeColor Button variant (color)
+ * @param {String} variant Button visual style
  * @param {String} colors Color of the button (with its states)
  * @param {String} iconSpacing The horizontal spacing between the label and icon (if both are defined)
  * @param {String} leftSpacing Left spacing between the content and the button
@@ -29,6 +30,7 @@ const defaultColors = {
  * @param {Boolean} lead Indicates if the icon will be leading
  * @param {string} type Button type (for the color)
  * @param {Function} onClick Action to execute
+ * @param {Boolean} useLongLoading Set the long loading bar
  */
 const Button = ({
   block = false,
@@ -37,24 +39,33 @@ const Button = ({
   height = null,
   icon = null,
   iconSpacing = 'xs',
+  isLoading = false,
+  isValid = null,
   label = null,
   lead = false,
   leftSpacing = null,
-  isLoading = false,
-  isValid = null,
   rightSpacing = null,
+  shapeColor = 'primary',
   size = SIZE.default,
   type = 'button',
-  variant = 'primary',
+  variant = 'solid',
+  useLongLoading = false,
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
   const newHeight = height || configuration.controlHeight[size];
   const hasIcon = icon !== null && icon !== '';
+  let c = colors || configuration.colors[shapeColor] || defaultColors;
+  if (isValid === false) {
+    c = configuration.colors.danger;
+  }
+  if (isValid === true) {
+    c = configuration.colors.success;
+  }
   return (
     <StyledButton
       size={size}
-      colors={colors || configuration.colors[variant] || defaultColors}
+      colors={c}
       isIconOnly={label === null && icon !== null}
       lead={lead}
       configuration={configuration}
@@ -66,18 +77,26 @@ const Button = ({
       block={block}
       isValid={isValid}
       disabled={disabled || isLoading}
+      isLoading={isLoading}
+      variant={variant}
       {...rest}
     >
-      {hasIcon || isLoading ? (
+      {hasIcon || (isLoading && !useLongLoading) ? (
         <span className='button-icon-span'>
-          {isValid && getIcon('ok', 'inherit', 'green', '2px')}
-          {isValid === false && getIcon('cancel', 'inherit', 'red', '2px')}
-          {isLoading && isValid === null && (
+          {isValid && getIcon('ok', 'inherit', 'inherit', '2px')}
+          {isValid === false && getIcon('cancel', 'inherit', 'inherit', '2px')}
+          {isLoading && isValid === null && useLongLoading && (
+            <div className='status' />
+          )}
+          {isLoading && isValid === null && useLongLoading === false && (
             <Circle className='turnOn' strokeDasharray='20' />
           )}
-          {isValid === null && !isLoading && icon}
+          {(isValid === null && !isLoading) || useLongLoading ? icon : null}
         </span>
       ) : null}
+      {isLoading && isValid === null && useLongLoading && (
+        <div className='status' />
+      )}
       <span>{label}</span>
     </StyledButton>
   );

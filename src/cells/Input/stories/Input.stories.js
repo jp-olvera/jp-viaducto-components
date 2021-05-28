@@ -20,11 +20,11 @@ export default {
     },
     type: {
       description: 'Set input type',
-      type: { summary: 'String', required: false },
+      type: { summary: 'String', required: true },
       table: {
         defaultValue: { summary: 'text' },
       },
-      options: ['text', 'password', 'number'],
+      options: ['text', 'password', 'number', 'card'],
       control: {
         type: 'select',
       },
@@ -47,6 +47,10 @@ export default {
         'mail',
         'time',
         'grid',
+        'visa',
+        'visa_letter',
+        'master_card',
+        'amex',
       ],
       control: {
         type: 'select',
@@ -109,6 +113,7 @@ export default {
       table: {
         defaultValue: { summary: null },
       },
+      control: 'color',
     },
     iconColor: {
       description: 'Set the icon color (if the border is defined)',
@@ -116,6 +121,7 @@ export default {
       table: {
         defaultValue: { summary: null },
       },
+      control: 'color',
     },
   },
 };
@@ -130,14 +136,17 @@ export const Text = Template.bind({});
 
 Text.args = {
   label: 'Text',
+  border: 'default',
   type: 'text',
   isInvalid: false,
   isValid: false,
-  required: false,
+  required: true,
   disabled: false,
   transition: 'ease',
   borderColor: null,
   iconColor: null,
+  icon: null,
+  size: 'default',
 };
 
 export const Password = Template.bind({});
@@ -145,6 +154,21 @@ export const Password = Template.bind({});
 Password.args = {
   label: 'Password',
   type: 'password',
+  icon: null,
+  isInvalid: false,
+  isValid: false,
+  required: true,
+  disabled: false,
+  transition: 'ease',
+  borderColor: null,
+  iconColor: null,
+};
+
+export const Card = Template.bind({});
+
+Card.args = {
+  label: 'Card',
+  type: 'card',
   icon: null,
   isInvalid: false,
   isValid: false,

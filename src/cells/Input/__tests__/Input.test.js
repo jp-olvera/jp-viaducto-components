@@ -3,12 +3,13 @@ import { render, fireEvent, screen } from '../../../test-utils';
 import '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { Input } from '..';
+import { mask } from '../Input';
 import ProgressBar from '../ProgressBar';
 
 describe('<Input/>', () => {
   test('should render input', () => {
     const { container } = render(
-      <Input size='md' label='Im the input tested' family={null} />,
+      <Input size='md' label='Im the input tested' family={null} type='card' />,
     );
     const input = container.querySelector('.input');
     expect(input).toBeInTheDocument();
@@ -16,7 +17,13 @@ describe('<Input/>', () => {
 
   test('should render input another value', () => {
     const { container } = render(
-      <Input size='md' label='Im the input tested' type='text' isValid />,
+      <Input
+        size='md'
+        label='Im the input tested'
+        type='card'
+        value={555555}
+        isValid
+      />,
     );
     const input = container.querySelector('.input');
     expect(input.value).not.toBe('New value');
@@ -24,11 +31,28 @@ describe('<Input/>', () => {
 
   test('should render input and change the value', () => {
     const { container } = render(
-      <Input size='md' label='Im the input tested' isInvalid />,
+      <Input size='md' label='Master' isInvalid type='card' />,
     );
     const input = container.querySelector('.input');
-    fireEvent.change(input, { target: { value: 'New Value' } });
-    expect(input.value).toBe('New Value');
+    fireEvent.change(input, { target: { value: '555555' } });
+    expect(input.value).not.toBeNull();
+  });
+
+  test('should render input and change the value with amex card', () => {
+    const { container } = render(
+      <Input size='md' label='Amex' isInvalid type='card' />,
+    );
+    const input = container.querySelector('.input');
+    fireEvent.change(input, { target: { value: '37021458745698745' } });
+    expect(input.value).not.toBeNull();
+  });
+  test('should render input and change the value with no svg card', () => {
+    const { container } = render(
+      <Input size='md' label='Im the input tested' isInvalid type='card' />,
+    );
+    const input = container.querySelector('.input');
+    fireEvent.change(input, { target: { value: 'aaaaaaaaaaa' } });
+    expect(input).not.toBeNull();
   });
 
   test('should render input with label', () => {
@@ -92,11 +116,33 @@ describe('<Input/>', () => {
     expect(input.type).toBe('password');
   });
 
-  test('should render input disabled', () => {
+  test('should render simple disabled input', () => {
+    const { container } = render(<Input label='label' disabled type='card' />);
+    expect(container).not.toBeNull();
+  });
+  test('should render simple input', () => {
     const { container } = render(
-      <Input disabled label='disabled' icon='Icon' border='overlap' />,
+      <Input
+        label='label'
+        border='overlap'
+        type='card'
+        required
+        icon='card'
+        iconColor='#000'
+      />,
     );
-    expect(container).toBeDefined();
+    expect(container).not.toBeNull();
+  });
+
+  describe('mask function', () => {
+    test('should return data', () => {
+      const data = mask('444444', '3');
+      expect(data).not.toBeNull();
+    });
+    test('should return data with another separator', () => {
+      const data = mask('5555555555555', '4', ' ');
+      expect(data).not.toBeNull();
+    });
   });
 
   test('should be <ProgressBar/> rendered', () => {

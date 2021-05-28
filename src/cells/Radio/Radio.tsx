@@ -8,12 +8,14 @@ import { StyledLabel } from './StyledRadio';
  * Radio input component
  * @param {string} color Color for the radio
  * @param {string} family Font family fot the input
- * @param {string} size Size of the input
+ * @param {string} fontSize Font Size of the input
+ * @param {string} radioSize Size of the input
  * @param {string} spacing Set the horizontal spacing between the label (if it is defined) and the radio
  * @param {boolean} disabled Enable/disable input
  * @param {string} label Label for the input
  * @param {string} name HTML name attribute for the input
  * @param {string} id ID fot the input
+ * @param {Function} onChange Triger an action
  */
 interface RadioInterface {
   label: string;
@@ -25,7 +27,7 @@ interface RadioInterface {
   color: string;
   id: string;
   spacing?: string;
-  change?: Function;
+  onChange?: Function;
 }
 
 const Radio = ({
@@ -38,7 +40,7 @@ const Radio = ({
   id,
   spacing = 'none',
   fontSize,
-  change = () => {},
+  onChange = () => {},
   ...props
 }: RadioInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -60,7 +62,7 @@ const Radio = ({
         name={name}
         onChange={() => {
           setCheck(!check);
-          change();
+          onChange();
         }}
         disabled={disabled}
         type='radio'

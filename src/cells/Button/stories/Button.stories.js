@@ -26,8 +26,8 @@ export default {
         type: 'select',
       },
     },
-    variant: {
-      description: 'Button variant (color)',
+    shapeColor: {
+      description: 'Button shapeColor (color)',
       type: { summary: 'string', required: false },
       table: {
         defaultValue: { summary: 'primary' },
@@ -37,8 +37,19 @@ export default {
         type: 'select',
       },
     },
+    variant: {
+      description: 'Defines the visual style of the button.',
+      type: { summary: 'string', required: false },
+      table: {
+        defaultValue: { summary: 'solid' },
+      },
+      options: ['solid', 'outline', 'ghost'],
+      control: {
+        type: 'select',
+      },
+    },
     colors: {
-      description: 'Overrides the variant color type',
+      description: 'Overrides the shapeColor color type',
       type: {
         summary: 'Object = {default, text, hover, click}',
         required: false,
@@ -153,14 +164,15 @@ export default {
     },
     disabled: {
       description: 'Set the button as disabled',
-      type: { summary: 'Boolean', required: false },
+      type: { summary: 'boolean', required: false },
       table: {
         defaultValue: { summary: false },
+        type: { summary: 'boolean' },
       },
     },
     block: {
       description: 'Set button with as 100% of the container',
-      type: { summary: 'Boolean', required: false },
+      type: { summary: 'boolean', required: false },
       table: {
         defaultValue: { summary: false },
       },
@@ -184,7 +196,7 @@ export default {
       description: 'Set the button disabled with an icon',
       type: { summary: 'boolean', required: false },
       table: {
-        type: { summary: 'boolean|string' },
+        defaultValue: { summary: false },
       },
     },
     isValid: {
@@ -197,6 +209,15 @@ export default {
       options: [null, true, false],
       control: {
         type: 'select',
+      },
+    },
+    useLongLoading: {
+      description:
+        'Set the long loading bar if it is true or circle loading when it is false',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: false },
+        type: { summary: 'boolean' },
       },
     },
   },
@@ -213,29 +234,73 @@ const Icon = ({ icon }) => <p>{icon}</p>;
 export const Default = Template.bind({});
 
 Default.args = {
+  useLongLoading: false,
   label: 'Button',
   size: 'default',
   lead: false,
   icon: Icon({ icon: <Play /> }).props.children,
   height: '',
-  variant: 'primary',
+  shapeColor: 'primary',
+  variant: 'solid',
   colors: null,
   disabled: false,
   block: false,
   transition: 'ease',
   onClick: () => {},
+  isLoading: false,
 };
-export const Custom = Template.bind({});
 
-Custom.args = {
+export const Outline = Template.bind({});
+
+Outline.args = {
+  useLongLoading: false,
   label: 'Button',
   size: 'default',
   lead: false,
   icon: Icon({ icon: <Play /> }).props.children,
   height: '',
-  variant: 'primary',
+  shapeColor: 'secondary',
+  variant: 'outline',
   colors: null,
   disabled: false,
+  block: false,
+  isLoading: false,
+  transition: 'ease',
+  onClick: () => {},
+};
+export const Ghost = Template.bind({});
+
+Ghost.args = {
+  useLongLoading: false,
+  label: 'Button',
+  size: 'default',
+  lead: false,
+  icon: Icon({ icon: <Play /> }).props.children,
+  height: '',
+  shapeColor: 'danger',
+  variant: 'ghost',
+  colors: null,
+  disabled: false,
+  block: false,
+  isLoading: false,
+  transition: 'ease',
+  onClick: () => {},
+};
+
+export const Custom = Template.bind({});
+
+Custom.args = {
+  useLongLoading: false,
+  label: 'Button',
+  size: 'default',
+  lead: false,
+  icon: Icon({ icon: <Play /> }).props.children,
+  height: '',
+  shapeColor: 'primary',
+  variant: 'solid',
+  colors: null,
+  disabled: false,
+  isLoading: false,
   iconSpace: 'xs',
   transition: 'ease',
   onClick: () => {},
@@ -243,45 +308,56 @@ Custom.args = {
 export const Small = Template.bind({});
 
 Small.args = {
+  useLongLoading: false,
   label: 'Button',
   size: 'small',
   lead: false,
   icon: Icon({ icon: <Play /> }).props.children,
   height: '',
-  variant: 'primary',
+  shapeColor: 'primary',
+  variant: 'solid',
   transition: 'ease',
+  isLoading: false,
   onClick: () => {},
 };
 
 export const IconOnly = Template.bind({});
 
 IconOnly.args = {
+  useLongLoading: false,
   size: 'large',
   icon: Icon({ icon: <Play /> }).props.children,
   height: '',
   lead: false,
-  variant: 'primary',
+  shapeColor: 'primary',
+  variant: 'solid',
+  isLoading: false,
   transition: 'ease',
   onClick: () => {},
 };
 export const CustomHeight = Template.bind({});
 
 CustomHeight.args = {
+  useLongLoading: false,
   size: 'default',
   label: 'Button',
   height: '3.4rem',
   lead: false,
-  variant: 'primary',
+  shapeColor: 'primary',
+  variant: 'solid',
+  isLoading: false,
   transition: 'ease',
   onClick: () => {},
 };
 export const LoadingButton = Template.bind({});
 
 LoadingButton.args = {
+  useLongLoading: false,
   size: 'large',
   label: 'Button',
   lead: false,
-  variant: 'primary',
+  shapeColor: 'primary',
+  variant: 'solid',
   transition: 'ease',
   onClick: () => {},
   isLoading: true,
@@ -290,10 +366,12 @@ LoadingButton.args = {
 export const StateButton = Template.bind({});
 
 StateButton.args = {
+  useLongLoading: false,
   size: 'large',
   label: 'Button',
   lead: false,
-  variant: 'primary',
+  shapeColor: 'primary',
+  variant: 'solid',
   transition: 'ease',
   onClick: () => {},
   isLoading: false,

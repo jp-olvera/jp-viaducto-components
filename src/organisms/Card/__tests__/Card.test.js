@@ -5,7 +5,6 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '../../../test-utils';
 import { Card } from '..';
 
-jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
 const props = {
   collapsible: false,
   collapse: true,
@@ -14,6 +13,7 @@ const props = {
   footer: <h2>Footer</h2>,
   onlyImage: false,
 };
+
 describe('<Card/>', () => {
   test('should be visible', () => {
     render(<Card {...props} />);

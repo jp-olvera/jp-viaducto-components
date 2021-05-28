@@ -78,7 +78,7 @@ export default {
         defaultValue: { summary: null },
       },
     },
-    change: {
+    onChange: {
       description: 'Trigger an action when radio changes the state',
       type: { summary: 'Function(void)', required: false },
       table: {
@@ -112,5 +112,5 @@ Default.args = {
   fontSize: 'md',
   color: '#9060EB',
   spacing: 'none',
-  change: () => {},
+  onChange: () => {},
 };

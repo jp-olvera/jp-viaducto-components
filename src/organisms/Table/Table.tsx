@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import React, { useContext, useMemo } from 'react';
 
 import Table from './ReactTable';

@@ -8,7 +8,11 @@ import { Select } from '..';
 describe('<Select/>', () => {
   const options = ['option1', 'option2', 'option3', 'option4'];
   test('should render properly with default attributes', () => {
-    const { container } = render(<Select><option value='A'>A</option></Select>);
+    const { container } = render(
+      <Select>
+        <option value='A'>A</option>
+      </Select>,
+    );
     expect(container).toBeInTheDocument();
   });
   test('should render properly with custom attributes', () => {
@@ -48,7 +52,11 @@ describe('<Select/>', () => {
   test('should show the options', () => {
     const { getByTestId, queryByText } = render(
       <Select radius='2rem' size='sm' height={undefined}>
-        {options.map((option) => <option key={option} value={option}>{option}</option>)}
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
       </Select>,
     );
     const select = getByTestId('select');

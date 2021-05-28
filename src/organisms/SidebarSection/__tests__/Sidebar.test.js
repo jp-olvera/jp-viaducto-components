@@ -5,8 +5,6 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { SidebarSection } from '..';
 
-jest.mock('../../../cells/Dropdown/sorting.svg', () => null);
-
 describe('<SidebarSection/>', () => {
   const items = [
     {
@@ -74,7 +72,11 @@ describe('<SidebarSection/>', () => {
         lead
       />,
     );
-    fireEvent.keyUp(screen.getByText('Comida'), { key: '13', code: '13', keyCode: '13' });
+    fireEvent.keyUp(screen.getByText('Comida'), {
+      key: '13',
+      code: '13',
+      keyCode: '13',
+    });
     expect(screen.getByText('Comida')).toBeVisible();
   });
 
@@ -88,13 +90,15 @@ describe('<SidebarSection/>', () => {
         isMenu
       />,
     );
-    fireEvent.keyUp(screen.getByText('Comida'), { key: '32', code: '32', keyCode: '32' });
+    fireEvent.keyUp(screen.getByText('Comida'), {
+      key: '32',
+      code: '32',
+      keyCode: '32',
+    });
     expect(screen.getByText('Comida')).toBeVisible();
   });
   test('should render with default props', () => {
-    const { container } = render(
-      <SidebarSection lead={false} />,
-    );
+    const { container } = render(<SidebarSection lead={false} />);
     expect(container).toMatchSnapshot();
   });
 });
