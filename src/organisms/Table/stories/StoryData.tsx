@@ -18,11 +18,17 @@ export const DefaultColumnFilter = ({
 
 export const dummyData = [
   {
-    salary: 1881.2,
+    salary: 1882.2,
     percent: 51,
-    firstName: 'Juan',
+    firstName: 'Juan Pablo',
     lastName: 'Olvera',
     id: 'OAUTH|FEWFEW',
+    expandible: (
+      <img
+        src='https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300'
+        alt='imge'
+      />
+    ),
   },
   {
     salary: 802.2,
@@ -30,6 +36,7 @@ export const dummyData = [
     firstName: 'Jorge',
     lastName: 'Rojas',
     id: 'OAUTH|sdfdgtr',
+    expandible: <p>I am a row expandible</p>,
   },
   {
     salary: 803.2,
@@ -37,6 +44,7 @@ export const dummyData = [
     firstName: 'Lalo',
     lastName: 'Mora',
     id: 'OAUTH|661615',
+    expandible: <p>I am a row expandible</p>,
   },
   {
     salary: 43.2,
@@ -51,6 +59,7 @@ export const dummyData = [
     firstName: 'Ana',
     lastName: 'Bárbara',
     id: 'OAUTH|66161sdf',
+    expandible: null,
   },
   {
     salary: 80.2,
@@ -58,6 +67,7 @@ export const dummyData = [
     firstName: 'Leo',
     lastName: 'Dan',
     id: 'OAUTH|661615sd',
+    expandible: <p>I am a row expandible</p>,
   },
   {
     salary: 834.2,
@@ -65,6 +75,7 @@ export const dummyData = [
     firstName: 'Leo',
     lastName: 'Arcos',
     id: 'OAUTH|661sdfs615',
+    expandible: <p>I am a row expandible</p>,
   },
   {
     salary: 30.2,
@@ -72,6 +83,7 @@ export const dummyData = [
     firstName: 'Omar',
     lastName: 'Fernández',
     id: 'OAUTH|6616aa15',
+    expandible: <p>I am a row expandible</p>,
   },
   {
     salary: 60.2,
@@ -79,6 +91,7 @@ export const dummyData = [
     firstName: 'Chalino',
     lastName: 'Sánchez',
     id: 'OAUTH|a125615',
+    expandible: <p>I am a row expandible</p>,
   },
   {
     salary: 870.2,
@@ -86,6 +99,7 @@ export const dummyData = [
     firstName: 'Jennifer',
     lastName: 'Rivera',
     id: 'OAUTH|s1s25615',
+    expandible: <p>I am a row expandible</p>,
   },
   {
     salary: 888.2,
@@ -93,6 +107,7 @@ export const dummyData = [
     firstName: 'Lola',
     lastName: 'Beltrán',
     id: 'OAUTH|c125615',
+    expandible: <p>I am a row expandible</p>,
   },
   {
     salary: 67.2,
@@ -100,6 +115,7 @@ export const dummyData = [
     firstName: 'Benito',
     lastName: 'Juárez',
     id: 'OAUTH|v125615',
+    expandible: <p>I am a row expandible</p>,
   },
   {
     salary: 88.2,
@@ -107,6 +123,7 @@ export const dummyData = [
     firstName: 'Ricardo',
     lastName: 'Anaya',
     id: 'OAUTH|b125615',
+    expandible: <p>I am a row expandible</p>,
   },
   {
     salary: 996.2,
@@ -114,6 +131,7 @@ export const dummyData = [
     firstName: 'Mariana',
     lastName: 'Rodríguez',
     id: 'OAUTH|n125615',
+    expandible: <p>I am a row expandible</p>,
   },
   {
     salary: 80.2,
@@ -121,6 +139,7 @@ export const dummyData = [
     firstName: 'Bronco',
     lastName: 'El gigante de América',
     id: 'OAUTH|h125615',
+    expandible: <p>I am a row expandible</p>,
   },
 ];
 

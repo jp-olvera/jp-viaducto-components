@@ -17,6 +17,7 @@ export const Activator = styled.button < any > `
   background-color: inherit;
   box-sizing: border-box;
   display: flex;
+  justify-content: center;
   color: inherit;
   cursor: pointer;
   font-family: ${({ family }) => (family ? `'${family}', sans-serif` : "'Manrope', sans-serif;")};
@@ -72,6 +73,9 @@ export const ItemsContainer = styled.div < any > `
     : css``)};
   transition: all 0.2s
     ${({ configuration }) => configuration.transitionTimingFunction};
+  .left {
+    left: 100%;
+  }
   background: #ffffff;
   border: 0.063rem solid #eaedf3;
   box-sizing: border-box;
@@ -88,10 +92,10 @@ export const ItemsContainer = styled.div < any > `
   visibility: hidden;
   width: 7.5rem !important;
   z-index: 1;
+  flex-direction: column;
   &.active {
-    flex-direction: column;
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
     transition: all 0.2s
       ${({ configuration }) => configuration.transitionTimingFunction};
   }

@@ -50,25 +50,53 @@ const Dropdown = ({
       }
     }
   };
-  const select = (label: string, index: any) => {
+  const select = (label: string, selected: any) => {
     if (selectedRef.current) {
       selectedRef.current.innerHTML = label;
-      setIsOpen(false);
-      setIsSelected(index);
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 10);
+      setIsSelected(selected);
     }
   };
-  const dataList = options.map((button, index) => (
-    <button
-      className={`${isSelected === index ? 'active-item' : ''}`}
-      value={button}
-      key={button}
-      onClick={() => select(button, index)}
-      type='button'
-    >
-      {button}
-    </button>
-  ));
-  const clickOutsideHandler = (event) => {
+  const recursiveData = (data: any[]) => data.map((option: any, index: number) => {
+    if (Array.isArray(option)) {
+      // eslint-disable-next-line no-unused-vars
+      return (
+        <ItemsContainer
+          id={`otherdropdown${index.toString()}`}
+          className='left active'
+            // TODO: aquí va un classname para hover y que se abra el siguiente dato (left: 100%)
+            // TODO: verificar posiciones para ver dónde poner el ícono
+            // TODO: verificar keys
+          data-testid='dropdown-itemList2'
+          data-cy='dropdown-itemList2'
+          ref={dropdownListRef}
+          aria-label='Configuraciones'
+          activeColor={activeColor}
+          configuration={configuration}
+          family={family}
+        >
+          {recursiveData(option)}
+        </ItemsContainer>
+      );
+    }
+    return (
+      <button
+        className={`${
+          isSelected === option + index.toString() ? 'active-item' : ''
+        }`}
+        value={option}
+        key={option}
+        onClick={() => select(option, option + index.toString())}
+        type='button'
+      >
+        {option}
+      </button>
+    );
+  });
+  const dataList = recursiveData(options);
+  const clickOutsideHandler = (event: any) => {
     if (dropdownListRef.current && activatorRef.current) {
       if (
         dropdownListRef.current.contains(event.target)

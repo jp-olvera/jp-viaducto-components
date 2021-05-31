@@ -24,7 +24,7 @@ export default {
       table: {
         defaultValue: { summary: 'text' },
       },
-      options: ['text', 'password', 'number', 'card'],
+      options: ['text', 'password', 'number', 'card', 'date', 'color', 'phone'],
       control: {
         type: 'select',
       },
@@ -175,6 +175,54 @@ Card.args = {
   required: true,
   disabled: false,
   transition: 'ease',
+  borderColor: null,
+  iconColor: null,
+};
+
+export const Date = Template.bind({});
+
+Date.args = {
+  label: 'Date',
+  type: 'date',
+  icon: null,
+  isInvalid: false,
+  isValid: false,
+  required: true,
+  disabled: false,
+  transition: 'ease',
+  borderColor: null,
+  iconColor: null,
+};
+
+export const Color = Template.bind({});
+
+Color.args = {
+  label: 'Color',
+  type: 'color',
+  icon: null,
+  border: 'default',
+  isInvalid: false,
+  isValid: false,
+  required: false,
+  disabled: false,
+  transition: 'ease',
+  size: 'default',
+  borderColor: null,
+  iconColor: null,
+};
+export const Phone = Template.bind({});
+
+Phone.args = {
+  label: 'Phone',
+  type: 'phone',
+  icon: null,
+  border: 'default',
+  isInvalid: false,
+  isValid: false,
+  required: false,
+  disabled: false,
+  transition: 'ease',
+  size: 'default',
   borderColor: null,
   iconColor: null,
 };

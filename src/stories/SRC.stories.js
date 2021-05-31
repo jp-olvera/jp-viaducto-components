@@ -178,6 +178,56 @@ export const Usage = () => (
         related with the table is better going with the team of the library. If
         you want more information about go with them and take a look.
       </Paragraph>
+      <br />
+      <Paragraph>
+        For this component usage, we need to retrieve data in specific way:
+      </Paragraph>
+      <br />
+      <Title level='5'>For the Columns:</Title>
+      <Paragraph>
+        The column data needs to be an <code>array object</code> with pair{' '}
+        <code>key-value</code> syntax. We need to set a <code>Header</code> and{' '}
+        <code>accesor</code> keys for the usage (required).
+      </Paragraph>
+      <pre>
+        <code>
+          {`
+            const columns = [
+              {
+                Header: /* String, required. This value will be rendered in the table */,
+                accessor: /* String, required. This will be used like an ID for the data */,
+                Filter: /* JSX ELEMENT, optional. This will be used for filter data in the columns (default null) */,
+                prefix: /* String, optional. This will be render a prefix in the data*/,
+                sufix: /* String, optional. This will be render a sufix in the data*/,
+              },
+              ...
+            ];
+          `}
+        </code>
+      </pre>
+      <Title level='5'>For the Data:</Title>
+      <Paragraph>
+        The data needs to be an <code>array object</code> with pair{' '}
+        <code>key-value</code> syntax. We need to set a <code>id</code> key for
+        the usage (required).
+      </Paragraph>
+      <pre>
+        <code>
+          {`
+            const data = [
+              {
+                /*
+                  CADA KEY CORRESPONDE AL ACCESSOR DE LAS COLUMNAS, SINO SERÁN OMITIDAS
+                  Each key need to be the same as the column accessor. If it is different, will be omitted
+                */
+                id: /* String, required. The ID for the row */,
+                expandible: /* JSX Element, optional. Element to be rendered when the row is clicked (expandible) */,
+              },
+              ...
+            ];
+          `}
+        </code>
+      </pre>
     </div>
   </ConfigProvider>
 );
@@ -234,134 +284,16 @@ export const Configuration = () => (
       </Title>
       <Spacer size='md' />
       <Paragraph>
-        We provide a descriptive comment for each key in the config so you can
-        know what are they meant for.
+        We provide a descriptive configuration file for the usage, so you can
+        know what are they meant for. See this file on{' '}
+        <Anchor
+          href='https://github.com/jp-olvera/jp-viaducto-components/blob/main/src/utils/config.ts'
+          label='Github'
+          color='#ff8c69'
+          target='_blank'
+          size='md'
+        />
       </Paragraph>
-      <pre>
-        <code>
-          {`
-            const config = {
-              
-              spacing: { 
-                // For the Spacer sizes and some components padding
-                none: '0px',
-                nano: '0.279rem',
-                micro: '0.335rem',
-                tiny: '0.402rem',
-                xs: '0.482rem',
-                sm: '0.694rem',
-                md: '1.2rem',
-                lg: '2.074rem',
-                xl: '2.488rem',
-                xxl: '2.986rem',
-                xxxl: '3.5rem',
-              },
-              controlHeight: {
-                // For the form controls height
-                xsmall: '1.2rem',
-                small: '2.074rem',
-                default: '2.488rem',
-                large: '2.986rem',
-              },
-              display: {
-                // For the min and max height of the titles
-                mobile: {
-                  xs: '2.986rem',
-                  sm: '3.012rem',
-                  md: '3.213rem',
-                  lg: '3.658rem',
-                  xl: '4.165rem',
-                  xxl: '5.06rem',
-                },
-                desktop: {
-                  xs: '3.583rem',
-                  sm: '5.16rem',
-                  md: '6.192rem',
-                  lg: '8.916rem',
-                  xl: '12.839rem',
-                  xxl: '15.407rem',
-                },
-              },
-              breakpoints: {
-                xs: '20rem', // '320px'
-                sm: '36rem', // '576px'
-                md: '48rem', // '768px'
-                lg: '62rem', // '992px'
-                xl: '90rem', // '1440px'
-              },
-              colors: {
-                // Meant for the Buttons variations
-                primary: {
-                  default: '#937B3D',
-                  hover: '#AD9043',
-                  click: '#C3A24A',
-                  text: '#000',
-                },
-                secondary: {
-                  default: '#573D3D',
-                  hover: '#744D4D',
-                  click: '#8A5E5E',
-                  text: 'white',
-                },
-                info: {
-                  default: '#75CDFF',
-                  hover: '#90D7FF',
-                  click: '#D9F1FF',
-                  text: '#000',
-                },
-                success: {
-                  default: '#31A74B',
-                  hover: '#2FBD4E',
-                  click: '#3AE25F',
-                  text: '#000',
-                },
-                warning: {
-                  default: '#FFDF38',
-                  hover: '#FFEA7C',
-                  click: '#FFF1A5',
-                  text: '#000',
-                },
-                danger: {
-                  default: '#FF0000',
-                  hover: '#FF5454',
-                  click: '#FF8686',
-                  text: 'white',
-                },
-                tab: {
-                  default: '#F1F1F1',
-                  click: '#4F83CC',
-                  hover: '#01579B',
-                  text: '#000',
-                },
-              },
-              // Text colors
-              text: {
-                danger: '#B71C1C',
-                dangerLight: '#F05545',
-                dangerDark: '#7F0000',
-                dark: '#050505',
-                darkGray: '#5A5A5A',
-                info: '#64B5F6',
-                infoLight: '#9BE7FF',
-                infoDark: '#2286C3',
-                lightGray: '#EFEFEF',
-                mutedGray: '#A0A0A0',
-                primary: '#937B3D',
-                secondary: '#573D3D',
-                success: '#689F38',
-                successLight: '#99D066',
-                successDark: '#387002',
-                warning: '#FDD835',
-                warningLight: '#FFFF6B',
-                warningDark: '#C6A700',
-                white: '#FFFFFF',
-              },
-              // Transition timing function, this can be changed for cubic-bezier curve
-              transitionTimingFunction: 'ease',
-            };
-          `}
-        </code>
-      </pre>
     </div>
   </ConfigProvider>
 );
