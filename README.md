@@ -123,6 +123,32 @@ const SomeComponent = ({ text, ...rest }) => {
 
 Este proyecto utiliza [React Table](https://react-table.tanstack.com/), nosotros brindamos estilos para que sea aún más fácil su implementación. Cualquier comentario, issue, etc. que sea directamente ligado a Table no tendrá mucho que ver con nosotros. Ve a darle un vistazo a su librería para más información.
 
+El formato de la información proporcionada a la tabla tiene que ser el siguiente: 
+### Columns
+Las columnas necesitan de forma obligatoria la key ```Header``` y ```accessor``` para su correcto funcionamiento
+Las columnas deben de ser un ```Array``` de objetos que cuenten con el siguiente formato de *key-value*:
+```js
+{
+  Header: /* AQUÍ VA EL NOMBRE DE TU COLUMNA TAL CUAL SE VA A MOSTRAR EN LA TABLA*/,
+  accessor: /* AQUÍ VA EL HEADER DE TU COLUMNA, FUNCIONA COMO UN ID*/,
+  Filter: /* AQUÍ VA EL COMPONENTE (INPUT, POR LO GENERAL) PARA EL FILTRADO DE DATOS POR COLUMNA*/,
+  prefix: /* AQUÍ VA UN STRING QUE FUNCIONA COMO PREFIJO, NULL POR DEFECTO */,
+  sufix: /* AQUÍ VA UN STRING QUE FUNCIONA COMO SUFIJO, NULL POR DEFECTO */,
+}
+```
+
+### Data
+Las filas necesitan de un indentificador único, irán dentro de la key 
+Las filas deben de ser un ```Array``` de objetos que cuenten con el siguiente formato de *key-value*:
+```js
+{
+  /*
+    CADA KEY CORRESPONDE AL ACCESSOR DE LAS COLUMNAS, SINO SERÁN OMITIDAS
+  */
+  id: /* AQUÍ VA EL ID CORRESPONDIENTE DE TU FILA */,
+  expandible: /*SI SE QUIERE DE UNA FILA EXPANDIBLE, AQUÍ IRÁ UN JSX ELEMENT PARA MOSTRARSE, POR DEFECTO NULL*/,
+},
+```
 ## Configuraciones default
 
 ``` js

@@ -9,6 +9,8 @@ import { ConfigContext } from '../../providers';
  * @param {String} color Set font color for the select component
  * @param {String} radius Set border radius property (if is a number, border radius will be set as "rem", if it is a string will be set as marked)
  * @param {String} border Set the border(s) of the component
+ * @param {Boolean} multiple Set the argument to choose multiple options
+ * @param {Function} onChange Trigger an action
  */
 const Select = ({
   size = 'lg',
@@ -19,7 +21,9 @@ const Select = ({
   fontFamily,
   background,
   color,
+  multiple = false,
   radius,
+  onChange = () => {},
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
@@ -37,6 +41,8 @@ const Select = ({
       radius={radius}
       {...rest}
       data-testid='select'
+      multiple={multiple}
+      onChange={onChange}
     >
       {children}
     </StyledSelect>

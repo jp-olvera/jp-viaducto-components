@@ -316,14 +316,20 @@ const Table = ({
                       onClick={
                         cell.column.id === 'selection'
                           ? () => null
-                          : () => {
-                            row.toggleRowExpanded();
-                          }
+                          : () => (row.original.expandible
+                            ? row.toggleRowExpanded()
+                            : null)
                       }
                       onKeyUp={() => {}}
                       className={`${
                         typeof cell.value === 'number' ? 'size' : ''
-                      } ${cell.column.id !== 'selection' ? 'pointer' : ''}`}
+                      } ${
+                        cell.column.id !== 'selection'
+                          ? row.original.expandible
+                            ? 'pointer'
+                            : ''
+                          : ''
+                      }`}
                     >
                       {typeof cell.value === 'string'
                       || typeof cell.value === 'number' ? (
@@ -404,7 +410,6 @@ const Table = ({
                 <span>
                   <Input
                     type='number'
-                    defaultValue={pageIndex + 1}
                     label='Go to page:'
                     onChange={(e) => {
                       const newPage = e.target.value
@@ -438,7 +443,11 @@ const Table = ({
                   ))}
                 </Select>
                 <Button
-                  onClick={showModal}
+                  onClick={() => {
+                    setTimeout(() => {
+                      setActiveModal(true);
+                    }, 0);
+                  }}
                   type='button'
                   variant={buttonVariantColor}
                   icon={<Settings />}

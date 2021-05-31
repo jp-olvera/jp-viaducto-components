@@ -12,12 +12,12 @@ import {
   Grid,
   ChatWarning,
   OkCircle,
-  Error,
   EyeClosed,
   Eye,
   Hourglass,
   Verified,
   Cancel,
+  Spam,
 } from 'react-ikonate';
 import visa from './visa.svg';
 import mastercard from './mastercard.svg';
@@ -29,6 +29,7 @@ export const getIcon = (
   color: string = 'inherit',
   strokeWidth: string = '1px',
   className: string = '',
+  colorFill: string = '#fff',
 ) => {
   switch (icon) {
     case 'card':
@@ -38,6 +39,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'color':
@@ -47,6 +49,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'upload':
@@ -56,6 +59,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'date':
@@ -65,6 +69,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'search':
@@ -74,6 +79,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'data':
@@ -83,6 +89,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'phone':
@@ -92,6 +99,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'mail':
@@ -101,6 +109,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'time':
@@ -110,6 +119,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'grid':
@@ -119,6 +129,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'warning':
@@ -128,6 +139,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'ok':
@@ -137,15 +149,17 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'required':
       return (
-        <Error
+        <Spam
           fontSize={size}
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'eye':
@@ -155,6 +169,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'eye-closed':
@@ -164,6 +179,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'loading':
@@ -173,6 +189,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'verified':
@@ -182,6 +199,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'cancel':
@@ -191,6 +209,7 @@ export const getIcon = (
           color={color}
           strokeWidth={strokeWidth}
           className={className}
+          fill={colorFill}
         />
       );
     case 'visa':

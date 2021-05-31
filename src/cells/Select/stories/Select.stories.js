@@ -58,13 +58,26 @@ export default {
         defaultValue: { summary: 'none' },
       },
     },
+    multiple: {
+      description: 'Set the argument to choose multiple options',
+      type: { summary: 'Boolean', required: false },
+      table: { defaultValue: { summary: false } },
+    },
+    onChange: {
+      description: 'Trigger an action',
+      type: { summary: 'Function', required: false },
+      table: { defaultValue: { summary: null } },
+    },
   },
 };
 
 const Template = (args) => (
   <ConfigProvider>
+    If <i>multiple</i> sets to <code>true</code>, use ctrl/command (depends on
+    your OS) and select the choices
+    <br />
+    <br />
     <Select {...args}>
-      <option>Check out this select</option>
       <option value='1'>1</option>
       <option value='2'>2</option>
       <option value='3'>3</option>
@@ -87,4 +100,25 @@ Default.args = {
   background: '#fff',
   color: '#000',
   radius: '',
+  onChange: () => {},
+  multiple: false,
+};
+
+export const Multiple = Template.bind({});
+
+Multiple.args = {
+  size: 'sm',
+  border: {
+    top: '1px solid black',
+    right: '1px solid black',
+    bottom: '1px solid black',
+    left: '1px solid black',
+  },
+  fontSize: 'md',
+  fontFamily: 'Roboto',
+  background: '#fff',
+  color: '#000',
+  radius: '',
+  onChange: () => {},
+  multiple: true,
 };

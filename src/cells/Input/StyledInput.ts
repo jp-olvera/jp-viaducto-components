@@ -49,14 +49,14 @@ export const Wrapper = styled.div < any > `
     ? ' -0.375rem'
     : border === 'outside'
       ? '-0.9rem'
-      : '0')};
+      : '0.188rem')};
         font-size: 0.688rem;
         line-height: 0.688rem;
         border: none;
         color: #333;
         padding: 0;
         outline: none;
-        left: ${({ configuration, hasIcon }) => (hasIcon ? configuration.spacing.lg : configuration.spacing.xs)};
+        left: ${({ configuration }) => configuration.spacing.xs};
         .icon-required {
           display: inline-flex;
           padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -91,6 +91,7 @@ export const Wrapper = styled.div < any > `
     padding: 0;
     outline: none;
     left: ${({ configuration }) => configuration.spacing.xs};
+    background-color: ${(p) => (p.border === 'outside' ? 'transparent' : 'inherit')};
     .icon-required {
       display: inline-flex;
       padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -135,7 +136,33 @@ export const Wrapper = styled.div < any > `
     font-weight: 800;
     height: calc(100% - 1rem);
   }
-
+  .input[type='date'] {
+    height: calc(100% - 1rem);
+  }
+  .input[type='date'] ~ .label,
+  .input[type='color'] ~ .label {
+    left: 0.482rem;
+    font-size: 0.688rem !important;
+    line-height: 0.688rem;
+    top: ${({ border }) => (border === 'overlap'
+    ? ' -0.375rem'
+    : border === 'outside'
+      ? '-0.9rem'
+      : '0.188rem')};
+  }
+  .input[type='color'] {
+    opacity: 0;
+  }
+  .input[type='color'] ~ .show-value {
+    left: ${({ configuration }) => configuration.spacing.lg};
+    right: initial;
+    font-size: 1rem;
+    line-height: 1rem;
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    bottom: ${({ configuration, size }) => (size === 'large' ? '0.6rem' : configuration.spacing.nano)};
+  }
   .is-invalid {
     color: red;
     padding: 0.3rem ${({ configuration }) => configuration.spacing.xs};

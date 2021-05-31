@@ -76,7 +76,12 @@ Default.args = {
     left: '1px solid black',
   },
   defaultText: 'Buscar por...',
-  options: ['Razón Social', 'RFC', 'Nombre Comercial'],
+  options: [
+    'Razón Social',
+    ['1', '2', '3', ['a', 'b', 'c']],
+    'RFC',
+    'Nombre Comercial',
+  ],
   activeColor: '#ffd6ce',
   height: '',
 };

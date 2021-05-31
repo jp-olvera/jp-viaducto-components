@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {
+  useState, useEffect, useContext, useRef,
+} from 'react';
 import creditCardType, { types as CardType } from 'credit-card-type';
 
 import { ConfigContext } from '../../providers';
@@ -70,7 +72,8 @@ const Input = ({
   const [cardType, setCardType] = useState('card');
   const { configuration } = useContext(ConfigContext);
   const [newValue, setNewValue] = useState<any>(value);
-
+  const inputRef = useRef<any>();
+  const mustHaveIcon = ['card', 'date', 'color', 'phone'];
   useEffect(() => {
     setOpen(false);
     setInputType(type);
@@ -103,7 +106,7 @@ const Input = ({
     <>
       <Wrapper
         border={border}
-        hasIcon={icon !== null || type === 'card'}
+        hasIcon={icon !== null || mustHaveIcon.includes(type)}
         size={size}
         configuration={configuration}
         borderColor={borderColor}
@@ -112,15 +115,31 @@ const Input = ({
         family={family}
         {...rest}
       >
-        {(icon !== null || type === 'card') && (
+        {(icon !== null || mustHaveIcon.includes(type)) && (
           <span className='icon'>
-            {getIcon(type === 'card' ? cardType : icon)}
+            {getIcon(
+              type === 'card'
+                ? cardType
+                : type === 'date'
+                  ? 'date'
+                  : type === 'color'
+                    ? 'color'
+                    : type === 'phone'
+                      ? 'phone'
+                      : icon,
+              type === 'color' ? inputRef?.current?.value : undefined,
+              '18px',
+              undefined,
+              undefined,
+              type === 'color' ? inputRef?.current?.value : undefined,
+            )}
           </span>
         )}
         <input
           className='input'
+          ref={inputRef}
           onChange={(ev) => {
-            onChange();
+            onChange(ev);
             setInputValue(ev.target.value.length);
             setCardIcon(ev);
             setNewValue(
@@ -129,10 +148,20 @@ const Input = ({
                   0,
                   cardType === 'american-express' ? 21 : 19,
                 )
-                : ev.target.value,
+                : type === 'phone'
+                  ? mask(ev.target.value.replace(/([^0-9|+])/g, ''), 3, ' ')
+                  : ev.target.value,
             );
           }}
-          type={open ? inputType : type === 'card' ? 'tel' : type}
+          type={
+            open
+              ? inputType
+              : type === 'card' || type === 'phone'
+                ? 'tel'
+                : type === 'datetime-local'
+                  ? 'date'
+                  : type
+          }
           autoComplete={type === 'card' ? 'cc-number' : ''}
           x-autocompletetype={type === 'card' ? 'cc-number' : ''}
           id={rest.id}
@@ -147,9 +176,14 @@ const Input = ({
         <label className='label' htmlFor={rest.id}>
           <span>{label}</span>
           {required && (
-            <span className='icon-required'>{getIcon('required', '8px')}</span>
+            <span className='icon-required'>{getIcon('required', '10px')}</span>
           )}
         </label>
+        {type === 'color' && (
+          <span className='show-value'>
+            <span>{inputRef?.current?.value || '#ffffff'}</span>
+          </span>
+        )}
         {isInvalid && <span className='is-invalid'>{getIcon('warning')}</span>}
         {isValid && <span className='is-valid'>{getIcon('ok')}</span>}
         {required && <span className='is-required'>{getIcon('required')}</span>}

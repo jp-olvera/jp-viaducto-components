@@ -77,10 +77,7 @@ const Wrapper = ({
   const newColumns = useMemo(() => columns, []);
   const newData = useMemo(() => data, []);
 
-  const renderRowSubComponent = React.useCallback(
-    ({ row }) => <p>{row.values.firstName}</p>,
-    [],
-  );
+  const renderRowSubComponent = React.useCallback(({ row }) => row.original.expandible, []);
 
   return (
     <StyledTable
