@@ -1,5 +1,22 @@
 import { css } from 'styled-components';
 
+const getBorder = (borders: any = 'none') => {
+  if (borders === 'none' || borders === null) {
+    return css`
+      border: none;
+    `;
+  }
+  let border = '';
+  border += `border-top: ${borders.top || 'none'}; `;
+  border += `border-right: ${borders.right || 'none'}; `;
+  border += `border-bottom: ${borders.bottom || 'none'}; `;
+  border += `border-left: ${borders.left || 'none'}; `;
+
+  return css`
+    ${border}
+  `;
+};
+
 const getSize = (size: string = 'md', max: boolean = false) => {
   switch (size) {
     case 'xxs':
@@ -171,5 +188,10 @@ const getCheckSizes = (size: string) => {
 };
 
 export {
-  getSize, getLineHeight, getFontSize, getRadioSizes, getCheckSizes,
+  getSize,
+  getLineHeight,
+  getFontSize,
+  getRadioSizes,
+  getCheckSizes,
+  getBorder,
 };

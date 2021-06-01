@@ -10,27 +10,28 @@ import Drop from './Drop';
 /**
  * Dropdown component
  * @param {string} family font family for the dropdown
- * @param {string} activeColor Active color for the option selected
+ * @param {string} hoverColor Hover color for the content option
  * @param {string} size size of the dropdown
  * @param {any} border border painted
  * @param {string} defaultText Text to show without any option selected
- * @param {string} options options in the dropdown
+ * @param {JSX Element} content cotent in the dropdown
  * @param {string} height size of the dropdown
+ * @param {Function} onClick Triggers an action when an element is selected
  */
 
 const Dropdown = ({
-  activeColor = '#ffd6ce',
+  hoverColor = '#ffd6ce',
   border,
   defaultText = 'Buscar por...',
   family = null,
-  options = [],
+  content = null,
   size = 'default',
   height,
+  onClick = () => {},
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [isSelected, setIsSelected] = useState(null);
   const activatorRef = useRef<HTMLButtonElement>(null);
   const wrapperRef = useRef<HTMLButtonElement>(null);
   const selectedRef = useRef<HTMLElement>(null);
@@ -49,25 +50,22 @@ const Dropdown = ({
       }
     }
   };
-  const select = (label: string, index: any) => {
-    if (selectedRef.current) {
-      selectedRef.current.innerHTML = label;
-      setTimeout(() => {
+  const dataList = () => content.map((data, index) => (
+    <div
+      className='hover'
+      role='list'
+      onClick={(ev) => {
+        onClick(ev);
         setIsOpen(false);
-      }, 10);
-      setIsSelected(index);
-    }
-  };
-  const dataList = options.map((button, index) => (
-    <button
-      className={`${isSelected === index ? 'active-item' : ''}`}
-      value={button}
-      key={button}
-      onClick={() => select(button, index)}
-      type='button'
+      }}
+      onKeyPress={(ev) => {
+        onClick(ev);
+        setIsOpen(false);
+      }}
+      key={index.toString()}
     >
-      {button}
-    </button>
+      {data}
+    </div>
   ));
 
   const clickOutsideHandler = (event: any) => {
@@ -87,7 +85,6 @@ const Dropdown = ({
     } else {
       document.removeEventListener('mouseup', clickOutsideHandler);
     }
-    // clean up on unmount
     return function cleanup() {
       document.removeEventListener('mouseup', clickOutsideHandler);
     };
@@ -101,11 +98,11 @@ const Dropdown = ({
       data-cy='dropdown-itemList'
       ref={dropdownListRef}
       aria-label='Configuraciones'
-      activeColor={activeColor}
+      hoverColor={hoverColor}
       configuration={configuration}
       family={family}
     >
-      {dataList.length > 0 && dataList}
+      {dataList()}
     </ItemsContainer>
   );
   return (

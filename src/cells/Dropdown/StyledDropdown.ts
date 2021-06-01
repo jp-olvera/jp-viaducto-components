@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { getBorder } from '../../utils/getSizes';
 
 export const Wrapper = styled.div < any > `
   position: relative;
@@ -20,7 +21,6 @@ export const Activator = styled.button < any > `
   justify-content: center;
   color: inherit;
   cursor: pointer;
-  font-family: ${({ family }) => (family ? `'${family}', sans-serif` : "'Manrope', sans-serif;")};
   font-size: 1rem;
   font-style: normal;
   font-weight: normal;
@@ -98,37 +98,16 @@ export const ItemsContainer = styled.div < any > `
     transition: all 0.2s
       ${({ configuration }) => configuration.transitionTimingFunction};
   }
-  & > button {
-    background-color: inherit;
-    border: none;
+  .hover {
+    width: inherit;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     cursor: pointer;
-    font-size: inherit;
-    height: 100%;
-    margin: 0.05rem 0;
-    padding: 0.625rem 0.5rem;
-    text-align: left;
+    &:hover {
+      background-color: ${(p) => p.hoverColor};
+    }
   }
-  & .active-item {
-    background-color: ${({ activeColor }) => activeColor} !important;
-  }
-  /* @media screen and (min-width: ${(props) => props.configuration.breakpoints.md}) {
-    width: 100% !important;
-  } */
 `;
-
-export const getBorder = (borders: any = 'none') => {
-  if (borders === 'none' || borders === null) {
-    return css`
-      border: none;
-    `;
-  }
-  let border = '';
-  border += `border-top: ${borders.top || 'none'}; `;
-  border += `border-right: ${borders.right || 'none'}; `;
-  border += `border-bottom: ${borders.bottom || 'none'}; `;
-  border += `border-left: ${borders.left || 'none'}; `;
-
-  return css`
-    ${border}
-  `;
-};
