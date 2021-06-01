@@ -84,7 +84,6 @@ export const ItemsContainer = styled.div < any > `
   display: flex;
   left: 0;
   margin: 0;
-  margin-top: 0.25rem;
   min-width: auto !important;
   padding: 0;
   position: absolute;
@@ -112,9 +111,9 @@ export const ItemsContainer = styled.div < any > `
   & .active-item {
     background-color: ${({ activeColor }) => activeColor} !important;
   }
-  @media screen and (min-width: ${(props) => props.configuration.breakpoints.md}) {
+  /* @media screen and (min-width: ${(props) => props.configuration.breakpoints.md}) {
     width: 100% !important;
-  }
+  } */
 `;
 
 export const getBorder = (borders: any = 'none') => {

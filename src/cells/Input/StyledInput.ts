@@ -136,10 +136,17 @@ export const Wrapper = styled.div < any > `
     font-weight: 800;
     height: calc(100% - 1rem);
   }
+
   .input[type='date'] {
-    height: calc(100% - 1rem);
+    height: ${(p) => (p.size === 'large' ? 'calc(100% - 1.5rem)' : 'calc(100% - 1rem)')};
   }
+
+  .input[type='time'] {
+    height: ${(p) => (p.size === 'large' ? '48%' : '62%')};
+  }
+
   .input[type='date'] ~ .label,
+  .input[type='time'] ~ .label,
   .input[type='color'] ~ .label {
     left: 0.482rem;
     font-size: 0.688rem !important;

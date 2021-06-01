@@ -6,7 +6,7 @@ import { ConfigContext } from '../../providers';
 import { Activator, Wrapper, ItemsContainer } from './StyledDropdown';
 import Icon from './sorting.svg';
 import { Hideable } from '../Hideable';
-
+import Drop from './Drop';
 /**
  * Dropdown component
  * @param {string} family font family for the dropdown
@@ -46,56 +46,30 @@ const Dropdown = ({
         > (window.innerHeight || document.documentElement.clientHeight)
       ) {
         dropdownListRef.current.style.bottom = `calc(${bottom}px + 0.5rem`;
-        // console.log(' Estás fuera mai fren');
       }
     }
   };
-  const select = (label: string, selected: any) => {
+  const select = (label: string, index: any) => {
     if (selectedRef.current) {
       selectedRef.current.innerHTML = label;
       setTimeout(() => {
         setIsOpen(false);
       }, 10);
-      setIsSelected(selected);
+      setIsSelected(index);
     }
   };
-  const recursiveData = (data: any[]) => data.map((option: any, index: number) => {
-    if (Array.isArray(option)) {
-      // eslint-disable-next-line no-unused-vars
-      return (
-        <ItemsContainer
-          id={`otherdropdown${index.toString()}`}
-          className='left active'
-            // TODO: aquí va un classname para hover y que se abra el siguiente dato (left: 100%)
-            // TODO: verificar posiciones para ver dónde poner el ícono
-            // TODO: verificar keys
-          data-testid='dropdown-itemList2'
-          data-cy='dropdown-itemList2'
-          ref={dropdownListRef}
-          aria-label='Configuraciones'
-          activeColor={activeColor}
-          configuration={configuration}
-          family={family}
-        >
-          {recursiveData(option)}
-        </ItemsContainer>
-      );
-    }
-    return (
-      <button
-        className={`${
-          isSelected === option + index.toString() ? 'active-item' : ''
-        }`}
-        value={option}
-        key={option}
-        onClick={() => select(option, option + index.toString())}
-        type='button'
-      >
-        {option}
-      </button>
-    );
-  });
-  const dataList = recursiveData(options);
+  const dataList = options.map((button, index) => (
+    <button
+      className={`${isSelected === index ? 'active-item' : ''}`}
+      value={button}
+      key={button}
+      onClick={() => select(button, index)}
+      type='button'
+    >
+      {button}
+    </button>
+  ));
+
   const clickOutsideHandler = (event: any) => {
     if (dropdownListRef.current && activatorRef.current) {
       if (
@@ -109,10 +83,6 @@ const Dropdown = ({
   };
   useEffect(() => {
     if (isOpen) {
-      if (dropdownListRef) {
-        // dropdownListRef.current.querySelector('button').focus();
-        // add some code
-      }
       document.addEventListener('mouseup', clickOutsideHandler);
     } else {
       document.removeEventListener('mouseup', clickOutsideHandler);
@@ -122,6 +92,22 @@ const Dropdown = ({
       document.removeEventListener('mouseup', clickOutsideHandler);
     };
   }, [isOpen]);
+
+  const dropContent = (
+    <ItemsContainer
+      id='dropdown1'
+      className={isOpen ? 'active' : ''}
+      data-testid='dropdown-itemList'
+      data-cy='dropdown-itemList'
+      ref={dropdownListRef}
+      aria-label='Configuraciones'
+      activeColor={activeColor}
+      configuration={configuration}
+      family={family}
+    >
+      {dataList.length > 0 && dataList}
+    </ItemsContainer>
+  );
   return (
     <Wrapper height={newHeight} {...rest} ref={wrapperRef}>
       <Activator
@@ -144,19 +130,13 @@ const Dropdown = ({
         </Hideable>
         <img className='activator-icon' src={Icon} alt='' />
       </Activator>
-      <ItemsContainer
-        id='dropdown1'
-        className={isOpen ? 'active' : ''}
-        data-testid='dropdown-itemList'
-        data-cy='dropdown-itemList'
-        ref={dropdownListRef}
-        aria-label='Configuraciones'
-        activeColor={activeColor}
-        configuration={configuration}
-        family={family}
-      >
-        {dataList.length > 0 && dataList}
-      </ItemsContainer>
+      {isOpen && (
+        <Drop
+          target={activatorRef}
+          contentRef={dropdownListRef}
+          content={dropContent}
+        />
+      )}
     </Wrapper>
   );
 };

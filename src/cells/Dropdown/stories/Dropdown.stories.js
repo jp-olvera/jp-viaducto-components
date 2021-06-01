@@ -3,7 +3,7 @@ import { Dropdown } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Controls/Dropdown',
+  title: 'Andamio/Cells/Dropdown',
   component: Dropdown,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -62,7 +62,16 @@ export default {
 
 const Template = (args) => (
   <ConfigProvider>
-    <Dropdown {...args} />
+    <div
+      style={{
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+      }}
+    >
+      <Dropdown {...args} />
+    </div>
   </ConfigProvider>
 );
 
@@ -76,12 +85,7 @@ Default.args = {
     left: '1px solid black',
   },
   defaultText: 'Buscar por...',
-  options: [
-    'Razón Social',
-    ['1', '2', '3', ['a', 'b', 'c']],
-    'RFC',
-    'Nombre Comercial',
-  ],
+  options: ['Razón Social', 'RFC', 'Nombre Comercial'],
   activeColor: '#ffd6ce',
   height: '',
 };
