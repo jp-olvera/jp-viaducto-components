@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import React from 'react';
-import { Breadcrums } from '..';
-import { ConfigProvider } from '../../providers';
+import { Breadcrums } from '../..';
+import { ConfigProvider } from '../../../providers';
 
 export default {
   title: 'Andamio/Tissues/Breadcrum',
@@ -55,29 +55,37 @@ export default {
 };
 
 const options = [
-  { label: '1', href: '#' },
+  { label: 'Home', href: '#' },
   {
-    label: '2',
+    label: 'Introducción',
     onClick: () => {
       alert('3');
     },
   },
   {
-    label: '3',
+    label: 'Section 1',
     onClick: () => {
       alert('hola2');
     },
   },
-  { label: '4', href: '#' },
-  { label: '5', href: '#' },
+  { label: 'Chapter 1', href: '#' },
+  { label: 'The 5', href: '#' },
   {
-    label: '6',
+    label: 'Page 4',
     onClick: () => {
       alert('hola1');
     },
     active: true,
   },
 ];
+// const options = [
+//   {
+//     label: 'Go back',
+//     href: 'https://google.com',
+//     onClick: undefined,
+//     target: undefined,
+//   },
+// ];
 
 const Template = (args) => (
   <ConfigProvider>

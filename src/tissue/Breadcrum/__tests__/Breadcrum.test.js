@@ -33,21 +33,37 @@ describe('<Breadcrums/>', () => {
   });
   test('Should check the anchor ref is correct', () => {
     const options = [{ label: 'Go back', href: 'https://google.com' }];
-    const { getByText } = render(<Breadcrums options={options} />);
-    expect(getByText('Go back').href).toBe('https://google.com');
+    const { getByRole } = render(<Breadcrums options={options} />);
+    expect(getByRole('link')).toHaveAttribute('href', 'https://google.com');
   });
-  test('should options 2 and 3 be hidden', () => {
+  test('should hide options 2 and 3 and show 3 dots instead', () => {
     const options = [
-      { label: 'Go back', href: 'https://google.com' },
+      { label: '1', href: 'https://google.com' },
       { label: '2', href: 'https://google.com' },
       { label: '3', href: 'https://google.com' },
-      { label: 'Go back', href: 'https://google.com' },
-      { label: 'Go back', href: 'https://google.com' },
-      { label: 'Go back', href: 'https://google.com' },
+      { label: '4', href: 'https://google.com' },
+      { label: '5', href: 'https://google.com' },
+      { label: '6', href: 'https://google.com' },
+    ];
+    const { queryByText, getByText } = render(<Breadcrums options={options} />);
+
+    expect(queryByText('2')).toBeNull();
+    expect(queryByText('3')).toBeNull();
+    expect(getByText('...')).toBeInTheDocument();
+  });
+  test('should show options 2 and 3 after clicking on the 3 dots', () => {
+    const options = [
+      { label: '1', href: 'https://google.com' },
+      { label: '2', href: 'https://google.com' },
+      { label: '3', href: 'https://google.com' },
+      { label: '4', href: 'https://google.com' },
+      { label: '5', href: 'https://google.com' },
+      { label: '6', href: 'https://google.com' },
     ];
     const { getByText } = render(<Breadcrums options={options} />);
+    fireEvent.click(getByText('...'));
 
-    expect(getByText('2')).not.toBeInTheDocument();
-    expect(getByText('3')).not.toBeInTheDocument();
+    expect(getByText('2')).toBeInTheDocument();
+    expect(getByText('3')).toBeInTheDocument();
   });
 });

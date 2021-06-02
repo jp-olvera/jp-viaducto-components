@@ -1,6 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { StyledBreadcrums, StyledBreadcrum } from './StyledBreadcrum';
 import { ConfigContext } from '../../providers';
+
+interface option {
+  href: string | undefined;
+  onClick: Function | undefined;
+  label: string;
+  target: string | undefined;
+}
 
 const Breadcrums = ({
   options = [],
@@ -8,25 +15,40 @@ const Breadcrums = ({
   family = '',
   separatorSpacing = 'sm',
 }) => {
-  const blank = { label: '...', href: '#' };
-  let optionsToShow: any = [];
-  if (options.length > 5) {
-    optionsToShow.push(options[0]);
-    optionsToShow.push(blank);
-    optionsToShow.push(options[options.length - 3]);
-    optionsToShow.push(options[options.length - 2]);
-    optionsToShow.push(options[options.length - 1]);
-  }
-  optionsToShow = options;
+  const [optionsToShow, setOptionsToShow] = useState<option[]>(options);
+  const [showAll, setShowAll] = useState(false);
+
+  useEffect(() => {
+    if (showAll) setOptionsToShow(options);
+  }, [showAll]);
+
+  useEffect(() => {
+    if (options.length > 4 && !showAll) {
+      const newOptions: option[] = [];
+      newOptions.push(options[0]);
+      newOptions.push(blankOption);
+      newOptions.push(options[options.length - 3]);
+      newOptions.push(options[options.length - 2]);
+      newOptions.push(options[options.length - 1]);
+      setOptionsToShow(newOptions);
+    }
+  }, [options]);
+  const blankOption: option = {
+    href: undefined,
+    label: '...',
+    onClick: () => setShowAll(true),
+    target: undefined,
+  };
+
   return (
     <nav aria-label='breadcrum'>
       <StyledBreadcrums>
-        {optionsToShow.map((e) => (
+        {optionsToShow.map((e, i) => (
           <Breadcrum
             fontSize={fontSize}
             family={family}
             separatorSpacing={separatorSpacing}
-            key={e}
+            key={`${e.label}-${i}-brcrm`}
             {...e}
           />
         ))}
