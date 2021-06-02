@@ -29,8 +29,8 @@ const Accordion = ({
         expanded.add(index);
       }
       setExpanded(new Set(expanded));
-    } else if (!expanded.has(index)) {
-      setExpanded(new Set([index]));
+    } else {
+      setExpanded(new Set([expanded.has(index) ? -1 : index]));
     }
   };
 
