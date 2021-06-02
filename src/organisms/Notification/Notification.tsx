@@ -45,6 +45,7 @@ const Notification = ({
   }, [active]);
 
   useEffect(() => {
+    /* istanbul ignore else */
     if (ref && ref.current) {
       if (isActive) {
         ref.current.style.setProperty('transform', 'translateX(0)');
@@ -61,6 +62,7 @@ const Notification = ({
   const k = type.toLowerCase();
 
   const typeColors = ['success', 'warning', 'danger', 'info'];
+  /* istanbul ignore else */
   if (typeColors.includes(type.toLowerCase())) {
     color = configuration.text[k];
   }
@@ -69,7 +71,7 @@ const Notification = ({
       isActive={isActive}
       backgroundColor={color}
       configuration={configuration}
-      data-testid="notification"
+      data-testid='notification'
       ref={ref}
       top={top}
       elevation={elevation}
@@ -85,13 +87,13 @@ const Notification = ({
       >
         <TypeIcon
           type={type.toLowerCase()}
-          stroke="white"
+          stroke='white'
           border={2}
-          width="18px"
-          height="18px"
+          width='18px'
+          height='18px'
         />
       </span>
-      <Paragraph size="sm" color="white">
+      <Paragraph size='sm' color='white'>
         {text}
       </Paragraph>
       <div style={{ marginLeft: 'auto' }}>
@@ -99,9 +101,9 @@ const Notification = ({
           onClick={() => {
             setIsActive(false);
           }}
-          data-testid="close-button"
+          data-testid='close-button'
         >
-          <Close stroke="white" strokeWidth={2} width="18px" height="18px" />
+          <Close stroke='white' strokeWidth={2} width='18px' height='18px' />
         </BareButton>
       </div>
     </StyledNotification>

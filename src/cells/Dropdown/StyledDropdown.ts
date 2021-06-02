@@ -66,11 +66,6 @@ export const Activator = styled.button < any > `
 `;
 
 export const ItemsContainer = styled.div < any > `
-  ${(p) => (p.family !== null
-    ? css`
-          font-family: ${p.family};
-        `
-    : css``)};
   transition: all 0.2s
     ${({ configuration }) => configuration.transitionTimingFunction};
   .left {

@@ -8,6 +8,7 @@ import {
   getFontSize,
   getRadioSizes,
   getCheckSizes,
+  getRangeSize,
 } from '../getSizes';
 
 describe('getElevation file', () => {
@@ -166,6 +167,17 @@ describe('getSizes file', () => {
     });
     test('should have xl checkbox props with large height', () => {
       expect(getCheckSizes('xl', 'large')).not.toBeNull();
+    });
+  });
+  describe('getRangeSize function', () => {
+    test('should return non null value', () => {
+      expect(getRangeSize()).not.toBeNull();
+    });
+    test('should return sm value', () => {
+      expect(getRangeSize('sm')).not.toBeNull();
+    });
+    test('should return lg value', () => {
+      expect(getRangeSize('lg')).not.toBeNull();
     });
   });
 });

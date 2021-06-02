@@ -9,7 +9,7 @@ describe('<Select/>', () => {
   const options = ['option1', 'option2', 'option3', 'option4'];
   test('should render properly with default attributes', () => {
     const { container } = render(
-      <Select>
+      <Select multiple>
         <option value='A'>A</option>
       </Select>,
     );

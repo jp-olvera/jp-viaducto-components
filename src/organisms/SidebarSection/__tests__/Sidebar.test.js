@@ -29,6 +29,7 @@ describe('<SidebarSection/>', () => {
         isDropdown
         isMenu={false}
         lead
+        icon='😊'
       />,
     );
     expect(screen.getByText('Comida')).toBeVisible();
@@ -42,6 +43,7 @@ describe('<SidebarSection/>', () => {
         isDropdown={false}
         isMenu={false}
         lead={false}
+        icon='😊'
       />,
     );
     expect(screen.getByText('menu')).toBeVisible();

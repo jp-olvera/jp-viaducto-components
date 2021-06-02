@@ -43,6 +43,7 @@ const SidebarSection = ({
   const backRefButton = useRef<HTMLButtonElement>(null);
   const { configuration } = useContext(ConfigContext);
   const handleActive = (ev) => {
+    /* istanbul ignore else */
     if (ev.type === 'click' || ev.keyCode === 13 || ev.keyCode === 32) {
       setIsActive(!isActive);
     }
@@ -129,7 +130,7 @@ const SidebarSection = ({
         ) : null}
       </div>
       {isMenu && isActive ? (
-        <ul className={`submenu ${isActive ? 'active' : ''}`}>
+        <ul className={`submenu ${isActive && 'active'}`}>
           <button onClick={handleActive} ref={backRefButton} type='button'>
             {'←'} {title}
           </button>

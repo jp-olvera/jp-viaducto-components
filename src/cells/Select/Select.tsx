@@ -23,7 +23,7 @@ const Select = ({
   color,
   multiple = false,
   radius,
-  onChange = () => {},
+  onChange,
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);

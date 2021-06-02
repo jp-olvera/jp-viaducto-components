@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { getSize } from '../../utils/getSizes';
 
 export const StyledBreadcrums = styled.ol`
   -webkit-box-direction: normal !important;
@@ -15,6 +16,7 @@ interface Breadcrum {
   fontSize: string;
   spacing: string;
   family: string;
+  configuration?: any;
 }
 export const StyledBreadcrum = styled.li < Breadcrum > `
   // !important is needed because of the button inherited properties
@@ -27,19 +29,18 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     border: 0;
     user-select: auto;
     text-decoration: none;
-    font-size: ${(p) => (p.fontSize !== '' ? `${p.fontSize} !important` : '1rem !important')};
+    font-size: ${(p) => getSize(p.fontSize)};
     line-height: 2rem !important;
     /* vertical-align: middle; */
     /* display: inline-flex; */
     letter-spacing: 0.062rem !important;
-    transition: background 300ms ease 0s, border 300ms ease 0s,
-      color 300ms ease 0s;
+    transition: all 300ms ease;
     color: ${(p) => (p.active ? 'rgb(111,68,225)' : 'rgb(72, 72, 72)')};
     font-weight: ${(p) => (p.active ? 'bold !important' : 'normal !important')};
     outline: none;
     cursor: pointer;
     box-sizing: border-box;
-    font-family: ${(p) => (p.family !== '' ? p.family : 'inherit')};
+    font-family: ${(p) => (p.family ? p.family : 'inherit')};
   }
 
   .breadcrum:not([disabled]):hover {
@@ -52,8 +53,8 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     display: inline-flex;
     vertical-align: middle;
     align-items: center;
-    margin-left: ${(p) => p.spacing};
-    margin-right: ${(p) => p.spacing};
+    margin-left: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
+    margin-right: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
     color: rgb(72, 72, 72);
     font-weight: normal;
   }

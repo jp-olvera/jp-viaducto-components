@@ -48,8 +48,9 @@ export default {
         required: false,
       },
       control: {
-        type: 'text',
+        type: 'select',
       },
+      options: ['xxs', 'xs', 'sm', 'md', 'lg'],
     },
   },
 };
@@ -103,5 +104,5 @@ export const Default = Template.bind({});
 Default.args = {
   options,
   separatorSpacing: 'sm',
-  fontSize: '16px',
+  fontSize: 'md',
 };

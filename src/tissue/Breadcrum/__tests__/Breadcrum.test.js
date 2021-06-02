@@ -6,6 +6,12 @@ import { render, fireEvent } from '../../../test-utils';
 import { Breadcrums } from '..';
 
 describe('<Breadcrums/>', () => {
+  test('should render empty component', () => {
+    const { container } = render(
+      <Breadcrums family={null} fontSize={null} separatorSpacing={null} />,
+    );
+    expect(container).toBeInTheDocument();
+  });
   test('Should all children be visible', () => {
     const options = [
       { label: '1', href: '#' },
@@ -45,7 +51,9 @@ describe('<Breadcrums/>', () => {
       { label: '5', href: 'https://google.com' },
       { label: '6', href: 'https://google.com' },
     ];
-    const { queryByText, getByText } = render(<Breadcrums options={options} />);
+    const { queryByText, getByText } = render(
+      <Breadcrums options={options} fontSize='' />,
+    );
 
     expect(queryByText('2')).toBeNull();
     expect(queryByText('3')).toBeNull();
@@ -60,10 +68,26 @@ describe('<Breadcrums/>', () => {
       { label: '5', href: 'https://google.com' },
       { label: '6', href: 'https://google.com' },
     ];
-    const { getByText } = render(<Breadcrums options={options} />);
+    const { getByText } = render(
+      <Breadcrums options={options} separatorSpacing='xxxxxxxxxxl' />,
+    );
     fireEvent.click(getByText('...'));
 
     expect(getByText('2')).toBeInTheDocument();
     expect(getByText('3')).toBeInTheDocument();
+  });
+  test('should show options with active attribute', () => {
+    const options = [
+      { label: '1', href: 'https://google.com', active: true },
+      { label: '2', href: 'https://google.com', active: true },
+      { label: '3', href: 'https://google.com', active: true },
+      { label: '4', href: 'https://google.com', active: true },
+      { label: '5', href: 'https://google.com', active: true },
+      { label: '6', href: 'https://google.com', active: true },
+    ];
+    const { container } = render(
+      <Breadcrums options={options} family='Roboto' separatorSpacing={null} />,
+    );
+    expect(container).toBeInTheDocument();
   });
 });

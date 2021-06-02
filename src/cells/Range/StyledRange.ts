@@ -1,111 +1,112 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { getSize, getRangeSize } from '../../utils/getSizes';
 
-export const Div = styled.div`
-  input[type='range'] {
-    --minRangePercent: 0%;
-    --maxRangePercent: 0%;
-    height: 0.4rem;
-  }
-  input[type='range']:invalid {
-    box-shadow: none;
-  }
-
-  position: relative;
-  width: 200px;
-  text-align: center;
-  margin-bottom: 50px;
-
-  &:focus {
-    outline: none;
+export const Div = styled.div < any > `
+  ${(p) => (p.family !== null
+    ? css`
+          font-family: ${p.family};
+        `
+    : css``)};
+  .slider {
+    position: relative;
+    width: 100%;
+    z-index: -1;
   }
 
-  input:focus {
-    outline: none;
-  }
-
-  & > label {
-    display: none;
-  }
-
-  & > input {
-    cursor: pointer;
+  .slider__track,
+  .slider__range,
+  .slider__left-value,
+  .slider__right-value {
     position: absolute;
   }
 
-  /* webkit specific styling */
-  & > input {
+  .slider__track,
+  .slider__range {
+    border-radius: 0.188rem;
+    height: 0.313rem;
+  }
+
+  .slider__track {
+    background-color: ${(p) => (p.double ? '#ced4da' : p.color || '#9fe5e1')};
+    width: 100%;
+    z-index: 1;
+  }
+
+  .slider__range {
+    background-color: ${(p) => (p.double ? p.color || '#9fe5e1' : '#cecece')};
+    z-index: 2;
+  }
+
+  .slider__left-value,
+  .slider__right-value {
+    color: ${(p) => p.configuration.text[p.textColor] || p.textColor};
+    font-size: ${(p) => getSize(p.fontSize)};
+    margin-top: 1.25rem;
+  }
+
+  .slider__left-value {
+    left: 0.375rem;
+  }
+
+  .slider__right-value {
+    right: -0.25rem;
+  }
+
+  /* Removing the default appearance */
+  .thumb,
+  .thumb::-webkit-slider-thumb {
     -webkit-appearance: none;
-    -moz-appearance: none;
-    outline: none !important;
-    background: transparent;
-  }
-  & > input.min {
-    background-image: linear-gradient(
-      to right,
-      silver 0%,
-      silver var(--minRangePercent),
-      orange var(--minRangePercent),
-      orange 100%
-    );
   }
 
-  & > input.max {
-    background-image: linear-gradient(
-      to right,
-      orange 0%,
-      orange var(--maxRangePercent),
-      silver var(--maxRangePercent),
-      silver 100%
-    );
-  }
-
-  & > input::-webkit-slider-runnable-track,
-  & > input::-moz-range-track,
-  & > input::-ms-track {
-    box-sizing: border-box;
-    border: none;
-    height: 4px;
-    background: orange;
-    border-radius: 8px;
-    height: 10px;
-    background-color: transparent;
-    background-image: linear-gradient(orange, orange),
-      linear-gradient(orange, orange);
-    background-size: var(--sx) 10px, calc(100% - var(--sx)) 4px;
-    background-position: left center, right center;
-    background-repeat: no-repeat;
-  }
-
-  & > input:focus {
+  .thumb {
+    pointer-events: none;
+    position: absolute;
+    height: 0;
+    width: calc(100% - 2rem);
     outline: none;
   }
 
-  & > input.max::-moz-range-progress {
-    background: orange;
-    border-radius: 4px;
-  }
-
-  & > input.min::-moz-range-progress {
-    height: 0.6em;
-    background: silver;
-    border-radius: 4px;
-  }
-
-  input[type='range']::-webkit-slider-thumb,
-  input[type='range']::-moz-range-thumb {
-    -webkit-appearance: none; /* Override default look */
-    -moz-appearance: none;
-    appearance: none;
-    width: 20px; /* Set a specific slider handle width */
-    height: 20px; /* Slider handle height */
-    background: green; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+  /* For Chrome browsers */
+  .thumb::-webkit-slider-thumb {
+    background-color: #f1f5f7;
     border: none;
-    color: 1px solid orange;
     border-radius: 50%;
+    box-shadow: 0 0 0.063rem 0.063rem #ced4da;
+    cursor: pointer;
+    height: ${(p) => getRangeSize(p.size)};
+    width: ${(p) => getRangeSize(p.size)};
+    margin-top: 0.25rem;
+    pointer-events: all;
+    position: relative;
   }
 
-  & > input::-webkit-slider-runnable-track {
+  .thumb--left::-webkit-slider-thumb {
+    z-index: 3;
+  }
+
+  .thumb--right::-webkit-slider-thumb {
+    z-index: 4;
+  }
+
+  /* For Firefox browsers */
+  .thumb::-moz-range-thumb {
+    background-color: #f1f5f7;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0 0.063rem 0.063rem #ced4da;
     cursor: pointer;
+    height: ${(p) => getRangeSize(p.size)};
+    width: ${(p) => getRangeSize(p.size)};
+    margin-top: 0.25rem;
+    pointer-events: all;
+    position: relative;
+  }
+
+  .thumb--left::-moz-range-thumb {
+    z-index: 3;
+  }
+
+  .thumb--right::-moz-range-thumb {
+    z-index: 4;
   }
 `;

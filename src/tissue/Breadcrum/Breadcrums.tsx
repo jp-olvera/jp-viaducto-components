@@ -11,8 +11,8 @@ interface option {
 
 const Breadcrums = ({
   options = [],
-  fontSize = '1rem',
-  family = '',
+  fontSize,
+  family,
   separatorSpacing = 'sm',
 }) => {
   const [optionsToShow, setOptionsToShow] = useState<option[]>(options);
@@ -59,8 +59,8 @@ const Breadcrums = ({
 
 export const Breadcrum = ({
   active = false,
-  family = '',
-  fontSize = '1rem',
+  family,
+  fontSize,
   href,
   label,
   onClick,
@@ -68,7 +68,6 @@ export const Breadcrum = ({
   target = '_self',
 }) => {
   const { configuration } = useContext(ConfigContext);
-  const spacing = configuration.spacing[separatorSpacing] || configuration.spacing.sm;
   const content = (
     <>
       <span className='label'>{label}</span>
@@ -78,7 +77,8 @@ export const Breadcrum = ({
   return (
     <StyledBreadcrum
       active={active}
-      spacing={spacing}
+      spacing={separatorSpacing}
+      configuration={configuration}
       fontSize={fontSize}
       family={family}
     >

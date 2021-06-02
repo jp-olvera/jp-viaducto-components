@@ -1,22 +1,5 @@
 import { css } from 'styled-components';
 
-const getBorder = (borders: any = 'none') => {
-  if (borders === 'none' || borders === null) {
-    return css`
-      border: none;
-    `;
-  }
-  let border = '';
-  border += `border-top: ${borders.top || 'none'}; `;
-  border += `border-right: ${borders.right || 'none'}; `;
-  border += `border-bottom: ${borders.bottom || 'none'}; `;
-  border += `border-left: ${borders.left || 'none'}; `;
-
-  return css`
-    ${border}
-  `;
-};
-
 const getSize = (size: string = 'md', max: boolean = false) => {
   switch (size) {
     case 'xxs':
@@ -92,6 +75,35 @@ const getFontSize = (level: string, max: boolean = false) => {
       return `clamp(1.575rem, calc(1.575rem + ((${
         max ? 'calc(1.125vw * 16)' : '1vw'
       } - 0.000625rem) * 1.5689)), 2.986rem) `;
+  }
+};
+
+const getBorder = (borders: any = 'none') => {
+  if (borders === 'none' || borders === null) {
+    return css`
+      border: none;
+    `;
+  }
+  let border = '';
+  border += `border-top: ${borders.top || 'none'}; `;
+  border += `border-right: ${borders.right || 'none'}; `;
+  border += `border-bottom: ${borders.bottom || 'none'}; `;
+  border += `border-left: ${borders.left || 'none'}; `;
+
+  return css`
+    ${border}
+  `;
+};
+
+const getRangeSize = (size: string = 'md') => {
+  switch (size) {
+    case 'sm':
+      return '1rem';
+    case 'lg':
+      return '1.5rem';
+    case 'md':
+    default:
+      return '1.25rem';
   }
 };
 
@@ -194,4 +206,5 @@ export {
   getRadioSizes,
   getCheckSizes,
   getBorder,
+  getRangeSize,
 };

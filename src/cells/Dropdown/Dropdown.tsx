@@ -7,6 +7,7 @@ import { Activator, Wrapper, ItemsContainer } from './StyledDropdown';
 import Icon from './sorting.svg';
 import { Hideable } from '../Hideable';
 import Drop from './Drop';
+import { refs } from './DropdownRef';
 /**
  * Dropdown component
  * @param {string} family font family for the dropdown
@@ -27,7 +28,7 @@ const Dropdown = ({
   content = null,
   size = 'default',
   height,
-  onClick = () => {},
+  onClick,
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
@@ -37,56 +38,23 @@ const Dropdown = ({
   const selectedRef = useRef<HTMLElement>(null);
   const dropdownListRef = useRef<HTMLDivElement>(null);
   const newHeight = height || configuration.controlHeight[size];
-  const clickHandler = () => {
-    setIsOpen(!isOpen);
-    if (dropdownListRef && dropdownListRef.current && wrapperRef.current) {
-      const bounding = dropdownListRef.current.getBoundingClientRect();
-      const bottom = wrapperRef.current.clientHeight || '2.4rem';
-      if (
-        bounding.bottom
-        > (window.innerHeight || document.documentElement.clientHeight)
-      ) {
-        dropdownListRef.current.style.bottom = `calc(${bottom}px + 0.5rem`;
-      }
-    }
-  };
-  const dataList = () => content.map((data, index) => (
-    <div
-      className='hover'
-      role='list'
-      onClick={(ev) => {
-        onClick(ev);
-        setIsOpen(false);
-      }}
-      onKeyPress={(ev) => {
-        onClick(ev);
-        setIsOpen(false);
-      }}
-      key={index.toString()}
-    >
-      {data}
-    </div>
-  ));
-
-  const clickOutsideHandler = (event: any) => {
-    if (dropdownListRef.current && activatorRef.current) {
-      if (
-        dropdownListRef.current.contains(event.target)
-        || activatorRef.current.contains(event.target)
-      ) {
-        return;
-      }
-    }
-    setIsOpen(false);
-  };
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener('mouseup', clickOutsideHandler);
-    } else {
-      document.removeEventListener('mouseup', clickOutsideHandler);
+      document.addEventListener('mouseup', (event) => refs.clickOutsideHandler(
+        event,
+        activatorRef,
+        dropdownListRef,
+        setIsOpen,
+      ));
     }
+    document.removeEventListener('mouseup', (event) => refs.clickOutsideHandler(event, activatorRef, dropdownListRef, setIsOpen));
     return function cleanup() {
-      document.removeEventListener('mouseup', clickOutsideHandler);
+      document.removeEventListener('mouseup', (event) => refs.clickOutsideHandler(
+        event,
+        activatorRef,
+        dropdownListRef,
+        setIsOpen,
+      ));
     };
   }, [isOpen]);
 
@@ -102,7 +70,23 @@ const Dropdown = ({
       configuration={configuration}
       family={family}
     >
-      {dataList()}
+      {(content || []).map((data: any, index: number) => (
+        <div
+          className='hover'
+          role='list'
+          onClick={(ev) => {
+            onClick(ev);
+            setIsOpen(false);
+          }}
+          onKeyPress={(ev) => {
+            onClick(ev);
+            setIsOpen(false);
+          }}
+          key={index.toString()}
+        >
+          {data}
+        </div>
+      ))}
     </ItemsContainer>
   );
   return (
@@ -117,7 +101,7 @@ const Dropdown = ({
         aria-selected='true'
         data-testid='dropdown-activator'
         id='dropdown-activator'
-        onClick={clickHandler}
+        onClick={() => refs.clickHandler(setIsOpen, isOpen, dropdownListRef, wrapperRef)}
         ref={activatorRef}
       >
         <Hideable visibleOn='sm'>

@@ -13,7 +13,7 @@ exports[`<Search/> should render properly with no options 1`] = `
     type="text"
   />
   <select
-    class="StyledSelect-tky0tx-0 fvmyjt"
+    class="StyledSelect-tky0tx-0 qiRXX"
     data-testid="select"
   />
   <button

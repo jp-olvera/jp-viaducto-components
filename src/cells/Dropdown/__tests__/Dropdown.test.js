@@ -1,11 +1,12 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, screen } from '../../../test-utils';
+import { render } from '../../../test-utils';
 import '@testing-library/jest-dom/extend-expect';
 import { Dropdown } from '..';
+import { refs } from '../DropdownRef';
 
-const options = ['1', '2', '3'];
+const options = [<p>1</p>, <p>2</p>, <p>3</p>];
 
 describe('<Dropdown/>', () => {
   test('should render an focusable activator to toggle the dropdown', () => {
@@ -15,23 +16,11 @@ describe('<Dropdown/>', () => {
     activator.focus();
     expect(activator).toHaveFocus();
   });
-  test('should not display popup', () => {
-    const { getByTestId } = render(<Dropdown options={options} />);
-    expect(getByTestId('dropdown-itemList')).not.toBeVisible();
-  });
   test('should display popup', () => {
-    const dropdown = render(<Dropdown options={options} />);
-    const activator = dropdown.getByTestId('dropdown-activator');
-    activator.click();
-    expect(dropdown.getByTestId('dropdown-itemList')).toBeVisible();
-    expect(screen.getByText('1')).toBeVisible();
-  });
-  test('should click item', () => {
     const dropdown = render(<Dropdown options={options} family='Roboto' />);
     const activator = dropdown.getByTestId('dropdown-activator');
     activator.click();
-    const optionSelected = screen.getByText('1').click();
-    expect(optionSelected).toMatchSnapshot();
+    expect(dropdown.getByTestId('dropdown-itemList')).toBeVisible();
   });
   test('should render with default props and borders', () => {
     const borders = {
@@ -49,7 +38,31 @@ describe('<Dropdown/>', () => {
       bottom: '1px solid black',
       right: '1px solid black',
     };
-    const { container } = render(<Dropdown border={bordersNoLeft} />);
+    const { container } = render(
+      <Dropdown border={bordersNoLeft} onClick={null} />,
+    );
     expect(container).toMatchSnapshot();
+  });
+  describe('ref functions', () => {
+    test('should not be null in clickHandler', () => {
+      jest.spyOn(refs, 'clickHandler').getMockImplementation(() => null);
+      expect(
+        refs.clickHandler(
+          () => {},
+          true,
+          {
+            current: {
+              getBoundingClientRect: () => ({ bottom: 500 }),
+              style: { bottom: '' },
+            },
+          },
+          { current: { clientHeight: '1rem' } },
+        ),
+      ).not.toBeNull();
+    });
+    test('should not be null in clickOutsideHandler', () => {
+      jest.spyOn(refs, 'clickOutsideHandler').getMockImplementation(() => null);
+      expect(refs.clickOutsideHandler).not.toBeNull();
+    });
   });
 });
