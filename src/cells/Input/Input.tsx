@@ -73,7 +73,7 @@ const Input = ({
   const { configuration } = useContext(ConfigContext);
   const [newValue, setNewValue] = useState<any>(value);
   const inputRef = useRef<any>();
-  const mustHaveIcon = ['card', 'date', 'color', 'phone'];
+  const mustHaveIcon = ['card', 'date', 'color', 'phone', 'time'];
   useEffect(() => {
     setOpen(false);
     setInputType(type);
@@ -101,7 +101,6 @@ const Input = ({
       return true;
     });
   };
-
   return (
     <>
       <Wrapper
@@ -122,16 +121,22 @@ const Input = ({
                 ? cardType
                 : type === 'date'
                   ? 'date'
-                  : type === 'color'
-                    ? 'color'
-                    : type === 'phone'
-                      ? 'phone'
-                      : icon,
-              type === 'color' ? inputRef?.current?.value : undefined,
+                  : type === 'time'
+                    ? 'time'
+                    : type === 'color'
+                      ? 'color'
+                      : type === 'phone'
+                        ? 'phone'
+                        : icon,
+              type === 'color'
+                ? inputRef?.current?.value.toUpperCase()
+                : undefined,
               '18px',
               undefined,
               undefined,
-              type === 'color' ? inputRef?.current?.value : undefined,
+              type === 'color'
+                ? inputRef?.current?.value.toUpperCase()
+                : undefined,
             )}
           </span>
         )}
@@ -181,7 +186,7 @@ const Input = ({
         </label>
         {type === 'color' && (
           <span className='show-value'>
-            <span>{inputRef?.current?.value || '#ffffff'}</span>
+            <span>{inputRef?.current?.value.toUpperCase() || '#FFFFFF'}</span>
           </span>
         )}
         {isInvalid && <span className='is-invalid'>{getIcon('warning')}</span>}

@@ -24,7 +24,16 @@ export default {
       table: {
         defaultValue: { summary: 'text' },
       },
-      options: ['text', 'password', 'number', 'card', 'date', 'color', 'phone'],
+      options: [
+        'text',
+        'password',
+        'number',
+        'card',
+        'date',
+        'color',
+        'phone',
+        'time',
+      ],
       control: {
         type: 'select',
       },
@@ -48,9 +57,8 @@ export default {
         'time',
         'grid',
         'visa',
-        'visa_letter',
-        'master_card',
-        'amex',
+        'mastercard',
+        'american-express',
       ],
       control: {
         type: 'select',
@@ -215,6 +223,22 @@ export const Phone = Template.bind({});
 Phone.args = {
   label: 'Phone',
   type: 'phone',
+  icon: null,
+  border: 'default',
+  isInvalid: false,
+  isValid: false,
+  required: false,
+  disabled: false,
+  transition: 'ease',
+  size: 'default',
+  borderColor: null,
+  iconColor: null,
+};
+export const Time = Template.bind({});
+
+Time.args = {
+  label: 'Time',
+  type: 'time',
   icon: null,
   border: 'default',
   isInvalid: false,

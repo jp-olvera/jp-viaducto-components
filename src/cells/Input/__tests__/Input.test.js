@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, fireEvent, screen } from '../../../test-utils';
-import '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { Input } from '..';
 import { mask } from '../Input';

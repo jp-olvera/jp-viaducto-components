@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
-import { getSize } from '../../utils/getSizes';
-import { getBorder } from '../Dropdown/StyledDropdown';
+import { getSize, getBorder } from '../../utils/getSizes';
 
 interface SelectI {
   size?: any;

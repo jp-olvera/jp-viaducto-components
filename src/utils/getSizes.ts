@@ -78,6 +78,35 @@ const getFontSize = (level: string, max: boolean = false) => {
   }
 };
 
+const getBorder = (borders: any = 'none') => {
+  if (borders === 'none' || borders === null) {
+    return css`
+      border: none;
+    `;
+  }
+  let border = '';
+  border += `border-top: ${borders.top || 'none'}; `;
+  border += `border-right: ${borders.right || 'none'}; `;
+  border += `border-bottom: ${borders.bottom || 'none'}; `;
+  border += `border-left: ${borders.left || 'none'}; `;
+
+  return css`
+    ${border}
+  `;
+};
+
+const getRangeSize = (size: string = 'md') => {
+  switch (size) {
+    case 'sm':
+      return '1rem';
+    case 'lg':
+      return '1.5rem';
+    case 'md':
+    default:
+      return '1.25rem';
+  }
+};
+
 const getRadioSizes = (size: string) => {
   switch (size) {
     case 'sm':
@@ -171,5 +200,11 @@ const getCheckSizes = (size: string) => {
 };
 
 export {
-  getSize, getLineHeight, getFontSize, getRadioSizes, getCheckSizes,
+  getSize,
+  getLineHeight,
+  getFontSize,
+  getRadioSizes,
+  getCheckSizes,
+  getBorder,
+  getRangeSize,
 };

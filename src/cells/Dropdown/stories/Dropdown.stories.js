@@ -3,7 +3,7 @@ import { Dropdown } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Controls/Dropdown',
+  title: 'Andamio/Cells/Dropdown',
   component: Dropdown,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -12,8 +12,8 @@ export default {
       type: { summary: 'String', required: false },
       control: 'text',
     },
-    activeColor: {
-      description: 'Set a color when an option is selected',
+    hoverColor: {
+      description: 'Set a color when an content data have hover prop',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: '#ffd6ce' },
@@ -43,16 +43,23 @@ export default {
         defaultValue: { summary: null },
       },
     },
-    options: {
-      description: 'Set the options to choose in the component',
-      type: { summary: 'String[]', required: true },
+    content: {
+      description: 'Set the content when the dropdown is open',
+      type: { summary: 'JSX Element[]', required: true },
       table: {
-        defaultValue: { summary: '[]' },
+        defaultValue: { summary: null },
       },
     },
     height: {
       description: 'Overrides the height of the component',
       type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
+    onClick: {
+      description: 'Triggers an action when the option is selected',
+      type: { summary: 'Function', required: false },
       table: {
         defaultValue: { summary: null },
       },
@@ -75,13 +82,19 @@ Default.args = {
     bottom: '1px solid black',
     left: '1px solid black',
   },
-  defaultText: 'Buscar por...',
-  options: [
-    'Razón Social',
-    ['1', '2', '3', ['a', 'b', 'c']],
-    'RFC',
-    'Nombre Comercial',
+  defaultText: 'Click me',
+  hoverColor: '#ffd6ce',
+  height: null,
+  content: [
+    <p>Any element could be here</p>,
+    <img
+      src='https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png'
+      alt='img'
+      width='118'
+    />,
   ],
-  activeColor: '#ffd6ce',
-  height: '',
+  onClick: () => {
+    // eslint-disable-next-line no-alert
+    alert('item selected');
+  },
 };

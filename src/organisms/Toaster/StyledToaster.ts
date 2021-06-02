@@ -63,7 +63,8 @@ const getAnimation = (transitionState, placement) => {
       `;
   }
 };
-function getEnteringTranslate(placement) {
+
+export function getEnteringTranslate(placement) {
   const pos = placement.split('-');
   const relevantPlacement = pos[1] === 'center' ? pos[0] : pos[1];
   const translateMap = {
@@ -75,7 +76,8 @@ function getEnteringTranslate(placement) {
 
   return translateMap[relevantPlacement];
 }
-function getExitingTranslate(placement) {
+
+export function getExitingTranslate(placement) {
   const pos = placement.split('-');
   const relevantPlacement = pos[1] === 'center' ? pos[0] : pos[1];
   const translateMap = {

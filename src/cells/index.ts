@@ -9,11 +9,13 @@ export * from './Input';
 export * from './Paragraph';
 export * from './Pill';
 export * from './Progress';
+export * from './Range';
 export * from './Radio';
 export * from './Select';
 export * from './Spacer';
 export * from './Switch';
 export * from './Tab';
+export * from './Textarea';
 export * from './Title';
 export * from './Tooltip';
 

@@ -28,15 +28,19 @@ const StyledPill = styled.div < any > `
 
 const getPadding = (spacing, hasIcon, hasIconLead, onlyText) => {
   let padding = `0 ${spacing.xs}`;
+  /* istanbul ignore else */
   if (hasIcon && hasIconLead) {
     padding = `0 ${spacing.xl}`;
   }
+  /* istanbul ignore else */
   if (hasIconLead) {
     padding = `0 ${spacing.xs} 0 ${spacing.nano}`;
   }
+  /* istanbul ignore else */
   if (hasIcon) {
     padding = `0 ${spacing.nano} 0 ${spacing.xs}`;
   }
+  /* istanbul ignore else */
   if (onlyText) {
     padding = `0 ${spacing.xs}`;
   }
