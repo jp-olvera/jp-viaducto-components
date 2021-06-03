@@ -32,7 +32,6 @@ export const StyledAccordionItem = styled.div < SAI > `
     flex-shrink: 0;
     height: 1rem;
     margin-left: auto;
-    /* padding-right: ${(p) => (p.expanded ? p.paddingX : 0)}; */
     transition: transform 0.2s ease-in-out;
     transform: ${(p) => (p.expanded ? 'rotate(-180deg)' : 'rotate(0deg)')};
     width: 1rem;

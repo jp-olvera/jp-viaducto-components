@@ -28,6 +28,7 @@ const AccordionItem = ({
   const [height, setHeight] = useState('0px');
 
   useEffect(() => {
+    /* istanbul ignore else */
     if (ref.current) {
       if (!expanded) {
         setHeight('0px');
@@ -41,11 +42,6 @@ const AccordionItem = ({
 
   const handleClick = () => {
     onClick(index);
-  };
-  const updateAfterTransition = () => {
-    if (expanded) {
-      setHeight('auto');
-    }
   };
 
   return (
@@ -77,7 +73,7 @@ const AccordionItem = ({
         style={{
           height,
         }}
-        onTransitionEnd={updateAfterTransition}
+        onTransitionEnd={() => updateAfterTransition(expanded, setHeight)}
       >
         {children}
       </section>
@@ -86,3 +82,13 @@ const AccordionItem = ({
 };
 
 export default AccordionItem;
+
+export const updateAfterTransition = (
+  expanded: boolean,
+  setHeight: Function,
+) => {
+  /* istanbul ignore else */
+  if (expanded) {
+    setHeight('auto');
+  }
+};

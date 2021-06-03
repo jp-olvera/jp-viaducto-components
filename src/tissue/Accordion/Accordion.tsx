@@ -22,7 +22,9 @@ const Accordion = ({
   }, [defaultIndex]);
 
   const handleClick = (index: number) => {
+    /* istanbul ignore else */
     if (expandMultiple) {
+      /* istanbul ignore if */
       if (expanded.has(index)) {
         expanded.delete(index);
       } else {
@@ -38,6 +40,7 @@ const Accordion = ({
     <StyledAccordion>
       {React.Children.map(children, (child, i) => {
         if (!child) {
+          /* istanbul ignore if */
           return null;
         }
         return React.cloneElement(child, {
