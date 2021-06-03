@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { StyledAccordionItem } from './StyledAccordion';
 import { Title } from '../../cells';
 
@@ -24,9 +24,27 @@ const AccordionItem = ({
   paddingX,
   paddingY,
 }: AccordionItemProps) => {
+  const ref = useRef<HTMLElement>(null);
+  const [height, setHeight] = useState('0px');
+
+  useEffect(() => {
+    if (ref.current) {
+      if (!expanded) {
+        setHeight('0px');
+        ref.current.classList.add('noPadding');
+      } else {
+        setHeight(`${ref.current.scrollHeight}px`);
+        ref.current.classList.remove('noPadding');
+      }
+    }
+  }, [expanded]);
+
   const handleClick = () => {
-    if (onClick) {
-      onClick(index);
+    onClick(index);
+  };
+  const updateAfterTransition = () => {
+    if (expanded) {
+      setHeight('auto');
     }
   };
 
@@ -49,12 +67,17 @@ const AccordionItem = ({
             whiteSpace: 'nowrap',
           }}
         >
-          <Title level='6'>{title}</Title>
+          {typeof title === 'string' ? <Title level='6'>{title}</Title> : title}
         </span>
       </button>
       <section
+        ref={ref}
         id={`accordion-body-${id}`}
-        className={`${expanded ? 'expanded' : 'collapsed'}`}
+        className='section'
+        style={{
+          height,
+        }}
+        onTransitionEnd={updateAfterTransition}
       >
         {children}
       </section>

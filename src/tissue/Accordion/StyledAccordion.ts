@@ -9,12 +9,12 @@ interface SAI {
 export const StyledAccordionItem = styled.div < SAI > `
   box-sizing: border-box;
   width: 100%;
-  border-top: 1px solid black;
 
   .accordion-header {
     align-items: center;
     background: transparent;
     border: none;
+    border-bottom: 0.063rem solid #ddd;
     cursor: pointer;
     display: flex;
     margin: 0 !important;
@@ -28,11 +28,11 @@ export const StyledAccordionItem = styled.div < SAI > `
     background-position: right 0 center;
     background-repeat: no-repeat;
     background-size: 1rem;
-    color: red;
     content: '';
     flex-shrink: 0;
     height: 1rem;
     margin-left: auto;
+    /* padding-right: ${(p) => (p.expanded ? p.paddingX : 0)}; */
     transition: transform 0.2s ease-in-out;
     transform: ${(p) => (p.expanded ? 'rotate(-180deg)' : 'rotate(0deg)')};
     width: 1rem;
@@ -47,25 +47,32 @@ export const StyledAccordionItem = styled.div < SAI > `
       height: 1rem;
     }
   }
-  .expanded {
-    border-top: 1px solid black;
-    display: block;
+  .section {
+    border-bottom: 0.063rem solid #ddd;
+    box-sizing: border-box;
+    overflow: hidden;
     padding: ${(p) => p.paddingY} ${(p) => p.paddingX};
+    opacity: 1;
+    transform: scaleY(1);
+    transition: height 250ms ease-in, padding 250ms ease-in;
   }
-  .collapsed {
+  .noPadding {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .collapse {
     display: none;
+    transition: display 0ms linaer 250ms;
   }
 `;
 
 const StyledAccordion = styled.div`
-  border: 1px solid black;
-  border-radius: 5px;
+  border-top: 0.063rem solid #ddd;
+  border-right: 0.063rem solid #ddd;
+  border-left: 0.063rem solid #ddd;
+  border-radius: 0.313rem;
   box-sizing: border-box;
   width: 100%;
-
-  &:first-child {
-    border-top: 1px solid transparent !important;
-  }
 `;
 
 export default StyledAccordion;
