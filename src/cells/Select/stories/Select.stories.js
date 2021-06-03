@@ -68,6 +68,12 @@ export default {
       type: { summary: 'Function', required: false },
       table: { defaultValue: { summary: null } },
     },
+    title: {
+      description:
+        'If it is defined, set a title in/on/over the select wrapper (affects the height)',
+      type: { summary: '{label:string; position: string}', required: false },
+      table: { defaultValue: { summary: null } },
+    },
   },
 };
 
@@ -75,6 +81,7 @@ const Template = (args) => (
   <ConfigProvider>
     If <i>multiple</i> sets to <code>true</code>, use ctrl/command (depends on
     your OS) and select the choices
+    <br />
     <br />
     <br />
     <Select {...args}>
@@ -102,6 +109,7 @@ Default.args = {
   radius: '',
   onChange: () => {},
   multiple: false,
+  title: null,
 };
 
 export const Multiple = Template.bind({});
@@ -121,4 +129,38 @@ Multiple.args = {
   radius: '',
   onChange: () => {},
   multiple: true,
+};
+
+const withTitleTemplate = (args) => (
+  <ConfigProvider>
+    Set in the Controls <code>in</code>/<code>on</code>/<code>over</code> to
+    place the title
+    <br />
+    <br />
+    <Select {...args}>
+      <option value='1'>Change in control section</option>
+      <option value='2'>Here it is just a option</option>
+      <option value='3'>Hello World</option>
+    </Select>
+  </ConfigProvider>
+);
+
+export const withTitle = withTitleTemplate.bind({});
+
+withTitle.args = {
+  size: 'sm',
+  border: {
+    top: '1px solid black',
+    right: '1px solid black',
+    bottom: '1px solid black',
+    left: '1px solid black',
+  },
+  fontSize: 'md',
+  fontFamily: 'Roboto',
+  background: '#fff',
+  color: '#000',
+  radius: '',
+  onChange: () => {},
+  multiple: false,
+  title: { label: 'Title', position: 'in' },
 };

@@ -18,19 +18,55 @@ describe('<Select/>', () => {
   test('should render properly with custom attributes', () => {
     const { container } = render(
       <Select
-        size='sm'
+        size='lg'
         border={{ top: '1px solid red' }}
-        height='2rem'
         fontSize='lg'
         fontFamily='Arial'
         background='blue'
         color='white'
         radius={2}
+        title={{ label: 'a', position: 'in' }}
       >
         <option value='B'>B</option>
       </Select>,
     );
     expect(container).toBeInTheDocument();
+  });
+  describe('without title with size prop', () => {
+    test('should render with sm size', () => {
+      const { container } = render(
+        <Select
+          size='sm'
+          border={{ top: '1px solid red' }}
+          fontSize='lg'
+          fontFamily='Arial'
+          background='blue'
+          color='white'
+          radius={2}
+          title={null}
+        >
+          <option value='B'>B</option>
+        </Select>,
+      );
+      expect(container).toBeInTheDocument();
+    });
+    test('should render with lg size', () => {
+      const { container } = render(
+        <Select
+          size='lg'
+          border={{ top: '1px solid red' }}
+          fontSize='lg'
+          fontFamily='Arial'
+          background='blue'
+          color='white'
+          radius={2}
+          title={null}
+        >
+          <option value='B'>B</option>
+        </Select>,
+      );
+      expect(container).toBeInTheDocument();
+    });
   });
   test('should render properly with some custom setting', () => {
     const { container } = render(
@@ -43,6 +79,7 @@ describe('<Select/>', () => {
         background='blue'
         color='white'
         radius={2}
+        title={{ label: 'a', position: 'on' }}
       >
         <option value='B'>B</option>
       </Select>,
@@ -51,7 +88,26 @@ describe('<Select/>', () => {
   });
   test('should show the options', () => {
     const { getByTestId, queryByText } = render(
-      <Select radius='2rem' size='sm' height={undefined}>
+      <Select
+        radius='2rem'
+        size='sm'
+        height='2rem'
+        title={{ label: 'a', position: 'over' }}
+      >
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </Select>,
+    );
+    const select = getByTestId('select');
+    fireEvent.click(select);
+    expect(queryByText('option1')).toBeVisible();
+  });
+  test('should render select component with style props', () => {
+    const { getByTestId, queryByText } = render(
+      <Select radius='2rem' size='sm' title={{ label: 'a', position: 'over' }}>
         {options.map((option) => (
           <option key={option} value={option}>
             {option}

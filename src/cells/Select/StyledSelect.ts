@@ -14,12 +14,77 @@ interface SelectI {
   outline?: boolean;
   outlineColor?: string;
   multiple: boolean;
+  title?: any;
 }
 
-const StyledSelect = styled.select < SelectI > `
+export const StyledSelectWrapper = styled.div < any > `
+  position: relative;
+  box-sizing: border-box;
+  ${(p) => p.title !== null
+    && setLabelPosition(p.title.position, p.background, p.height)};
+  & > label {
+    opacity: 0.65;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 1rem 0.75rem;
+    pointer-events: none;
+    border: 0.063rem solid transparent;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+    display: inline-block;
+    font-family: ${({ fontFamily }) => fontFamily || 'inherit'};
+  }
+`;
+
+export const setLabelPosition = (
+  position: string,
+  background: string,
+  height: any,
+) => {
+  switch (position) {
+    case 'on':
+      return css`
+        & > label {
+          transform: scale(0.9) translateY(-0.6rem) translateX(0.5rem);
+          background-color: ${background} !important;
+          opacity: 1 !important;
+          padding: 0 !important;
+          height: auto !important;
+        }
+        & > select {
+          padding-top: 0.2rem !important;
+          ${getHeight({ height })};
+        }
+      `;
+    case 'over':
+      return css`
+        & > label {
+          transform: scale(1) translateY(-1.12rem) translateX(0rem);
+          opacity: 1 !important;
+          padding: 0 !important;
+          height: auto !important;
+        }
+        & > select {
+          padding-top: 0rem !important;
+          ${getHeight({ height })};
+        }
+      `;
+    case 'in':
+    default:
+      return css`
+        & > label {
+          transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+        }
+      `;
+  }
+};
+
+export const StyledSelect = styled.select < SelectI > `
   color: ${({ color }) => color || 'inherit'};
   background-color: ${({ background }) => background || 'inherit'};
-  font-family: ${({ fontFamily }) => (fontFamily ? `${fontFamily}, sans-serif` : "'Roboto', sans-serif")};
+  font-family: ${({ fontFamily }) => fontFamily || "'Roboto', sans-serif"};
   font-size: ${({ fontSize }) => getSize(fontSize)};
   width: 100%;
   ${(props) => (props.multiple ? null : getHeight(props))};
@@ -30,8 +95,11 @@ const StyledSelect = styled.select < SelectI > `
     ? `border-radius: ${radius}; `
     : `border-radius: ${radius}rem;`)};
   padding: 0 ${(p) => p.configuration.spacing.sm};
-  padding-top: ${(p) => (p.multiple ? p.configuration.spacing.sm : '0')};
-  padding-bottom: ${(p) => (p.multiple ? p.configuration.spacing.sm : '0')};
+  padding-top: ${(p) => (p.multiple
+    ? p.configuration.spacing.sm
+    : p.title !== null
+      ? p.configuration.spacing.md
+      : '0')};
   padding-right: ${(p) => (!p.multiple ? p.configuration.spacing.lg : '0')};
   ${({ multiple }) => (multiple
     ? null
@@ -69,10 +137,10 @@ const getHeight = (props) => {
   } else {
     switch (props.size) {
       case 'sm':
-        height = '2.073rem';
+        height = props.title !== null ? '2.986rem' : '2.073rem';
         break;
       case 'lg':
-        height = '2.986rem';
+        height = props.title !== null ? '3.5rem' : '2.986rem';
         break;
       default:
         break;
@@ -82,4 +150,3 @@ const getHeight = (props) => {
     height: ${height};
   `;
 };
-export default StyledSelect;

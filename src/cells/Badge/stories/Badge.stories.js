@@ -32,7 +32,7 @@ export default {
     content: {
       description:
         'Set the the content inside the Badge as the principal children component',
-      type: { summary: 'String', required: true },
+      type: { summary: 'JSX Element', required: true },
       table: {
         defaultValue: { summary: null },
       },
@@ -101,6 +101,8 @@ export default {
       control: 'select',
       options: [
         'center',
+        'center-right',
+        'center-left',
         'top-center',
         'bottom-center',
         'top-right',

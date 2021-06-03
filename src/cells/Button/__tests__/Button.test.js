@@ -8,7 +8,16 @@ import { Button } from '..';
 
 describe('<Button/>', () => {
   test('should render properly', () => {
-    render(<Button label='Continue' />);
+    render(
+      <Button
+        label='Continue'
+        variant='ghost'
+        colors={null}
+        useLongLoading
+        isLoading
+        isValid={null}
+      />,
+    );
   });
 
   test('should have focus', () => {

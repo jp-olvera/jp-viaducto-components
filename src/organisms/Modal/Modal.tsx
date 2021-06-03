@@ -84,10 +84,12 @@ const Modal = ({
   }, [active]);
 
   const handleReject = () => {
+    /* istanbul ignore else */
     if (onReject !== null) onReject();
     handleActive();
   };
   const handleAccept = () => {
+    /* istanbul ignore else */
     if (onAccept !== null) onAccept();
     handleActive();
   };

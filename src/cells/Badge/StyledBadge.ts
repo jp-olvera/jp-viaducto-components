@@ -19,7 +19,7 @@ export const StyledBadge = styled.div < any > `
   display: flex;
   ${(p) => alignContent(p.align)}
 
-  & span {
+  & {
     color: ${(p) => p.configuration.text[p.color] || p.color};
     z-index: 1;
     font-size: ${(p) => getSize(p.fontSize)};
@@ -88,9 +88,12 @@ export const getClipPath = (polygon: string) => {
         clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
       `;
     case 'circle':
-    default:
       return css`
         clip-path: circle(50% at 50% 50%);
+      `;
+    default:
+      return css`
+        clip-path: polygon(0 0, 0% 100%, 100% 100%, 100% 0%);
       `;
   }
 };

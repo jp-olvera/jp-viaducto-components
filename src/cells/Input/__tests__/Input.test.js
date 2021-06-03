@@ -115,8 +115,40 @@ describe('<Input/>', () => {
     expect(input.type).toBe('password');
   });
 
-  test('should render simple disabled input', () => {
+  test('should render a simple disabled input', () => {
     const { container } = render(<Input label='label' disabled type='card' />);
+    expect(container).not.toBeNull();
+  });
+  test('should render a simple card input', () => {
+    const { container } = render(<Input label='label' type='card' />);
+    const input = container.querySelector('input');
+    fireEvent.change(input, { target: { value: 345 } });
+    expect(input.value).toBe('345');
+  });
+  test('should render a simple date input', () => {
+    const { container } = render(<Input label='label' type='date' />);
+    const { container: div } = render(
+      <Input label='label' type='datetime-local' />,
+    );
+    expect(container).not.toBeNull();
+    expect(div).not.toBeNull();
+  });
+  test('should render a simple time input', () => {
+    const { container } = render(<Input label='label' type='time' />);
+    expect(container).not.toBeNull();
+  });
+  test('should render a simple color input', () => {
+    const { container } = render(<Input label='label' type='color' />);
+    expect(container).not.toBeNull();
+  });
+  test('should render a simple phone input', () => {
+    const { container } = render(<Input label='label' type='phone' />);
+    const input = container.querySelector('input');
+    fireEvent.change(input, { target: { value: 3654 } });
+    fireEvent.change(input, { target: { value: 454 } });
+    fireEvent.change(input, { target: { value: 5654 } });
+    expect(input.value).not.toBe(345);
+
     expect(container).not.toBeNull();
   });
   test('should render simple input', () => {
