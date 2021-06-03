@@ -2,7 +2,7 @@
 
 exports[`<Search/> should render properly with no options 1`] = `
 <div
-  class="StyledSearch-ku5ztu-0 fVDfrN"
+  class="StyledSearch-ku5ztu-0 eLBcWQ"
   data-testid="searchNoOptions"
   elevation="1"
 >
@@ -12,10 +12,14 @@ exports[`<Search/> should render properly with no options 1`] = `
     placeholder="Introduce el término de búsqueda"
     type="text"
   />
-  <select
-    class="StyledSelect-tky0tx-0 qiRXX"
-    data-testid="select"
-  />
+  <div
+    class="StyledSelect__StyledSelectWrapper-tky0tx-0 hFmgKk"
+  >
+    <select
+      class="StyledSelect-tky0tx-1 cTnkFY"
+      data-testid="select"
+    />
+  </div>
   <button
     class="StyledButton-hwi8uc-0 fNSYC"
     data-testid="button-searchNoOptions"

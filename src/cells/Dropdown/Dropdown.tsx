@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, {
   useContext, useState, useRef, useEffect,
 } from 'react';
@@ -75,10 +76,6 @@ const Dropdown = ({
           className='hover'
           role='list'
           onClick={(ev) => {
-            onClick(ev);
-            setIsOpen(false);
-          }}
-          onKeyPress={(ev) => {
             onClick(ev);
             setIsOpen(false);
           }}

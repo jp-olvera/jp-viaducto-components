@@ -96,7 +96,7 @@ const Template = (args) => (
           including versions of Lorem Ipsum.
         </Paragraph>
       </AccordionItem>
-      <AccordionItem title='Comienza a jugar'>
+      <AccordionItem title='Presiona la D para que aparezcan los controles'>
         <Paragraph>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industrys standard dummy text ever
@@ -109,7 +109,7 @@ const Template = (args) => (
           including versions of Lorem Ipsum.
         </Paragraph>
       </AccordionItem>
-      <AccordionItem title='Presiona la D para que aparezcan los controles'>
+      <AccordionItem title='Aquí puedes poner un texto o un componente'>
         <Paragraph>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industrys standard dummy text ever
@@ -128,4 +128,6 @@ const Template = (args) => (
 
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  defaultIndex: 0,
+};

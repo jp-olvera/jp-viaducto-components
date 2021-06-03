@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render } from '../../../test-utils';
+import { render, fireEvent } from '../../../test-utils';
 import '@testing-library/jest-dom/extend-expect';
 import { Dropdown } from '..';
 import { refs } from '../DropdownRef';
@@ -10,17 +10,23 @@ const options = [<p>1</p>, <p>2</p>, <p>3</p>];
 
 describe('<Dropdown/>', () => {
   test('should render an focusable activator to toggle the dropdown', () => {
-    const dropdown = render(<Dropdown options={options} family={null} />);
+    const dropdown = render(<Dropdown content={options} family={null} />);
     expect(dropdown.getByTestId('dropdown-activator')).toBeInTheDocument();
     const activator = dropdown.getByTestId('dropdown-activator');
     activator.focus();
     expect(activator).toHaveFocus();
+    fireEvent.mouseUp(activator);
   });
   test('should display popup', () => {
-    const dropdown = render(<Dropdown options={options} family='Roboto' />);
+    const mockFn = jest.fn();
+    const dropdown = render(
+      <Dropdown content={options} family='Roboto' onClick={mockFn} />,
+    );
     const activator = dropdown.getByTestId('dropdown-activator');
     activator.click();
     expect(dropdown.getByTestId('dropdown-itemList')).toBeVisible();
+    fireEvent.click(dropdown.queryByText('1'));
+    expect(mockFn).toHaveBeenCalled();
   });
   test('should render with default props and borders', () => {
     const borders = {

@@ -54,4 +54,14 @@ describe('<Modal></Modal>', () => {
     fireEvent.click(screen.getByTestId('reject'));
     expect(onReject).toBeCalled();
   });
+  test('should click outside of the modal component', () => {
+    const onReject = jest.fn();
+    const { container } = render(
+      <div id='a'>
+        <Modal active={false} onReject={onReject} allowClickOutside />
+      </div>,
+    );
+    fireEvent.click(container.querySelector('#a'));
+    expect(container).toMatchSnapshot();
+  });
 });

@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext } from 'react';
-import StyledSelect from './StyledSelect';
+import { StyledSelect, StyledSelectWrapper } from './StyledSelect';
 import { ConfigContext } from '../../providers';
 /**
  * Select input component
@@ -10,6 +11,7 @@ import { ConfigContext } from '../../providers';
  * @param {String} radius Set border radius property (if is a number, border radius will be set as "rem", if it is a string will be set as marked)
  * @param {String} border Set the border(s) of the component
  * @param {Boolean} multiple Set the argument to choose multiple options
+ * @param {object} title Set a title in the select component in/on/over the wrapper
  * @param {Function} onChange Trigger an action
  */
 const Select = ({
@@ -24,28 +26,41 @@ const Select = ({
   multiple = false,
   radius,
   onChange,
+  title = null,
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
 
   return (
-    <StyledSelect
-      configuration={configuration}
-      size={size}
-      height={height}
-      border={border}
-      fontSize={fontSize}
-      fontFamily={fontFamily}
+    <StyledSelectWrapper
+      title={multiple ? null : title}
       background={background}
-      color={color}
-      radius={radius}
-      {...rest}
-      data-testid='select'
-      multiple={multiple}
-      onChange={onChange}
+      height={height}
+      fontFamily={fontFamily}
     >
-      {children}
-    </StyledSelect>
+      <StyledSelect
+        configuration={configuration}
+        size={size}
+        height={height}
+        border={border}
+        fontSize={fontSize}
+        fontFamily={fontFamily}
+        background={background}
+        color={color}
+        radius={radius}
+        {...rest}
+        id={rest.id}
+        data-testid='select'
+        multiple={multiple}
+        onChange={onChange}
+        title={multiple ? null : title}
+      >
+        {children}
+      </StyledSelect>
+      {multiple === false && title !== null && (
+        <label htmlFor={rest.id}>{title.label}</label>
+      )}
+    </StyledSelectWrapper>
   );
 };
 
