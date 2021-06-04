@@ -21,17 +21,27 @@ import { refs } from './DropdownRef';
  * @param {Function} onClick Triggers an action when an element is selected
  */
 
+interface DropdownProps {
+  hoverColor?: string;
+  border?: string;
+  defaultText: string;
+  family?: string | null;
+  content?: React.ReactNode[] | null;
+  size?: string;
+  height?: string;
+  onClick: Function;
+}
 const Dropdown = ({
   hoverColor = '#ffd6ce',
-  border,
+  border = 'none',
   defaultText = 'Buscar por...',
-  family = null,
-  content = null,
+  family,
+  content,
   size = 'default',
   height,
   onClick,
   ...rest
-}: any) => {
+}: DropdownProps) => {
   const { configuration } = useContext(ConfigContext);
   const [isOpen, setIsOpen] = useState(false);
   const activatorRef = useRef<HTMLButtonElement>(null);
@@ -113,6 +123,7 @@ const Dropdown = ({
           target={activatorRef}
           contentRef={dropdownListRef}
           content={dropContent}
+          position='top'
         />
       )}
     </Wrapper>

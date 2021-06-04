@@ -9,6 +9,7 @@ export * from './Hideable';
 export * from './Input';
 export * from './Paragraph';
 export * from './Pill';
+export * from './Popover';
 export * from './Progress';
 export * from './Radio';
 export * from './Range';
