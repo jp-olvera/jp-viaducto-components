@@ -1,12 +1,14 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, {
   useState, useEffect, useContext, useRef,
 } from 'react';
 import creditCardType, { types as CardType } from 'credit-card-type';
 
+import { Pill } from '..';
 import { ConfigContext } from '../../providers';
 import { getIcon } from './Icon';
 import ProgressBar from './ProgressBar';
-import { Wrapper } from './StyledInput';
+import { DataListContainer, Wrapper } from './StyledInput';
 
 creditCardType.resetModifications();
 
@@ -25,6 +27,7 @@ creditCardType.resetModifications();
  * @param {string} borderColor set the color border
  * @param {string} iconColor set the icon helper
  * @param {any} value the value for the input
+ * @param {{options:[], pillColor:string, pillTextColor:string}/null} dataListConfiguration Configuration for the datalist
  */
 
 interface InputInterface {
@@ -47,6 +50,11 @@ interface InputInterface {
   max?: number;
   style?: any;
   family?: string | null;
+  dataListConfiguration?: {
+    options: any[];
+    pillColor?: string;
+    pillTextColor?: string;
+  } | null;
 }
 
 const Input = ({
@@ -63,6 +71,7 @@ const Input = ({
   iconColor = '#2329D6',
   value = '',
   onChange = () => {},
+  dataListConfiguration = null,
   family,
   ...rest
 }: InputInterface) => {
@@ -70,9 +79,11 @@ const Input = ({
   const [inputType, setInputType] = useState(type);
   const [inputValue, setInputValue] = useState<any>(0);
   const [cardType, setCardType] = useState('card');
+  const [optionsSelected, setOptionsSelected] = useState<any[]>([]);
   const { configuration } = useContext(ConfigContext);
   const [newValue, setNewValue] = useState<any>(value);
   const inputRef = useRef<any>();
+  const datalistContainerRef = useRef<any>();
   const mustHaveIcon = ['card', 'date', 'color', 'phone', 'time'];
   useEffect(() => {
     setOpen(false);
@@ -112,6 +123,7 @@ const Input = ({
         iconColor={iconColor}
         disabled={disabled}
         family={family}
+        type={type}
         {...rest}
       >
         {(icon !== null || mustHaveIcon.includes(type)) && (
@@ -143,6 +155,17 @@ const Input = ({
         <input
           className='input'
           ref={inputRef}
+          onSelect={(ev: any) => {
+            if (type === 'datalist') {
+              onDataSelected(
+                datalistContainerRef,
+                dataListConfiguration,
+                optionsSelected,
+                setOptionsSelected,
+                ev,
+              );
+            }
+          }}
           onChange={(ev) => {
             onChange(ev);
             setInputValue(ev.target.value.length);
@@ -165,7 +188,9 @@ const Input = ({
                 ? 'tel'
                 : type === 'datetime-local'
                   ? 'date'
-                  : type
+                  : type === 'datalist'
+                    ? 'text'
+                    : type
           }
           autoComplete={type === 'card' ? 'cc-number' : ''}
           x-autocompletetype={type === 'card' ? 'cc-number' : ''}
@@ -176,6 +201,7 @@ const Input = ({
           min={rest.min}
           value={newValue}
           max={rest.max}
+          list={type === 'datalist' ? `${rest.id}__datalist` : undefined}
           {...rest}
         />
         <label className='label' htmlFor={rest.id}>
@@ -212,11 +238,93 @@ const Input = ({
           progressColor={getColor(inputValue)}
         />
       )}
+      {type === 'datalist' && (
+        <DataListContainer
+          configuration={configuration}
+          ref={datalistContainerRef}
+          border={border}
+          borderColor={borderColor}
+        >
+          {optionsSelected.length > 0
+            /* istanbul ignore next */
+            && optionsSelected.map((option: any, index: number) => (
+              <Pill
+                label={option}
+                background={
+                  dataListConfiguration?.pillColor
+                  || configuration.colors.warning.click
+                }
+                color={
+                  dataListConfiguration?.pillTextColor
+                  || configuration.colors.warning.text
+                }
+                key={option + index.toString()}
+                family={family}
+                handleAction={() => removePill(
+                  option,
+                  optionsSelected,
+                  inputRef,
+                  setNewValue,
+                  setOptionsSelected,
+                )}
+              />
+            ))}
+        </DataListContainer>
+      )}
+      {type === 'datalist' && (
+        <datalist id={`${rest.id}__datalist`}>
+          {dataListConfiguration?.options !== null
+            && (dataListConfiguration?.options || []).map(
+              (option: any, index: number) => (
+                <option value={option} key={option + index.toString()}>
+                  {option}
+                </option>
+              ),
+            )}
+        </datalist>
+      )}
     </>
   );
 };
 
 export default Input;
+
+export const onDataSelected = (
+  datalistContainerRef: any,
+  dataListConfiguration: any,
+  optionsSelected: any[],
+  setOptionsSelected: Function,
+  ev: { target: HTMLInputElement },
+) => {
+  /* istanbul ignore else */
+  if (datalistContainerRef) {
+    /* istanbul ignore else */
+    if (
+      dataListConfiguration?.options?.includes(ev.target.value)
+      && !optionsSelected.includes(ev.target.value)
+    ) {
+      setOptionsSelected((last: any[]) => [...last, ev.target.value]);
+    }
+  }
+};
+
+export const removePill = (
+  pill: any,
+  optionsSelected: any[],
+  inputRef: any,
+  setNewValue: Function,
+  setOptionsSelected: Function,
+) => {
+  /* istanbul ignore else */
+  if (optionsSelected.includes(pill)) {
+    // eslint-disable-next-line no-param-reassign
+    /* istanbul ignore else */
+    if (inputRef) {
+      setNewValue('');
+    }
+    setOptionsSelected((before: any[]) => before.filter((option: any) => option !== pill));
+  }
+};
 
 export const getColor = (index: number) => {
   switch (index) {

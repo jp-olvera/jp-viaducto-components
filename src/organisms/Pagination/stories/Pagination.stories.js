@@ -99,6 +99,25 @@ export default {
       type: { summary: 'Function', required: true },
       table: { defaultValue: () => {} },
     },
+    previousLabel: {
+      description:
+        'Set a label next to the icon (only works if leftIcon is null), you can set to false and add your own icon and label using leftIcon prop',
+      type: { summary: 'boolean', required: false },
+      table: { defaultValue: false },
+    },
+    nextLabel: {
+      description:
+        'Set a label next to the icon (only works if rightIcon is null), you can set to false and add your own icon and label using rightIcon prop',
+      type: { summary: 'boolean', required: false },
+      table: { defaultValue: false },
+    },
+    position: {
+      description: 'Set the pagination component in horizontal position',
+      type: { summary: 'string', required: true },
+      table: { defaultValue: 'center' },
+      control: 'select',
+      options: ['center', 'start', 'end'],
+    },
   },
 };
 
@@ -123,4 +142,7 @@ Default.args = {
   radius: 0,
   spacing: 'xs',
   onPageChange: () => {},
+  previousLabel: false,
+  nextLabel: false,
+  position: 'center',
 };

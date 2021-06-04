@@ -8,6 +8,10 @@ import { Pill } from '..';
 
 describe('<Pill/>', () => {
   test('should render properly', () => {
+    render(<Pill label='Pill' iconLead='' icon='' />);
+    expect(screen.queryByText('Pill')).toBeVisible();
+  });
+  test('should render properly with default props', () => {
     render(<Pill label='Pill' />);
     expect(screen.queryByText('Pill')).toBeVisible();
   });

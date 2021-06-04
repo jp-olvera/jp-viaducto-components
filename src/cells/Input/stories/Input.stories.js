@@ -33,6 +33,7 @@ export default {
         'color',
         'phone',
         'time',
+        'datalist',
       ],
       control: {
         type: 'select',
@@ -54,6 +55,7 @@ export default {
         'data',
         'phone',
         'mail',
+        'data',
         'time',
         'grid',
         'visa',
@@ -130,6 +132,18 @@ export default {
         defaultValue: { summary: null },
       },
       control: 'color',
+    },
+    dataListConfiguration: {
+      description:
+        'Set the configuration (options and pill color) if the datalist type is selected',
+      type: {
+        summary:
+          '{options: any[], pillColor: string, pillTextColor:string}/null',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: null },
+      },
     },
   },
 };
@@ -249,4 +263,27 @@ Time.args = {
   size: 'default',
   borderColor: null,
   iconColor: null,
+};
+
+export const Datalist = Template.bind({});
+
+Datalist.args = {
+  label: 'Choose your options',
+  type: 'datalist',
+  icon: null,
+  border: 'default',
+  isInvalid: false,
+  isValid: false,
+  required: false,
+  disabled: false,
+  transition: 'ease',
+  size: 'default',
+  id: 'data',
+  borderColor: null,
+  iconColor: null,
+  dataListConfiguration: {
+    options: ['Javascript', 'Dart', 'Python', 'Java', 'Ruby', 'PHP'],
+    pillTextColor: '#000',
+    pillColor: '#FFF0A5',
+  },
 };

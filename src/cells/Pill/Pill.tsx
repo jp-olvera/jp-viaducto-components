@@ -16,14 +16,14 @@ import { BareButton } from '../BareButton';
  */
 interface PillInterface {
   label: string;
-  iconLead: any;
-  icon: any;
+  iconLead?: any;
+  icon?: any;
   background: string;
-  color: string;
-  size: string;
+  color?: string;
+  size?: string;
   family?: string | null;
-  verticalAlign: string;
-  handleAction: Function | null;
+  verticalAlign?: string;
+  handleAction?: Function | null;
 }
 
 const Pill = ({
@@ -61,7 +61,7 @@ const Pill = ({
           style={{ height: '100%', display: 'flex' }}
         >
           {icon === null || icon === '' ? (
-            <Close stroke='blue' strokeWidth={2} width='18px' height='18px' />
+            <Close stroke={color} strokeWidth={2} width='18px' height='18px' />
           ) : (
             icon
           )}
