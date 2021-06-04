@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import StyledPill from '../Pill/StyledPill';
 
 export const Wrapper = styled.div < any > `
   & * {
@@ -24,6 +25,7 @@ export const Wrapper = styled.div < any > `
     : configuration.spacing.nano)};
 
   ${({ border, configuration, borderColor }) => getBorderStyle(border, configuration.text[borderColor] || borderColor)};
+  ${(p) => (p.type === 'datalist' ? 'border-bottom: none !important;' : null)};
 
   .input {
     border: none;
@@ -34,7 +36,13 @@ export const Wrapper = styled.div < any > `
     padding: 0;
     padding-right: ${({ configuration }) => configuration.spacing.tiny};
     padding-left: ${({ configuration, hasIcon }) => (hasIcon ? 0 : configuration.spacing.xs)};
-    padding-bottom: ${({ size }) => (size === 'large' ? '.3rem' : 0)};
+    padding-bottom: ${({ size, type, hasIcon }) => (size === 'large'
+    ? '.3rem'
+    : type === 'datalist'
+      ? hasIcon
+        ? '.05rem'
+        : 0
+      : 0)};
     &::placeholder {
       color: transparent;
     }
@@ -212,20 +220,30 @@ export const StyledProgressBar = styled.div < any > `
   }
 `;
 
+export const DataListContainer = styled.div < any > `
+  box-sizing: border-box;
+  transition: all 0.2s
+    ${(p) => p.transition || p.configuration.transitionTimingFunction};
+  width: 100%;
+  ${(p) => (p.border === 'bottom'
+    ? `border-bottom: 0.063rem solid ${p.borderColor || '#000'};`
+    : `border: 0.063rem solid ${p.bordercolor || '#000'};`)};
+  border-top: none;
+  & > ${StyledPill} {
+    margin: 0.2rem;
+  }
+`;
+
 const getBorderStyle = (border: string, color: string) => {
-  let borderStyle = css``;
   switch (border) {
     case 'bottom':
-      borderStyle = css`
+      return css`
         border-bottom: 0.063rem solid ${color};
       `;
-      break;
     case 'overlap':
     default:
-      borderStyle = css`
+      return css`
         border: 0.063rem solid ${color};
       `;
-      break;
   }
-  return borderStyle;
 };

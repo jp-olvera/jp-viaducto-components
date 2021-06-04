@@ -11,7 +11,7 @@ export const StyledPagination = styled.div < any > `
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: ${(p) => (p.position !== 'center' ? `flex-${p.position}` : 'center')};
     padding: 0;
     margin-left: 0;
     & > * > * {

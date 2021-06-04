@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent, screen } from '../../../test-utils';
 import '@testing-library/jest-dom/extend-expect';
 import { Input } from '..';
-import { mask } from '../Input';
+import { onDataSelected, removePill, mask } from '../Input';
 import ProgressBar from '../ProgressBar';
 
 describe('<Input/>', () => {
@@ -183,5 +183,94 @@ describe('<Input/>', () => {
   test('should be <ProgressBar/> rendered with Color', () => {
     const { container } = render(<ProgressBar currentProgress={3} />);
     expect(container).toBeDefined();
+  });
+
+  describe('data list test', () => {
+    const dataListConfiguration = {
+      options: ['Javascript', 'Dart', 'Python', 'Java', 'Ruby', 'PHP'],
+      pillTextColor: '#000',
+      pillColor: '#FFF0A5',
+    };
+    test('should render data list properly', () => {
+      const { container } = render(
+        <Input
+          type='datalist'
+          dataListConfiguration={dataListConfiguration}
+          label='Datalist'
+        />,
+      );
+      expect(container.querySelector('input')).toBeInTheDocument();
+    });
+    test('should render data list properly with border color', () => {
+      const { container } = render(
+        <Input
+          type='datalist'
+          dataListConfiguration={dataListConfiguration}
+          label='Datalist'
+          border='bottom'
+          borderColor={null}
+        />,
+      );
+      fireEvent.change(container.querySelector('input'), {
+        target: { value: 'PHP' },
+      });
+      expect(container.querySelector('input')).toBeInTheDocument();
+    });
+    test('should render data list with no options', () => {
+      const m = jest.fn().mockImplementation((e) => e);
+      const realUseState = React.useState;
+
+      // Stub the initial state
+      const stubInitialState = ['PHP'];
+
+      // Mock useState before rendering your component
+      jest
+        .spyOn(React, 'useState')
+        .mockImplementationOnce(() => realUseState(stubInitialState));
+
+      const { container } = render(
+        <Input
+          type='datalist'
+          dataListConfiguration={{
+            pillColor: 'red',
+            pillTextColor: 'green',
+          }}
+          label='Datalist'
+          border='bottom'
+          borderColor={null}
+          icon='data'
+          onSelect={(e) => m(e)}
+        />,
+      );
+      expect(container.querySelector('input')).toBeInTheDocument();
+    });
+    test('should trigger dataselected function', () => {
+      expect(
+        onDataSelected(
+          true,
+          dataListConfiguration,
+          ['PHP'],
+          (e, a) => {
+            e([a]);
+          },
+          {
+            target: { value: 'Javascript' },
+          },
+        ),
+      ).not.toBe('VALUE');
+    });
+    test('should trigger removePill function', () => {
+      expect(
+        removePill(
+          'PHP',
+          ['PHP'],
+          { target: { value: 'js' } },
+          () => '',
+          (e, a) => {
+            e([a]);
+          },
+        ),
+      ).not.toBe('VALUE');
+    });
   });
 });

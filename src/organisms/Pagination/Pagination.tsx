@@ -6,11 +6,17 @@ import { Anchor } from '../../cells';
 import { ConfigContext } from '../../providers';
 import { StyledPagination } from './StyledPagination';
 
+/**
+ * Pagination component
+ */
 interface PaginationInterface {
   totalPages: number;
   sibilings: number;
   iconLeft?: any | null;
+  previousLabel?: boolean;
   iconRight?: any | null;
+  nextLabel?: boolean;
+  position: string;
   family?: string;
   fontSize?: string;
   activeColor?: string;
@@ -26,6 +32,8 @@ const Pagination = ({
   sibilings,
   iconLeft,
   iconRight,
+  previousLabel = false,
+  nextLabel = false,
   family,
   fontSize = 'md',
   activeColor = '#bdbdbd',
@@ -34,6 +42,7 @@ const Pagination = ({
   radius = 0,
   spacing = 'xs',
   onPageChange,
+  position = 'center',
   ...rest
 }: PaginationInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -99,6 +108,7 @@ const Pagination = ({
       textColor={textColor}
       radius={radius}
       spacing={spacing}
+      position={position}
       {...rest}
     >
       <ul>
@@ -113,7 +123,21 @@ const Pagination = ({
               }
             }}
           >
-            <a>{iconLeft || <ChevronLeft />}</a>
+            {iconLeft ? (
+              <a>{iconLeft}</a>
+            ) : previousLabel ? (
+              <Anchor
+                label='Previous Page'
+                lead
+                icon={<ChevronLeft />}
+                color={textColor}
+                size={fontSize}
+              />
+            ) : (
+              <a>
+                <ChevronLeft />
+              </a>
+            )}
           </li>
         )}
         <li
@@ -155,7 +179,20 @@ const Pagination = ({
               }
             }}
           >
-            <a>{iconRight || <ChevronRight />}</a>
+            {iconRight ? (
+              <a>{iconRight}</a>
+            ) : nextLabel ? (
+              <Anchor
+                label='Next Page'
+                icon={<ChevronRight />}
+                color={textColor}
+                size={fontSize}
+              />
+            ) : (
+              <a>
+                <ChevronRight />
+              </a>
+            )}
           </li>
         )}
       </ul>
