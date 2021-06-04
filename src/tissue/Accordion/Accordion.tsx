@@ -2,13 +2,29 @@ import React, { useState, useEffect, useContext } from 'react';
 import StyledAccordion from './StyledAccordion';
 import { ConfigContext } from '../../providers';
 
+/**
+ * Accordion component
+ * @param {React.ReactElement} children Children components for the accordion
+ * @param {Number} defaultIndex Index to set open the accordion item
+ * @param {Boolean} expandMultiple Accept multiple accordion items open at the same time
+ * @param {String} paddingX Padding in X
+ * @param {String} paddingY Padding in Y
+ */
+interface AccordionInterface {
+  children?: React.ReactElement;
+  defaultIndex?: number;
+  expandMultiple?: boolean;
+  paddingX?: string;
+  paddingY?: string;
+}
+
 const Accordion = ({
   children,
   defaultIndex = -1,
   expandMultiple = false,
   paddingX = 'sm',
   paddingY = 'sm',
-}) => {
+}: AccordionInterface) => {
   const { configuration } = useContext(ConfigContext);
   const px = configuration.spacing[paddingX] || configuration.spacing.md;
   const py = configuration.spacing[paddingY] || configuration.spacing.md;
@@ -39,8 +55,8 @@ const Accordion = ({
   return (
     <StyledAccordion>
       {React.Children.map(children, (child, i) => {
+        /* istanbul ignore if */
         if (!child) {
-          /* istanbul ignore if */
           return null;
         }
         return React.cloneElement(child, {

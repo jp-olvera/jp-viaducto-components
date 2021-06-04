@@ -77,13 +77,24 @@ export default {
         type: 'select',
       },
     },
+    transition: {
+      description: 'Overrides the transitionTimingFunction prop',
+      type: {
+        summary: 'string',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: 'ease' },
+      },
+      control: 'text',
+    },
   },
 };
 
 const Template = (args) => (
   <ConfigProvider>
     <Accordion {...args}>
-      <AccordionItem title='Hola, no olvides revisar los Docs arriba'>
+      <AccordionItem title='Hola, no olvides revisar los Docs arriba' {...args}>
         <Paragraph>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industrys standard dummy text ever
@@ -96,7 +107,10 @@ const Template = (args) => (
           including versions of Lorem Ipsum.
         </Paragraph>
       </AccordionItem>
-      <AccordionItem title='Presiona la D para que aparezcan los controles'>
+      <AccordionItem
+        title='Presiona la D para que aparezcan los controles'
+        {...args}
+      >
         <Paragraph>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industrys standard dummy text ever
@@ -109,7 +123,10 @@ const Template = (args) => (
           including versions of Lorem Ipsum.
         </Paragraph>
       </AccordionItem>
-      <AccordionItem title='Aquí puedes poner un texto o un componente'>
+      <AccordionItem
+        title='Aquí puedes poner un texto o un componente'
+        {...args}
+      >
         <Paragraph>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industrys standard dummy text ever
@@ -130,4 +147,5 @@ export const Default = Template.bind({});
 
 Default.args = {
   defaultIndex: 0,
+  transition: 'cubic-bezier(.92,.03,.56,.36)',
 };
