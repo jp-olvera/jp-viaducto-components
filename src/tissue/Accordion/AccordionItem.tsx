@@ -1,6 +1,14 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, {
+  useRef, useState, useEffect, useContext,
+} from 'react';
 import { StyledAccordionItem } from './StyledAccordion';
 import { Title } from '../../cells';
+import { ConfigContext } from '../../providers';
+
+/**
+ * Accordion Item component
+ * @param {String} transition Overrides the transitionTimingFunction
+ */
 
 export type AccordionItemProps = {
   // no me borres, a lo mejor lo ocupo después
@@ -12,6 +20,7 @@ export type AccordionItemProps = {
   title: string;
   paddingX: string;
   paddingY: string;
+  transition: string;
 };
 
 const AccordionItem = ({
@@ -23,7 +32,9 @@ const AccordionItem = ({
   title = '',
   paddingX,
   paddingY,
+  transition,
 }: AccordionItemProps) => {
+  const { configuration } = useContext(ConfigContext);
   const ref = useRef<HTMLElement>(null);
   const [height, setHeight] = useState('0px');
 
@@ -49,6 +60,8 @@ const AccordionItem = ({
       paddingX={paddingX}
       paddingY={paddingY}
       expanded={expanded}
+      transition={transition}
+      configuration={configuration}
     >
       <button
         className='accordion-header'

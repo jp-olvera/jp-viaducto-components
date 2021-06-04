@@ -4,6 +4,8 @@ interface SAI {
   paddingX: string;
   paddingY: string;
   expanded: boolean;
+  transition?: string;
+  configuration?: any;
 }
 
 export const StyledAccordionItem = styled.div < SAI > `
@@ -32,7 +34,8 @@ export const StyledAccordionItem = styled.div < SAI > `
     flex-shrink: 0;
     height: 1rem;
     margin-left: auto;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s
+      ${(p) => p.transition || p.configuration.transitionTimingFunction};
     transform: ${(p) => (p.expanded ? 'rotate(-180deg)' : 'rotate(0deg)')};
     width: 1rem;
   }
@@ -53,7 +56,10 @@ export const StyledAccordionItem = styled.div < SAI > `
     padding: ${(p) => p.paddingY} ${(p) => p.paddingX};
     opacity: 1;
     transform: scaleY(1);
-    transition: height 250ms ease-in, padding 250ms ease-in;
+    transition: height 250ms
+        ${(p) => p.transition || p.configuration.transitionTimingFunction},
+      padding 250ms
+        ${(p) => p.transition || p.configuration.transitionTimingFunction};
   }
   .noPadding {
     padding-top: 0px;
@@ -61,7 +67,8 @@ export const StyledAccordionItem = styled.div < SAI > `
   }
   .collapse {
     display: none;
-    transition: display 0ms linaer 250ms;
+    transition: display 0ms
+      ${(p) => p.transition || p.configuration.transitionTimingFunction} 250ms;
   }
 `;
 

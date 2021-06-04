@@ -38,7 +38,7 @@ describe('<Accordion />', () => {
   test('should render both contents when using expandMultiple', () => {
     const { getByText } = render(
       <Accordion expandMultiple>
-        <AccordionItem title='Open1'>
+        <AccordionItem title='Open1' onTransitionEnd={jest.fn}>
           <p>Text1</p>
         </AccordionItem>
         <AccordionItem title='Open2'>
@@ -50,11 +50,12 @@ describe('<Accordion />', () => {
     fireEvent.click(getByText('Open2'));
     expect(getByText('Text1')).toBeVisible();
     expect(getByText('Text2')).toBeVisible();
+    fireEvent.click(getByText('Open1'));
   });
   test('should return AccordionItem with default title', () => {
     const { container, queryByText } = render(
       <Accordion expandMultiple>
-        <AccordionItem expanded>
+        <AccordionItem expanded transition='ease-in'>
           <p>Text1</p>
         </AccordionItem>
         <AccordionItem title={0}>
