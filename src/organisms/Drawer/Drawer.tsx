@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { createPortal } from 'react-dom';
 import StyledDrawer from './StyledDrawer';
 import { BareButton } from '../../cells';
 import { ConfigContext } from '../../providers';
@@ -16,6 +17,9 @@ interface DrawerInterface {
   elevation: number;
   elevationDirection: string;
   transition?: string;
+  onClose: () => void;
+  overlayColor: string;
+  overlayOpacity: string;
 }
 
 const Drawer = ({
@@ -23,30 +27,69 @@ const Drawer = ({
   children,
   elevation = 1,
   elevationDirection = '',
+  onClose,
+  overlayColor = 'rgba(0,0,0,0.3)',
   ...rest
 }: DrawerInterface) => {
-  const [isActive, setIsActive] = useState(active);
   const { configuration } = useContext(ConfigContext);
+  const [isClosing, setisClosing] = useState(false);
+
   useEffect(() => {
-    setIsActive(active);
+    setisClosing(false);
   }, [active]);
 
-  const handleActive = () => {
-    setIsActive(false);
+  const handleClose = (ev) => {
+    if (
+      ev.type === 'click'
+      || ev.type === 'Enter'
+      || ev.keyCode === 13
+      || ev.keyCode === 32
+    ) {
+      if (active) {
+        setisClosing(true);
+        setTimeout(() => {
+          onClose();
+        }, 230);
+      }
+    }
   };
-  return (
-    <StyledDrawer
-      active={isActive}
-      configuration={configuration}
-      elevation={elevation}
-      elevationDirection={elevationDirection}
-      {...rest}
+
+  if (!active) return null;
+
+  return createPortal(
+    <div
+      onClick={handleClose}
+      onKeyDown={handleClose}
+      data-testid='overlay'
+      role='dialog'
+      style={{
+        backgroundColor: overlayColor,
+        left: 0,
+        height: '100vh',
+        position: 'fixed',
+        top: 0,
+        width: '100vw',
+        zIndex: 1,
+      }}
     >
-      <div className='close'>
-        <BareButton onClick={handleActive}>X</BareButton>
-      </div>
-      <div className='drawer-content'>{children}</div>
-    </StyledDrawer>
+      <StyledDrawer
+        data-testid='drawer'
+        tabIndex={0}
+        active={active}
+        configuration={configuration}
+        elevation={elevation}
+        elevationDirection={elevationDirection}
+        {...rest}
+        onClick={(ev) => {
+          // Yep! this is needed
+          ev.stopPropagation();
+        }}
+        isClosing={isClosing}
+      >
+        {children}
+      </StyledDrawer>
+    </div>,
+    document.body,
   );
 };
 
