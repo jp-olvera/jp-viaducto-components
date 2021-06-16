@@ -1,4 +1,22 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+
+const show = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
+const hide = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+`;
 
 interface SideI {
   configuration?: any;
@@ -7,7 +25,7 @@ interface SideI {
 
 const StyledSidebarSection = styled.div < SideI > `
   padding: 0;
-  min-width: 16.625rem;
+  /* min-width: 16.625rem; */
   width: 100%;
   box-sizing: border-box;
   & > * {
@@ -29,22 +47,6 @@ const StyledSidebarSection = styled.div < SideI > `
     box-sizing: border-box;
     position: relative;
     user-select: none;
-  }
-  .b {
-    cursor: pointer;
-    &:hover,
-    :focus {
-      color: rgba(23, 125, 239, 1);
-      background-color: rgba(23, 125, 239, 0.1);
-      &::before {
-        content: '';
-        border-left: 3px solid rgba(23, 125, 239);
-        position: absolute;
-        height: 100%;
-        left: 0px;
-        top: 0px;
-      }
-    }
   }
 
   .c {
@@ -77,41 +79,120 @@ const StyledSidebarSection = styled.div < SideI > `
   .toggleMenu {
     cursor: pointer;
   }
-  .submenu {
-    width: 0;
+`;
+
+const getDecoration = () => css`
+  color: rgba(23, 125, 239, 1);
+  background-color: rgba(23, 125, 239, 0.1);
+  &::after {
+    content: '';
+    border-left: 3px solid rgba(23, 125, 239);
     position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    transform: translateX(100%);
-    transition: transform 0.2s
-      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
-    height: -webkit-fill-available;
-    background-color: white;
-    @media screen and (min-width: 49rem) {
-      top: 1.2rem;
-    }
+    height: 100%;
+    right: 0px;
+    top: 0px;
   }
-  .active {
+`;
+interface MenuItemProps {
+  configuration: any;
+  active: boolean;
+  nested: boolean;
+}
+
+export const MenuItem = styled.li < MenuItemProps > `
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  list-style: none;
+  position: relative;
+  user-select: none;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover,
+  :focus {
+    ${getDecoration()};
+  }
+  ${(p) => p.active && getDecoration()};
+  a {
+    appearance: none;
+  }
+
+  padding: ${(p) => p.configuration.spacing.sm}
+    ${(p) => (p.nested ? p.configuration.spacing.lg : p.configuration.spacing.sm)};
+`;
+interface SubmenuProps {
+  configuration: any;
+  transition: string;
+  isClosing: boolean;
+}
+
+export const Submenu = styled.ul < SubmenuProps > `
+  background-color: white;
+  height: -webkit-fill-available;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  & > button {
     width: 100%;
-    transform: translateX(0);
-    transition: transform 0.2s
-      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
-    & > button {
-      width: 100%;
-      text-align: left;
-      background-color: rgba(23, 125, 239, 0.1);
-      cursor: pointer;
-      height: 4rem;
+    text-align: left;
+    background-color: rgba(23, 125, 239, 0.1);
+    cursor: pointer;
+    height: 4rem;
+    border: none;
+    font-size: 1rem;
+    color: rgba(23, 125, 239, 1);
+    & :active {
+      background-color: white;
       border: none;
       font-size: 1rem;
-      color: rgba(23, 125, 239, 1);
-      & :active {
-        background-color: white;
-        border: none;
-        font-size: 1rem;
-      }
     }
+  }
+  ${(p) => (p.isClosing
+    ? css`
+          animation: ${hide} 230ms linear;
+        `
+    : css`
+          animation: ${show} 230ms
+            ${p.transition || p.configuration.transitionTimingFunction};
+        `)};
+`;
+
+export const StyledMenuTitle = styled.li < any > `
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  list-style: none;
+  position: relative;
+  user-select: none;
+  width: 100%;
+  cursor: pointer;
+  padding: ${(p) => p.configuration.spacing.sm};
+  overflow: hidden;
+  ${(p) => (p.type === 'menu' || p.type === 'dropdown'
+    ? css`
+          &::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-position: right 0 center;
+            background-repeat: no-repeat;
+            background-size: 1rem;
+            content: '';
+            flex-shrink: 0;
+            height: 1rem;
+            margin-left: auto;
+            transition: transform 0.2s ease;
+            transform: ${p.expanded ? 'rotate(-180deg)' : 'rotate(0deg)'};
+            width: 1rem;
+          }
+        `
+    : css``)};
+
+  &:hover {
+    color: rgba(23, 125, 239, 1);
+    background-color: rgba(23, 125, 239, 0.1);
   }
 `;
 export default StyledSidebarSection;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import StyledDrawer from './StyledDrawer';
-import { BareButton } from '../../cells';
 import { ConfigContext } from '../../providers';
 
 /**
