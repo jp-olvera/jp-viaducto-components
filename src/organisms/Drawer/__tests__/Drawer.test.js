@@ -22,21 +22,17 @@ describe('<Drawer/>', () => {
     );
     expect(screen.queryByText('Title')).toMatchSnapshot();
   });
-  test('should click the button', () => {
+  test('should call onClose when clicking the overlay', () => {
+    jest.useFakeTimers();
+    const onClose = jest.fn();
     render(
-      <Drawer>
+      <Drawer onClose={onClose} active>
         <h1>Title</h1>
       </Drawer>,
     );
-    const button = screen.queryByRole('button');
-    fireEvent.click(button);
-    expect(button).toMatchInlineSnapshot(`
-      <button
-        class="BareButton__StyledButton-sc-7bpup3-0 fpYbxH"
-        type="button"
-      >
-        X
-      </button>
-    `);
+    fireEvent.click(screen.getByTestId('overlay'));
+    jest.runOnlyPendingTimers();
+    expect(onClose).toBeCalledTimes(1);
+    jest.useRealTimers();
   });
 });
