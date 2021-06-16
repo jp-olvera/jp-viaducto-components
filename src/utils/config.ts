@@ -94,6 +94,7 @@ const config = {
       shadow: 'rgba(1, 87, 155, 0.53)',
     },
   },
+  disableColor: '#BFBFBF',
   text: {
     danger: '#B71C1C',
     dangerLight: '#F05545',
