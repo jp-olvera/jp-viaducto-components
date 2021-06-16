@@ -18,7 +18,8 @@ interface DrawerInterface {
   transition?: string;
   onClose: () => void;
   overlayColor: string;
-  overlayOpacity: string;
+  overlayOpacity?: string;
+  minWidth?: string;
 }
 
 const Drawer = ({
@@ -28,6 +29,7 @@ const Drawer = ({
   elevationDirection = '',
   onClose,
   overlayColor = 'rgba(0,0,0,0.3)',
+  minWidth = '22.25rem',
   ...rest
 }: DrawerInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -72,12 +74,13 @@ const Drawer = ({
       }}
     >
       <StyledDrawer
-        data-testid='drawer'
-        tabIndex={0}
         active={active}
         configuration={configuration}
+        data-testid='drawer'
         elevation={elevation}
         elevationDirection={elevationDirection}
+        minWidth={minWidth}
+        tabIndex={0}
         {...rest}
         onClick={(ev) => {
           // Yep! this is needed
