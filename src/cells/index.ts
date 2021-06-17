@@ -4,6 +4,7 @@ export * from './Badge';
 export * from './Button';
 export * from './BareButton';
 export * from './CheckBox';
+export * from './Container';
 export * from './Dropdown';
 export * from './Hideable';
 export * from './Input';
