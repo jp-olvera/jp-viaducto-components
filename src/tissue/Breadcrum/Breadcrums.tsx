@@ -1,99 +1,65 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { StyledBreadcrums, StyledBreadcrum } from './StyledBreadcrum';
-import { ConfigContext } from '../../providers';
+import React, { useState, Children } from 'react';
+import { StyledBreadcrums } from './StyledBreadcrum';
+import BreadcrumContext, { BreadcrumValuesProps } from './BreadcrumContext';
+import Breadcrum from './Breadcrum';
 
-interface option {
-  href: string | undefined;
-  onClick: Function | undefined;
-  label: string;
-  target: string | undefined;
+interface BreadcrumsProps {
+  fontSize: string;
+  family: string;
+  separatorSpacing: string;
+  children: React.ReactNode[];
 }
-
 const Breadcrums = ({
-  options = [],
   fontSize,
   family,
   separatorSpacing = 'sm',
-}) => {
-  const [optionsToShow, setOptionsToShow] = useState<option[]>(options);
+  children,
+}: BreadcrumsProps) => {
   const [showAll, setShowAll] = useState(false);
 
-  useEffect(() => {
-    if (showAll) setOptionsToShow(options);
-  }, [showAll]);
+  const [breadcrumConfig] = useState<BreadcrumValuesProps>({
+    separatorSpacing,
+    fontSize,
+    family,
+  });
 
-  useEffect(() => {
-    if (options.length > 4 && !showAll) {
-      const newOptions: option[] = [];
-      newOptions.push(options[0]);
-      newOptions.push(blankOption);
-      newOptions.push(options[options.length - 3]);
-      newOptions.push(options[options.length - 2]);
-      newOptions.push(options[options.length - 1]);
-      setOptionsToShow(newOptions);
-    }
-  }, [options]);
-  const blankOption: option = {
-    href: undefined,
-    label: '...',
-    onClick: () => setShowAll(true),
-    target: undefined,
-  };
-
+  // If you wanna know a little more about Children.toArray and this code
+  // https://dev.to/boywithsilverwings/counting-react-children-kde
   return (
     <nav aria-label='breadcrum'>
       <StyledBreadcrums>
-        {optionsToShow.map((e, i) => (
-          <Breadcrum
-            fontSize={fontSize}
-            family={family}
-            separatorSpacing={separatorSpacing}
-            key={`${e.label}-${i}-brcrm`}
-            separator={i !== optionsToShow.length - 1}
-            {...e}
-          />
-        ))}
+        <BreadcrumContext.Provider value={{ breadcrumConfig }}>
+          {showAll || Children.toArray(children).length <= 4 ? (
+            children
+          ) : (
+            <>
+              {Children.toArray(children)[0]}
+              <Breadcrum
+                label='...'
+                onClick={() => {
+                  setShowAll(true);
+                }}
+              />
+              {
+                Children.toArray(children)[
+                  Children.toArray(children).length - 3
+                ]
+              }
+              {
+                Children.toArray(children)[
+                  Children.toArray(children).length - 2
+                ]
+              }
+              {
+                Children.toArray(children)[
+                  Children.toArray(children).length - 1
+                ]
+              }
+            </>
+          )}
+        </BreadcrumContext.Provider>
       </StyledBreadcrums>
     </nav>
-  );
-};
-
-export const Breadcrum = ({
-  active = false,
-  family,
-  fontSize,
-  href,
-  label,
-  onClick,
-  separatorSpacing,
-  target = '_self',
-  separator = true,
-}) => {
-  const { configuration } = useContext(ConfigContext);
-  const content = (
-    <>
-      <span className='label'>{label}</span>
-      {separator && <div className='v-separator'>/</div>}
-    </>
-  );
-  return (
-    <StyledBreadcrum
-      active={active}
-      spacing={separatorSpacing}
-      configuration={configuration}
-      fontSize={fontSize}
-      family={family}
-    >
-      {onClick !== undefined ? (
-        <button className='v-breadcrum' onClick={onClick} type='button'>
-          {content}
-        </button>
-      ) : (
-        <a className='v-breadcrum' href={href} target={target}>
-          {content}
-        </a>
-      )}
-    </StyledBreadcrum>
   );
 };
 

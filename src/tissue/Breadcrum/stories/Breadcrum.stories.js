@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 import React from 'react';
-import { Breadcrums } from '../..';
+import { Breadcrums, Breadcrum } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
@@ -55,46 +55,18 @@ export default {
   },
 };
 
-const options = [
-  { label: 'Home', href: '#' },
-  {
-    label: 'Introducción',
-    onClick: () => {
-      alert('3');
-    },
-  },
-  {
-    label: 'Section 1',
-    onClick: () => {
-      alert('hola2');
-    },
-  },
-  { label: 'Chapter 1', href: '#' },
-  { label: 'The 5', href: '#' },
-  {
-    label: 'Page 4',
-    onClick: () => {
-      alert('hola1');
-    },
-    active: true,
-  },
-];
-// const options = [
-//   {
-//     label: 'Go back',
-//     href: 'https://google.com',
-//     onClick: undefined,
-//     target: undefined,
-//   },
-// ];
-
 const Template = (args) => (
   <ConfigProvider>
     <Breadcrums {...args}>
-      {/* <Breadcrum label='Parent' href='#' />
-      <Breadcrum label='Parent' onClick={() => {}} />
-      <Breadcrum label='Parent' onClick={() => {}} />
-      <Breadcrum label='Parent' href='#' active /> */}
+      <Breadcrum label='1' href='#' />
+      <Breadcrum label='2' onClick={() => {}} />
+      <Breadcrum label='3' onClick={() => {}} />
+      <Breadcrum label='4' href='#' />
+      <Breadcrum label='5' href='#' />
+      <Breadcrum label='6' href='#' />
+      <Breadcrum label='7' href='#' />
+      <Breadcrum label='8' href='#' />
+      <Breadcrum label='9' href='#' active separator={false} />
     </Breadcrums>
   </ConfigProvider>
 );
@@ -102,7 +74,55 @@ const Template = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  options,
+  separatorSpacing: 'sm',
+  fontSize: 'md',
+};
+const Template2 = (args) => (
+  <ConfigProvider>
+    <Breadcrums {...args}>
+      <Breadcrum label='1' href='#' />
+      <Breadcrum label='2' onClick={() => {}} />
+      <Breadcrum label='3' onClick={() => {}} />
+      <Breadcrum label='4' href='#' />
+      <Breadcrum label='5' href='#' />
+      <Breadcrum label='6' href='#' />
+      <Breadcrum label='7' href='#' />
+      <Breadcrum label='8' href='#' />
+      <Breadcrum label='9' href='#' />
+      <button
+        type='button'
+        onClick={() => {
+          alert('You clicked');
+        }}
+        style={{ padding: '0', margin: '0', border: 'none' }}
+      >
+        <Breadcrum
+          label='This could be the Router Link'
+          active
+          separator={false}
+        />
+      </button>
+    </Breadcrums>
+  </ConfigProvider>
+);
+
+export const ExternalWrapper = Template2.bind({});
+
+ExternalWrapper.args = {
+  separatorSpacing: 'sm',
+  fontSize: 'md',
+};
+const Template3 = (args) => (
+  <ConfigProvider>
+    <Breadcrums {...args}>
+      <Breadcrum label='Visit google' href='https://www.google.com' />
+    </Breadcrums>
+  </ConfigProvider>
+);
+
+export const Individual = Template3.bind({});
+
+Individual.args = {
   separatorSpacing: 'sm',
   fontSize: 'md',
 };

@@ -10,6 +10,10 @@ export const StyledBreadcrums = styled.ol`
   padding: 0px !important;
   flex-wrap: wrap;
   box-sizing: border-box;
+
+  li:first-child > .v-breadcrum {
+    padding-left: 0 !important;
+  }
 `;
 interface Breadcrum {
   active: boolean;
@@ -21,7 +25,6 @@ interface Breadcrum {
 export const StyledBreadcrum = styled.li < Breadcrum > `
   // !important is needed because of the button inherited properties
   .v-breadcrum {
-    /* align-items: center; */
     appearance: none;
     background: transparent;
     margin: 0;
@@ -41,6 +44,7 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     cursor: pointer;
     box-sizing: border-box;
     font-family: ${(p) => (p.family ? p.family : 'inherit')};
+    padding-left: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
   }
 
   .v-breadcrum:not([disabled]):hover {
@@ -54,7 +58,6 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     vertical-align: middle;
     align-items: center;
     margin-left: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
-    margin-right: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
     color: ${(p) => p.configuration.text.mutedGray};
     font-weight: normal;
   }
