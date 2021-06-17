@@ -73,7 +73,7 @@ export const Breadcrum = ({
   const content = (
     <>
       <span className='label'>{label}</span>
-      {separator && <div className='separator'>/</div>}
+      {separator && <div className='v-separator'>/</div>}
     </>
   );
   return (
@@ -85,11 +85,11 @@ export const Breadcrum = ({
       family={family}
     >
       {onClick !== undefined ? (
-        <button className='breadcrum' onClick={onClick} type='button'>
+        <button className='v-breadcrum' onClick={onClick} type='button'>
           {content}
         </button>
       ) : (
-        <a className='breadcrum' href={href} target={target}>
+        <a className='v-breadcrum' href={href} target={target}>
           {content}
         </a>
       )}
