@@ -46,17 +46,36 @@ const Template = (args) => (
   <ConfigProvider>
     <SidebarSection {...args}>
       <MenuItem
-        url='#'
-        label='First item in the list for this example'
+        href='#'
+        label='First item in the menu with a large text'
         nested
       />
-      <MenuItem url='#' label='Second item in' nested />
-      <MenuItem url='#' label='Third item in' nested />
+      <a href='http://www.google.com' target='_blank' rel='noreferrer'>
+        <MenuItem label='Wrap with an anchor or Link' nested />
+      </a>
+      <button
+        type='button'
+        onClick={() => {
+          alert('You clicked!');
+        }}
+        style={{
+          appearance: 'none',
+          border: 'none',
+          width: '100%',
+          background: 'inherit',
+          textAlign: 'left',
+          fontSize: 'inherit',
+          margin: '0',
+          padding: '0',
+          fontFamily: 'inherit',
+        }}
+      >
+        <MenuItem label='Maybe use a button' nested />
+      </button>
     </SidebarSection>
-    <MenuItem url='#' label='Infrastructure' icon={<Settings />} />
+    <MenuItem label='Use an icon' href='' icon={<Settings />} />
     <MenuItem
-      url='#'
-      label='Org Settings'
+      label='Change icon position'
       active
       icon={<Settings />}
       lead={false}
@@ -73,7 +92,7 @@ Default.args = {
   isDropdown: false,
   isMenu: false,
   transition: 'ease',
-  icon: '🎈',
+  icon: <Settings />,
 };
 
 Submenu.args = {
@@ -82,5 +101,5 @@ Submenu.args = {
   isDropdown: false,
   isMenu: true,
   transition: 'ease',
-  icon: '🎈',
+  icon: <Settings />,
 };
