@@ -22,6 +22,36 @@ const MenuItem = ({
 }: MenuItemProps) => {
   const { configuration } = useContext(ConfigContext);
 
+  const content = (
+    <span style={{ display: 'flex', alignItems: 'center' }} title={label}>
+      {lead && icon !== null && (
+        <span style={{ display: 'flex', alignItems: 'center' }}>{icon}</span>
+      )}
+      {lead && icon !== null && <Spacer size='sm' direction='horizontal' />}
+      <span
+        style={{
+          alignItems: 'center',
+          width: '100%',
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
+        }}
+      >
+        {label}
+      </span>
+      {!lead && icon !== null && (
+        <span
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            marginLeft: 'auto',
+          }}
+        >
+          {icon}
+        </span>
+      )}
+    </span>
+  );
   return (
     <Wrapper
       configuration={configuration}
@@ -32,38 +62,11 @@ const MenuItem = ({
       active={active}
       nested={nested}
     >
-      <a href={href}>
-        <span style={{ display: 'flex', alignItems: 'center' }}>
-          {lead && icon !== null && (
-            <span style={{ display: 'flex', alignItems: 'center' }}>
-              {icon}
-            </span>
-          )}
-          {lead && icon !== null && <Spacer size='sm' direction='horizontal' />}
-          <span
-            style={{
-              alignItems: 'center',
-              width: '100%',
-              overflow: 'hidden',
-              whiteSpace: 'nowrap',
-              textOverflow: 'ellipsis',
-            }}
-          >
-            {label}
-          </span>
-          {!lead && icon !== null && (
-            <span
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                marginLeft: 'auto',
-              }}
-            >
-              {icon}
-            </span>
-          )}
-        </span>
-      </a>
+      {href !== undefined ? (
+        <a href={href}> {content} </a>
+      ) : (
+        <span> {content} </span>
+      )}
     </Wrapper>
   );
 };
