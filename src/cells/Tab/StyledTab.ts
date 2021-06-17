@@ -6,11 +6,10 @@ const StyledTab = styled.button < any > `
   box-sizing: border-box;
   cursor: pointer;
   ${({ configuration, verticalSpacing }) => css`
-      height: calc(
-        ${configuration.spacing[verticalSpacing] || configuration.spacing.sm} *
-          5
-      );
-    `};
+    height: calc(
+      ${configuration.spacing[verticalSpacing] || configuration.spacing.sm} * 5
+    );
+  `};
   min-height: calc(${({ configuration }) => configuration.spacing.micro} * 5);
   position: relative;
 
@@ -25,7 +24,8 @@ const StyledTab = styled.button < any > `
     margin-left: ${(p) => (!p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
     display: inline;
   }
-  & :after {
+
+  &:not([hover]):after {
     background-color: ${({ color }) => color};
     bottom: 0;
     content: '';
@@ -35,10 +35,10 @@ const StyledTab = styled.button < any > `
     width: 100%;
   }
 
-  & :hover {
+  &:hover {
     transition: all 0.2s
       ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
-    & :after {
+    &:after {
       content: '';
       height: 3px;
       width: 100%;
@@ -47,7 +47,7 @@ const StyledTab = styled.button < any > `
       left: 0;
       background-color: ${({ hoverColor }) => hoverColor};
     }
-    & .tab-text {
+    & > .tab-text {
       transition: all 0.2s
         ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
       transform: translateY(
@@ -56,7 +56,7 @@ const StyledTab = styled.button < any > `
     }
   }
 
-  & :active,
+  &:active,
   :focus {
     p {
       color: ${({ activeTextColor }) => activeTextColor};
