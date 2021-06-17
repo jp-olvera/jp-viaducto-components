@@ -49,6 +49,7 @@ const Breadcrums = ({
             family={family}
             separatorSpacing={separatorSpacing}
             key={`${e.label}-${i}-brcrm`}
+            separator={i !== optionsToShow.length - 1}
             {...e}
           />
         ))}
@@ -66,12 +67,13 @@ export const Breadcrum = ({
   onClick,
   separatorSpacing,
   target = '_self',
+  separator = true,
 }) => {
   const { configuration } = useContext(ConfigContext);
   const content = (
     <>
       <span className='label'>{label}</span>
-      <div className='separator'>/</div>
+      {separator && <div className='separator'>/</div>}
     </>
   );
   return (
