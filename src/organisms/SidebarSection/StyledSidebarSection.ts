@@ -109,15 +109,20 @@ export const MenuItem = styled.li < MenuItemProps > `
   user-select: none;
   width: 100%;
   cursor: pointer;
+  text-decoration: none;
+  appearance: none;
+  color: inherit;
+  a {
+    text-decoration: none;
+    appearance: none;
+    color: inherit;
+  }
 
   &:hover,
   :focus {
     ${getDecoration()};
   }
   ${(p) => p.active && getDecoration()};
-  a {
-    appearance: none;
-  }
 
   padding: ${(p) => p.configuration.spacing.sm}
     ${(p) => (p.nested ? p.configuration.spacing.lg : p.configuration.spacing.sm)};
@@ -137,14 +142,16 @@ export const Submenu = styled.ul < SubmenuProps > `
   width: 100%;
   z-index: 1;
   & > button {
-    width: 100%;
-    text-align: left;
     background-color: rgba(23, 125, 239, 0.1);
-    cursor: pointer;
-    height: 4rem;
     border: none;
-    font-size: 1rem;
     color: rgba(23, 125, 239, 1);
+    cursor: pointer;
+    font-size: 1rem;
+    height: 4rem;
+    margin: none;
+    padding: 0 ${(p) => p.configuration.spacing.sm};
+    text-align: left;
+    width: 100%;
     & :active {
       background-color: white;
       border: none;

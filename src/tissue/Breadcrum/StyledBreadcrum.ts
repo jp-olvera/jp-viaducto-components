@@ -10,6 +10,10 @@ export const StyledBreadcrums = styled.ol`
   padding: 0px !important;
   flex-wrap: wrap;
   box-sizing: border-box;
+
+  li:first-child > .v-breadcrum {
+    padding-left: 0 !important;
+  }
 `;
 interface Breadcrum {
   active: boolean;
@@ -20,8 +24,7 @@ interface Breadcrum {
 }
 export const StyledBreadcrum = styled.li < Breadcrum > `
   // !important is needed because of the button inherited properties
-  .breadcrum {
-    /* align-items: center; */
+  .v-breadcrum {
     appearance: none;
     background: transparent;
     margin: 0;
@@ -31,31 +34,31 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     text-decoration: none;
     font-size: ${(p) => getSize(p.fontSize)};
     line-height: 2rem !important;
-    /* vertical-align: middle; */
-    /* display: inline-flex; */
     letter-spacing: 0.062rem !important;
     transition: all 300ms ease;
-    color: ${(p) => (p.active ? 'rgb(111,68,225)' : 'rgb(72, 72, 72)')};
-    font-weight: ${(p) => (p.active ? 'bold !important' : 'normal !important')};
+    color: ${(p) => (p.active
+    ? p.configuration.text.darkGray
+    : p.configuration.text.mutedGray)};
+    font-weight: normal;
     outline: none;
     cursor: pointer;
     box-sizing: border-box;
     font-family: ${(p) => (p.family ? p.family : 'inherit')};
+    padding-left: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
   }
 
-  .breadcrum:not([disabled]):hover {
+  .v-breadcrum:not([disabled]):hover {
     .label {
       text-decoration: underline !important;
     }
   }
 
-  .separator {
+  .v-separator {
     display: inline-flex;
     vertical-align: middle;
     align-items: center;
     margin-left: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
-    margin-right: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
-    color: rgb(72, 72, 72);
+    color: ${(p) => p.configuration.text.mutedGray};
     font-weight: normal;
   }
 `;

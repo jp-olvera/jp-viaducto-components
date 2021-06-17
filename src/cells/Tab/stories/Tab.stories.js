@@ -1,6 +1,7 @@
 import React from 'react';
 import { ConfigProvider } from '../../../providers';
 import { Tab } from '..';
+import { Container } from '../../../cells';
 
 export default {
   title: 'Andamio/Cells/Tab',
@@ -136,7 +137,9 @@ export default {
 
 const Template = (args) => (
   <ConfigProvider>
-    <Tab {...args} />
+    <Container horizontal='md' top='sm'>
+      <Tab {...args} />
+    </Container>
   </ConfigProvider>
 );
 

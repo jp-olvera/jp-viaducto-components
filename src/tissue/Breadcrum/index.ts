@@ -1,3 +1,4 @@
-import Breadcrums, { Breadcrum } from './Breadcrums';
+import Breadcrums from './Breadcrums';
+import Breadcrum from './Breadcrum';
 
 export { Breadcrums, Breadcrum };
