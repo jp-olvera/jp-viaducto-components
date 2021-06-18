@@ -42,7 +42,7 @@ const SidebarSection = ({
   const backRefButton = useRef<HTMLButtonElement>(null);
   const { configuration } = useContext(ConfigContext);
 
-  const handleActive = (ev, wait = false) => {
+  const handleActive = (ev: any, wait: boolean = false) => {
     /* istanbul ignore else */
     if (ev.type === 'click' || ev.keyCode === 13 || ev.keyCode === 32) {
       if (wait) {
@@ -110,6 +110,7 @@ const SidebarSection = ({
             configuration={configuration}
             transition={transition}
             isClosing={isClosing}
+            isActive={isActive}
           >
             <button
               onClick={(ev) => {

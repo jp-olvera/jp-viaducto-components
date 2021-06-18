@@ -13,7 +13,7 @@ export const Wrapper = styled.div < any > `
   background-color: ${({ disabled }) => (disabled ? '#CECECE' : 'white')};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'default')};
   box-sizing: border-box;
-  height: ${({ size }) => (size === 'default' ? '2.488rem' : '2.986rem')};
+  height: ${({ size, configuration }) => configuration.controlHeight[size] || configuration.controlHeight.default};
   position: relative;
   width: 100%;
 

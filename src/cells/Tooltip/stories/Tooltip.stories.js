@@ -91,7 +91,8 @@ const Template = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  label: 'Esto es un tooltip',
+  label:
+    'Choose the type of configurationAdvanced configuration: finetune usages of data and bandwithSmart configuration: Define a budget for unlimited data and calculated bandwith',
   active: true,
   position: 'right',
   transition: 'ease',

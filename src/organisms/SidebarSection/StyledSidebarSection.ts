@@ -14,7 +14,6 @@ const hide = keyframes`
   }
   100% {
     transform: translateX(-100%);
-    opacity: 0;
   }
 `;
 
@@ -124,18 +123,21 @@ export const MenuItem = styled.li < MenuItemProps > `
   }
   ${(p) => p.active && getDecoration()};
 
-  padding: ${(p) => p.configuration.spacing.sm}
-    ${(p) => (p.nested ? p.configuration.spacing.lg : p.configuration.spacing.sm)};
+  padding: ${(p) => `${p.configuration.spacing.sm} ${
+    p.nested ? p.configuration.spacing.lg : p.configuration.spacing.sm
+  }`};
 `;
 interface SubmenuProps {
   configuration: any;
   transition: string;
   isClosing: boolean;
+  isActive: boolean;
 }
 
 export const Submenu = styled.ul < SubmenuProps > `
   background-color: white;
-  height: -webkit-fill-available;
+  opacity: ${(p) => (p.isActive ? 1 : 0)};
+  height: 100%;
   position: absolute;
   right: 0;
   top: 0;
@@ -152,7 +154,7 @@ export const Submenu = styled.ul < SubmenuProps > `
     padding: 0 ${(p) => p.configuration.spacing.sm};
     text-align: left;
     width: 100%;
-    & :active {
+    &:active {
       background-color: white;
       border: none;
       font-size: 1rem;
@@ -160,7 +162,7 @@ export const Submenu = styled.ul < SubmenuProps > `
   }
   ${(p) => (p.isClosing
     ? css`
-          animation: ${hide} 230ms linear;
+          animation: ${hide} 250ms ease;
         `
     : css`
           animation: ${show} 230ms

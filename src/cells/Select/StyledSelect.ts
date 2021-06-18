@@ -21,7 +21,7 @@ export const StyledSelectWrapper = styled.div < any > `
   position: relative;
   box-sizing: border-box;
   ${(p) => p.title !== null
-    && setLabelPosition(p.title.position, p.background, p.height)};
+    && setLabelPosition(p.title.position, p.background, getHeight(p))};
   & > label {
     opacity: 0.65;
     position: absolute;
@@ -135,16 +135,11 @@ const getHeight = (props) => {
   if (props.height !== undefined) {
     height = `${props.height}`;
   } else {
-    switch (props.size) {
-      case 'sm':
-        height = props.title !== null ? '2.986rem' : '2.073rem';
-        break;
-      case 'lg':
-        height = props.title !== null ? '3.5rem' : '2.986rem';
-        break;
-      default:
-        break;
-    }
+    height = props.title !== null
+      ? `calc(${
+        props.configuration.controlHeight[props.size || 'default']
+      } * ${props.title.position === 'in' ? '1.44' : '1'})`
+      : props.configuration.controlHeight[props.size || 'default'];
   }
   return css`
     height: ${height};

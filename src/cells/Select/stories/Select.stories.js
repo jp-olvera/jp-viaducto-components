@@ -11,10 +11,10 @@ export default {
       description: 'Set size of the select component',
       type: { summary: 'String', required: false },
       table: {
-        defaultValue: { summary: 'sm' },
+        defaultValue: { summary: 'default' },
       },
       control: 'select',
-      options: ['sm', 'md', 'lg'],
+      options: ['xsmall', 'small', 'default', 'large'],
     },
     fontSize: {
       description: 'Set the font size',
@@ -95,7 +95,7 @@ const Template = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  size: 'sm',
+  size: 'small',
   border: {
     top: '1px solid black',
     right: '1px solid black',
@@ -115,7 +115,7 @@ Default.args = {
 export const Multiple = Template.bind({});
 
 Multiple.args = {
-  size: 'sm',
+  size: 'default',
   border: {
     top: '1px solid black',
     right: '1px solid black',
@@ -148,7 +148,7 @@ const withTitleTemplate = (args) => (
 export const withTitle = withTitleTemplate.bind({});
 
 withTitle.args = {
-  size: 'sm',
+  size: 'default',
   border: {
     top: '1px solid black',
     right: '1px solid black',
