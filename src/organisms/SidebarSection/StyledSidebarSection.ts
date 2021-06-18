@@ -169,6 +169,8 @@ export const Submenu = styled.ul < SubmenuProps > `
 `;
 
 export const StyledMenuTitle = styled.li < any > `
+  align-items: center;
+  align-content: center;
   box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
@@ -179,27 +181,39 @@ export const StyledMenuTitle = styled.li < any > `
   cursor: pointer;
   padding: ${(p) => p.configuration.spacing.sm};
   overflow: hidden;
-  ${(p) => (p.type === 'menu' || p.type === 'dropdown'
+  &::after {
+    ${(p) => (p.type === 'menu' || p.type === 'dropdown'
     ? css`
-          &::after {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-            background-position: right 0 center;
-            background-repeat: no-repeat;
-            background-size: 1rem;
-            content: '';
-            flex-shrink: 0;
-            height: 1rem;
-            margin-left: auto;
-            transition: transform 0.2s ease;
-            transform: ${p.expanded ? 'rotate(-180deg)' : 'rotate(0deg)'};
-            width: 1rem;
-          }
-        `
+          `
     : css``)};
+
+    background-position: right 0 center;
+    background-repeat: no-repeat;
+    background-size: 1rem;
+    content: '';
+    flex-shrink: 0;
+    height: 1rem;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+    width: 1rem;
+
+    ${(p) => (p.type === 'menu'
+    ? css`
+            transform: rotate(-90deg);
+          `
+    : css``)};
+    ${(p) => (p.type === 'dropdown' && p.expanded
+    ? css`
+            transform: rotate(-180deg);
+          `
+    : css``)};
+  }
 
   &:hover {
     color: rgba(23, 125, 239, 1);
     background-color: rgba(23, 125, 239, 0.1);
   }
 `;
+
 export default StyledSidebarSection;
