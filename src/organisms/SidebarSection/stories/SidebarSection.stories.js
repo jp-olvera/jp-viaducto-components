@@ -84,7 +84,6 @@ const Template = (args) => (
 );
 
 export const Default = Template.bind({});
-export const Submenu = Template.bind({});
 
 Default.args = {
   separator: true,
@@ -95,11 +94,23 @@ Default.args = {
   icon: <Settings />,
 };
 
+export const Submenu = Template.bind({});
+
 Submenu.args = {
   separator: true,
   title: 'Section title',
   isDropdown: false,
   isMenu: true,
+  transition: 'ease',
+  icon: <Settings />,
+};
+
+export const Dropdown = Template.bind({});
+
+Dropdown.args = {
+  separator: true,
+  title: 'Section title',
+  isDropdown: true,
   transition: 'ease',
   icon: <Settings />,
 };

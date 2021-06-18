@@ -9,13 +9,12 @@ exports[`<SidebarSection/> should render with default props 1`] = `
       class=""
     >
       <li
-        class="StyledSidebarSection__StyledMenuTitle-sc-12e8js3-3 jVMBNc"
+        class="StyledSidebarSection__StyledMenuTitle-sc-12e8js3-3 oxQtX"
         tabindex="0"
         type="false"
       >
-        <p
-          class="StyledParagraph-dbd4lw-0 htbLlT"
-          color="dark"
+        <span
+          style="display: flex; align-items: center;"
         />
         <span
           style="align-items: center; width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"

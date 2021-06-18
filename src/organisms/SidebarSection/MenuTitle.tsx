@@ -31,7 +31,7 @@ const MenuTitle = ({
       onKeyUp={onKeyUp}
       configuration={configuration}
     >
-      <Paragraph>{icon}</Paragraph>
+      <span style={{ display: 'flex', alignItems: 'center' }}>{icon}</span>
       {icon !== null && <Spacer size='sm' direction='horizontal' />}
       <span
         style={{
