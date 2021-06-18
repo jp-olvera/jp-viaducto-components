@@ -25,6 +25,13 @@ export default {
       ],
       control: 'select',
     },
+    active: {
+      description: 'Set active props',
+      type: { summary: 'boolean', required: true },
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
     horizontalSpacing: {
       description:
         'Set the horizontal spacing taking the tab content as reference',
@@ -157,6 +164,7 @@ Default.args = {
   lead: false,
   transition: 'ease',
   iconSpacing: 'none',
+  active: false,
 };
 export const WithIcon = Template.bind({});
 
@@ -170,4 +178,5 @@ WithIcon.args = {
   lead: false,
   transition: 'ease',
   iconSpacing: 'xs',
+  active: false,
 };

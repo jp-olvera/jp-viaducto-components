@@ -37,6 +37,7 @@ const Select = ({
       background={background}
       height={height}
       fontFamily={fontFamily}
+      configuration={configuration}
     >
       <StyledSelect
         configuration={configuration}

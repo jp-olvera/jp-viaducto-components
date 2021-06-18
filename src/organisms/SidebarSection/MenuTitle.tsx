@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ConfigContext } from '../../providers';
 
 import { StyledMenuTitle } from './StyledSidebarSection';
-import { Paragraph, Spacer } from '../../cells';
+import { Spacer } from '../../cells';
 
 interface MenuTitleProps {
   expanded: boolean;

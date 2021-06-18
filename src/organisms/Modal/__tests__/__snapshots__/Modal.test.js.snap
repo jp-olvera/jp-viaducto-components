@@ -61,7 +61,7 @@ exports[`<Modal></Modal> should click outside of the modal component 1`] = `
           data-testid="controls"
         >
           <button
-            class="StyledButton-hwi8uc-0 dJxCps"
+            class="StyledButton-hwi8uc-0 jEHJpg"
             data-testid="reject"
             height="2.488rem"
             type="button"
