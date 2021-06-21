@@ -12,17 +12,14 @@ export const Wrapper = styled.div < any > `
     : css``)};
   background-color: ${({ disabled }) => (disabled ? '#CECECE' : 'white')};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'default')};
-  box-sizing: border-box;
   height: ${({ size, configuration }) => configuration.controlHeight[size] || configuration.controlHeight.default};
   position: relative;
   width: 100%;
+  box-sizing: border-box;
 
-  display: inline-flex;
+  display: flex;
+  flex-direction: row-reverse;
   align-items: flex-end;
-
-  padding-bottom: ${({ configuration, size }) => (size === 'large'
-    ? configuration.spacing.micro
-    : configuration.spacing.nano)};
 
   ${({ border, configuration, borderColor }) => getBorderStyle(border, configuration.text[borderColor] || borderColor)};
   ${(p) => (p.type === 'datalist' ? 'border-bottom: none !important;' : null)};
@@ -30,19 +27,12 @@ export const Wrapper = styled.div < any > `
   .input {
     border: none;
     width: 100%;
-    background: inherit;
+    background: transparent;
     outline: none;
     font-size: 1rem !important;
-    padding: 0;
+    ${(p) => setInputPadding(p.size)};
     padding-right: ${({ configuration }) => configuration.spacing.tiny};
     padding-left: ${({ configuration, hasIcon }) => (hasIcon ? 0 : configuration.spacing.xs)};
-    padding-bottom: ${({ size, type, hasIcon }) => (size === 'large'
-    ? '.3rem'
-    : type === 'datalist'
-      ? hasIcon
-        ? '.05rem'
-        : 0
-      : 0)};
     &::placeholder {
       color: transparent;
     }
@@ -51,20 +41,17 @@ export const Wrapper = styled.div < any > `
       background-color: #cecece;
       pointer-events: none;
       user-select: none;
+      &:not(:placeholder-shown) ~ .icon {
+        ${(p) => setIcon(p.size).active}
+      }
       &:not(:placeholder-shown) ~ .label {
         background: transparent;
-        top: ${({ border }) => (border === 'overlap'
-    ? ' -0.375rem'
-    : border === 'outside'
-      ? '-0.9rem'
-      : '0.188rem')};
-        font-size: 0.688rem;
-        line-height: 0.688rem;
+        ${(p) => setLabel(p.size, p.border).active}
         border: none;
         color: #333;
         padding: 0;
         outline: none;
-        left: ${({ configuration }) => configuration.spacing.xs};
+        left: 0;
         .icon-required {
           display: inline-flex;
           padding-left: ${({ configuration }) => configuration.spacing.nano};
@@ -77,28 +64,26 @@ export const Wrapper = styled.div < any > `
   .icon {
     padding: 0
       ${({ configuration, type }) => (type === 'card' ? '0.2rem' : configuration.spacing.xs)};
-    padding-bottom: ${({ configuration, size }) => (size === 'large'
-    ? configuration.spacing.nano
-    : configuration.spacing.none)};
+    ${(p) => setIcon(p.size).normal};
     display: inline-flex;
     align-items: center;
     color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
   }
 
-  .input:focus ~ .label,
-  .input:valid ~ .label {
-    top: ${({ border }) => (border === 'overlap'
-    ? ' -0.375rem'
-    : border === 'outside'
-      ? '-0.9rem'
-      : '0.188rem')};
-    font-size: 0.688rem !important;
-    line-height: 0.688rem;
+  .input:focus ~ .icon,
+  .input:valid ~ .icon {
+    ${(p) => (p.hasLabel ? setIcon(p.size).active : null)};
+  }
+
+  .input:focus ~ .label:not(.icon),
+  .input:valid ~ .label:not(.icon) {
+    ${(p) => (p.hasLabel ? setLabel(p.size, p.border).active : null)}
+    position: absolute;
     border: none;
     color: #000;
     padding: 0;
     outline: none;
-    left: ${({ configuration }) => configuration.spacing.xs};
+    left: 0;
     background-color: ${(p) => (p.border === 'outside' ? 'transparent' : 'inherit')};
     .icon-required {
       display: inline-flex;
@@ -110,17 +95,10 @@ export const Wrapper = styled.div < any > `
   .label {
     background: ${({ border }) => (border === 'outside' ? 'transparent' : 'inherit')};
     color: #808080;
-    left: ${({ configuration, hasIcon }) => (hasIcon ? configuration.spacing.lg : configuration.spacing.xs)};
-    right: initial;
+    ${(p) => setLabel(p.size, p.border).normal};
+    left: ${(p) => (p.hasIcon ? p.configuration.spacing.lg : p.configuration.spacing.xs)};
     font-size: 1rem;
     line-height: 1rem;
-    top: ${({ size, hasIcon }) => (size === 'large'
-    ? hasIcon
-      ? '1.2rem'
-      : '1rem'
-    : hasIcon
-      ? '1rem'
-      : '0.688rem')};
     position: absolute;
     pointer-events: none;
     user-select: none;
@@ -142,11 +120,6 @@ export const Wrapper = styled.div < any > `
   .input[type='password'] {
     letter-spacing: 0.5rem;
     font-weight: 800;
-    height: calc(100% - 1rem);
-  }
-
-  .input[type='date'] {
-    height: ${(p) => (p.size === 'large' ? 'calc(100% - 1.5rem)' : 'calc(100% - 1rem)')};
   }
 
   .input[type='time'] {
@@ -156,14 +129,15 @@ export const Wrapper = styled.div < any > `
   .input[type='date'] ~ .label,
   .input[type='time'] ~ .label,
   .input[type='color'] ~ .label {
+    left: 0.25rem;
+    ${(p) => setLabel(p.size, p.border).active}
+  }
+
+  .input[type='date'] ~ .icon,
+  .input[type='time'] ~ .icon,
+  .input[type='color'] ~ .icon {
     left: 0.482rem;
-    font-size: 0.688rem !important;
-    line-height: 0.688rem;
-    top: ${({ border }) => (border === 'overlap'
-    ? ' -0.375rem'
-    : border === 'outside'
-      ? '-0.9rem'
-      : '0.188rem')};
+    ${(p) => setLabel(p.size, p.border).icon}
   }
   .input[type='color'] {
     opacity: 0;
@@ -234,7 +208,7 @@ export const DataListContainer = styled.div < any > `
   }
 `;
 
-const getBorderStyle = (border: string, color: string) => {
+export const getBorderStyle = (border: string, color: string) => {
   switch (border) {
     case 'bottom':
       return css`
@@ -246,4 +220,132 @@ const getBorderStyle = (border: string, color: string) => {
         border: 0.063rem solid ${color};
       `;
   }
+};
+
+export const setInputPadding = (size: string) => {
+  let padding: any;
+  switch (size) {
+    case 'xsmall':
+      padding = '0';
+      break;
+    case 'small':
+      padding = '0.35rem';
+      break;
+    case 'large':
+      padding = '0.5rem';
+      break;
+    default:
+      padding = '0.188rem';
+      break;
+  }
+  return css`
+    padding-bottom: ${padding};
+  `;
+};
+
+export const setIcon = (size: string) => {
+  let normal: any, active: any;
+  switch (size) {
+    case 'xsmall':
+      break;
+    case 'small':
+      normal = css`
+        transform: translateY(-25%);
+      `;
+      active = css`
+        transform: translateY(-25%) !important;
+      `;
+      break;
+    case 'large':
+      normal = css`
+        transform: translateY(-75%);
+      `;
+      active = css`
+        transform: translateY(-50%) !important;
+      `;
+      break;
+    default:
+      normal = css`
+        transform: translateY(-50%);
+      `;
+      active = css`
+        transform: translateY(-25%) !important;
+      `;
+      break;
+  }
+  return {
+    active,
+    normal,
+  };
+};
+
+export const setLabel = (size: string, border: string) => {
+  let active: any, normal: any, icon: any;
+  switch (size) {
+    case 'xsmall':
+      active = css`
+        transform: scale(0.68)
+          ${border === 'outside'
+    ? 'translateY(-150%)'
+    : border === 'overlap'
+      ? 'translateY(-140%)'
+      : 'translateY(-130%)'};
+      `;
+      normal = css``;
+      icon = css``;
+      break;
+    case 'small':
+      active = css`
+        transform: scale(0.68)
+          ${border === 'outside'
+    ? 'translateY(-250%)'
+    : border === 'overlap'
+      ? 'translateY(-200%)'
+      : 'translateY(-130%)'};
+      `;
+      normal = css`
+        transform: translateY(-35%);
+      `;
+      icon = css`
+        transform: translateY(0);
+      `;
+      break;
+    case 'large':
+      active = css`
+        transform: scale(0.68)
+          ${border === 'outside'
+    ? 'translateY(-420%)'
+    : border === 'overlap'
+      ? 'translateY(-350%)'
+      : 'translateY(-280%)'};
+      `;
+      normal = css`
+        transform: translateY(-95%);
+      `;
+      icon = css`
+        transform: translateY(-50%);
+      `;
+      break;
+    default:
+      active = css`
+        transform: scale(0.68)
+          ${border === 'outside'
+    ? 'translateY(-350%)'
+    : border === 'overlap'
+      ? 'translateY(-280%)'
+      : 'translateY(-200%)'};
+      `;
+      normal = css`
+        transform: translateY(-70%);
+      `;
+      icon = css`
+        transform: translateY(-30%);
+      `;
+      break;
+  }
+  return {
+    active,
+    normal,
+    icon,
+  };
 };

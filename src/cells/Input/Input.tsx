@@ -30,33 +30,6 @@ creditCardType.resetModifications();
  * @param {{options:[], pillColor:string, pillTextColor:string}/null} dataListConfiguration Configuration for the datalist
  */
 
-interface InputInterface {
-  label?: string;
-  border?: string;
-  disabled?: boolean;
-  type?: string;
-  icon?: any;
-  required?: boolean;
-  size?: string;
-  isInvalid?: boolean;
-  isValid?: boolean;
-  id?: string;
-  borderColor?: any;
-  iconColor?: any;
-  value?: any;
-  onChange?: any;
-  defaultValue?: any;
-  min?: number;
-  max?: number;
-  style?: any;
-  family?: string | null;
-  dataListConfiguration?: {
-    options: any[];
-    pillColor?: string;
-    pillTextColor?: string;
-  } | null;
-}
-
 const Input = ({
   label = '',
   border = 'default',
@@ -71,10 +44,12 @@ const Input = ({
   iconColor = '#2329D6',
   value = '',
   onChange = () => {},
+  onClick = () => {},
+  onKeyUp = () => {},
   dataListConfiguration = null,
   family,
   ...rest
-}: InputInterface) => {
+}: any) => {
   const [open, setOpen] = useState(false);
   const [inputType, setInputType] = useState(type);
   const [inputValue, setInputValue] = useState<any>(0);
@@ -112,10 +87,11 @@ const Input = ({
       return true;
     });
   };
+
   return (
     <>
       <Wrapper
-        border={border}
+        border={border !== 'bottom' && size === 'xsmall' ? 'outside' : border}
         hasIcon={icon !== null || mustHaveIcon.includes(type)}
         size={size}
         configuration={configuration}
@@ -124,32 +100,23 @@ const Input = ({
         disabled={disabled}
         family={family}
         type={type}
+        hasLabel={label === null || label === '' || label === undefined}
         {...rest}
       >
-        {(icon !== null || mustHaveIcon.includes(type)) && (
-          <span className='icon'>
-            {getIcon(
-              type === 'card'
-                ? cardType
-                : type === 'date'
-                  ? 'date'
-                  : type === 'time'
-                    ? 'time'
-                    : type === 'color'
-                      ? 'color'
-                      : type === 'phone'
-                        ? 'phone'
-                        : icon,
-              type === 'color'
-                ? inputRef?.current?.value.toUpperCase()
-                : undefined,
-              '18px',
-              undefined,
-              undefined,
-              type === 'color'
-                ? inputRef?.current?.value.toUpperCase()
-                : undefined,
-            )}
+        {isInvalid && <span className='is-invalid'>{getIcon('warning')}</span>}
+        {isValid && <span className='is-valid'>{getIcon('ok')}</span>}
+        {required && <span className='is-required'>{getIcon('required')}</span>}
+        {type === 'password' && (
+          <span
+            className='icon-helper'
+            data-testid='type-switch'
+            onClick={toggleView}
+            onKeyUp={toggleView}
+            role='button'
+            tabIndex={0}
+          >
+            {' '}
+            {inputType === 'password' ? getIcon('eye-closed') : getIcon('eye')}
           </span>
         )}
         <input
@@ -181,6 +148,8 @@ const Input = ({
                   : ev.target.value,
             );
           }}
+          onClick={(e: any) => onClick(e)}
+          onKeyUp={(e: any) => onKeyUp(e)}
           type={
             open
               ? inputType
@@ -197,13 +166,31 @@ const Input = ({
           id={rest.id}
           required
           disabled={disabled}
-          placeholder={(disabled && value) || label}
+          placeholder={
+            label === null ? rest.placeholder : (disabled && value) || label
+          }
           min={rest.min}
           value={newValue}
           max={rest.max}
           list={type === 'datalist' ? `${rest.id}__datalist` : undefined}
           {...rest}
         />
+        {(icon !== null || mustHaveIcon.includes(type)) && (
+          <span className='icon'>
+            {getIcon(
+              getType({ type, cardType, icon }),
+              type === 'color'
+                ? inputRef?.current?.value.toUpperCase()
+                : undefined,
+              '18px',
+              undefined,
+              undefined,
+              type === 'color'
+                ? inputRef?.current?.value.toUpperCase()
+                : undefined,
+            )}
+          </span>
+        )}
         <label className='label' htmlFor={rest.id}>
           <span>{label}</span>
           {required && (
@@ -213,22 +200,6 @@ const Input = ({
         {type === 'color' && (
           <span className='show-value'>
             <span>{inputRef?.current?.value.toUpperCase() || '#FFFFFF'}</span>
-          </span>
-        )}
-        {isInvalid && <span className='is-invalid'>{getIcon('warning')}</span>}
-        {isValid && <span className='is-valid'>{getIcon('ok')}</span>}
-        {required && <span className='is-required'>{getIcon('required')}</span>}
-        {type === 'password' && (
-          <span
-            className='icon-helper'
-            data-testid='type-switch'
-            onClick={toggleView}
-            onKeyUp={toggleView}
-            role='button'
-            tabIndex={0}
-          >
-            {' '}
-            {inputType === 'password' ? getIcon('eye-closed') : getIcon('eye')}
           </span>
         )}
       </Wrapper>
@@ -353,4 +324,25 @@ export const mask = (value: string, limit: number, separator: string = '-') => {
   }
 
   return output.join('');
+};
+
+export const getType = (args: {
+  type: string;
+  cardType: string;
+  icon: string;
+}) => {
+  switch (args.type) {
+    case 'date':
+      return 'date';
+    case 'time':
+      return 'time';
+    case 'color':
+      return 'color';
+    case 'phone':
+      return 'phone';
+    case 'card':
+      return args.cardType;
+    default:
+      return args.icon;
+  }
 };

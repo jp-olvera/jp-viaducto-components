@@ -73,7 +73,7 @@ export default {
         defaultValue: { summary: 'default' },
       },
       control: 'select',
-      options: ['default', 'large'],
+      options: ['xsmall', 'small', 'default', 'large'],
     },
     disabled: {
       description: 'Disables the input',
@@ -167,7 +167,7 @@ Text.args = {
   transition: 'ease',
   borderColor: null,
   iconColor: null,
-  icon: null,
+  icon: 'grid',
   size: 'default',
 };
 
@@ -184,6 +184,7 @@ Password.args = {
   transition: 'ease',
   borderColor: null,
   iconColor: null,
+  size: 'default',
 };
 
 export const Card = Template.bind({});
@@ -199,6 +200,7 @@ Card.args = {
   transition: 'ease',
   borderColor: null,
   iconColor: null,
+  size: 'default',
 };
 
 export const Date = Template.bind({});
@@ -214,6 +216,7 @@ Date.args = {
   transition: 'ease',
   borderColor: null,
   iconColor: null,
+  size: 'default',
 };
 
 export const Color = Template.bind({});
