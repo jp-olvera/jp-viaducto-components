@@ -15,11 +15,26 @@ export default {
       },
       control: { type: 'color' },
     },
+    circleBorder: {
+      description: 'Set circular border',
+      type: { summary: 'Boolean', required: false },
+      table: {
+        defaultValue: { summary: true },
+      },
+    },
     color: {
       description: 'Set font color ',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: '#000' },
+      },
+      control: { type: 'color' },
+    },
+    borderColor: {
+      description: 'Set border color ',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: null },
       },
       control: { type: 'color' },
     },
@@ -80,4 +95,5 @@ Default.args = {
   size: 'md',
   iconLead: IconLead({ icon: '😈' }).props.children,
   handleAction: () => {},
+  circleBorder: true,
 };

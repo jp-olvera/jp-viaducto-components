@@ -65,7 +65,7 @@ export default {
         required: true,
       },
       table: {
-        defaultValue: { summary: 'circle' },
+        defaultValue: { summary: 'square' },
       },
       control: { type: 'select' },
       options: [
@@ -77,6 +77,7 @@ export default {
         'star',
         'triangle',
         'circle',
+        'square',
       ],
     },
     src: {
