@@ -15,8 +15,8 @@ interface MenuTitleProps {
 const MenuTitle = ({
   expanded,
   type,
-  onClick = () => {},
-  onKeyUp = () => {},
+  onClick,
+  onKeyUp,
   icon,
   title,
 }: MenuTitleProps) => {

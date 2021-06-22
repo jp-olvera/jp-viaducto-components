@@ -116,10 +116,11 @@ export const StyledSelect = styled.select < SelectI > `
 const getLateralPadding = (props) => {
   let padding = `0 ${props.configuration.spacing.md}`;
   switch (props.size) {
-    case 'sm':
+    case 'xsmall':
+    case 'small':
       padding = `0 ${props.configuration.spacing.sm} `;
       break;
-    case 'lg':
+    case 'large':
       padding = `0 ${props.configuration.spacing.lg} `;
       break;
     default:
@@ -139,7 +140,8 @@ const getHeight = (props) => {
       ? `calc(${
         props.configuration.controlHeight[props.size || 'default']
       } * ${props.title.position === 'in' ? '1.44' : '1'})`
-      : props.configuration.controlHeight[props.size || 'default'];
+      : props.configuration.controlHeight[props.size]
+          || props.configuration.controlHeight.default;
   }
   return css`
     height: ${height};

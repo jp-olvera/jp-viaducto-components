@@ -13,6 +13,7 @@ describe('<SidebarSection/>', () => {
         title='Comida'
         isDropdown
         isMenu={false}
+        lead
         icon='😊'
       />,
     );
@@ -27,7 +28,7 @@ describe('<SidebarSection/>', () => {
         isMenu={false}
         icon='😊'
       >
-        <MenuItem url='#' label='menu' nested />
+        <MenuItem href='#' label='menu' nested />
       </SidebarSection>,
     );
     expect(screen.getByText('menu')).toBeVisible();
@@ -35,7 +36,7 @@ describe('<SidebarSection/>', () => {
   test('should render option after dropdown click', () => {
     render(
       <SidebarSection separator title='Comida' isDropdown isMenu={false}>
-        <MenuItem url='#' label='menu' nested />
+        <MenuItem href='#' label='menu' nested icon='❤' lead />
       </SidebarSection>,
     );
     expect(screen.queryByText('menu')).not.toBeInTheDocument();
@@ -45,7 +46,7 @@ describe('<SidebarSection/>', () => {
   test('should render option after menu keycode 13 press', () => {
     render(
       <SidebarSection separator title='Comida' isDropdown={false} isMenu>
-        <MenuItem url='#' label='menu' nested />
+        <MenuItem href={undefined} label='menu' icon='❤' lead={false} />
       </SidebarSection>,
     );
     fireEvent.keyUp(screen.getByText('Comida'), {
@@ -57,9 +58,15 @@ describe('<SidebarSection/>', () => {
   });
 
   test('should render option after menu keycode 32 press', () => {
-    render(
-      <SidebarSection separator title='Comida' isDropdown={false} isMenu>
-        <MenuItem url='#' label='menu' nested />
+    const { getByTestId } = render(
+      <SidebarSection
+        separator
+        title='Comida'
+        isDropdown={false}
+        isMenu
+        transition={null}
+      >
+        <MenuItem href='#' label='menu' nested active />
       </SidebarSection>,
     );
     fireEvent.keyUp(screen.getByText('Comida'), {
@@ -67,6 +74,8 @@ describe('<SidebarSection/>', () => {
       code: '32',
       keyCode: '32',
     });
+    const button = getByTestId('button');
+    fireEvent.click(button);
     expect(screen.getByText('Comida')).toBeVisible();
   });
   test('should render with default props', () => {

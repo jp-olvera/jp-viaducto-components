@@ -15,7 +15,7 @@ describe('<Breadcrums/>', () => {
   test('Should all children be visible', () => {
     const { getByText } = render(
       <Breadcrums>
-        <Breadcrum label='1' href='#' />;
+        <Breadcrum label='1' href='#' active />;
         <Breadcrum label='2' href='#' />;
       </Breadcrums>,
     );

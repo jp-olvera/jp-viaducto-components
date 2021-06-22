@@ -55,7 +55,6 @@ const StyledButton = styled.button < any > `
   
   //disabled
   &:disabled {
-    /* opacity: ${(props) => (props.isLoading ? '1' : '0.65')}; */
     background-color: ${(p) => (p.variant === 'solid' ? p.configuration.disableColor : 'white')};
     border-color: ${(p) => p.configuration.disableColor};
     color: ${(p) => (p.variant === 'solid' ? 'white' : p.configuration.disableColor)};

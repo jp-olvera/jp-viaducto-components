@@ -18,7 +18,7 @@ describe('<Select/>', () => {
   test('should render properly with custom attributes', () => {
     const { container } = render(
       <Select
-        size='lg'
+        size='large'
         border={{ top: '1px solid red' }}
         fontSize='lg'
         fontFamily='Arial'
@@ -36,7 +36,7 @@ describe('<Select/>', () => {
     test('should render with sm size', () => {
       const { container } = render(
         <Select
-          size='sm'
+          size='small'
           border={{ top: '1px solid red' }}
           fontSize='lg'
           fontFamily='Arial'
@@ -53,7 +53,7 @@ describe('<Select/>', () => {
     test('should render with lg size', () => {
       const { container } = render(
         <Select
-          size='lg'
+          size='aaaa'
           border={{ top: '1px solid red' }}
           fontSize='lg'
           fontFamily='Arial'
@@ -71,7 +71,7 @@ describe('<Select/>', () => {
   test('should render properly with some custom setting', () => {
     const { container } = render(
       <Select
-        size='md'
+        size='xsmall'
         border={{ top: '1px solid red' }}
         height={undefined}
         fontSize='lg'
@@ -90,7 +90,7 @@ describe('<Select/>', () => {
     const { getByTestId, queryByText } = render(
       <Select
         radius='2rem'
-        size='sm'
+        size='small'
         height='2rem'
         title={{ label: 'a', position: 'over' }}
       >
@@ -107,7 +107,7 @@ describe('<Select/>', () => {
   });
   test('should render select component with style props', () => {
     const { getByTestId, queryByText } = render(
-      <Select radius='2rem' size='sm' title={{ label: 'a', position: 'over' }}>
+      <Select radius='2rem' size='small' title={{ label: 'a', position: 'in' }}>
         {options.map((option) => (
           <option key={option} value={option}>
             {option}

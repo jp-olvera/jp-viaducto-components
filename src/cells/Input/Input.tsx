@@ -44,8 +44,8 @@ const Input = ({
   iconColor = '#2329D6',
   value = '',
   onChange = () => {},
-  onClick = () => {},
-  onKeyUp = () => {},
+  onClick,
+  onKeyUp,
   dataListConfiguration = null,
   family,
   ...rest

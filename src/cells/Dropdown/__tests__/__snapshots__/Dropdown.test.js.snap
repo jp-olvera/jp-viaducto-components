@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Dropdown/> <Drop> should render Drop 1`] = `<div />`;
+
+exports[`<Dropdown/> <Drop> should render Drop with bottom position 1`] = `<div />`;
+
+exports[`<Dropdown/> <Drop> should render Drop with top position 1`] = `<div />`;
+
 exports[`<Dropdown/> should render with default props and border left none 1`] = `
 <div>
   <div

@@ -4,6 +4,7 @@ import React from 'react';
 import { render, fireEvent } from '../../../test-utils';
 import '@testing-library/jest-dom/extend-expect';
 import { Dropdown } from '..';
+import Drop from '../Drop';
 import { refs } from '../DropdownRef';
 
 const options = [<p>1</p>, <p>2</p>, <p>3</p>];
@@ -48,6 +49,25 @@ describe('<Dropdown/>', () => {
       <Dropdown border={bordersNoLeft} onClick={null} />,
     );
     expect(container).toMatchSnapshot();
+  });
+  describe('<Drop>', () => {
+    const ref = React.createRef();
+    test('should render Drop', () => {
+      const { container } = render(<Drop target={<div />} contentRef={ref} />);
+      expect(container).toMatchSnapshot();
+    });
+    test('should render Drop with top position', () => {
+      const { container } = render(
+        <Drop target={<div />} position='top' contentRef={ref} />,
+      );
+      expect(container).toMatchSnapshot();
+    });
+    test('should render Drop with bottom position', () => {
+      const { container } = render(
+        <Drop target={<div />} position='bottom' contentRef={ref} />,
+      );
+      expect(container).toMatchSnapshot();
+    });
   });
   describe('ref functions', () => {
     test('should not be null in clickHandler', () => {

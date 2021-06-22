@@ -60,6 +60,7 @@ const Drop = ({
       document.removeEventListener('scroll', setDropPosition);
     };
   }, []);
+  /* istanbul ignore if */
   if (!target.current) {
     return null;
   }
