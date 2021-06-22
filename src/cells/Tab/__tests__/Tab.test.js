@@ -16,8 +16,9 @@ describe('<Tab/>', () => {
         text='Tab'
         type='warning'
         horizontalSpacing='sm'
-        verticalSpacing='sm'
+        verticalSpacing='aaaa'
         icon={<Help />}
+        active
       />,
     );
     expect(screen.queryByText('Tab')).toBeVisible();

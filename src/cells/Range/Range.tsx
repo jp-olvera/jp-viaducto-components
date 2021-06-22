@@ -41,7 +41,7 @@ const Range = ({
   family,
   size,
   onChange,
-  double = true,
+  double,
   ...rest
 }: RangeInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -94,7 +94,7 @@ const Range = ({
         onChange={(event) => {
           const value = Math.min(
             Number(event.target.value),
-            maxVal - (double ? 1 : 0),
+            maxVal - (double === true ? 1 : 0),
           );
           setMinVal(value);
           minValRef.current = value;

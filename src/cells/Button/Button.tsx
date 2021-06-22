@@ -92,10 +92,8 @@ const Button = forwardRef(
             {isValid && getIcon('ok', 'inherit', 'inherit', '2px')}
             {isValid === false
               && getIcon('cancel', 'inherit', 'inherit', '2px')}
-            {isLoading && isValid === null && useLongLoading && (
-              <div className='status' />
-            )}
-            {isLoading && isValid === null && useLongLoading === false && (
+            {isLoading && isValid === null && <div className='status' />}
+            {isLoading && isValid === null && (
               <Circle className='turnOn' strokeDasharray='20' />
             )}
             {(isValid === null && !isLoading) || useLongLoading ? icon : null}

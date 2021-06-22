@@ -33,7 +33,7 @@ interface ParagraphInterface {
 }
 
 const Paragraph = ({
-  children = null,
+  children,
   color = 'dark',
   size = 'md',
   className = '',

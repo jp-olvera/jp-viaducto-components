@@ -6,7 +6,7 @@ import '@testing-library/react';
 import { render, screen } from '../../../test-utils';
 import { Avatar } from '..';
 
-describe('<Search/>', () => {
+describe('<Container/>', () => {
   test('should render properly', () => {
     render(<Avatar src='123' />);
     expect(screen.queryByAltText('123')).toBeVisible();

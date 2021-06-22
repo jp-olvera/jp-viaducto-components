@@ -43,12 +43,15 @@ const SidebarSection = ({
   const { configuration } = useContext(ConfigContext);
 
   const handleActive = (ev: any, wait: boolean = false) => {
+    /* istanbul ignore if */
     /* istanbul ignore else */
     if (ev.type === 'click' || ev.keyCode === 13 || ev.keyCode === 32) {
+      /* istanbul ignore if */
       if (wait) {
         setTimeout(() => {
           setIsActive(!isActive);
         }, 230);
+        /* istanbul ignore else */
       } else {
         setIsActive(!isActive);
       }
@@ -119,6 +122,7 @@ const SidebarSection = ({
               }}
               ref={backRefButton}
               type='button'
+              data-testid='button'
             >
               {'←'} {title}
             </button>

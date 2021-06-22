@@ -7,14 +7,14 @@ import {
 const TypeIcon = ({ type, ...rest }: any) => {
   switch (type) {
     case 'success':
-      return <Checkbox {...rest} data-testid="checkbox"/>;
+      return <Checkbox {...rest} data-testid='checkbox' />;
     case 'warning':
-      return <FolderWarning {...rest} data-testid="folderwarning" />;
+      return <FolderWarning {...rest} data-testid='folderwarning' />;
     case 'danger':
-      return <Error {...rest} data-testid="error" />;
+      return <Error {...rest} data-testid='error' />;
     case 'info':
     default:
-      return <Help {...rest} data-testid="help" />;
+      return <Help {...rest} data-testid='help' />;
   }
 };
 

@@ -8,7 +8,12 @@ import ProgressBar from '../ProgressBar';
 describe('<Input/>', () => {
   test('should render input', () => {
     const { container } = render(
-      <Input size='md' label='Im the input tested' family={null} type='card' />,
+      <Input
+        size='default'
+        label='Im the input tested'
+        family={null}
+        type='card'
+      />,
     );
     const input = container.querySelector('.input');
     expect(input).toBeInTheDocument();
@@ -17,10 +22,11 @@ describe('<Input/>', () => {
   test('should render input another value', () => {
     const { container } = render(
       <Input
-        size='md'
+        size='small'
         label='Im the input tested'
         type='card'
         value={555555}
+        border='overlap'
         isValid
       />,
     );
@@ -30,7 +36,14 @@ describe('<Input/>', () => {
 
   test('should render input and change the value', () => {
     const { container } = render(
-      <Input size='md' label='Master' isInvalid type='card' />,
+      <Input
+        size='xsmall'
+        label='Master'
+        isInvalid
+        type='card'
+        border='overlap'
+        value='55555555555'
+      />,
     );
     const input = container.querySelector('.input');
     fireEvent.change(input, { target: { value: '555555' } });
@@ -39,7 +52,7 @@ describe('<Input/>', () => {
 
   test('should render input and change the value with amex card', () => {
     const { container } = render(
-      <Input size='md' label='Amex' isInvalid type='card' />,
+      <Input size='large' label='Amex' isInvalid type='card' border='outside' />,
     );
     const input = container.querySelector('.input');
     fireEvent.change(input, { target: { value: '37021458745698745' } });
@@ -47,7 +60,13 @@ describe('<Input/>', () => {
   });
   test('should render input and change the value with no svg card', () => {
     const { container } = render(
-      <Input size='md' label='Im the input tested' isInvalid type='card' />,
+      <Input
+        size='small'
+        label='Im the input tested'
+        isInvalid
+        type='card'
+        value='65432165'
+      />,
     );
     const input = container.querySelector('.input');
     fireEvent.change(input, { target: { value: 'aaaaaaaaaaa' } });
@@ -55,7 +74,7 @@ describe('<Input/>', () => {
   });
 
   test('should render input with label', () => {
-    const { container } = render(<Input size='md' label='Input' />);
+    const { container } = render(<Input size='default' label='Input' />);
     const label = container.querySelector('.label');
     expect(label.innerHTML).toContain('Input');
   });
@@ -154,12 +173,13 @@ describe('<Input/>', () => {
   test('should render simple input', () => {
     const { container } = render(
       <Input
-        label='label'
+        label={null}
         border='overlap'
         type='card'
         required
         icon='card'
         iconColor='#000'
+        placeholder='Placeholder'
       />,
     );
     expect(container).not.toBeNull();
@@ -197,18 +217,25 @@ describe('<Input/>', () => {
           type='datalist'
           dataListConfiguration={dataListConfiguration}
           label='Datalist'
+          onClick={null}
+          onKeyUp={null}
         />,
       );
       expect(container.querySelector('input')).toBeInTheDocument();
     });
     test('should render data list properly with border color', () => {
+      const onclick = jest.fn(),
+        onkeyup = jest.fn();
       const { container } = render(
         <Input
           type='datalist'
+          size='hola'
           dataListConfiguration={dataListConfiguration}
           label='Datalist'
-          border='bottom'
+          border='outside'
           borderColor={null}
+          onClick={(e) => onclick(e)}
+          onKeyUp={(e) => onkeyup(e)}
         />,
       );
       fireEvent.change(container.querySelector('input'), {
