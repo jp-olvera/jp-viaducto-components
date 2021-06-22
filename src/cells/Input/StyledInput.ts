@@ -75,20 +75,23 @@ export const Wrapper = styled.div < any > `
     ${(p) => (p.hasLabel ? setIcon(p.size).active : null)};
   }
 
-  .input:focus ~ .label:not(.icon),
-  .input:valid ~ .label:not(.icon) {
-    ${(p) => (p.hasLabel ? setLabel(p.size, p.border).active : null)}
-    position: absolute;
-    border: none;
-    color: #000;
-    padding: 0;
-    outline: none;
-    left: 0;
-    background-color: ${(p) => (p.border === 'outside' ? 'transparent' : 'inherit')};
-    .icon-required {
-      display: inline-flex;
-      padding-left: ${({ configuration }) => configuration.spacing.nano};
-      color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor} !important;
+  .input:focus,
+  .input:valid {
+    & ~ .label:not(.icon),
+    ~ .label:not(.icon) {
+      position: absolute;
+      border: none;
+      color: #000;
+      padding: 0;
+      outline: none;
+      left: 0;
+      background-color: ${(p) => (p.border === 'outside' ? 'transparent' : 'inherit')};
+      .icon-required {
+        display: inline-flex;
+        padding-left: ${({ configuration }) => configuration.spacing.nano};
+        color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor} !important;
+      }
+      ${(p) => (p.hasLabel ? setLabel(p.size, p.border).active : null)}
     }
   }
 
@@ -129,7 +132,7 @@ export const Wrapper = styled.div < any > `
   .input[type='date'] ~ .label,
   .input[type='time'] ~ .label,
   .input[type='color'] ~ .label {
-    left: 0.25rem;
+    left: 0.02rem;
     ${(p) => setLabel(p.size, p.border).active}
   }
 
@@ -333,7 +336,7 @@ export const setLabel = (size: string, border: string) => {
     ? 'translateY(-350%)'
     : border === 'overlap'
       ? 'translateY(-280%)'
-      : 'translateY(-200%)'};
+      : 'translateY(-200%)'} !important;
       `;
       normal = css`
         transform: translateY(-70%);
