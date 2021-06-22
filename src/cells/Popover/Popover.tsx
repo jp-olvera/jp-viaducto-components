@@ -47,49 +47,42 @@ const Popover = ({
 
   const setDropPosition = () => {
     if (dropRef.current && target.current) {
-      const contentH = dropRef.current?.offsetHeight || 0;
+      const contentH = dropRef.current?.offsetHeight || 0; // height drop
+      const contentW = dropRef.current?.offsetWidth || 0; // width drop
+      const { right: rightDrop } = dropRef.current?.getBoundingClientRect() || 0; // width drop
       const { bottom, top, left } = target.current.getBoundingClientRect();
-      const activatorOffsetHeight = target.current.offsetHeight;
-      const dropdownH = activatorOffsetHeight + contentH;
+      const activatorOffsetHeight = target.current.offsetHeight; // height with paddings and borders
+      const dropdownH = activatorOffsetHeight + contentH; // height including drop and activator
       const dropdownBottom = bottom + contentH; // la posición donde terminaría el dropdown
       const documentH = window.innerHeight || document.documentElement.clientHeight;
+      const documentW = window.innerWidth || document.documentElement.clientWidth;
 
-      if (position === 'top' && top > dropdownH) {
-        // es top y arriba aún hay espacio
-        const newTop = top - contentH;
-        setStylePosition({
-          y: `${newTop}px`,
-          x: `${left}px`,
-        });
-        setAlignDrop('bottom');
-        return;
-      }
-      if (position === 'bottom' && dropdownBottom < documentH) {
-        // es bottom y abaja hay espacio
-        setStylePosition({
-          y: `${bottom}px`,
-          x: `${left}px`,
-        });
-        setAlignDrop('top');
-        return;
-      }
-      if (dropdownBottom > documentH && top > dropdownH) {
-        // si el dropdown completo queda más abajo
-        // y arriba aún hay espacio
-        const newTop = top - contentH;
-        setStylePosition({
-          y: `${newTop}px`,
-          x: `${left}px`,
-        });
+      let newTop = bottom;
+      let newLeft = left;
+      if (
+        (position === 'top' && top > dropdownH)
+        || dropdownBottom > documentH
+      ) {
+        // es top o queda más abajo y arriba aún hay espacio
+        newTop = top - contentH;
         setAlignDrop('bottom');
       } else {
-        const newTop = top + activatorOffsetHeight;
-        setStylePosition({
-          y: `${newTop}px`,
-          x: `${left}px`,
-        });
+        // es bottom y abajo hay espacio
+        newTop = bottom;
         setAlignDrop('top');
       }
+      if (contentW >= documentW) {
+        // es mayor o igual al width de la pantalla
+        // o se sale a la izquierda
+        newLeft = 0;
+      } else if (rightDrop > documentW) {
+        // se sale a la derecha
+        newLeft = documentW - contentW;
+      }
+      setStylePosition({
+        y: `${newTop}px`,
+        x: `${newLeft}px`,
+      });
     }
   };
   useEffect(() => {
