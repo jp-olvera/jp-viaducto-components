@@ -1,11 +1,10 @@
 import React from 'react';
-import { Table } from '..';
+import { WrapperTable } from '..';
 import { ConfigProvider } from '../../../providers';
-import { dummyColumns, dummyData } from './StoryData';
 
 export default {
-  title: 'Andamio/Organisms/Table',
-  component: Table,
+  title: 'Andamio/Organisms/WrapperTable',
+  component: WrapperTable,
   argTypes: {
     background: {
       control: 'color',
@@ -15,48 +14,6 @@ export default {
     },
     textHeaderColor: {
       control: 'color',
-    },
-    tableElevationDirection: {
-      options: [
-        'top',
-        'right',
-        'bottom',
-        'left',
-        'topRight',
-        'topLeft',
-        'bottomRight',
-        'bottomLeft',
-      ],
-      control: {
-        type: 'select',
-      },
-    },
-    tableElevation: {
-      options: [1, 2, 3],
-      control: {
-        type: 'select',
-      },
-    },
-    headerElevationDirection: {
-      options: [
-        'top',
-        'right',
-        'bottom',
-        'left',
-        'topRight',
-        'topLeft',
-        'bottomRight',
-        'bottomLeft',
-      ],
-      control: {
-        type: 'select',
-      },
-    },
-    headerElevation: {
-      options: [0, 1, 2, 3],
-      control: {
-        type: 'select',
-      },
     },
     border: {
       options: ['all', 'horizontal', 'vertical', 'none'],
@@ -76,7 +33,7 @@ export default {
     colorSelected: {
       control: 'color',
     },
-    zebreHoverColor: {
+    zebraHoverColor: {
       control: 'color',
     },
     borderColor: {
@@ -122,22 +79,52 @@ export default {
         type: 'select',
       },
     },
-    buttonVariantColor: {
-      options: ['primary', 'secondary', 'info', 'success', 'danger', 'warning'],
-      control: 'select',
-    },
-    selectSize: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-    },
-    selectBackground: {control: 'color'},
-    selectColor: { control: 'color' },
   },
 };
 
 const Template = (args) => (
   <ConfigProvider>
-    <Table {...args} />
+    <p style={{ fontFamily: 'Arial' }}>
+      This component work as a wrapper for any table, we just provide a style
+      props
+    </p>
+    <p style={{ fontFamily: 'Arial' }}>
+      <b>You need to create/add/instance your own table</b>
+    </p>
+    <WrapperTable {...args}>
+      <table>
+        <tbody>
+          <tr>
+            <th scope='col'>Montasdasdasdasdh</th>
+            <th scope='col'>Savings</th>
+            <th scope='col'>Savings</th>
+            <th scope='col'>Savings</th>
+            <th scope='col'>Savings</th>
+          </tr>
+          <tr>
+            <td>Hola</td>
+            <td>Header</td>
+            <td>Cell</td>
+            <td>MyCell</td>
+            <td>OtherCell</td>
+          </tr>
+          <tr>
+            <td>Hola</td>
+            <td>Cell1,2</td>
+            <td>Cell1,3</td>
+            <td>Cell 1,4</td>
+            <td>Cell 1,5</td>
+          </tr>
+          <tr>
+            <td>Hola</td>
+            <td>Cell 2,2</td>
+            <td>Cell 2,3</td>
+            <td>Cell 2,4</td>
+            <td>Cell 2,5</td>
+          </tr>
+        </tbody>
+      </table>
+    </WrapperTable>
   </ConfigProvider>
 );
 
@@ -147,29 +134,15 @@ Default.args = {
   borderColor: '#eaecef',
   border: 'all',
   colorSelected: '#ffd37c',
-  columns: dummyColumns,
-  data: dummyData,
   headerColor: '#fff',
-  headerFixed: true,
   horizontalSpacing: 'sm',
   align: 'left',
-  headerElevation: 1,
-  headerPadding: '.9rem',
-  minHeight: '4.8rem',
   textHeaderColor: '#5A5A5A',
   zebra: true,
   zebraHover: true,
   zebraColor: '#F6F8FA',
-  zebreHoverColor: '#D1D5DA',
+  zebraHoverColor: '#D1D5DA',
   verticalSpacing: 'sm',
   fontSize: 'md',
-  family: 'Roboto',
-  buttonVariantColor: 'secondary',
-  selectBorder: {
-    top: '1px solid black',
-    right: '1px solid black',
-    bottom: '1px solid black',
-    left: '1px solid black',
-  },
-  selectSize: 'md',
+  family: 'Arial',
 };

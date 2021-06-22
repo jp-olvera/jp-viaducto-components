@@ -1,7 +1,4 @@
-/* istanbul ignore file */
-
 import styled, { css } from 'styled-components';
-import getElevation from '../../utils/getElevation';
 import { getSize } from '../../utils/getSizes';
 
 interface TableI {
@@ -10,7 +7,7 @@ interface TableI {
   headerColor?: string;
   textHeaderColor?: string;
   headerFixed?: boolean;
-  border?: string;
+  border: string;
   zebra?: boolean;
   zebraHover?: boolean;
   zebraColor?: string;
@@ -20,13 +17,15 @@ interface TableI {
   align?: string;
   headerElevation: number;
   colorSelected?: string;
-  borderColor?: string;
+  borderColor: string;
   minHeight?: string;
   fontSize?: string;
   family?: string;
 }
 export const StyledTable = styled.div < TableI > `
-  box-sizing: border-box;
+  & > * {
+    box-sizing: border-box;
+  }
   width: fit-content;
   .size {
     text-align: right;
@@ -71,7 +70,7 @@ export const StyledTable = styled.div < TableI > `
   .resizer {
     display: inline-block;
     background: transparent;
-    width: 1px;
+    width: 0.063rem;
     height: 100%;
     position: absolute;
     right: 0;
@@ -83,7 +82,7 @@ export const StyledTable = styled.div < TableI > `
     &.isResizing {
       width: 10px;
       background-color: ${({ colorSelected }) => colorSelected || '#ffd37c'};
-      box-shadow: 1px 1px 12px
+      box-shadow: 0.063rem 0.063rem 12px
         ${({ colorSelected }) => colorSelected || '#ffd37c'};
     }
     &:hover {
@@ -103,24 +102,17 @@ export const StyledTable = styled.div < TableI > `
     }
   }
   .sortable-dropzone {
-    border: 1px solid transparent;
+    border: 0.063rem solid transparent;
   }
   .drag-sort-active {
     box-sizing: border-box;
-    border: 1px solid #4ca1af !important;
+    border: 0.063rem solid #4ca1af !important;
     opacity: 0.8;
     color: rgba(0, 0, 0, 0.2);
   }
   .drag-sort-enter {
     box-sizing: border-box;
-    border: 1px dashed #4ca1af !important;
-  }
-
-  @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.md}) {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    border: 0.063rem dashed #4ca1af !important;
   }
 
   & > table {
@@ -136,7 +128,6 @@ export const StyledTable = styled.div < TableI > `
         width: 100%;
       }
     }
-
     .pointer {
       cursor: pointer;
     }
@@ -162,45 +153,28 @@ export const StyledTable = styled.div < TableI > `
       background-color: ${({ background }) => background};
     }
 
-    thead {
-      tr {
-        width: 100% !important;
-        &:hover {
-          background-color: transparent !important;
-        }
-      }
-      th {
-        @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.md}) {
-          ${(p) => (p.headerElevation > 0
-    ? getElevation(p.headerElevation, 'bottom')
-    : null)};
-        }
-        ${({ headerFixed }) => (headerFixed ? 'position: sticky; top: 0;' : 'position: relative;')};
-        background-color: ${({ headerColor }) => headerColor || '#fff'};
-        color: ${({ textHeaderColor }) => textHeaderColor || '#000'};
-      }
-    }
-
     .selected > td {
       background-color: ${({ colorSelected }) => colorSelected || '#ffd37c'};
     }
 
     tr {
+      &:nth-of-type(odd) {
+        background-color: ${({ zebraColor, zebra }) => (zebra ? zebraColor : 'inherit')};
+      }
       padding: 0;
       margin: 0;
-      display: flex;
       transition: all 0.2s
         ${({ configuration }) => configuration.transitionTimingFunction};
-      background-color: inherit;
       &:hover {
-        background-color: ${({ zebraHover, zebraHoverColor }) => (zebraHover ? zebraHoverColor || 'inherit' : '')} !important;
+        ${({ zebraHover, zebraHoverColor }) => (zebraHover ? `background-color: ${zebraHoverColor}` : '')};
         opacity: ${({ zebra }) => (zebra ? '.89' : '1')};
-        transition: all 0.2s
+        transition: all 0.01s
           ${({ configuration }) => configuration.transitionTimingFunction};
       }
     }
     ${({ border, borderColor }) => getBorder(border, borderColor)};
-    td {
+    td,
+    th {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -210,24 +184,7 @@ export const StyledTable = styled.div < TableI > `
   }`};
       background-color: inherit;
     }
-    .zebra > tr:nth-of-type(odd) {
-      background-color: ${({ zebraColor }) => zebraColor || 'red'};
-    }
-    tbody,
-    thead {
-      & > tr > td:first-child,
-      > tr > th:first-child {
-        @media screen and (max-width: ${({ configuration }) => configuration.breakpoints.lg}) {
-          position: sticky !important;
-          z-index: 1;
-          .selected > td {
-            background-color: ${({ colorSelected }) => colorSelected || 'inherit'} !important;
-          }
-          left: 0;
-          ${() => getElevation(1, 'right')};
-        }
-      }
-    }
+
     tfoot > tr {
       &:hover {
         background-color: transparent !important;
@@ -236,64 +193,62 @@ export const StyledTable = styled.div < TableI > `
         border: none !important;
       }
     }
-    tbody > tr > td {
-      overflow: hidden;
-      min-height: ${({ minHeight }) => minHeight} !important;
-    }
   }
 `;
 
-export const getBorder = (
-  border: string = 'all',
-  borderColor: string = 'black',
-) => {
+export const getBorder = (border: string, borderColor: string) => {
   switch (border) {
     case 'none':
       return css`
         tbody > tr > td,
+        tbody > tr > th,
         tbody > tr:first-child > td,
+        tbody > tr:first-child > th,
+        tbody > tr > th:last-child,
         tbody > tr > td:last-child {
           border: none;
         }
       `;
     case 'vertical':
       return css`
+        tr > th,
         tr > td {
-          border-left: 1px solid ${borderColor};
+          border-left: 0.063rem solid ${borderColor};
         }
         tr > td:last-child {
-          border-right: 1px solid ${borderColor};
+          border-right: 0.063rem solid ${borderColor};
         }
       `;
     case 'horizontal':
       return css`
         tbody > tr {
-          border-bottom: 1px solid ${borderColor};
+          border-bottom: 0.063rem solid ${borderColor};
         }
-        tbody > tr:first-child {
-          border-top: 1px solid ${borderColor};
+        tbody > tr:nth-child(1) {
+          border-top: 0.063rem solid ${borderColor};
         }
-        tbody > tr:last-child {
-          border-bottom: 1px solid ${borderColor};
+        tbody > tr:nth-child(2) {
+          border-top: 0.063rem solid ${borderColor};
         }
       `;
     case 'all':
     default:
       return css`
         tbody > tr {
-          border-left: 1px solid ${borderColor};
-          border-right: 1px solid ${borderColor};
+          border-left: 0.063rem solid ${borderColor};
+          border-right: 0.063rem solid ${borderColor};
         }
         tbody > tr:first-child {
-          border-top: 1px solid ${borderColor};
+          border-top: 0.063rem solid ${borderColor};
         }
-        tbody > tr > td {
-          border-right: 1px solid ${borderColor};
-          border-bottom: 1px solid ${borderColor};
+        tbody > tr > td,
+        tbody > tr > th {
+          border-right: 0.063rem solid ${borderColor};
+          border-bottom: 0.063rem solid ${borderColor};
         }
         tbody > tr > :last-child {
           border: none;
-          border-bottom: 1px solid ${borderColor};
+          border-bottom: 0.063rem solid ${borderColor};
         }
       `;
   }

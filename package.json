@@ -1,6 +1,6 @@
 {
   "name": "@jp-olvera/jp-viaducto-components",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Los componentes de este repositorio están diseñados particular de los proyectos de viaducto",
   "main": "dist/index.js",
   "scripts": {
@@ -36,7 +36,6 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-ikonate": "^2.0.1",
-    "react-table": "^7.7.0",
     "react-toast-notifications": "^2.4.4",
     "styled-components": ">=5.2.1"
   },
@@ -60,7 +59,6 @@
     "@types/jest": "^26.0.23",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.3",
-    "@types/react-table": "^7.7.0",
     "@types/styled-components": "^5.1.9",
     "@typescript-eslint/parser": "^4.24.0",
     "babel-eslint": "^10.1.0",
@@ -101,7 +99,6 @@
   "dependencies": {
     "credit-card-type": "^9.1.0",
     "react-ikonate": "^2.0.1",
-    "react-table": "^7.7.0",
     "react-toast-notifications": "^2.4.4"
   }
 }

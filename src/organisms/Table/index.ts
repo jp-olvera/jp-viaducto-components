@@ -1,3 +1,3 @@
-import Table from './Table';
+import WrapperTable from './WrapperTable';
 
-export { Table };
+export { WrapperTable };
