@@ -100,7 +100,7 @@ const Input = ({
         disabled={disabled}
         family={family}
         type={type}
-        hasLabel={label === null || label === '' || label === undefined}
+        hasLabel={label !== null || label !== '' || label !== undefined}
         {...rest}
       >
         {isInvalid && <span className='is-invalid'>{getIcon('warning')}</span>}
@@ -148,8 +148,8 @@ const Input = ({
                   : ev.target.value,
             );
           }}
-          onClick={(e: any) => onClick(e)}
-          onKeyUp={(e: any) => onKeyUp(e)}
+          onClick={(e: any) => (onClick ? onClick(e) : () => {})}
+          onKeyUp={(e: any) => (onClick ? onKeyUp(e) : () => {})}
           type={
             open
               ? inputType
