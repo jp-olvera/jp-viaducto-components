@@ -118,6 +118,13 @@ export default {
       control: 'select',
       options: ['center', 'start', 'end'],
     },
+    variant: {
+      description: 'Change the visual variation in active element',
+      type: { summary: 'string', required: false },
+      table: { defaultValue: 'normal' },
+      control: 'select',
+      options: ['normal', 'outline'],
+    },
   },
 };
 
@@ -145,4 +152,5 @@ Default.args = {
   previousLabel: false,
   nextLabel: false,
   position: 'center',
+  variant: 'normal',
 };
