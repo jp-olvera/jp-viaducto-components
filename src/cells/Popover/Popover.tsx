@@ -47,49 +47,60 @@ const Popover = ({
 
   const setDropPosition = () => {
     if (dropRef.current && target.current) {
-      const contentH = dropRef.current?.offsetHeight || 0;
-      const { bottom, top, left } = target.current.getBoundingClientRect();
-      const activatorOffsetHeight = target.current.offsetHeight;
-      const dropdownH = activatorOffsetHeight + contentH;
-      const dropdownBottom = bottom + contentH; // la posición donde terminaría el dropdown
-      const documentH = window.innerHeight || document.documentElement.clientHeight;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const targetRect = target.current.getBoundingClientRect();
+      const dropW = dropRef.current?.offsetWidth || 0; // width drop
+      const dropH = dropRef.current?.offsetHeight || 0; // height drop
+      const dropR = targetRect.left + dropW;
+      const activatorW = targetRect.right - targetRect.left;
+      let { left } = targetRect;
 
-      if (position === 'top' && top > dropdownH) {
-        // es top y arriba aún hay espacio
-        const newTop = top - contentH;
-        setStylePosition({
-          y: `${newTop}px`,
-          x: `${left}px`,
-        });
-        setAlignDrop('bottom');
-        return;
-      }
-      if (position === 'bottom' && dropdownBottom < documentH) {
-        // es bottom y abaja hay espacio
-        setStylePosition({
-          y: `${bottom}px`,
-          x: `${left}px`,
-        });
-        setAlignDrop('top');
-        return;
-      }
-      if (dropdownBottom > documentH && top > dropdownH) {
-        // si el dropdown completo queda más abajo
-        // y arriba aún hay espacio
-        const newTop = top - contentH;
-        setStylePosition({
-          y: `${newTop}px`,
-          x: `${left}px`,
-        });
-        setAlignDrop('bottom');
+      // ajustar a los lados
+      if (windowWidth > dropW) {
+        // la ventana es mayor que el drop
+        if (position === 'left' && targetRect.left >= dropW) {
+          left = targetRect.left - dropW;
+        } else if (
+          position === 'right'
+          && windowWidth - targetRect.right >= dropW
+        ) {
+          left = targetRect.right;
+        } else if (dropR > windowWidth) {
+          // el drop se sale a la derecha
+          left = targetRect.left - (dropR - windowWidth);
+        } else {
+          // el drop no se sale a la derecha
+          left = targetRect.left;
+        }
       } else {
-        const newTop = top + activatorOffsetHeight;
-        setStylePosition({
-          y: `${newTop}px`,
-          x: `${left}px`,
-        });
-        setAlignDrop('top');
+        // la ventana es más pequeña
+        left = 0;
       }
+      let top = targetRect.bottom;
+
+      // ajustar verticalmente
+      // FIXME: usando right o left se tapa el activator dependiendo la pantalla
+      if (
+        targetRect.top + targetRect.bottom >= dropH
+        && ['left', 'right'].includes(position)
+        && windowWidth > activatorW + dropW
+      ) {
+        top = targetRect.top - dropH / 2 + target.current.offsetHeight / 2;
+      } else if (position === 'top' && targetRect.top >= dropH) {
+        top = targetRect.top - dropH;
+      } else if (
+        position === 'bottom'
+        && windowHeight - targetRect.bottom > dropH
+      ) {
+        top = targetRect.bottom;
+      } else if (targetRect.top >= dropH) {
+        top = targetRect.top - dropH;
+      } else {
+        top = targetRect.bottom;
+      }
+      dropRef.current.style.top = `${top}px`;
+      dropRef.current.style.left = `${left}px`;
     }
   };
   useEffect(() => {
@@ -99,9 +110,11 @@ const Popover = ({
   useEffect(() => {
     if (active) {
       document.addEventListener('scroll', setDropPosition);
+      window.addEventListener('resize', setDropPosition);
     }
     return function cleanup() {
       document.removeEventListener('scroll', setDropPosition);
+      window.removeEventListener('resize', setDropPosition);
     };
   }, [active]);
 
@@ -115,8 +128,6 @@ const Popover = ({
       elevationDirection={elevationDirection}
       style={{
         position: 'fixed',
-        top: stylePosition.y,
-        left: stylePosition.x,
       }}
       alignDrop={alignDrop}
     >

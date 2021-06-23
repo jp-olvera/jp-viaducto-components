@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { ConfigProvider } from '../../../providers';
 import { Popover } from '..';
-import { Button, Title } from '../../../cells';
-import { Card } from '../../../organisms';
+import { Button } from '../../../cells';
 
 export default {
   title: 'Andamio/Cells/Popover',
@@ -33,7 +32,7 @@ export default {
         defaultValue: { summary: 'bottom' },
         type: { summary: 'string' },
       },
-      options: ['top', 'bottom'],
+      options: ['top', 'bottom', 'right', 'left'],
       control: {
         type: 'select',
       },
@@ -96,39 +95,32 @@ const Template = (args) => {
 
   return (
     <ConfigProvider>
-      <div style={{ height: '100px' }}>
-        <Title>You need to scroll to find the button</Title>
-      </div>
-      <br />
-      <div>
-        <Button
-          ref={ref}
-          type='button'
-          onClick={handleClick}
-          label='Click to see the magic'
-          shapeColor='success'
-        />
-
-        <Popover
-          active={active}
-          content={(
-            <Card
-              src='https://homepages.cae.wisc.edu/~ece533/images/girl.png'
-              collapsible={false}
-              collapse={false}
-              content=''
-              footer=''
-              onlyImage={false}
-              elevation={1}
-              elevationDirection='radial'
-              transition='ease'
-            />
-          )}
-          target={ref}
-          handleClose={handleClick}
-          position='top'
-          {...args}
-        />
+      <div
+        style={{
+          height: '1500px',
+        }}
+      >
+        <div style={{ marginTop: '500px', marginLeft: '55%' }}>
+          <Button
+            ref={ref}
+            type='button'
+            onClick={handleClick}
+            label='Click to see the magic'
+            shapeColor='success'
+          />
+          <Popover
+            active={active}
+            content={(
+              <div
+                style={{ width: '600px', height: '400px', background: 'black' }}
+              />
+            )}
+            target={ref}
+            handleClose={handleClick}
+            position='top'
+            {...args}
+          />
+        </div>
       </div>
     </ConfigProvider>
   );
