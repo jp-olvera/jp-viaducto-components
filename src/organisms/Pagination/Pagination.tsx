@@ -25,6 +25,7 @@ interface PaginationInterface {
   radius?: number | string | null;
   spacing?: string;
   onPageChange?: Function;
+  variant?: string;
 }
 
 const Pagination = ({
@@ -38,11 +39,12 @@ const Pagination = ({
   fontSize = 'md',
   activeColor = '#bdbdbd',
   hoverColor = '#acacac',
-  textColor = 'dark',
+  textColor,
   radius = 0,
   spacing = 'xs',
   onPageChange,
   position = 'center',
+  variant = 'normal',
   ...rest
 }: PaginationInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -109,6 +111,7 @@ const Pagination = ({
       radius={radius}
       spacing={spacing}
       position={position}
+      variant={variant}
       {...rest}
     >
       <ul>

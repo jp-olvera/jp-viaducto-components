@@ -8,13 +8,26 @@ import { Pagination } from '..';
 describe('<Pagination/> component', () => {
   test('should render properly', () => {
     const { getByText } = render(
-      <Pagination totalPages={10} sibilings={0} radius={0} iconRight='ICON' />,
+      <Pagination
+        totalPages={10}
+        sibilings={0}
+        radius={0}
+        iconRight='ICON'
+        textColor='dark'
+      />,
     );
     expect(getByText('1')).toBeInTheDocument();
   });
   test('should render pagination with style props', () => {
     const { getByText } = render(
-      <Pagination totalPages={5} sibilings={0} radius='1rem' iconLeft='AAAA' />,
+      <Pagination
+        totalPages={5}
+        sibilings={0}
+        radius='1rem'
+        iconLeft='AAAA'
+        variant='outline'
+        textColor='#fff'
+      />,
     );
     expect(getByText('5')).toBeInTheDocument();
   });
@@ -31,6 +44,7 @@ describe('<Pagination/> component', () => {
         iconRight={null}
         previousLabel
         iconLeft={null}
+        textColor={null}
       />,
     );
     const next = getByTestId('r-icon');

@@ -16,9 +16,14 @@ export const StyledPagination = styled.div < any > `
     margin-left: 0;
     & > * > * {
       font-size: ${(p) => getSize(p.fontSize)};
-      color: ${(p) => p.configuration.text[p.textColor]} !important;
+      color: ${(p) => p.configuration.text[p.textColor]
+        || p.textColor
+        || p.configuration.text.dark} !important;
       &:hover {
         text-decoration: none;
+        filter: ${(p) => (p.variant === 'outline' ? 'invert(1)' : 'invert(0)')} !important;
+        & > a {
+        }
       }
       display: block;
     }
@@ -32,12 +37,17 @@ export const StyledPagination = styled.div < any > `
     ? `border-radius: ${radius}; `
     : `border-radius: ${radius}rem;`)};
       &.active {
-        background-color: ${(p) => p.activeColor};
+        background-color: ${(p) => (p.variant === 'normal' ? p.activeColor : 'transparent')};
+        border: 1px solid
+          ${(p) => (p.variant === 'normal' ? 'transparent' : p.activeColor)};
         &:hover {
           background-color: ${(p) => p.hoverColor};
           ${({ radius }) => (typeof radius === 'string'
     ? `border-radius: ${radius}; `
     : `border-radius: ${radius}rem;`)};
+          & > a {
+            filter: ${(p) => (p.variant === 'outline' ? 'invert(1)' : 'invert(0)')} !important;
+          }
         }
       }
       &.disabled > * {
@@ -53,6 +63,9 @@ export const StyledPagination = styled.div < any > `
       &:hover:not(.disabled):not(.dots) {
         background-color: ${(p) => p.hoverColor};
         cursor: pointer;
+        & > a {
+          filter: ${(p) => (p.variant === 'outline' ? 'invert(1)' : 'invert(0)')} !important;
+        }
       }
       & a {
         user-select: none;
