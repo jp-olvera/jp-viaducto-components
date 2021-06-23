@@ -21,7 +21,6 @@ const Popover = ({
   elevationDirection = '',
 }: PopoverProps) => {
   const dropRef = useRef<HTMLDivElement>(null);
-  const [stylePosition, setStylePosition] = useState({ x: '0rem', y: '0rem' });
   const [alignDrop, setAlignDrop] = useState(position);
   const clickOutsideHandler = (event) => {
     if (dropRef.current && target.current) {
@@ -53,18 +52,19 @@ const Popover = ({
       const dropW = dropRef.current?.offsetWidth || 0; // width drop
       const dropH = dropRef.current?.offsetHeight || 0; // height drop
       const dropR = targetRect.left + dropW;
-      const activatorW = targetRect.right - targetRect.left;
       let { left } = targetRect;
 
       // ajustar a los lados
       if (windowWidth > dropW) {
         // la ventana es mayor que el drop
         if (position === 'left' && targetRect.left >= dropW) {
+          // a la izquierda y sí hay espacio
           left = targetRect.left - dropW;
         } else if (
           position === 'right'
           && windowWidth - targetRect.right >= dropW
         ) {
+          // a la derecha y sí hay espacio
           left = targetRect.right;
         } else if (dropR > windowWidth) {
           // el drop se sale a la derecha
@@ -82,9 +82,17 @@ const Popover = ({
       // ajustar verticalmente
       // FIXME: usando right o left se tapa el activator dependiendo la pantalla
       if (
-        targetRect.top + targetRect.bottom >= dropH
-        && ['left', 'right'].includes(position)
-        && windowWidth > activatorW + dropW
+        position === 'right'
+        && targetRect.top > dropH / 2
+        && windowHeight - targetRect.bottom > dropH / 2
+        && windowWidth - targetRect.right >= dropW
+      ) {
+        top = targetRect.top - dropH / 2 + target.current.offsetHeight / 2;
+      } else if (
+        position === 'left'
+        && targetRect.top > dropH / 2
+        && windowHeight - targetRect.bottom > dropH / 2
+        && targetRect.left > dropW
       ) {
         top = targetRect.top - dropH / 2 + target.current.offsetHeight / 2;
       } else if (position === 'top' && targetRect.top >= dropH) {

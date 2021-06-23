@@ -86,7 +86,7 @@ export default {
   },
 };
 
-const Template = (args) => {
+const Template = ({ ...rest }) => {
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
@@ -100,7 +100,7 @@ const Template = (args) => {
           height: '1500px',
         }}
       >
-        <div style={{ marginTop: '500px', marginLeft: '55%' }}>
+        <div style={{ marginTop: '500px', marginLeft: '50%' }}>
           <Button
             ref={ref}
             type='button'
@@ -117,8 +117,7 @@ const Template = (args) => {
             )}
             target={ref}
             handleClose={handleClick}
-            position='top'
-            {...args}
+            {...rest}
           />
         </div>
       </div>
