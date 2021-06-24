@@ -31,7 +31,7 @@ creditCardType.resetModifications();
  */
 
 const Input = ({
-  label = '',
+  label,
   border = 'default',
   disabled = false,
   type = 'text',
@@ -100,12 +100,9 @@ const Input = ({
         disabled={disabled}
         family={family}
         type={type}
-        hasLabel={label !== null || label !== '' || label !== undefined}
+        hasLabel={label !== null}
         {...rest}
       >
-        {isInvalid && <span className='is-invalid'>{getIcon('warning')}</span>}
-        {isValid && <span className='is-valid'>{getIcon('ok')}</span>}
-        {required && <span className='is-required'>{getIcon('required')}</span>}
         {type === 'password' && (
           <span
             className='icon-helper'
@@ -134,7 +131,6 @@ const Input = ({
             }
           }}
           onChange={(ev) => {
-            onChange(ev);
             setInputValue(ev.target.value.length);
             setCardIcon(ev);
             setNewValue(
@@ -147,9 +143,10 @@ const Input = ({
                   ? mask(ev.target.value.replace(/([^0-9|+])/g, ''), 3, ' ')
                   : ev.target.value,
             );
+            onChange(ev);
           }}
-          onClick={(e: any) => (onClick ? onClick(e) : () => {})}
-          onKeyUp={(e: any) => (onClick ? onKeyUp(e) : () => {})}
+          onClick={onClick ? onClick() : () => {}}
+          onKeyUp={onKeyUp ? onKeyUp() : () => {}}
           type={
             open
               ? inputType
@@ -175,6 +172,9 @@ const Input = ({
           list={type === 'datalist' ? `${rest.id}__datalist` : undefined}
           {...rest}
         />
+        {isInvalid && <span className='is-invalid'>{getIcon('warning')}</span>}
+        {isValid && <span className='is-valid'>{getIcon('ok')}</span>}
+        {required && <span className='is-required'>{getIcon('required')}</span>}
         {(icon !== null || mustHaveIcon.includes(type)) && (
           <span className='icon'>
             {getIcon(

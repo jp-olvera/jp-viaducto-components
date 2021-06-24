@@ -155,31 +155,39 @@ export const Wrapper = styled.div < any > `
     user-select: none;
     bottom: ${({ configuration, size }) => (size === 'large' ? '0.6rem' : configuration.spacing.nano)};
   }
+
   .is-invalid {
     color: red;
-    padding: 0.3rem ${({ configuration }) => configuration.spacing.xs};
-    display: inline-flex;
+    padding: 0.6rem ${({ configuration }) => configuration.spacing.xs};
+    position: absolute;
+    float: right;
+    display: flex;
     align-items: center;
   }
 
   .is-required {
     color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
-    padding: 0.3rem ${({ configuration }) => configuration.spacing.xs};
-    display: inline-flex;
+    padding: 0.6rem ${({ configuration }) => configuration.spacing.xs};
+    position: absolute;
+    float: right;
+    display: flex;
     align-items: center;
   }
 
   .is-valid {
     color: #3ae25f;
-    padding: 0.3rem ${({ configuration }) => configuration.spacing.xs};
-    display: inline-flex;
+    padding: 0.6rem ${({ configuration }) => configuration.spacing.xs};
+    position: absolute;
+    float: right;
+    display: flex;
     align-items: center;
   }
 
   .icon-helper {
     color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
     padding: 0 ${({ configuration }) => configuration.spacing.xs};
-    display: inline-flex;
+    position: absolute;
+    display: flex;
     align-items: center;
   }
 `;
@@ -232,7 +240,7 @@ export const setInputPadding = (size: string) => {
       padding = '0';
       break;
     case 'small':
-      padding = '0.35rem';
+      padding = '0.25rem';
       break;
     case 'large':
       padding = '0.5rem';
@@ -256,7 +264,7 @@ export const setIcon = (size: string) => {
         transform: translateY(-25%);
       `;
       active = css`
-        transform: translateY(-25%) !important;
+        transform: translateY(-20%) !important;
       `;
       break;
     case 'large':
@@ -301,10 +309,10 @@ export const setLabel = (size: string, border: string) => {
       active = css`
         transform: scale(0.68)
           ${border === 'outside'
-    ? 'translateY(-250%)'
+    ? 'translateY(-265%)'
     : border === 'overlap'
-      ? 'translateY(-200%)'
-      : 'translateY(-130%)'};
+      ? 'translateY(-215%)'
+      : 'translateY(-164%)'};
       `;
       normal = css`
         transform: translateY(-35%);
