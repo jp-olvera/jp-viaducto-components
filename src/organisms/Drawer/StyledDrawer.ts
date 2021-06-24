@@ -25,6 +25,7 @@ const StyledDrawer = styled.div < any > `
   top: 0;
   right: 0;
   width: 100%;
+  z-index: 1;
   @media (min-width: ${(p) => p.minWidth}) {
     width: auto;
     min-width: ${(p) => p.minWidth};

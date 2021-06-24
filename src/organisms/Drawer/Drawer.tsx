@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {
+  useState, useEffect, useContext, useRef,
+} from 'react';
 import { createPortal } from 'react-dom';
 import StyledDrawer from './StyledDrawer';
 import { ConfigContext } from '../../providers';
@@ -34,9 +36,12 @@ const Drawer = ({
 }: DrawerInterface) => {
   const { configuration } = useContext(ConfigContext);
   const [isClosing, setisClosing] = useState(false);
-
+  const ref = useRef<HTMLElement>();
   useEffect(() => {
     setisClosing(false);
+    if (active && ref.current) {
+      ref.current.focus();
+    }
   }, [active]);
 
   const handleClose = (ev) => {
@@ -70,7 +75,7 @@ const Drawer = ({
         position: 'fixed',
         top: 0,
         width: '100vw',
-        zIndex: 1,
+        zIndex: 9999,
       }}
     >
       <StyledDrawer
@@ -81,6 +86,7 @@ const Drawer = ({
         elevationDirection={elevationDirection}
         minWidth={minWidth}
         tabIndex={0}
+        ref={ref}
         {...rest}
         onClick={(ev) => {
           // Yep! this is needed
