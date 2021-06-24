@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Close } from 'react-ikonate';
 import StyledModal from './StyledModal';
 import { Title } from '../../cells/Title';
@@ -65,21 +66,23 @@ const Modal = ({
   const modalRef = useRef<HTMLElement>(null);
 
   const clickOutsideHandler = (event) => {
-    if (modalRef.current && modalRef.current.contains(event.target)) {
-      return;
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      handleActive();
     }
-    handleActive();
   };
   useEffect(() => {
     if (allowClickOutside) {
       if (active) {
-        document.addEventListener('click', clickOutsideHandler);
+        document.addEventListener('mouseup', clickOutsideHandler);
       } else {
-        document.removeEventListener('click', clickOutsideHandler);
+        document.removeEventListener('mouseup', clickOutsideHandler);
       }
     }
+    if (active && modalRef.current) {
+      modalRef.current.focus();
+    }
     return function cleanup() {
-      document.removeEventListener('click', clickOutsideHandler);
+      document.removeEventListener('mouseup', clickOutsideHandler);
     };
   }, [active]);
 
@@ -93,62 +96,65 @@ const Modal = ({
     if (onAccept !== null) onAccept();
     handleActive();
   };
-  return (
-    <div
-      data-testid='overlay'
-      style={{
-        alignItems: 'center',
-        backgroundColor: overlayColor,
-        display: active ? 'flex' : 'none',
-        height: '100%',
-        justifyContent: 'center',
-        left: '0',
-        position: 'fixed',
-        top: '0',
-        width: '100%',
-        overflowY: 'auto',
-        zIndex: 9999,
-      }}
-    >
-      <StyledModal
-        data-testid='modal'
-        ref={modalRef}
-        configuration={configuration}
-        maxWidth={maxWidth}
-        breakpoint={breakpoint}
-        isActive={active}
-        maxHeight={maxHeight}
-        backgroundColor={backgroundColor}
-        elevation={elevation}
-        elevationDirection={elevationDirection}
+  return active
+    ? createPortal(
+      <div
+        data-testid='overlay'
+        style={{
+          alignItems: 'center',
+          backgroundColor: overlayColor,
+          display: active ? 'flex' : 'none',
+          height: '100%',
+          justifyContent: 'center',
+          left: '0',
+          position: 'fixed',
+          top: '0',
+          width: '100%',
+          overflowY: 'auto',
+          zIndex: 9999,
+        }}
       >
-        <div
-          className='modal-header'
-          style={{
-            flexDirection: headComponent !== null ? 'column-reverse' : 'row',
-          }}
+        <StyledModal
+          data-testid='modal'
+          ref={modalRef}
+          configuration={configuration}
+          maxWidth={maxWidth}
+          breakpoint={breakpoint}
+          isActive={active}
+          maxHeight={maxHeight}
+          backgroundColor={backgroundColor}
+          elevation={elevation}
+          elevationDirection={elevationDirection}
+          tabIndex={0}
         >
-          <div>
-            <Title level='4' weight='500'>
-              {title}
-            </Title>
+          <div
+            className='modal-header'
+            style={{
+              flexDirection:
+                  headComponent !== null ? 'column-reverse' : 'row',
+            }}
+          >
+            <div>
+              <Title level='4' weight='500'>
+                {title}
+              </Title>
+            </div>
+            {headComponent !== null ? (
+              <div style={{ width: '100%' }}>{headComponent}</div>
+            ) : null}
+            <BareButton style={{ marginLeft: 'auto' }} onClick={handleActive}>
+              <Close
+                data-testid='close-button'
+                stroke='#9EA0A5'
+                strokeWidth={2}
+                width='18px'
+              />
+            </BareButton>
           </div>
-          {headComponent !== null ? (
-            <div style={{ width: '100%' }}>{headComponent}</div>
-          ) : null}
-          <BareButton style={{ marginLeft: 'auto' }} onClick={handleActive}>
-            <Close
-              data-testid='close-button'
-              stroke='#9EA0A5'
-              strokeWidth={2}
-              width='18px'
-            />
-          </BareButton>
-        </div>
-        <div className='modal-content'>{children}</div>
-        {onReject === null && onAccept === null ? null : (
-          <div className='modal-bottom' data-testid='controls'>
-            {onReject !== null && (
+          <div className='modal-content'>{children}</div>
+          {onReject === null && onAccept === null ? null : (
+            <div className='modal-bottom' data-testid='controls'>
+              {onReject !== null && (
               <Button
                 label='reject'
                 data-testid='reject'
@@ -162,8 +168,8 @@ const Modal = ({
                 onClick={handleReject}
                 disabled={rejectDisabled}
               />
-            )}
-            {onAccept !== null && (
+              )}
+              {onAccept !== null && (
               <div style={{ marginLeft: 'auto' }}>
                 <Button
                   label='Create Event'
@@ -179,12 +185,14 @@ const Modal = ({
                   disabled={acceptDisabled}
                 />
               </div>
-            )}
-          </div>
-        )}
-      </StyledModal>
-    </div>
-  );
+              )}
+            </div>
+          )}
+        </StyledModal>
+      </div>,
+      document.body,
+    )
+    : null;
 };
 
 export default Modal;

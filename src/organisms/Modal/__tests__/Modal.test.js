@@ -17,8 +17,8 @@ describe('<Modal></Modal>', () => {
         allowClickOutside={false}
       />,
     );
-    expect(screen.getByTestId('overlay')).not.toBeVisible();
-    expect(screen.getByTestId('modal')).not.toBeVisible();
+    expect(screen.queryByTestId('overlay')).toBe(null);
+    expect(screen.queryByTestId('modal')).toBe(null);
   });
   test('should be visible', () => {
     render(<Modal active />);
@@ -39,7 +39,7 @@ describe('<Modal></Modal>', () => {
   test('click on the overlay should call handleActive function', () => {
     const handleActive = jest.fn();
     render(<Modal active handleActive={handleActive} />);
-    fireEvent.click(screen.getByTestId('overlay'));
+    fireEvent.mouseUp(screen.getByTestId('overlay'));
     expect(handleActive).toBeCalled();
   });
   test('should call onAccept function', () => {
