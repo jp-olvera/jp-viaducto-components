@@ -9,18 +9,13 @@ export default {
   argTypes: {
     active: {
       description: 'Indicates if the popover is visible',
-      type: { summary: 'boolean' },
       table: {
-        defaultValue: { summary: null },
-        type: { summary: 'string' },
-      },
-      control: {
-        type: 'boolean',
+        defaultValue: { summary: false },
+        type: { summary: 'boolean' },
       },
     },
     content: {
-      description: 'Indicates if the popover is visible',
-      type: { summary: 'React.ReactNode', required: true },
+      description: 'The content that goes in the popover',
       table: {
         type: { summary: 'React.ReactNode' },
       },
@@ -39,14 +34,12 @@ export default {
     },
     target: {
       description: 'A ref pointing to the activator',
-      type: { summary: 'React.RefObject<HTMLElement>', required: true },
       table: {
         type: { summary: 'React.RefObject<HTMLElement>' },
       },
     },
     handleClose: {
-      description: 'A ref pointing to the activator',
-      type: { summary: '() => void', required: true },
+      description: 'A function to close the modal',
       table: {
         type: { summary: '() => void' },
       },
@@ -86,12 +79,18 @@ export default {
   },
 };
 
-const Template = ({ ...rest }) => {
+const Template = ({ position }) => {
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
   };
   const ref = useRef(null);
+
+  const [active2, setActive2] = useState(false);
+  const handleClick2 = () => {
+    setActive2(!active2);
+  };
+  const ref2 = useRef(null);
 
   return (
     <ConfigProvider>
@@ -112,12 +111,30 @@ const Template = ({ ...rest }) => {
             active={active}
             content={(
               <div
-                style={{ width: '600px', height: '400px', background: 'black' }}
+                style={{ width: '300px', height: '300px', background: 'black' }}
               />
             )}
             target={ref}
             handleClose={handleClick}
-            {...rest}
+            position={position}
+          />
+          <Button
+            ref={ref2}
+            type='button'
+            onClick={handleClick2}
+            label='Click to see the magic'
+            shapeColor='success'
+          />
+          <Popover
+            active={active2}
+            content={(
+              <div
+                style={{ width: '300px', height: '300px', background: 'black' }}
+              />
+            )}
+            target={ref2}
+            handleClose={handleClick2}
+            position={position}
           />
         </div>
       </div>
