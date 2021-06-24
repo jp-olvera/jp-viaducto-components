@@ -18,9 +18,10 @@ interface StyledDropProps {
   elevationDirection: string;
 }
 export const StyledDrop = styled.div < StyledDropProps > `
-  animation-delay: 0.01;
-  transform-origin: ${(props) => props.alignDrop} left;
   animation: ${dropKeyFrames} 230ms forwards;
-
+  animation-delay: 0.01;
+  background-color: white;
+  transform-origin: ${(props) => props.alignDrop} left;
+  z-index: 1;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
 `;
