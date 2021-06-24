@@ -2,6 +2,11 @@ import React, { useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { StyledDrop } from './StyledDrop';
 
+// const getNewContainer = (target = document.body) => {
+//   const container = document.createElement('div');
+//   target.appendChild(container);
+//   return container;
+// };
 interface PopoverProps {
   target: React.RefObject<HTMLElement>;
   content: React.ReactNode;
@@ -22,6 +27,19 @@ const Popover = ({
 }: PopoverProps) => {
   const dropRef = useRef<HTMLDivElement>(null);
   const [alignDrop, setAlignDrop] = useState(position);
+  // const [dropContainer, setDropContainer] = useState<HTMLDivElement>();
+  // const containerTarget = typeof document === 'object' ? document.body : undefined;
+  // useEffect(() => setDropContainer(getNewContainer(containerTarget)), [
+  //   containerTarget,
+  // ]);
+  // useEffect(
+  //   () => () => {
+  //     if (dropContainer) {
+  //       containerTarget?.removeChild(dropContainer);
+  //     }
+  //   },
+  //   [dropContainer, containerTarget],
+  // );
   const clickOutsideHandler = (event) => {
     if (dropRef.current && target.current) {
       if (
@@ -60,6 +78,7 @@ const Popover = ({
         if (position === 'left' && targetRect.left >= dropW) {
           // a la izquierda y sí hay espacio
           left = targetRect.left - dropW;
+          setAlignDrop('right');
         } else if (
           position === 'right'
           && windowWidth - targetRect.right >= dropW
@@ -80,21 +99,22 @@ const Popover = ({
       let top = targetRect.bottom;
 
       // ajustar verticalmente
-      // FIXME: usando right o left se tapa el activator dependiendo la pantalla
-      if (
-        position === 'right'
-        && targetRect.top > dropH / 2
-        && windowHeight - targetRect.bottom > dropH / 2
-        && windowWidth - targetRect.right >= dropW
-      ) {
-        top = targetRect.top - dropH / 2 + target.current.offsetHeight / 2;
-      } else if (
-        position === 'left'
-        && targetRect.top > dropH / 2
-        && windowHeight - targetRect.bottom > dropH / 2
-        && targetRect.left > dropW
-      ) {
-        top = targetRect.top - dropH / 2 + target.current.offsetHeight / 2;
+      if (position === 'right' && windowWidth - targetRect.right >= dropW) {
+        if (targetRect.top < dropH) {
+          top = targetRect.top;
+        } else if (windowHeight - targetRect.bottom < dropH) {
+          top = targetRect.bottom - dropH;
+        } else {
+          top = targetRect.top - dropH / 2 + target.current.offsetHeight / 2;
+        }
+      } else if (position === 'left' && targetRect.left > dropW) {
+        if (targetRect.top < dropH) {
+          top = targetRect.top;
+        } else if (windowHeight - targetRect.bottom < dropH) {
+          top = targetRect.bottom - dropH;
+        } else {
+          top = targetRect.top - dropH / 2 + target.current.offsetHeight / 2;
+        }
       } else if (position === 'top' && targetRect.top >= dropH) {
         top = targetRect.top - dropH;
       } else if (
@@ -126,22 +146,22 @@ const Popover = ({
     };
   }, [active]);
 
-  if (!active || !target.current) {
-    return null;
+  if (active && target.current) {
+    return createPortal(
+      <StyledDrop
+        ref={dropRef}
+        elevation={elevation}
+        elevationDirection={elevationDirection}
+        style={{
+          position: 'fixed',
+        }}
+        alignDrop={alignDrop}
+      >
+        {content}
+      </StyledDrop>,
+      document.body,
+    );
   }
-  return createPortal(
-    <StyledDrop
-      ref={dropRef}
-      elevation={elevation}
-      elevationDirection={elevationDirection}
-      style={{
-        position: 'fixed',
-      }}
-      alignDrop={alignDrop}
-    >
-      {content}
-    </StyledDrop>,
-    document.body,
-  );
+  return null;
 };
 export default Popover;
