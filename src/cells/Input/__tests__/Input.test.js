@@ -46,13 +46,29 @@ describe('<Input/>', () => {
       />,
     );
     const input = container.querySelector('.input');
+    fireEvent.click(input);
+    fireEvent.change(input, { target: { value: '555555' } });
+    expect(input.value).not.toBeNull();
+  });
+  test('should render input and change the value with other border', () => {
+    const { container } = render(
+      <Input
+        size='xsmall'
+        label='Master'
+        isInvalid
+        type='card'
+        border='overlap'
+        value='55555555555'
+      />,
+    );
+    const input = container.querySelector('.input');
     fireEvent.change(input, { target: { value: '555555' } });
     expect(input.value).not.toBeNull();
   });
 
   test('should render input and change the value with amex card', () => {
     const { container } = render(
-      <Input size='large' label='Amex' isInvalid type='card' border='outside' />,
+      <Input size='large' label='Amex' isInvalid type='card' border='overlap' />,
     );
     const input = container.querySelector('.input');
     fireEvent.change(input, { target: { value: '37021458745698745' } });
@@ -64,6 +80,22 @@ describe('<Input/>', () => {
         size='small'
         label='Im the input tested'
         isInvalid
+        border='outside'
+        type='card'
+        value='65432165'
+      />,
+    );
+    const input = container.querySelector('.input');
+    fireEvent.change(input, { target: { value: 'aaaaaaaaaaa' } });
+    expect(input).not.toBeNull();
+  });
+  test('should render input and change the value with no svg card no border', () => {
+    const { container } = render(
+      <Input
+        size='small'
+        label='Im the input tested'
+        isInvalid
+        border='bottom'
         type='card'
         value='65432165'
       />,
@@ -126,6 +158,7 @@ describe('<Input/>', () => {
         size='large'
         icon='IconCool'
         required
+        label={undefined}
       />,
     );
     const input = container.querySelector('.input');
@@ -139,7 +172,7 @@ describe('<Input/>', () => {
     expect(container).not.toBeNull();
   });
   test('should render a simple card input', () => {
-    const { container } = render(<Input label='label' type='card' />);
+    const { container } = render(<Input label={null} type='card' />);
     const input = container.querySelector('input');
     fireEvent.change(input, { target: { value: 345 } });
     expect(input.value).toBe('345');
@@ -161,7 +194,9 @@ describe('<Input/>', () => {
     expect(container).not.toBeNull();
   });
   test('should render a simple phone input', () => {
-    const { container } = render(<Input label='label' type='phone' />);
+    const { container } = render(
+      <Input label='label' type='phone' border='overlap' />,
+    );
     const input = container.querySelector('input');
     fireEvent.change(input, { target: { value: 3654 } });
     fireEvent.change(input, { target: { value: 454 } });
@@ -218,6 +253,7 @@ describe('<Input/>', () => {
           dataListConfiguration={dataListConfiguration}
           label='Datalist'
           onClick={null}
+          size='large'
           onKeyUp={null}
         />,
       );
@@ -238,7 +274,10 @@ describe('<Input/>', () => {
           onKeyUp={(e) => onkeyup(e)}
         />,
       );
-      fireEvent.change(container.querySelector('input'), {
+      const input = container.querySelector('input');
+      fireEvent.click(input);
+      fireEvent.keyUp(input, { keyCode: 13 });
+      fireEvent.change(input, {
         target: { value: 'PHP' },
       });
       expect(container.querySelector('input')).toBeInTheDocument();
