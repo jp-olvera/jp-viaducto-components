@@ -146,7 +146,7 @@ const Popover = ({
     };
   }, [active]);
 
-  if (active && target.current) {
+  if (active && target && target.current) {
     return createPortal(
       <StyledDrop
         ref={dropRef}
