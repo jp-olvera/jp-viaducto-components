@@ -2,11 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { StyledDrop } from './StyledDrop';
 
-// const getNewContainer = (target = document.body) => {
-//   const container = document.createElement('div');
-//   target.appendChild(container);
-//   return container;
-// };
 interface PopoverProps {
   target: React.RefObject<HTMLElement>;
   content: React.ReactNode;
@@ -27,19 +22,7 @@ const Popover = ({
 }: PopoverProps) => {
   const dropRef = useRef<HTMLDivElement>(null);
   const [alignDrop, setAlignDrop] = useState(position);
-  // const [dropContainer, setDropContainer] = useState<HTMLDivElement>();
-  // const containerTarget = typeof document === 'object' ? document.body : undefined;
-  // useEffect(() => setDropContainer(getNewContainer(containerTarget)), [
-  //   containerTarget,
-  // ]);
-  // useEffect(
-  //   () => () => {
-  //     if (dropContainer) {
-  //       containerTarget?.removeChild(dropContainer);
-  //     }
-  //   },
-  //   [dropContainer, containerTarget],
-  // );
+
   const clickOutsideHandler = (event) => {
     if (dropRef.current && target.current) {
       if (
@@ -64,12 +47,18 @@ const Popover = ({
 
   const setDropPosition = () => {
     if (dropRef.current && target.current) {
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-      const targetRect = target.current.getBoundingClientRect();
+      const windowWidth = document.body.clientWidth;
+      const windowHeight = document.body.clientHeight;
+      const tr = target.current.getBoundingClientRect();
+      const targetRect = {
+        left: tr.left - 6,
+        top: tr.top - 6,
+        bottom: tr.bottom + 6,
+        right: tr.right + 6,
+      };
       const dropW = dropRef.current?.offsetWidth || 0; // width drop
       const dropH = dropRef.current?.offsetHeight || 0; // height drop
-      const dropR = targetRect.left + dropW;
+      const dropR = targetRect.right + dropW;
       let { left } = targetRect;
 
       // ajustar a los lados
@@ -87,7 +76,7 @@ const Popover = ({
           left = targetRect.right;
         } else if (dropR > windowWidth) {
           // el drop se sale a la derecha
-          left = targetRect.left - (dropR - windowWidth);
+          left = targetRect.right - (dropR - windowWidth);
         } else {
           // el drop no se sale a la derecha
           left = targetRect.left;
@@ -100,6 +89,7 @@ const Popover = ({
 
       // ajustar verticalmente
       if (position === 'right' && windowWidth - targetRect.right >= dropW) {
+        // to the right and it fits
         if (targetRect.top < dropH) {
           top = targetRect.top;
         } else if (windowHeight - targetRect.bottom < dropH) {
