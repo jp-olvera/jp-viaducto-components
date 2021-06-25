@@ -100,7 +100,7 @@ const Template = ({ position, elevation, elevationDirection }) => {
           width: '1500px',
         }}
       >
-        <div style={{ marginTop: '0', marginLeft: '500px' }}>
+        <div style={{ marginTop: '300px', marginLeft: '300px' }}>
           <Button
             ref={ref}
             type='button'
