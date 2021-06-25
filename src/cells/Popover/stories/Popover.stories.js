@@ -50,7 +50,7 @@ export default {
         type: { summary: 'number' },
         defaultValue: { summary: 1 },
       },
-      options: [1, 2, 3],
+      options: [0, 1, 2, 3],
       control: {
         type: 'select',
       },
@@ -79,7 +79,7 @@ export default {
   },
 };
 
-const Template = ({ position }) => {
+const Template = ({ position, elevation, elevationDirection }) => {
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
@@ -97,26 +97,31 @@ const Template = ({ position }) => {
       <div
         style={{
           height: '1500px',
+          width: '1500px',
         }}
       >
-        <div style={{ marginTop: '500px', marginLeft: '50%' }}>
+        <div style={{ marginTop: '300px', marginLeft: '300px' }}>
           <Button
             ref={ref}
             type='button'
             onClick={handleClick}
             label='Click to see the magic'
             shapeColor='success'
+            style={{
+              position: 'fixed',
+              right: '0',
+              bottom: '0',
+              height: '15px',
+            }}
           />
           <Popover
             active={active}
-            content={(
-              <div
-                style={{ width: '300px', height: '300px', background: 'black' }}
-              />
-            )}
+            content={<div style={{ width: '300px', height: '300px' }} />}
             target={ref}
             handleClose={handleClick}
             position={position}
+            elevation={elevation}
+            elevationDirection={elevationDirection}
           />
           <Button
             ref={ref2}
@@ -127,14 +132,12 @@ const Template = ({ position }) => {
           />
           <Popover
             active={active2}
-            content={(
-              <div
-                style={{ width: '300px', height: '300px', background: 'black' }}
-              />
-            )}
+            content={<div style={{ width: '300px', height: '300px' }} />}
             target={ref2}
             handleClose={handleClick2}
             position={position}
+            elevation={elevation}
+            elevationDirection={elevationDirection}
           />
         </div>
       </div>
@@ -144,4 +147,6 @@ const Template = ({ position }) => {
 
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  position: 'right',
+};

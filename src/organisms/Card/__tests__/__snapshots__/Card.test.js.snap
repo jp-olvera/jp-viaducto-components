@@ -3,7 +3,7 @@
 exports[`<Card/> render Card with default props and create snapshot 1`] = `
 <div>
   <div
-    class="StyledCard__StyledNormalCard-sc-15ny05r-1 jCVood"
+    class="StyledCard__StyledNormalCard-sc-15ny05r-1 fOxoIN"
     elevation="1"
   />
 </div>

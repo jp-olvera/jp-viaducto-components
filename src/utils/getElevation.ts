@@ -5,8 +5,11 @@ const green = 102;
 const blue = 102;
 
 function getElevation(eNivel: number, eDirection: string = '') {
+  if (eNivel === 0) {
+    return css``;
+  }
   let nivel = 1;
-  if (eNivel > 0 && eNivel <= 3) {
+  if (eNivel <= 3) {
     nivel = eNivel;
   }
   let xOffset = 0;
@@ -25,13 +28,15 @@ function getElevation(eNivel: number, eDirection: string = '') {
       sizeLinearDirection = 3;
       break;
     case 3:
-    default:
       xOffset = 0;
       yOffset = 2;
       blurRadius = 12;
       spreadRadius = 1;
       opacity = 0.75;
       sizeLinearDirection = 5;
+      break;
+    default:
+      // this is the way, so case 1 doesn't override
       break;
   }
 

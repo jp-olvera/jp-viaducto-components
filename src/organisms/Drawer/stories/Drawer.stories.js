@@ -97,25 +97,25 @@ const Template = (args) => {
         }}
         {...args}
       >
-        <div style={{ height: '80px', background: 'green' }}>
+        <div style={{ height: '80px', background: 'green' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Hola</h3>
         </div>
-        <div style={{ height: '80px', background: 'yellow' }}>
+        <div style={{ height: '80px', background: 'yellow' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Aquí</h3>
         </div>
-        <div style={{ height: '80px', background: 'red' }}>
+        <div style={{ height: '80px', background: 'red' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Puedes</h3>
         </div>
-        <div style={{ height: '80px', background: 'red' }}>
+        <div style={{ height: '80px', background: 'red' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Poner</h3>
         </div>
-        <div style={{ height: '80px', background: 'yellow' }}>
+        <div style={{ height: '80px', background: 'yellow' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Lo</h3>
         </div>
-        <div style={{ height: '80px', background: 'green' }}>
+        <div style={{ height: '80px', background: 'green' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Que</h3>
         </div>
-        <div style={{ height: '80px', background: 'yellow' }}>
+        <div style={{ height: '80px', background: 'yellow' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Desees</h3>
         </div>
       </Drawer>

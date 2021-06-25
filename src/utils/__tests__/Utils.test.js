@@ -16,7 +16,7 @@ describe('getElevation file', () => {
     expect(getElevation(1, 'top')).not.toBeNull();
   });
   test('should return top elevation', () => {
-    expect(getElevation(1, 'top')).toContain('-5');
+    expect(getElevation(1, 'top')).toContain('box-shadow:');
   });
   test('should return bottom elevation', () => {
     expect(getElevation(2, 'bottom')).toContain('6');
