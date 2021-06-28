@@ -1,10 +1,23 @@
 import React from 'react';
 
 import styled from 'styled-components';
+import getElevation from '../../utils/getElevation';
 import ConfigProvider from '../../providers/ConfigProvider';
-
 const Box = styled.div`
   margin: 1rem;
+  width: 25%;
+  height: 50px;
+  background: white;
+  padding: 5px;
+  float: left;
+  border-radius: 5px;
+  box-sizing: border-box;
+`;
+
+const Card = styled.div`
+  ${(p) => getElevation(p.elevation, p.elevationDirection)}
+  margin: 1rem;
+  margin-bottom: 4rem;
   width: 25%;
   height: 50px;
   background: white;
@@ -16,91 +29,41 @@ const Box = styled.div`
 const Elevation = () => (
   <ConfigProvider>
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      <Box style={{ boxShadow: '0px 1px 4px -1px #666' }}>
-        circular: 0px 1px 4px -1px 1
-      </Box>
-      <Box style={{ boxShadow: '0px 1px 8px -1px rgba(102, 102, 102, 0.9)' }}>
-        circular: 0px 1px 8px -1px 0.85
-      </Box>
-      <Box style={{ boxShadow: '0px 2px 12px 1px rgba(102, 102, 102, 0.75)' }}>
-        circular: 0px 2px 12px 1px 0.75
-      </Box>
-      <Box style={{ boxShadow: '0px -2px 4px -3px #666' }}>
-        top: 0px -2px 4px -3px 1
-      </Box>
-      <Box style={{ boxShadow: '0px -3px 6px -2px rgba(102, 102, 102, 0.9)' }}>
-        top: 0px -3px 6px -2px 0.85
-      </Box>
-      <Box style={{ boxShadow: 'rgba(102, 102, 102, 0.75) 0px -5px 8px -2px' }}>
-        top: 0px -5px 8px -2px 0.75
-      </Box>
-      <Box style={{ boxShadow: '2px 0px 4px -3px #666' }}>
-        right: 2px 0px 4px -3px 1
-      </Box>
-      <Box style={{ boxShadow: '3px 0px 6px -2px rgba(102, 102, 102, 0.9)' }}>
-        right: 3px 0px 6px -2px 0.85
-      </Box>
-      <Box style={{ boxShadow: '5px 0px 8px -2px rgba(102, 102, 102, 0.75)' }}>
-        right: 5px 0px 8px -2px 0.75
-      </Box>
-      <Box style={{ boxShadow: '0px 2px 4px -3px #666' }}>
-        bottom: 0px 2px 4px -3px 1
-      </Box>
-      <Box style={{ boxShadow: '0px 3px 6px -2px rgba(102, 102, 102, 0.9)' }}>
-        bottom: 0px 3px 6px -2px 0.85
-      </Box>
-      <Box style={{ boxShadow: '0px 5px 8px -2px rgba(102, 102, 102, 0.75)' }}>
-        bottom: 0px 5px 8px -2px 0.75
-      </Box>
-      <Box style={{ boxShadow: '-2px 0px 4px -3px #666' }}>
-        left: -2px 0px 4px -3px 1
-      </Box>
-      <Box style={{ boxShadow: '-3px 0px 6px -2px rgba(102, 102, 102, 0.9)' }}>
-        left: -3px 0px 6px -2px 0.85
-      </Box>
-      <Box style={{ boxShadow: '-5px 0px 8px -2px rgba(102, 102, 102, 0.75)' }}>
-        left: -5px 0px 8px -2px 0.75
-      </Box>
-      <Box style={{ boxShadow: '2px -2px 4px -3px #666' }}>
-        top-right: 2px -2px 4px -3px 1
-      </Box>
-      <Box style={{ boxShadow: '3px -3px 6px -2px rgba(102, 102, 102, 0.9)' }}>
-        top-right: 3px -3px 6px -2px 0.85
-      </Box>
-      <Box style={{ boxShadow: '5px -5px 8px -2px rgba(102, 102, 102, 0.75)' }}>
-        top-right: 5px -5px 8px -2px 0.75
-      </Box>
-      <Box style={{ boxShadow: '-2px -2px 4px -3px #666' }}>
-        top-left: -2px -2px 4px -3px 1
-      </Box>
-      <Box style={{ boxShadow: '-3px -3px 6px -2x rgba(102, 102, 102, 0.9)' }}>
-        top-left: -3px 3px 6px -2px 0.85
-      </Box>
+      <Card elevation={1}>Elevation 1</Card>
+      <Card elevation={2}>Elevation 2</Card>
+      <Card elevation={3}>Elevation 3</Card>
 
-      <Box
-        style={{ boxShadow: '-5px -5px 8px -2px rgba(102, 102, 102, 0.75)' }}
-      >
-        top-left: -5px -5px 8px -2px 0.75
-      </Box>
-      <Box style={{ boxShadow: '2px 2px 4px -3px #666' }}>
-        bottom-right: 2px 2px 4px -3px 1
-      </Box>
+      <Card elevation={1} elevationDirection='top'>Elevation 1 Top</Card>
+      <Card elevation={2} elevationDirection='top'>Elevation 2 Top</Card>
+      <Card elevation={3} elevationDirection='top'>Elevation 3 Top</Card>
 
-      <Box style={{ boxShadow: '3px 3px 6px -2px rgba(102, 102, 102, 0.9)' }}>
-        bottom-right: 3px 3px 6px -2px 0.85
-      </Box>
-      <Box style={{ boxShadow: '5px 5px 8px -2px rgba(102, 102, 102, 0.75)' }}>
-        bottom-right: 5px 5px 8px -2px 0.75
-      </Box>
-      <Box style={{ boxShadow: '-2px 2px 4px -3px #666' }}>
-        bottom-left: -2px 2px 4px -3px 1
-      </Box>
-      <Box style={{ boxShadow: '-3px 3px 6px -2px rgba(102, 102, 102, 0.9)' }}>
-        bottom-left: -3px 3px 6px -2px 0.85
-      </Box>
-      <Box style={{ boxShadow: '-5px 5px 8px -2px rgba(102, 102, 102, 0.75)' }}>
-        bottom-left: -5px 5px 8px -2px 0.75
-      </Box>
+      <Card elevation={1} elevationDirection='right'>Elevation 1 Right</Card>
+      <Card elevation={2} elevationDirection='right'>Elevation 2 Right</Card>
+      <Card elevation={3} elevationDirection='right'>Elevation 3 Right</Card>
+
+      <Card elevation={1} elevationDirection='bottom'>Elevation 1 Bottom</Card>
+      <Card elevation={2} elevationDirection='bottom'>Elevation 2 Bottom</Card>
+      <Card elevation={3} elevationDirection='bottom'>Elevation 3 Bottom</Card>
+
+      <Card elevation={1} elevationDirection='left'>Elevation 1 Left</Card>
+      <Card elevation={2} elevationDirection='left'>Elevation 2 Left</Card>
+      <Card elevation={3} elevationDirection='left'>Elevation 3 Left</Card>
+
+      <Card elevation={1} elevationDirection='top-right'>Elevation 1 top-right</Card>
+      <Card elevation={2} elevationDirection='top-right'>Elevation 2 top-right</Card>
+      <Card elevation={3} elevationDirection='top-right'>Elevation 3 top-right</Card>
+
+      <Card elevation={1} elevationDirection='top-left'>Elevation 1 top-left</Card>
+      <Card elevation={2} elevationDirection='top-left'>Elevation 2 top-left</Card>
+      <Card elevation={3} elevationDirection='top-left'>Elevation 3 top-left</Card>
+
+      <Card elevation={1} elevationDirection='bottom-right'>Elevation 1 bottom-right</Card>
+      <Card elevation={2} elevationDirection='bottom-right'>Elevation 2 bottom-right</Card>
+      <Card elevation={3} elevationDirection='bottom-right'>Elevation 3 bottom-right</Card>
+
+      <Card elevation={1} elevationDirection='bottom-left'>Elevation 1 bottom-left</Card>
+      <Card elevation={2} elevationDirection='bottom-left'>Elevation 2 bottom-left</Card>
+      <Card elevation={3} elevationDirection='bottom-left'>Elevation 3 bottom-left</Card>
     </div>
   </ConfigProvider>
 );

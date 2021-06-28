@@ -13,26 +13,23 @@ function getElevation(eNivel: number, eDirection: string = '') {
     nivel = eNivel;
   }
   let xOffset = 0;
-  let yOffset = 1;
+  let yOffset = 0;
   let blurRadius = 4;
-  let spreadRadius = -1;
-  let opacity = 1;
-  let sizeLinearDirection = 2;
+  let opacity = 0.5;
+  let sizeLinearDirection = 3;
   switch (nivel) {
     case 2:
       xOffset = 0;
       yOffset = 1;
-      blurRadius = 8;
-      spreadRadius = -1;
-      opacity = 0.85;
+      blurRadius = 6;
+      opacity = 0.7;
       sizeLinearDirection = 3;
       break;
     case 3:
       xOffset = 0;
       yOffset = 2;
       blurRadius = 12;
-      spreadRadius = 1;
-      opacity = 0.75;
+      opacity = 0.7;
       sizeLinearDirection = 5;
       break;
     default:
@@ -58,23 +55,28 @@ function getElevation(eNivel: number, eDirection: string = '') {
     }
 
     switch (nivel) {
+      case 1:
+        blurRadius = 4;
+        opacity = 0.35;
+        break;
       case 2:
-        blurRadius = 6;
-        spreadRadius = -2;
+        blurRadius = 4;
+        opacity = 0.5;
         break;
       case 3:
-        blurRadius = 8;
-        spreadRadius = -2;
+        blurRadius = 6;
+        opacity = 0.5;
         break;
       default:
-        blurRadius = 4;
-        spreadRadius = -2;
         break;
     }
   }
   return css`
-    box-shadow: ${xOffset}px ${yOffset}px ${blurRadius}px ${spreadRadius}px
-      rgba(${red}, ${green}, ${blue}, ${opacity});
+    filter: drop-shadow(0px 0px 1px rgba(${red}, ${green}, ${blue}, 0.3))
+      drop-shadow(
+        ${xOffset}px ${yOffset}px ${blurRadius}px
+          rgba(${red}, ${green}, ${blue}, ${opacity})
+      );
   `;
 }
 
