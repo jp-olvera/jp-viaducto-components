@@ -8,9 +8,10 @@ export function findScrollParents(element: Element | null) {
       const rect = parent.getBoundingClientRect();
       // 10px is to account for borders and scrollbars in a lazy way
       if (rect.height && parent.scrollHeight > rect.height + 10) {
+        // add if has vertical scroll
         result.push(parent);
-      }
-      if (rect.width && parent.scrollWidth > rect.width + 10) {
+      } else if (rect.width && parent.scrollWidth > rect.width + 10) {
+        // add if don't have vertical scroll but horizontal
         result.push(parent);
       }
       parent = <Element>parent.parentNode;
