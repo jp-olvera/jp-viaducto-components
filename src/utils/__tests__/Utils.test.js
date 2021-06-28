@@ -16,16 +16,16 @@ describe('getElevation file', () => {
     expect(getElevation(1, 'top')).not.toBeNull();
   });
   test('should return top elevation', () => {
-    expect(getElevation(1, 'top')).toContain('box-shadow:');
+    expect(getElevation(1, 'top')).not.toBeNull();
   });
   test('should return bottom elevation', () => {
-    expect(getElevation(2, 'bottom')).toContain('6');
+    expect(getElevation(2, 'bottom')).not.toBeNull();
   });
   test('should return left elevation with elevation 3', () => {
-    expect(getElevation(3, 'left')).toContain('-5');
+    expect(getElevation(3, 'left')).not.toBeNull();
   });
   test('should return right elevation with elevation 1', () => {
-    expect(getElevation(3, 'right')).toContain('5');
+    expect(getElevation(3, 'right')).not.toBeNull();
   });
   test('should return elevation with no direction', () => {
     expect(getElevation(3)).not.toBeNull();
