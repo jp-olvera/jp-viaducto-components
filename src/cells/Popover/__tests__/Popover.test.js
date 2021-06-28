@@ -7,14 +7,14 @@ import { render, fireEvent } from '../../../test-utils';
 import { Popover } from '..';
 
 const clickOutside = jest.fn();
-const Template = ({ args }) => {
+const Template = ({ wrapperStyles, args }) => {
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
   };
   const ref = useRef(null);
   return (
-    <div>
+    <div style={wrapperStyles}>
       <button type='button'>outside</button>
       <button ref={ref} type='button' onClick={handleClick}>
         show
@@ -69,25 +69,23 @@ describe('<Popover/>', () => {
     const { container } = render(<Template position='left' />);
     expect(container).toMatchSnapshot();
   });
-
-  test('popover content should not be visible', () => {
+  test('should content not be visible by default', () => {
     const { queryByText } = render(<Template />);
     expect(queryByText('content')).toEqual(null);
   });
-  test('popover content should be visible', () => {
+  test('content should be visible after clicking activator', () => {
     const { getByText } = render(<Template />);
     fireEvent.click(getByText('show'));
     expect(getByText('content')).toBeInTheDocument();
   });
-
-  test('popover should call onClose when mouseup outside', () => {
+  test('should call onClose when mouseup outside', () => {
     const { getByText } = render(<Template position='right' />);
     fireEvent.click(getByText('show'));
     expect(getByText('content')).toBeInTheDocument();
     fireEvent.mouseUp(getByText('outside'));
     expect(clickOutside).toBeCalledTimes(1);
   });
-  test('popover content is wider than window width', () => {
+  test('should content be visible when is wider than window width', () => {
     const { getByText } = render(<Template />);
     fireEvent.click(getByText('show'));
     window.innerWidth = 299;
@@ -95,30 +93,27 @@ describe('<Popover/>', () => {
     fireEvent(window, new Event('resize'));
     expect(getByText('content')).toBeVisible();
   });
-  test('popover visible psition top but no space', () => {
-    const { getByText } = render(<Template position='top' />);
+  test('should content be visible with position top but no space available', () => {
+    const { getByText } = render(
+      <Template
+        position='top'
+        wrapperStyles={{ position: 'fixed', top: '0' }}
+      />,
+    );
     fireEvent.click(getByText('show'));
     window.innerWidth = 500;
     window.innerHeight = 800;
     fireEvent(window, new Event('resize'));
     expect(getByText('content')).toBeVisible();
   });
-  test('content visible position right but no space', () => {
-    const { getByText } = render(<Template position='right' />);
+  test('should content be visible with position right but no space available', () => {
+    const { getByText } = render(
+      <Template
+        position='right'
+        wrapperStyles={{ position: 'fixed', right: '0' }}
+      />,
+    );
     fireEvent.click(getByText('show'));
     expect(getByText('content')).toBeVisible();
-    window.innerWidth = 300;
-    window.innerHeight = 800;
-    fireEvent(window, new Event('resize'));
-    expect(getByText('content')).toBeInTheDocument();
-  });
-  test('content visible position left but no space', () => {
-    const { getByText } = render(<Template position='left' />);
-    fireEvent.click(getByText('show'));
-    expect(getByText('content')).toBeVisible();
-    window.innerWidth = 300;
-    window.innerHeight = 800;
-    fireEvent(window, new Event('resize'));
-    expect(getByText('content')).toBeInTheDocument();
   });
 });

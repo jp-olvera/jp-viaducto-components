@@ -141,9 +141,6 @@ const Popover = ({
 
   useEffect(() => {
     move();
-  }, [target, active]);
-
-  useEffect(() => {
     let scrollParents: (Element | Document)[] = [];
     const addScrollListeners = () => {
       scrollParents = findScrollParents(target.current);
@@ -153,7 +150,7 @@ const Popover = ({
       scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
       scrollParents = [];
     };
-    if (active) {
+    if (active && target && target.current) {
       addScrollListeners();
       document.addEventListener('mouseup', (event) => clickOutsideHandler(event));
       window.addEventListener('resize', move);
@@ -164,7 +161,7 @@ const Popover = ({
       document.removeEventListener('mouseup', (event) => clickOutsideHandler(event));
       window.removeEventListener('resize', move);
     };
-  }, [active]);
+  }, [active, target]);
 
   if (active && target && target.current) {
     return createPortal(
