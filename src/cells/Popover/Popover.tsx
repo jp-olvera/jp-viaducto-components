@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { findScrollParents } from '../../utils/scroll';
 import { StyledDrop } from './StyledDrop';
 
 interface PopoverProps {
@@ -23,7 +24,7 @@ const Popover = ({
   const dropRef = useRef<HTMLDivElement>(null);
   const [alignDrop, setAlignDrop] = useState(position);
   const [arrowDirection, setArrowDirection] = useState('top');
-  const [arrowPosition, setArrowPosition] = useState('center');
+  const [arrowPosition, setArrowPosition] = useState('left');
   const clickOutsideHandler = (event) => {
     if (dropRef.current && target.current) {
       if (
@@ -36,21 +37,12 @@ const Popover = ({
     }
   };
 
-  useEffect(() => {
-    if (active) {
-      document.addEventListener('mouseup', (event) => clickOutsideHandler(event));
-    }
-    document.removeEventListener('mouseup', (event) => clickOutsideHandler(event));
-    return function cleanup() {
-      document.removeEventListener('mouseup', (event) => clickOutsideHandler(event));
-    };
-  }, [active]);
-
-  const setDropPosition = () => {
+  const move = () => {
     if (dropRef.current && target.current) {
       const windowWidth = document.body.clientWidth;
       const windowHeight = window.innerHeight;
       const tr = target.current.getBoundingClientRect();
+
       const targetRect = {
         left: tr.left - 10,
         top: tr.top - 10,
@@ -61,13 +53,12 @@ const Popover = ({
       const dropH = dropRef.current?.offsetHeight || 0; // height drop
       const dropR = targetRect.right + dropW;
       let { left } = targetRect;
-      // console.log(targetRect);
+
       // ajustar a los lados
       if (windowWidth > dropW) {
         // la ventana es mayor que el drop
         if (position === 'left' && targetRect.left >= dropW) {
           // a la izquierda y sí hay espacio
-          // console.log('a la izquierda y sí hay espacio');
           left = targetRect.left - dropW;
           setAlignDrop('right');
           setArrowDirection('right');
@@ -76,28 +67,19 @@ const Popover = ({
           && windowWidth - targetRect.right >= dropW
         ) {
           // a la derecha y sí hay espacio
-          // console.log('a la derecha y sí hay espacio');
           left = targetRect.right;
           setArrowDirection('left');
         } else if (dropR > windowWidth) {
           // el drop se sale a la derecha
-          // console.log('el drop se sale a la derecha');
-          if (targetRect.right >= windowWidth) {
-            left = targetRect.right - dropW - 20;
-            setArrowPosition('end');
-          } else {
-            left = targetRect.left;
-            setArrowPosition('start');
-          }
+          left = targetRect.right - dropW - 10;
+          setArrowPosition('end');
         } else {
           // el drop no se sale a la derecha
-          // console.log('el drop no se sale a la derecha');
-          left = targetRect.left;
+          left = targetRect.left + 10;
           setArrowDirection('left');
         }
       } else {
         // la ventana es más pequeña
-        // console.log('la ventana es más pequeña');
         left = 0;
       }
       let top = targetRect.bottom;
@@ -107,19 +89,14 @@ const Popover = ({
         // to the right and it fits
         if (targetRect.top < dropH) {
           // alineado al top del activator
-          // console.log('to the right and it fits alineado al top del activator');
           setArrowPosition('start');
-          top = targetRect.top;
+          top = targetRect.top + 10;
         } else if (windowHeight - targetRect.bottom < dropH) {
           // alineado al bottom del activator
-          // console.log(
-          //   'to the right and it fits alineado al bottom del activator',
-          // );
-          top = targetRect.bottom - dropH;
+          top = targetRect.bottom - dropH - 10;
           setArrowPosition('end');
         } else {
           // alineado al centro
-          // console.log('to the right and it fits alineado al centro');
           top = targetRect.top - dropH / 2 + target.current.offsetHeight / 2;
           setArrowPosition('center');
         }
@@ -127,22 +104,18 @@ const Popover = ({
         setArrowDirection('right');
         if (targetRect.top < dropH) {
           // alineado al top del activator
-          // console.log('left -> alineado al top del activator');
-          top = targetRect.top;
+          top = targetRect.top + 10;
           setArrowPosition('start');
         } else if (windowHeight - targetRect.bottom < dropH) {
           // alineado al bottom del activator
-          // console.log('left -> alineado al bottom del activator');
-          top = targetRect.bottom - dropH;
+          top = targetRect.bottom - dropH - 10;
           setArrowPosition('end');
         } else {
-          // console.log('left -> alineado al centro');
           top = targetRect.top - dropH / 2 + target.current.offsetHeight / 2;
           setArrowPosition('center');
         }
       } else if (position === 'top' && targetRect.top >= dropH) {
         // es top y cabe arriba
-        // console.log('es top y cabe arriba');
         top = targetRect.top - dropH;
         setArrowDirection('bottom');
       } else if (
@@ -150,17 +123,14 @@ const Popover = ({
         && windowHeight - targetRect.bottom > dropH
       ) {
         // es bottom y abajo cabe
-        // console.log('es bottom y abajo cabe');
         top = targetRect.bottom;
         setArrowPosition('start');
         setArrowDirection('top');
       } else if (targetRect.top >= dropH) {
         // se pone arriba
-        // console.log('se pone arriba');
         top = targetRect.top - dropH;
         setArrowDirection('bottom');
       } else {
-        // console.log('else -> alinear al bottom');
         top = targetRect.bottom;
         setArrowDirection('top');
       }
@@ -168,18 +138,31 @@ const Popover = ({
       dropRef.current.style.left = `${left}px`;
     }
   };
+
   useEffect(() => {
-    setDropPosition();
+    move();
   }, [target, active]);
 
   useEffect(() => {
+    let scrollParents: (Element | Document)[] = [];
+    const addScrollListeners = () => {
+      scrollParents = findScrollParents(target.current);
+      scrollParents.forEach((scrollParent) => scrollParent.addEventListener('scroll', move));
+    };
+    const removeScrollListeners = () => {
+      scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
+      scrollParents = [];
+    };
     if (active) {
-      document.addEventListener('scroll', setDropPosition);
-      window.addEventListener('resize', setDropPosition);
+      addScrollListeners();
+      document.addEventListener('mouseup', (event) => clickOutsideHandler(event));
+      window.addEventListener('resize', move);
     }
+    document.removeEventListener('mouseup', (event) => clickOutsideHandler(event));
     return function cleanup() {
-      document.removeEventListener('scroll', setDropPosition);
-      window.removeEventListener('resize', setDropPosition);
+      removeScrollListeners();
+      document.removeEventListener('mouseup', (event) => clickOutsideHandler(event));
+      window.removeEventListener('resize', move);
     };
   }, [active]);
 

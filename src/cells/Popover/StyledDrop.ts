@@ -24,7 +24,7 @@ const getPosition = (direction: string, position) => {
   if (position === 'center') {
     p = '50%';
   } else if (position === 'end') {
-    p = 'calc(100% - 1rem)';
+    p = 'calc(100% - 20px)';
   } else {
     p = '10px';
   }

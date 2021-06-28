@@ -96,49 +96,52 @@ const Template = ({ position, elevation, elevationDirection }) => {
     <ConfigProvider>
       <div
         style={{
-          height: '1500px',
-          width: '1500px',
+          height: '150px',
+          width: '100%',
         }}
       >
-        <div style={{ marginTop: '300px', marginLeft: '300px' }}>
-          <Button
-            ref={ref}
-            type='button'
-            onClick={handleClick}
-            label='Click to see the magic'
-            shapeColor='success'
-            style={{
-              position: 'fixed',
-              right: '0',
-              bottom: '0',
-              height: '15px',
-            }}
-          />
-          <Popover
-            active={active}
-            content={<div style={{ width: '300px', height: '300px' }} />}
-            target={ref}
-            handleClose={handleClick}
-            position={position}
-            elevation={elevation}
-            elevationDirection={elevationDirection}
-          />
-          <Button
-            ref={ref2}
-            type='button'
-            onClick={handleClick2}
-            label='Click to see the magic'
-            shapeColor='success'
-          />
-          <Popover
-            active={active2}
-            content={<div style={{ width: '300px', height: '300px' }} />}
-            target={ref2}
-            handleClose={handleClick2}
-            position={position}
-            elevation={elevation}
-            elevationDirection={elevationDirection}
-          />
+        <Button
+          ref={ref}
+          type='button'
+          onClick={handleClick}
+          label='Click to see the magic'
+          shapeColor='success'
+          style={{
+            position: 'fixed',
+            right: '2px',
+            top: '1px',
+          }}
+        />
+        <Popover
+          active={active}
+          content={<div style={{ width: '300px', height: '300px' }} />}
+          target={ref}
+          handleClose={handleClick}
+          position='right'
+          elevation={elevation}
+          elevationDirection={elevationDirection}
+        />
+      </div>
+      <div style={{ width: '500px', overflowX: 'auto' }}>
+        <div style={{ width: '2000px' }}>
+          <div style={{ marginLeft: '30%', display: 'inline' }}>
+            <Button
+              ref={ref2}
+              type='button'
+              onClick={handleClick2}
+              label='Click to see the magic'
+              shapeColor='success'
+            />
+            <Popover
+              active={active2}
+              content={<div style={{ width: '300px', height: '300px' }} />}
+              target={ref2}
+              handleClose={handleClick2}
+              position={position}
+              elevation={elevation}
+              elevationDirection={elevationDirection}
+            />
+          </div>
         </div>
       </div>
     </ConfigProvider>
