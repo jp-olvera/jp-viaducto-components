@@ -2,6 +2,7 @@
 
 import '@testing-library/jest-dom/extend-expect';
 import getElevation from '../getElevation';
+import { findScrollParents } from '../scroll';
 import {
   getSize,
   getLineHeight,
@@ -11,9 +12,21 @@ import {
   getRangeSize,
 } from '../getSizes';
 
+describe('scroll file', () => {
+  test('should not be null', () => {
+    expect(findScrollParents()).not.toBeNull();
+  });
+});
+
 describe('getElevation file', () => {
   test('should not be null', () => {
     expect(getElevation(1, 'top')).not.toBeNull();
+  });
+  test('should set elevation 0', () => {
+    expect(getElevation(0, 'top')).not.toBeNull();
+  });
+  test('should set elevation 1 with no direction', () => {
+    expect(getElevation(1, 'siuuu')).not.toBeNull();
   });
   test('should return top elevation', () => {
     expect(getElevation(1, 'top')).not.toBeNull();

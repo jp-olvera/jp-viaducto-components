@@ -56,6 +56,7 @@ function getElevation(eNivel: number, eDirection: string = '') {
 
     switch (nivel) {
       case 1:
+      default:
         blurRadius = 4;
         opacity = 0.35;
         break;
@@ -66,8 +67,6 @@ function getElevation(eNivel: number, eDirection: string = '') {
       case 3:
         blurRadius = 6;
         opacity = 0.5;
-        break;
-      default:
         break;
     }
   }

@@ -27,13 +27,13 @@ export const Div = styled.div < any > `
   }
 
   .slider__track {
-    background-color: ${(p) => (p.double ? '#ced4da' : p.color || '#9fe5e1')};
+    background-color: ${(p) => (p.double ? '#ced4da' : p.color)};
     width: 100%;
     z-index: 1;
   }
 
   .slider__range {
-    background-color: ${(p) => (p.double ? p.color || '#9fe5e1' : '#cecece')};
+    background-color: ${(p) => (p.double ? p.color : '#cecece')};
     z-index: 2;
   }
 

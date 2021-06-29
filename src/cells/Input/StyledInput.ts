@@ -1,9 +1,10 @@
+/* eslint-disable radix */
 import styled, { css } from 'styled-components';
 import StyledPill from '../Pill/StyledPill';
 
 export const Wrapper = styled.div < any > `
   & * {
-    transition: all 0.08s ease;
+    transition: all 0.08s ease-in-out;
   }
   ${(p) => (p.family !== null
     ? css`
@@ -19,7 +20,7 @@ export const Wrapper = styled.div < any > `
 
   display: flex;
   flex-direction: row-reverse;
-  align-items: flex-end;
+  align-items: center;
 
   ${({ border, configuration, borderColor }) => getBorderStyle(border, configuration.text[borderColor] || borderColor)};
   ${(p) => (p.type === 'datalist' ? 'border-bottom: none !important;' : null)};
@@ -30,7 +31,6 @@ export const Wrapper = styled.div < any > `
     background: transparent;
     outline: none;
     font-size: 1rem !important;
-    ${(p) => setInputPadding(p.size)};
     padding-right: ${({ configuration }) => configuration.spacing.tiny};
     padding-left: ${({ configuration, hasIcon }) => (hasIcon ? 0 : configuration.spacing.xs)};
     &::placeholder {
@@ -41,64 +41,71 @@ export const Wrapper = styled.div < any > `
       background-color: #cecece;
       pointer-events: none;
       user-select: none;
-      &:not(:placeholder-shown) ~ .icon {
-        ${(p) => setIcon(p.size).active}
+      &:not(:placeholder-shown) {
+        & ~ .label {
+          background: transparent;
+          border: none;
+          color: #333;
+          padding: 0;
+          outline: none;
+          left: 0;
+          .icon-required {
+            display: inline-flex;
+            padding-left: ${({ configuration }) => configuration.spacing.nano};
+            color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor} !important;
+          }
+        }
       }
-      &:not(:placeholder-shown) ~ .label {
-        background: transparent;
-        ${(p) => setLabel(p.size, p.border).active}
+    }
+    &:focus,
+    :valid {
+      ${(p) => (p.hasLabel
+        && p.size !== 'xsmall'
+        && p.border !== 'outside'
+        && p.border !== 'overlap'
+    ? 'padding-top: 0.75%'
+    : 'padding-top: 0%')};
+      & ~ .label:not(.icon),
+      ~ .label:not(.icon) {
+        transition: all 0.25s ease-in-out;
+        position: absolute;
         border: none;
-        color: #333;
+        color: #000;
         padding: 0;
         outline: none;
+        transform: scale(0.68);
+        ${(p) => setLabel(p.border, p.size)};
         left: 0;
-        .icon-required {
-          display: inline-flex;
-          padding-left: ${({ configuration }) => configuration.spacing.nano};
-          color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor} !important;
-        }
+        background-color: ${(p) => (p.border === 'outside' ? 'transparent' : 'inherit')};
+      }
+
+      & ~ .icon {
+        ${(p) => (p.hasLabel
+          && p.size !== 'xsmall'
+          && p.border !== 'outside'
+          && p.border !== 'overlap'
+    ? 'padding-top: 0.75%'
+    : 'padding-top: 0%')};
+      }
+
+      & ~ .is-:invalid,
+      ~ .is-required,
+      ~ .is-valid {
+        display: none;
       }
     }
   }
 
   .icon {
-    padding: 0
-      ${({ configuration, type }) => (type === 'card' ? '0.2rem' : configuration.spacing.xs)};
-    ${(p) => setIcon(p.size).normal};
-    display: inline-flex;
+    padding: 0 ${({ configuration }) => configuration.spacing.xs};
+    display: flex;
     align-items: center;
     color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
-  }
-
-  .input:focus ~ .icon,
-  .input:valid ~ .icon {
-    ${(p) => (p.hasLabel ? setIcon(p.size).active : null)};
-  }
-
-  .input:focus,
-  .input:valid {
-    & ~ .label:not(.icon),
-    ~ .label:not(.icon) {
-      position: absolute;
-      border: none;
-      color: #000;
-      padding: 0;
-      outline: none;
-      left: 0;
-      background-color: ${(p) => (p.border === 'outside' ? 'transparent' : 'inherit')};
-      .icon-required {
-        display: inline-flex;
-        padding-left: ${({ configuration }) => configuration.spacing.nano};
-        color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor} !important;
-      }
-      ${(p) => (p.hasLabel ? setLabel(p.size, p.border).active : null)}
-    }
   }
 
   .label {
     background: ${({ border }) => (border === 'outside' ? 'transparent' : 'inherit')};
     color: #808080;
-    ${(p) => setLabel(p.size, p.border).normal};
     left: ${(p) => (p.hasIcon ? p.configuration.spacing.lg : p.configuration.spacing.xs)};
     font-size: 1rem;
     line-height: 1rem;
@@ -112,96 +119,61 @@ export const Wrapper = styled.div < any > `
       display: none;
     }
   }
-  .input:valid,
-  .input:focus {
-    & ~ .is-:invalid,
-    ~ .is-required,
-    ~ .is-valid {
-      display: none;
-    }
-  }
-  .input[type='password'] {
-    letter-spacing: 0.5rem;
-    font-weight: 800;
-  }
 
   .input[type='time'] {
     height: ${(p) => (p.size === 'large' ? '48%' : '62%')};
   }
 
-  .input[type='date'] ~ .label,
-  .input[type='time'] ~ .label,
-  .input[type='color'] ~ .label {
-    left: 0.02rem;
-    ${(p) => setLabel(p.size, p.border).active}
+  .input[type='date'],
+  .input[type='time'],
+  .input[type='color'] {
+    & ~ .icon {
+      left: 0.482rem;
+    }
   }
 
-  .input[type='date'] ~ .icon,
-  .input[type='time'] ~ .icon,
-  .input[type='color'] ~ .icon {
-    left: 0.482rem;
-    ${(p) => setLabel(p.size, p.border).icon}
-  }
   .input[type='color'] {
     opacity: 0;
-  }
-  .input[type='color'] ~ .show-value {
-    left: ${({ configuration }) => configuration.spacing.lg};
-    right: initial;
-    font-size: 1rem;
-    line-height: 1rem;
-    position: absolute;
-    pointer-events: none;
-    user-select: none;
-    bottom: ${({ configuration, size }) => (size === 'large' ? '0.6rem' : configuration.spacing.nano)};
+    & ~ .show-value {
+      left: ${({ configuration }) => configuration.spacing.lg};
+      right: initial;
+      font-size: 1rem;
+      line-height: 1rem;
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+    }
   }
 
-  .is-invalid {
-    color: red;
-    padding: 0.6rem ${({ configuration }) => configuration.spacing.xs};
+  .is-invalid,
+  .is-required,
+  .is-valid,
+  .icon-helper {
+    padding: 0 ${({ configuration }) => configuration.spacing.xs};
     position: absolute;
     float: right;
     display: flex;
     align-items: center;
+    height: 100%;
+  }
+
+  .is-invalid {
+    color: ${({ configuration }) => configuration.text.danger};
   }
 
   .is-required {
     color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
-    padding: 0.6rem ${({ configuration }) => configuration.spacing.xs};
-    position: absolute;
-    float: right;
-    display: flex;
-    align-items: center;
   }
 
   .is-valid {
-    color: #3ae25f;
-    padding: 0.6rem ${({ configuration }) => configuration.spacing.xs};
-    position: absolute;
-    float: right;
-    display: flex;
-    align-items: center;
+    color: ${({ configuration }) => configuration.text.success};
+    svg {
+      fill: ${({ configuration }) => configuration.text.success};
+    }
   }
 
   .icon-helper {
     color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
-    padding: 0 ${({ configuration }) => configuration.spacing.xs};
-    position: absolute;
-    display: flex;
-    align-items: center;
-  }
-`;
-
-export const StyledProgressBar = styled.div < any > `
-  display: inline-flex;
-  width: 100%;
-  height: 0.188rem;
-  gap: 0.5rem;
-  padding-left: ${({ configuration }) => configuration.spacing.xs};
-  box-sizing: border-box;
-  .meter {
-    background-color: #cecece;
-    height: 0.625rem;
   }
 `;
 
@@ -233,130 +205,20 @@ export const getBorderStyle = (border: string, color: string) => {
   }
 };
 
-export const setInputPadding = (size: string) => {
-  let padding: any;
-  switch (size) {
-    case 'xsmall':
-      padding = '0';
-      break;
-    case 'small':
-      padding = '0.25rem';
-      break;
-    case 'large':
-      padding = '0.5rem';
-      break;
-    default:
-      padding = '0.188rem';
-      break;
+export const setLabel = (border: string, size: string) => {
+  if (border === 'outside') {
+    return css`
+      top: ${() => (size === 'xsmall' ? '-80%' : '-55%')};
+    `;
+  }
+  if (border === 'overlap') {
+    return css`
+      background-color: inherit !important;
+      padding: 0 0.25rem !important;
+      top: ${() => (size === 'xsmall' ? '-40%' : '-20%')};
+    `;
   }
   return css`
-    padding-bottom: ${padding};
+    top: 0;
   `;
-};
-
-export const setIcon = (size: string) => {
-  let normal: any, active: any;
-  switch (size) {
-    case 'xsmall':
-      break;
-    case 'small':
-      normal = css`
-        transform: translateY(-25%);
-      `;
-      active = css`
-        transform: translateY(-20%) !important;
-      `;
-      break;
-    case 'large':
-      normal = css`
-        transform: translateY(-75%);
-      `;
-      active = css`
-        transform: translateY(-50%) !important;
-      `;
-      break;
-    default:
-      normal = css`
-        transform: translateY(-50%);
-      `;
-      active = css`
-        transform: translateY(-25%) !important;
-      `;
-      break;
-  }
-  return {
-    active,
-    normal,
-  };
-};
-
-export const setLabel = (size: string, border: string) => {
-  let active: any, normal: any, icon: any;
-  switch (size) {
-    case 'xsmall':
-      active = css`
-        transform: scale(0.68)
-          ${border === 'outside'
-    ? 'translateY(-150%)'
-    : border === 'overlap'
-      ? 'translateY(-140%)'
-      : 'translateY(-130%)'};
-      `;
-      normal = css``;
-      icon = css``;
-      break;
-    case 'small':
-      active = css`
-        transform: scale(0.68)
-          ${border === 'outside'
-    ? 'translateY(-265%)'
-    : border === 'overlap'
-      ? 'translateY(-215%)'
-      : 'translateY(-164%)'};
-      `;
-      normal = css`
-        transform: translateY(-35%);
-      `;
-      icon = css`
-        transform: translateY(0);
-      `;
-      break;
-    case 'large':
-      active = css`
-        transform: scale(0.68)
-          ${border === 'outside'
-    ? 'translateY(-420%)'
-    : border === 'overlap'
-      ? 'translateY(-350%)'
-      : 'translateY(-280%)'};
-      `;
-      normal = css`
-        transform: translateY(-95%);
-      `;
-      icon = css`
-        transform: translateY(-50%);
-      `;
-      break;
-    default:
-      active = css`
-        transform: scale(0.68)
-          ${border === 'outside'
-    ? 'translateY(-350%)'
-    : border === 'overlap'
-      ? 'translateY(-280%)'
-      : 'translateY(-200%)'} !important;
-      `;
-      normal = css`
-        transform: translateY(-70%);
-      `;
-      icon = css`
-        transform: translateY(-30%);
-      `;
-      break;
-  }
-  return {
-    active,
-    normal,
-    icon,
-  };
 };

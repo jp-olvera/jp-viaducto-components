@@ -218,7 +218,7 @@ export const getIcon = (
           <img
             src={visa}
             alt='visa'
-            style={{ height: '1rem', width: '1.5rem', verticalAlign: 'bottom' }}
+            style={{ height: '2rem', width: '1.5rem', verticalAlign: 'bottom' }}
           />
         </span>
       );
@@ -228,7 +228,7 @@ export const getIcon = (
           <img
             src={mastercard}
             alt='master_card'
-            style={{ height: '1rem', width: '1.5rem', verticalAlign: 'bottom' }}
+            style={{ height: '2rem', width: '1.5rem', verticalAlign: 'bottom' }}
           />
         </span>
       );
@@ -238,7 +238,7 @@ export const getIcon = (
           <img
             src={amex}
             alt='amex'
-            style={{ height: '1rem', width: '1.5rem', verticalAlign: 'bottom' }}
+            style={{ height: '2rem', width: '1.5rem', verticalAlign: 'bottom' }}
           />
         </span>
       );

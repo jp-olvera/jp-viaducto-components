@@ -92,10 +92,7 @@ const Range = ({
         max={max}
         value={minVal}
         onChange={(event) => {
-          const value = Math.min(
-            Number(event.target.value),
-            maxVal - (double === true ? 1 : 0),
-          );
+          const value = Math.min(Number(event.target.value), maxVal - 0);
           setMinVal(value);
           minValRef.current = value;
           /* istanbul ignore else */
