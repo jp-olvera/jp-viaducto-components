@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal } from '..';
+import { Button } from '../../../cells';
 
 import { ConfigProvider } from '../../../providers';
 
@@ -75,6 +76,13 @@ export default {
       },
       control: 'color',
     },
+    handleActive: {
+      description: 'function to call to close the modal',
+      table: {
+        type: { summary: 'Function' },
+        defaultValue: { summary: () => {} },
+      },
+    },
     onReject: {
       description: 'reject function to call before the modal closes',
       table: {
@@ -120,20 +128,28 @@ export default {
     },
   },
 };
-const Template = (args) => (
-  <ConfigProvider>
-    <p>Contenido detrás del modal.</p>
-    <h1 style={{ color: 'red ' }}>
-      Utiliza el control de <b>active</b> para mostrar y ocultar el modal
-    </h1>
-    <p>
-      Es neceseraio controlar el estado del modal de manera externa, por lo que
-      es necesario proporcionar una variable que represente su estado activo e
-      inactivo y una función que pueda modificar este estado.
-    </p>
-    <pre>
-      <code>
-        {`
+const Template = (args) => {
+  const [active, setActive] = useState(false);
+  const handleActive = () => {
+    setActive(!active);
+  };
+  return (
+    <ConfigProvider>
+      <p>Contenido detrás del modal.</p>
+      <Button
+        label='Click to see the magic'
+        variant='outline'
+        shapeColor='success'
+        onClick={handleActive}
+      />
+      <p>
+        Es neceseraio controlar el estado del modal de manera externa, por lo
+        que es necesario proporcionar una variable que represente su estado
+        activo e inactivo y una función que pueda modificar este estado.
+      </p>
+      <pre>
+        <code>
+          {`
           import { ConfigProvider, Modal } from '@jp-olvera/jp-viaducto-components';
 
           export const SomeComponent = () => {
@@ -148,17 +164,18 @@ const Template = (args) => (
             )
           }
         `}
-      </code>
-    </pre>
+        </code>
+      </pre>
 
-    <Modal {...args}>
-      <div style={{ height: '800px', background: '#CECECE' }}>
-        Aquí van los children. Si no proporcionas las funciones onReject y
-        onAccept, no se mostrará la sección de controles
-      </div>
-    </Modal>
-  </ConfigProvider>
-);
+      <Modal active={active} handleActive={handleActive} {...args}>
+        <div style={{ height: '800px', background: '#CECECE' }}>
+          Aquí van los children. Si no proporcionas las funciones onReject y
+          onAccept, no se mostrará la sección de controles
+        </div>
+      </Modal>
+    </ConfigProvider>
+  );
+};
 
 const AnotherComponent = ({ label }) => (
   <div style={{ background: '#CECECE' }}>
@@ -172,7 +189,6 @@ Default.args = {
   title: 'Aquí va el título de tu modal',
   onReject: () => {},
   onAccept: () => {},
-  active: false,
   acceptDisabled: false,
   rejectDisabled: false,
   allowClickOutside: true,
@@ -181,9 +197,6 @@ export const NoControls = Template.bind({});
 
 NoControls.args = {
   title: 'Aquí va el título de tu modal',
-  active: false,
-  onReject: null,
-  onAccept: null,
   acceptDisabled: false,
   rejectDisabled: false,
   allowClickOutside: true,
@@ -194,9 +207,6 @@ export const WithHeadComponent = Template.bind({});
 
 WithHeadComponent.args = {
   title: 'Aquí va el título de tu modal',
-  active: false,
-  onReject: () => {},
-  onAccept: () => {},
   headComponent: AnotherComponent({ label: 'This could be anything' }).props
     .children,
   acceptDisabled: false,
@@ -207,9 +217,6 @@ export const DisableClickOutside = Template.bind({});
 
 DisableClickOutside.args = {
   title: 'Aquí va el título de tu modal',
-  active: false,
-  onReject: null,
-  onAccept: () => {},
   allowClickOutside: false,
   acceptDisabled: false,
   rejectDisabled: false,

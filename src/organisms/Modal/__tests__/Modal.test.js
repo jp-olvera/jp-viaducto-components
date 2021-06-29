@@ -17,17 +17,19 @@ describe('<Modal></Modal>', () => {
         allowClickOutside={false}
       />,
     );
-    expect(screen.getByTestId('overlay')).not.toBeVisible();
-    expect(screen.getByTestId('modal')).not.toBeVisible();
+    expect(screen.queryByTestId('overlay')).toBe(null);
+    expect(screen.queryByTestId('modal')).toBe(null);
   });
   test('should be visible', () => {
-    render(<Modal active />);
+    render(<Modal active maxWidth='220px' breakpoint='1440px' />);
     expect(screen.getByTestId('overlay')).toBeVisible();
     expect(screen.getByTestId('modal')).toBeVisible();
   });
   test('controls should be visible', () => {
     const onReject = jest.fn();
-    render(<Modal active onReject={onReject} />);
+    render(
+      <Modal active onReject={onReject} headComponent={<div>ssss</div>} />,
+    );
     expect(screen.getByTestId('controls')).toBeVisible();
   });
   test('click close button should call handleActive function', () => {
@@ -39,7 +41,7 @@ describe('<Modal></Modal>', () => {
   test('click on the overlay should call handleActive function', () => {
     const handleActive = jest.fn();
     render(<Modal active handleActive={handleActive} />);
-    fireEvent.click(screen.getByTestId('overlay'));
+    fireEvent.mouseUp(screen.getByTestId('overlay'));
     expect(handleActive).toBeCalled();
   });
   test('should call onAccept function', () => {
@@ -53,5 +55,15 @@ describe('<Modal></Modal>', () => {
     render(<Modal active onReject={onReject} />);
     fireEvent.click(screen.getByTestId('reject'));
     expect(onReject).toBeCalled();
+  });
+  test('should click outside of the modal component', () => {
+    const onReject = jest.fn();
+    const { container } = render(
+      <div id='a'>
+        <Modal active={false} onReject={onReject} allowClickOutside />
+      </div>,
+    );
+    fireEvent.click(container.querySelector('#a'));
+    expect(container).toMatchSnapshot();
   });
 });

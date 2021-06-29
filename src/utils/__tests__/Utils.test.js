@@ -2,29 +2,43 @@
 
 import '@testing-library/jest-dom/extend-expect';
 import getElevation from '../getElevation';
+import { findScrollParents } from '../scroll';
 import {
   getSize,
   getLineHeight,
   getFontSize,
   getRadioSizes,
   getCheckSizes,
+  getRangeSize,
 } from '../getSizes';
+
+describe('scroll file', () => {
+  test('should not be null', () => {
+    expect(findScrollParents()).not.toBeNull();
+  });
+});
 
 describe('getElevation file', () => {
   test('should not be null', () => {
     expect(getElevation(1, 'top')).not.toBeNull();
   });
+  test('should set elevation 0', () => {
+    expect(getElevation(0, 'top')).not.toBeNull();
+  });
+  test('should set elevation 1 with no direction', () => {
+    expect(getElevation(1, 'siuuu')).not.toBeNull();
+  });
   test('should return top elevation', () => {
-    expect(getElevation(1, 'top')).toContain('-5');
+    expect(getElevation(1, 'top')).not.toBeNull();
   });
   test('should return bottom elevation', () => {
-    expect(getElevation(2, 'bottom')).toContain('6');
+    expect(getElevation(2, 'bottom')).not.toBeNull();
   });
   test('should return left elevation with elevation 3', () => {
-    expect(getElevation(3, 'left')).toContain('-5');
+    expect(getElevation(3, 'left')).not.toBeNull();
   });
   test('should return right elevation with elevation 1', () => {
-    expect(getElevation(3, 'right')).toContain('5');
+    expect(getElevation(3, 'right')).not.toBeNull();
   });
   test('should return elevation with no direction', () => {
     expect(getElevation(3)).not.toBeNull();
@@ -166,6 +180,17 @@ describe('getSizes file', () => {
     });
     test('should have xl checkbox props with large height', () => {
       expect(getCheckSizes('xl', 'large')).not.toBeNull();
+    });
+  });
+  describe('getRangeSize function', () => {
+    test('should return non null value', () => {
+      expect(getRangeSize()).not.toBeNull();
+    });
+    test('should return sm value', () => {
+      expect(getRangeSize('sm')).not.toBeNull();
+    });
+    test('should return lg value', () => {
+      expect(getRangeSize('lg')).not.toBeNull();
     });
   });
 });

@@ -4,6 +4,7 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Toaster } from '..';
+import { getEnteringTranslate, getExitingTranslate } from '../StyledToaster';
 
 describe('<Toaster/>', () => {
   test('should render default toaster properly', () => {
@@ -105,5 +106,13 @@ describe('<Toaster/>', () => {
       <Toaster type='thisShouldFallInTheDefault'>Mensaje 3</Toaster>,
     );
     expect(container).not.toBeNull();
+  });
+  describe('placement functions', () => {
+    test('should return data from getEnteringTranslate', () => {
+      expect(getEnteringTranslate('top-center')).not.toBeNull();
+    });
+    test('should return data from getExitingTranslate', () => {
+      expect(getExitingTranslate('bottom-center')).not.toBeNull();
+    });
   });
 });

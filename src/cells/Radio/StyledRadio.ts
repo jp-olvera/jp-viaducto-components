@@ -23,7 +23,6 @@ export const StyledLabel = styled.label < any > `
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: transparent;
-    background-repeat: no-repeat;
     background-position: 50% 50%;
     border: 0.125rem solid #ccc;
     transition: 0.2s ease-in-out;

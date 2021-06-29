@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import StyledSelect from '../../cells/Select/StyledSelect';
+import { StyledSelect } from '../../cells/Select/StyledSelect';
 import getElevation from '../../utils/getElevation';
 
 const height = '3.375rem',

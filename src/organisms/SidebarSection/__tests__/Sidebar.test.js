@@ -3,32 +3,18 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen, fireEvent } from '../../../test-utils';
-import { SidebarSection } from '..';
+import { SidebarSection, MenuItem } from '..';
 
 describe('<SidebarSection/>', () => {
-  const items = [
-    {
-      label: 'title',
-      url: 'url',
-    },
-    {
-      label: 'section',
-      url: 'google',
-    },
-    {
-      label: 'menu',
-      url: 'youtube',
-    },
-  ];
   test('should be visible', () => {
     render(
       <SidebarSection
-        items={items}
         separator
         title='Comida'
         isDropdown
         isMenu={false}
         lead
+        icon='😊'
       />,
     );
     expect(screen.getByText('Comida')).toBeVisible();
@@ -36,26 +22,22 @@ describe('<SidebarSection/>', () => {
   test('should render option of SidebarSection', () => {
     render(
       <SidebarSection
-        items={items}
         separator
         title='Comida'
         isDropdown={false}
         isMenu={false}
-        lead={false}
-      />,
+        icon='😊'
+      >
+        <MenuItem href='#' label='menu' nested />
+      </SidebarSection>,
     );
     expect(screen.getByText('menu')).toBeVisible();
   });
   test('should render option after dropdown click', () => {
     render(
-      <SidebarSection
-        items={items}
-        separator
-        title='Comida'
-        isDropdown
-        isMenu={false}
-        lead
-      />,
+      <SidebarSection separator title='Comida' isDropdown isMenu={false}>
+        <MenuItem href='#' label='menu' nested icon='❤' lead />
+      </SidebarSection>,
     );
     expect(screen.queryByText('menu')).not.toBeInTheDocument();
     fireEvent.click(screen.getByText('Comida'));
@@ -63,14 +45,9 @@ describe('<SidebarSection/>', () => {
   });
   test('should render option after menu keycode 13 press', () => {
     render(
-      <SidebarSection
-        items={items}
-        separator
-        title='Comida'
-        isDropdown={false}
-        isMenu
-        lead
-      />,
+      <SidebarSection separator title='Comida' isDropdown={false} isMenu>
+        <MenuItem href={undefined} label='menu' icon='❤' lead={false} />
+      </SidebarSection>,
     );
     fireEvent.keyUp(screen.getByText('Comida'), {
       key: '13',
@@ -81,24 +58,28 @@ describe('<SidebarSection/>', () => {
   });
 
   test('should render option after menu keycode 32 press', () => {
-    render(
+    const { getByTestId } = render(
       <SidebarSection
-        items={items}
         separator
         title='Comida'
         isDropdown={false}
         isMenu
-      />,
+        transition={null}
+      >
+        <MenuItem href='#' label='menu' nested active />
+      </SidebarSection>,
     );
     fireEvent.keyUp(screen.getByText('Comida'), {
       key: '32',
       code: '32',
       keyCode: '32',
     });
+    const button = getByTestId('button');
+    fireEvent.click(button);
     expect(screen.getByText('Comida')).toBeVisible();
   });
   test('should render with default props', () => {
-    const { container } = render(<SidebarSection lead={false} />);
+    const { container } = render(<SidebarSection />);
     expect(container).toMatchSnapshot();
   });
 });

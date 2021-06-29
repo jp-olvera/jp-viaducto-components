@@ -13,17 +13,20 @@ import { BareButton } from '../BareButton';
  * @param {any} iconLead Icon as a first child component
  * @param {string} label Text in the label
  * @param {string} size Size of the pill
+ * @param {boolean} circleBorder Set pill with circle border (border radius)
  */
 interface PillInterface {
   label: string;
-  iconLead: any;
-  icon: any;
+  iconLead?: any;
+  icon?: any;
   background: string;
-  color: string;
-  size: string;
+  color?: string;
+  size?: string;
   family?: string | null;
-  verticalAlign: string;
-  handleAction: Function | null;
+  verticalAlign?: string;
+  handleAction?: Function | null;
+  circleBorder?: boolean;
+  borderColor?: string | null;
 }
 
 const Pill = ({
@@ -36,6 +39,9 @@ const Pill = ({
   family = null,
   verticalAlign = 'baseline',
   handleAction,
+  circleBorder = true,
+  borderColor = null,
+  ...rest
 }: PillInterface) => {
   const { configuration } = useContext(ConfigContext);
 
@@ -52,6 +58,9 @@ const Pill = ({
       family={family}
       configuration={configuration}
       verticalAlign={verticalAlign}
+      {...rest}
+      circleBorder={circleBorder}
+      borderColor={borderColor}
     >
       {iconLead !== null && <span className='span-icon-lead'>{iconLead}</span>}
       <span>{label}</span>
@@ -61,7 +70,7 @@ const Pill = ({
           style={{ height: '100%', display: 'flex' }}
         >
           {icon === null || icon === '' ? (
-            <Close stroke='blue' strokeWidth={2} width='18px' height='18px' />
+            <Close stroke={color} strokeWidth={2} width='18px' height='18px' />
           ) : (
             icon
           )}

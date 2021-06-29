@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, {
   useContext, useState, useRef, useEffect,
 } from 'react';
@@ -6,94 +7,103 @@ import { ConfigContext } from '../../providers';
 import { Activator, Wrapper, ItemsContainer } from './StyledDropdown';
 import Icon from './sorting.svg';
 import { Hideable } from '../Hideable';
-
+import Drop from './Drop';
+import { refs } from './DropdownRef';
 /**
  * Dropdown component
  * @param {string} family font family for the dropdown
- * @param {string} activeColor Active color for the option selected
+ * @param {string} hoverColor Hover color for the content option
  * @param {string} size size of the dropdown
  * @param {any} border border painted
  * @param {string} defaultText Text to show without any option selected
- * @param {string} options options in the dropdown
+ * @param {JSX Element} content cotent in the dropdown
  * @param {string} height size of the dropdown
+ * @param {Function} onClick Triggers an action when an element is selected
  */
 
+interface DropdownProps {
+  hoverColor?: string;
+  border?: string;
+  defaultText: string;
+  family?: string | null;
+  content?: React.ReactNode[] | null;
+  size?: string;
+  height?: string;
+  onClick: Function;
+}
 const Dropdown = ({
-  activeColor = '#ffd6ce',
-  border,
+  hoverColor = '#ffd6ce',
+  border = 'none',
   defaultText = 'Buscar por...',
-  family = null,
-  options = [],
+  family,
+  content,
   size = 'default',
   height,
+  onClick,
   ...rest
-}: any) => {
+}: DropdownProps) => {
   const { configuration } = useContext(ConfigContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [isSelected, setIsSelected] = useState(null);
   const activatorRef = useRef<HTMLButtonElement>(null);
   const wrapperRef = useRef<HTMLButtonElement>(null);
   const selectedRef = useRef<HTMLElement>(null);
-  const dropdownListRef = useRef<HTMLDivElement>(null);
   const newHeight = height || configuration.controlHeight[size];
-  const clickHandler = () => {
+  const dropdownListRef = useRef<HTMLDivElement>(null);
+
+  const handleClose = () => {
     setIsOpen(!isOpen);
-    if (dropdownListRef && dropdownListRef.current && wrapperRef.current) {
-      const bounding = dropdownListRef.current.getBoundingClientRect();
-      const bottom = wrapperRef.current.clientHeight || '2.4rem';
-      if (
-        bounding.bottom
-        > (window.innerHeight || document.documentElement.clientHeight)
-      ) {
-        dropdownListRef.current.style.bottom = `calc(${bottom}px + 0.5rem`;
-        // console.log(' Estás fuera mai fren');
-      }
-    }
   };
-  const select = (label: string, index: any) => {
-    if (selectedRef.current) {
-      selectedRef.current.innerHTML = label;
-      setIsOpen(false);
-      setIsSelected(index);
-    }
-  };
-  const dataList = options.map((button, index) => (
-    <button
-      className={`${isSelected === index ? 'active-item' : ''}`}
-      value={button}
-      key={button}
-      onClick={() => select(button, index)}
-      type='button'
-    >
-      {button}
-    </button>
-  ));
+
   const clickOutsideHandler = (event) => {
-    if (dropdownListRef.current && activatorRef.current) {
+    if (isOpen && activatorRef.current && dropdownListRef.current) {
       if (
         dropdownListRef.current.contains(event.target)
         || activatorRef.current.contains(event.target)
       ) {
         return;
       }
+      handleClose();
     }
-    setIsOpen(false);
   };
+
   useEffect(() => {
-    if (isOpen) {
-      if (dropdownListRef) {
-        // dropdownListRef.current.querySelector('button').focus();
-        // add some code
-      }
-      document.addEventListener('mouseup', clickOutsideHandler);
+    if (isOpen && dropdownListRef.current) {
+      window.addEventListener('mouseup', clickOutsideHandler);
     } else {
-      document.removeEventListener('mouseup', clickOutsideHandler);
+      window.removeEventListener('mouseup', clickOutsideHandler);
     }
-    // clean up on unmount
     return function cleanup() {
-      document.removeEventListener('mouseup', clickOutsideHandler);
+      window.removeEventListener('mouseup', clickOutsideHandler);
     };
-  }, [isOpen]);
+  }, [isOpen, dropdownListRef]);
+
+  const dropContent = (
+    <ItemsContainer
+      id='dropdown1'
+      className={isOpen ? 'active' : ''}
+      data-testid='dropdown-itemList'
+      data-cy='dropdown-itemList'
+      aria-label='Configuraciones'
+      hoverColor={hoverColor}
+      configuration={configuration}
+      family={family}
+      ref={dropdownListRef}
+    >
+      {(content || []).map((data: any, index: number) => (
+        <div
+          className='hover'
+          role='list'
+          onClick={(ev) => {
+            onClick(ev);
+            setIsOpen(false);
+          }}
+          key={index.toString()}
+        >
+          {data}
+        </div>
+      ))}
+    </ItemsContainer>
+  );
   return (
     <Wrapper height={newHeight} {...rest} ref={wrapperRef}>
       <Activator
@@ -106,7 +116,7 @@ const Dropdown = ({
         aria-selected='true'
         data-testid='dropdown-activator'
         id='dropdown-activator'
-        onClick={clickHandler}
+        onClick={() => refs.clickHandler(setIsOpen, isOpen, dropdownListRef, wrapperRef)}
         ref={activatorRef}
       >
         <Hideable visibleOn='sm'>
@@ -116,19 +126,11 @@ const Dropdown = ({
         </Hideable>
         <img className='activator-icon' src={Icon} alt='' />
       </Activator>
-      <ItemsContainer
-        id='dropdown1'
-        className={isOpen ? 'active' : ''}
-        data-testid='dropdown-itemList'
-        data-cy='dropdown-itemList'
-        ref={dropdownListRef}
-        aria-label='Configuraciones'
-        activeColor={activeColor}
-        configuration={configuration}
-        family={family}
-      >
-        {dataList.length > 0 && dataList}
-      </ItemsContainer>
+      {isOpen && (
+        <Drop target={activatorRef} contentRef={dropdownListRef}>
+          {dropContent}
+        </Drop>
+      )}
     </Wrapper>
   );
 };

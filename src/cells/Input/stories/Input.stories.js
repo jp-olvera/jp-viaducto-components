@@ -24,7 +24,16 @@ export default {
       table: {
         defaultValue: { summary: 'text' },
       },
-      options: ['text', 'password', 'number', 'card'],
+      options: [
+        'text',
+        'number',
+        'card',
+        'date',
+        'color',
+        'phone',
+        'time',
+        'datalist',
+      ],
       control: {
         type: 'select',
       },
@@ -45,12 +54,12 @@ export default {
         'data',
         'phone',
         'mail',
+        'data',
         'time',
         'grid',
         'visa',
-        'visa_letter',
-        'master_card',
-        'amex',
+        'mastercard',
+        'american-express',
       ],
       control: {
         type: 'select',
@@ -63,7 +72,7 @@ export default {
         defaultValue: { summary: 'default' },
       },
       control: 'select',
-      options: ['default', 'large'],
+      options: ['xsmall', 'small', 'default', 'large'],
     },
     disabled: {
       description: 'Disables the input',
@@ -123,12 +132,26 @@ export default {
       },
       control: 'color',
     },
+    dataListConfiguration: {
+      description:
+        'Set the configuration (options and pill color) if the datalist type is selected',
+      type: {
+        summary:
+          '{options: any[], pillColor: string, pillTextColor:string}/null, selected:[]',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
   },
 };
 
 const Template = (args) => (
   <ConfigProvider>
-    <Input {...args} />
+    <div style={{ margin: '2rem 0' }}>
+      <Input {...args} />
+    </div>
   </ConfigProvider>
 );
 
@@ -145,23 +168,8 @@ Text.args = {
   transition: 'ease',
   borderColor: null,
   iconColor: null,
-  icon: null,
-  size: 'default',
-};
-
-export const Password = Template.bind({});
-
-Password.args = {
-  label: 'Password',
-  type: 'password',
-  icon: null,
-  isInvalid: false,
-  isValid: false,
-  required: true,
-  disabled: false,
-  transition: 'ease',
-  borderColor: null,
-  iconColor: null,
+  icon: 'grid',
+  size: 'small',
 };
 
 export const Card = Template.bind({});
@@ -177,4 +185,93 @@ Card.args = {
   transition: 'ease',
   borderColor: null,
   iconColor: null,
+  size: 'small',
+};
+
+export const Date = Template.bind({});
+
+Date.args = {
+  label: 'Date',
+  type: 'date',
+  icon: null,
+  isInvalid: false,
+  isValid: false,
+  required: true,
+  disabled: false,
+  transition: 'ease',
+  borderColor: null,
+  iconColor: null,
+  size: 'small',
+};
+
+export const Color = Template.bind({});
+
+Color.args = {
+  label: 'Color',
+  type: 'color',
+  icon: null,
+  border: 'default',
+  isInvalid: false,
+  isValid: false,
+  required: false,
+  disabled: false,
+  transition: 'ease',
+  size: 'small',
+  borderColor: null,
+  iconColor: null,
+};
+export const Phone = Template.bind({});
+
+Phone.args = {
+  label: 'Phone',
+  type: 'phone',
+  icon: null,
+  border: 'default',
+  isInvalid: false,
+  isValid: false,
+  required: false,
+  disabled: false,
+  transition: 'ease',
+  size: 'small',
+  borderColor: null,
+  iconColor: null,
+};
+export const Time = Template.bind({});
+
+Time.args = {
+  label: 'Time',
+  type: 'time',
+  icon: null,
+  border: 'default',
+  isInvalid: false,
+  isValid: false,
+  required: false,
+  disabled: false,
+  transition: 'ease',
+  size: 'small',
+  borderColor: null,
+  iconColor: null,
+};
+
+export const Datalist = Template.bind({});
+
+Datalist.args = {
+  label: 'Choose your options',
+  type: 'datalist',
+  icon: null,
+  border: 'default',
+  isInvalid: false,
+  isValid: false,
+  required: false,
+  disabled: false,
+  transition: 'ease',
+  size: 'small',
+  id: 'data',
+  borderColor: null,
+  iconColor: null,
+  dataListConfiguration: {
+    options: ['Javascript', 'Dart', 'Python', 'Java', 'Ruby', 'PHP'],
+    pillTextColor: '#000',
+    pillColor: '#FFF0A5',
+  },
 };

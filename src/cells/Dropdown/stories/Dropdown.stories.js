@@ -3,7 +3,7 @@ import { Dropdown } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Controls/Dropdown',
+  title: 'Andamio/Cells/Dropdown',
   component: Dropdown,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -12,8 +12,8 @@ export default {
       type: { summary: 'String', required: false },
       control: 'text',
     },
-    activeColor: {
-      description: 'Set a color when an option is selected',
+    hoverColor: {
+      description: 'Set a color when an content data have hover prop',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: '#ffd6ce' },
@@ -43,11 +43,11 @@ export default {
         defaultValue: { summary: null },
       },
     },
-    options: {
-      description: 'Set the options to choose in the component',
-      type: { summary: 'String[]', required: true },
+    content: {
+      description: 'Set the content when the dropdown is open',
+      type: { summary: 'JSX Element[]', required: true },
       table: {
-        defaultValue: { summary: '[]' },
+        defaultValue: { summary: null },
       },
     },
     height: {
@@ -57,12 +57,32 @@ export default {
         defaultValue: { summary: null },
       },
     },
+    onClick: {
+      description: 'Triggers an action when the option is selected',
+      type: { summary: 'Function', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
   },
 };
 
 const Template = (args) => (
   <ConfigProvider>
-    <Dropdown {...args} />
+    <div
+      style={{
+        height: '2000px',
+        width: '100%',
+      }}
+    >
+      <div style={{ width: '500px', overflowX: 'auto', marginTop: '500px' }}>
+        <div style={{ width: '2000px' }}>
+          <div style={{ marginLeft: '30%', display: 'inline' }}>
+            <Dropdown {...args} />
+          </div>
+        </div>
+      </div>
+    </div>
   </ConfigProvider>
 );
 
@@ -75,8 +95,19 @@ Default.args = {
     bottom: '1px solid black',
     left: '1px solid black',
   },
-  defaultText: 'Buscar por...',
-  options: ['Razón Social', 'RFC', 'Nombre Comercial'],
-  activeColor: '#ffd6ce',
-  height: '',
+  defaultText: 'Click me',
+  hoverColor: '#ffd6ce',
+  height: null,
+  content: [
+    <p>Any element could be here</p>,
+    <img
+      src='https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png'
+      alt='img'
+      width='118'
+    />,
+  ],
+  onClick: () => {
+    // eslint-disable-next-line no-alert
+    alert('item selected');
+  },
 };

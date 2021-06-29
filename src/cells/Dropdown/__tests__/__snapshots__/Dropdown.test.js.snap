@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Dropdown/> should click item 1`] = `undefined`;
+exports[`<Dropdown/> <Drop> should render Drop 1`] = `<div />`;
+
+exports[`<Dropdown/> <Drop> should render Drop with bottom position 1`] = `<div />`;
+
+exports[`<Dropdown/> <Drop> should render Drop with top position 1`] = `<div />`;
 
 exports[`<Dropdown/> should render with default props and border left none 1`] = `
 <div>
@@ -12,7 +16,7 @@ exports[`<Dropdown/> should render with default props and border left none 1`] =
       aria-controls="dropdown1"
       aria-haspopup="true"
       aria-selected="true"
-      class="StyledDropdown__Activator-sc-1btfu08-1 jVWbcI"
+      class="StyledDropdown__Activator-sc-1btfu08-1 cBgAJt"
       data-testid="dropdown-activator"
       id="dropdown-activator"
       type="button"
@@ -31,13 +35,6 @@ exports[`<Dropdown/> should render with default props and border left none 1`] =
         class="activator-icon"
       />
     </button>
-    <div
-      aria-label="Configuraciones"
-      class="StyledDropdown__ItemsContainer-sc-1btfu08-2 beJxQA"
-      data-cy="dropdown-itemList"
-      data-testid="dropdown-itemList"
-      id="dropdown1"
-    />
   </div>
 </div>
 `;
@@ -52,7 +49,7 @@ exports[`<Dropdown/> should render with default props and borders 1`] = `
       aria-controls="dropdown1"
       aria-haspopup="true"
       aria-selected="true"
-      class="StyledDropdown__Activator-sc-1btfu08-1 gPTejF"
+      class="StyledDropdown__Activator-sc-1btfu08-1 cqRnXc"
       data-testid="dropdown-activator"
       id="dropdown-activator"
       type="button"
@@ -71,13 +68,6 @@ exports[`<Dropdown/> should render with default props and borders 1`] = `
         class="activator-icon"
       />
     </button>
-    <div
-      aria-label="Configuraciones"
-      class="StyledDropdown__ItemsContainer-sc-1btfu08-2 beJxQA"
-      data-cy="dropdown-itemList"
-      data-testid="dropdown-itemList"
-      id="dropdown1"
-    />
   </div>
 </div>
 `;

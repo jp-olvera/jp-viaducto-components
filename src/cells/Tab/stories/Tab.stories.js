@@ -1,6 +1,7 @@
 import React from 'react';
 import { ConfigProvider } from '../../../providers';
 import { Tab } from '..';
+import { Container } from '../../../cells';
 
 export default {
   title: 'Andamio/Cells/Tab',
@@ -23,6 +24,13 @@ export default {
         'tab',
       ],
       control: 'select',
+    },
+    active: {
+      description: 'Set active props',
+      type: { summary: 'boolean', required: true },
+      table: {
+        defaultValue: { summary: false },
+      },
     },
     horizontalSpacing: {
       description:
@@ -136,7 +144,9 @@ export default {
 
 const Template = (args) => (
   <ConfigProvider>
-    <Tab {...args} />
+    <Container horizontal='md' top='sm'>
+      <Tab {...args} />
+    </Container>
   </ConfigProvider>
 );
 
@@ -154,6 +164,7 @@ Default.args = {
   lead: false,
   transition: 'ease',
   iconSpacing: 'none',
+  active: false,
 };
 export const WithIcon = Template.bind({});
 
@@ -167,4 +178,5 @@ WithIcon.args = {
   lead: false,
   transition: 'ease',
   iconSpacing: 'xs',
+  active: false,
 };

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, forwardRef } from 'react';
 import { Circle } from 'react-ikonate';
 import { getIcon } from '../Input/Icon';
 import { ConfigContext } from '../../providers';
@@ -32,74 +32,80 @@ const defaultColors = {
  * @param {Function} onClick Action to execute
  * @param {Boolean} useLongLoading Set the long loading bar
  */
-const Button = ({
-  block = false,
-  colors = null,
-  disabled = false,
-  height = null,
-  icon = null,
-  iconSpacing = 'xs',
-  isLoading = false,
-  isValid = null,
-  label = null,
-  lead = false,
-  leftSpacing = null,
-  rightSpacing = null,
-  shapeColor = 'primary',
-  size = SIZE.default,
-  type = 'button',
-  variant = 'solid',
-  useLongLoading = false,
-  ...rest
-}: any) => {
-  const { configuration } = useContext(ConfigContext);
-  const newHeight = height || configuration.controlHeight[size];
-  const hasIcon = icon !== null && icon !== '';
-  let c = colors || configuration.colors[shapeColor] || defaultColors;
-  if (isValid === false) {
-    c = configuration.colors.danger;
-  }
-  if (isValid === true) {
-    c = configuration.colors.success;
-  }
-  return (
-    <StyledButton
-      size={size}
-      colors={c}
-      isIconOnly={label === null && icon !== null}
-      lead={lead}
-      configuration={configuration}
-      height={newHeight}
-      type={type}
-      iconSpacing={iconSpacing}
-      leftSpacing={leftSpacing}
-      rightSpacing={rightSpacing}
-      block={block}
-      isValid={isValid}
-      disabled={disabled || isLoading}
-      isLoading={isLoading}
-      variant={variant}
-      {...rest}
-    >
-      {hasIcon || (isLoading && !useLongLoading) ? (
-        <span className='button-icon-span'>
-          {isValid && getIcon('ok', 'inherit', 'inherit', '2px')}
-          {isValid === false && getIcon('cancel', 'inherit', 'inherit', '2px')}
-          {isLoading && isValid === null && useLongLoading && (
-            <div className='status' />
-          )}
-          {isLoading && isValid === null && useLongLoading === false && (
-            <Circle className='turnOn' strokeDasharray='20' />
-          )}
-          {(isValid === null && !isLoading) || useLongLoading ? icon : null}
-        </span>
-      ) : null}
-      {isLoading && isValid === null && useLongLoading && (
-        <div className='status' />
-      )}
-      <span>{label}</span>
-    </StyledButton>
-  );
-};
+
+const Button = forwardRef(
+  (
+    {
+      block = false,
+      colors = null,
+      disabled = false,
+      height = null,
+      icon = null,
+      iconSpacing = 'xs',
+      isLoading = false,
+      isValid = null,
+      label = null,
+      lead = false,
+      leftSpacing = null,
+      rightSpacing = null,
+      shapeColor = 'primary',
+      size = SIZE.default,
+      type = 'button',
+      variant = 'solid',
+      useLongLoading = false,
+      ...rest
+    }: any,
+    ref,
+  ) => {
+    const { configuration } = useContext(ConfigContext);
+    const newHeight = height || configuration.controlHeight[size];
+    const hasIcon = icon !== null && icon !== '';
+    let c = colors || configuration.colors[shapeColor] || defaultColors;
+    if (isValid === false) {
+      c = configuration.colors.danger;
+    }
+    if (isValid === true) {
+      c = configuration.colors.success;
+    }
+    return (
+      <StyledButton
+        size={size}
+        colors={c}
+        isIconOnly={label === null && icon !== null}
+        lead={lead}
+        configuration={configuration}
+        height={newHeight}
+        type={type}
+        iconSpacing={iconSpacing}
+        leftSpacing={leftSpacing}
+        rightSpacing={rightSpacing}
+        block={block}
+        isValid={isValid}
+        disabled={disabled || isLoading}
+        isLoading={isLoading}
+        variant={variant}
+        ref={ref}
+        {...rest}
+      >
+        {hasIcon || (isLoading && !useLongLoading) ? (
+          <span className='button-icon-span'>
+            {isValid && getIcon('ok', 'inherit', 'inherit', '2px')}
+            {isValid === false
+              && getIcon('cancel', 'inherit', 'inherit', '2px')}
+            {isLoading && isValid === null && <div className='status' />}
+            {isLoading && isValid === null && (
+              <Circle className='turnOn' strokeDasharray='20' />
+            )}
+            {(isValid === null && !isLoading) || useLongLoading ? icon : null}
+          </span>
+        ) : null}
+        {isLoading && isValid === null && useLongLoading && (
+          <div className='status' />
+        )}
+        <span>{label}</span>
+      </StyledButton>
+    );
+  },
+);
 
 export default Button;

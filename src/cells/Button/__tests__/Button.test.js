@@ -8,7 +8,17 @@ import { Button } from '..';
 
 describe('<Button/>', () => {
   test('should render properly', () => {
-    render(<Button label='Continue' />);
+    const { container } = render(
+      <Button
+        label='Continue'
+        variant='ghost'
+        useLongLoading
+        isLoading
+        isValid={null}
+        shapeColor={null}
+      />,
+    );
+    expect(container).toBeDefined();
   });
 
   test('should have focus', () => {

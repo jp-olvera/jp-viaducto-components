@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
-import { ConfigContext } from '../../providers';
+import React from 'react';
 
 import StyledAvatar from './StyledAvatar';
 import { SIZE } from './constants';
 
-interface AvatarInterface {
+interface AvatarProps {
   src: string;
   size?: string;
   alt?: string;
+  height?: string;
+  width?: string;
+  clipPath?: string | null;
 }
 
 /**
@@ -20,16 +22,39 @@ const Avatar = ({
   src,
   alt,
   size = SIZE.default,
+  height,
+  width,
+  clipPath = null,
   ...rest
-}: AvatarInterface) => {
-  const { configuration } = useContext(ConfigContext);
-
+}: AvatarProps) => {
+  let nWidth = '50px';
+  let nHeight = '50px';
+  switch (size) {
+    case SIZE.large:
+      nHeight = '142px';
+      nWidth = '142px';
+      break;
+    case SIZE.small:
+      nHeight = '32px';
+      nWidth = '32px';
+      break;
+    default:
+      break;
+  }
+  if (height !== undefined) {
+    nHeight = height;
+  }
+  if (width !== undefined) {
+    nWidth = width;
+  }
   return (
     <StyledAvatar
+      data-testid='avatar'
       src={src}
       alt={alt || src}
-      size={size}
-      configuration={configuration}
+      height={nHeight}
+      width={nWidth}
+      clipPath={clipPath}
       {...rest}
     />
   );

@@ -3,7 +3,7 @@
 exports[`<Tab/> should render default props 1`] = `
 <div>
   <button
-    class="StyledTab-sc-7ood0w-0 gDBges"
+    class="StyledTab-sc-7ood0w-0 bJKCbU"
     color="#F1F1F1"
   >
     <div

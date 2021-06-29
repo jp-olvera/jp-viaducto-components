@@ -1,5 +1,6 @@
 import React from 'react';
-import { SidebarSection } from '..';
+import { Settings } from 'react-ikonate';
+import { SidebarSection, MenuItem } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
@@ -11,13 +12,6 @@ export default {
       type: { name: 'string', required: true },
       table: {
         type: { summary: 'string' },
-      },
-    },
-    items: {
-      description: 'A list of of objects with a label and a url',
-      type: { required: true },
-      table: {
-        type: { summary: '{ label: string; url: string }[]', required: true },
       },
     },
     separator: {
@@ -39,12 +33,6 @@ export default {
         type: { summary: 'boolean', defaultValue: false },
       },
     },
-    lead: {
-      description: 'Attribute for place icon first',
-      table: {
-        type: { summary: 'boolean', defaultValue: false },
-      },
-    },
     icon: {
       description: 'Icon',
       table: {
@@ -56,38 +44,73 @@ export default {
 
 const Template = (args) => (
   <ConfigProvider>
-    <SidebarSection {...args} />
+    <SidebarSection {...args}>
+      <MenuItem
+        href='#'
+        label='First item in the menu with a large text'
+        nested
+      />
+      <a href='http://www.google.com' target='_blank' rel='noreferrer'>
+        <MenuItem label='Wrap with an anchor or Link' nested />
+      </a>
+      <button
+        type='button'
+        onClick={() => {
+          alert('You clicked!');
+        }}
+        style={{
+          appearance: 'none',
+          border: 'none',
+          width: '100%',
+          background: 'inherit',
+          textAlign: 'left',
+          fontSize: 'inherit',
+          margin: '0',
+          padding: '0',
+          fontFamily: 'inherit',
+        }}
+      >
+        <MenuItem label='Maybe use a button' nested />
+      </button>
+    </SidebarSection>
+    <MenuItem label='Use an icon' href='' icon={<Settings />} />
+    <MenuItem
+      label='Change icon position'
+      active
+      icon={<Settings />}
+      lead={false}
+    />
   </ConfigProvider>
 );
 
 export const Default = Template.bind({});
 
-const itemsExample = [
-  {
-    url: '/path/to/place',
-    label: 'Home',
-    icon: 'HomeMajor',
-  },
-  {
-    url: '/path/to/place',
-    label: 'Orders',
-    icon: 'OrdersMajor',
-    badge: '15',
-  },
-  {
-    url: '/path/to/place',
-    label: 'Products',
-    icon: 'ProductsMajor',
-  },
-];
-
 Default.args = {
-  items: itemsExample,
   separator: true,
-  title: 'Menu title',
+  title: 'Section title',
   isDropdown: false,
   isMenu: false,
-  lead: false,
   transition: 'ease',
-  icon: '🎈',
+  icon: <Settings />,
+};
+
+export const Submenu = Template.bind({});
+
+Submenu.args = {
+  separator: true,
+  title: 'Section title',
+  isDropdown: false,
+  isMenu: true,
+  transition: 'ease',
+  icon: <Settings />,
+};
+
+export const Dropdown = Template.bind({});
+
+Dropdown.args = {
+  separator: true,
+  title: 'Section title',
+  isDropdown: true,
+  transition: 'ease',
+  icon: <Settings />,
 };

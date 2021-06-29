@@ -16,10 +16,9 @@ export const TooltipContainer = styled.div < any > `
     word-break: break-word;
     hyphens: auto;
     opacity: ${({ active }) => (active ? '1' : ' 0')};
-    min-width: 10rem;
+    width: clamp(10rem, calc(10rem + ((1vw - 0.1rem) * 22.7273)), 35rem);
     word-break: break-all;
     overflow-wrap: break-word;
-    width: fit-content;
     height: ${({ active }) => (active ? 'auto' : ' 0')};
     font-size: ${({ active }) => (active ? '0.9rem' : ' 0')};
     color: ${({ textColor, configuration, active }) => (active ? configuration.text[textColor] || textColor : 'transparent')};
@@ -48,7 +47,6 @@ const setPosition = (position) => {
       `;
     case 'bottom':
       return css`
-        width: 7.5rem;
         top: 120%;
         left: 50%;
         margin-left: -3.75rem;
@@ -56,7 +54,6 @@ const setPosition = (position) => {
     case 'top':
     default:
       return css`
-        width: 7.5rem;
         bottom: 120%;
         left: 50%;
         margin-left: -3.75rem;

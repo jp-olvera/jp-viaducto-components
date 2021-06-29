@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { getBorder } from '../../utils/getSizes';
 
 export const Wrapper = styled.div < any > `
   position: relative;
@@ -17,9 +18,9 @@ export const Activator = styled.button < any > `
   background-color: inherit;
   box-sizing: border-box;
   display: flex;
+  justify-content: center;
   color: inherit;
   cursor: pointer;
-  font-family: ${({ family }) => (family ? `'${family}', sans-serif` : "'Manrope', sans-serif;")};
   font-size: 1rem;
   font-style: normal;
   font-weight: normal;
@@ -65,13 +66,11 @@ export const Activator = styled.button < any > `
 `;
 
 export const ItemsContainer = styled.div < any > `
-  ${(p) => (p.family !== null
-    ? css`
-          font-family: ${p.family};
-        `
-    : css``)};
   transition: all 0.2s
     ${({ configuration }) => configuration.transitionTimingFunction};
+  .left {
+    left: 100%;
+  }
   background: #ffffff;
   border: 0.063rem solid #eaedf3;
   box-sizing: border-box;
@@ -80,7 +79,6 @@ export const ItemsContainer = styled.div < any > `
   display: flex;
   left: 0;
   margin: 0;
-  margin-top: 0.25rem;
   min-width: auto !important;
   padding: 0;
   position: absolute;
@@ -88,44 +86,23 @@ export const ItemsContainer = styled.div < any > `
   visibility: hidden;
   width: 7.5rem !important;
   z-index: 1;
+  flex-direction: column;
   &.active {
-    flex-direction: column;
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
     transition: all 0.2s
       ${({ configuration }) => configuration.transitionTimingFunction};
   }
-  & > button {
-    background-color: inherit;
-    border: none;
+  .hover {
+    width: inherit;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     cursor: pointer;
-    font-size: inherit;
-    height: 100%;
-    margin: 0.05rem 0;
-    padding: 0.625rem 0.5rem;
-    text-align: left;
-  }
-  & .active-item {
-    background-color: ${({ activeColor }) => activeColor} !important;
-  }
-  @media screen and (min-width: ${(props) => props.configuration.breakpoints.md}) {
-    width: 100% !important;
+    &:hover {
+      background-color: ${(p) => p.hoverColor};
+    }
   }
 `;
-
-export const getBorder = (borders: any = 'none') => {
-  if (borders === 'none' || borders === null) {
-    return css`
-      border: none;
-    `;
-  }
-  let border = '';
-  border += `border-top: ${borders.top || 'none'}; `;
-  border += `border-right: ${borders.right || 'none'}; `;
-  border += `border-bottom: ${borders.bottom || 'none'}; `;
-  border += `border-left: ${borders.left || 'none'}; `;
-
-  return css`
-    ${border}
-  `;
-};

@@ -1,8 +1,10 @@
+/* eslint-disable radix */
 import styled, { css } from 'styled-components';
+import StyledPill from '../Pill/StyledPill';
 
 export const Wrapper = styled.div < any > `
   & * {
-    transition: all 0.08s ease;
+    transition: all 0.08s ease-in-out;
   }
   ${(p) => (p.family !== null
     ? css`
@@ -11,30 +13,26 @@ export const Wrapper = styled.div < any > `
     : css``)};
   background-color: ${({ disabled }) => (disabled ? '#CECECE' : 'white')};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'default')};
-  box-sizing: border-box;
-  height: ${({ size }) => (size === 'default' ? '2.488rem' : '2.986rem')};
+  height: ${({ size, configuration }) => configuration.controlHeight[size] || configuration.controlHeight.default};
   position: relative;
   width: 100%;
+  box-sizing: border-box;
 
-  display: inline-flex;
-  align-items: flex-end;
-
-  padding-bottom: ${({ configuration, size }) => (size === 'large'
-    ? configuration.spacing.micro
-    : configuration.spacing.nano)};
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
 
   ${({ border, configuration, borderColor }) => getBorderStyle(border, configuration.text[borderColor] || borderColor)};
+  ${(p) => (p.type === 'datalist' ? 'border-bottom: none !important;' : null)};
 
   .input {
     border: none;
     width: 100%;
-    background: inherit;
+    background: transparent;
     outline: none;
     font-size: 1rem !important;
-    padding: 0;
     padding-right: ${({ configuration }) => configuration.spacing.tiny};
     padding-left: ${({ configuration, hasIcon }) => (hasIcon ? 0 : configuration.spacing.xs)};
-    padding-bottom: ${({ size }) => (size === 'large' ? '.3rem' : 0)};
     &::placeholder {
       color: transparent;
     }
@@ -43,75 +41,74 @@ export const Wrapper = styled.div < any > `
       background-color: #cecece;
       pointer-events: none;
       user-select: none;
-      &:not(:placeholder-shown) ~ .label {
-        background: transparent;
-        top: ${({ border }) => (border === 'overlap'
-    ? ' -0.375rem'
-    : border === 'outside'
-      ? '-0.9rem'
-      : '0')};
-        font-size: 0.688rem;
-        line-height: 0.688rem;
+      &:not(:placeholder-shown) {
+        & ~ .label {
+          background: transparent;
+          border: none;
+          color: #333;
+          padding: 0;
+          outline: none;
+          left: 0;
+          .icon-required {
+            display: inline-flex;
+            padding-left: ${({ configuration }) => configuration.spacing.nano};
+            color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor} !important;
+          }
+        }
+      }
+    }
+    &:focus,
+    :valid {
+      ${(p) => (p.hasLabel
+        && p.size !== 'xsmall'
+        && p.border !== 'outside'
+        && p.border !== 'overlap'
+    ? 'padding-top: 0.75%'
+    : 'padding-top: 0%')};
+      & ~ .label:not(.icon),
+      ~ .label:not(.icon) {
+        transition: all 0.25s ease-in-out;
+        position: absolute;
         border: none;
-        color: #333;
+        color: #000;
         padding: 0;
         outline: none;
-        left: ${({ configuration, hasIcon }) => (hasIcon ? configuration.spacing.lg : configuration.spacing.xs)};
-        .icon-required {
-          display: inline-flex;
-          padding-left: ${({ configuration }) => configuration.spacing.nano};
-          color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor} !important;
-        }
+        transform: scale(0.68);
+        ${(p) => setLabel(p.border, p.size)};
+        left: 0;
+        background-color: ${(p) => (p.border === 'outside' ? 'transparent' : 'inherit')};
+      }
+
+      & ~ .icon {
+        ${(p) => (p.hasLabel
+          && p.size !== 'xsmall'
+          && p.border !== 'outside'
+          && p.border !== 'overlap'
+    ? 'padding-top: 0.75%'
+    : 'padding-top: 0%')};
+      }
+
+      & ~ .is-:invalid,
+      ~ .is-required,
+      ~ .is-valid {
+        display: none;
       }
     }
   }
 
   .icon {
-    padding: 0
-      ${({ configuration, type }) => (type === 'card' ? '0.2rem' : configuration.spacing.xs)};
-    padding-bottom: ${({ configuration, size }) => (size === 'large'
-    ? configuration.spacing.nano
-    : configuration.spacing.none)};
-    display: inline-flex;
+    padding: 0 ${({ configuration }) => configuration.spacing.xs};
+    display: flex;
     align-items: center;
     color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
-  }
-
-  .input:focus ~ .label,
-  .input:valid ~ .label {
-    top: ${({ border }) => (border === 'overlap'
-    ? ' -0.375rem'
-    : border === 'outside'
-      ? '-0.9rem'
-      : '0.188rem')};
-    font-size: 0.688rem !important;
-    line-height: 0.688rem;
-    border: none;
-    color: #000;
-    padding: 0;
-    outline: none;
-    left: ${({ configuration }) => configuration.spacing.xs};
-    .icon-required {
-      display: inline-flex;
-      padding-left: ${({ configuration }) => configuration.spacing.nano};
-      color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor} !important;
-    }
   }
 
   .label {
     background: ${({ border }) => (border === 'outside' ? 'transparent' : 'inherit')};
     color: #808080;
-    left: ${({ configuration, hasIcon }) => (hasIcon ? configuration.spacing.lg : configuration.spacing.xs)};
-    right: initial;
+    left: ${(p) => (p.hasIcon ? p.configuration.spacing.lg : p.configuration.spacing.xs)};
     font-size: 1rem;
     line-height: 1rem;
-    top: ${({ size, hasIcon }) => (size === 'large'
-    ? hasIcon
-      ? '1.2rem'
-      : '1rem'
-    : hasIcon
-      ? '1rem'
-      : '0.688rem')};
     position: absolute;
     pointer-events: none;
     user-select: none;
@@ -122,76 +119,106 @@ export const Wrapper = styled.div < any > `
       display: none;
     }
   }
-  .input:valid,
-  .input:focus {
-    & ~ .is-:invalid,
-    ~ .is-required,
-    ~ .is-valid {
-      display: none;
+
+  .input[type='time'] {
+    height: ${(p) => (p.size === 'large' ? '48%' : '62%')};
+  }
+
+  .input[type='date'],
+  .input[type='time'],
+  .input[type='color'] {
+    & ~ .icon {
+      left: 0.482rem;
     }
   }
-  .input[type='password'] {
-    letter-spacing: 0.5rem;
-    font-weight: 800;
-    height: calc(100% - 1rem);
+
+  .input[type='color'] {
+    opacity: 0;
+    & ~ .show-value {
+      left: ${({ configuration }) => configuration.spacing.lg};
+      right: initial;
+      font-size: 1rem;
+      line-height: 1rem;
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+    }
+  }
+
+  .is-invalid,
+  .is-required,
+  .is-valid,
+  .icon-helper {
+    padding: 0 ${({ configuration }) => configuration.spacing.xs};
+    position: absolute;
+    float: right;
+    display: flex;
+    align-items: center;
+    height: 100%;
   }
 
   .is-invalid {
-    color: red;
-    padding: 0.3rem ${({ configuration }) => configuration.spacing.xs};
-    display: inline-flex;
-    align-items: center;
+    color: ${({ configuration }) => configuration.text.danger};
   }
 
   .is-required {
     color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
-    padding: 0.3rem ${({ configuration }) => configuration.spacing.xs};
-    display: inline-flex;
-    align-items: center;
   }
 
   .is-valid {
-    color: #3ae25f;
-    padding: 0.3rem ${({ configuration }) => configuration.spacing.xs};
-    display: inline-flex;
-    align-items: center;
+    color: ${({ configuration }) => configuration.text.success};
+    svg {
+      fill: ${({ configuration }) => configuration.text.success};
+    }
   }
 
   .icon-helper {
     color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
-    padding: 0 ${({ configuration }) => configuration.spacing.xs};
-    display: inline-flex;
-    align-items: center;
   }
 `;
 
-export const StyledProgressBar = styled.div < any > `
-  display: inline-flex;
-  width: 100%;
-  height: 0.188rem;
-  gap: 0.5rem;
-  padding-left: ${({ configuration }) => configuration.spacing.xs};
+export const DataListContainer = styled.div < any > `
   box-sizing: border-box;
-  .meter {
-    background-color: #cecece;
-    height: 0.625rem;
+  transition: all 0.2s
+    ${(p) => p.transition || p.configuration.transitionTimingFunction};
+  width: 100%;
+  ${(p) => (p.border === 'bottom'
+    ? `border-bottom: 0.063rem solid ${p.borderColor || '#000'};`
+    : `border: 0.063rem solid ${p.bordercolor || '#000'};`)};
+  border-top: none;
+  & > ${StyledPill} {
+    margin: 0.2rem;
   }
 `;
 
-const getBorderStyle = (border: string, color: string) => {
-  let borderStyle = css``;
+export const getBorderStyle = (border: string, color: string) => {
   switch (border) {
     case 'bottom':
-      borderStyle = css`
+      return css`
         border-bottom: 0.063rem solid ${color};
       `;
-      break;
     case 'overlap':
     default:
-      borderStyle = css`
+      return css`
         border: 0.063rem solid ${color};
       `;
-      break;
   }
-  return borderStyle;
+};
+
+export const setLabel = (border: string, size: string) => {
+  if (border === 'outside') {
+    return css`
+      top: ${() => (size === 'xsmall' ? '-80%' : '-55%')};
+    `;
+  }
+  if (border === 'overlap') {
+    return css`
+      background-color: inherit !important;
+      padding: 0 0.25rem !important;
+      top: ${() => (size === 'xsmall' ? '-40%' : '-20%')};
+    `;
+  }
+  return css`
+    top: 0;
+  `;
 };
