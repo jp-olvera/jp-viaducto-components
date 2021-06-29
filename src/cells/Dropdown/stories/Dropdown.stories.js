@@ -69,7 +69,20 @@ export default {
 
 const Template = (args) => (
   <ConfigProvider>
-    <Dropdown {...args} />
+    <div
+      style={{
+        height: '2000px',
+        width: '100%',
+      }}
+    >
+      <div style={{ width: '500px', overflowX: 'auto', marginTop: '500px' }}>
+        <div style={{ width: '2000px' }}>
+          <div style={{ marginLeft: '30%', display: 'inline' }}>
+            <Dropdown {...args} />
+          </div>
+        </div>
+      </div>
+    </div>
   </ConfigProvider>
 );
 

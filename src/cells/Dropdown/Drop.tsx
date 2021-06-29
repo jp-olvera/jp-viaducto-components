@@ -1,80 +1,70 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { findScrollParents } from '../../utils/scroll';
 
-const Drop = ({
-  target, content, contentRef, position = 'bottom',
-}) => {
+interface DropProps {
+  target: React.RefObject<HTMLElement>;
+  contentRef: React.RefObject<HTMLElement>;
+  children: React.ReactNode;
+}
+const Drop = ({ target, children, contentRef }: DropProps) => {
   const dropRef = useRef<HTMLDivElement>(null);
-  const [stylePosition, setStylePosition] = useState({ x: '0rem', y: '0rem' });
 
-  const setDropPosition = () => {
-    if (contentRef.current && target.current) {
-      const contentH = contentRef.current?.offsetHeight || 0;
-      const { bottom, top, left } = target.current.getBoundingClientRect();
-      const activatorOffsetHeight = target.current.offsetHeight;
-      const dropdownH = activatorOffsetHeight + contentH;
-      const dropdownBottom = bottom + contentH; // la posición donde terminaría el dropdown
-      const documentH = window.innerHeight || document.documentElement.clientHeight;
+  const move = () => {
+    if (contentRef.current && target.current && dropRef.current) {
+      const windowHeight = window.innerHeight;
+      const targetRect: DOMRect = target.current.getBoundingClientRect();
+      const dropH = contentRef.current?.offsetHeight || 0; // height drop
+      let top = targetRect.bottom;
 
-      if (position === 'top' && top > dropdownH) {
-        // es top y arriba aún hay espacio
-        const newTop = top - contentH;
-        setStylePosition({
-          y: `${newTop}px`,
-          x: `${left}px`,
-        });
-        return;
-      }
-      if (position === 'bottom' && dropdownBottom < documentH) {
-        // es bottom y abaja hay espacio
-        setStylePosition({
-          y: `${bottom}px`,
-          x: `${left}px`,
-        });
-        return;
-      }
-      if (dropdownBottom > documentH && top > dropdownH) {
-        // si el dropdown completo queda más abajo
-        // y arriba aún hay espacio
-        const newTop = top - contentH;
-        setStylePosition({
-          y: `${newTop}px`,
-          x: `${left}px`,
-        });
+      // ajustar verticalmente
+      if (windowHeight - targetRect.bottom > dropH) {
+        // abajo hay espacio
+        top = targetRect.bottom;
+      } else if (targetRect.top >= dropH) {
+        // arriba cabe
+        top = targetRect.top - dropH;
       } else {
-        const newTop = top + activatorOffsetHeight;
-        setStylePosition({
-          y: `${newTop}px`,
-          x: `${left}px`,
-        });
+        top = targetRect.bottom;
       }
+      dropRef.current.style.top = `${top}px`;
+      dropRef.current.style.left = `${targetRect.left}px`;
     }
   };
-  useEffect(() => {
-    setDropPosition();
-  }, [contentRef]);
 
   useEffect(() => {
-    document.addEventListener('scroll', setDropPosition);
+    move();
+    let scrollParents: (Element | Document)[] = [];
+    const addScrollListeners = () => {
+      scrollParents = findScrollParents(target.current);
+      scrollParents.forEach((scrollParent) => scrollParent.addEventListener('scroll', move));
+    };
+    const removeScrollListeners = () => {
+      scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
+      scrollParents = [];
+    };
+    if (target && target.current) {
+      addScrollListeners();
+      window.addEventListener('resize', move);
+    }
     return function cleanup() {
-      document.removeEventListener('scroll', setDropPosition);
+      removeScrollListeners();
+      window.removeEventListener('resize', move);
     };
   }, []);
   /* istanbul ignore if */
-  if (!target.current) {
+  if (!target || !target.current) {
     return null;
   }
-
   return createPortal(
     <div
       ref={dropRef}
       style={{
         position: 'fixed',
-        top: stylePosition.y,
-        left: stylePosition.x,
+        zIndex: 1,
       }}
     >
-      {content}
+      {children}
     </div>,
     document.body,
   );

@@ -47,27 +47,35 @@ const Dropdown = ({
   const activatorRef = useRef<HTMLButtonElement>(null);
   const wrapperRef = useRef<HTMLButtonElement>(null);
   const selectedRef = useRef<HTMLElement>(null);
-  const dropdownListRef = useRef<HTMLDivElement>(null);
   const newHeight = height || configuration.controlHeight[size];
-  useEffect(() => {
-    if (isOpen) {
-      document.addEventListener('mouseup', (event) => refs.clickOutsideHandler(
-        event,
-        activatorRef,
-        dropdownListRef,
-        setIsOpen,
-      ));
+  const dropdownListRef = useRef<HTMLDivElement>(null);
+
+  const handleClose = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const clickOutsideHandler = (event) => {
+    if (isOpen && activatorRef.current && dropdownListRef.current) {
+      if (
+        dropdownListRef.current.contains(event.target)
+        || activatorRef.current.contains(event.target)
+      ) {
+        return;
+      }
+      handleClose();
     }
-    document.removeEventListener('mouseup', (event) => refs.clickOutsideHandler(event, activatorRef, dropdownListRef, setIsOpen));
+  };
+
+  useEffect(() => {
+    if (isOpen && dropdownListRef.current) {
+      window.addEventListener('mouseup', clickOutsideHandler);
+    } else {
+      window.removeEventListener('mouseup', clickOutsideHandler);
+    }
     return function cleanup() {
-      document.removeEventListener('mouseup', (event) => refs.clickOutsideHandler(
-        event,
-        activatorRef,
-        dropdownListRef,
-        setIsOpen,
-      ));
+      window.removeEventListener('mouseup', clickOutsideHandler);
     };
-  }, [isOpen]);
+  }, [isOpen, dropdownListRef]);
 
   const dropContent = (
     <ItemsContainer
@@ -75,11 +83,11 @@ const Dropdown = ({
       className={isOpen ? 'active' : ''}
       data-testid='dropdown-itemList'
       data-cy='dropdown-itemList'
-      ref={dropdownListRef}
       aria-label='Configuraciones'
       hoverColor={hoverColor}
       configuration={configuration}
       family={family}
+      ref={dropdownListRef}
     >
       {(content || []).map((data: any, index: number) => (
         <div
@@ -119,12 +127,9 @@ const Dropdown = ({
         <img className='activator-icon' src={Icon} alt='' />
       </Activator>
       {isOpen && (
-        <Drop
-          target={activatorRef}
-          contentRef={dropdownListRef}
-          content={dropContent}
-          position='top'
-        />
+        <Drop target={activatorRef} contentRef={dropdownListRef}>
+          {dropContent}
+        </Drop>
       )}
     </Wrapper>
   );
