@@ -49,6 +49,7 @@ const Avatar = ({
   }
   return (
     <StyledAvatar
+      data-testid='avatar'
       src={src}
       alt={alt || src}
       height={nHeight}
