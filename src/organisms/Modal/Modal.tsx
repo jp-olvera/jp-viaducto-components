@@ -65,7 +65,8 @@ const Modal = ({
   const { configuration } = useContext(ConfigContext);
   const modalRef = useRef<HTMLElement>(null);
 
-  const clickOutsideHandler = (event) => {
+  const clickOutsideHandler = (event: any) => {
+    /* istanbul ignore else */
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       handleActive();
     }
@@ -103,7 +104,7 @@ const Modal = ({
         style={{
           alignItems: 'center',
           backgroundColor: overlayColor,
-          display: active ? 'flex' : 'none',
+          display: 'flex',
           height: '100%',
           justifyContent: 'center',
           left: '0',

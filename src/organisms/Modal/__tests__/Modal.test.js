@@ -21,13 +21,15 @@ describe('<Modal></Modal>', () => {
     expect(screen.queryByTestId('modal')).toBe(null);
   });
   test('should be visible', () => {
-    render(<Modal active />);
+    render(<Modal active maxWidth='220px' breakpoint='1440px' />);
     expect(screen.getByTestId('overlay')).toBeVisible();
     expect(screen.getByTestId('modal')).toBeVisible();
   });
   test('controls should be visible', () => {
     const onReject = jest.fn();
-    render(<Modal active onReject={onReject} />);
+    render(
+      <Modal active onReject={onReject} headComponent={<div>ssss</div>} />,
+    );
     expect(screen.getByTestId('controls')).toBeVisible();
   });
   test('click close button should call handleActive function', () => {

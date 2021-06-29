@@ -70,6 +70,14 @@ describe('<Icon/>', () => {
     render(<Icon icon='required' />);
     expect(screen.queryByText('error')).not.toBeInTheDocument();
   });
+  test('should be visible with eye icon', () => {
+    render(<Icon icon='eye' />);
+    expect(screen.queryByText('eye')).not.toBeInTheDocument();
+  });
+  test('should be visible with eye-closed icon', () => {
+    render(<Icon icon='eye-closed' />);
+    expect(screen.queryByText('eye')).not.toBeInTheDocument();
+  });
   test('should not render Icon', () => {
     render(<Icon />);
     expect(screen.queryByText('time')).not.toBeInTheDocument();

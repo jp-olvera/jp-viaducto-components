@@ -17,7 +17,7 @@ describe('<Range/> component', () => {
       <Range
         min={50}
         max={100}
-        color={null}
+        color='hshshs'
         fontSize='lg'
         family='Fira Code'
         textColor='info'
@@ -31,7 +31,7 @@ describe('<Range/> component', () => {
       <Range
         min={50}
         max={100}
-        color='red'
+        color='oosaoa'
         fontSize='lg'
         family='Fira Code'
         textColor='info'

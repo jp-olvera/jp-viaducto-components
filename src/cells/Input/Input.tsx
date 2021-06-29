@@ -1,13 +1,12 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, {
-  useState, useEffect, useContext, useRef,
+  useState, useContext, useRef, useEffect,
 } from 'react';
 import creditCardType, { types as CardType } from 'credit-card-type';
 
 import { Pill } from '..';
 import { ConfigContext } from '../../providers';
 import { getIcon } from './Icon';
-import ProgressBar from './ProgressBar';
 import { DataListContainer, Wrapper } from './StyledInput';
 
 creditCardType.resetModifications();
@@ -27,7 +26,7 @@ creditCardType.resetModifications();
  * @param {string} borderColor set the color border
  * @param {string} iconColor set the icon helper
  * @param {any} value the value for the input
- * @param {{options:[], pillColor:string, pillTextColor:string}/null} dataListConfiguration Configuration for the datalist
+ * @param {{options:[], pillColor:string, pillTextColor:string}/null, selected:[]} dataListConfiguration Configuration for the datalist
  */
 
 const Input = ({
@@ -50,9 +49,6 @@ const Input = ({
   family,
   ...rest
 }: any) => {
-  const [open, setOpen] = useState(false);
-  const [inputType, setInputType] = useState(type);
-  const [inputValue, setInputValue] = useState<any>(0);
   const [cardType, setCardType] = useState('card');
   const [optionsSelected, setOptionsSelected] = useState<any[]>([]);
   const { configuration } = useContext(ConfigContext);
@@ -60,17 +56,16 @@ const Input = ({
   const inputRef = useRef<any>();
   const datalistContainerRef = useRef<any>();
   const mustHaveIcon = ['card', 'date', 'color', 'phone', 'time'];
-  useEffect(() => {
-    setOpen(false);
-    setInputType(type);
-  }, []);
 
-  const toggleView = (ev: any) => {
-    if (ev.type === 'click' || ev.keyCode === 13 || ev.keyCode === 32) {
-      setOpen(!open);
-      setInputType((actual) => (actual === 'password' ? 'text' : 'password'));
+  useEffect(() => {
+    if (dataListConfiguration !== null) {
+      setOptionsSelected(
+        Array.from(dataListConfiguration.selected || optionsSelected),
+      );
+    } else {
+      setOptionsSelected([]);
     }
-  };
+  }, []);
 
   const setCardIcon = (ev: any) => {
     const { value: val }: { value: string } = ev.target;
@@ -88,6 +83,13 @@ const Input = ({
     });
   };
 
+  const hasLabel = label !== null
+    && label !== undefined
+    && label !== ''
+    && type !== 'date'
+    && type !== 'color'
+    && type !== 'time';
+
   return (
     <>
       <Wrapper
@@ -100,22 +102,9 @@ const Input = ({
         disabled={disabled}
         family={family}
         type={type}
-        hasLabel={label !== null}
+        hasLabel={hasLabel}
         {...rest}
       >
-        {type === 'password' && (
-          <span
-            className='icon-helper'
-            data-testid='type-switch'
-            onClick={toggleView}
-            onKeyUp={toggleView}
-            role='button'
-            tabIndex={0}
-          >
-            {' '}
-            {inputType === 'password' ? getIcon('eye-closed') : getIcon('eye')}
-          </span>
-        )}
         <input
           className='input'
           ref={inputRef}
@@ -131,7 +120,6 @@ const Input = ({
             }
           }}
           onChange={(ev) => {
-            setInputValue(ev.target.value.length);
             setCardIcon(ev);
             setNewValue(
               type === 'card'
@@ -148,15 +136,13 @@ const Input = ({
           onClick={onClick ? onClick() : () => {}}
           onKeyUp={onKeyUp ? onKeyUp() : () => {}}
           type={
-            open
-              ? inputType
-              : type === 'card' || type === 'phone'
-                ? 'tel'
-                : type === 'datetime-local'
-                  ? 'date'
-                  : type === 'datalist'
-                    ? 'text'
-                    : type
+            type === 'card' || type === 'phone'
+              ? 'tel'
+              : type === 'datetime-local'
+                ? 'date'
+                : type === 'datalist'
+                  ? 'text'
+                  : type
           }
           autoComplete={type === 'card' ? 'cc-number' : ''}
           x-autocompletetype={type === 'card' ? 'cc-number' : ''}
@@ -182,7 +168,7 @@ const Input = ({
               type === 'color'
                 ? inputRef?.current?.value.toUpperCase()
                 : undefined,
-              '18px',
+              '20px',
               undefined,
               undefined,
               type === 'color'
@@ -191,24 +177,22 @@ const Input = ({
             )}
           </span>
         )}
-        <label className='label' htmlFor={rest.id}>
-          <span>{label}</span>
-          {required && (
-            <span className='icon-required'>{getIcon('required', '10px')}</span>
-          )}
-        </label>
+        {type !== 'date' && type !== 'color' && type !== 'time' && label && (
+          <label className='label' htmlFor={rest.id}>
+            <span>{label}</span>
+            {required && (
+              <span className='icon-required'>
+                {getIcon('required', '10px')}
+              </span>
+            )}
+          </label>
+        )}
         {type === 'color' && (
           <span className='show-value'>
             <span>{inputRef?.current?.value.toUpperCase() || '#FFFFFF'}</span>
           </span>
         )}
       </Wrapper>
-      {type === 'password' && (
-        <ProgressBar
-          currentProgress={inputValue}
-          progressColor={getColor(inputValue)}
-        />
-      )}
       {type === 'datalist' && (
         <DataListContainer
           configuration={configuration}
@@ -221,14 +205,8 @@ const Input = ({
             && optionsSelected.map((option: any, index: number) => (
               <Pill
                 label={option}
-                background={
-                  dataListConfiguration?.pillColor
-                  || configuration.colors.warning.click
-                }
-                color={
-                  dataListConfiguration?.pillTextColor
-                  || configuration.colors.warning.text
-                }
+                background={dataListConfiguration?.pillColor}
+                color={dataListConfiguration?.pillTextColor}
                 key={option + index.toString()}
                 family={family}
                 handleAction={() => removePill(
@@ -294,22 +272,6 @@ export const removePill = (
       setNewValue('');
     }
     setOptionsSelected((before: any[]) => before.filter((option: any) => option !== pill));
-  }
-};
-
-export const getColor = (index: number) => {
-  switch (index) {
-    case 1:
-      return 'red';
-    case 2:
-      return 'orange';
-    case 3:
-      return 'yellow';
-    case 4:
-      return 'yellowgreen';
-    case 5:
-    default:
-      return 'green';
   }
 };
 

@@ -26,7 +26,6 @@ export default {
       },
       options: [
         'text',
-        'password',
         'number',
         'card',
         'date',
@@ -138,7 +137,7 @@ export default {
         'Set the configuration (options and pill color) if the datalist type is selected',
       type: {
         summary:
-          '{options: any[], pillColor: string, pillTextColor:string}/null',
+          '{options: any[], pillColor: string, pillTextColor:string}/null, selected:[]',
         required: false,
       },
       table: {
@@ -150,7 +149,9 @@ export default {
 
 const Template = (args) => (
   <ConfigProvider>
-    <Input {...args} />
+    <div style={{ margin: '2rem 0' }}>
+      <Input {...args} />
+    </div>
   </ConfigProvider>
 );
 
@@ -168,23 +169,7 @@ Text.args = {
   borderColor: null,
   iconColor: null,
   icon: 'grid',
-  size: 'default',
-};
-
-export const Password = Template.bind({});
-
-Password.args = {
-  label: 'Password',
-  type: 'password',
-  icon: null,
-  isInvalid: false,
-  isValid: false,
-  required: true,
-  disabled: false,
-  transition: 'ease',
-  borderColor: null,
-  iconColor: null,
-  size: 'default',
+  size: 'small',
 };
 
 export const Card = Template.bind({});
@@ -200,7 +185,7 @@ Card.args = {
   transition: 'ease',
   borderColor: null,
   iconColor: null,
-  size: 'default',
+  size: 'small',
 };
 
 export const Date = Template.bind({});
@@ -216,7 +201,7 @@ Date.args = {
   transition: 'ease',
   borderColor: null,
   iconColor: null,
-  size: 'default',
+  size: 'small',
 };
 
 export const Color = Template.bind({});
@@ -231,7 +216,7 @@ Color.args = {
   required: false,
   disabled: false,
   transition: 'ease',
-  size: 'default',
+  size: 'small',
   borderColor: null,
   iconColor: null,
 };
@@ -247,7 +232,7 @@ Phone.args = {
   required: false,
   disabled: false,
   transition: 'ease',
-  size: 'default',
+  size: 'small',
   borderColor: null,
   iconColor: null,
 };
@@ -263,7 +248,7 @@ Time.args = {
   required: false,
   disabled: false,
   transition: 'ease',
-  size: 'default',
+  size: 'small',
   borderColor: null,
   iconColor: null,
 };
@@ -280,7 +265,7 @@ Datalist.args = {
   required: false,
   disabled: false,
   transition: 'ease',
-  size: 'default',
+  size: 'small',
   id: 'data',
   borderColor: null,
   iconColor: null,

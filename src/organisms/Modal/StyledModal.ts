@@ -3,8 +3,7 @@ import getElevation from '../../utils/getElevation';
 
 const StyledModal = styled.div < any > `
   background: white;
-  display: ${({ isActive }) => (isActive ? 'flex' : 'none')};
-  /* border: 1px solid #eaedf3; */
+  display: flex;
   border-radius: 5px;
   flex-direction: column;
   min-height: 30%;
@@ -38,15 +37,10 @@ const StyledModal = styled.div < any > `
   }
 `;
 
-const getMedia = (maxWidth: string, breakpoint: string) => {
-  if (maxWidth && breakpoint) {
-    return css`
-      @media (min-width: ${breakpoint}) {
-        max-width: ${maxWidth};
-      }
-    `;
+const getMedia = (maxWidth: string, breakpoint: string) => css`
+  @media (min-width: ${breakpoint}) {
+    max-width: ${maxWidth};
   }
-  return css``;
-};
+`;
 
 export default StyledModal;

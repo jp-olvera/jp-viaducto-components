@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, fireEvent, screen } from '../../../test-utils';
+import { render, fireEvent } from '../../../test-utils';
 import '@testing-library/jest-dom/extend-expect';
 import { Input } from '..';
 import { onDataSelected, removePill, mask } from '../Input';
-import ProgressBar from '../ProgressBar';
 
 describe('<Input/>', () => {
   test('should render input', () => {
@@ -43,11 +42,13 @@ describe('<Input/>', () => {
         type='card'
         border='overlap'
         value='55555555555'
+        required
       />,
     );
     const input = container.querySelector('.input');
     fireEvent.click(input);
     fireEvent.change(input, { target: { value: '555555' } });
+    fireEvent.keyUp(input, { keyCode: 13, key: 13, code: 13 });
     expect(input.value).not.toBeNull();
   });
   test('should render input and change the value with other border', () => {
@@ -111,62 +112,6 @@ describe('<Input/>', () => {
     expect(label.innerHTML).toContain('Input');
   });
 
-  test('should render input type password and reveal value after click', () => {
-    const { container } = render(
-      <Input
-        type='password'
-        placeholder='Im the input tested'
-        label='password'
-        border={null}
-      />,
-    );
-    const input = container.querySelector('.input');
-    fireEvent.change(input, { target: { value: '1' } });
-    fireEvent.change(input, { target: { value: '12' } });
-    fireEvent.change(input, { target: { value: '123' } });
-    fireEvent.change(input, { target: { value: '1234' } });
-    fireEvent.change(input, { target: { value: '12345' } });
-    const passReveal = screen.getByTestId('type-switch');
-    fireEvent.click(passReveal);
-    expect(input.type).toBe('text');
-    fireEvent.click(passReveal);
-    expect(input.type).toBe('password');
-  });
-
-  test('should change type password to text with enter keyUp', () => {
-    const { container } = render(
-      <Input
-        type='password'
-        placeholder='Im the input tested'
-        label='password'
-        border='bottom'
-        size='large'
-      />,
-    );
-    const input = container.querySelector('.input');
-    const passReveal = screen.getByTestId('type-switch');
-    fireEvent.keyUp(passReveal, { key: '13', code: '13', keyCode: '13' });
-    expect(input.type).toBe('text');
-  });
-
-  test('should not change type password if keyUp is not enter or space', () => {
-    const { container } = render(
-      <Input
-        type='password'
-        placeholder='Im the input tested'
-        border='outside'
-        size='large'
-        icon='IconCool'
-        required
-        label={undefined}
-      />,
-    );
-    const input = container.querySelector('.input');
-    const passReveal = screen.getByTestId('type-switch');
-    fireEvent.keyUp(passReveal, { key: 'a', code: 'KeyA', keyCode: 'KeyA' });
-    expect(input.type).toBe('password');
-  });
-
   test('should render a simple disabled input', () => {
     const { container } = render(<Input label='label' disabled type='card' />);
     expect(container).not.toBeNull();
@@ -195,7 +140,7 @@ describe('<Input/>', () => {
   });
   test('should render a simple phone input', () => {
     const { container } = render(
-      <Input label='label' type='phone' border='overlap' />,
+      <Input label='label' type='phone' border='overlap' size='xsmall' />,
     );
     const input = container.querySelector('input');
     fireEvent.change(input, { target: { value: 3654 } });
@@ -231,20 +176,12 @@ describe('<Input/>', () => {
     });
   });
 
-  test('should be <ProgressBar/> rendered', () => {
-    const { container } = render(<ProgressBar />);
-    expect(container).toBeDefined();
-  });
-  test('should be <ProgressBar/> rendered with Color', () => {
-    const { container } = render(<ProgressBar currentProgress={3} />);
-    expect(container).toBeDefined();
-  });
-
   describe('data list test', () => {
     const dataListConfiguration = {
       options: ['Javascript', 'Dart', 'Python', 'Java', 'Ruby', 'PHP'],
       pillTextColor: '#000',
       pillColor: '#FFF0A5',
+      selected: ['a', 'b', 'c'],
     };
     test('should render data list properly', () => {
       const { container } = render(
@@ -266,7 +203,12 @@ describe('<Input/>', () => {
         <Input
           type='datalist'
           size='hola'
-          dataListConfiguration={dataListConfiguration}
+          dataListConfiguration={{
+            ...dataListConfiguration,
+            pillColor: '#JAJAJAJAJA',
+            pillTextColor: '#pppppp',
+            selected: null,
+          }}
           label='Datalist'
           border='outside'
           borderColor={null}
