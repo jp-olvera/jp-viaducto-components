@@ -112,7 +112,7 @@ const Modal = ({
           top: '0',
           width: '100%',
           overflowY: 'auto',
-          zIndex: 9999,
+          zIndex: 1,
         }}
       >
         <StyledModal
