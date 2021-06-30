@@ -15,8 +15,10 @@ const ButtonDatalist = ({
   titleComponent = 'Title',
   family,
   onClick = () => {},
+  selectedOptionsList = [],
 }: {
   options: string[];
+  selectedOptionsList: string[];
   buttonLabel: string;
   titleComponent: string;
   family: string | null;
@@ -24,7 +26,9 @@ const ButtonDatalist = ({
 }) => {
   const [optionList, setOptionList] = useState<string[]>(options);
   const [showOptions, setShowOptions] = useState<boolean>(false);
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(
+    selectedOptionsList,
+  );
   const { configuration } = useContext(ConfigContext);
 
   return (
@@ -51,8 +55,10 @@ const ButtonDatalist = ({
           label={null}
           size='small'
           onClick={() => setShowOptions(!showOptions)}
-          onKeyUp={(e: any) => {
-            if (e.target.value.length <= 0) setOptionList(options);
+          onChange={(e: any) => {
+            if (e.target.value.length <= 0) {
+              setOptionList(options);
+            }
             setOptionList((before: string[]) => before.filter((opt: string) => opt.toLocaleLowerCase().includes(e.target.value.toLowerCase())));
           }}
         />
@@ -71,10 +77,9 @@ const ButtonDatalist = ({
             >
               <button
                 onClick={() => {
-                  setShowOptions(false);
-
                   if (!selectedOptions.includes(opt)) {
                     setSelectedOptions((before: string[]) => [...before, opt]);
+                    setShowOptions(false);
                   }
                 }}
                 type='button'
@@ -115,7 +120,10 @@ const ButtonDatalist = ({
           colors={{}}
           variant='border'
           size='small'
-          onClick={onClick}
+          onClick={() => {
+            if (onClick) onClick();
+            return selectedOptions;
+          }}
         />
       </Container>
     </StyledButtonDatalist>

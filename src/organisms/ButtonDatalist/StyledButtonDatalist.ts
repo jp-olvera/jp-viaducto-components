@@ -6,23 +6,23 @@ export const StyledButtonDatalist = styled.div < any > `
       font-family: ${p.family || 'inherit'};
     `}
   }
-  transition: all 0.2s ease;
+  transition: max-height 0.2s ease;
   overflow: hidden;
   .options {
-    transition: all 0.2s ease;
-    height: ${(p) => (p.show ? '10rem' : 0)};
+    transition: max-height 0.2s ease;
+    max-height: ${(p) => (p.show ? '7.5rem' : 0)};
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 7.5rem;
+    min-height: fit-content;
     & button {
       background-color: transparent;
       border: none;
+      padding: 0.5rem;
       font-size: 1rem;
       line-height: 1.375rem;
       cursor: pointer;
       width: 100%;
       text-align: left;
-      height: 100%;
       &:hover {
         background-color: #d9d9d9;
       }
