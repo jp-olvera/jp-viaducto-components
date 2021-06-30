@@ -75,7 +75,7 @@ const Drawer = ({
         position: 'fixed',
         top: 0,
         width: '100vw',
-        zIndex: 9999,
+        zIndex: 1,
       }}
     >
       <StyledDrawer
