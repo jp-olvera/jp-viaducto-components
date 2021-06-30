@@ -133,8 +133,12 @@ const Input = ({
             );
             onChange(ev);
           }}
-          onClick={onClick ? onClick() : () => {}}
-          onKeyUp={onKeyUp ? onKeyUp() : () => {}}
+          onClick={() => {
+            if (onClick) onClick();
+          }}
+          onKeyUp={() => {
+            if (onKeyUp) onKeyUp();
+          }}
           type={
             type === 'card' || type === 'phone'
               ? 'tel'

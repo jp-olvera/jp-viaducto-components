@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { ButtonDatalist } from '..';
 
@@ -42,6 +43,13 @@ export default {
         defaultValue: null,
       },
     },
+    selectedOptionsList: {
+      description: 'Use in case of pre-selected options',
+      table: {
+        type: { summary: 'string[]', required: false },
+        defaultValue: null,
+      },
+    },
   },
 };
 const Template = (args) => (
@@ -58,4 +66,5 @@ Default.args = {
   titleComponent: 'Access Groups',
   family: 'Roboto',
   onClick: () => {},
+  selectedOptionsList: ['Safari', 'Chrome'],
 };
