@@ -4,7 +4,7 @@ import { ConfigContext } from '../../providers';
 import { StyledAnchor } from './StyledAnchor';
 
 interface AnchorInterface {
-  label?: string;
+  label: string;
   href?: string;
   size?: string;
   family?: string | null;

@@ -4,9 +4,18 @@ import { ConfigContext } from '../../providers';
 import { Spacer } from '../../cells';
 import { MenuItem as Wrapper } from './StyledSidebarSection';
 
+/**
+ * MenuItem component
+ * @param {string} href Link to open when the element is selected
+ * @param {string} label Label for the item
+ * @param {boolean} active Set the item active/no active
+ * @param {boolean} nested Place the element as parent or child
+ * @param {boolean} lead Place an icon before/after label
+ * @param {any} icon Set an icon
+ */
 interface MenuItemProps {
-  href: string;
-  label: string;
+  href?: string;
+  label?: string;
   active?: boolean;
   nested?: boolean;
   lead?: boolean;

@@ -19,11 +19,11 @@ import { BareButton } from '../../cells/BareButton';
  */
 interface NotificationInterface {
   text: string;
-  type: string;
+  type?: string;
   active: boolean;
-  top: boolean;
-  elevation: number;
-  elevationDirection: string;
+  top?: boolean;
+  elevation?: number;
+  elevationDirection?: string;
   transition?: string;
 }
 

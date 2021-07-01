@@ -9,19 +9,20 @@ import MenuTitle from './MenuTitle';
 /**
  * Sidebar elements for a Sidebar Section
  *
- * @param {array} items Objects array for make sections in the sidebar
- * @param {boolean} separator Horizontal top separator for each section
  * @param {string} title Title's section
+ * @param {boolean} separator Horizontal top separator for each section
  * @param {boolean} isDropdown Attribute for clickable section top/bottom
  * @param {boolean} isMenu Attribute for clickable section left/right
+ * @param {string} transition Overrides the transitionTimingFunction
+ * @param {any} icon Place an icon for the item
+ * @param {any} children Element to place
  */
 
 interface SidebarProps {
-  items: { label: string; url: string }[];
-  separator: boolean;
   title: string;
-  isDropdown: boolean;
-  isMenu: boolean;
+  separator?: boolean;
+  isDropdown?: boolean;
+  isMenu?: boolean;
   transition?: string;
   icon?: any;
   children?: any;
@@ -97,7 +98,7 @@ const SidebarSection = ({
             title !== null && (
               <MenuTitle
                 expanded={isActive}
-                type={`${isMenu && 'menu'}`}
+                type='menu'
                 icon={icon}
                 title={title}
               />

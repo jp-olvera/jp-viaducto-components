@@ -15,19 +15,21 @@ import { StyledLabel } from './StyledRadio';
  * @param {string} label Label for the input
  * @param {string} name HTML name attribute for the input
  * @param {string} id ID fot the input
- * @param {Function} onChange Triger an action
+ * @param {Function} onChange Triger an action on value change
+ * @param {Function} onClick Triger an action on input click
  */
 interface RadioInterface {
   label: string;
-  disabled: boolean;
   name: string;
+  disabled?: boolean;
   family?: string | null;
-  radioSize: string;
-  fontSize: string;
-  color: string;
-  id: string;
+  radioSize?: string;
+  fontSize?: string;
+  color?: string;
+  id?: string;
   spacing?: string;
   onChange?: Function;
+  onClick?: Function;
 }
 
 const Radio = ({
@@ -41,6 +43,7 @@ const Radio = ({
   spacing = 'none',
   fontSize,
   onChange = () => {},
+  onClick = () => {},
   ...props
 }: RadioInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -63,6 +66,9 @@ const Radio = ({
         onChange={() => {
           setCheck(!check);
           onChange();
+        }}
+        onClick={() => {
+          onClick();
         }}
         disabled={disabled}
         type='radio'

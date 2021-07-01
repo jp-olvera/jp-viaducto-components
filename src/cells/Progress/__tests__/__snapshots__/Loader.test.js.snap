@@ -23,7 +23,7 @@ exports[`<CircleLoader/> should render Circle Loader and create Snapshot 1`] = `
       cy="12.5"
       fill="transparent"
       r="0"
-      stroke="#a7ffba"
+      stroke="#3AE25F65"
       stroke-dasharray="0 0"
       stroke-width="0"
       style="stroke-dashoffset: 0;"
@@ -66,7 +66,7 @@ exports[`<CircleLoader/> should render Circle Loader with props and create Snaps
       cy="12.5"
       fill="transparent"
       r="10"
-      stroke="#a7ffba"
+      stroke="#3AE25F65"
       stroke-dasharray="5 5"
       stroke-width="2"
       style="stroke-dashoffset: 1;"
@@ -88,7 +88,8 @@ exports[`<CircleLoader/> should render Circle Loader with props and create Snaps
 
 exports[`<ProgressBar/> should render ProgressBar and create snapshot 1`] = `
 <div
-  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 QYKjV"
+  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 hxyCeq"
+  color="#3AE25F"
   data-testid="loader"
   max="100"
   value="0"
@@ -109,7 +110,8 @@ exports[`<ProgressBar/> should render ProgressBar and create snapshot 1`] = `
 
 exports[`<ProgressBar/> should render ProgressBar and create snapshot with props 1`] = `
 <div
-  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 fMLspk"
+  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 uaygD"
+  color="#3AE25F"
   data-testid="loader"
   max="10"
   value="5"
@@ -130,7 +132,7 @@ exports[`<ProgressBar/> should render ProgressBar and create snapshot with props
 
 exports[`<StepLoader/> should render StepLoader and create snapshot 1`] = `
 <h1
-  class="StyledTitle-sc-1w2mjy9-0 bNwteV StyleLoader__StyledStepProgress-sc-1bymfut-1 kkFXyJ"
+  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 jedmTv"
   color="dark"
   data-testid="loader"
 >
@@ -142,7 +144,7 @@ exports[`<StepLoader/> should render StepLoader and create snapshot 1`] = `
 
 exports[`<StepLoader/> should render StepLoader and create snapshot with props 1`] = `
 <h1
-  class="StyledTitle-sc-1w2mjy9-0 bNwteV StyleLoader__StyledStepProgress-sc-1bymfut-1 jnqqvb"
+  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 jMBdCq"
   color="dark"
   data-testid="loader"
 >

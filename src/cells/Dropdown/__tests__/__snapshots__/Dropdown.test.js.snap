@@ -16,23 +16,16 @@ exports[`<Dropdown/> should render with default props and border left none 1`] =
       aria-controls="dropdown1"
       aria-haspopup="true"
       aria-selected="true"
-      class="StyledDropdown__Activator-sc-1btfu08-1 cBgAJt"
+      class="StyledDropdown__Activator-sc-1btfu08-1 igpFBs"
       data-testid="dropdown-activator"
       id="dropdown-activator"
       type="button"
     >
-      <div
-        class="StyledHideable-sc-6qajv2-0 dyQeGA"
-      >
-        <span
-          class="activator-text"
-        >
-          Buscar por...
-        </span>
-      </div>
+      <span>
+        Buscar por...
+      </span>
       <img
         alt=""
-        class="activator-icon"
       />
     </button>
   </div>
@@ -49,23 +42,16 @@ exports[`<Dropdown/> should render with default props and borders 1`] = `
       aria-controls="dropdown1"
       aria-haspopup="true"
       aria-selected="true"
-      class="StyledDropdown__Activator-sc-1btfu08-1 cqRnXc"
+      class="StyledDropdown__Activator-sc-1btfu08-1 haUpWN"
       data-testid="dropdown-activator"
       id="dropdown-activator"
       type="button"
     >
-      <div
-        class="StyledHideable-sc-6qajv2-0 dyQeGA"
-      >
-        <span
-          class="activator-text"
-        >
-          Buscar por...
-        </span>
-      </div>
+      <span>
+        Buscar por...
+      </span>
       <img
         alt=""
-        class="activator-icon"
       />
     </button>
   </div>

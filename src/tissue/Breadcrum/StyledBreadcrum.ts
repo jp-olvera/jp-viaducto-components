@@ -43,7 +43,7 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     outline: none;
     cursor: pointer;
     box-sizing: border-box;
-    font-family: ${(p) => (p.family ? p.family : 'inherit')};
+    font-family: ${(p) => p.family};
     padding-left: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
   }
 

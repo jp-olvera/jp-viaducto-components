@@ -5,8 +5,8 @@ import { SIZE } from './constants';
 
 interface AvatarProps {
   src: string;
+  alt: string;
   size?: string;
-  alt?: string;
   height?: string;
   width?: string;
   clipPath?: string | null;

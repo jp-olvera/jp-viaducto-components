@@ -101,3 +101,88 @@ exports[`<Popover/> should render top 1`] = `
   </div>
 </div>
 `;
+
+exports[`<Popover/> should render with positions 1`] = `
+<div>
+  <div>
+    <button
+      type="button"
+    >
+      outside
+    </button>
+    <button
+      type="button"
+    >
+      show
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<Popover/> should render with positions 2`] = `
+<div>
+  <div>
+    <button
+      type="button"
+    >
+      outside
+    </button>
+    <button
+      type="button"
+    >
+      show
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<Popover/> should render with positions 3`] = `
+<div>
+  <div>
+    <button
+      type="button"
+    >
+      outside
+    </button>
+    <button
+      type="button"
+    >
+      show
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<Popover/> should render with positions 4`] = `
+<div>
+  <div>
+    <button
+      type="button"
+    >
+      outside
+    </button>
+    <button
+      type="button"
+    >
+      show
+    </button>
+  </div>
+</div>
+`;
+
+exports[`<Popover/> should render with positions 5`] = `
+<div>
+  <div>
+    <button
+      type="button"
+    >
+      outside
+    </button>
+    <button
+      type="button"
+    >
+      show
+    </button>
+  </div>
+</div>
+`;

@@ -4,13 +4,22 @@ import { ConfigContext } from '../../providers';
 import { StyledMenuTitle } from './StyledSidebarSection';
 import { Spacer } from '../../cells';
 
+/**
+ * MenuTitle component
+ * @param {boolean} expanded Set the Menu expanded
+ * @param {string} type Set the component as submenu or dropdrown
+ * @param {Function} onClick Triggers an action when the component is clicked
+ * @param {Function} onKeyUp Triggers an action when the component have focus and press a key
+ * @param {any} icon Place an icon
+ * @param {string} title Set the title
+ */
 interface MenuTitleProps {
-  expanded: boolean;
-  type: string;
+  expanded?: boolean;
+  type?: string;
   onClick?: Function;
   onKeyUp?: Function;
-  icon: any;
-  title: string;
+  icon?: any;
+  title?: string;
 }
 const MenuTitle = ({
   expanded,
