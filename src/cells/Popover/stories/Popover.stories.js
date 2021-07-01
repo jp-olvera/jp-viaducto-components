@@ -102,7 +102,7 @@ const Template = ({ position, elevation, elevationDirection }) => {
       >
         <div
           style={{
-            height: '150px',
+            height: '250px',
             width: '100%',
           }}
         >
@@ -120,10 +120,14 @@ const Template = ({ position, elevation, elevationDirection }) => {
           />
           <Popover
             active={active}
-            content={<div style={{ width: '300px', height: '300px' }} />}
+            content={(
+              <div style={{ width: '300px', height: '200px' }}>
+                <button type='button'>hola</button>
+              </div>
+            )}
             target={ref}
             handleClose={handleClick}
-            position='right'
+            position={position}
             elevation={elevation}
             elevationDirection={elevationDirection}
           />
@@ -140,7 +144,11 @@ const Template = ({ position, elevation, elevationDirection }) => {
               />
               <Popover
                 active={active2}
-                content={<div style={{ width: '300px', height: '300px' }} />}
+                content={(
+                  <div style={{ width: '300px', height: '200px' }}>
+                    <button type='button'>hola</button>
+                  </div>
+                )}
                 target={ref2}
                 handleClose={handleClick2}
                 position={position}

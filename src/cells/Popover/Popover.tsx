@@ -3,14 +3,25 @@ import { createPortal } from 'react-dom';
 import { findScrollParents } from '../../utils/scroll';
 import { StyledDrop } from './StyledDrop';
 
+/**
+ * Popover components opens a dialog box attach to anactivator like a button
+ * via ref.
+ * @param {boolean} active Indicates if the popover shoulb be visible
+ * @param {React.ReactNode} content Any valid React element to put inside the box
+ * @param {number} elevation The elevation level it should take, one of 0/1/2/3, defaults to 1
+ * @param {string} elevationDirection The elevation direction, if '' direction goes everywhere, for example top, bottomLeft
+ * @param {Function} handleClose function to close the popover when clicking outside
+ * @param {string} position Position to put the popover according to the activator, top, bottom(deafult), right or left
+ * @param {React.RefObject<HTMLElement>} target A ref pointing to the activator
+ */
 interface PopoverProps {
-  target: React.RefObject<HTMLElement>;
-  content: React.ReactNode;
-  position?: string;
   active: boolean;
-  handleClose: () => void;
+  content: React.ReactNode;
   elevation?: number;
   elevationDirection?: string;
+  handleClose: () => void;
+  position?: string;
+  target: React.RefObject<HTMLElement>;
 }
 const Popover = ({
   active = false,
@@ -77,6 +88,7 @@ const Popover = ({
           // el drop no se sale a la derecha
           left = targetRect.left + 10;
           setArrowDirection('left');
+          setArrowPosition('start');
         }
       } else {
         // la ventana es más pequeña
@@ -124,7 +136,6 @@ const Popover = ({
       ) {
         // es bottom y abajo cabe
         top = targetRect.bottom;
-        setArrowPosition('start');
         setArrowDirection('top');
       } else if (targetRect.top >= dropH) {
         // se pone arriba
@@ -139,6 +150,11 @@ const Popover = ({
     }
   };
 
+  useEffect(() => {
+    if (dropRef.current) {
+      dropRef.current.focus();
+    }
+  }, [dropRef, active]);
   useEffect(() => {
     move();
     let scrollParents: (Element | Document)[] = [];
@@ -175,6 +191,8 @@ const Popover = ({
         alignDrop={alignDrop}
         arrowDirection={arrowDirection}
         arrowPosition={arrowPosition}
+        tabIndex={0}
+        role='dialog'
       >
         {content}
       </StyledDrop>,
