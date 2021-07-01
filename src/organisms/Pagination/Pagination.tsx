@@ -8,6 +8,22 @@ import { StyledPagination } from './StyledPagination';
 
 /**
  * Pagination component
+ * @param {number} totalPages
+ * @param {number} sibilings
+ * @param {any | null} iconLeft
+ * @param {boolean} previousLabel
+ * @param {any | null} iconRight
+ * @param {boolean} nextLabel
+ * @param {string} position
+ * @param {string} family
+ * @param {string} fontSize
+ * @param {string} activeColor
+ * @param {string} hoverColor
+ * @param {string} textColor
+ * @param {number | string | null} radius
+ * @param {string} spacing
+ * @param {Function} onPageChange
+ * @param {string} variant
  */
 interface PaginationInterface {
   totalPages: number;

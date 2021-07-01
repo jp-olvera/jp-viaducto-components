@@ -16,7 +16,7 @@ import { StyledBadge } from './StyledBadge';
  * @param {String} align Content align
  */
 interface BadgeInterface {
-  content?: any;
+  content: any;
   src?: string;
   color?: string;
   clipPath?: string;
@@ -25,6 +25,7 @@ interface BadgeInterface {
   family?: string;
   background?: string;
   align?: string;
+  rest?: any;
 }
 
 const Badge = ({

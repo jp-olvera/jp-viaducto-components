@@ -11,10 +11,10 @@ import { StyledSwitch } from './StyledSwitch';
  * @param {string} id ID fot the input
  */
 interface SwitchInterface {
-  color: string;
-  size: string;
-  disabled: boolean;
-  id: string;
+  color?: string;
+  size?: string;
+  disabled?: boolean;
+  id?: string;
   change?: Function;
 }
 

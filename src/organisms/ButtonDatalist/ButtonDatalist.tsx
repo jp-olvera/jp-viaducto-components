@@ -9,8 +9,18 @@ import {
 } from '../..';
 import { StyledButtonDatalist } from './StyledButtonDatalist';
 
+/**
+ * Data list component using button and input
+ * @param {string[]} options Set options for being selected
+ * @param {string[]} buttonLabel Label of the button
+ * @param {string | null} titleComponent Title of the component
+ * @param {string} family Set font family
+ * @param {string | null} onClick Tringgers and action when the button is clicked
+ * @param {Function} selectedOptionsList Pass to the component a list of pre-selected items
+ */
+
 const ButtonDatalist = ({
-  options,
+  options = [],
   buttonLabel = 'Save',
   titleComponent = 'Title',
   family,
@@ -20,7 +30,7 @@ const ButtonDatalist = ({
   options: string[];
   selectedOptionsList: string[];
   buttonLabel: string;
-  titleComponent: string;
+  titleComponent: string | null;
   family: string | null;
   onClick: Function;
 }) => {

@@ -24,15 +24,15 @@ const defaultColors = {
  * @param {string} elevationDirection Light indicator for shadows data
  */
 interface SearchInterface {
-  buttonLabel: string;
-  placeholder: string;
+  buttonLabel?: string;
+  placeholder?: string;
   family?: string | null;
-  colors: any;
-  handleSearch: Function;
-  options: string[];
-  id: string;
-  elevation: number;
-  elevationDirection: string;
+  colors?: any;
+  handleSearch?: Function;
+  options?: string[];
+  id?: string;
+  elevation?: number;
+  elevationDirection?: string;
   handleChange?: Function;
 }
 

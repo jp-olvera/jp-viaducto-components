@@ -17,7 +17,7 @@ import StyledParagraph from './StyledParagraph';
  */
 
 interface ParagraphInterface {
-  children?: any;
+  children: any;
   color?: string;
   size?: string;
   align?: string;

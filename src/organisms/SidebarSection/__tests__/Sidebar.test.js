@@ -28,7 +28,7 @@ describe('<SidebarSection/>', () => {
         isMenu={false}
         icon='😊'
       >
-        <MenuItem href='#' label='menu' nested />
+        <MenuItem href='#' label='menu' nested active={false} />
       </SidebarSection>,
     );
     expect(screen.getByText('menu')).toBeVisible();
@@ -79,7 +79,9 @@ describe('<SidebarSection/>', () => {
     expect(screen.getByText('Comida')).toBeVisible();
   });
   test('should render with default props', () => {
-    const { container } = render(<SidebarSection />);
+    const { container } = render(
+      <SidebarSection isDropdown={false} isMenu={false} />,
+    );
     expect(container).toMatchSnapshot();
   });
 });

@@ -18,7 +18,6 @@ describe('<Accordion />', () => {
         </AccordionItem>
       </Accordion>,
     );
-
     expect(getByText('Text1')).toBeVisible();
   });
   test('should render the content of the second child when clicking its title', () => {

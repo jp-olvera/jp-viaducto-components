@@ -2,6 +2,17 @@ import React, { useContext } from 'react';
 import StyledLoader from './StyleLoader';
 import { ConfigContext } from '../../providers/ConfigProvider';
 
+/**
+ * Circle loader component indicator for set the visual steps completed
+ * @param {number} strokeWidth Set the width of the svg stroke
+ * @param {number} circumference Set the stroke-dasharray
+ * @param {number} actualProgress Indicates actual step
+ * @param {number} currentProgress Indicates the real progress
+ * @param {number} radius Set the circle radius
+ * @param {String} transition Overrides the transitionTimingFunction
+ * @param {String} color Set the color of the steps completed/actual progress
+ */
+
 interface CircleLoaderInterface {
   strokeWidth: number;
   circumference: number;
@@ -9,6 +20,7 @@ interface CircleLoaderInterface {
   currentProgress: number;
   radius: number;
   transition?: string;
+  color?: string;
 }
 
 const CircleLoader = ({
@@ -17,6 +29,7 @@ const CircleLoader = ({
   actualProgress = 0,
   currentProgress = 0,
   radius = 0,
+  color = '#3AE25F',
   ...rest
 }: CircleLoaderInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -35,7 +48,7 @@ const CircleLoader = ({
           className='progress-ring__circle'
           strokeWidth={strokeWidth}
           fill='transparent'
-          stroke='#a7ffba'
+          stroke={`${color}65`}
           strokeDasharray={`${circumference} ${circumference}`}
           r={radius}
           cx={12.5}
@@ -48,7 +61,7 @@ const CircleLoader = ({
           className='progress-ring__circle'
           strokeWidth={strokeWidth}
           fill='transparent'
-          stroke='#3AE25F'
+          stroke={color}
           strokeDasharray={`${circumference} ${circumference}`}
           style={{
             strokeDashoffset: currentProgress,

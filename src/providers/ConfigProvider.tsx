@@ -35,7 +35,7 @@ const ConfigProvider = ({ children }: ConfigProviderInterface) => {
     <ConfigContext.Provider value={{ configuration, updateConfig }}>
       <ToastProvider
         components={{ Toast: Toaster }}
-        placement={placements[configuration.toasterPlacement || 'top-right']}
+        placement={placements[configuration.toasterPlacement]}
       >
         {children}
       </ToastProvider>

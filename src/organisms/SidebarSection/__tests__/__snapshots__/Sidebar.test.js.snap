@@ -9,9 +9,9 @@ exports[`<SidebarSection/> should render with default props 1`] = `
       class=""
     >
       <li
-        class="StyledSidebarSection__StyledMenuTitle-sc-12e8js3-3 oxQtX"
+        class="StyledSidebarSection__StyledMenuTitle-sc-12e8js3-3 kNxUiH"
         tabindex="0"
-        type="false"
+        type="menu"
       >
         <span
           style="display: flex; align-items: center;"

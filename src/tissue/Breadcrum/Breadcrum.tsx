@@ -3,11 +3,20 @@ import { ConfigContext } from '../../providers';
 import { StyledBreadcrum } from './StyledBreadcrum';
 import BreadcrumContext from './BreadcrumContext';
 
+/**
+ * Breadcrum component, child of Breadcrums wrapper
+ * @param {boolean} active Set the item as active
+ * @param {string | undefined} href Link for the item
+ * @param {string} label Label for the item
+ * @param {(ev) => void | undefined} onClick Triggers an action
+ * @param {string | undefined} target HTML Anchor target
+ * @param {boolean} separator Set the separator for the item
+ */
 interface BreadcrumProps {
+  label: string;
   active?: boolean;
   href?: string | undefined;
-  label: string;
-  onClick: (ev) => void | undefined;
+  onClick?: (ev) => void | undefined;
   target?: string | undefined;
   separator?: boolean;
 }

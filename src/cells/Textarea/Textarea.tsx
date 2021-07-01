@@ -30,7 +30,6 @@ interface TextareaInterface {
     | null
     | string;
   borderColor?: string;
-  configuration: any;
   radius?: string | number;
   family?: string;
   textColor?: string;

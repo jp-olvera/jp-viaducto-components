@@ -35,7 +35,7 @@ describe('<Popover/>', () => {
   test('should not render', () => {
     const { queryByText } = render(
       <Popover
-        active
+        position='left'
         content={
           <span style={{ width: '300px', height: '300px' }}>content</span>
         }
@@ -46,6 +46,18 @@ describe('<Popover/>', () => {
   test('should render properly', () => {
     const { container } = render(<Template />);
     expect(container).toMatchSnapshot();
+  });
+  test('should render with positions', () => {
+    const { container: center } = render(<Template position='center' />);
+    const { container: end } = render(<Template position='end' />);
+    const { container: right } = render(<Template position='right' />);
+    const { container: left } = render(<Template position='left' />);
+    const { container: bottom } = render(<Template position='bottom' />);
+    expect(center).toMatchSnapshot();
+    expect(end).toMatchSnapshot();
+    expect(right).toMatchSnapshot();
+    expect(left).toMatchSnapshot();
+    expect(bottom).toMatchSnapshot();
   });
   test('should render elevation', () => {
     const { container } = render(

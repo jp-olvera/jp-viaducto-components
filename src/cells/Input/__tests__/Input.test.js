@@ -33,6 +33,15 @@ describe('<Input/>', () => {
     expect(input.value).not.toBe('New value');
   });
 
+  test('should render input xsmall border overlap', () => {
+    const { container } = render(
+      <Input size='xsmall' border='overlap' label='a' value='a' />,
+    );
+    const input = container.querySelector('.input');
+    fireEvent.focus(input);
+    expect(input.value).not.toBeNull();
+  });
+
   test('should render input and change the value', () => {
     const { container } = render(
       <Input

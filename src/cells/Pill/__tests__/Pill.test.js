@@ -8,7 +8,15 @@ import { Pill } from '..';
 
 describe('<Pill/>', () => {
   test('should render properly', () => {
-    render(<Pill label='Pill' iconLead='' icon='' />);
+    render(
+      <Pill
+        label='Pill'
+        iconLead=''
+        icon=''
+        borderColor='red'
+        circleBorder={false}
+      />,
+    );
     expect(screen.queryByText('Pill')).toBeVisible();
   });
   test('should render properly with default props', () => {

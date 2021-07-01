@@ -3,13 +3,37 @@ import React, { useContext } from 'react';
 import { ConfigContext } from '../../providers';
 import { StyledTable } from './StyledTable';
 
+/**
+ * WrapperTable is a helper component to style the tables
+ * @param {string} align
+ * @param {string} background
+ * @param {string} border
+ * @param {string} borderColor
+ * @param {string} colorSelected
+ * @param {[any]} columns
+ * @param {[any]} data
+ * @param {string} headerColor
+ * @param {number} headerElevation
+ * @param {boolean} headerFixed
+ * @param {string} headerPadding
+ * @param {string} horizontalSpacing
+ * @param {string} minHeight
+ * @param {string} textHeaderColor
+ * @param {string} verticalSpacing
+ * @param {boolean} zebraHover
+ * @param {string} zebraColor
+ * @param {string} zebraHoverColor
+ * @param {string} fontSize
+ * @param {string} family
+ * @param {any} children
+ */
 interface TableInterface {
   align?: string;
   background?: string;
-  border: string;
+  border?: string;
   borderColor?: string;
-  columns: [any];
   colorSelected?: string;
+  columns: [any];
   data: [any];
   headerColor?: string;
   headerElevation?: number;
@@ -18,9 +42,7 @@ interface TableInterface {
   horizontalSpacing: string;
   minHeight?: string;
   textHeaderColor?: string;
-  verticalSpacing: string;
-  withGlobalFilter: boolean;
-  zebra?: boolean;
+  verticalSpacing?: string;
   zebraHover?: boolean;
   zebraColor?: string;
   zebraHoverColor?: string;

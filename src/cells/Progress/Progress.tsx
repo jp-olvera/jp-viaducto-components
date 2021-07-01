@@ -9,8 +9,9 @@ interface ProgressInterface {
   totalSteps: number;
   completedSteps: number;
   currentStep: number;
-  loader: string;
+  loader?: string;
   transition?: string;
+  color?: string;
 }
 /**
  * Progress component indicator for set the visual steps completed
@@ -18,12 +19,14 @@ interface ProgressInterface {
  * @param {String} completedSteps Indicates the number of completed steps as a light green
  * @param {String} currentStep Indicates actual step as a dark green
  * @param {String} totalSteps Indicates (and divides the progress indicator) the total steps
+ * @param {String} color Set the color of the component
  */
 const Progress = ({
   totalSteps = 0,
   completedSteps = 0,
   currentStep = 0,
   loader,
+  color = '#3AE25F',
   ...rest
 }: ProgressInterface) => {
   const strokeWidth = 2;
@@ -51,13 +54,14 @@ const Progress = ({
   ]);
 
   if (completedSteps >= totalSteps || currentStep === totalSteps) {
-    return <OkCircle color='#3AE25F' fontSize='25px' data-testid='ok_circle' />;
+    return <OkCircle color={color} fontSize='25px' data-testid='ok_circle' />;
   }
   if (loader === 'progress') {
     return (
       <ProgressBar
         totalSteps={totalSteps}
         completedSteps={completedSteps}
+        color={color}
         {...rest}
       />
     );
@@ -67,6 +71,7 @@ const Progress = ({
       <StepLoader
         completed={completedSteps}
         totalSteps={totalSteps}
+        color={color}
         {...rest}
       />
     );
@@ -78,6 +83,7 @@ const Progress = ({
       actualProgress={actualProgress}
       currentProgress={currentProgress}
       circumference={circumference}
+      color={color}
       {...rest}
     />
   );

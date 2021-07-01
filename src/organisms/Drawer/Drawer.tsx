@@ -11,15 +11,20 @@ import { ConfigContext } from '../../providers';
  * @param {any} children Children component inside the drawer
  * @param {number} elevation Elevation indicator for shadows data
  * @param {string} elevationDirection Light indicator for shadows data
+ * @param {string} transition Overrides transition timing function
+ * @param {void} onClose Triggers an action closing the drawer
+ * @param {string} overlayColor Set the color of the overlay
+ * @param {string} overlayOpacity Set the opacity for the overlay
+ * @param {string} minWidth Set a minWidth for the drawer
  */
 interface DrawerInterface {
   active: boolean;
   children: any;
-  elevation: number;
-  elevationDirection: string;
+  elevation?: number;
+  elevationDirection?: string;
   transition?: string;
   onClose: () => void;
-  overlayColor: string;
+  overlayColor?: string;
   overlayOpacity?: string;
   minWidth?: string;
 }

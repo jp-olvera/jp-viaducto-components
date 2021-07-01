@@ -3,15 +3,22 @@ import { StyledBreadcrums } from './StyledBreadcrum';
 import BreadcrumContext, { BreadcrumValuesProps } from './BreadcrumContext';
 import Breadcrum from './Breadcrum';
 
+/**
+ * Breadcrums component, parent of Breadcrum component
+ * @param {React.ReactNode[]} children React Elements, use Breadcrum for wrap the children
+ * @param {string} fontSize Set the font size
+ * @param {string} family Set font family
+ * @param {string} separatorSpacing Horizontal spacing for the item and the separator
+ */
 interface BreadcrumsProps {
-  fontSize: string;
-  family: string;
-  separatorSpacing: string;
   children: React.ReactNode[];
+  fontSize?: string;
+  family?: string;
+  separatorSpacing?: string;
 }
 const Breadcrums = ({
-  fontSize,
-  family,
+  fontSize = 'md',
+  family = 'inherit',
   separatorSpacing = 'sm',
   children,
 }: BreadcrumsProps) => {
