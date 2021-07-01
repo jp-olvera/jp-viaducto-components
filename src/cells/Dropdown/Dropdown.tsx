@@ -6,30 +6,29 @@ import React, {
 import { ConfigContext } from '../../providers';
 import { Activator, Wrapper, ItemsContainer } from './StyledDropdown';
 import Icon from './sorting.svg';
-import { Hideable } from '../Hideable';
 import Drop from './Drop';
 import { refs } from './DropdownRef';
 /**
  * Dropdown component
- * @param {string} family font family for the dropdown
- * @param {string} hoverColor Hover color for the content option
- * @param {string} size size of the dropdown
  * @param {any} border border painted
+ * @param {React.ReactNode[] | null} content List of items to put in teh dropdown box
  * @param {string} defaultText Text to show without any option selected
- * @param {JSX Element} content cotent in the dropdown
+ * @param {string} family font family for the dropdown
  * @param {string} height size of the dropdown
+ * @param {string} hoverColor Hover color for the content option
  * @param {Function} onClick Triggers an action when an element is selected
+ * @param {string} size size of the dropdown
  */
 
 interface DropdownProps {
-  hoverColor?: string;
   border?: string;
+  content?: React.ReactNode[] | null;
   defaultText: string;
   family?: string | null;
-  content?: React.ReactNode[] | null;
-  size?: string;
   height?: string;
+  hoverColor?: string;
   onClick: Function;
+  size?: string;
 }
 const Dropdown = ({
   hoverColor = '#ffd6ce',
@@ -83,7 +82,6 @@ const Dropdown = ({
       className={isOpen ? 'active' : ''}
       data-testid='dropdown-itemList'
       data-cy='dropdown-itemList'
-      aria-label='Configuraciones'
       hoverColor={hoverColor}
       configuration={configuration}
       family={family}
@@ -119,12 +117,8 @@ const Dropdown = ({
         onClick={() => refs.clickHandler(setIsOpen, isOpen, dropdownListRef, wrapperRef)}
         ref={activatorRef}
       >
-        <Hideable visibleOn='sm'>
-          <span className='activator-text' ref={selectedRef}>
-            {defaultText}
-          </span>
-        </Hideable>
-        <img className='activator-icon' src={Icon} alt='' />
+        <span ref={selectedRef}>{defaultText}</span>
+        <img src={Icon} alt='' />
       </Activator>
       {isOpen && (
         <Drop target={activatorRef} contentRef={dropdownListRef}>
