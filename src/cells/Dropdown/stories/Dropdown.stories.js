@@ -69,6 +69,9 @@ export default {
 
 const Template = (args) => (
   <ConfigProvider>
+    <div style={{ position: 'absolute', right: 0, top: 0 }}>
+      <Dropdown {...args} />
+    </div>
     <div
       style={{
         height: '2000px',
@@ -105,6 +108,7 @@ Default.args = {
       alt='img'
       width='118'
     />,
+    <button type='button'>Log out</button>,
   ],
   onClick: () => {
     // eslint-disable-next-line no-alert
