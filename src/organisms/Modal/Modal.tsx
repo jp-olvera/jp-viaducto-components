@@ -6,6 +6,7 @@ import { Title } from '../../cells/Title';
 import { Button } from '../../cells/Button';
 import { BareButton } from '../../cells/BareButton';
 import { ConfigContext } from '../../providers';
+import { Overlay } from '../../cells/Overlay';
 
 interface ModalInterface {
   title?: string;
@@ -71,6 +72,7 @@ const Modal = ({
       handleActive();
     }
   };
+
   useEffect(() => {
     if (allowClickOutside) {
       if (active) {
@@ -85,21 +87,23 @@ const Modal = ({
     return function cleanup() {
       document.removeEventListener('mouseup', clickOutsideHandler);
     };
-  }, [active]);
+  }, [active, modalRef]);
 
   const handleReject = () => {
     /* istanbul ignore else */
     if (onReject !== null) onReject();
     handleActive();
   };
+
   const handleAccept = () => {
     /* istanbul ignore else */
     if (onAccept !== null) onAccept();
     handleActive();
   };
+
   return active
     ? createPortal(
-      <div
+      <Overlay
         data-testid='overlay'
         style={{
           alignItems: 'center',
@@ -111,8 +115,7 @@ const Modal = ({
           position: 'fixed',
           top: '0',
           width: '100%',
-          overflowY: 'auto',
-          zIndex: 1,
+          zIndex: 999,
         }}
       >
         <StyledModal
@@ -190,7 +193,7 @@ const Modal = ({
             </div>
           )}
         </StyledModal>
-      </div>,
+      </Overlay>,
       document.body,
     )
     : null;

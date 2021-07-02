@@ -135,37 +135,38 @@ const Template = (args) => {
   };
   return (
     <ConfigProvider>
-      <p>Contenido detrás del modal.</p>
-      <Button
-        label='Click to see the magic'
-        variant='outline'
-        shapeColor='success'
-        onClick={handleActive}
-      />
-      <p>
-        Es neceseraio controlar el estado del modal de manera externa, por lo
-        que es necesario proporcionar una variable que represente su estado
-        activo e inactivo y una función que pueda modificar este estado.
-      </p>
-      <pre>
-        <code>
-          {`
-          import { ConfigProvider, Modal } from '@jp-olvera/jp-viaducto-components';
-
-          export const SomeComponent = () => {
-            const [active, setActive] = useState(false);
-            const handleActive = () => {
-              setActive(!active);
+      <div style={{ height: '980px' }}>
+        <p>Contenido detrás del modal.</p>
+        <p>
+          Es neceseraio controlar el estado del modal de manera externa, por lo
+          que es necesario proporcionar una variable que represente su estado
+          activo e inactivo y una función que pueda modificar este estado.
+        </p>
+        <pre>
+          <code>
+            {`
+            import { ConfigProvider, Modal } from '@jp-olvera/jp-viaducto-components';
+            export const SomeComponent = () => {
+              const [active, setActive] = useState(false);
+              const handleActive = () => {
+                setActive(!active);
+              }
+              return (
+                <Modal active handleActive = {handleActive}>
+                  {% Your modal content %}
+                </Modal>
+              )
             }
-            return (
-              <Modal active handleActive = {handleActive}>
-                {% Your modal content %}
-              </Modal>
-            )
-          }
-        `}
-        </code>
-      </pre>
+          `}
+          </code>
+        </pre>
+        <Button
+          label='Click to see the magic'
+          variant='outline'
+          shapeColor='success'
+          onClick={handleActive}
+        />
+      </div>
 
       <Modal active={active} handleActive={handleActive} {...args}>
         <div style={{ height: '800px', background: '#CECECE' }}>

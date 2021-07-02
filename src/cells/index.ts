@@ -8,6 +8,7 @@ export * from './Container';
 export * from './Dropdown';
 export * from './Hideable';
 export * from './Input';
+export * from './Overlay';
 export * from './Paragraph';
 export * from './Pill';
 export * from './Popover';
