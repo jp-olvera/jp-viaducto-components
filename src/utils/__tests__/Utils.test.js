@@ -58,6 +58,14 @@ describe('getSizes file', () => {
       const xxs = 'calc(0.5rem * 1.125)';
       expect(getSize('xxs', true)).toEqual(xxs);
     });
+    test('should return xs size', () => {
+      const xs = '0.694rem';
+      expect(getSize('xs', false)).toEqual(xs);
+    });
+    test('should return xs size with max prop', () => {
+      const xs = 'calc(0.694rem * 1.125)';
+      expect(getSize('xs', true)).toEqual(xs);
+    });
     test('should return lg size with max arg', () => {
       const largeMax = 'calc(1.2rem * 1.125)';
       expect(getSize('lg', true)).toEqual(largeMax);

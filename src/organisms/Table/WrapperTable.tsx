@@ -10,8 +10,6 @@ import { StyledTable } from './StyledTable';
  * @param {string} border
  * @param {string} borderColor
  * @param {string} colorSelected
- * @param {[any]} columns
- * @param {[any]} data
  * @param {string} headerColor
  * @param {number} headerElevation
  * @param {boolean} headerFixed
@@ -33,8 +31,6 @@ interface TableInterface {
   border?: string;
   borderColor?: string;
   colorSelected?: string;
-  columns: [any];
-  data: [any];
   headerColor?: string;
   headerElevation?: number;
   headerFixed?: boolean;
@@ -57,8 +53,6 @@ const Wrapper = ({
   border = 'all',
   borderColor = '#eaecef',
   colorSelected = '#FFF1A5',
-  columns,
-  data,
   headerColor = '#fff',
   headerElevation = 0,
   headerFixed = false,

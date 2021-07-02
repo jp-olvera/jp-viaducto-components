@@ -19,4 +19,12 @@ describe('<Title/>', () => {
     render(<Title color={null}>Another color</Title>);
     expect(screen.queryByText('Another color')).toBeVisible();
   });
+  test('should render with font family', () => {
+    render(
+      <Title color='red' family='Arial'>
+        ...with font family
+      </Title>,
+    );
+    expect(screen.queryByText('...with font family')).toBeVisible();
+  });
 });

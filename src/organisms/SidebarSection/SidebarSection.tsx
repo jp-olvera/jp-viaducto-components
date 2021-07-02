@@ -98,7 +98,7 @@ const SidebarSection = ({
             title !== null && (
               <MenuTitle
                 expanded={isActive}
-                type='menu'
+                type=''
                 icon={icon}
                 title={title}
               />

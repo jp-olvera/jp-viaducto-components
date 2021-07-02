@@ -26,6 +26,7 @@ const Tab = ({
   iconSpacing = 'xs',
   transition,
   active = false,
+  fontSize = 'lg',
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
@@ -57,7 +58,7 @@ const Tab = ({
         {icon !== null && icon !== '' && lead && (
           <span className='tab-icon-span'>{icon}</span>
         )}
-        <Paragraph size='lg' color='darkGray'>
+        <Paragraph size={fontSize} color='darkGray'>
           {text}
         </Paragraph>
         {icon !== null && icon !== '' && !lead && (

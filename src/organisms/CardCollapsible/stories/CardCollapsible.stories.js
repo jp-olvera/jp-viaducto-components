@@ -1,10 +1,10 @@
 import React from 'react';
-import { Card } from '..';
+import { CardCollapsible } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Organisms/Card',
-  component: Card,
+  title: 'Andamio/Organisms/CardCollapsible',
+  component: CardCollapsible,
   argTypes: {
     elevation: {
       description: 'The elevation level it should take, one of 1/2/3',
@@ -12,7 +12,7 @@ export default {
         type: { summary: 'number' },
         defaultValue: { summary: 1 },
       },
-      options: [0, 1, 2, 3],
+      options: [1, 2, 3],
       control: {
         type: 'select',
       },
@@ -24,7 +24,7 @@ export default {
         defaultValue: { summary: "''" },
       },
       options: [
-        'radial',
+        '',
         'top',
         'right',
         'bottom',
@@ -38,21 +38,26 @@ export default {
         type: 'select',
       },
     },
-    src: {
-      description: 'Source of the image of top image',
-      type: { name: 'string' },
+    collapse: {
+      description: 'Attribute for collapse card',
+      type: { name: 'boolean', required: true },
       table: {
-        type: { summary: 'string' },
+        type: { summary: 'boolean' },
+      },
+    },
+    mainContent: {
+      description: 'Main content component',
+      type: { summary: 'JSX Element', required: true },
+      table: {
         defaultValue: { summary: null },
       },
     },
-    children: {
-      description: 'Children component',
-      type: { sumary: null, required: true },
+    collapseContent: {
+      description: 'Collapse content component',
+      type: { summary: 'JSX Element', required: false },
       table: {
         defaultValue: { summary: null },
       },
-      control: null,
     },
     breakpoint: {
       description:
@@ -80,20 +85,19 @@ export default {
 
 const Template = (args) => (
   <ConfigProvider>
-    <Card {...args}>
-      <FakeContent />
-    </Card>
+    <p style={{ fontFamily: 'Arial' }}>
+      this card collapsible is divided by two sections: main content and
+      collapse content.
+    </p>
+    <p style={{ fontFamily: 'Arial' }}>
+      when the prop <code>collapse</code> is <code>true</code> the collapse
+      content will be collapsed (it is pretty clear) and only the header
+      component will be visible
+    </p>
+    <br />
+    <CardCollapsible {...args} />
   </ConfigProvider>
 );
-const Image = (args) => (
-  <ConfigProvider>
-    <Card {...args} />
-  </ConfigProvider>
-);
-
-export const Default = Template.bind({});
-export const NoImage = Template.bind({});
-export const OnlyImage = Image.bind({});
 
 const FakeContent = () => (
   <div
@@ -104,39 +108,44 @@ const FakeContent = () => (
       flexDirection: 'column',
     }}
   >
-    <p>
-      This is a <b>content</b> and could be anything
+    <p style={{ textAlign: 'center' }}>
+      This is a <b>collpase content</b> and could be anything
     </p>
-    <p>Any component is permitted</p>
-    <p>Put your imagination here</p>
+    <button type='button'>Button 1</button>
+    <br />
   </div>
 );
+const MainFakeContent = () => (
+  <>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <p style={{ textAlign: 'center' }}>
+        This is a <b>main content</b> and could be anything
+      </p>
+      <p style={{ textAlign: 'center' }}>Any component is permitted</p>
+      <p style={{ textAlign: 'center' }}>
+        Put your imagination here, like this <code>{'<hr/>'}</code> bellow
+      </p>
+    </div>
+    <hr />
+  </>
+);
+
+export const Default = Template.bind({});
 
 Default.args = {
-  src:
-    'https://images.freeimages.com/images/large-previews/478/jack-o-lanterns-1326113.jpg',
+  collapse: false,
+  mainContent: MainFakeContent(),
+  collapseContent: FakeContent(),
   elevation: 1,
-  elevationDirection: 'radial',
+  elevationDirection: 'top',
   transition: 'ease',
   breakpoint: 'md',
-  family: 'Arial',
-};
-
-NoImage.args = {
-  src: null,
-  elevation: 1,
-  elevationDirection: 'radial',
-  transition: 'ease',
-  breakpoint: 'md',
-  family: 'Arial',
-};
-
-OnlyImage.args = {
-  src: 'https://homepages.cae.wisc.edu/~ece533/images/girl.png',
-  onlyImage: true,
-  elevation: 1,
-  elevationDirection: 'radial',
-  transition: 'ease',
-  breakpoint: 'md',
-  family: 'Arial',
+  family: 'Roboto',
 };
