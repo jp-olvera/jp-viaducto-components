@@ -19,6 +19,10 @@ describe('<SidebarSection/>', () => {
     );
     expect(screen.getByText('Comida')).toBeVisible();
   });
+  test('should render with default props', () => {
+    render(<SidebarSection separator title='Comida' lead icon='😊' />);
+    expect(screen.getByText('Comida')).toBeVisible();
+  });
   test('should render option of SidebarSection', () => {
     render(
       <SidebarSection
@@ -27,6 +31,7 @@ describe('<SidebarSection/>', () => {
         isDropdown={false}
         isMenu={false}
         icon='😊'
+        active={false}
       >
         <MenuItem href='#' label='menu' nested active={false} />
       </SidebarSection>,
@@ -46,7 +51,7 @@ describe('<SidebarSection/>', () => {
   test('should render option after menu keycode 13 press', () => {
     render(
       <SidebarSection separator title='Comida' isDropdown={false} isMenu>
-        <MenuItem href={undefined} label='menu' icon='❤' lead={false} />
+        <MenuItem href={undefined} label='menu' icon='❤' lead={false} active />
       </SidebarSection>,
     );
     fireEvent.keyUp(screen.getByText('Comida'), {

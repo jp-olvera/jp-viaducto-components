@@ -24,7 +24,7 @@ const ButtonDatalist = ({
   buttonLabel = 'Save',
   titleComponent = 'Title',
   family,
-  onClick = () => {},
+  onClick,
   selectedOptionsList = [],
 }: {
   options: string[];
@@ -66,7 +66,8 @@ const ButtonDatalist = ({
           size='small'
           onClick={() => setShowOptions(!showOptions)}
           onChange={(e: any) => {
-            if (e.target.value.length <= 0) {
+            /* istanbul ignore if */
+            if (e.target.value === null) {
               setOptionList(options);
             }
             setOptionList((before: string[]) => before.filter((opt: string) => opt.toLocaleLowerCase().includes(e.target.value.toLowerCase())));
@@ -86,11 +87,14 @@ const ButtonDatalist = ({
               key={index.toString() + opt}
             >
               <button
+                data-testid='btn-opt'
                 onClick={() => {
+                  /* istanbul ignore else */
                   if (!selectedOptions.includes(opt)) {
                     setSelectedOptions((before: string[]) => [...before, opt]);
                     setShowOptions(false);
                   }
+                  return null;
                 }}
                 type='button'
               >
@@ -116,22 +120,20 @@ const ButtonDatalist = ({
                 size='sm'
                 background='#F5F5F5'
                 color='#595959'
-                handleAction={() => {
-                  if (selectedOptions.includes(selected)) {
-                    setSelectedOptions((before: string[]) => before.filter((option: any) => option !== selected));
-                  }
-                }}
+                handleAction={() => selectedOptions.includes(selected)
+                  && setSelectedOptions((before: string[]) => before.filter((option: any) => option !== selected))}
               />
             </div>
           ))}
         </div>
         <Button
+          data-testid='btn-data'
           label={buttonLabel}
           colors={{}}
           variant='border'
           size='small'
           onClick={() => {
-            if (onClick) onClick();
+            onClick();
             return selectedOptions;
           }}
         />

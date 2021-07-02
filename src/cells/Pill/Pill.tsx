@@ -68,6 +68,7 @@ const Pill = ({
         <BareButton
           onClick={handleAction}
           style={{ height: '100%', display: 'flex' }}
+          data-testid='btn-bare'
         >
           {icon === null || icon === '' ? (
             <Close stroke={color} strokeWidth={2} width='18px' height='18px' />

@@ -25,6 +25,17 @@ export default {
       ],
       control: 'select',
     },
+    fontSize: {
+      description: 'Set the font size',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'lg' },
+      },
+      options: ['xxs', 'xs', 'sm', 'md', 'lg'],
+      control: {
+        type: 'select',
+      },
+    },
     active: {
       description: 'Set active props',
       type: { summary: 'boolean', required: true },
@@ -164,6 +175,7 @@ Default.args = {
   lead: false,
   transition: 'ease',
   iconSpacing: 'none',
+  fontSize: 'lg',
   active: false,
 };
 export const WithIcon = Template.bind({});
@@ -178,5 +190,6 @@ WithIcon.args = {
   lead: false,
   transition: 'ease',
   iconSpacing: 'xs',
+  fontSize: 'lg',
   active: false,
 };

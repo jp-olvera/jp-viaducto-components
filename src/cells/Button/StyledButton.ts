@@ -50,9 +50,9 @@ const StyledButton = styled.button < any > `
   text-align: center;
 
   ${(props) => getLateralPadding(props)}
-  ${(props) => getHeight(props)}
+  height: ${(p) => p.height};
   ${(props) => getFontStyle(props)}
-  
+
   //disabled
   &:disabled {
     background-color: ${(p) => (p.variant === 'solid' ? p.configuration.disableColor : 'white')};
@@ -167,16 +167,6 @@ const getLateralPadding = (props: any) => {
 
   return css`
     padding: ${padding};
-  `;
-};
-
-const getHeight = (props) => {
-  let height = '2.488rem';
-  if (props.height !== undefined) {
-    height = `${props.height}`;
-  }
-  return css`
-    height: ${height};
   `;
 };
 

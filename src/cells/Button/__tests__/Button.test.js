@@ -160,4 +160,8 @@ describe('<Button/>', () => {
     );
     expect(container).toBeInTheDocument();
   });
+  test('should render button with height null', () => {
+    const { container } = render(<Button icon={<Help />} height={null} />);
+    expect(container).toBeInTheDocument();
+  });
 });
