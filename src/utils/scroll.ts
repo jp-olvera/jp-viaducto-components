@@ -1,5 +1,8 @@
 const documentTags = ['html', 'body'];
 
+/**
+ * Returns a list of all scrollable parents for an Element
+ */
 export function findScrollParents(element: Element | null) {
   const result: (Element | Document)[] = [];
   if (element && element.parentNode) {
@@ -26,4 +29,38 @@ export function findScrollParents(element: Element | null) {
     result.push(document);
   }
   return result;
+}
+
+/**
+ * Returns the top-level document object of the node.
+ */
+export function ownerDocument(node: Node | null | undefined): Document {
+  return (node && node.ownerDocument) || document;
+}
+
+export function ownerWindow(node: Node | undefined): Window {
+  const doc = ownerDocument(node);
+  return doc.defaultView || window;
+}
+
+/**
+ * Tells if the window of the top-level document of the element has vertical scroll
+ */
+export function isWindowOverflowing(container: Element): boolean {
+  const doc = ownerDocument(container);
+  return ownerWindow(container).innerWidth > doc.documentElement.clientWidth;
+}
+
+export function getScrollbarSize(doc: Document): number {
+  // https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth#example
+  const documentWidth = doc.documentElement.clientWidth; // the viewport's width, scroll width is not considered
+  return Math.abs(window.innerWidth - documentWidth);
+  // window.innerWidth returns the interior width of the window in pixels.
+}
+
+export function getPaddingRight(element: Element): number {
+  return (
+    parseInt(ownerWindow(element).getComputedStyle(element).paddingRight, 10) ||
+    0
+  );
 }

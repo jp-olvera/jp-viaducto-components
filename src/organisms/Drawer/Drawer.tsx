@@ -4,7 +4,7 @@ import React, {
 import { createPortal } from 'react-dom';
 import StyledDrawer from './StyledDrawer';
 import { ConfigContext } from '../../providers';
-
+import { Overlay } from '../../cells/Overlay';
 /**
  * Drawer component
  * @param {boolean} active Attribute to show/hide drawer
@@ -68,7 +68,7 @@ const Drawer = ({
   if (!active) return null;
 
   return createPortal(
-    <div
+    <Overlay
       onClick={handleClose}
       onKeyDown={handleClose}
       data-testid='overlay'
@@ -101,7 +101,7 @@ const Drawer = ({
       >
         {children}
       </StyledDrawer>
-    </div>,
+    </Overlay>,
     document.body,
   );
 };
