@@ -7,8 +7,8 @@ module.exports = {
     config.plugins.push(
       // Removing Speedy so the static storybook styling doesn't break
       new webpack.DefinePlugin({
-        SC_DISABLE_SPEEDY: true
-      })
+        SC_DISABLE_SPEEDY: true,
+      }),
     );
 
     return config;
@@ -26,8 +26,7 @@ module.exports = {
         allowSyntheticDefaultImports: true,
         esModuleInterop: true,
       },
-      propFilter: (prop) =>
-        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
     },
   },
 };

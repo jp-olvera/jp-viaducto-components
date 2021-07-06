@@ -66,12 +66,12 @@ const AccordionItem = ({
       ${transition || configuration.transitionTimingFunction} 20ms,
       padding 20ms
       ${transition || configuration.transitionTimingFunction}`;
-      console.log('reset to start');
+      // console.log('reset to start');
     }
   };
   const setNewTransition = () => {
     if (ref.current) {
-      console.log('set new');
+      // console.log('set new');
       ref.current.style.transition = `transform .5s
       ${transition || configuration.transitionTimingFunction},
       padding 5s

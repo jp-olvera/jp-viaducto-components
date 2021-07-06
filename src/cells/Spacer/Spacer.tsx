@@ -19,7 +19,7 @@ const Box = styled.div < any > `
 interface SpacerInterface {
   size?: string;
   direction?: string;
-  sb?: boolean | null;
+  sb?: string | null;
 }
 
 const Spacer = ({

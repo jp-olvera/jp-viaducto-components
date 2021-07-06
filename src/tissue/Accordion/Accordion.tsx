@@ -11,12 +11,12 @@ import { ConfigContext } from '../../providers';
  * @param {String} paddingY Padding in Y
  */
 interface AccordionInterface {
-  children?: React.ReactElement;
+  children?: React.ReactElement[];
   defaultIndex?: number;
   expandMultiple?: boolean;
   paddingX?: string;
   paddingY?: string;
-  transition: string;
+  transition?: string;
 }
 
 const Accordion = ({

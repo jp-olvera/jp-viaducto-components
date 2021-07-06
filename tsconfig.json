@@ -28,6 +28,12 @@
     "esModuleInterop": true,
     "noFallthroughCasesInSwitch": true
   },
-  "exclude": ["dist", "node_modules"],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "./src/**/__tests__/*",
+    "./src/**/stories/*",
+    "./src/stories/*"
+  ],
   "include": ["./src/**/*"]
 }

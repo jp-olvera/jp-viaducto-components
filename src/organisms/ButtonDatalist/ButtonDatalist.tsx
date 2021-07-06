@@ -19,6 +19,15 @@ import { StyledButtonDatalist } from './StyledButtonDatalist';
  * @param {Function} selectedOptionsList Pass to the component a list of pre-selected items
  */
 
+interface ButtonDatalistInterface {
+  options: string[];
+  selectedOptionsList?: string[];
+  buttonLabel?: string;
+  titleComponent?: string | null;
+  family?: string | null;
+  onClick: Function;
+}
+
 const ButtonDatalist = ({
   options = [],
   buttonLabel = 'Save',
@@ -26,14 +35,7 @@ const ButtonDatalist = ({
   family,
   onClick,
   selectedOptionsList = [],
-}: {
-  options: string[];
-  selectedOptionsList: string[];
-  buttonLabel: string;
-  titleComponent: string | null;
-  family: string | null;
-  onClick: Function;
-}) => {
+}: ButtonDatalistInterface) => {
   const [optionList, setOptionList] = useState<string[]>(options);
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>(

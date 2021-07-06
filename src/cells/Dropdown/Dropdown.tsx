@@ -21,7 +21,9 @@ import { refs } from './DropdownRef';
  */
 
 interface DropdownProps {
-  border?: string;
+  border?:
+    | string
+    | { top?: string; bottom?: string; left?: string; right?: string };
   content?: React.ReactNode[] | null;
   defaultText: string;
   family?: string | null;

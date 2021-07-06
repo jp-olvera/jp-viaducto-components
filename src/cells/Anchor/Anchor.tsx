@@ -6,6 +6,7 @@ import { StyledAnchor } from './StyledAnchor';
 interface AnchorInterface {
   label: string;
   href?: string;
+  target?: string;
   size?: string;
   family?: string | null;
   color?: string;
@@ -19,6 +20,7 @@ interface AnchorInterface {
  * from Gatsby for pre-loa the page
  * @param {String} label Title or content of the component
  * @param {String} href The path of the page to visit
+ * @param {String} target Target to open link
  * @param {string} color The color of the anchor
  * @param {String} size The anchor size
  * @param {String} family The anchor font-family
@@ -33,6 +35,7 @@ const Anchor = ({
   family = null,
   color = 'dark',
   icon = null,
+  target,
   lead = false,
   ...rest
 }: AnchorInterface) => {
@@ -45,6 +48,7 @@ const Anchor = ({
       size={size}
       family={family}
       configuration={configuration}
+      target={target}
       {...rest}
     >
       {icon !== null && lead && icon}

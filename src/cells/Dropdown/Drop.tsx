@@ -3,8 +3,8 @@ import { createPortal } from 'react-dom';
 import { findScrollParents } from '../../utils/scroll';
 
 interface DropProps {
-  target: React.RefObject<HTMLElement>;
-  contentRef: React.RefObject<HTMLElement>;
+  target: React.RefObject<HTMLElement> | any;
+  contentRef: React.RefObject<HTMLElement> | any;
   children: React.ReactNode;
 }
 const Drop = ({ target, children, contentRef }: DropProps) => {

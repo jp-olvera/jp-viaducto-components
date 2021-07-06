@@ -16,10 +16,10 @@ import { BareButton } from '../BareButton';
  * @param {boolean} circleBorder Set pill with circle border (border radius)
  */
 interface PillInterface {
-  label: string;
+  label?: string;
   iconLead?: any;
   icon?: any;
-  background: string;
+  background?: string;
   color?: string;
   size?: string;
   family?: string | null;

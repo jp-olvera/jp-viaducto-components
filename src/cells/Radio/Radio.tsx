@@ -19,8 +19,8 @@ import { StyledLabel } from './StyledRadio';
  * @param {Function} onClick Triger an action on input click
  */
 interface RadioInterface {
-  label: string;
   name: string;
+  label?: string;
   disabled?: boolean;
   family?: string | null;
   radioSize?: string;
