@@ -1,6 +1,4 @@
-import React, {
-  useRef, useState, useEffect, useContext,
-} from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import { StyledAccordionItem } from './StyledAccordion';
 import { Title } from '../../cells';
 import { ConfigContext } from '../../providers';
@@ -36,25 +34,55 @@ const AccordionItem = ({
 }: AccordionItemProps) => {
   const { configuration } = useContext(ConfigContext);
   const ref = useRef<HTMLElement>(null);
-  const [height, setHeight] = useState('0px');
 
   useEffect(() => {
     /* istanbul ignore else */
-    if (ref.current) {
-      if (!expanded) {
-        setHeight('0px');
-        ref.current.classList.add('noPadding');
-      } else {
-        setHeight(`${ref.current.scrollHeight}px`);
-        ref.current.classList.remove('noPadding');
-      }
+    if (!expanded) {
+      setNewTransition();
+      setZeroHeight();
+    } else {
+      resetTransition();
+      setAutoHeight();
     }
-  }, [expanded]);
+  }, [expanded, ref]);
 
+  const setZeroHeight = () => {
+    if (ref.current) {
+      ref.current.style.height = '0px';
+      ref.current.style.transform = 'scaleY(0)';
+      ref.current.style.padding = '0px';
+    }
+  };
+  const setAutoHeight = () => {
+    if (ref.current) {
+      ref.current.style.height = 'auto';
+      ref.current.style.padding = `${paddingY} ${paddingX}`;
+      ref.current.style.transform = 'scaleY(1)';
+    }
+  };
+  const resetTransition = () => {
+    if (ref.current) {
+      ref.current.style.transition = `transform .2s
+      ${transition || configuration.transitionTimingFunction} 20ms,
+      padding 20ms
+      ${transition || configuration.transitionTimingFunction}`;
+      console.log('reset to start');
+    }
+  };
+  const setNewTransition = () => {
+    if (ref.current) {
+      console.log('set new');
+      ref.current.style.transition = `transform .5s
+      ${transition || configuration.transitionTimingFunction},
+      padding 5s
+      ${
+  transition || configuration.transitionTimingFunction
+} .5s, height 1s linear 2000`;
+    }
+  };
   const handleClick = () => {
     onClick(index);
   };
-
   return (
     <StyledAccordionItem
       paddingX={paddingX}
@@ -79,15 +107,7 @@ const AccordionItem = ({
           {typeof title === 'string' ? <Title level='6'>{title}</Title> : title}
         </span>
       </button>
-      <section
-        ref={ref}
-        id={`accordion-body-${id}`}
-        className='section'
-        style={{
-          height,
-        }}
-        onTransitionEnd={() => updateAfterTransition(expanded, setHeight)}
-      >
+      <section ref={ref} id={`accordion-body-${id}`} className='section'>
         {children}
       </section>
     </StyledAccordionItem>
@@ -95,13 +115,3 @@ const AccordionItem = ({
 };
 
 export default AccordionItem;
-
-export const updateAfterTransition = (
-  expanded: boolean,
-  setHeight: Function,
-) => {
-  /* istanbul ignore else */
-  if (expanded) {
-    setHeight('auto');
-  }
-};

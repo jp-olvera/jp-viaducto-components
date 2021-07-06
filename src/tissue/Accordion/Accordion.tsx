@@ -16,6 +16,7 @@ interface AccordionInterface {
   expandMultiple?: boolean;
   paddingX?: string;
   paddingY?: string;
+  transition: string;
 }
 
 const Accordion = ({
@@ -24,6 +25,7 @@ const Accordion = ({
   expandMultiple = false,
   paddingX = 'sm',
   paddingY = 'sm',
+  transition = 'linear',
 }: AccordionInterface) => {
   const { configuration } = useContext(ConfigContext);
   const px = configuration.spacing[paddingX] || configuration.spacing.md;
@@ -66,6 +68,7 @@ const Accordion = ({
           onClick: handleClick,
           paddingX: px,
           paddingY: py,
+          transition,
         });
       })}
     </StyledAccordion>
