@@ -20,6 +20,7 @@ import { StyledTable } from './StyledTable';
  * @param {string} verticalSpacing
  * @param {boolean} zebraHover
  * @param {string} zebraColor
+ * @param {string} zebra
  * @param {string} zebraHoverColor
  * @param {string} fontSize
  * @param {string} family
@@ -41,6 +42,7 @@ interface TableInterface {
   verticalSpacing?: string;
   zebraHover?: boolean;
   zebraColor?: string;
+  zebra?: boolean;
   zebraHoverColor?: string;
   fontSize?: string;
   family?: string;
@@ -64,6 +66,7 @@ const Wrapper = ({
   zebraHover = true,
   zebraColor = '#F6F8FA',
   zebraHoverColor = '#D1D5DA',
+  zebra = true,
   fontSize = 'md',
   family,
   children,
@@ -90,6 +93,7 @@ const Wrapper = ({
       verticalSpacing={verticalSpacing}
       fontSize={fontSize}
       family={family}
+      zebra={zebra}
       {...rest}
     >
       {children}

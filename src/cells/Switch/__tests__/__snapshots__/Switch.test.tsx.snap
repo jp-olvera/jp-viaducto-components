@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Switch/> should fire hover event 1`] = `
+<div>
+  <label
+    class="StyledSwitch-sc-10hvevw-0 dVLAoP"
+    color="#9060EB"
+  >
+    <input
+      type="checkbox"
+    />
+    <span
+      class="slider round"
+      data-testid="slider"
+    />
+  </label>
+</div>
+`;

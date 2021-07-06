@@ -11,8 +11,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(t|j)sx?$/,
-        exclude: /(node_modules|build|dist)/,
+        test: /\.(ts)x?$/,
+        exclude: [/(node_modules|build|dist|__tests__)/],
         use: {
           loader: 'ts-loader',
           // options: {
@@ -22,12 +22,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: /(node_modules|build)/,
+        exclude: [/(node_modules|build|dist|__tests__)/],
         use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.svg$/,
-        exclude: /(node_modules|build)/,
+        exclude: [/(node_modules|build|dist|__tests__)/],
         use: ['url-loader'],
       },
     ],

@@ -6,9 +6,9 @@ import ProgressBar from './ProgressBar';
 import StepLoader from './StepLoader';
 
 interface ProgressInterface {
-  totalSteps: number;
-  completedSteps: number;
-  currentStep: number;
+  totalSteps?: number;
+  completedSteps?: number;
+  currentStep?: number;
   loader?: string;
   transition?: string;
   color?: string;

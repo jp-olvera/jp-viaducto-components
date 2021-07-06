@@ -32,7 +32,7 @@ interface PaginationInterface {
   previousLabel?: boolean;
   iconRight?: any | null;
   nextLabel?: boolean;
-  position: string;
+  position?: string;
   family?: string;
   fontSize?: string;
   activeColor?: string;

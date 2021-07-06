@@ -14,11 +14,11 @@ import { ConfigContext } from '../../providers/ConfigProvider';
  */
 
 interface CircleLoaderInterface {
-  strokeWidth: number;
-  circumference: number;
-  actualProgress: number;
-  currentProgress: number;
-  radius: number;
+  strokeWidth?: number;
+  circumference?: number;
+  actualProgress?: number;
+  currentProgress?: number;
+  radius?: number;
   transition?: string;
   color?: string;
 }

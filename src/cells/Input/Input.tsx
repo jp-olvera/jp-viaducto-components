@@ -247,7 +247,7 @@ export const onDataSelected = (
   dataListConfiguration: any,
   optionsSelected: any[],
   setOptionsSelected: Function,
-  ev: { target: HTMLInputElement },
+  ev: { target: any },
 ) => {
   /* istanbul ignore else */
   if (datalistContainerRef) {

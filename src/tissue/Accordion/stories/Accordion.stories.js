@@ -94,7 +94,7 @@ export default {
 const Template = (args) => (
   <ConfigProvider>
     <Accordion {...args}>
-      <AccordionItem title='Hola, no olvides revisar los Docs arriba' {...args}>
+      <AccordionItem title='Hola, no olvides revisar los Docs arriba'>
         <Paragraph>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industrys standard dummy text ever
@@ -104,7 +104,24 @@ const Template = (args) => (
           remaining essentially unchanged. It was popularised in the 1960s with
           the release of Letraset sheets containing Lorem Ipsum passages, and
           more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+          including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of
+          the printing and typesetting industry. Lorem Ipsum has been the
+          industrys standard dummy text ever since the 1500s, when an unknown
+          printer took a galley of type and scrambled it to make a type specimen
+          book. It has survived not only five centuries, but also the leap into
+          electronic typesetting, remaining essentially unchanged. It was
+          popularised in the 1960s with the release of Letraset sheets
+          containing Lorem Ipsum passages, and more recently with desktop
+          publishing software like Aldus PageMaker including versions of Lorem
+          Ipsum. Lorem Ipsum is simply dummy text of the printing and
+          typesetting industry. Lorem Ipsum has been the industrys standard
+          dummy text ever since the 1500s, when an unknown printer took a galley
+          of type and scrambled it to make a type specimen book. It has survived
+          not only five centuries, but also the leap into electronic
+          typesetting, remaining essentially unchanged. It was popularised in
+          the 1960s with the release of Letraset sheets containing Lorem Ipsum
+          passages, and more recently with desktop publishing software like
+          Aldus PageMaker including versions of Lorem Ipsum.
         </Paragraph>
       </AccordionItem>
       <AccordionItem
@@ -128,15 +145,10 @@ const Template = (args) => (
         {...args}
       >
         <Paragraph>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industrys standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+          Un andamio es una construcción provisional con la que se permite el
+          acceso de los obreros a los distintos puntos de una construcción, así
+          como para llevar material a todos los tajos de obra del edificio en
+          construcción o en rehabilitación de fachadas.
         </Paragraph>
       </AccordionItem>
     </Accordion>
@@ -146,6 +158,6 @@ const Template = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  defaultIndex: 0,
-  transition: 'cubic-bezier(.92,.03,.56,.36)',
+  defaultIndex: -1,
+  transition: 'linear',
 };

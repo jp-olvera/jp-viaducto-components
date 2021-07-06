@@ -21,7 +21,7 @@ interface PopoverProps {
   elevationDirection?: string;
   handleClose: () => void;
   position?: string;
-  target: React.RefObject<HTMLElement>;
+  target: React.RefObject<HTMLElement> | any;
 }
 const Popover = ({
   active = false,
