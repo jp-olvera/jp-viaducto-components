@@ -2,6 +2,7 @@ export * from './ButtonDatalist';
 export * from './Card';
 export * from './CardCollapsible';
 export * from './Drawer';
+export * from './GroupTab';
 export * from './Modal';
 export * from './Notification';
 export * from './Pagination';
