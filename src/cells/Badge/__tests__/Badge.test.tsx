@@ -9,7 +9,7 @@ import { alignContent, getBadgeSize, getClipPath } from '../StyledBadge';
 describe('<Badge /> component', () => {
   test('should render propertly', () => {
     const { getByText } = render(
-      <Badge content='Badge' size='md' family={undefined} src={undefined} />,
+      <Badge content='Badge' size='md' family={undefined} src='aaa' />,
     );
     expect(getByText('Badge')).toBeInTheDocument();
   });

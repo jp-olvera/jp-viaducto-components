@@ -21,7 +21,7 @@ describe('<Breadcrums/>', () => {
   });
   test('Should all children be visible', () => {
     const { getByText } = render(
-      <Breadcrums>
+      <Breadcrums separatorSpacing='nullable'>
         <Breadcrum label='1' href='#' active />
         <Breadcrum label='2' href='#' />
       </Breadcrums>,

@@ -21,8 +21,8 @@ interface StepLoaderInterface {
 }
 
 const StepLoader = ({
-  completed = 0,
-  totalSteps = 0,
+  completed,
+  totalSteps,
   family = null,
   color = 'dark',
   titleLevel = '4',

@@ -118,6 +118,7 @@ const Input = ({
                 ev,
               );
             }
+            return null;
           }}
           onChange={(ev) => {
             setCardIcon(ev);

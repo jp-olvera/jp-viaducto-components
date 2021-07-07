@@ -141,7 +141,7 @@ describe('<ProgressBar/>', () => {
 
 describe('<StepLoader/>', () => {
   test('should render StepLoader and create snapshot', () => {
-    render(<StepLoader totalSteps={16} completed={9} />);
+    render(<StepLoader totalSteps={16} completed={16} finishTextColor='red' />);
     expect(screen.getByTestId('loader')).toMatchSnapshot();
   });
   test('should render StepLoader and create snapshot with props', () => {

@@ -16,7 +16,7 @@ const StyledParagraph = styled.p < any > `
   font-size: ${({ size }) => getSize(size)};
   text-align: ${({ align }) => align || 'left'};
   line-height: ${({ lineHeight, size }) => getLineHeight(lineHeight, size, false)};
-  color: ${({ color, configuration }) => configuration.text[color] || color || configuration.text.dark};
+  color: ${({ color, configuration }) => configuration.text[color] || color};
   @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.xl}) {
     line-height: ${({ lineHeight, size }) => getLineHeight(lineHeight, size, true)};
   }

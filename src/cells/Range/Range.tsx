@@ -27,7 +27,7 @@ interface RangeInterface {
   color?: string;
   fontSize?: string;
   textColor?: string;
-  family?: string;
+  family?: string | null;
   size?: string;
   onChange?: Function;
   double?: boolean;

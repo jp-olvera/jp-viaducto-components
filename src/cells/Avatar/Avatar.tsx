@@ -51,7 +51,7 @@ const Avatar = ({
     <StyledAvatar
       data-testid='avatar'
       src={src}
-      alt={alt || src}
+      alt={alt}
       height={nHeight}
       width={nWidth}
       clipPath={clipPath}

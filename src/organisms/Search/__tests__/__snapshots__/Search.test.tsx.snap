@@ -21,9 +21,10 @@ exports[`<Search/> should render properly with no options 1`] = `
     />
   </div>
   <button
-    class="StyledButton-sc-hwi8uc-0 iPgMex"
+    class="StyledButton-sc-hwi8uc-0 ekhheM"
     data-testid="button-searchNoOptions"
     height="2.488rem"
+    radius="md"
     type="button"
   >
     <span

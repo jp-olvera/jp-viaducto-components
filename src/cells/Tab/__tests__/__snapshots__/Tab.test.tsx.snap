@@ -18,3 +18,66 @@ exports[`<Tab/> should render default props 1`] = `
   </button>
 </div>
 `;
+
+exports[`<Tab/> should render with left line 1`] = `
+<div>
+  <button
+    class="StyledTab-sc-7ood0w-0 khTwQu"
+    color="#F1F1F1"
+  >
+    <div
+      class="tab-text"
+      style="display: flex; align-items: center;"
+    >
+      <p
+        class="StyledParagraph-sc-dbd4lw-0 kpvIeB"
+        color="darkGray"
+      >
+        left
+      </p>
+    </div>
+  </button>
+</div>
+`;
+
+exports[`<Tab/> should render with right line 1`] = `
+<div>
+  <button
+    class="StyledTab-sc-7ood0w-0 jNeqEa"
+    color="#F1F1F1"
+  >
+    <div
+      class="tab-text"
+      style="display: flex; align-items: center;"
+    >
+      <p
+        class="StyledParagraph-sc-dbd4lw-0 kpvIeB"
+        color="darkGray"
+      >
+        right
+      </p>
+    </div>
+  </button>
+</div>
+`;
+
+exports[`<Tab/> should render with top line 1`] = `
+<div>
+  <button
+    class="StyledTab-sc-7ood0w-0 jjrTLe"
+    color="#F1F1F1"
+  >
+    <div
+      class="tab-text"
+      style="display: flex; align-items: center;"
+    >
+      <p
+        class="StyledParagraph-sc-dbd4lw-0 kpvIeB"
+        color="darkGray"
+      >
+        top
+      </p>
+    </div>
+  </button>
+</div>
+`;

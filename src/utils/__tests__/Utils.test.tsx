@@ -1,7 +1,8 @@
 /* eslint-env jest */
-
+import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import getElevation from '../getElevation';
+import { render } from '../../test-utils';
 import { findScrollParents } from '../scroll';
 import {
   getSize,
@@ -15,6 +16,28 @@ import {
 describe('scroll file', () => {
   test('should not be null', () => {
     expect(findScrollParents(null)).not.toBeNull();
+  });
+  test('should call with global variable', () => {
+    expect(findScrollParents(window.Element.bind({}))).not.toBeNull();
+  });
+  test('should call function', () => {
+    const { container } = render(
+      <div
+        style={{
+          height: '1000rem',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'flex-end',
+        }}
+      >
+        <p>AAAAAAA</p>
+        <p>AAAAAAA</p>
+        <p>AAAAAAA</p>
+        <p>AAAAAAA</p>
+        <p>AAAAAAA</p>
+      </div>,
+    );
+    expect(findScrollParents(container.children[0])).not.toBeNull();
   });
 });
 

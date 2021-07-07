@@ -43,4 +43,19 @@ describe('<Tab/>', () => {
     const { container } = render(<Tab />);
     expect(container).toMatchSnapshot();
   });
+
+  test('should render with top line', () => {
+    const { container } = render(<Tab text='top' position='top' />);
+    expect(container).toMatchSnapshot();
+  });
+
+  test('should render with left line', () => {
+    const { container } = render(<Tab text='left' position='left' />);
+    expect(container).toMatchSnapshot();
+  });
+
+  test('should render with right line', () => {
+    const { container } = render(<Tab text='right' position='right' />);
+    expect(container).toMatchSnapshot();
+  });
 });

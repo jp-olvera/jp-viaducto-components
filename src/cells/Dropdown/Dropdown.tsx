@@ -35,7 +35,7 @@ interface DropdownProps {
 const Dropdown = ({
   hoverColor = '#ffd6ce',
   border = 'none',
-  defaultText = 'Buscar por...',
+  defaultText,
   family,
   content,
   size = 'default',
@@ -56,7 +56,9 @@ const Dropdown = ({
   };
 
   const clickOutsideHandler = (event) => {
+    /* istanbul ignore else */
     if (isOpen && activatorRef.current && dropdownListRef.current) {
+      /* istanbul ignore if */
       if (
         dropdownListRef.current.contains(event.target)
         || activatorRef.current.contains(event.target)

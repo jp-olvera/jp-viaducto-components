@@ -44,7 +44,7 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     cursor: pointer;
     box-sizing: border-box;
     font-family: ${(p) => p.family};
-    padding-left: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
+    padding-left: ${(p) => p.configuration.spacing[p.spacing]};
   }
 
   .v-breadcrum:not([disabled]):hover {
@@ -57,7 +57,7 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     display: inline-flex;
     vertical-align: middle;
     align-items: center;
-    margin-left: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
+    margin-left: ${(p) => p.configuration.spacing[p.spacing]};
     color: ${(p) => p.configuration.text.mutedGray};
     font-weight: normal;
   }

@@ -19,7 +19,7 @@ describe('<Range/> component', () => {
         max={100}
         color='hshshs'
         fontSize='lg'
-        family='Fira Code'
+        family={null}
         textColor='info'
         double={false}
       />,

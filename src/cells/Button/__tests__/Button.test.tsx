@@ -16,6 +16,7 @@ describe('<Button/>', () => {
         isLoading
         isValid={null}
         shapeColor={null}
+        radius={null}
       />,
     );
     expect(container).toBeDefined();

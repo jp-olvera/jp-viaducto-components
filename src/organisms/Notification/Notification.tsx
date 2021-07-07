@@ -30,7 +30,7 @@ interface NotificationInterface {
 const Notification = ({
   text,
   type = 'success',
-  active = false,
+  active,
   top = true,
   elevation = 1,
   elevationDirection = '',

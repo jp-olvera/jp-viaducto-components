@@ -4,7 +4,7 @@ interface SAI {
   paddingX: string;
   paddingY: string;
   expanded: boolean;
-  transition?: string;
+  transition?: string | null;
   configuration?: any;
 }
 

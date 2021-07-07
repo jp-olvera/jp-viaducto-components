@@ -16,7 +16,7 @@ import { StyledCollapsibleCard, StyledCollapse } from './StyledCardCollapsible';
  */
 
 interface CardCollapsibleInterface {
-  collapse: boolean;
+  collapse?: boolean;
   elevation?: number;
   elevationDirection?: string;
   mainContent: any;

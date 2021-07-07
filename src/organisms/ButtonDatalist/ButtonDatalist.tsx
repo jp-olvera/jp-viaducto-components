@@ -29,7 +29,7 @@ interface ButtonDatalistInterface {
 }
 
 const ButtonDatalist = ({
-  options = [],
+  options,
   buttonLabel = 'Save',
   titleComponent = 'Title',
   family,

@@ -31,7 +31,7 @@ const Tooltip = ({
   position = 'top',
   color = '#C4C4C4',
   textColor = '#000',
-  family = 'Roboto',
+  family,
   ...rest
 }: TooltipInterface) => {
   const { configuration } = useContext(ConfigContext);

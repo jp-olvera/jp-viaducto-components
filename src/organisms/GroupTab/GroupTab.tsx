@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { StyledGroupTab } from './StyledGroupTab';
 
 import { ConfigContext } from '../../providers';
-import { Tab } from '../../cells';
 /**
  *
  * @param {Tab} children Tab component
@@ -15,7 +14,7 @@ import { Tab } from '../../cells';
  */
 
 interface GTI {
-  children: typeof Tab;
+  children: any;
   type?: string;
   horizontalSpacing?: string;
   verticalSpacing?: string;

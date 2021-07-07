@@ -68,7 +68,6 @@ const Button = forwardRef(
     if (isValid === true) {
       c = configuration.colors.success;
     }
-    console.log(radius);
     return (
       <StyledButton
         size={size}
