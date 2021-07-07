@@ -154,77 +154,56 @@ Nested.args = {
   expanded: false,
   gutter: 24,
 };
-const Template3 = (args: typeof Default) => (
+
+const TemplateResponsive = (args: typeof Default) => (
   <ConfigProvider>
     <Grid gutter={32} {...args}>
       <Row>
-        <Column style={{ backgroundColor: '#cecece' }} size={3}>
-          Create new user
-        </Column>
-      </Row>
-      <Row>
-        <Column style={{ backgroundColor: '#cecece' }} size={9}>
-          {'Finished -> In Progress -> Waiting'}
-        </Column>
-      </Row>
-      <Row style={{ display: 'flex', justifyContent: 'center' }}>
         <Column
-          size={6}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            backgroundColor: '#cecece',
-          }}
+          style={{ backgroundColor: 'rgb(100,69,145)', height: '230px' }}
+          sm={1}
+          md={6}
+          lg={4}
+          xl={9}
         >
-          <label htmlFor='email'>
-            Email Address
-            <input type='email' id='email' />
-          </label>
-          <label htmlFor='email2'>
-            Email Address
-            <input type='email' id='email2' />
-          </label>
-          <label htmlFor='email3'>
-            Email Address
-            <input type='email' id='email3' />
-          </label>
+          {/* <pre>size = 6 | xs = 12 | lg = 9</pre> */}
         </Column>
-      </Row>
-      <Row style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Column style={{ backgroundColor: '#cecece' }} size={3}>
-          <button type='button'>Send</button>
+        <Column
+          style={{ backgroundColor: '#CECE', height: '230px' }}
+          xs={7}
+          md={6}
+          lg={8}
+          xl={3}
+        >
+          {/* <pre>size = 6 | xs = 12 | lg = 9</pre> */}
         </Column>
-      </Row>
-    </Grid>
-  </ConfigProvider>
-);
-
-export const DistributionExample = Template3.bind({});
-
-DistributionExample.args = {
-  expanded: false,
-  gutter: 24,
-};
-const Template4 = (args: typeof Default) => (
-  <ConfigProvider>
-    <Grid gutter={32} {...args}>
-      <Row>
-        <Column style={{ backgroundColor: 'pink', height: '230px' }} size={6} />
-        <Column style={{ backgroundColor: 'pink', height: '230px' }} size={6} />
       </Row>
       <Row>
         <Column
-          style={{ backgroundColor: 'pink', height: '230px' }}
+          style={{ backgroundColor: '#DDDF', height: '230px' }}
           size={12}
+          md={5}
+          lg={3}
+        />
+        <Column
+          style={{ backgroundColor: '#DDD5', height: '230px' }}
+          size={12}
+          md={7}
+          lg={9}
         />
       </Row>
+      <Row>
+        <Column style={{ backgroundColor: '#DDDF', height: '230px' }} />
+        <Column style={{ backgroundColor: '#DDDD99', height: '230px' }} />
+        <Column style={{ backgroundColor: '#DDEEFF', height: '230px' }} />
+      </Row>
     </Grid>
   </ConfigProvider>
 );
 
-export const TemplateExamples = Template4.bind({});
+export const Responsive = TemplateResponsive.bind({});
 
-TemplateExamples.args = {
+Responsive.args = {
   expanded: false,
   gutter: 24,
 };
