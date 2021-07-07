@@ -13,7 +13,29 @@ import { ConfigContext } from '../../providers';
  * @param {string} lead Set the icon as main children and it will be place before the label (if it is defined)
  * @param {function} onClick function to call when tab is clicked
  * @param {string} text Text to show
+ * @param {string} position Set the line in position selected
+ * @param {string} lineWidth Set the line width
+ * @param {string} index Defines a tab index for helper function
+ * @param {string} fontSize Set the font size
+ * @param {string} transition Overrides the transitionTimingFunction
  */
+
+interface TabI {
+  text?: any;
+  type?: any;
+  horizontalSpacing?: any;
+  verticalSpacing?: any;
+  onClick?: any;
+  icon?: any;
+  lead?: any;
+  iconSpacing?: any;
+  transition?: any;
+  active?: any;
+  fontSize?: any;
+  position?: any;
+  lineWidth?: string;
+  index?: number;
+}
 
 const Tab = ({
   text = '',
@@ -27,8 +49,11 @@ const Tab = ({
   transition,
   active = false,
   fontSize = 'lg',
+  position = 'bottom',
+  lineWidth = '100%',
+  index = 0,
   ...rest
-}: any) => {
+}: TabI) => {
   const { configuration } = useContext(ConfigContext);
 
   const color = configuration.colors[type].default;
@@ -49,6 +74,9 @@ const Tab = ({
       lead={lead}
       transition={transition}
       active={active}
+      position={position}
+      lineWidth={lineWidth}
+      index={index}
       {...rest}
     >
       <div
@@ -58,7 +86,10 @@ const Tab = ({
         {icon !== null && icon !== '' && lead && (
           <span className='tab-icon-span'>{icon}</span>
         )}
-        <Paragraph size={fontSize} color='darkGray'>
+        <Paragraph
+          size={fontSize}
+          color={active ? activeTextColor : 'darkGray'}
+        >
           {text}
         </Paragraph>
         {icon !== null && icon !== '' && !lead && (

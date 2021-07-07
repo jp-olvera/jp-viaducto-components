@@ -1,5 +1,5 @@
 import React from 'react';
-import { SBConfigI } from 'sb';
+import { SBConfigI } from '../../../sb';
 import { ConfigProvider } from '../../../providers';
 import { Tab } from '..';
 import { Container } from '../..';
@@ -9,6 +9,25 @@ const config: SBConfigI = {
   component: Tab,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
+    position: {
+      description: 'Set the line in the position selected',
+      type: { summary: 'String', required: false },
+      table: { defaultValue: { summary: 'bottom' } },
+      control: 'select',
+      options: ['bottom', 'top', 'right', 'left'],
+    },
+    lineWidth: {
+      description: 'Set the line width',
+      type: { summary: 'String', required: false },
+      table: { defaultValue: { summary: 0 } },
+      control: 'text',
+    },
+    index: {
+      description: 'Defines an index to helper functions',
+      type: { summary: 'Number', required: false },
+      table: { defaultValue: { summary: '100%' } },
+      control: 'number',
+    },
     type: {
       description: 'Set the color variant (type definition colors) for the tab',
       type: { summary: 'String', required: true },
@@ -43,6 +62,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: false },
       },
+      control: 'boolean',
     },
     horizontalSpacing: {
       description:
@@ -125,10 +145,11 @@ const config: SBConfigI = {
     lead: {
       description:
         'Set the icon as main children and it will be place before the label (if it is defined)',
-      type: { summary: 'Boolean', required: false },
+      type: { summary: 'boolean', required: true },
       table: {
         defaultValue: { summary: false },
       },
+      control: 'boolean',
     },
     onClick: {
       description: 'Handles the action to take when the tab is selected',
@@ -158,6 +179,17 @@ export default config;
 
 const Template = (args: typeof Default) => (
   <ConfigProvider>
+    <p style={{ fontFamily: 'Arial' }}>
+      <b>Note</b>: set <code>left</code>/<code>right</code> position will invert{' '}
+      <code style={{ color: '#0050B3', margin: '0 .2rem' }}>
+        horizontalSpacing
+      </code>{' '}
+      and{' '}
+      <code style={{ color: '#0050B3', margin: '0 .2rem' }}>
+        verticalSpacing
+      </code>
+      props
+    </p>
     <Container horizontal='md' top='sm'>
       <Tab {...args} />
     </Container>
@@ -180,6 +212,7 @@ Default.args = {
   iconSpacing: 'none',
   fontSize: 'lg',
   active: false,
+  position: 'bottom',
 };
 export const WithIcon = Template.bind({});
 
@@ -195,4 +228,5 @@ WithIcon.args = {
   iconSpacing: 'xs',
   fontSize: 'lg',
   active: false,
+  position: 'bottom',
 };
