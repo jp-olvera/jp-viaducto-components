@@ -47,6 +47,7 @@ const Button = forwardRef(
       label = null,
       lead = false,
       leftSpacing = null,
+      radius = 'md',
       rightSpacing = null,
       shapeColor = 'primary',
       size = SIZE.default,
@@ -67,6 +68,7 @@ const Button = forwardRef(
     if (isValid === true) {
       c = configuration.colors.success;
     }
+    console.log(radius);
     return (
       <StyledButton
         size={size}
@@ -78,6 +80,7 @@ const Button = forwardRef(
         type={type}
         iconSpacing={iconSpacing}
         leftSpacing={leftSpacing}
+        radius={radius}
         rightSpacing={rightSpacing}
         block={block}
         isValid={isValid}

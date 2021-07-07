@@ -8,7 +8,7 @@
     "test:coverage": "jest --coverage -u --env=jsdom",
     "build": "webpack --mode production --config ./.storybook/config/webpack.config.js --progress",
     "start": "npm run storybook",
-    "storybook": "start-storybook -p 6006 --no-manager-cache -s .storybook/public",
+    "storybook": "start-storybook -p 6006 -s .storybook/public",
     "build-storybook": "build-storybook",
     "deploy-storybook": "storybook-to-ghpages"
   },

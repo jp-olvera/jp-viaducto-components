@@ -112,6 +112,20 @@ const config: SBConfigI = {
         type: 'select',
       },
     },
+    radius: {
+      description: 'Radius size',
+      type: {
+        summary: 'string',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: 'md' },
+      },
+      options: ['none', 'sm', 'md', 'lg'],
+      control: {
+        type: 'select',
+      },
+    },
     rightSpacing: {
       description: 'Right spacing between the content and the button',
       type: {

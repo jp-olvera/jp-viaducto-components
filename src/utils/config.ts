@@ -95,6 +95,12 @@ const config = {
     },
   },
   disableColor: '#BFBFBF',
+  radius: {
+    none: '0px',
+    sm: '0.188rem',
+    md: '0.375rem',
+    lg: '0.75rem',
+  },
   text: {
     danger: '#B71C1C',
     dangerLight: '#F05545',
