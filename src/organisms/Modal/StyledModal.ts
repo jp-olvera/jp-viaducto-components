@@ -1,22 +1,31 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import getElevation from '../../utils/getElevation';
 
-const StyledModal = styled.div < any > `
-  background: white;
-  display: flex;
-  border-radius: 5px;
-  flex-direction: column;
+interface StyledModalProps {
+  configuration: any;
+  isActive: boolean;
+  backgroundColor: string;
+  elevation: number;
+  elevationDirection: string;
+  ref: any;
+  radius: string;
+}
+const StyledModal = styled.div < StyledModalProps > `
+  background: ${(p) => p.backgroundColor};
+  border-radius: ${(p) => p.configuration.radius[p.radius]};
+  max-width: 100%;
+  max-height: calc(100% - 96px);
   min-height: 30%;
-  height: 100%;
-  max-height: ${({ maxHeight }) => maxHeight};
-  width: 100%;
+  width: 520px;
   z-index: 1;
-
+  overflow-x: auto;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
+`;
 
-  ${({ maxWidth, breakpoint }) => getMedia(maxWidth, breakpoint)}
+export default StyledModal;
 
-  .modal-header {
+/**
+ * .modal-header {
     display: flex;
     border-bottom: 1px solid #eaedf3;
     border-radius: 5px 5px 0 0;
@@ -35,12 +44,4 @@ const StyledModal = styled.div < any > `
     display: flex;
     padding: ${({ configuration }) => `${configuration.spacing.md} ${configuration.spacing.lg}`};
   }
-`;
-
-const getMedia = (maxWidth: string, breakpoint: string) => css`
-  @media (min-width: ${breakpoint}) {
-    max-width: ${maxWidth};
-  }
-`;
-
-export default StyledModal;
+ */

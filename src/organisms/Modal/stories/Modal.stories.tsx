@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SBConfigI } from 'sb';
+import { SBConfigI } from '../../../sb';
 import { Modal } from '..';
 import { Button } from '../../../cells';
 
@@ -10,18 +10,6 @@ const config: SBConfigI = {
   component: Modal,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
-    breakpoint: {
-      description:
-        'display breakpoint where the modal will stop being 100% width',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '320px' },
-      },
-      options: ['320px', '576px', '768px', '992px', '1440px'],
-      control: {
-        type: 'select',
-      },
-    },
     overlayColor: {
       description: 'Background color for the overlay',
       table: {
@@ -70,14 +58,6 @@ const config: SBConfigI = {
         type: 'select',
       },
     },
-    title: {
-      description: 'Modal title',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: "''" },
-      },
-      control: 'color',
-    },
     handleActive: {
       description: 'function to call to close the modal',
       table: {
@@ -85,36 +65,8 @@ const config: SBConfigI = {
         defaultValue: { summary: () => {} },
       },
     },
-    onReject: {
-      description: 'reject function to call before the modal closes',
-      table: {
-        type: { summary: 'Function' },
-        defaultValue: { summary: null },
-      },
-    },
-    onAccept: {
-      description: 'reject function to call before the modal closes',
-      table: {
-        type: { summary: 'Function' },
-        defaultValue: { summary: null },
-      },
-    },
     active: {
       description: 'Specifies if the modal is gonna be visible at first',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
-      },
-    },
-    acceptDisabled: {
-      description: 'Specifies if the accept button should be disabled',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
-      },
-    },
-    rejectDisabled: {
-      description: 'Specifies if the reject button should be disabled',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
@@ -126,6 +78,20 @@ const config: SBConfigI = {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
+      },
+    },
+    radius: {
+      description: 'Radius size',
+      type: {
+        summary: 'string',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: 'none' },
+      },
+      options: ['none', 'sm', 'md', 'lg'],
+      control: {
+        type: 'select',
       },
     },
   },
@@ -174,7 +140,7 @@ const Template = (args: typeof Default) => {
       </div>
 
       <Modal active={active} handleActive={handleActive} {...args}>
-        <div style={{ height: '800px', background: '#CECECE' }}>
+        <div>
           Aquí van los children. Si no proporcionas las funciones onReject y
           onAccept, no se mostrará la sección de controles
         </div>
@@ -183,47 +149,14 @@ const Template = (args: typeof Default) => {
   );
 };
 
-const AnotherComponent = ({ label }) => (
-  <div style={{ background: '#CECECE' }}>
-    <div style={{ background: '#CECECE' }}>{label}</div>
-  </div>
-);
-
 export const Default = Template.bind({});
 
 Default.args = {
-  title: 'Aquí va el título de tu modal',
-  onReject: () => {},
-  onAccept: () => {},
-  acceptDisabled: false,
-  rejectDisabled: false,
   allowClickOutside: true,
 };
-export const NoControls = Template.bind({});
 
-NoControls.args = {
-  title: 'Aquí va el título de tu modal',
-  acceptDisabled: false,
-  rejectDisabled: false,
-  allowClickOutside: true,
-  overlayColor: 'rgba(206,206,206, 0.5)',
-};
-
-export const WithHeadComponent = Template.bind({});
-
-WithHeadComponent.args = {
-  title: 'Aquí va el título de tu modal',
-  headComponent: AnotherComponent({ label: 'This could be anything' }).props
-    .children,
-  acceptDisabled: false,
-  rejectDisabled: false,
-  allowClickOutside: true,
-};
 export const DisableClickOutside = Template.bind({});
 
 DisableClickOutside.args = {
-  title: 'Aquí va el título de tu modal',
   allowClickOutside: false,
-  acceptDisabled: false,
-  rejectDisabled: false,
 };

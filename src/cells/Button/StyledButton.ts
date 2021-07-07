@@ -43,7 +43,7 @@ const StyledButton = styled.button < any > `
   display: inline-flex;
   flex-direction: ${(props) => (props.lead ? 'row' : 'row-reverse')};
   justify-content: center;
-  border-radius: 0.375rem;
+  border-radius: ${(props) => props.configuration.radius[props.radius] || '0.375rem'};
   box-sizing: border-box;
   transition: background-color 0.15s
     ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
