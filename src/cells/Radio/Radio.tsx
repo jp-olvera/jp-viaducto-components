@@ -35,7 +35,7 @@ interface RadioInterface {
 const Radio = ({
   label = '',
   disabled = false,
-  name = 'radio',
+  name,
   family = null,
   radioSize = 'lg',
   color = '#9060EB',

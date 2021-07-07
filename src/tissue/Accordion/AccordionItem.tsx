@@ -18,7 +18,7 @@ export type AccordionItemProps = {
   title: string;
   paddingX: string;
   paddingY: string;
-  transition: string;
+  transition: string | null;
 };
 
 const AccordionItem = ({
@@ -47,6 +47,7 @@ const AccordionItem = ({
   }, [expanded, ref]);
 
   const setZeroHeight = () => {
+    /* istanbul ignore else */
     if (ref.current) {
       ref.current.style.height = '0px';
       ref.current.style.transform = 'scaleY(0)';
@@ -54,6 +55,7 @@ const AccordionItem = ({
     }
   };
   const setAutoHeight = () => {
+    /* istanbul ignore else */
     if (ref.current) {
       ref.current.style.height = 'auto';
       ref.current.style.padding = `${paddingY} ${paddingX}`;
@@ -61,6 +63,7 @@ const AccordionItem = ({
     }
   };
   const resetTransition = () => {
+    /* istanbul ignore else */
     if (ref.current) {
       ref.current.style.transition = `transform .2s
       ${transition || configuration.transitionTimingFunction} 20ms,
@@ -70,6 +73,7 @@ const AccordionItem = ({
     }
   };
   const setNewTransition = () => {
+    /* istanbul ignore else */
     if (ref.current) {
       // console.log('set new');
       ref.current.style.transition = `transform .5s
@@ -104,7 +108,7 @@ const AccordionItem = ({
             whiteSpace: 'nowrap',
           }}
         >
-          {typeof title === 'string' ? <Title level='6'>{title}</Title> : title}
+          <Title level='6'>{title}</Title>
         </span>
       </button>
       <section ref={ref} id={`accordion-body-${id}`} className='section'>

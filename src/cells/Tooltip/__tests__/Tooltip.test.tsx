@@ -28,11 +28,11 @@ describe('<Tooltip/>', () => {
 
   test('should not be visible', () => {
     render(
-      <Tooltip {...props} family={undefined} active={false}>
+      <Tooltip family={undefined} active={false} label='a'>
         <Container />
       </Tooltip>,
     );
-    expect(screen.queryByText(props.label)).not.toBeVisible();
+    expect(screen.queryByText('a')).not.toBeVisible();
   });
   test('should render bottom tooltip', () => {
     render(

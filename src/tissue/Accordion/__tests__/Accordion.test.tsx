@@ -106,7 +106,7 @@ describe('<Accordion />', () => {
   });
   test('should return AccordionItem with default title', () => {
     const { container, queryByText } = render(
-      <Accordion expandMultiple>
+      <Accordion expandMultiple transition={null}>
         <AccordionItem
           expanded
           transition='ease-in'
@@ -115,7 +115,7 @@ describe('<Accordion />', () => {
           onClick={() => {}}
           paddingX='tiny'
           paddingY='none'
-          title='0'
+          title='AAAAAA'
         >
           <p>Text1</p>
         </AccordionItem>
@@ -127,13 +127,13 @@ describe('<Accordion />', () => {
           onClick={() => {}}
           paddingX='tiny'
           paddingY='none'
-          transition='ease'
+          transition={null}
         >
           <p>Text2</p>
         </AccordionItem>
       </Accordion>,
     );
-    fireEvent.click(queryByText('0'));
+    fireEvent.click(queryByText('AAAAAA'));
     expect(container).toBeInTheDocument();
   });
 });

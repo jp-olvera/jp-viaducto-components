@@ -40,7 +40,6 @@ describe('<Popover/>', () => {
         content={
           <span style={{ width: '300px', height: '300px' }}>content</span>
         }
-        active={false}
         handleClose={() => {}}
         target={ref}
       />,
@@ -75,6 +74,14 @@ describe('<Popover/>', () => {
   });
   test('should render bottom', () => {
     const { container } = render(<Template position='bottom' />);
+    expect(container).toMatchSnapshot();
+  });
+  test('should render center', () => {
+    const { container } = render(<Template position='center' />);
+    expect(container).toMatchSnapshot();
+  });
+  test('should render end', () => {
+    const { container } = render(<Template position='end' />);
     expect(container).toMatchSnapshot();
   });
   test('should render right', () => {

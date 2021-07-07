@@ -23,9 +23,11 @@ const Overlay = ({ children, ...rest }) => {
   useEffect(() => {
     let doc = ownerDocument(undefined);
     let { overflow, paddingRight } = doc.body.style;
+    /* istanbul ignore else */
     if (ref.current) {
       const container = ref.current;
       doc = ownerDocument(container);
+      /* istanbul ignore else */
       if (isWindowOverflowing(container)) {
         const scrollbarSize = getScrollbarSize(doc);
         overflow = doc.body.style.overflow;

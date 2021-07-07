@@ -163,6 +163,7 @@ describe('<Input/>', () => {
     fireEvent.change(input || window, { target: { value: 3654 } });
     fireEvent.change(input || window, { target: { value: 454 } });
     fireEvent.change(input || window, { target: { value: 5654 } });
+    fireEvent.select(input);
     expect(input?.value).not.toBe(345);
 
     expect(container).not.toBeNull();
@@ -211,7 +212,9 @@ describe('<Input/>', () => {
           onKeyUp={null}
         />,
       );
-      expect(container.querySelector('input')).toBeInTheDocument();
+      const input = container.querySelector('input');
+      fireEvent.select(input);
+      expect(input).toBeInTheDocument();
     });
     test('should render data list properly with border color', () => {
       const onclick = jest.fn(),

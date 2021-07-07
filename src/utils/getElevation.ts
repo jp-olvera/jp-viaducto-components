@@ -8,16 +8,13 @@ function getElevation(eNivel: number, eDirection: string = '') {
   if (eNivel === 0) {
     return css``;
   }
-  let nivel = 1;
-  if (eNivel <= 3) {
-    nivel = eNivel;
-  }
+  const nivel = eNivel;
   let xOffset = 0;
   let yOffset = 0;
   let blurRadius = 4;
   let opacity = 0.5;
   let sizeLinearDirection = 3;
-  switch (nivel) {
+  switch (eNivel) {
     case 2:
       xOffset = 0;
       yOffset = 1;
@@ -33,7 +30,6 @@ function getElevation(eNivel: number, eDirection: string = '') {
       sizeLinearDirection = 5;
       break;
     default:
-      // this is the way, so case 1 doesn't override
       break;
   }
 

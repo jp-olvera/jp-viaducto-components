@@ -18,8 +18,8 @@ import { Overlay } from '../../cells/Overlay';
  * @param {string} minWidth Set a minWidth for the drawer
  */
 interface DrawerInterface {
-  active: boolean;
   children: any;
+  active?: boolean;
   elevation?: number;
   elevationDirection?: string;
   transition?: string;
@@ -56,6 +56,7 @@ const Drawer = ({
       || ev.keyCode === 13
       || ev.keyCode === 32
     ) {
+      /* istanbul ignore else */
       if (active) {
         setisClosing(true);
         setTimeout(() => {

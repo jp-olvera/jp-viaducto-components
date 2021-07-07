@@ -16,7 +16,7 @@ describe('<Drawer/>', () => {
   });
   test('should no be visible', () => {
     render(
-      <Drawer active={false} onClose={() => {}}>
+      <Drawer onClose={() => {}}>
         <h1>Title</h1>
       </Drawer>,
     );
@@ -25,14 +25,36 @@ describe('<Drawer/>', () => {
   test('should call onClose when clicking the overlay', () => {
     jest.useFakeTimers();
     const onClose = jest.fn();
-    render(
+    const { getByTestId } = render(
       <Drawer onClose={onClose} active>
         <h1>Title</h1>
       </Drawer>,
     );
-    fireEvent.click(screen.getByTestId('overlay'));
+    fireEvent.click(getByTestId('overlay'));
     jest.runOnlyPendingTimers();
     expect(onClose).toBeCalledTimes(1);
     jest.useRealTimers();
+  });
+  test('should click drawer', () => {
+    const onClose = jest.fn();
+    const { getByTestId } = render(
+      <Drawer onClose={onClose} active>
+        <h1>Title</h1>
+      </Drawer>,
+    );
+    const drawer = getByTestId('drawer');
+    fireEvent.click(drawer);
+    expect(drawer).toMatchSnapshot();
+  });
+  test('should fire keydown on overlay', () => {
+    const onClose = jest.fn();
+    const { getByTestId } = render(
+      <Drawer onClose={onClose} active>
+        <h1>Title</h1>
+      </Drawer>,
+    );
+    const overlay = getByTestId('overlay');
+    fireEvent.keyDown(overlay, { key: 'Enter', code: 'Enter' });
+    expect(overlay).toMatchSnapshot();
   });
 });

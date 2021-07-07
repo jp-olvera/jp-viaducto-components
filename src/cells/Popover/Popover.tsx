@@ -15,7 +15,7 @@ import { StyledDrop } from './StyledDrop';
  * @param {React.RefObject<HTMLElement>} target A ref pointing to the activator
  */
 interface PopoverProps {
-  active: boolean;
+  active?: boolean;
   content: React.ReactNode;
   elevation?: number;
   elevationDirection?: string;

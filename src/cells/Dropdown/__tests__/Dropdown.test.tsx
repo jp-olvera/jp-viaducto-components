@@ -64,6 +64,25 @@ describe('<Dropdown/>', () => {
     );
     expect(container).toMatchSnapshot();
   });
+  test('should click outside of dropdrown', () => {
+    const { container, queryByText } = render(
+      <section>
+        <Dropdown
+          content={options}
+          family='Roboto'
+          onClick={() => {}}
+          defaultText='Selection'
+        />
+      </section>,
+    );
+    const activator = queryByText('Selection');
+    fireEvent.click(activator);
+    const section = container.querySelector('section');
+    fireEvent.mouseUp(section);
+    fireEvent.click(section);
+    expect(container).toMatchSnapshot();
+  });
+
   describe('<Drop>', () => {
     const ref = React.createRef();
     test('should render Drop', () => {
@@ -74,18 +93,6 @@ describe('<Dropdown/>', () => {
       );
       expect(container).toMatchSnapshot();
     });
-    // test('should render Drop with top position', () => {
-    //   const { container } = render(
-    //     <Drop target={<div />} position='top' contentRef={ref} />,
-    //   );
-    //   expect(container).toMatchSnapshot();
-    // });
-    // test('should render Drop with bottom position', () => {
-    //   const { container } = render(
-    //     <Drop target={<div />} position='bottom' contentRef={ref} />,
-    //   );
-    //   expect(container).toMatchSnapshot();
-    // });
   });
   describe('ref functions', () => {
     test('should not be null in clickHandler', () => {

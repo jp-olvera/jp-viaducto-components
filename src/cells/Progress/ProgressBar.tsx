@@ -18,8 +18,8 @@ interface ProgressBarInterface {
 }
 
 const ProgressBar = ({
-  totalSteps = 100,
-  completedSteps = 0,
+  totalSteps,
+  completedSteps,
   color = '#3AE25F',
   transition,
   ...rest

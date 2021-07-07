@@ -36,7 +36,7 @@ interface TableInterface {
   headerElevation?: number;
   headerFixed?: boolean;
   headerPadding?: string;
-  horizontalSpacing: string;
+  horizontalSpacing?: string;
   minHeight?: string;
   textHeaderColor?: string;
   verticalSpacing?: string;

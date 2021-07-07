@@ -19,9 +19,7 @@ describe('<CardCollapsible/>', () => {
     expect(container).not.toBeNull();
   });
   test('should be collapsed', () => {
-    const { container } = render(
-      <CardCollapsible mainContent={<Content />} collapse />,
-    );
+    const { container } = render(<CardCollapsible mainContent={<Content />} />);
     expect(container).not.toBeNull();
   });
 });

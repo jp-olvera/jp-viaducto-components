@@ -44,7 +44,7 @@ const Badge = ({
   return (
     <StyledBadge
       configuration={configuration}
-      src={src}
+      src={src || null}
       color={color}
       clipPath={clipPath}
       fontSize={fontSize}

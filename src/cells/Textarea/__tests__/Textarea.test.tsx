@@ -7,7 +7,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 describe('<TextArea /> component', () => {
   test('should render properly', () => {
-    const { container } = render(<Textarea radius={undefined} />);
+    const { container } = render(<Textarea radius={null} />);
     expect(container.querySelector('textarea')).not.toBeNull();
   });
   test('should render properly with props', () => {

@@ -4,7 +4,7 @@ import '@testing-library/react';
 import { render } from '../../../test-utils';
 import { Overlay } from '..';
 
-describe('<Overaly />', () => {
+describe('<Overlay />', () => {
   test('should render', () => {
     const container = render(
       <Overlay data-testid='overlay'>

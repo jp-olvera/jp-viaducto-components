@@ -42,15 +42,7 @@ describe('<WrapperTable/>', () => {
   );
   test('should render properly', () => {
     const { container } = render(
-      <WrapperTable
-        verticalSpacing=''
-        horizontalSpacing=''
-        colorSelected=''
-        family=''
-        zebraColor=''
-        align=''
-        border=''
-      >
+      <WrapperTable>
         <TestTable />
       </WrapperTable>,
     );
@@ -98,6 +90,7 @@ describe('<WrapperTable/>', () => {
         zebraColor='blue'
         align=''
         border='vertical'
+        zebra={false}
         zebraHover={false}
         verticalSpacing=''
         horizontalSpacing=''

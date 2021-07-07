@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { Grid, Row, Column } from '..';
 
 describe('Grid', () => {
-  test('should match snapshot', () => {
+  test('should render properly', () => {
     const container = render(
       <Grid>
         <Row>
@@ -12,6 +12,10 @@ describe('Grid', () => {
         </Row>
       </Grid>,
     );
+    expect(container).not.toBeNull();
+  });
+  test('should render grid with no children', () => {
+    const container = render(<Grid />);
     expect(container).toMatchSnapshot();
   });
   test('should match snapshot', () => {
@@ -24,12 +28,30 @@ describe('Grid', () => {
     );
     expect(container).toMatchSnapshot();
   });
-  test('should match snapshot', () => {
+  test('should render grid with 42 gutter', () => {
+    const container = render(
+      <Grid gutter={42}>
+        <Row>
+          <Column />
+        </Row>
+      </Grid>,
+    );
+    expect(container).toMatchSnapshot();
+  });
+  test('should render grid with 42 gutter and size 6 column', () => {
     const container = render(
       <Grid gutter={42} expanded>
         <Row>
           <Column size={6} />
         </Row>
+      </Grid>,
+    );
+    expect(container).toMatchSnapshot();
+  });
+  test('should render grid with empty row', () => {
+    const container = render(
+      <Grid gutter={42} expanded>
+        <Row />
       </Grid>,
     );
     expect(container).toMatchSnapshot();

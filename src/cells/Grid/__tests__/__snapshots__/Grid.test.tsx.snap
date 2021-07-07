@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="Grid__Padding-sc-67zouc-0 hDypyc"
+        class="Grid__Padding-sc-67zouc-0 fsZnSY"
       >
         <div
           class="Row__Div-sc-1gf87n4-0 bgKbTQ"
         >
           <div
-            class="Column__Div-sc-16kdeck-0 fkTrXb"
+            class="Column__Div-sc-16kdeck-0 NjuFz"
           />
         </div>
       </div>
@@ -23,13 +23,13 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="Grid__Padding-sc-67zouc-0 hDypyc"
+      class="Grid__Padding-sc-67zouc-0 fsZnSY"
     >
       <div
         class="Row__Div-sc-1gf87n4-0 bgKbTQ"
       >
         <div
-          class="Column__Div-sc-16kdeck-0 fkTrXb"
+          class="Column__Div-sc-16kdeck-0 NjuFz"
         />
       </div>
     </div>
@@ -88,7 +88,7 @@ Object {
 }
 `;
 
-exports[`Grid should match snapshot 2`] = `
+exports[`Grid should render grid with 42 gutter 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -176,7 +176,7 @@ Object {
 }
 `;
 
-exports[`Grid should match snapshot 3`] = `
+exports[`Grid should render grid with 42 gutter and size 6 column 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -211,6 +211,158 @@ Object {
         />
       </div>
     </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Grid should render grid with empty row 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Grid__Padding-sc-67zouc-0 bSQrHB"
+      >
+        <div
+          class="Row__Div-sc-1gf87n4-0 bgKbTQ"
+        />
+      </div>
+    </div>
+    <div
+      class="react-toast-notifications__container css-19n335a-ToastContainer"
+    />
+  </body>,
+  "container": <div>
+    <div
+      class="Grid__Padding-sc-67zouc-0 bSQrHB"
+    >
+      <div
+        class="Row__Div-sc-1gf87n4-0 bgKbTQ"
+      />
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Grid should render grid with no children 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Grid__Padding-sc-67zouc-0 hDypyc"
+      />
+    </div>
+    <div
+      class="react-toast-notifications__container css-19n335a-ToastContainer"
+    />
+  </body>,
+  "container": <div>
+    <div
+      class="Grid__Padding-sc-67zouc-0 hDypyc"
+    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
