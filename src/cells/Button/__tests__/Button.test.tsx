@@ -12,6 +12,7 @@ describe('<Button/>', () => {
         label='Continue'
         variant='ghost'
         useLongLoading
+        lead
         isLoading
         isValid={null}
         shapeColor={null}
@@ -134,12 +135,7 @@ describe('<Button/>', () => {
 
   test('should render button with label props and small padding props', () => {
     render(
-      <Button
-        icon='❤'
-        size='small'
-        label='Not only Icon'
-        height={undefined}
-      />,
+      <Button icon='❤' size='small' label='Not only Icon' height={undefined} />,
     );
     expect(screen.queryByRole('button')).toBeInTheDocument();
   });
@@ -155,9 +151,7 @@ describe('<Button/>', () => {
     };
     render(<Button icon='❤' size='large' {...props} />);
     expect(screen.queryByRole('button')).toBeInTheDocument();
-    const { container } = render(
-      <Button icon='❤' size='default' {...props} />,
-    );
+    const { container } = render(<Button icon='❤' size='default' {...props} />);
     expect(container).toBeInTheDocument();
   });
   test('should render button with height null', () => {

@@ -1,9 +1,10 @@
+import { ConfigProps } from 'ballena-types';
 import styled, { css } from 'styled-components';
 import { getSize, getBorder } from '../../utils/getSizes';
 
 interface SelectI {
   size?: any;
-  configuration?: any;
+  configuration: ConfigProps;
   height?: string;
   border?: any;
   fontSize?: string;

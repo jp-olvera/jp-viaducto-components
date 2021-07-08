@@ -38,6 +38,7 @@ const Popover = ({
   const [arrowPosition, setArrowPosition] = useState('left');
   const clickOutsideHandler = (event) => {
     if (dropRef.current && target.current) {
+      /* istanbul ignore if */
       if (
         dropRef.current.contains(event.target)
         || target.current.contains(event.target)

@@ -7,7 +7,7 @@ import { Notification } from '..';
 
 describe('<Notification/>', () => {
   test('should not be visible', () => {
-    render(<Notification text='Mensaje' active={false} />);
+    render(<Notification text='Mensaje' active={false} icon='❤' />);
     expect(screen.getByText('Mensaje')).not.toBeVisible();
   });
 

@@ -25,16 +25,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'text' },
       },
-      options: [
-        'text',
-        'number',
-        'card',
-        'date',
-        'color',
-        'phone',
-        'time',
-        'datalist',
-      ],
+      options: ['text', 'number', 'card', 'date', 'color', 'phone', 'time'],
       control: {
         type: 'select',
       },
@@ -99,18 +90,6 @@ const config: SBConfigI = {
         defaultValue: { summary: null },
       },
       control: 'color',
-    },
-    dataListConfiguration: {
-      description:
-        'Set the configuration (options and pill color) if the datalist type is selected',
-      type: {
-        summary:
-          '{options: any[], pillColor: string, pillTextColor:string}/null, selected:[]',
-        required: false,
-      },
-      table: {
-        defaultValue: { summary: null },
-      },
     },
   },
 };
@@ -209,25 +188,4 @@ Time.args = {
   size: 'small',
   borderColor: null,
   iconColor: null,
-};
-
-export const Datalist = Template.bind({});
-
-Datalist.args = {
-  label: 'Choose your options',
-  type: 'datalist',
-  icon: '❤',
-  border: 'default',
-  required: false,
-  disabled: false,
-  transition: 'ease',
-  size: 'small',
-  id: 'data',
-  borderColor: null,
-  iconColor: null,
-  dataListConfiguration: {
-    options: ['Javascript', 'Dart', 'Python', 'Java', 'Ruby', 'PHP'],
-    pillTextColor: '#000',
-    pillColor: '#FFF0A5',
-  },
 };

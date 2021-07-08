@@ -11,17 +11,16 @@ interface ConfigProviderInterface {
 
 interface ConfigContextInterface {
   configuration: ConfigProps;
-  updateConfig: Function;
+  updateConfig?: Function;
 }
 
 export const ConfigContext = createContext<ConfigContextInterface>({
   configuration: config,
-  updateConfig: () => {},
 });
 
 const ConfigProvider = ({ children }: ConfigProviderInterface) => {
   const [configuration, setConfiguration] = useState(config);
-  const updateConfig = (newConfig: any) => {
+  const updateConfig = (newConfig: ConfigProps) => {
     setConfiguration((oldConfig) => ({ ...oldConfig, ...newConfig }));
   };
   const placements = {

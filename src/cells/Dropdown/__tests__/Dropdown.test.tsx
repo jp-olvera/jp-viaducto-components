@@ -6,6 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { Dropdown } from '..';
 import Drop from '../Drop';
 import { refs } from '../DropdownRef';
+import { Paragraph } from '../..';
 
 const options = [<p>1</p>, <p>2</p>, <p>3</p>];
 
@@ -90,6 +91,16 @@ describe('<Dropdown/>', () => {
         <Drop target={<div />} contentRef={ref}>
           <div>aa</div>
         </Drop>,
+      );
+      expect(container).toMatchSnapshot();
+    });
+    test('should render Drop', () => {
+      const { container } = render(
+        <div style={{ height: '90rem', width: '750rem' }}>
+          <Drop target={<Paragraph>aaaaa</Paragraph>} contentRef={ref}>
+            <div>aa</div>
+          </Drop>
+        </div>,
       );
       expect(container).toMatchSnapshot();
     });

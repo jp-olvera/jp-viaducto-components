@@ -1,3 +1,4 @@
+import { ConfigProps } from 'ballena-types';
 import styled from 'styled-components';
 import { getSize } from '../../utils/getSizes';
 
@@ -20,7 +21,7 @@ interface Breadcrum {
   fontSize: string;
   spacing: string;
   family: string;
-  configuration?: any;
+  configuration: ConfigProps;
 }
 export const StyledBreadcrum = styled.li < Breadcrum > `
   // !important is needed because of the button inherited properties

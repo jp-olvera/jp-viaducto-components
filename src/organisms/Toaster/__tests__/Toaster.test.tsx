@@ -15,7 +15,7 @@ describe('<Toaster/>', () => {
   test('should call onDismiss function when clicking close button', () => {
     const onDismiss = jest.fn();
     render(
-      <Toaster type='danger' elevation={3} onDismiss={onDismiss}>
+      <Toaster type='danger' elevation={3} icon='❤' onDismiss={onDismiss}>
         Mensaje 2
       </Toaster>,
     );

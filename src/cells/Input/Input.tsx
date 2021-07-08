@@ -1,12 +1,9 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, {
-  useState, useContext, useRef, useEffect,
-} from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import creditCardType, { types as CardType } from 'credit-card-type';
 
-import { Pill } from '..';
 import { ConfigContext } from '../../providers';
-import { DataListContainer, Wrapper } from './StyledInput';
+import { Wrapper } from './StyledInput';
 import { getIcon } from './Icon';
 
 creditCardType.resetModifications();
@@ -24,7 +21,6 @@ creditCardType.resetModifications();
  * @param {string} borderColor set the color border
  * @param {string} iconColor set the icon helper
  * @param {any} value the value for the input
- * @param {{options:[], pillColor:string, pillTextColor:string}/null, selected:[]} dataListConfiguration Configuration for the datalist
  */
 
 const Input = ({
@@ -43,27 +39,14 @@ const Input = ({
   onChange = () => {},
   onClick,
   onKeyUp,
-  dataListConfiguration = null,
   family,
   ...rest
 }: any) => {
   const [cardType, setCardType] = useState('card');
   const [placeIcon, setIcon] = useState(icon);
-  const [optionsSelected, setOptionsSelected] = useState<any[]>([]);
   const { configuration } = useContext(ConfigContext);
   const [newValue, setNewValue] = useState<any>(value);
   const inputRef = useRef<any>();
-  const datalistContainerRef = useRef<any>();
-
-  useEffect(() => {
-    if (dataListConfiguration !== null) {
-      setOptionsSelected(
-        Array.from(dataListConfiguration.selected || optionsSelected),
-      );
-    } else {
-      setOptionsSelected([]);
-    }
-  }, []);
 
   const setCardIcon = (ev: any) => {
     const { value: val }: { value: string } = ev.target;
@@ -107,18 +90,6 @@ const Input = ({
         <input
           className='input'
           ref={inputRef}
-          onSelect={(ev: any) => {
-            if (type === 'datalist') {
-              onDataSelected(
-                datalistContainerRef,
-                dataListConfiguration,
-                optionsSelected,
-                setOptionsSelected,
-                ev,
-              );
-            }
-            return null;
-          }}
           onChange={(ev) => {
             setCardIcon(ev);
             setNewValue(
@@ -144,9 +115,7 @@ const Input = ({
               ? 'tel'
               : type === 'datetime-local'
                 ? 'date'
-                : type === 'datalist'
-                  ? 'text'
-                  : type
+                : type
           }
           autoComplete={type === 'card' ? 'cc-number' : ''}
           x-autocompletetype={type === 'card' ? 'cc-number' : ''}
@@ -159,7 +128,6 @@ const Input = ({
           min={rest.min}
           value={newValue}
           max={rest.max}
-          list={type === 'datalist' ? `${rest.id}__datalist` : undefined}
           {...rest}
         />
         {iconHelper && <span className='is-helper'>{iconHelper}</span>}
@@ -184,83 +152,11 @@ const Input = ({
           </span>
         )}
       </Wrapper>
-      {type === 'datalist' && (
-        <DataListContainer
-          configuration={configuration}
-          ref={datalistContainerRef}
-          border={border}
-          borderColor={borderColor}
-        >
-          {optionsSelected.length > 0
-            && optionsSelected.map((option: any, index: number) => (
-              <Pill
-                label={option}
-                background={dataListConfiguration?.pillColor}
-                color={dataListConfiguration?.pillTextColor}
-                key={option + index.toString()}
-                family={family}
-                handleAction={() => removePill(
-                  option,
-                  optionsSelected,
-                  inputRef,
-                  setNewValue,
-                  setOptionsSelected,
-                )}
-              />
-            ))}
-        </DataListContainer>
-      )}
-      {type === 'datalist' && (
-        <datalist id={`${rest.id}__datalist`}>
-          {dataListConfiguration?.options !== null
-            && (dataListConfiguration?.options || []).map(
-              (option: any, index: number) => (
-                <option value={option} key={option + index.toString()}>
-                  {option}
-                </option>
-              ),
-            )}
-        </datalist>
-      )}
     </>
   );
 };
 
 export default Input;
-
-export const onDataSelected = (
-  datalistContainerRef: any,
-  dataListConfiguration: any,
-  optionsSelected: any[],
-  setOptionsSelected: Function,
-  ev: { target: any },
-) => {
-  if (datalistContainerRef) {
-    if (
-      dataListConfiguration?.options?.includes(ev.target.value)
-      && !optionsSelected.includes(ev.target.value)
-    ) {
-      setOptionsSelected((last: any[]) => [...last, ev.target.value]);
-    }
-  }
-};
-
-export const removePill = (
-  pill: any,
-  optionsSelected: any[],
-  inputRef: any,
-  setNewValue: Function,
-  setOptionsSelected: Function,
-) => {
-  if (optionsSelected.includes(pill)) {
-    // eslint-disable-next-line no-param-reassign
-
-    if (inputRef) {
-      setNewValue('');
-    }
-    setOptionsSelected((before: any[]) => before.filter((option: any) => option !== pill));
-  }
-};
 
 export const mask = (value: string, limit: number, separator: string = '-') => {
   const output: string[] = [];
@@ -273,25 +169,4 @@ export const mask = (value: string, limit: number, separator: string = '-') => {
   }
 
   return output.join('');
-};
-
-export const getType = (args: {
-  type: string;
-  cardType: string;
-  icon: string;
-}) => {
-  switch (args.type) {
-    case 'date':
-      return 'date';
-    case 'time':
-      return 'time';
-    case 'color':
-      return 'color';
-    case 'phone':
-      return 'phone';
-    case 'card':
-      return args.cardType;
-    default:
-      return args.icon;
-  }
 };

@@ -1,3 +1,4 @@
+import { ConfigProps } from 'ballena-types';
 import styled from 'styled-components';
 
 interface SAI {
@@ -5,7 +6,7 @@ interface SAI {
   paddingY: string;
   expanded: boolean;
   transition?: string | null;
-  configuration?: any;
+  configuration: ConfigProps;
 }
 
 export const StyledAccordionItem = styled.div < SAI > `

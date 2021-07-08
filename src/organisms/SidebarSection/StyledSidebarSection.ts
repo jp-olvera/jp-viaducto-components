@@ -19,7 +19,7 @@ const hide = keyframes`
 `;
 
 interface SideI {
-  configuration?: any;
+  configuration: ConfigProps;
   transition?: string;
 }
 

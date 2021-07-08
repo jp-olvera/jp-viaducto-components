@@ -88,11 +88,11 @@ exports[`<CircleLoader/> should render Circle Loader with props and create Snaps
 
 exports[`<ProgressBar/> should render ProgressBar and create snapshot 1`] = `
 <div
-  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 fFwsGW"
+  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 hAlbhN"
   color="#3AE25F"
   data-testid="loader"
   max="50"
-  value="10"
+  value="50"
 >
   <div
     class="progress-bar-container"
@@ -132,11 +132,11 @@ exports[`<ProgressBar/> should render ProgressBar and create snapshot with props
 
 exports[`<StepLoader/> should render StepLoader and create snapshot 1`] = `
 <h1
-  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 bXpyun"
+  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 dfmgYQ"
   color="dark"
   data-testid="loader"
 >
-  16 / 16
+  14 / 14
 </h1>
 `;
 

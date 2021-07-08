@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '../../../test-utils';
 import '@testing-library/jest-dom/extend-expect';
 import { Input } from '..';
-import { onDataSelected, removePill, mask } from '../Input';
+import { mask } from '../Input';
 
 describe('<Input/>', () => {
   test('should render input', () => {
@@ -26,7 +26,6 @@ describe('<Input/>', () => {
         type='card'
         value={555555}
         border='overlap'
-        isValid
       />,
     );
     const input = container.querySelector('input');
@@ -47,11 +46,11 @@ describe('<Input/>', () => {
       <Input
         size='xsmall'
         label='Master'
-        isInvalid
         type='card'
         border='overlap'
         value='55555555555'
         required
+        onKeyUp={jest.fn}
       />,
     );
     const input = container.querySelector('input');
@@ -67,7 +66,7 @@ describe('<Input/>', () => {
       <Input
         size='xsmall'
         label='Master'
-        isInvalid
+        iconHelper='❤'
         type='card'
         border='overlap'
         value='55555555555'
@@ -82,7 +81,7 @@ describe('<Input/>', () => {
 
   test('should render input and change the value with amex card', () => {
     const { container } = render(
-      <Input size='large' label='Amex' isInvalid type='card' border='overlap' />,
+      <Input size='large' label='Amex' type='card' border='overlap' />,
     );
     const input = container.querySelector('input');
     fireEvent.change(input || window || window, {
@@ -95,7 +94,6 @@ describe('<Input/>', () => {
       <Input
         size='small'
         label='Im the input tested'
-        isInvalid
         border='outside'
         type='card'
         value='65432165'
@@ -110,16 +108,19 @@ describe('<Input/>', () => {
   test('should render input and change the value with no svg card no border', () => {
     const { container } = render(
       <Input
-        size='small'
+        size='xsmall'
         label='Im the input tested'
-        isInvalid
         border='bottom'
         type='card'
+        iconHelper='@'
+        required
+        iconRequired='!'
         value='65432165'
       />,
     );
     const input = container.querySelector('.input');
     fireEvent.change(input || window, { target: { value: 'aaaaaaaaaaa' } });
+    fireEvent.focus(input);
     expect(input).not.toBeNull();
   });
 
@@ -130,7 +131,16 @@ describe('<Input/>', () => {
   });
 
   test('should render a simple disabled input', () => {
-    const { container } = render(<Input label='label' disabled type='card' />);
+    const { container } = render(
+      <Input
+        label='label'
+        height={null}
+        size={null}
+        disabled
+        type='card'
+        border='overlap'
+      />,
+    );
     expect(container).not.toBeNull();
   });
   test('should render a simple card input', () => {
@@ -191,114 +201,6 @@ describe('<Input/>', () => {
     test('should return data with another separator', () => {
       const data = mask('5555555555555', 4, ' ');
       expect(data).not.toBeNull();
-    });
-  });
-
-  describe('data list test', () => {
-    const dataListConfiguration = {
-      options: ['Javascript', 'Dart', 'Python', 'Java', 'Ruby', 'PHP'],
-      pillTextColor: '#000',
-      pillColor: '#FFF0A5',
-      selected: ['a', 'b', 'c'],
-    };
-    test('should render data list properly', () => {
-      const { container } = render(
-        <Input
-          type='datalist'
-          dataListConfiguration={dataListConfiguration}
-          label='Datalist'
-          onClick={null}
-          size='large'
-          onKeyUp={null}
-        />,
-      );
-      const input = container.querySelector('input');
-      fireEvent.select(input);
-      expect(input).toBeInTheDocument();
-    });
-    test('should render data list properly with border color', () => {
-      const onclick = jest.fn(),
-        onkeyup = jest.fn();
-      const { container } = render(
-        <Input
-          type='datalist'
-          size='hola'
-          dataListConfiguration={{
-            ...dataListConfiguration,
-            pillColor: '#JAJAJAJAJA',
-            pillTextColor: '#pppppp',
-            selected: null,
-          }}
-          label='Datalist'
-          border='outside'
-          borderColor={null}
-          onClick={(e) => onclick(e)}
-          onKeyUp={(e) => onkeyup(e)}
-        />,
-      );
-      const input = container.querySelector('input');
-      fireEvent.click(input || window);
-      fireEvent.keyUp(input || window, { keyCode: 13 });
-      fireEvent.change(input || window, {
-        target: { value: 'PHP' },
-      });
-      expect(container.querySelector('input')).toBeInTheDocument();
-    });
-    test('should render data list with no options', () => {
-      const m = jest.fn().mockImplementation((e) => e);
-      const realUseState: any = React.useState;
-
-      // Stub the initial state
-      const stubInitialState = ['PHP'];
-
-      // Mock useState before rendering your component
-      jest
-        .spyOn(React, 'useState')
-        .mockImplementationOnce(() => realUseState(stubInitialState));
-
-      const { container } = render(
-        <Input
-          type='datalist'
-          dataListConfiguration={{
-            pillColor: 'red',
-            pillTextColor: 'green',
-          }}
-          label='Datalist'
-          border='bottom'
-          borderColor={null}
-          icon='data'
-          onSelect={(e) => m(e)}
-        />,
-      );
-      expect(container.querySelector('input')).toBeInTheDocument();
-    });
-    test('should trigger dataselected function', () => {
-      expect(
-        onDataSelected(
-          true,
-          dataListConfiguration,
-          ['PHP'],
-          (e: any, a: any) => {
-            e([a]);
-          },
-          {
-            target: { value: 'Javascript' },
-          },
-        ),
-      ).not.toBe('VALUE');
-    });
-    test('should trigger removePill function', () => {
-      expect(
-        removePill(
-          'PHP',
-          ['PHP'],
-          { target: { value: 'js' } },
-          () => '',
-          (e, a) => {
-            e([a]);
-          },
-        ),
-      ).not.toBe('VALUE');
     });
   });
 });

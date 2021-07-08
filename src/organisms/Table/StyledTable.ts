@@ -1,8 +1,9 @@
+import { ConfigProps } from 'ballena-types';
 import styled, { css } from 'styled-components';
 import { getSize } from '../../utils/getSizes';
 
 interface TableI {
-  configuration?: any;
+  configuration: ConfigProps;
   background?: string;
   headerColor?: string;
   textHeaderColor?: string;
