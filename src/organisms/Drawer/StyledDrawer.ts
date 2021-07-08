@@ -13,7 +13,7 @@ const show = keyframes`
 
 interface StyledDrawerProps {
   configuration: ConfigProps;
-  transition: string;
+  transition?: string;
   width: string;
   elevation: number;
   elevationDirection: string;

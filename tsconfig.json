@@ -33,7 +33,10 @@
     "node_modules",
     "./src/**/__tests__/*",
     "./src/**/stories/*",
-    "./src/stories/**"
+    "./src/stories/**",
+    "./src/examples/**",
+    "./src/test-utils.*",
+    "./src/sb.*"
   ],
   "include": ["./src/**/*"]
 }

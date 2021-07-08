@@ -98,7 +98,7 @@ const Drawer = ({
           tabIndex={0}
           ref={ref}
           {...rest}
-          onClick={(ev) => {
+          onClick={(ev: any) => {
             // Yep! this is needed
             ev.stopPropagation();
           }}

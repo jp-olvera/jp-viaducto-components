@@ -3,15 +3,6 @@ import React from 'react';
 import StyledAvatar from './StyledAvatar';
 import { SIZE } from './constants';
 
-interface AvatarProps {
-  src: string;
-  alt: string;
-  size?: string;
-  height?: string;
-  width?: string;
-  clipPath?: string | null;
-}
-
 /**
  * Avatar component is a img HTML tag with a circular shape
  * @param {String} src The path of the image
@@ -61,3 +52,12 @@ const Avatar = ({
 };
 
 export default Avatar;
+
+export interface AvatarProps {
+  src: string;
+  alt: string;
+  size?: string;
+  height?: string;
+  width?: string;
+  clipPath?: string | null;
+}
