@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
+import { ConfigProps } from 'ballena-types';
 import getElevation from '../../utils/getElevation';
 
 const show = keyframes`
@@ -10,7 +11,17 @@ const show = keyframes`
   }
 `;
 
-const StyledDrawer = styled.div < any > `
+interface StyledDrawerProps {
+  configuration: ConfigProps;
+  transition: string;
+  width: string;
+  elevation: number;
+  elevationDirection: string;
+  isClosing: boolean;
+  ref: any;
+}
+
+const StyledDrawer = styled.div < StyledDrawerProps > `
   animation: ${show} 230ms
     ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
 
@@ -24,12 +35,9 @@ const StyledDrawer = styled.div < any > `
   position: absolute;
   top: 0;
   right: 0;
-  width: 100%;
+  max-width: 100%;
+  width: ${(p) => p.width};
   z-index: 1;
-  @media (min-width: ${(p) => p.minWidth}) {
-    width: auto;
-    min-width: ${(p) => p.minWidth};
-  }
   ${(p) => getElevation(p.elevation, p.elevationDirection)};
 
   ${(p) => p.isClosing
