@@ -1,5 +1,5 @@
 import React from 'react';
-import { SBConfigI } from 'sb';
+import { SBConfigI } from '../../../sb';
 import { ConfigProvider } from '../../../providers';
 
 import { Pagination } from '..';

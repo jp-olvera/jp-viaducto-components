@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { SBConfigI } from 'sb';
+import { SBConfigI } from '../../../sb';
 import { ButtonDatalist } from '..';
 
 import { ConfigProvider } from '../../../providers';

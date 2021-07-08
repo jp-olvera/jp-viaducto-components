@@ -1,5 +1,5 @@
 import React from 'react';
-import { SBConfigI } from 'sb';
+import { SBConfigI } from '../../../sb';
 import { Select } from '..';
 import { ConfigProvider } from '../../../providers';
 

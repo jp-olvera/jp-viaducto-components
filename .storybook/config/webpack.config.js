@@ -1,9 +1,5 @@
 const path = require('path');
 
-function srcPath(subdir) {
-  return path.join(__dirname, 'src', subdir);
-}
-
 module.exports = {
   entry: './src/index.ts',
   devtool: 'inline-source-map',
@@ -65,7 +61,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
     alias: {
-      // sb: srcPath(''),
       react: path.resolve(__dirname, './node_modules/react'),
       'prop-types': path.resolve(__dirname, './node_modules/prop-types'),
       'styled-components': path.resolve(
@@ -76,7 +71,7 @@ module.exports = {
         __dirname,
         '../node_modules/react-toast-notifications',
       ),
-      'ballena-types': path.resolve(__dirnamte, './src/ballena-types'),
+      'ballena-types': path.resolve(__dirname, './src/ballena-types'),
     },
   },
 };

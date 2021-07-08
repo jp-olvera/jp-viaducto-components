@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SBConfigI } from 'sb';
+import { SBConfigI } from '../../../sb';
 import { Drawer } from '..';
 import { ConfigProvider } from '../../../providers';
 import { Button } from '../../../cells';
