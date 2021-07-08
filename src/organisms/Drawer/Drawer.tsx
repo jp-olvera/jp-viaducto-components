@@ -18,15 +18,15 @@ import { Overlay } from '../../cells/Overlay';
  * @param {string} minWidth Set a minWidth for the drawer
  */
 interface DrawerInterface {
-  children: any;
   active?: boolean;
+  children: any;
   elevation?: number;
   elevationDirection?: string;
-  transition?: string;
   onClose: () => void;
   overlayColor?: string;
   overlayOpacity?: string;
-  minWidth?: string;
+  size?: string;
+  transition?: string;
 }
 
 const Drawer = ({
@@ -36,7 +36,8 @@ const Drawer = ({
   elevationDirection = '',
   onClose,
   overlayColor = 'rgba(0,0,0,0.3)',
-  minWidth = '22.25rem',
+  size = 'sm',
+  transition = 'ease',
   ...rest
 }: DrawerInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -65,46 +66,50 @@ const Drawer = ({
       }
     }
   };
+  let width = '22.25rem';
+  if (size === 'lg') {
+    width = '33.375rem';
+  }
 
-  if (!active) return null;
-
-  return createPortal(
-    <Overlay
-      onClick={handleClose}
-      onKeyDown={handleClose}
-      data-testid='overlay'
-      role='dialog'
-      style={{
-        backgroundColor: overlayColor,
-        left: 0,
-        height: '100vh',
-        position: 'fixed',
-        top: 0,
-        width: '100vw',
-        zIndex: 1,
-      }}
-    >
-      <StyledDrawer
-        active={active}
-        configuration={configuration}
-        data-testid='drawer'
-        elevation={elevation}
-        elevationDirection={elevationDirection}
-        minWidth={minWidth}
-        tabIndex={0}
-        ref={ref}
-        {...rest}
-        onClick={(ev) => {
-          // Yep! this is needed
-          ev.stopPropagation();
+  return active
+    ? createPortal(
+      <Overlay
+        onClick={handleClose}
+        onKeyDown={handleClose}
+        data-testid='overlay'
+        role='dialog'
+        style={{
+          backgroundColor: overlayColor,
+          left: 0,
+          height: '100vh',
+          position: 'fixed',
+          top: 0,
+          width: '100vw',
+          zIndex: 1,
         }}
-        isClosing={isClosing}
       >
-        {children}
-      </StyledDrawer>
-    </Overlay>,
-    document.body,
-  );
+        <StyledDrawer
+          configuration={configuration}
+          data-testid='drawer'
+          elevation={elevation}
+          transition={transition}
+          elevationDirection={elevationDirection}
+          width={width}
+          tabIndex={0}
+          ref={ref}
+          {...rest}
+          onClick={(ev) => {
+            // Yep! this is needed
+            ev.stopPropagation();
+          }}
+          isClosing={isClosing}
+        >
+          {children}
+        </StyledDrawer>
+      </Overlay>,
+      document.body,
+    )
+    : null;
 };
 
 export default Drawer;

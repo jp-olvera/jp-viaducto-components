@@ -9,14 +9,6 @@ const config: SBConfigI = {
   component: Drawer,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
-    active: {
-      description: 'Toaster status tha indicates if it should be shown',
-      type: { name: 'boolean', required: true },
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
-      },
-    },
     elevation: {
       description: 'The elevation level it should take, one of 1/2/3',
       table: {
@@ -49,18 +41,6 @@ const config: SBConfigI = {
         type: 'select',
       },
     },
-    minWidth: {
-      description:
-        'The min-width the drawer is suppose to take, if the space available is less than min-width the drawer is gonna use the 100%',
-      type: { name: 'string' },
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '22.25rem' },
-      },
-      control: {
-        type: 'text',
-      },
-    },
     transition: {
       description: 'Linear transition to use',
       type: { name: 'string' },
@@ -77,6 +57,18 @@ const config: SBConfigI = {
         type: 'text',
       },
     },
+    size: {
+      description: 'The size of the drawer',
+      type: { name: 'string' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'md' },
+      },
+      options: ['md', 'lg'],
+      control: {
+        type: 'select',
+      },
+    },
   },
 };
 
@@ -90,13 +82,13 @@ const Template = (args: typeof Default) => {
         label='Mostrar'
         shapeColor='success'
         onClick={() => {
-          setOpen(!open);
+          setOpen(true);
         }}
       />
       <Drawer
         active={open}
         onClose={() => {
-          setOpen(!open);
+          setOpen(false);
         }}
         {...args}
       >
@@ -126,7 +118,7 @@ const Template = (args: typeof Default) => {
   );
 };
 
-const Template2 = (args: typeof Expandible) => {
+const Template2 = (args: typeof Large) => {
   const [open, setOpen] = useState(false);
   return (
     <ConfigProvider>
@@ -145,9 +137,9 @@ const Template2 = (args: typeof Expandible) => {
         {...args}
       >
         <div
-          style={{ width: '450px', height: '450px', backgroundColor: 'gray' }}
+          style={{ width: '850px', height: '450px', backgroundColor: 'gray' }}
         >
-          <h1 style={{ color: 'white' }}>This is 450px width</h1>
+          <h1 style={{ color: 'white' }}>This is 850px width</h1>
         </div>
       </Drawer>
     </ConfigProvider>
@@ -161,14 +153,14 @@ Default.args = {
   elevationDirection: 'left',
   transition: 'ease',
   overlayColor: 'rgba(0,0,0,0.3)',
-  minWidth: '22.25rem',
+  size: 'md',
 };
-export const Expandible = Template2.bind({});
+export const Large = Template2.bind({});
 
-Expandible.args = {
+Large.args = {
   elevation: 1,
   elevationDirection: 'left',
   transition: 'ease',
   overlayColor: 'rgba(0,0,0,0.3)',
-  minWidth: '22.25rem',
+  size: 'lg',
 };
