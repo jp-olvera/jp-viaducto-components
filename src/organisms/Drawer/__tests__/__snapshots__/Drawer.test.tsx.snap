@@ -21,11 +21,11 @@ exports[`<Drawer/> should fire keydown on overlay 1`] = `
   style="background-color: rgba(0, 0, 0, 0.3); left: 0px; height: 100vh; position: fixed; top: 0px; width: 100vw; z-index: 1;"
 >
   <div
-    class="StyledDrawer-sc-etbwfh-0 bUuxKH"
+    class="StyledDrawer-sc-etbwfh-0 jkdgnt"
     data-testid="drawer"
     elevation="1"
     tabindex="0"
-    width="22.25rem"
+    width="33.375rem"
   >
     <h1>
       Title

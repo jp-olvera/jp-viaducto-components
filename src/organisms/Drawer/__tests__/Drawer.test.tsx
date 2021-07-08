@@ -49,7 +49,7 @@ describe('<Drawer/>', () => {
   test('should fire keydown on overlay', () => {
     const onClose = jest.fn();
     const { getByTestId } = render(
-      <Drawer onClose={onClose} active>
+      <Drawer onClose={onClose} active size='lg' transition={null}>
         <h1>Title</h1>
       </Drawer>,
     );

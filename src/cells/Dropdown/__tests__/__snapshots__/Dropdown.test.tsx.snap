@@ -2,6 +2,14 @@
 
 exports[`<Dropdown/> <Drop> should render Drop 1`] = `<div />`;
 
+exports[`<Dropdown/> <Drop> should render Drop 2`] = `
+<div>
+  <div
+    style="height: 90rem; width: 750rem;"
+  />
+</div>
+`;
+
 exports[`<Dropdown/> should click outside of dropdrown 1`] = `
 <div>
   <section>

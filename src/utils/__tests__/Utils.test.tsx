@@ -11,8 +11,16 @@ import {
   getRadioSizes,
   getCheckSizes,
   getRangeSize,
+  getBorder,
 } from '../getSizes';
 
+describe('getBorder file', () => {
+  test('should return not null value', () => {
+    expect(
+      getBorder({ bottom: 'none', left: '1px solid', right: 'none' }),
+    ).not.toBeNull();
+  });
+});
 describe('scroll file', () => {
   test('should not be null', () => {
     expect(findScrollParents(null)).not.toBeNull();
@@ -21,23 +29,32 @@ describe('scroll file', () => {
     expect(findScrollParents(window.Element.bind({}))).not.toBeNull();
   });
   test('should call function', () => {
-    const { container } = render(
+    const { queryByText } = render(
       <div
         style={{
-          height: '1000rem',
+          height: '10rem',
+          width: '10rem',
           display: 'flex',
           justifyContent: 'flex-end',
           alignItems: 'flex-end',
         }}
       >
-        <p>AAAAAAA</p>
-        <p>AAAAAAA</p>
-        <p>AAAAAAA</p>
-        <p>AAAAAAA</p>
-        <p>AAAAAAA</p>
+        <div
+          style={{
+            height: '1000rem',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'flex-end',
+          }}
+        >
+          <p>AAAAAAA</p>
+          <p>BBBBBBB</p>
+          <p>CCCCCCC</p>
+          <p>DDDDDDD</p>
+        </div>
       </div>,
     );
-    expect(findScrollParents(container.children[0])).not.toBeNull();
+    expect(findScrollParents(queryByText('AAAAAAA'))).not.toBeNull();
   });
 });
 

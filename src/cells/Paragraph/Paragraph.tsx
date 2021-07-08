@@ -1,3 +1,4 @@
+import { ConfigProps } from 'ballena-types';
 import React, { useContext } from 'react';
 import { ConfigContext } from '../../providers';
 import StyledParagraph from './StyledParagraph';
@@ -22,7 +23,7 @@ interface ParagraphInterface {
   size?: string;
   align?: string;
   family?: string | null;
-  configuration?: any;
+  configuration?: ConfigProps;
   fontStyle?: string;
   margin?: string;
   weight?: string;

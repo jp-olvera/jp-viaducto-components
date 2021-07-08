@@ -28,7 +28,7 @@ const StyledButton = styled.button`
 const Close = () => <img src={svg} alt='close' className='close' />;
 
 const BareButton = ({ children, close = true, ...rest }: any) => (
-  <StyledButton type='button' {...rest}>
+  <StyledButton type='button' {...rest} as='button'>
     {!close ? children : <Close />}
   </StyledButton>
 );

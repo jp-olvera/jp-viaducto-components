@@ -156,6 +156,10 @@ export const Usage = () => (
         </code>
       </pre>
       <Spacer size='md' />
+      <Paragraph>
+        This project is icon-friendly, so you can import in your projects any
+        icon and add it here
+      </Paragraph>
     </div>
   </ConfigProvider>
 );
@@ -207,6 +211,61 @@ export const Configuration = () => (
             `}
         </code>
       </pre>
+      <Spacer size='md' />
+      <Title color='#595959' level='6' weight='600'>
+        Note (important):
+      </Title>
+      <Spacer size='sm' />
+      <Paragraph>
+        By overwritting the Configuration with <code>updateConfig</code>{' '}
+        function, you need to know:
+      </Paragraph>
+      <ul>
+        <li>
+          If the prop to override is an <code>key-value</code> object (like{' '}
+          <code>disableColor</code>, for example), the value will be replaced
+          normally.
+        </li>
+        <li>
+          If the prop to override is an <code>key-object</code> object (like{' '}
+          <code>spacing</code>, for example), the whole object will be replaced.
+          Take the next advices for later:
+          <ul>
+            <li>
+              If you want to change only one property of an object make sure to
+              merge the props with the new value. For example, if you want to
+              change <code>default</code> value of <code>success</code> colors
+              you need to override the default value and merge with the ``old``
+              ones
+            </li>
+            <li>
+              You can merge following the structure:
+              <pre>
+                <code>
+                  {`
+                    const newDefault = {default:"green"};
+                    const newValue = {
+                      ...configuration,
+                      colors: {
+                        success: {
+                          ...configuration.colors.success,
+                          ...newDefault
+                        }
+                      }
+                    };`}
+                </code>
+              </pre>
+              ...Or just put you value and the whole values will be destroyed
+              putting yours like the new one
+            </li>
+          </ul>
+        </li>
+        <li>
+          If you add new values to Configuration File (like icons, classes,
+          functions, etc.), just merge the configuration with your new values,
+          the ``old`` ones will not disappear
+        </li>
+      </ul>
       <Spacer size='md' />
       <Title color='#595959' level='1'>
         Default Configuration

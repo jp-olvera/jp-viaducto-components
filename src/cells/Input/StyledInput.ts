@@ -1,6 +1,5 @@
 /* eslint-disable radix */
 import styled, { css } from 'styled-components';
-import StyledPill from '../Pill/StyledPill';
 
 export const Wrapper = styled.div < any > `
   & * {
@@ -23,7 +22,6 @@ export const Wrapper = styled.div < any > `
   align-items: center;
 
   ${({ border, configuration, borderColor }) => getBorderStyle(border, configuration.text[borderColor] || borderColor)};
-  ${(p) => (p.type === 'datalist' ? 'border-bottom: none !important;' : null)};
 
   .input {
     border: none;
@@ -157,20 +155,6 @@ export const Wrapper = styled.div < any > `
 
   .icon-helper {
     color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
-  }
-`;
-
-export const DataListContainer = styled.div < any > `
-  box-sizing: border-box;
-  transition: all 0.2s
-    ${(p) => p.transition || p.configuration.transitionTimingFunction};
-  width: 100%;
-  ${(p) => (p.border === 'bottom'
-    ? `border-bottom: 0.063rem solid ${p.borderColor || '#000'};`
-    : `border: 0.063rem solid ${p.bordercolor || '#000'};`)};
-  border-top: none;
-  & > ${StyledPill} {
-    margin: 0.2rem;
   }
 `;
 
