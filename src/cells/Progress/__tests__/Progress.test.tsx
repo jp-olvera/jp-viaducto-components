@@ -17,7 +17,7 @@ describe('Progress component', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
   });
   test('should have steps loader rendered', () => {
-    const { getByTestId, queryByText } = render(
+    const { getByTestId } = render(
       <Progress
         loader='steps'
         totalSteps={3}
@@ -26,30 +26,6 @@ describe('Progress component', () => {
       />,
     );
     expect(getByTestId('loader')).toBeInTheDocument();
-    expect(queryByText(/0\/3/g)).toBeInTheDocument();
-  });
-  test('should render ok circle with snapshot', () => {
-    const { getByTestId } = render(<Progress />);
-    const circle = getByTestId('ok_circle');
-    expect(circle).toBeInTheDocument();
-    expect(circle).toMatchSnapshot();
-  });
-  test('should render ok circle with snapshot with props', () => {
-    const { getByTestId } = render(
-      <Progress totalSteps={5} completedSteps={5} currentStep={5} />,
-    );
-    const circle = getByTestId('ok_circle');
-    expect(circle).toBeInTheDocument();
-    expect(circle).toMatchSnapshot();
-  });
-  test('should render ok circle with snapshot with all steps completed', () => {
-    const { getByTestId } = render(
-      <Progress totalSteps={2} completedSteps={2} currentStep={2} />,
-    );
-    const circle = getByTestId('ok_circle');
-
-    expect(circle).toBeInTheDocument();
-    expect(circle).toMatchSnapshot();
   });
   test('should have progress bar rendered', () => {
     const { getByTestId, container } = render(
@@ -85,26 +61,13 @@ describe('Progress component', () => {
 describe('StepLoader component', () => {
   test('should have add current step', () => {
     const total = 3;
-    let current = 0;
-    const { queryByText, rerender } = render(
-      <Progress
-        loader='progress'
-        completedSteps={current}
-        currentStep={current}
-        totalSteps={total}
-      />,
+
+    const { rerender } = render(
+      <StepLoader completed={0} totalSteps={total} />,
     );
-    expect(queryByText(/0\/3/g));
-    current = 3;
-    rerender(
-      <Progress
-        loader='progress'
-        completedSteps={current}
-        currentStep={current}
-        totalSteps={total}
-      />,
-    );
-    expect(queryByText(/3\/3/g));
+    expect(screen.queryByText('0 / 3')).not.toBeNull();
+    rerender(<StepLoader completed={3} totalSteps={total} />);
+    expect(screen.getByText('3 / 3')).not.toBeNull();
   });
 });
 

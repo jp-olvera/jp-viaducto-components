@@ -46,7 +46,7 @@ describe('<Pill/>', () => {
     expect(screen.queryByText('Icon')).toBeVisible();
   });
   test('should render Pill with several props', () => {
-    render(
+    const { container } = render(
       <Pill
         icon='iconBig'
         background='#000'
@@ -56,6 +56,6 @@ describe('<Pill/>', () => {
         iconLead='😊'
       />,
     );
-    expect(screen.queryByText('iconBig')).toBeVisible();
+    expect(container).toBeVisible();
   });
 });

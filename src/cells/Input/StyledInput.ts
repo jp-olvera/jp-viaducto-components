@@ -145,9 +145,7 @@ export const Wrapper = styled.div < any > `
     }
   }
 
-  .is-invalid,
-  .is-required,
-  .is-valid,
+  .is-helper,
   .icon-helper {
     padding: 0 ${({ configuration }) => configuration.spacing.xs};
     position: absolute;
@@ -155,21 +153,6 @@ export const Wrapper = styled.div < any > `
     display: flex;
     align-items: center;
     height: 100%;
-  }
-
-  .is-invalid {
-    color: ${({ configuration }) => configuration.text.danger};
-  }
-
-  .is-required {
-    color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
-  }
-
-  .is-valid {
-    color: ${({ configuration }) => configuration.text.success};
-    svg {
-      fill: ${({ configuration }) => configuration.text.success};
-    }
   }
 
   .icon-helper {

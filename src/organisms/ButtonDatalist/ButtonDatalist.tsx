@@ -63,7 +63,7 @@ const ButtonDatalist = ({
       )}
       <Container expandHorizontal top='xs' bottom='sm' horizontal='xs'>
         <Input
-          icon='search'
+          icon='🔎'
           label={null}
           size='small'
           onClick={() => setShowOptions(!showOptions)}

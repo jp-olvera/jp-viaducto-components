@@ -55,9 +55,7 @@ const StyledButton = styled.button < any > `
 
   //disabled
   &:disabled {
-    background-color: ${(p) => (p.variant === 'solid' ? p.configuration.disableColor : 'white')};
-    border-color: ${(p) => p.configuration.disableColor};
-    color: ${(p) => (p.variant === 'solid' ? 'white' : p.configuration.disableColor)};
+    ${(p) => disabledColor(p)};
   }
 
   // just hover
@@ -189,3 +187,23 @@ const getFontStyle = (props) => {
 };
 
 export default StyledButton;
+
+export const disabledColor = (p: {
+  variant: string;
+  configuration: { disableColor: string };
+  isLoading: boolean;
+  colors: { default: string; hover: string; click: string; text: string };
+}) => {
+  if (p.isLoading) {
+    return css`
+      opacity: 0.75;
+    `;
+  }
+  return css`
+    background-color: ${p.variant === 'solid'
+    ? p.configuration.disableColor
+    : 'white'};
+    border-color: ${p.configuration.disableColor};
+    color: ${p.variant === 'solid' ? 'white' : p.configuration.disableColor};
+  `;
+};

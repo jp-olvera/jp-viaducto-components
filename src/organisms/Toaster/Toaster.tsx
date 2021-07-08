@@ -1,16 +1,14 @@
 import React, { useContext, useRef } from 'react';
 
-import { Close } from 'react-ikonate';
 import { ConfigContext } from '../../providers';
 import { Paragraph } from '../../cells/Paragraph';
 import { BareButton } from '../../cells/BareButton';
 import StyledToaster from './StyledToaster';
-import { TypeIcon } from '../../cells/TypeIcon';
 
 /**
  * A toast component, you can change ts position via top and right properties
  * @param {string} text Text to be shown
- * @param {string} type One of success/error/warning
+ * @param {any} icon Icon Helper
  * @param {string} title The title in the top
  * @param {boolean} active Boolean that indicates if the toaster should be shown
  * @param {boolean} top Boolean that indicates if the toaster should be in top, default is true
@@ -25,20 +23,14 @@ const Toaster = ({
   elevation = 1,
   elevationDirection = '',
   title = '',
-  type = 'success',
+  icon = null,
   transition = 'cubic-bezier(0.2, 0, 0, 1)',
   children,
   ...rest
 }: any) => {
   const { configuration } = useContext(ConfigContext);
   const ref = useRef<HTMLElement>(null);
-  let color = configuration.text.success;
-
-  const k = type.toLowerCase();
-  const typeColors = ['success', 'warning', 'danger', 'info'];
-  if (typeColors.includes(type.toLowerCase())) {
-    color = configuration.text[k];
-  }
+  const color = configuration.text.success;
 
   return (
     <StyledToaster
@@ -60,21 +52,13 @@ const Toaster = ({
             display: 'flex',
           }}
         >
-          <TypeIcon
-            type={type}
-            stroke='white'
-            border={2}
-            width='18px'
-            height='18px'
-          />
+          {icon && icon}
         </span>
         <Paragraph size='sm' color='white'>
           {title}
         </Paragraph>
         <div style={{ marginLeft: 'auto' }}>
-          <BareButton data-testid='close-button' onClick={onDismiss}>
-            <Close stroke='white' strokeWidth={2} width='18px' height='18px' />
-          </BareButton>
+          <BareButton data-testid='close-button' onClick={onDismiss} close />
         </div>
       </div>
       <div className='toaster-message'>

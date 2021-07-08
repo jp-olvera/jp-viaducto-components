@@ -36,7 +36,4 @@
     "./src/stories/*"
   ],
   "include": ["./src/**/*"]
-  // "paths": {
-  //   "sb": [""]
-  // }
 }

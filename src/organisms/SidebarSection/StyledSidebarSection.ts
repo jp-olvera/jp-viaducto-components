@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+import { ConfigProps } from 'ballena-types';
 
 const show = keyframes`
   0% {
@@ -92,7 +93,7 @@ const getDecoration = () => css`
   }
 `;
 interface MenuItemProps {
-  configuration: any;
+  configuration: ConfigProps;
   active: boolean;
   nested: boolean;
 }
@@ -127,7 +128,7 @@ export const MenuItem = styled.li < MenuItemProps > `
   }`};
 `;
 interface SubmenuProps {
-  configuration: any;
+  configuration: ConfigProps;
   transition: string;
   isClosing: boolean;
   isActive: boolean;

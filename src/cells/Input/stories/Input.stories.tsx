@@ -1,5 +1,5 @@
 import React from 'react';
-import { SBConfigI } from 'sb';
+import { SBConfigI } from '../../../sb';
 import { Input } from '..';
 import { ConfigProvider } from '../../../providers';
 
@@ -43,28 +43,9 @@ const config: SBConfigI = {
       description: 'Add an icon helper',
       type: { summary: 'String', required: false },
       table: {
-        defaultValue: { summary: 'null' },
+        defaultValue: { summary: null },
       },
-      options: [
-        null,
-        'card',
-        'color',
-        'upload',
-        'date',
-        'search',
-        'data',
-        'phone',
-        'mail',
-        'data',
-        'time',
-        'grid',
-        'visa',
-        'mastercard',
-        'american-express',
-      ],
-      control: {
-        type: 'select',
-      },
+      control: null,
     },
     size: {
       description: 'Set the size (height) of the input',
@@ -77,20 +58,6 @@ const config: SBConfigI = {
     },
     disabled: {
       description: 'Disables the input',
-      type: { summary: 'Boolean', required: false },
-      table: {
-        defaultValue: { summary: false },
-      },
-    },
-    isInvalid: {
-      description: 'Set an icon to indicate invalid input',
-      type: { summary: 'Boolean', required: false },
-      table: {
-        defaultValue: { summary: false },
-      },
-    },
-    isValid: {
-      description: 'Set an icon to indicate valid input',
       type: { summary: 'Boolean', required: false },
       table: {
         defaultValue: { summary: false },
@@ -164,14 +131,12 @@ Text.args = {
   label: 'Text',
   border: 'default',
   type: 'text',
-  isInvalid: false,
-  isValid: false,
   required: true,
   disabled: false,
   transition: 'ease',
   borderColor: null,
   iconColor: null,
-  icon: 'grid',
+  icon: '❤',
   size: 'small',
 };
 
@@ -181,8 +146,6 @@ Card.args = {
   label: 'Card',
   type: 'card',
   icon: null,
-  isInvalid: false,
-  isValid: false,
   required: true,
   disabled: false,
   transition: 'ease',
@@ -196,9 +159,7 @@ export const Date = Template.bind({});
 Date.args = {
   label: 'Date',
   type: 'date',
-  icon: null,
-  isInvalid: false,
-  isValid: false,
+  icon: '❤',
   required: true,
   disabled: false,
   transition: 'ease',
@@ -212,10 +173,8 @@ export const Color = Template.bind({});
 Color.args = {
   label: 'Color',
   type: 'color',
-  icon: null,
+  icon: '❤',
   border: 'default',
-  isInvalid: false,
-  isValid: false,
   required: false,
   disabled: false,
   transition: 'ease',
@@ -228,10 +187,8 @@ export const Phone = Template.bind({});
 Phone.args = {
   label: 'Phone',
   type: 'phone',
-  icon: null,
+  icon: '❤',
   border: 'default',
-  isInvalid: false,
-  isValid: false,
   required: false,
   disabled: false,
   transition: 'ease',
@@ -244,10 +201,8 @@ export const Time = Template.bind({});
 Time.args = {
   label: 'Time',
   type: 'time',
-  icon: null,
+  icon: '❤',
   border: 'default',
-  isInvalid: false,
-  isValid: false,
   required: false,
   disabled: false,
   transition: 'ease',
@@ -261,10 +216,8 @@ export const Datalist = Template.bind({});
 Datalist.args = {
   label: 'Choose your options',
   type: 'datalist',
-  icon: null,
+  icon: '❤',
   border: 'default',
-  isInvalid: false,
-  isValid: false,
   required: false,
   disabled: false,
   transition: 'ease',

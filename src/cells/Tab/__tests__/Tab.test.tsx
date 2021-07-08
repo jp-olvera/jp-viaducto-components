@@ -3,7 +3,6 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/react';
-import { Help } from 'react-ikonate';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Tab } from '..';
 
@@ -17,7 +16,7 @@ describe('<Tab/>', () => {
         type='warning'
         horizontalSpacing='sm'
         verticalSpacing='aaaa'
-        icon={<Help />}
+        icon='❤'
         active
       />,
     );
@@ -29,7 +28,7 @@ describe('<Tab/>', () => {
       <Tab
         text='tab'
         onClick={handleFn}
-        icon={<Help />}
+        icon='❤'
         lead
         verticalSpacing={null}
         horizontalSpacing={null}

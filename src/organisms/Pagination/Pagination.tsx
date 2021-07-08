@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext, useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'react-ikonate';
 import { Anchor } from '../../cells';
 import { ConfigContext } from '../../providers';
 import { StyledPagination } from './StyledPagination';
@@ -142,21 +141,12 @@ const Pagination = ({
               }
             }}
           >
-            {iconLeft ? (
-              <a>{iconLeft}</a>
-            ) : previousLabel ? (
-              <Anchor
-                label='Previous Page'
-                lead
-                icon={<ChevronLeft />}
-                color={textColor}
-                size={fontSize}
-              />
-            ) : (
-              <a>
-                <ChevronLeft />
-              </a>
-            )}
+            <Anchor
+              label={previousLabel ? 'Previous Page' : ''}
+              color={textColor}
+              size={fontSize}
+              icon={iconLeft && iconLeft}
+            />
           </li>
         )}
         <li
@@ -198,20 +188,12 @@ const Pagination = ({
               }
             }}
           >
-            {iconRight ? (
-              <a>{iconRight}</a>
-            ) : nextLabel ? (
-              <Anchor
-                label='Next Page'
-                icon={<ChevronRight />}
-                color={textColor}
-                size={fontSize}
-              />
-            ) : (
-              <a>
-                <ChevronRight />
-              </a>
-            )}
+            <Anchor
+              label={nextLabel ? 'Next Page' : ''}
+              color={textColor}
+              size={fontSize}
+              icon={iconRight && iconRight}
+            />
           </li>
         )}
       </ul>

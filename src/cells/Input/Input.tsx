@@ -6,8 +6,8 @@ import creditCardType, { types as CardType } from 'credit-card-type';
 
 import { Pill } from '..';
 import { ConfigContext } from '../../providers';
-import { getIcon } from './Icon';
 import { DataListContainer, Wrapper } from './StyledInput';
+import { getIcon } from './Icon';
 
 creditCardType.resetModifications();
 
@@ -18,8 +18,6 @@ creditCardType.resetModifications();
  * @param {String} icon Helper icon to support the user
  * @param {String} size Set the height of the input
  * @param {boolean} disabled Set the input disabled
- * @param {boolean} isInvalid set the input invalid
- * @param {boolean} isValid set the input valid
  * @param {String} label The caption for the input
  * @param {boolean} required Icon for mark input is required
  * @param {string} id set the id for the input
@@ -35,8 +33,8 @@ const Input = ({
   disabled = false,
   type = 'text',
   icon = null,
-  isInvalid = false,
-  isValid = false,
+  iconRequired = null,
+  iconHelper = null,
   size = 'default',
   required,
   borderColor = '#001D48',
@@ -50,12 +48,12 @@ const Input = ({
   ...rest
 }: any) => {
   const [cardType, setCardType] = useState('card');
+  const [placeIcon, setIcon] = useState(icon);
   const [optionsSelected, setOptionsSelected] = useState<any[]>([]);
   const { configuration } = useContext(ConfigContext);
   const [newValue, setNewValue] = useState<any>(value);
   const inputRef = useRef<any>();
   const datalistContainerRef = useRef<any>();
-  const mustHaveIcon = ['card', 'date', 'color', 'phone', 'time'];
 
   useEffect(() => {
     if (dataListConfiguration !== null) {
@@ -76,8 +74,10 @@ const Input = ({
         || card.type === CardType.AMERICAN_EXPRESS
       ) {
         setCardType(card.type);
+        setIcon(card.type);
       } else {
         setCardType('card');
+        setIcon(null);
       }
       return true;
     });
@@ -89,12 +89,11 @@ const Input = ({
     && type !== 'date'
     && type !== 'color'
     && type !== 'time';
-
   return (
     <>
       <Wrapper
         border={border !== 'bottom' && size === 'xsmall' ? 'outside' : border}
-        hasIcon={icon !== null || mustHaveIcon.includes(type)}
+        hasIcon={icon !== null}
         size={size}
         configuration={configuration}
         borderColor={borderColor}
@@ -163,23 +162,10 @@ const Input = ({
           list={type === 'datalist' ? `${rest.id}__datalist` : undefined}
           {...rest}
         />
-        {isInvalid && <span className='is-invalid'>{getIcon('warning')}</span>}
-        {isValid && <span className='is-valid'>{getIcon('ok')}</span>}
-        {required && <span className='is-required'>{getIcon('required')}</span>}
-        {(icon !== null || mustHaveIcon.includes(type)) && (
+        {iconHelper && <span className='is-helper'>{iconHelper}</span>}
+        {placeIcon !== null && (
           <span className='icon'>
-            {getIcon(
-              getType({ type, cardType, icon }),
-              type === 'color'
-                ? inputRef?.current?.value.toUpperCase()
-                : undefined,
-              '20px',
-              undefined,
-              undefined,
-              type === 'color'
-                ? inputRef?.current?.value.toUpperCase()
-                : undefined,
-            )}
+            {type === 'card' ? getIcon(placeIcon) : placeIcon}
           </span>
         )}
         {type !== 'date' && type !== 'color' && type !== 'time' && label && (
@@ -187,7 +173,7 @@ const Input = ({
             <span>{label}</span>
             {required && (
               <span className='icon-required'>
-                {getIcon('required', '10px')}
+                {iconRequired && iconRequired}
               </span>
             )}
           </label>
@@ -206,7 +192,6 @@ const Input = ({
           borderColor={borderColor}
         >
           {optionsSelected.length > 0
-            /* istanbul ignore next */
             && optionsSelected.map((option: any, index: number) => (
               <Pill
                 label={option}
@@ -250,9 +235,7 @@ export const onDataSelected = (
   setOptionsSelected: Function,
   ev: { target: any },
 ) => {
-  /* istanbul ignore else */
   if (datalistContainerRef) {
-    /* istanbul ignore else */
     if (
       dataListConfiguration?.options?.includes(ev.target.value)
       && !optionsSelected.includes(ev.target.value)
@@ -269,10 +252,9 @@ export const removePill = (
   setNewValue: Function,
   setOptionsSelected: Function,
 ) => {
-  /* istanbul ignore else */
   if (optionsSelected.includes(pill)) {
     // eslint-disable-next-line no-param-reassign
-    /* istanbul ignore else */
+
     if (inputRef) {
       setNewValue('');
     }

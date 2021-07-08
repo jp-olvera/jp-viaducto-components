@@ -1,6 +1,4 @@
 import React, { useContext, forwardRef } from 'react';
-import { Circle } from 'react-ikonate';
-import { getIcon } from '../Input/Icon';
 import { ConfigContext } from '../../providers';
 import StyledButton from './StyledButton';
 import { SIZE } from './constants';
@@ -89,18 +87,7 @@ const Button = forwardRef(
         ref={ref}
         {...rest}
       >
-        {hasIcon || (isLoading && !useLongLoading) ? (
-          <span className='button-icon-span'>
-            {isValid && getIcon('ok', 'inherit', 'inherit', '2px')}
-            {isValid === false
-              && getIcon('cancel', 'inherit', 'inherit', '2px')}
-            {isLoading && isValid === null && <div className='status' />}
-            {isLoading && isValid === null && (
-              <Circle className='turnOn' strokeDasharray='20' />
-            )}
-            {(isValid === null && !isLoading) || useLongLoading ? icon : null}
-          </span>
-        ) : null}
+        {hasIcon && <span className='button-icon-span'>{icon}</span>}
         {isLoading && isValid === null && useLongLoading && (
           <div className='status' />
         )}

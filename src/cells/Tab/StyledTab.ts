@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { ConfigProps } from 'ballena-types';
 
 const StyledTab = styled.button < any > `
   background-color: transparent;
@@ -58,7 +59,7 @@ const StyledTab = styled.button < any > `
 `;
 
 const getPaddingTransition = (props: {
-  configuration: any;
+  configuration: ConfigProps;
   transition: string;
   horizontalSpacing: string;
 }) => css`

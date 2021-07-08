@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { ConfigProps } from 'ballena-types';
 import getElevation from '../../utils/getElevation';
 
 interface StyledModalProps {
-  configuration: any;
+  configuration: ConfigProps;
   isActive: boolean;
   backgroundColor: string;
   elevation: number;

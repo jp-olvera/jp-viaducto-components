@@ -1,5 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { ToastProvider } from 'react-toast-notifications';
+import { ConfigProps } from 'ballena-types';
+
 import config from '../utils/config';
 import { Toaster } from '..';
 
@@ -8,13 +10,13 @@ interface ConfigProviderInterface {
 }
 
 interface ConfigContextInterface {
-  configuration: any;
+  configuration: ConfigProps;
   updateConfig: Function;
 }
 
 export const ConfigContext = createContext<ConfigContextInterface>({
-  configuration: {},
-  updateConfig: Function,
+  configuration: config,
+  updateConfig: () => {},
 });
 
 const ConfigProvider = ({ children }: ConfigProviderInterface) => {
