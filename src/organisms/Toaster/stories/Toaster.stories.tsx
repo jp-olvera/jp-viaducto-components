@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { SBConfigI } from 'sb';
+import { SBConfigI } from '../../../sb';
 import { useToasts } from '..';
 import { Button } from '../../../cells';
 import { ConfigProvider, ConfigContext } from '../../../providers';

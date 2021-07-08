@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 import React from 'react';
-import { SBConfigI } from 'sb';
+import { SBConfigI } from '../../../sb';
 import { Breadcrums, Breadcrum } from '..';
 import { ConfigProvider } from '../../../providers';
 
