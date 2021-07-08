@@ -17,8 +17,8 @@ export const StyledAccordionItem = styled.div < SAI > `
     background: transparent;
     border: none;
     border-bottom: 0.063rem solid #ddd;
-    border-right: 0.063rem solid #ddd;
-    border-left: 0.063rem solid #ddd;
+    /* border-right: 0.063rem solid #ddd;
+    border-left: 0.063rem solid #ddd; */
     cursor: pointer;
     display: flex;
     margin: 0 !important;
@@ -53,8 +53,8 @@ export const StyledAccordionItem = styled.div < SAI > `
   }
   .section {
     border-bottom: 0.063rem solid #ddd;
-    border-right: 0.063rem solid #ddd;
-    border-left: 0.063rem solid #ddd;
+    /* border-right: 0.063rem solid #ddd; */
+    /* border-left: 0.063rem solid #ddd; */
     box-sizing: border-box;
     overflow: hidden;
     opacity: 1;
@@ -64,7 +64,7 @@ export const StyledAccordionItem = styled.div < SAI > `
 
 const StyledAccordion = styled.div`
   border-top: 0.063rem solid #ddd;
-  border-radius: 0.313rem;
+  /* border-radius: 0.313rem; */
   box-sizing: border-box;
   width: 100%;
 `;
