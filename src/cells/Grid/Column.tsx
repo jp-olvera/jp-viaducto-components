@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
+import { ConfigProps } from 'ballena-types';
 import GridContext from './GridProvider';
 import { ConfigContext } from '../../providers';
 
 interface DivProps {
   gap: number;
-  configuration: any;
+  configuration: ConfigProps;
   xs: number;
   sm: number;
   md: number;

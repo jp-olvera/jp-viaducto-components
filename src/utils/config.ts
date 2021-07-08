@@ -1,4 +1,6 @@
-const config = {
+import { ConfigProps } from 'ballena-types';
+
+const config: ConfigProps = {
   spacing: {
     none: '0px',
     nano: '0.279rem',

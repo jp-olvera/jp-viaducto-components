@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
+import { ConfigProps } from 'ballena-types';
 import { ConfigContext } from '../../providers';
 import GridContext from './GridProvider';
 
 interface PaddingProps {
   gutter: number;
   expanded: boolean;
-  configuration: any;
+  configuration: ConfigProps;
 }
 const Padding = styled.div < PaddingProps > `
   display: flex;
