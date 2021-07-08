@@ -28,7 +28,7 @@ const ProgressBar = ({
   return (
     <StyledProgressBar
       max={totalSteps}
-      value={completedSteps}
+      value={completedSteps <= totalSteps ? completedSteps : totalSteps}
       data-testid='loader'
       configuration={configuration}
       color={color}

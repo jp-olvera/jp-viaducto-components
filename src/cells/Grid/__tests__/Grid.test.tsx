@@ -4,19 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { Grid, Row, Column } from '..';
 
 describe('Grid', () => {
-<<<<<<< Updated upstream
   test('should render properly', () => {
-=======
-  test('should Grid match snapshot', () => {
-    const container = render(<Grid />);
-    expect(container).toMatchSnapshot();
-  });
-  test('should match snapshot', () => {
-    const container = render(<Row />);
-    expect(container).toMatchSnapshot();
-  });
-  test('should match snapshot', () => {
->>>>>>> Stashed changes
     const container = render(
       <Grid>
         <Row>
@@ -60,19 +48,10 @@ describe('Grid', () => {
     );
     expect(container).toMatchSnapshot();
   });
-<<<<<<< Updated upstream
   test('should render grid with empty row', () => {
     const container = render(
       <Grid gutter={42} expanded>
         <Row />
-=======
-  test('should match snapshot', () => {
-    const container = render(
-      <Grid gutter={42} expanded>
-        <Row>
-          <Column xs={6} />
-        </Row>
->>>>>>> Stashed changes
       </Grid>,
     );
     expect(container).toMatchSnapshot();

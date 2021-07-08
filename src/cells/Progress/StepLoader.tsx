@@ -39,7 +39,10 @@ const StepLoader = ({
     finishTextColor={finishTextColor}
     {...rest}
   >
-    {completed.toString()}/{totalSteps.toString()}
+    {completed <= totalSteps
+      ? `${completed.toString()} / ${totalSteps.toString()}`
+      : `${totalSteps.toString()} / ${totalSteps.toString()}`}
+    {/* {completed.toString()}/{totalSteps.toString()} */}
   </StyledStepProgress>
 );
 

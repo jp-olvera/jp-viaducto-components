@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { OkCircle } from 'react-ikonate';
-
 import CircleLoader from './CircleLoader';
 import ProgressBar from './ProgressBar';
 import StepLoader from './StepLoader';
@@ -53,9 +51,6 @@ const Progress = ({
     setActualProgress,
   ]);
 
-  if (completedSteps >= totalSteps || currentStep === totalSteps) {
-    return <OkCircle color={color} fontSize='25px' data-testid='ok_circle' />;
-  }
   if (loader === 'progress') {
     return (
       <ProgressBar

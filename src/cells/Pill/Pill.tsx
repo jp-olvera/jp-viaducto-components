@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Close } from 'react-ikonate';
 import { ConfigContext } from '../../providers';
 import StyledPill from './StyledPill';
 import { BareButton } from '../BareButton';
@@ -26,6 +25,7 @@ interface PillInterface {
   verticalAlign?: string;
   handleAction?: Function | null;
   circleBorder?: boolean;
+  closeIcon?: boolean;
   borderColor?: string | null;
 }
 
@@ -41,6 +41,7 @@ const Pill = ({
   handleAction,
   circleBorder = true,
   borderColor = null,
+  closeIcon = true,
   ...rest
 }: PillInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -69,12 +70,9 @@ const Pill = ({
           onClick={handleAction}
           style={{ height: '100%', display: 'flex' }}
           data-testid='btn-bare'
+          close={closeIcon}
         >
-          {icon === null || icon === '' ? (
-            <Close stroke={color} strokeWidth={2} width='18px' height='18px' />
-          ) : (
-            icon
-          )}
+          {icon && icon}
         </BareButton>
       </span>
     </StyledPill>

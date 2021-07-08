@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import svg from './close.svg';
 
 const StyledButton = styled.button`
   padding: 0;
@@ -14,6 +15,9 @@ const StyledButton = styled.button`
   &:active {
     transform: translateY(0);
   }
+  & > .close {
+    width: 0.7rem !important;
+  }
 `;
 
 /**
@@ -21,9 +25,11 @@ const StyledButton = styled.button`
  * @param {any} children Child component
  */
 
-const BareButton = ({ children, ...rest }: any) => (
+const Close = () => <img src={svg} alt='close' className='close' />;
+
+const BareButton = ({ children, close = true, ...rest }: any) => (
   <StyledButton type='button' {...rest}>
-    {children}
+    {!close ? children : <Close />}
   </StyledButton>
 );
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Play } from 'react-ikonate';
-import { SBConfigI } from 'sb';
+import { SBConfigI } from '../../../sb';
 import { Button } from '..';
 import { ConfigProvider } from '../../../providers';
 
@@ -167,8 +166,9 @@ const config: SBConfigI = {
       description: 'Set an icon with the label',
       type: { summary: 'JSX Element / String', required: false },
       table: {
-        defaultValue: { summary: 'null' },
+        defaultValue: { summary: null },
       },
+      control: null,
     },
     height: {
       description: 'Set button height',
@@ -255,7 +255,7 @@ Default.args = {
   label: 'Button',
   size: 'default',
   lead: false,
-  icon: Icon({ icon: <Play /> }).props.children,
+  icon: Icon({ icon: '👁‍🗨' }).props.children,
   height: '',
   shapeColor: 'primary',
   variant: 'solid',
@@ -274,7 +274,7 @@ Outline.args = {
   label: 'Button',
   size: 'default',
   lead: false,
-  icon: Icon({ icon: <Play /> }).props.children,
+  icon: Icon({ icon: '❤' }).props.children,
   height: '',
   shapeColor: 'secondary',
   variant: 'outline',
@@ -292,7 +292,7 @@ Ghost.args = {
   label: 'Button',
   size: 'default',
   lead: false,
-  icon: Icon({ icon: <Play /> }).props.children,
+  icon: Icon({ icon: '❤' }).props.children,
   height: '',
   shapeColor: 'danger',
   variant: 'ghost',
@@ -311,7 +311,7 @@ Custom.args = {
   label: 'Button',
   size: 'default',
   lead: false,
-  icon: Icon({ icon: <Play /> }).props.children,
+  icon: Icon({ icon: '❤' }).props.children,
   height: '',
   shapeColor: 'primary',
   variant: 'solid',
@@ -329,7 +329,7 @@ Small.args = {
   label: 'Button',
   size: 'small',
   lead: false,
-  icon: Icon({ icon: <Play /> }).props.children,
+  icon: Icon({ icon: '❤' }).props.children,
   height: '',
   shapeColor: 'primary',
   variant: 'solid',
@@ -343,7 +343,7 @@ export const IconOnly = Template.bind({});
 IconOnly.args = {
   useLongLoading: false,
   size: 'large',
-  icon: Icon({ icon: <Play /> }).props.children,
+  icon: Icon({ icon: '❤' }).props.children,
   height: '',
   lead: false,
   shapeColor: 'primary',
@@ -378,6 +378,7 @@ LoadingButton.args = {
   transition: 'ease',
   onClick: () => {},
   isLoading: true,
+  icon: Icon({ icon: '⭕' }),
 };
 
 export const StateButton = Template.bind({});

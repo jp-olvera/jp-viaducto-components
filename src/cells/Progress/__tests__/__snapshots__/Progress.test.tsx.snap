@@ -136,9 +136,7 @@ exports[`<StepLoader/> should render StepLoader and create snapshot 1`] = `
   color="dark"
   data-testid="loader"
 >
-  16
-  /
-  16
+  16 / 16
 </h1>
 `;
 
@@ -148,104 +146,6 @@ exports[`<StepLoader/> should render StepLoader and create snapshot with props 1
   color="red"
   data-testid="loader"
 >
-  7
-  /
-  15
+  7 / 15
 </h1>
-`;
-
-exports[`Progress component should render ok circle with snapshot 1`] = `
-<svg
-  aria-labelledby="circleOkIconTitle"
-  color="#3AE25F"
-  data-testid="ok_circle"
-  fill="none"
-  font-size="25px"
-  height="1em"
-  role="img"
-  stroke="currentColor"
-  stroke-linecap="square"
-  stroke-linejoin="miter"
-  stroke-width="2"
-  viewBox="0 0 24 24"
-  width="1em"
->
-  <title
-    id="circleOkIconTitle"
-  >
-    OK
-  </title>
-  <polyline
-    points="7 13 10 16 17 9"
-  />
-  <circle
-    cx="12"
-    cy="12"
-    r="10"
-  />
-</svg>
-`;
-
-exports[`Progress component should render ok circle with snapshot with all steps completed 1`] = `
-<svg
-  aria-labelledby="circleOkIconTitle"
-  color="#3AE25F"
-  data-testid="ok_circle"
-  fill="none"
-  font-size="25px"
-  height="1em"
-  role="img"
-  stroke="currentColor"
-  stroke-linecap="square"
-  stroke-linejoin="miter"
-  stroke-width="2"
-  viewBox="0 0 24 24"
-  width="1em"
->
-  <title
-    id="circleOkIconTitle"
-  >
-    OK
-  </title>
-  <polyline
-    points="7 13 10 16 17 9"
-  />
-  <circle
-    cx="12"
-    cy="12"
-    r="10"
-  />
-</svg>
-`;
-
-exports[`Progress component should render ok circle with snapshot with props 1`] = `
-<svg
-  aria-labelledby="circleOkIconTitle"
-  color="#3AE25F"
-  data-testid="ok_circle"
-  fill="none"
-  font-size="25px"
-  height="1em"
-  role="img"
-  stroke="currentColor"
-  stroke-linecap="square"
-  stroke-linejoin="miter"
-  stroke-width="2"
-  viewBox="0 0 24 24"
-  width="1em"
->
-  <title
-    id="circleOkIconTitle"
-  >
-    OK
-  </title>
-  <polyline
-    points="7 13 10 16 17 9"
-  />
-  <circle
-    cx="12"
-    cy="12"
-    r="10"
-  />
-</svg>
 `;

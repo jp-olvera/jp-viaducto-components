@@ -2,7 +2,6 @@
 
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { Help } from 'react-ikonate';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Button } from '..';
 
@@ -136,7 +135,7 @@ describe('<Button/>', () => {
   test('should render button with label props and small padding props', () => {
     render(
       <Button
-        icon={<Help />}
+        icon='❤'
         size='small'
         label='Not only Icon'
         height={undefined}
@@ -154,15 +153,15 @@ describe('<Button/>', () => {
       colors: null,
       variant: null,
     };
-    render(<Button icon={<Help />} size='large' {...props} />);
+    render(<Button icon='❤' size='large' {...props} />);
     expect(screen.queryByRole('button')).toBeInTheDocument();
     const { container } = render(
-      <Button icon={<Help />} size='default' {...props} />,
+      <Button icon='❤' size='default' {...props} />,
     );
     expect(container).toBeInTheDocument();
   });
   test('should render button with height null', () => {
-    const { container } = render(<Button icon={<Help />} height={null} />);
+    const { container } = render(<Button icon='❤' height={null} />);
     expect(container).toBeInTheDocument();
   });
 });

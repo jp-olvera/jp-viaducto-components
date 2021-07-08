@@ -1,6 +1,5 @@
 import React from 'react';
-import { Settings } from 'react-ikonate';
-import { SBConfigI } from 'sb';
+import { SBConfigI } from '../../../sb';
 import { SidebarSection, MenuItem } from '..';
 import { ConfigProvider } from '../../../providers';
 
@@ -78,13 +77,8 @@ const Template = (args: typeof Default) => (
         <MenuItem label='Maybe use a button' nested />
       </button>
     </SidebarSection>
-    <MenuItem label='Use an icon' href='' icon={<Settings />} />
-    <MenuItem
-      label='Change icon position'
-      active
-      icon={<Settings />}
-      lead={false}
-    />
+    <MenuItem label='Use an icon' href='' icon='❤' />
+    <MenuItem label='Change icon position' active icon='❤' lead={false} />
   </ConfigProvider>
 );
 
@@ -96,7 +90,7 @@ Default.args = {
   isDropdown: false,
   isMenu: false,
   transition: 'ease',
-  icon: <Settings />,
+  icon: '❤',
 };
 
 export const Submenu = Template.bind({});
@@ -107,7 +101,7 @@ Submenu.args = {
   isDropdown: false,
   isMenu: true,
   transition: 'ease',
-  icon: <Settings />,
+  icon: '❤',
 };
 
 export const Dropdown = Template.bind({});
@@ -117,5 +111,5 @@ Dropdown.args = {
   title: 'Section title',
   isDropdown: true,
   transition: 'ease',
-  icon: <Settings />,
+  icon: '❤',
 };
