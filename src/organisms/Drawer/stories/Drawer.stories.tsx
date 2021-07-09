@@ -64,7 +64,7 @@ const config: SBConfigI = {
         type: { summary: 'string' },
         defaultValue: { summary: 'md' },
       },
-      options: ['md', 'lg'],
+      options: ['sm', 'md', 'lg'],
       control: {
         type: 'select',
       },
@@ -149,6 +149,16 @@ const Template2 = (args: typeof Large) => {
 export const Default = Template.bind({});
 
 Default.args = {
+  elevation: 1,
+  elevationDirection: 'left',
+  transition: 'ease',
+  overlayColor: 'rgba(0,0,0,0.3)',
+  size: 'sm',
+};
+
+export const Medium = Template.bind({});
+
+Medium.args = {
   elevation: 1,
   elevationDirection: 'left',
   transition: 'ease',

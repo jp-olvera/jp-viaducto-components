@@ -76,10 +76,23 @@ export default {
         type: 'select',
       },
     },
+    radius: {
+      description: 'The radius size',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'sm' },
+      },
+      options: ['none', 'sm', 'md', 'lg'],
+      control: {
+        type: 'select',
+      },
+    },
   },
 };
 
-const Template = ({ position, elevation, elevationDirection }) => {
+const Template = ({
+  position, elevation, elevationDirection, radius,
+}) => {
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
@@ -130,6 +143,7 @@ const Template = ({ position, elevation, elevationDirection }) => {
             position={position}
             elevation={elevation}
             elevationDirection={elevationDirection}
+            radius={radius}
           />
         </div>
         <div style={{ width: '500px', overflowX: 'auto' }}>
@@ -154,6 +168,7 @@ const Template = ({ position, elevation, elevationDirection }) => {
                 position={position}
                 elevation={elevation}
                 elevationDirection={elevationDirection}
+                radius={radius}
               />
             </div>
           </div>
@@ -167,4 +182,7 @@ export const Default = Template.bind({});
 
 Default.args = {
   position: 'right',
+  radius: 'sm',
+  elevation: 1,
+  elevationDirection: 'bottom',
 };

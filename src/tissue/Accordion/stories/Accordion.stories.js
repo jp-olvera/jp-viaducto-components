@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paragraph } from '../../../cells';
+import { Paragraph, Title } from '../../../cells';
 import { ConfigProvider } from '../../../providers';
 import { Accordion, AccordionItem } from '..';
 
@@ -7,26 +7,6 @@ export default {
   title: 'Andamio/Tissues/Accordion',
   component: Accordion,
   argTypes: {
-    defaultIndex: {
-      description: 'Index of the section to be expanded, ti defaults to -1',
-      type: { summary: 'number', required: false },
-      table: {
-        defaultValue: { summary: -1 },
-      },
-      control: {
-        type: 'number',
-      },
-    },
-    expandMultiple: {
-      description: 'Allow expand multiple sections',
-      type: { summary: 'boolean', required: false },
-      table: {
-        defaultValue: { summary: false },
-      },
-      control: {
-        type: 'boolean',
-      },
-    },
     paddingY: {
       description: 'The vertical padding for the title and the content',
       type: {
@@ -94,7 +74,12 @@ export default {
 const Template = (args) => (
   <ConfigProvider>
     <Accordion {...args}>
-      <AccordionItem title='Hola, no olvides revisar los Docs arriba'>
+      <AccordionItem
+        title={
+          <Title level='6'>Hola, no olvides revisar los Docs arriba</Title>
+        }
+        icon={<span style={{ fontSize: '22px', lineHeight: 1 }}>+</span>}
+      >
         <Paragraph>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industrys standard dummy text ever
@@ -125,7 +110,11 @@ const Template = (args) => (
         </Paragraph>
       </AccordionItem>
       <AccordionItem
-        title='Presiona la D para que aparezcan los controles'
+        title={(
+          <Title level='6'>
+            Presiona la D para que aparezcan los controles
+          </Title>
+        )}
         {...args}
       >
         <Paragraph>
@@ -141,7 +130,9 @@ const Template = (args) => (
         </Paragraph>
       </AccordionItem>
       <AccordionItem
-        title='Aquí puedes poner un texto o un componente'
+        title={
+          <Title level='6'>Aquí puedes poner un texto o un componente</Title>
+        }
         {...args}
       >
         <Paragraph>
@@ -158,6 +149,5 @@ const Template = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  defaultIndex: -1,
   transition: 'linear',
 };

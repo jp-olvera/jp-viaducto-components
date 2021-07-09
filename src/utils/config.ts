@@ -1,43 +1,6 @@
 import { ConfigProps } from 'ballena-types';
 
 const config: ConfigProps = {
-  spacing: {
-    none: '0px',
-    nano: '0.279rem',
-    micro: '0.335rem',
-    tiny: '0.402rem',
-    xs: '0.482rem',
-    sm: '0.694rem',
-    md: '1.2rem',
-    lg: '2.074rem',
-    xl: '2.488rem',
-    xxl: '2.986rem',
-    xxxl: '3.5rem',
-  },
-  controlHeight: {
-    xsmall: '1.2rem',
-    small: '2.074rem',
-    default: '2.488rem',
-    large: '2.986rem',
-  },
-  display: {
-    mobile: {
-      xs: '2.986rem',
-      sm: '3.012rem',
-      md: '3.213rem',
-      lg: '3.658rem',
-      xl: '4.165rem',
-      xxl: '5.06rem',
-    },
-    desktop: {
-      xs: '3.583rem',
-      sm: '5.16rem',
-      md: '6.192rem',
-      lg: '8.916rem',
-      xl: '12.839rem',
-      xxl: '15.407rem',
-    },
-  },
   breakpoints: {
     xs: '20rem', // '320px'
     sm: '36rem', // '576px'
@@ -96,12 +59,54 @@ const config: ConfigProps = {
       shadow: 'rgba(1, 87, 155, 0.53)',
     },
   },
+  controlHeight: {
+    xsmall: '1.2rem',
+    small: '2.074rem',
+    default: '2.488rem',
+    large: '2.986rem',
+  },
+  drawerSizes: {
+    sm: '20rem',
+    md: '53rem',
+    lg: '64rem',
+  },
   disableColor: '#BFBFBF',
+  display: {
+    mobile: {
+      xs: '2.986rem',
+      sm: '3.012rem',
+      md: '3.213rem',
+      lg: '3.658rem',
+      xl: '4.165rem',
+      xxl: '5.06rem',
+    },
+    desktop: {
+      xs: '3.583rem',
+      sm: '5.16rem',
+      md: '6.192rem',
+      lg: '8.916rem',
+      xl: '12.839rem',
+      xxl: '15.407rem',
+    },
+  },
   radius: {
     none: '0px',
     sm: '0.188rem',
     md: '0.375rem',
     lg: '0.75rem',
+  },
+  spacing: {
+    none: '0px',
+    nano: '0.279rem',
+    micro: '0.335rem',
+    tiny: '0.402rem',
+    xs: '0.482rem',
+    sm: '0.694rem',
+    md: '1.2rem',
+    lg: '2.074rem',
+    xl: '2.488rem',
+    xxl: '2.986rem',
+    xxxl: '3.5rem',
   },
   text: {
     danger: '#B71C1C',
