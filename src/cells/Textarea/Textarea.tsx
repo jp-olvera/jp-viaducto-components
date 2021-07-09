@@ -23,7 +23,7 @@ interface TextareaInterface {
   /** Sets lateral padding */
   lateralPadding?: string;
   /** Set the border radius (if the border is defined). if Dtring, this value will set as you writted, if is a number, this value will be a REM size */
-  radius?: string | number;
+  radius?: string;
   /** Set text area with resizable props */
   resizable?: boolean;
   /** Set text area rows attribute (makes taller) */
@@ -42,7 +42,7 @@ interface TextareaInterface {
  * @param {string} family Sets the font family
  * @param {string} fontSize Sets the font size
  * @param {string} lateralPadding Sets lateral padding
- * @param {string} radius Set the border radius (if the border is defined). if Dtring, this value will set as you writted, if is a number, this value will be a REM size
+ * @param {string} radius Set the border radius
  * @param {boolean} resizable Set text area with resizable props
  * @param {number} rows Set text area rows attribute (makes taller)
  * @param {string} textColor Sets the font color

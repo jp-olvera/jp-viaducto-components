@@ -34,12 +34,13 @@ const config: SBConfigI = {
       control: 'color',
     },
     radius: {
-      description:
-        'Set the border radius (if the border it is defined). If is a provides a string, this value will set as you writted, if is a number, this value will be a REM size',
-      type: 'string/number',
+      description: 'Set the border radius',
+      type: 'string',
       table: {
-        defaultValue: { summary: null },
+        defaultValue: { summary: 'none' },
       },
+      control: 'select',
+      options: ['none', 'sm', 'md', 'lg'],
     },
     placeholder: {
       description: 'HTML Placeholder attribute',
@@ -147,7 +148,7 @@ Default.args = {
     left: '1px solid black',
   },
   borderColor: null,
-  radius: null,
+  radius: 'none',
   placeholder: 'Write here ',
   family: '',
   textColor: 'dark',

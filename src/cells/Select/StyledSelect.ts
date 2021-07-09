@@ -11,7 +11,7 @@ interface SelectI {
   fontFamily?: string;
   background?: string;
   color?: string;
-  radius?: any;
+  radius?: string;
   outline?: boolean;
   outlineColor?: string;
   multiple: boolean;
@@ -92,9 +92,7 @@ export const StyledSelect = styled.select < SelectI > `
   overflow: ${(props) => (props.multiple ? 'auto' : 'hidden')};
   ${(props) => getLateralPadding(props)};
   ${({ border }) => getBorder(border)};
-  ${({ radius }) => (typeof radius === 'string'
-    ? `border-radius: ${radius}; `
-    : `border-radius: ${radius}rem;`)};
+  border-radius: ${(p) => p.configuration.radius[p.radius || 'none']};
   padding: 0 ${(p) => p.configuration.spacing.sm};
   padding-top: ${(p) => (p.multiple
     ? p.configuration.spacing.sm

@@ -33,18 +33,14 @@ export const StyledPagination = styled.div < any > `
       position: relative;
       vertical-align: middle;
       padding: ${(p) => p.configuration.spacing[p.spacing]};
-      ${({ radius }) => (typeof radius === 'string'
-    ? `border-radius: ${radius}; `
-    : `border-radius: ${radius}rem;`)};
+      border-radius: ${(p) => p.configuration.radius[p.radius || 'none']};
       &.active {
         background-color: ${(p) => (p.variant === 'normal' ? p.activeColor : 'transparent')};
         border: 1px solid
           ${(p) => (p.variant === 'normal' ? 'transparent' : p.activeColor)};
         &:hover {
           background-color: ${(p) => p.hoverColor};
-          ${({ radius }) => (typeof radius === 'string'
-    ? `border-radius: ${radius}; `
-    : `border-radius: ${radius}rem;`)};
+          border-radius: ${(p) => p.configuration.radius[p.radius || 'none']};
           & > a {
             filter: ${(p) => (p.variant === 'outline' ? 'invert(1)' : 'invert(0)')} !important;
           }

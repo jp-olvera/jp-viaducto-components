@@ -23,7 +23,7 @@ describe('<Input/>', () => {
         inputSize='small'
         label='Im the input tested'
         type='card'
-        value={555555}
+        defaultValue={555555}
         border='overlap'
       />,
     );
@@ -33,7 +33,7 @@ describe('<Input/>', () => {
 
   test('should render input xsmall border overlap', () => {
     const { container } = render(
-      <Input inputSize='xsmall' border='overlap' label='a' value='a' />,
+      <Input inputSize='xsmall' border='overlap' label='a' defaultValue='a' />,
     );
     const input = container.querySelector('input');
     fireEvent.focus(input || window);
@@ -47,7 +47,7 @@ describe('<Input/>', () => {
         label='Master'
         type='card'
         border='overlap'
-        value='55555555555'
+        defaultValue='55555555555'
         required
         onKeyUp={jest.fn}
       />,
@@ -68,7 +68,7 @@ describe('<Input/>', () => {
         iconHelper='❤'
         type='card'
         border='overlap'
-        value='55555555555'
+        defaultValue='55555555555'
       />,
     );
     const input = container.querySelector('input');
@@ -95,7 +95,7 @@ describe('<Input/>', () => {
         label='Im the input tested'
         border='outside'
         type='card'
-        value='65432165'
+        defaultValue='65432165'
       />,
     );
     const input = container.querySelector('.input');
@@ -114,7 +114,7 @@ describe('<Input/>', () => {
         iconHelper='@'
         required
         iconRequired='!'
-        value='65432165'
+        defaultValue='65432165'
       />,
     );
     const input = container.querySelector('.input');

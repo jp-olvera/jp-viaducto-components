@@ -20,7 +20,7 @@ interface SelectInterface {
   height?: string;
   multiple?: boolean;
   onChange?: Function;
-  radius?: string | number;
+  radius?: string;
   inputSize?: string;
   titleProps?: { label: string; position: string } | null;
 }
