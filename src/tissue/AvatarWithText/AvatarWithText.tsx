@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { AvatarProps } from '../../cells/Avatar/Avatar';
 import { Avatar, Spacer } from '../../cells';
 
-const StyledAvatarWithText = styled.div < any > `
+export const StyledAvatarWithText = styled.div < any > `
   display: flex;
   justify-content: center;
   align-items: center;
