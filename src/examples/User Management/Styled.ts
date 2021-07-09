@@ -7,7 +7,7 @@ export const Example = styled.div < any > `
   }
   position: ${(p) => (p.off ? 'fixed' : 'relative')};
   top: 0;
-  width: ${(p) => (p.off ? '87.5%' : '100%')};
+  width: ${(p) => (p.off ? '72.6%' : '100%')};
   background-color: white;
   border-bottom: 1px solid #b4b4b4;
 `;
