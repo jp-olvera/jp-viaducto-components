@@ -10,7 +10,7 @@ describe('<Pagination/> component', () => {
       <Pagination
         totalPages={10}
         sibilings={0}
-        radius={0}
+        radius='none'
         iconRight='ICON'
         textColor='dark'
       />,
@@ -22,7 +22,7 @@ describe('<Pagination/> component', () => {
       <Pagination
         totalPages={5}
         sibilings={0}
-        radius='1rem'
+        radius='md'
         iconLeft='AAAA'
         variant='outline'
         textColor='#fff'

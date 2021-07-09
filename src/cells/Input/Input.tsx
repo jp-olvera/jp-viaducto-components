@@ -161,7 +161,7 @@ const Input = ({
           required
           disabled={disabled}
           min={rest.min}
-          value={rest.value || newValue}
+          defaultValue={rest.value || newValue}
           max={rest.max}
           {...rest}
         />

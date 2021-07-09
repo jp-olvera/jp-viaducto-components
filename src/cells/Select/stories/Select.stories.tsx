@@ -45,12 +45,13 @@ const config: SBConfigI = {
       control: 'color',
     },
     radius: {
-      description:
-        'Set border radius property (if is a number, border radius will be set as "rem", if it is a string will be set as marked)',
-      type: { summary: 'Number/String', required: false },
+      description: 'Set border radius property',
+      type: { summary: 'String', required: false },
       table: {
-        defaultValue: { summary: 0 },
+        defaultValue: { summary: 'none' },
       },
+      control: 'select',
+      options: ['none', 'sm', 'md', 'lg'],
     },
     border: {
       description: 'Set the border(s) of the component',
@@ -109,7 +110,7 @@ Default.args = {
   fontFamily: 'Roboto',
   background: '#fff',
   color: '#000',
-  radius: '',
+  radius: 'none',
   onChange: () => {},
   multiple: false,
   titleProps: null,
@@ -129,7 +130,7 @@ Multiple.args = {
   fontFamily: 'Roboto',
   background: '#fff',
   color: '#000',
-  radius: '',
+  radius: 'md',
   onChange: () => {},
   multiple: true,
 };
@@ -162,7 +163,7 @@ withTitle.args = {
   fontFamily: 'Roboto',
   background: '#fff',
   color: '#000',
-  radius: '',
+  radius: 'lg',
   onChange: () => {},
   multiple: false,
   titleProps: { label: 'Title', position: 'in' },

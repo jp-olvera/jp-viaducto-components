@@ -32,7 +32,7 @@ interface PaginationInterface {
   /** Set font color */
   textColor?: string;
   /** Set border radius */
-  radius?: number | string | null;
+  radius?: string;
   /** Set spacing in page component */
   spacing?: string;
   /** Triggers a function when page is changed */
@@ -55,7 +55,7 @@ interface PaginationInterface {
  * @param {string} activeColor Set the active color page
  * @param {string} hoverColor Set the hover color page
  * @param {string} textColor Set font color
- * @param {number | string | null} radius Set border radius
+ * @param {string} radius Set border radius
  * @param {string} spacing Set spacing in page component
  * @param {Function} onPageChange Triggers a function when page is changed
  * @param {string} variant Set button color variant
@@ -73,7 +73,7 @@ const Pagination = ({
   activeColor = '#bdbdbd',
   hoverColor = '#acacac',
   textColor,
-  radius = 0,
+  radius,
   spacing = 'xs',
   onPageChange,
   position = 'center',

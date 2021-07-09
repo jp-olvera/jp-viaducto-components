@@ -23,7 +23,7 @@ describe('<Select/>', () => {
         fontFamily='Arial'
         background='blue'
         color='white'
-        radius={2}
+        radius='md'
         titleProps={{ label: 'a', position: 'in' }}
       >
         <option value='B'>B</option>
@@ -41,7 +41,7 @@ describe('<Select/>', () => {
           fontFamily='Arial'
           background='blue'
           color='white'
-          radius={2}
+          radius='sm'
           titleProps={null}
         >
           <option value='B'>B</option>
@@ -58,7 +58,7 @@ describe('<Select/>', () => {
           fontFamily='Arial'
           background='blue'
           color='white'
-          radius={2}
+          radius='lg'
           titleProps={null}
         >
           <option value='B'>B</option>
@@ -77,7 +77,6 @@ describe('<Select/>', () => {
         fontFamily='Arial'
         background='blue'
         color='white'
-        radius={2}
         titleProps={{ label: 'a', position: 'on' }}
       >
         <option value='B'>B</option>
@@ -88,7 +87,7 @@ describe('<Select/>', () => {
   test('should show the options', () => {
     const { getByTestId, queryByText } = render(
       <Select
-        radius='2rem'
+        radius='none'
         inputSize='small'
         height='2rem'
         titleProps={{ label: 'a', position: 'over' }}
@@ -107,7 +106,7 @@ describe('<Select/>', () => {
   test('should render select component with style props', () => {
     const { getByTestId, queryByText } = render(
       <Select
-        radius='2rem'
+        radius='md'
         inputSize='small'
         titleProps={{ label: 'a', position: 'in' }}
       >

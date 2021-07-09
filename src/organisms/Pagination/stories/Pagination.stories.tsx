@@ -69,11 +69,11 @@ const config: SBConfigI = {
       control: 'text',
     },
     radius: {
-      description:
-        'Set border radius for the page element. If it is a String value, will be set as you defined, if it is number this value will be set as REM value',
+      description: 'Set border radius for the page element',
       type: { summary: 'string', required: false },
-      table: { defaultValue: 0 },
-      control: 'text',
+      table: { defaultValue: 'none' },
+      control: 'select',
+      options: ['none', 'sm', 'md', 'lg'],
     },
     spacing: {
       description: 'Set the padding for the page item',
@@ -149,7 +149,7 @@ Default.args = {
   activeColor: '#bdbdbd',
   hoverColor: '#acacac',
   textColor: 'dark',
-  radius: 0,
+  radius: 'none',
   spacing: 'xs',
   onPageChange: () => {},
   previousLabel: false,
