@@ -2,22 +2,29 @@ import React, { useState, useEffect } from 'react';
 import CircleLoader from './CircleLoader';
 import ProgressBar from './ProgressBar';
 import StepLoader from './StepLoader';
-
+/** Progress component indicator for set the visual steps completed */
 interface ProgressInterface {
-  totalSteps?: number;
-  completedSteps?: number;
-  currentStep?: number;
-  loader?: string;
-  transition?: string;
+  /** Set the color of the component */
   color?: string;
+  /** Indicates the number of completed steps as a light green */
+  completedSteps?: number;
+  /** Indicates actual step as a dark green */
+  currentStep?: number;
+  /** Type of loder to render */
+  loader?: string;
+  /** Indicates (and divides the progress indicator) the total steps */
+  totalSteps?: number;
+  /** Overrides the transitionTimingFunction */
+  transition?: string;
 }
 /**
  * Progress component indicator for set the visual steps completed
- * @param {String} loader Type of loder to render
- * @param {String} completedSteps Indicates the number of completed steps as a light green
- * @param {String} currentStep Indicates actual step as a dark green
- * @param {String} totalSteps Indicates (and divides the progress indicator) the total steps
- * @param {String} color Set the color of the component
+ * @param {string} color Set the color of the component
+ * @param {string} completedSteps Indicates the number of completed steps as a light green
+ * @param {string} currentStep Indicates actual step as a dark green
+ * @param {string} loader Type of loder to render
+ * @param {string} totalSteps Indicates (and divides the progress indicator) the total steps
+ * @param {string} transition Overrides the transitionTimingFunction
  */
 const Progress = ({
   totalSteps = 0,
@@ -26,7 +33,7 @@ const Progress = ({
   loader,
   color = '#3AE25F',
   ...rest
-}: ProgressInterface) => {
+}: ProgressInterface & React.HTMLAttributes<HTMLElement>) => {
   const strokeWidth = 2;
   const width = 25;
 

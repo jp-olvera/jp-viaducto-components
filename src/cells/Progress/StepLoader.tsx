@@ -2,23 +2,31 @@ import React from 'react';
 
 import { StyledStepProgress } from './StyleLoader';
 
+/** Step progress loader component */
+interface StepLoaderInterface {
+  /** Set the completed steps */
+  completed: number;
+  /** Set the total steps of the loader */
+  totalSteps: number;
+  /** Set the color of the text */
+  color?: string;
+  /** Set the font family */
+  family?: string | null;
+  /** Set the color of the finished steps */
+  finishTextColor?: string;
+  /** Set the font size according to getFontSize function */
+  titleLevel?: string;
+}
+
 /**
  * Step progress loader component
  * @param {number} completed Set the completed steps
  * @param {number} totalSteps Set the total steps of the loader
- * @param {string} family Set the font family
- * @param {string} titleLevel Set the font size according to getFontSize function
  * @param {string} color Set the color of the text
+ * @param {string} family Set the font family
  * @param {string} finishTextColor Set the color of the finished steps
+ * @param {string} titleLevel Set the font size according to getFontSize function
  */
-interface StepLoaderInterface {
-  completed: number;
-  totalSteps: number;
-  family?: string | null;
-  titleLevel?: string;
-  color?: string;
-  finishTextColor?: string;
-}
 
 const StepLoader = ({
   completed,
@@ -28,7 +36,7 @@ const StepLoader = ({
   titleLevel = '4',
   finishTextColor = '#3AE25F',
   ...rest
-}: StepLoaderInterface) => (
+}: StepLoaderInterface & React.HTMLAttributes<HTMLHeadingElement>) => (
   <StyledStepProgress
     level='4'
     family={family}
@@ -42,7 +50,6 @@ const StepLoader = ({
     {completed <= totalSteps
       ? `${completed.toString()} / ${totalSteps.toString()}`
       : `${totalSteps.toString()} / ${totalSteps.toString()}`}
-    {/* {completed.toString()}/{totalSteps.toString()} */}
   </StyledStepProgress>
 );
 

@@ -3,26 +3,36 @@ import React, { useContext } from 'react';
 import { TooltipContainer } from './StyledTooltip';
 import { ConfigContext } from '../../providers/ConfigProvider';
 
-/**
- * Tooltip component
- * @param {string} position Set the position of the tooltip
- * @param {string} color Color of the background
- * @param {string} textColor Text color
- * @param {string} family Font family
- * @param {string} label Text in the tooltip
- * @param {boolean} active Show/hide the tooltip
- * @param {any} children Child component
- */
+/** Tooltip component */
 interface TooltipInterface {
-  children?: any;
-  label?: string;
+  /** Child component */
+  children: any;
+  /** Show/hide the tooltip */
   active?: boolean;
-  position?: string;
+  /** Color of the background */
   color?: string;
-  textColor?: string;
+  /** Font family */
   family?: string;
+  /** Text in the tooltip */
+  label?: string;
+  /** Set the position of the tooltip */
+  position?: string;
+  /** Text color */
+  textColor?: string;
+  /** Overrides transitionTimingFunction */
   transition?: string;
 }
+/**
+ * Tooltip component
+ * @param {any} children Child component
+ * @param {boolean} active Show/hide the tooltip
+ * @param {string} color Color of the background
+ * @param {string} family Font family
+ * @param {string} label Text in the tooltip
+ * @param {string} position Set the position of the tooltip
+ * @param {string} textColor Text color
+ * @param {string} transition Overrides transitionTimingFunction
+ */
 
 const Tooltip = ({
   children,
@@ -33,7 +43,7 @@ const Tooltip = ({
   textColor = '#000',
   family,
   ...rest
-}: TooltipInterface) => {
+}: TooltipInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   return (
     <TooltipContainer

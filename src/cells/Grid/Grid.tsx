@@ -9,6 +9,7 @@ interface PaddingProps {
   expanded: boolean;
   configuration: ConfigProps;
 }
+
 const Padding = styled.div < PaddingProps > `
   display: flex;
   flex-wrap: wrap;
@@ -34,18 +35,29 @@ const Padding = styled.div < PaddingProps > `
     max-width: ${(p) => p.configuration.breakpoints.xl};
   }
 `;
-
+/** Grid component */
 interface GridProps {
-  gutter?: number;
+  /** Child element */
   children?: React.ReactNode;
+  /** Set full width parent size */
   expanded?: boolean;
+  /** Set gutter spacing */
+  gutter?: number;
 }
+
+/**
+ * Grid component
+ * @param {React.ReactNode} children Child element
+ * @param {boolean} expanded Set full width parent size
+ * @param {number} gutter Set gutter spacing
+ */
+
 const Grid = ({
   children = null,
   gutter = 24,
   expanded = false,
   ...rest
-}: GridProps) => {
+}: GridProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   return (
     <GridContext.Provider value={{ gap: gutter }}>

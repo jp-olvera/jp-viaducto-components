@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import '@testing-library/jest-dom/extend-expect';
+
 import getElevation from '../getElevation';
 import { render } from '../../test-utils';
 import { findScrollParents } from '../scroll';

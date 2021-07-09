@@ -6,7 +6,11 @@ import { BareButton } from '..';
 
 describe('<BareButton/>', () => {
   test('should render properly', () => {
-    const { container } = render(<BareButton />);
+    const { container } = render(
+      <BareButton>
+        <div>s</div>
+      </BareButton>,
+    );
     expect(container).not.toBeNull();
   });
   test('should render with children', () => {

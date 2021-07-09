@@ -5,11 +5,7 @@ export const Wrapper = styled.div < any > `
   & * {
     transition: all 0.08s ease-in-out;
   }
-  ${(p) => (p.family !== null
-    ? css`
-          font-family: ${p.family};
-        `
-    : css``)};
+  font-family: ${(p) => p.family || 'inherit'};
   background-color: ${({ disabled }) => (disabled ? '#CECECE' : 'white')};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'default')};
   height: ${({ size, configuration }) => configuration.controlHeight[size] || configuration.controlHeight.default};

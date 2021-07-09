@@ -9,24 +9,31 @@ import {
 } from '../..';
 import { StyledButtonDatalist } from './StyledButtonDatalist';
 
+/** Data list component using button and input */
+interface ButtonDatalistInterface {
+  /** Set options for being selected */
+  options: string[];
+  /** Label of the button */
+  buttonLabel?: string;
+  /** Set font family */
+  family?: string | null;
+  /** Tringgers and action when the button is clicked */
+  onClick: Function;
+  /** Pass to the component a list of pre-selected items */
+  selectedOptionsList?: string[];
+  /** Title of the component */
+  titleComponent?: string | null;
+}
+
 /**
  * Data list component using button and input
  * @param {string[]} options Set options for being selected
  * @param {string[]} buttonLabel Label of the button
- * @param {string | null} titleComponent Title of the component
  * @param {string} family Set font family
  * @param {string | null} onClick Tringgers and action when the button is clicked
  * @param {Function} selectedOptionsList Pass to the component a list of pre-selected items
+ * @param {string | null} titleComponent Title of the component
  */
-
-interface ButtonDatalistInterface {
-  options: string[];
-  selectedOptionsList?: string[];
-  buttonLabel?: string;
-  titleComponent?: string | null;
-  family?: string | null;
-  onClick: Function;
-}
 
 const ButtonDatalist = ({
   options,
@@ -35,7 +42,8 @@ const ButtonDatalist = ({
   family,
   onClick,
   selectedOptionsList = [],
-}: ButtonDatalistInterface) => {
+  ...rest
+}: ButtonDatalistInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const [optionList, setOptionList] = useState<string[]>(options);
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>(
@@ -48,6 +56,7 @@ const ButtonDatalist = ({
       configuration={configuration}
       show={showOptions}
       family={family}
+      {...rest}
     >
       {titleComponent && (
         <Container
@@ -64,8 +73,7 @@ const ButtonDatalist = ({
       <Container expandHorizontal top='xs' bottom='sm' horizontal='xs'>
         <Input
           icon='🔎'
-          label={null}
-          size='small'
+          inputSize='small'
           onClick={() => setShowOptions(!showOptions)}
           onChange={(e: any) => {
             /* istanbul ignore if */
@@ -134,8 +142,8 @@ const ButtonDatalist = ({
           colors={{}}
           variant='border'
           size='small'
-          onClick={() => {
-            onClick();
+          onClick={(e: any) => {
+            if (onClick) onClick(e);
             return selectedOptions;
           }}
         />

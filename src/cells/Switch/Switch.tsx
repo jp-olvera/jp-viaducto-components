@@ -3,48 +3,52 @@ import React, { useState, useContext } from 'react';
 import { ConfigContext } from '../../providers';
 import { StyledSwitch } from './StyledSwitch';
 
-/**
- * Switch component as input
- * @param {string} size Size of the input
- * @param {string} color Color for the switch
- * @param {boolean} disabled Enable/disable input
- * @param {string} id ID fot the input
- */
+/**  Input masked as Switch component  */
 interface SwitchInterface {
+  /** Color for the switch */
   color?: string;
-  size?: string;
+  /** Enable/disable input */
   disabled?: boolean;
-  id?: string;
+  /** Size of the input */
+  inputSize?: string;
+  /** Triggers an action */
   change?: Function;
 }
 
+/**
+ * Input masked as Switch component
+ * @param {string} color Color for the switch
+ * @param {boolean} disabled Enable/disable input
+ * @param {string} inputSize Size of the input
+ * @param {Function} change Triggers an action
+ */
+
 const Switch = ({
   color = '#9060EB',
-  size = 'lg',
+  inputSize = 'lg',
   disabled = false,
-  id,
   change = () => {},
   ...rest
-}: SwitchInterface) => {
+}: SwitchInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
   const { configuration } = useContext(ConfigContext);
   const [check, setCheck] = useState(false);
   return (
     <StyledSwitch
-      htmlFor={id}
+      htmlFor={rest.id}
       configuration={configuration}
       color={color}
-      size={size}
+      size={inputSize}
       disabled={disabled}
-      data-testid={id}
+      data-testid={rest.id}
       check={check}
       {...rest}
     >
       <input
         type='checkbox'
-        id={id}
-        onChange={() => {
+        id={rest.id}
+        onChange={(e) => {
           setCheck(!check);
-          change();
+          if (change) change(e);
         }}
         disabled={disabled}
       />

@@ -3,6 +3,26 @@ import React, { useContext } from 'react';
 import { ConfigContext } from '../../providers';
 import { StyledCollapsibleCard, StyledCollapse } from './StyledCardCollapsible';
 
+/** Card Collapsible component */
+interface CardCollapsibleInterface {
+  /** Set the collapse prop to hide content */
+  collapse?: boolean;
+  /** Set the elevation prop */
+  elevation?: number;
+  /** Set the elevation direction shadow */
+  elevationDirection?: string;
+  /** Set the main content for the card */
+  mainContent: any;
+  /** Set the collapsible content for the card */
+  collapseContent?: any;
+  /** Set the breakpoint size for responsive design */
+  breakpoint?: string;
+  /** Overrides the transitionTimingFunction */
+  transition?: string;
+  /** Set font family */
+  family?: string;
+}
+
 /**
  * Card Collapsible component
  * @param {boolean} collapse Set the collapse prop to hide content
@@ -15,16 +35,6 @@ import { StyledCollapsibleCard, StyledCollapse } from './StyledCardCollapsible';
  * @param {string} family Set font family
  */
 
-interface CardCollapsibleInterface {
-  collapse?: boolean;
-  elevation?: number;
-  elevationDirection?: string;
-  mainContent: any;
-  collapseContent?: any;
-  breakpoint?: string;
-  transition?: string;
-  family?: string;
-}
 const CardCollapsible = ({
   collapse = false,
   elevation = 1,
@@ -35,7 +45,7 @@ const CardCollapsible = ({
   transition,
   family,
   ...rest
-}: CardCollapsibleInterface) => {
+}: CardCollapsibleInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
 
   return (

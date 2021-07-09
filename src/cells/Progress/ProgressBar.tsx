@@ -3,19 +3,25 @@ import React, { useContext } from 'react';
 import { StyledProgressBar } from './StyleLoader';
 import { ConfigContext } from '../../providers/ConfigProvider';
 
+/** Progress bar component */
+interface ProgressBarInterface {
+  /** Set the color of the progress */
+  color?: string;
+  /** Set the completed steps in the bar */
+  completedSteps: number;
+  /** Set the total steps to divide the progress bar */
+  totalSteps: number;
+  /** Overrides the transitionTimingFunction */
+  transition?: string;
+}
+
 /**
  * Progress bar component
- * @param {Number} totalSteps Set the total steps to divide the progress bar
- * @param {Number} completedSteps Set the completed steps in the bar
- * @param {String} transition Overrides the transitionTimingFunction
  * @param {String} color Set the color of the progress
+ * @param {Number} completedSteps Set the completed steps in the bar
+ * @param {Number} totalSteps Set the total steps to divide the progress bar
+ * @param {String} transition Overrides the transitionTimingFunction
  */
-interface ProgressBarInterface {
-  totalSteps: number;
-  completedSteps: number;
-  transition?: string;
-  color?: string;
-}
 
 const ProgressBar = ({
   totalSteps,
@@ -23,7 +29,7 @@ const ProgressBar = ({
   color = '#3AE25F',
   transition,
   ...rest
-}: ProgressBarInterface) => {
+}: ProgressBarInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   return (
     <StyledProgressBar

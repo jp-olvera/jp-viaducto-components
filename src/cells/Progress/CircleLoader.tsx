@@ -2,6 +2,24 @@ import React, { useContext } from 'react';
 import StyledLoader from './StyleLoader';
 import { ConfigContext } from '../../providers/ConfigProvider';
 
+/** Circle loader component indicator for set the visual steps completed */
+interface CircleLoaderInterface {
+  /** Set the width of the svg stroke */
+  strokeWidth?: number;
+  /** Set the stroke-dasharray */
+  circumference?: number;
+  /** Indicates actual step */
+  actualProgress?: number;
+  /** Indicates the real progress */
+  currentProgress?: number;
+  /** Set the circle radius */
+  radius?: number;
+  /** Overrides the transitionTimingFunction */
+  transition?: string;
+  /** Set the color of the steps completed/actual progress */
+  color?: string;
+}
+
 /**
  * Circle loader component indicator for set the visual steps completed
  * @param {number} strokeWidth Set the width of the svg stroke
@@ -13,16 +31,6 @@ import { ConfigContext } from '../../providers/ConfigProvider';
  * @param {String} color Set the color of the steps completed/actual progress
  */
 
-interface CircleLoaderInterface {
-  strokeWidth?: number;
-  circumference?: number;
-  actualProgress?: number;
-  currentProgress?: number;
-  radius?: number;
-  transition?: string;
-  color?: string;
-}
-
 const CircleLoader = ({
   strokeWidth = 0,
   circumference = 0,
@@ -31,7 +39,7 @@ const CircleLoader = ({
   radius = 0,
   color = '#3AE25F',
   ...rest
-}: CircleLoaderInterface) => {
+}: CircleLoaderInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   return (
     <StyledLoader data-testid='loader' configuration={configuration} {...rest}>

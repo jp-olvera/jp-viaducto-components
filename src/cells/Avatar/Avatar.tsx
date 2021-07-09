@@ -2,13 +2,32 @@ import React from 'react';
 
 import StyledAvatar from './StyledAvatar';
 import { SIZE } from './constants';
+/** Avatar component is a img HTML tag with a circular shape */
+export interface AvatarProps {
+  /** The path of the image */
+  src: string;
+  /** HTML alt attribute */
+  alt: string;
+  /** The size of the image (large or default) */
+  size?: string;
+  /** Custom height */
+  height?: string;
+  /** Custom width */
+  width?: string;
+  /** Your own clip-path polygon */
+  clipPath?: string | null;
+}
 
 /**
  * Avatar component is a img HTML tag with a circular shape
- * @param {String} src The path of the image
- * @param {size} size The size of the image (large or default)
- * @param {string} alt alt attribute
+ * @param {string} src The path of the image
+ * @param {string} alt HTML alt attribute
+ * @param {string} size The size of the image (large or default)
+ * @param {string} height Custom height
+ * @param {string} width Custom width
+ * @param {string} clipPath Your own clip-path polygon
  */
+
 const Avatar = ({
   src,
   alt,
@@ -17,7 +36,7 @@ const Avatar = ({
   width,
   clipPath = null,
   ...rest
-}: AvatarProps) => {
+}: AvatarProps & React.ImgHTMLAttributes<HTMLImageElement>) => {
   let nWidth = '50px';
   let nHeight = '50px';
   switch (size) {
@@ -52,12 +71,3 @@ const Avatar = ({
 };
 
 export default Avatar;
-
-export interface AvatarProps {
-  src: string;
-  alt: string;
-  size?: string;
-  height?: string;
-  width?: string;
-  clipPath?: string | null;
-}

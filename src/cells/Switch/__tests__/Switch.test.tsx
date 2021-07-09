@@ -1,13 +1,13 @@
 /* eslint-env jest */
 
 import React from 'react';
-import '@testing-library/jest-dom/extend-expect';
+
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Switch } from '..';
 
 describe('<Switch/>', () => {
   test('should render properly', () => {
-    render(<Switch id='Switch' size='xl' />);
+    render(<Switch id='Switch' inputSize='xl' />);
     expect(screen.getByTestId('Switch')).toBeVisible();
   });
 
@@ -29,7 +29,9 @@ describe('<Switch/>', () => {
   });
 
   test('should be disabled', () => {
-    const { getByTestId } = render(<Switch id='Switch1' size='sm' disabled />);
+    const { getByTestId } = render(
+      <Switch id='Switch1' inputSize='sm' disabled />,
+    );
     expect(
       getByTestId('Switch1').querySelector('input')?.hasAttribute('disabled'),
     ).toEqual(true);
@@ -37,7 +39,7 @@ describe('<Switch/>', () => {
 
   test('should not be disabled', () => {
     const { getByTestId } = render(
-      <Switch id='Switch1' size='md' disabled={false} />,
+      <Switch id='Switch1' inputSize='md' disabled={false} />,
     );
     expect(
       getByTestId('Switch1').querySelector('input')?.hasAttribute('disabled'),

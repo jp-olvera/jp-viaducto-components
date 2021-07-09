@@ -7,20 +7,57 @@ import { Wrapper } from './StyledInput';
 import { getIcon } from './Icon';
 
 creditCardType.resetModifications();
+/** Input component wrapped with label and span tags for better UX */
+interface InputInterface {
+  /** The border type for the input (full, bottom, overlap) */
+  border?: string;
+  /** set the color border */
+  borderColor?: string;
+  /** Set the input disabled */
+  disabled?: boolean;
+  /** Set font family */
+  family?: string;
+  /** Helper icon to support the user */
+  icon?: any;
+  /** set the icon color */
+  iconColor?: string;
+  /** set the icon helper */
+  iconHelper?: any;
+  /** set the icon required */
+  iconRequired?: any;
+  /** The caption for the input */
+  label?: string;
+  /** Set a function triggered when onChange is called */
+  onChange?: Function;
+  /** Set a function triggered when onClick is called */
+  onClick?: Function;
+  /** Set a function triggered when onKeyUp is called */
+  onKeyUp?: Function;
+  /** Icon for mark input is required */
+  required?: boolean;
+  /** Set the height of the input */
+  inputSize?: string;
+  /** Set the input type (text, password, email, etc.) */
+  type?: string;
+}
 
 /**
  * Input component wrapped with label and span tags for better UX
- * @param {String} border The border type for the input (full, bottom, overlap)
- * @param {String} type Set the input type (text, password, email, etc.)
- * @param {String} icon Helper icon to support the user
- * @param {String} size Set the height of the input
- * @param {boolean} disabled Set the input disabled
- * @param {String} label The caption for the input
- * @param {boolean} required Icon for mark input is required
- * @param {string} id set the id for the input
+ * @param {string} border The border type for the input (full, bottom, overlap)
  * @param {string} borderColor set the color border
- * @param {string} iconColor set the icon helper
- * @param {any} value the value for the input
+ * @param {boolean} disabled Set the input disabled
+ * @param {boolean} family Set font family
+ * @param {any} icon Helper icon to support the user
+ * @param {string} iconColor set the icon color
+ * @param {any} iconHelper set the icon helper
+ * @param {any} iconRequired set the icon required
+ * @param {string} label The caption for the input
+ * @param {Function} onChange Set a function triggered when onChange is called
+ * @param {Function} onClick  Set a function triggered when onClick is called
+ * @param {Function} onKeyUp  Set a function triggered when onKeyUp is called
+ * @param {boolean} required Icon for mark input is required
+ * @param {string} inputSize Set the height of the input
+ * @param {string} type Set the input type (text, password, email, etc.)
  */
 
 const Input = ({
@@ -31,21 +68,20 @@ const Input = ({
   icon = null,
   iconRequired = null,
   iconHelper = null,
-  size = 'default',
+  inputSize = 'default',
   required,
   borderColor = '#001D48',
   iconColor = '#2329D6',
-  value = '',
   onChange = () => {},
   onClick,
   onKeyUp,
   family,
   ...rest
-}: any) => {
+}: InputInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
   const [cardType, setCardType] = useState('card');
   const [placeIcon, setIcon] = useState(icon);
   const { configuration } = useContext(ConfigContext);
-  const [newValue, setNewValue] = useState<any>(value);
+  const [newValue, setNewValue] = useState<any>(null);
   const inputRef = useRef<any>();
 
   const setCardIcon = (ev: any) => {
@@ -75,9 +111,11 @@ const Input = ({
   return (
     <>
       <Wrapper
-        border={border !== 'bottom' && size === 'xsmall' ? 'outside' : border}
+        border={
+          border !== 'bottom' && inputSize === 'xsmall' ? 'outside' : border
+        }
         hasIcon={icon !== null}
-        size={size}
+        size={inputSize}
         configuration={configuration}
         borderColor={borderColor}
         iconColor={iconColor}
@@ -104,11 +142,11 @@ const Input = ({
             );
             onChange(ev);
           }}
-          onClick={() => {
-            if (onClick) onClick();
+          onClick={(e) => {
+            if (onClick) onClick(e);
           }}
-          onKeyUp={() => {
-            if (onKeyUp) onKeyUp();
+          onKeyUp={(e) => {
+            if (onKeyUp) onKeyUp(e);
           }}
           type={
             type === 'card' || type === 'phone'
@@ -122,11 +160,8 @@ const Input = ({
           id={rest.id}
           required
           disabled={disabled}
-          placeholder={
-            label === null ? rest.placeholder : (disabled && value) || label
-          }
           min={rest.min}
-          value={newValue}
+          value={rest.value || newValue}
           max={rest.max}
           {...rest}
         />

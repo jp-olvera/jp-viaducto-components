@@ -3,27 +3,40 @@ import styled from 'styled-components';
 import { AvatarProps } from '../../cells/Avatar/Avatar';
 import { Avatar, Spacer } from '../../cells';
 
-interface ATI {
-  children: any;
-  avatar: AvatarProps;
-  spacing?: string;
-  reverse?: boolean;
-}
-
 const StyledAvatarWithText = styled.div < any > `
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: ${(p) => `${p.reverse ? 'row-reverse' : 'row'}`};
 `;
+/** AvatarWithText component */
+interface ATI {
+  /** Child element */
+  children: any;
+  /** Avatar component props */
+  avatar: AvatarProps;
+  /** Horizontal between avatar and children */
+  spacing?: string;
+  /** Set the Avatar as last child */
+  reverse?: boolean;
+}
+
+/**
+ * AvatarWithText component
+ * @param {any} children Child element
+ * @param {AvatarProps} avatar Avatar component props
+ * @param {string} spacing Horizontal between avatar and children
+ * @param {boolean} reverse Set the Avatar as last child
+ */
 
 const AvatarWithText = ({
   children,
   avatar,
   spacing = 'sm',
   reverse = false,
-}: ATI) => (
-  <StyledAvatarWithText reverse={reverse}>
+  ...rest
+}: ATI & React.HTMLAttributes<HTMLDivElement>) => (
+  <StyledAvatarWithText reverse={reverse} {...rest}>
     <Avatar {...avatar} />
     <Spacer direction='horizontal' size={spacing} />
     {children}
