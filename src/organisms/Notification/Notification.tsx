@@ -6,6 +6,24 @@ import { StyledNotification } from './StyledNotification';
 import { Paragraph } from '../../cells/Paragraph';
 import { BareButton } from '../../cells/BareButton';
 
+/** Notification component with close button */
+interface NotificationInterface {
+  /** Text label for the notification */
+  text: string;
+  /** Icon Helper */
+  icon?: any;
+  /** Attribute for shown/hide component */
+  active: boolean;
+  /** Set to true for stick at top or false to stick in bottom */
+  top?: boolean;
+  /** Elevation indicator for shadows data */
+  elevation?: number;
+  /** Light indicator for shadows data */
+  elevationDirection?: string;
+  /** Overrides transitionTimingFunction */
+  transition?: string;
+}
+
 /**
  * Notification component with close button
  * @param {string} text Text label for the notification
@@ -14,16 +32,8 @@ import { BareButton } from '../../cells/BareButton';
  * @param {boolean} top Set to true for stick at top or false to stick in bottom
  * @param {number} elevation Elevation indicator for shadows data
  * @param {string} elevationDirection Light indicator for shadows data
+ * @param {string} transition Overrides transitionTimingFunction
  */
-interface NotificationInterface {
-  text: string;
-  icon?: any;
-  active: boolean;
-  top?: boolean;
-  elevation?: number;
-  elevationDirection?: string;
-  transition?: string;
-}
 
 const Notification = ({
   text,
@@ -33,7 +43,7 @@ const Notification = ({
   elevation = 1,
   elevationDirection = '',
   ...rest
-}: NotificationInterface) => {
+}: NotificationInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const [isActive, setIsActive] = useState(false);
   const ref = useRef<HTMLElement>(null);

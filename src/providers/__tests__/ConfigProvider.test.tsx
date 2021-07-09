@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React, { useContext, useEffect } from 'react';
-import '@testing-library/jest-dom/extend-expect';
+
 import styled from 'styled-components';
 import config from '../../utils/config';
 import { render } from '../../test-utils';

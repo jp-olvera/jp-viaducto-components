@@ -5,7 +5,7 @@ import { render, screen } from '../../../test-utils';
 import {
   Progress, CircleLoader, ProgressBar, StepLoader,
 } from '..';
-import '@testing-library/jest-dom/extend-expect';
+
 import '@testing-library/jest-dom';
 
 describe('Progress component', () => {

@@ -3,6 +3,24 @@ import React, { useContext } from 'react';
 import { ConfigContext } from '../../providers';
 import { StyledNormalCard } from './StyledCard';
 
+/** Card component */
+interface CardInterface {
+  /** Source of the image of top image */
+  src?: any;
+  /** Body component */
+  children?: any;
+  /** Elevation indicator for shadows data */
+  elevation?: number;
+  /** Light indicator for shadows data */
+  elevationDirection?: string;
+  /** Overrides transitionTimingFunction */
+  transition?: string;
+  /** Set font family */
+  family?: string;
+  /** Set the breakpoint size for responsive design */
+  breakpoint?: string;
+}
+
 /**
  * Card component
  * @param {any} src Source of the image of top image
@@ -13,15 +31,6 @@ import { StyledNormalCard } from './StyledCard';
  * @param {string} family Set font family
  * @param {string} breakpoint Set the breakpoint size for responsive design
  */
-interface CardInterface {
-  src?: any;
-  children?: any;
-  elevation?: number;
-  elevationDirection?: string;
-  transition?: string;
-  family?: string;
-  breakpoint?: string;
-}
 
 const Card = ({
   src = null,
@@ -31,7 +40,7 @@ const Card = ({
   family,
   breakpoint = 'md',
   ...rest
-}: CardInterface) => {
+}: CardInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const hasOnlyImage: boolean = children === null;
 

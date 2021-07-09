@@ -3,7 +3,6 @@
 import React from 'react';
 import { render, fireEvent } from '../../../test-utils';
 import { Range } from '..';
-import '@testing-library/jest-dom/extend-expect';
 
 describe('<Range/> component', () => {
   const mockFn = jest.fn();

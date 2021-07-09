@@ -11,11 +11,24 @@ const Div = styled.div < DivProps > `
   flex-wrap: wrap;
 `;
 
+/** Row component */
 interface RowProps {
+  /** Child element */
   children?: React.ReactNode;
-  style?: any;
+  /** CSS style object */
+  style?: React.CSSProperties;
 }
-const Row = ({ children = null, style = {}, ...rest }: RowProps) => {
+
+/**
+ * Row component
+ * @param {React.ReactNode} children Child element
+ * @param {React.CSSProperties} style CSS style object
+ */
+const Row = ({
+  children = null,
+  style = {},
+  ...rest
+}: RowProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { gap } = useContext(GridContext);
 
   return (

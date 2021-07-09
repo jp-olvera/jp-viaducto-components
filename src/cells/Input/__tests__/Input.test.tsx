@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, fireEvent } from '../../../test-utils';
-import '@testing-library/jest-dom/extend-expect';
 import { Input } from '..';
 import { mask } from '../Input';
 
@@ -8,7 +7,7 @@ describe('<Input/>', () => {
   test('should render input', () => {
     const { container } = render(
       <Input
-        size='default'
+        inputSize='default'
         label='Im the input tested'
         family={null}
         type='card'
@@ -21,7 +20,7 @@ describe('<Input/>', () => {
   test('should render input another value', () => {
     const { container } = render(
       <Input
-        size='small'
+        inputSize='small'
         label='Im the input tested'
         type='card'
         value={555555}
@@ -34,7 +33,7 @@ describe('<Input/>', () => {
 
   test('should render input xsmall border overlap', () => {
     const { container } = render(
-      <Input size='xsmall' border='overlap' label='a' value='a' />,
+      <Input inputSize='xsmall' border='overlap' label='a' value='a' />,
     );
     const input = container.querySelector('input');
     fireEvent.focus(input || window);
@@ -44,7 +43,7 @@ describe('<Input/>', () => {
   test('should render input and change the value', () => {
     const { container } = render(
       <Input
-        size='xsmall'
+        inputSize='xsmall'
         label='Master'
         type='card'
         border='overlap'
@@ -64,7 +63,7 @@ describe('<Input/>', () => {
   test('should render input and change the value with other border', () => {
     const { container } = render(
       <Input
-        size='xsmall'
+        inputSize='xsmall'
         label='Master'
         iconHelper='❤'
         type='card'
@@ -81,7 +80,7 @@ describe('<Input/>', () => {
 
   test('should render input and change the value with amex card', () => {
     const { container } = render(
-      <Input size='large' label='Amex' type='card' border='overlap' />,
+      <Input inputSize='large' label='Amex' type='card' border='overlap' />,
     );
     const input = container.querySelector('input');
     fireEvent.change(input || window || window, {
@@ -92,7 +91,7 @@ describe('<Input/>', () => {
   test('should render input and change the value with no svg card', () => {
     const { container } = render(
       <Input
-        size='small'
+        inputSize='small'
         label='Im the input tested'
         border='outside'
         type='card'
@@ -108,7 +107,7 @@ describe('<Input/>', () => {
   test('should render input and change the value with no svg card no border', () => {
     const { container } = render(
       <Input
-        size='xsmall'
+        inputSize='xsmall'
         label='Im the input tested'
         border='bottom'
         type='card'
@@ -125,7 +124,7 @@ describe('<Input/>', () => {
   });
 
   test('should render input with label', () => {
-    const { container } = render(<Input size='default' label='Input' />);
+    const { container } = render(<Input inputSize='default' label='Input' />);
     const label = container.querySelector('.label');
     expect(label?.innerHTML).toContain('Input');
   });
@@ -135,7 +134,7 @@ describe('<Input/>', () => {
       <Input
         label='label'
         height={null}
-        size={null}
+        inputSize={null}
         disabled
         type='card'
         border='overlap'
@@ -167,7 +166,7 @@ describe('<Input/>', () => {
   });
   test('should render a simple phone input', () => {
     const { container } = render(
-      <Input label='label' type='phone' border='overlap' size='xsmall' />,
+      <Input label='label' type='phone' border='overlap' inputSize='xsmall' />,
     );
     const input = container.querySelector('input');
     fireEvent.change(input || window, { target: { value: 3654 } });

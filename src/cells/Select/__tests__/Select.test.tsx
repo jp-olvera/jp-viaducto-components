@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { render, fireEvent } from '../../../test-utils';
-import '@testing-library/jest-dom/extend-expect';
 import { Select } from '..';
 
 describe('<Select/>', () => {
@@ -18,14 +17,14 @@ describe('<Select/>', () => {
   test('should render properly with custom attributes', () => {
     const { container } = render(
       <Select
-        size='large'
+        inputSize='large'
         border={{ top: '1px solid red' }}
         fontSize='lg'
         fontFamily='Arial'
         background='blue'
         color='white'
         radius={2}
-        title={{ label: 'a', position: 'in' }}
+        titleProps={{ label: 'a', position: 'in' }}
       >
         <option value='B'>B</option>
       </Select>,
@@ -36,14 +35,14 @@ describe('<Select/>', () => {
     test('should render with sm size', () => {
       const { container } = render(
         <Select
-          size='small'
+          inputSize='small'
           border={{ top: '1px solid red' }}
           fontSize='lg'
           fontFamily='Arial'
           background='blue'
           color='white'
           radius={2}
-          title={null}
+          titleProps={null}
         >
           <option value='B'>B</option>
         </Select>,
@@ -53,14 +52,14 @@ describe('<Select/>', () => {
     test('should render with lg size', () => {
       const { container } = render(
         <Select
-          size='aaaa'
+          inputSize='aaaa'
           border={{ top: '1px solid red' }}
           fontSize='lg'
           fontFamily='Arial'
           background='blue'
           color='white'
           radius={2}
-          title={null}
+          titleProps={null}
         >
           <option value='B'>B</option>
         </Select>,
@@ -71,7 +70,7 @@ describe('<Select/>', () => {
   test('should render properly with some custom setting', () => {
     const { container } = render(
       <Select
-        size='xsmall'
+        inputSize='xsmall'
         border={{ top: '1px solid red' }}
         height={undefined}
         fontSize='lg'
@@ -79,7 +78,7 @@ describe('<Select/>', () => {
         background='blue'
         color='white'
         radius={2}
-        title={{ label: 'a', position: 'on' }}
+        titleProps={{ label: 'a', position: 'on' }}
       >
         <option value='B'>B</option>
       </Select>,
@@ -90,9 +89,9 @@ describe('<Select/>', () => {
     const { getByTestId, queryByText } = render(
       <Select
         radius='2rem'
-        size='small'
+        inputSize='small'
         height='2rem'
-        title={{ label: 'a', position: 'over' }}
+        titleProps={{ label: 'a', position: 'over' }}
       >
         {options.map((option) => (
           <option key={option} value={option}>
@@ -107,7 +106,11 @@ describe('<Select/>', () => {
   });
   test('should render select component with style props', () => {
     const { getByTestId, queryByText } = render(
-      <Select radius='2rem' size='small' title={{ label: 'a', position: 'in' }}>
+      <Select
+        radius='2rem'
+        inputSize='small'
+        titleProps={{ label: 'a', position: 'in' }}
+      >
         {options.map((option) => (
           <option key={option} value={option}>
             {option}

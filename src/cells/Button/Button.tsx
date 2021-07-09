@@ -9,24 +9,77 @@ const defaultColors = {
   click: '#C3A24A',
   text: '#000',
 };
-
+/** Button component overrides HTML button tag. This components accepts icons and/or labels */
+interface ButtonInterface {
+  /** Set button with as 100% of the container */
+  block?: boolean;
+  /** Color of the button (with its states) */
+  colors?:
+    | string
+    | null
+    | {
+        default?: string;
+        hover?: string;
+        click?: string;
+        text?: string;
+      };
+  /** Enable/Disable button */
+  disabled?: boolean;
+  /** Size of the component */
+  height?: string | null;
+  /** Icon component for the button */
+  icon?: any;
+  /** The horizontal spacing between the label and icon (if both are defined) */
+  iconSpacing?: string;
+  /** Set loading button prop */
+  isLoading?: boolean;
+  /** Set valid button prop */
+  isValid?: boolean | null;
+  /** Label for the button */
+  label?: string | null;
+  /** Indicates if the icon will be leading */
+  lead?: boolean;
+  /** Left spacing between the content and the button */
+  leftSpacing?: string | null;
+  /** Border Radius size */
+  radius?: string;
+  /** Right spacing between the content and the button */
+  rightSpacing?: string | null;
+  /** Button variant (color) */
+  shapeColor?: string;
+  /** Size of the button */
+  size?: string;
+  /** Button type (for the color) */
+  type?: string;
+  /** Button visual style */
+  variant?: string;
+  /** Set the transitionTimingFunction */
+  transition?: string;
+  /** Action to execute */
+  onClick?: Function;
+  /** Set the long loading bar */
+  useLongLoading?: boolean;
+}
 /**
  * Button component overrides HTML button tag. This components accepts icons and/or labels
- * @param {String} label Label for the button
- * @param {String} size Size of the button
- * @param {String} shapeColor Button variant (color)
- * @param {String} variant Button visual style
+ * @param {boolean} block Set button with as 100% of the container
  * @param {String} colors Color of the button (with its states)
- * @param {String} iconSpacing The horizontal spacing between the label and icon (if both are defined)
- * @param {String} leftSpacing Left spacing between the content and the button
- * @param {String} rightSpacing Right spacing between the content and the button
- * @param {String} transition Set the transitionTimingFunction
- * @param {Icon} icon Icon component for the button
- * @param {string} height Size of the component
  * @param {boolean} disabled Enable/Disable button
- * @param {String} block Set button with as 100% of the container
+ * @param {string} height Size of the component
+ * @param {any} icon Icon component for the button
+ * @param {String} iconSpacing The horizontal spacing between the label and icon (if both are defined)
+ * @param {Boolean} isLoading Set loading button prop
+ * @param {Boolean} isValid Set valid button prop
+ * @param {String} label Label for the button
  * @param {Boolean} lead Indicates if the icon will be leading
+ * @param {String} leftSpacing Left spacing between the content and the button
+ * @param {String} radius Border Radius size
+ * @param {String} rightSpacing Right spacing between the content and the button
+ * @param {String} shapeColor Button variant (color)
+ * @param {String} size Size of the button
  * @param {string} type Button type (for the color)
+ * @param {String} variant Button visual style
+ * @param {String} transition Set the transitionTimingFunction
  * @param {Function} onClick Action to execute
  * @param {Boolean} useLongLoading Set the long loading bar
  */
@@ -53,7 +106,7 @@ const Button = forwardRef(
       variant = 'solid',
       useLongLoading = false,
       ...rest
-    }: any,
+    }: ButtonInterface & React.ButtonHTMLAttributes<HTMLButtonElement>,
     ref,
   ) => {
     const { configuration } = useContext(ConfigContext);

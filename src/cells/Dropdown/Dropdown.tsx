@@ -8,10 +8,32 @@ import { Activator, Wrapper, ItemsContainer } from './StyledDropdown';
 import Icon from './sorting.svg';
 import Drop from './Drop';
 import { refs } from './DropdownRef';
+/** Dropdown component */
+interface DropdownProps {
+  /** border painted */
+  border?:
+    | string
+    | { top?: string; bottom?: string; left?: string; right?: string };
+  /** List of elements to put in the dropdown box */
+  content?: React.ReactNode[] | null;
+  /** Text to show without any option selected */
+  defaultText: string;
+  /** font family for the dropdown */
+  family?: string | null;
+  /** size of the dropdown */
+  height?: string;
+  /** Hover color for the content option */
+  hoverColor?: string;
+  /** Triggers an action when an element is selected */
+  onClick: Function;
+  /** size of the dropdown */
+  size?: string;
+}
+
 /**
  * Dropdown component
  * @param {any} border border painted
- * @param {React.ReactNode[] | null} content List of items to put in teh dropdown box
+ * @param {React.ReactNode[] | null} content List of elements to put in the dropdown box
  * @param {string} defaultText Text to show without any option selected
  * @param {string} family font family for the dropdown
  * @param {string} height size of the dropdown
@@ -20,18 +42,6 @@ import { refs } from './DropdownRef';
  * @param {string} size size of the dropdown
  */
 
-interface DropdownProps {
-  border?:
-    | string
-    | { top?: string; bottom?: string; left?: string; right?: string };
-  content?: React.ReactNode[] | null;
-  defaultText: string;
-  family?: string | null;
-  height?: string;
-  hoverColor?: string;
-  onClick: Function;
-  size?: string;
-}
 const Dropdown = ({
   hoverColor = '#ffd6ce',
   border = 'none',
@@ -42,7 +52,7 @@ const Dropdown = ({
   height,
   onClick,
   ...rest
-}: DropdownProps) => {
+}: DropdownProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const [isOpen, setIsOpen] = useState(false);
   const activatorRef = useRef<HTMLButtonElement>(null);

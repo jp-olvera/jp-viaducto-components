@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React, { useState, useRef } from 'react';
-import '@testing-library/jest-dom/extend-expect';
+
 import '@testing-library/react';
 import { render, fireEvent } from '../../../test-utils';
 import { Popover } from '..';

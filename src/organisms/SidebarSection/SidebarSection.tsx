@@ -6,6 +6,25 @@ import { Spacer } from '../../cells';
 
 import StyledSidebarSection, { Submenu } from './StyledSidebarSection';
 import MenuTitle from './MenuTitle';
+
+/** Sidebar elements for a Sidebar Section */
+interface SidebarProps {
+  /** Title's section */
+  title: string;
+  /** Horizontal top separator for each section */
+  separator?: boolean;
+  /** Attribute for clickable section top/bottom */
+  isDropdown?: boolean;
+  /** Attribute for clickable section left/right */
+  isMenu?: boolean;
+  /** Overrides the transitionTimingFunction */
+  transition?: string;
+  /** Place an icon for the item */
+  icon?: any;
+  /** Element to place */
+  children?: any;
+}
+
 /**
  * Sidebar elements for a Sidebar Section
  *
@@ -18,16 +37,6 @@ import MenuTitle from './MenuTitle';
  * @param {any} children Element to place
  */
 
-interface SidebarProps {
-  title: string;
-  separator?: boolean;
-  isDropdown?: boolean;
-  isMenu?: boolean;
-  transition?: string;
-  icon?: any;
-  children?: any;
-}
-
 const SidebarSection = ({
   separator = false,
   title,
@@ -37,7 +46,7 @@ const SidebarSection = ({
   transition = 'ease',
   children,
   ...rest
-}: SidebarProps) => {
+}: SidebarProps & React.HTMLAttributes<HTMLDivElement>) => {
   const [isActive, setIsActive] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const backRefButton = useRef<HTMLButtonElement>(null);

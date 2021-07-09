@@ -1,8 +1,6 @@
 /* eslint-env jest */
 
 import React from 'react';
-import '@testing-library/jest-dom/extend-expect';
-import '@testing-library/react';
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Tab } from '..';
 
@@ -13,7 +11,7 @@ describe('<Tab/>', () => {
     render(
       <Tab
         text='Tab'
-        type='warning'
+        tabType='warning'
         horizontalSpacing='sm'
         verticalSpacing='aaaa'
         icon='❤'
@@ -39,7 +37,7 @@ describe('<Tab/>', () => {
   });
 
   test('should render default props', () => {
-    const { container } = render(<Tab />);
+    const { container } = render(<Tab text='Tab' />);
     expect(container).toMatchSnapshot();
   });
 

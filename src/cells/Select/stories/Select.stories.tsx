@@ -8,7 +8,7 @@ const config: SBConfigI = {
   component: Select,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
-    size: {
+    inputSize: {
       description: 'Set size of the select component',
       type: { summary: 'String', required: false },
       table: {
@@ -69,7 +69,7 @@ const config: SBConfigI = {
       type: { summary: 'Function', required: false },
       table: { defaultValue: { summary: null } },
     },
-    title: {
+    titleProps: {
       description:
         'If it is defined, set a title in/on/over the select wrapper (affects the height)',
       type: { summary: '{label:string; position: string}', required: false },
@@ -98,7 +98,7 @@ const Template = (args: typeof Default) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  size: 'small',
+  inputSize: 'small',
   border: {
     top: '1px solid black',
     right: '1px solid black',
@@ -112,13 +112,13 @@ Default.args = {
   radius: '',
   onChange: () => {},
   multiple: false,
-  title: null,
+  titleProps: null,
 };
 
 export const Multiple = Template.bind({});
 
 Multiple.args = {
-  size: 'default',
+  inputSize: 'default',
   border: {
     top: '1px solid black',
     right: '1px solid black',
@@ -151,7 +151,7 @@ const withTitleTemplate = (args: typeof withTitle) => (
 export const withTitle = withTitleTemplate.bind({});
 
 withTitle.args = {
-  size: 'default',
+  inputSize: 'default',
   border: {
     top: '1px solid black',
     right: '1px solid black',
@@ -165,5 +165,5 @@ withTitle.args = {
   radius: '',
   onChange: () => {},
   multiple: false,
-  title: { label: 'Title', position: 'in' },
+  titleProps: { label: 'Title', position: 'in' },
 };

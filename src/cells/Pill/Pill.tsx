@@ -3,31 +3,49 @@ import { ConfigContext } from '../../providers';
 import StyledPill from './StyledPill';
 import { BareButton } from '../BareButton';
 
+/** Pill component */
+interface PillInterface {
+  /** Color of the pill */
+  background?: string;
+  /** Color of the border */
+  borderColor?: string | null;
+  /** Set pill with circle border (border radius) */
+  circleBorder?: boolean;
+  /** Set the close icon */
+  closeIcon?: boolean;
+  /** Text color */
+  color?: string;
+  /** Font family */
+  family?: string | null;
+  /** Action to execute */
+  handleAction?: Function | null;
+  /** Place an icon */
+  icon?: any;
+  /** Icon as a first child component */
+  iconLead?: any;
+  /** Text in the label */
+  label?: string;
+  /** Size of the pill */
+  size?: string;
+  /** Set the vertical align */
+  verticalAlign?: string;
+}
+
 /**
  * Pill component
  * @param {string} background Color of the pill
+ * @param {string} bordercolor Color of the border
+ * @param {boolean} circleBorder Set pill with circle border (border radius)
+ * @param {string} closeIcon Set the close icon
  * @param {string} color Text color
  * @param {string} family Font family
  * @param {string} handleAction Action to execute
+ * @param {any} icon Place an icon
  * @param {any} iconLead Icon as a first child component
  * @param {string} label Text in the label
  * @param {string} size Size of the pill
- * @param {boolean} circleBorder Set pill with circle border (border radius)
+ * @param {string} verticalAling Set the vertical align
  */
-interface PillInterface {
-  label?: string;
-  iconLead?: any;
-  icon?: any;
-  background?: string;
-  color?: string;
-  size?: string;
-  family?: string | null;
-  verticalAlign?: string;
-  handleAction?: Function | null;
-  circleBorder?: boolean;
-  closeIcon?: boolean;
-  borderColor?: string | null;
-}
 
 const Pill = ({
   label,
@@ -43,7 +61,7 @@ const Pill = ({
   borderColor = null,
   closeIcon = true,
   ...rest
-}: PillInterface) => {
+}: PillInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
 
   return (
@@ -67,7 +85,9 @@ const Pill = ({
       <span>{label}</span>
       <span className='span-icon'>
         <BareButton
-          onClick={handleAction}
+          onClick={(e) => {
+            if (handleAction) handleAction(e);
+          }}
           style={{ height: '100%', display: 'flex' }}
           data-testid='btn-bare'
           close={closeIcon}

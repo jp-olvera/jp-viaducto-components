@@ -5,17 +5,32 @@ import { Paragraph } from '../../cells/Paragraph';
 import { BareButton } from '../../cells/BareButton';
 import StyledToaster from './StyledToaster';
 
+/** A toast component, you can change ts position via top and right properties */
+interface ToasterInterface {
+  icon?: any;
+  title?: string;
+  elevation?: number;
+  elevationDirection?: string;
+  transition?: string;
+  onDismiss?: Function;
+  placement?: string;
+  transitionState?: string;
+  children?: any;
+}
+
 /**
  * A toast component, you can change ts position via top and right properties
- * @param {string} text Text to be shown
  * @param {any} icon Icon Helper
  * @param {string} title The title in the top
- * @param {boolean} active Boolean that indicates if the toaster should be shown
- * @param {boolean} top Boolean that indicates if the toaster should be in top, default is true
- * @param {boolean} right Boolean that indicates if the toaster should be in right, default is true
  * @param {number} elevation Elevation indicator for shadows data
  * @param {string} elevationDirection Light indicator for shadows data
+ * @param {string} transition Overrides transitionTimingFunction
+ * @param {Function} onDismiss Trigger a function when closes the toaster
+ * @param {string} placement Set the placement of the Toaster shown
+ * @param {string} transitionState Set the transition state
+ * @param {any} children Set the child element
  */
+
 const Toaster = ({
   onDismiss,
   placement,
@@ -27,7 +42,7 @@ const Toaster = ({
   transition = 'cubic-bezier(0.2, 0, 0, 1)',
   children,
   ...rest
-}: any) => {
+}: ToasterInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const ref = useRef<HTMLElement>(null);
   const color = configuration.text.success;
@@ -58,7 +73,13 @@ const Toaster = ({
           {title}
         </Paragraph>
         <div style={{ marginLeft: 'auto' }}>
-          <BareButton data-testid='close-button' onClick={onDismiss} close />
+          <BareButton
+            data-testid='close-button'
+            onClick={(e) => {
+              if (onDismiss) onDismiss(e);
+            }}
+            close
+          />
         </div>
       </div>
       <div className='toaster-message'>

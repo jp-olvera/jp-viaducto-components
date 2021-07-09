@@ -2,8 +2,27 @@ import React, { useContext, useState } from 'react';
 import { StyledGroupTab } from './StyledGroupTab';
 
 import { ConfigContext } from '../../providers';
+
+/** GroupTab component */
+interface GTI {
+  /** Tab component */
+  children: any;
+  /** Set the color variant (type definition colors) for the tabs */
+  type?: string;
+  /** Set the horizontal spacing taking the tab content as reference */
+  horizontalSpacing?: string;
+  /** Set the horizontal spacing taking the tab content as reference */
+  verticalSpacing?: string;
+  /** Set the font size */
+  fontSize?: string;
+  /** Set the line in position selected */
+  position?: string;
+  /** Overrides the transitionTimingFunction */
+  transition?: string;
+}
+
 /**
- *
+ * GroupTab component
  * @param {Tab} children Tab component
  * @param {string} type Set the color variant (type definition colors) for the tabs
  * @param {string} horizontalSpacing Set the horizontal spacing taking the tab content as reference
@@ -12,16 +31,6 @@ import { ConfigContext } from '../../providers';
  * @param {string} position Set the line in position selected
  * @param {string} transition Overrides the transitionTimingFunction
  */
-
-interface GTI {
-  children: any;
-  type?: string;
-  horizontalSpacing?: string;
-  verticalSpacing?: string;
-  fontSize?: string;
-  position?: string;
-  transition?: string;
-}
 
 const GroupTab = ({
   children,
@@ -32,7 +41,7 @@ const GroupTab = ({
   position = 'bottom',
   transition,
   ...rest
-}: GTI) => {
+}: GTI & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const [getPosition, setPosition] = useState(0);
   const nodes = React.Children.toArray(children).filter((child) => React.isValidElement(child));

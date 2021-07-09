@@ -18,7 +18,13 @@ import {
  * An overlay implemented by the Drawer and Modal componente
  * it locks the scroll behind these components
  */
-const Overlay = ({ children, ...rest }) => {
+const Overlay = ({
+  children,
+  ...rest
+}: {
+  /** Place a child element */
+  children: any;
+} & React.HTMLAttributes<HTMLDivElement>) => {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     let doc = ownerDocument(undefined);

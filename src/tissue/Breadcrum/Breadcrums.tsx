@@ -3,6 +3,18 @@ import { StyledBreadcrums } from './StyledBreadcrum';
 import BreadcrumContext, { BreadcrumValuesProps } from './BreadcrumContext';
 import Breadcrum from './Breadcrum';
 
+/** Breadcrums component, parent of Breadcrum component */
+interface BreadcrumsProps {
+  /** React Elements, use Breadcrum for wrap the children */
+  children: React.ReactNode[];
+  /** Set the font size */
+  fontSize?: string;
+  /** Set font family */
+  family?: string;
+  /** Horizontal spacing for the item and the separator */
+  separatorSpacing?: string;
+}
+
 /**
  * Breadcrums component, parent of Breadcrum component
  * @param {React.ReactNode[]} children React Elements, use Breadcrum for wrap the children
@@ -10,18 +22,14 @@ import Breadcrum from './Breadcrum';
  * @param {string} family Set font family
  * @param {string} separatorSpacing Horizontal spacing for the item and the separator
  */
-interface BreadcrumsProps {
-  children: React.ReactNode[];
-  fontSize?: string;
-  family?: string;
-  separatorSpacing?: string;
-}
+
 const Breadcrums = ({
   fontSize = 'md',
   family = 'inherit',
   separatorSpacing = 'sm',
   children,
-}: BreadcrumsProps) => {
+  ...rest
+}: BreadcrumsProps & React.OlHTMLAttributes<HTMLOListElement>) => {
   const [showAll, setShowAll] = useState(false);
 
   const [breadcrumConfig] = useState<BreadcrumValuesProps>({
@@ -35,7 +43,7 @@ const Breadcrums = ({
   return (
     <nav aria-label='breadcrum'>
       <StyledBreadcrums>
-        <BreadcrumContext.Provider value={{ breadcrumConfig }}>
+        <BreadcrumContext.Provider value={{ breadcrumConfig }} {...rest}>
           {showAll || Children.toArray(children).length <= 4 ? (
             children
           ) : (

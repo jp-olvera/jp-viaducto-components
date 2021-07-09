@@ -13,7 +13,9 @@ exports[`<Tab/> should render default props 1`] = `
       <p
         class="StyledParagraph-sc-dbd4lw-0 kpvIeB"
         color="darkGray"
-      />
+      >
+        Tab
+      </p>
     </div>
   </button>
 </div>

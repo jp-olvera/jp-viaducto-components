@@ -5,43 +5,61 @@ import { Anchor } from '../../cells';
 import { ConfigContext } from '../../providers';
 import { StyledPagination } from './StyledPagination';
 
-/**
- * Pagination component
- * @param {number} totalPages
- * @param {number} sibilings
- * @param {any | null} iconLeft
- * @param {boolean} previousLabel
- * @param {any | null} iconRight
- * @param {boolean} nextLabel
- * @param {string} position
- * @param {string} family
- * @param {string} fontSize
- * @param {string} activeColor
- * @param {string} hoverColor
- * @param {string} textColor
- * @param {number | string | null} radius
- * @param {string} spacing
- * @param {Function} onPageChange
- * @param {string} variant
- */
+/** Pagination component */
 interface PaginationInterface {
+  /** Set the number of total pages in the component */
   totalPages: number;
+  /** Set the number of sibilings of the actual page */
   sibilings: number;
+  /** Set an icon to prev page */
   iconLeft?: any | null;
+  /** Set a label to prev page */
   previousLabel?: boolean;
+  /** Set an icon to next page */
   iconRight?: any | null;
+  /** Set a label to next page */
   nextLabel?: boolean;
+  /** Align the component to center, start, end */
   position?: string;
+  /** Set font family */
   family?: string;
+  /** Set font size */
   fontSize?: string;
+  /** Set the active color page */
   activeColor?: string;
+  /** Set the hover color page */
   hoverColor?: string;
+  /** Set font color */
   textColor?: string;
+  /** Set border radius */
   radius?: number | string | null;
+  /** Set spacing in page component */
   spacing?: string;
+  /** Triggers a function when page is changed */
   onPageChange?: Function;
+  /** Set button color variant */
   variant?: string;
 }
+
+/**
+ * Pagination component
+ * @param {number} totalPages Set the number of total pages in the component
+ * @param {number} sibilings Set the number of sibilings of the actual page
+ * @param {any | null} iconLeft Set an icon to prev page
+ * @param {boolean} previousLabel Set a label to prev page
+ * @param {any | null} iconRight Set an icon to next page
+ * @param {boolean} nextLabel Set a label to next page
+ * @param {string} position Align the component to center, start, end
+ * @param {string} family Set font family
+ * @param {string} fontSize Set font size
+ * @param {string} activeColor Set the active color page
+ * @param {string} hoverColor Set the hover color page
+ * @param {string} textColor Set font color
+ * @param {number | string | null} radius Set border radius
+ * @param {string} spacing Set spacing in page component
+ * @param {Function} onPageChange Triggers a function when page is changed
+ * @param {string} variant Set button color variant
+ */
 
 const Pagination = ({
   totalPages,
@@ -61,7 +79,7 @@ const Pagination = ({
   position = 'center',
   variant = 'normal',
   ...rest
-}: PaginationInterface) => {
+}: PaginationInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const [active, setActive] = useState<number>(1);
   const [pages, setPages] = useState<any[]>([]);

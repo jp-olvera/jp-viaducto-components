@@ -38,7 +38,7 @@ const config: SBConfigI = {
       },
       control: null,
     },
-    size: {
+    inputSize: {
       description: 'Set the size (height) of the input',
       type: { summary: 'String', required: false },
       table: {
@@ -116,7 +116,7 @@ Text.args = {
   borderColor: null,
   iconColor: null,
   icon: '❤',
-  size: 'small',
+  inputSize: 'small',
 };
 
 export const Card = Template.bind({});
@@ -130,7 +130,7 @@ Card.args = {
   transition: 'ease',
   borderColor: null,
   iconColor: null,
-  size: 'small',
+  inputSize: 'small',
 };
 
 export const Date = Template.bind({});
@@ -144,7 +144,7 @@ Date.args = {
   transition: 'ease',
   borderColor: null,
   iconColor: null,
-  size: 'small',
+  inputSize: 'small',
 };
 
 export const Color = Template.bind({});
@@ -157,7 +157,7 @@ Color.args = {
   required: false,
   disabled: false,
   transition: 'ease',
-  size: 'small',
+  inputSize: 'small',
   borderColor: null,
   iconColor: null,
 };
@@ -171,7 +171,7 @@ Phone.args = {
   required: false,
   disabled: false,
   transition: 'ease',
-  size: 'small',
+  inputSize: 'small',
   borderColor: null,
   iconColor: null,
 };
@@ -185,7 +185,7 @@ Time.args = {
   required: false,
   disabled: false,
   transition: 'ease',
-  size: 'small',
+  inputSize: 'small',
   borderColor: null,
   iconColor: null,
 };

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { render, fireEvent } from '../../../test-utils';
-import '@testing-library/jest-dom/extend-expect';
 import { Dropdown } from '..';
 import Drop from '../Drop';
 import { refs } from '../DropdownRef';

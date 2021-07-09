@@ -8,7 +8,7 @@ const config: SBConfigI = {
   component: Switch,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
-    size: {
+    inputSize: {
       description: 'Set the size of the component',
       type: { summary: 'String', required: false },
       table: {
@@ -57,7 +57,7 @@ const Template = (args: typeof Default) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  size: 'lg',
+  inputSize: 'lg',
   disabled: false,
   color: '#9060EB',
   change: () => {},

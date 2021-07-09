@@ -4,6 +4,22 @@ import { ConfigContext } from '../../providers';
 import { Spacer } from '../../cells';
 import { MenuItem as Wrapper } from './StyledSidebarSection';
 
+/** MenuItem component */
+interface MenuItemProps {
+  /** Link to open when the element is selected */
+  href?: string;
+  /** Label for the item */
+  label?: string;
+  /** Set the item active/no active */
+  active?: boolean;
+  /** Place the element as parent or child */
+  nested?: boolean;
+  /** Place an icon before/after label */
+  lead?: boolean;
+  /** Set an icon */
+  icon?: any;
+}
+
 /**
  * MenuItem component
  * @param {string} href Link to open when the element is selected
@@ -13,14 +29,6 @@ import { MenuItem as Wrapper } from './StyledSidebarSection';
  * @param {boolean} lead Place an icon before/after label
  * @param {any} icon Set an icon
  */
-interface MenuItemProps {
-  href?: string;
-  label?: string;
-  active?: boolean;
-  nested?: boolean;
-  lead?: boolean;
-  icon?: any;
-}
 const MenuItem = ({
   href,
   label,
@@ -28,7 +36,8 @@ const MenuItem = ({
   nested = false,
   icon = null,
   lead = true,
-}: MenuItemProps) => {
+  ...rest
+}: MenuItemProps & React.LiHTMLAttributes<HTMLLIElement>) => {
   const { configuration } = useContext(ConfigContext);
 
   const content = (
@@ -70,6 +79,7 @@ const MenuItem = ({
       key={label}
       active={active}
       nested={nested}
+      {...rest}
     >
       {href !== undefined ? (
         <a href={href}> {content} </a>
