@@ -1,22 +1,14 @@
 export interface ConfigProps {
-  spacing: {
-    none: string;
-    nano: string;
-    micro: string;
-    tiny: string;
-    xs: string;
-    sm: string;
-    md: string;
-    lg: string;
-    xl: string;
-    xxl: string;
-    xxxl: string;
-  };
   controlHeight: {
     xsmall: string;
     small: string;
     default: string;
     large: string;
+  };
+  drawerSizes: {
+    sm: string;
+    md: string;
+    lg: string;
   };
   display: {
     mobile: {
@@ -100,6 +92,19 @@ export interface ConfigProps {
     sm: string;
     md: string;
     lg: string;
+  };
+  spacing: {
+    none: string;
+    nano: string;
+    micro: string;
+    tiny: string;
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    xxl: string;
+    xxxl: string;
   };
   text: {
     danger: string;

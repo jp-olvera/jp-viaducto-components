@@ -13,12 +13,13 @@ const show = keyframes`
 
 interface StyledDrawerProps {
   configuration: ConfigProps;
-  transition?: string;
-  width: string;
   elevation: number;
   elevationDirection: string;
   isClosing: boolean;
   ref: any;
+  size: string;
+  transition: string;
+  width: string;
 }
 
 const StyledDrawer = styled.div < StyledDrawerProps > `
@@ -36,7 +37,7 @@ const StyledDrawer = styled.div < StyledDrawerProps > `
   top: 0;
   right: 0;
   max-width: 100%;
-  width: ${(p) => p.width};
+  width: ${(p) => p.configuration.drawerSizes[p.size] || p.configuration.drawerSizes.sm};
   z-index: 1;
   ${(p) => getElevation(p.elevation, p.elevationDirection)};
 

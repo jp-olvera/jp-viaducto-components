@@ -5,30 +5,27 @@ import { createPortal } from 'react-dom';
 import StyledDrawer from './StyledDrawer';
 import { ConfigContext } from '../../providers';
 import { Overlay } from '../../cells/Overlay';
-/**
- * Drawer component
- * @param {boolean} active Attribute to show/hide drawer
- * @param {any} children Children component inside the drawer
- * @param {number} elevation Elevation indicator for shadows data
- * @param {string} elevationDirection Light indicator for shadows data
- * @param {string} transition Overrides transition timing function
- * @param {void} onClose Triggers an action closing the drawer
- * @param {string} overlayColor Set the color of the overlay
- * @param {string} overlayOpacity Set the opacity for the overlay
- * @param {string} minWidth Set a minWidth for the drawer
- */
+
 interface DrawerInterface {
+  /** Indicates if the drawer should be open or not */
   active?: boolean;
+  /** Content to put inside the drawer */
   children: any;
+  /** Elevation level */
   elevation?: number;
+  /** Elevation direction */
   elevationDirection?: string;
+  /** Function to close the popover when clicking outside */
   onClose: () => void;
+  /** Overlay color preferaby an rgba */
   overlayColor?: string;
-  overlayOpacity?: string;
+  /** Size of the drawer, 'sm', 'md', 'lg', defaults to 'sm' */
   size?: string;
+  /** Transition function to apply when opening and closing */
   transition?: string;
 }
 
+/** Drawer component */
 const Drawer = ({
   active = false,
   children,
@@ -37,7 +34,7 @@ const Drawer = ({
   onClose,
   overlayColor = 'rgba(0,0,0,0.3)',
   size = 'sm',
-  transition,
+  transition = 'ease',
   ...rest
 }: DrawerInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -103,6 +100,7 @@ const Drawer = ({
             ev.stopPropagation();
           }}
           isClosing={isClosing}
+          size={size}
         >
           {children}
         </StyledDrawer>

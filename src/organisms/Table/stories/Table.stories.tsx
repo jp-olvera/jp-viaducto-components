@@ -14,9 +14,6 @@ const config: SBConfigI = {
     headerColor: {
       control: 'color',
     },
-    textHeaderColor: {
-      control: 'color',
-    },
     border: {
       options: ['all', 'horizontal', 'vertical', 'none'],
       control: {
@@ -35,7 +32,7 @@ const config: SBConfigI = {
     colorSelected: {
       control: 'color',
     },
-    zebraHoverColor: {
+    hoverColor: {
       control: 'color',
     },
     borderColor: {
@@ -89,15 +86,14 @@ export default config;
 const Template = (args: typeof Default) => (
   <ConfigProvider>
     <p style={{ fontFamily: 'Arial' }}>
-      This component work as a wrapper for any table, we just provide a style
-      props
+      This component work as a wrapper for any table, we just provide the styles
     </p>
     <p style={{ fontFamily: 'Arial' }}>
       <b>You need to create/add/instance your own table</b>
     </p>
     <WrapperTable {...args}>
       <table>
-        <tbody>
+        <thead>
           <tr>
             <th scope='col'>Montasdasdasdasdh</th>
             <th scope='col'>Savings</th>
@@ -105,6 +101,8 @@ const Template = (args: typeof Default) => (
             <th scope='col'>Savings</th>
             <th scope='col'>Savings</th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
             <td>Hola</td>
             <td>Header</td>
@@ -135,18 +133,17 @@ const Template = (args: typeof Default) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  borderColor: '#eaecef',
-  border: 'all',
-  colorSelected: '#ffd37c',
-  headerColor: '#fff',
-  horizontalSpacing: 'sm',
   align: 'left',
-  textHeaderColor: '#5A5A5A',
-  zebra: true,
-  zebraHover: true,
-  zebraColor: '#F6F8FA',
-  zebraHoverColor: '#D1D5DA',
+  background: '#fff',
+  border: 'all',
+  borderColor: '#eaecef',
+  colorSelected: '#FFF1A5',
+  horizontalSpacing: 'sm',
   verticalSpacing: 'sm',
+  hover: true,
+  zebraColor: '#F6F8FA',
+  hoverColor: '#D1D5DA',
+  zebra: true,
   fontSize: 'md',
   family: 'Arial',
 };
