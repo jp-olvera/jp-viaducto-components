@@ -8,7 +8,7 @@ interface GTI {
   /** Tab component */
   children: any;
   /** Set the color variant (type definition colors) for the tabs */
-  type?: string;
+  tabType?: string;
   /** Set the horizontal spacing taking the tab content as reference */
   horizontalSpacing?: string;
   /** Set the horizontal spacing taking the tab content as reference */
@@ -24,7 +24,7 @@ interface GTI {
 /**
  * GroupTab component
  * @param {Tab} children Tab component
- * @param {string} type Set the color variant (type definition colors) for the tabs
+ * @param {string} tabType Set the color variant (type definition colors) for the tabs
  * @param {string} horizontalSpacing Set the horizontal spacing taking the tab content as reference
  * @param {string} verticalSpacing Set the horizontal spacing taking the tab content as reference
  * @param {string} fontSize Set the font size
@@ -34,7 +34,7 @@ interface GTI {
 
 const GroupTab = ({
   children,
-  type = 'tab',
+  tabType = 'tab',
   horizontalSpacing = 'md',
   verticalSpacing = 'sm',
   fontSize = 'md',
@@ -56,7 +56,7 @@ const GroupTab = ({
       configuration={configuration}
       count={nodes.length}
       transition={transition}
-      type={type}
+      tabType={tabType}
       position={position}
       {...rest}
     >
@@ -67,7 +67,7 @@ const GroupTab = ({
           lineWidth: '0',
           fontSize,
           position: pos,
-          type,
+          tabType,
           index,
           active: index === getPosition / 100,
           onClick: () => translate(index),

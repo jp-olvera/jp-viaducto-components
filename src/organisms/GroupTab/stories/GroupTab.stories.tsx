@@ -16,7 +16,7 @@ const config: SBConfigI = {
       control: 'select',
       options: ['bottom', 'top'],
     },
-    type: {
+    tabType: {
       description: 'Set the color variant (type definition colors) for the tab',
       type: { summary: 'String', required: true },
       table: {
@@ -120,7 +120,7 @@ const Template = (args: typeof Default) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  type: 'success',
+  tabType: 'tab',
   horizontalSpacing: 'md',
   verticalSpacing: 'sm',
   fontSize: 'md',
