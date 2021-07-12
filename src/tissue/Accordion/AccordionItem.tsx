@@ -19,7 +19,7 @@ export interface AccordionItemProps {
   /** Inidcates if it is open */
   expanded: boolean;
   /** Id  */
-  id: string;
+  id?: string;
   /** Icon to use instead of the chevron */
   icon?: React.ReactNode;
   /** Class to apply to the icon when the accordion is open */
@@ -27,23 +27,23 @@ export interface AccordionItemProps {
   /** Class to apply to the icon when the accordion is closed */
   iconClosed?: string;
   /** Horizontal padding to apply based on the spacing configuration */
-  paddingX: string;
+  paddingX?: string;
   /** Vertical padding to apply based on the spacing configuration */
-  paddingY: string;
+  paddingY?: string;
   /**  Content to use as the title */
   title: React.ReactNode;
   /** timing function to use when closing and opening */
-  transition: string;
+  transition?: string;
 }
 
 const AccordionItem = ({
   children,
   expanded = false,
-  id,
+  id = '',
   title = '',
-  paddingX,
-  paddingY,
-  transition = 'ease',
+  paddingX = 'sm',
+  paddingY = 'sm',
+  transition = 'linear',
   icon = null,
   iconOpen = '',
   iconClosed = '',
