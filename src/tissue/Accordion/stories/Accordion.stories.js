@@ -150,4 +150,6 @@ export const Default = Template.bind({});
 
 Default.args = {
   transition: 'linear',
+  paddingX: 'sm',
+  paddingY: 'sm',
 };
