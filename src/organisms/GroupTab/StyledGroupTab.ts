@@ -22,6 +22,7 @@ export const StyledGroupTab = styled.div < any > `
       & > p {
         line-break: anywhere;
         word-break: break-all;
+        color: ${(p) => p.configuration.colors[p.tabType].hover} !important;
       }
     }
     &:after {
@@ -37,7 +38,7 @@ export const StyledGroupTab = styled.div < any > `
       ${(p) => p.transition || p.configuration.transitionTimingFunction};
     width: 6.25rem;
     height: 0.188rem;
-    background-color: ${(p) => p.configuration.colors[p.type].default};
+    background-color: ${(p) => p.configuration.colors[p.tabType].hover} !important;
     position: sticky;
     bottom: ${(p) => (p.position === 'top' ? '100%' : 0)};
     left: 0;
