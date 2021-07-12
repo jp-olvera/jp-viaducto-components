@@ -1,41 +1,49 @@
 import React, {
   useContext, useState, useEffect, useRef,
 } from 'react';
-import { Close } from 'react-ikonate';
 import { ConfigContext } from '../../providers/ConfigProvider';
 import { StyledNotification } from './StyledNotification';
 import { Paragraph } from '../../cells/Paragraph';
-import { TypeIcon } from '../../cells/TypeIcon';
 import { BareButton } from '../../cells/BareButton';
+
+/** Notification component with close button */
+interface NotificationInterface {
+  /** Text label for the notification */
+  text: string;
+  /** Icon Helper */
+  icon?: any;
+  /** Attribute for shown/hide component */
+  active: boolean;
+  /** Set to true for stick at top or false to stick in bottom */
+  top?: boolean;
+  /** Elevation indicator for shadows data */
+  elevation?: number;
+  /** Light indicator for shadows data */
+  elevationDirection?: string;
+  /** Overrides transitionTimingFunction */
+  transition?: string;
+}
 
 /**
  * Notification component with close button
  * @param {string} text Text label for the notification
- * @param {string} type Notification type (danger, success, warning)
+ * @param {any} icon Icon Helper
  * @param {boolean} active Attribute for shown/hide component
  * @param {boolean} top Set to true for stick at top or false to stick in bottom
  * @param {number} elevation Elevation indicator for shadows data
  * @param {string} elevationDirection Light indicator for shadows data
+ * @param {string} transition Overrides transitionTimingFunction
  */
-interface NotificationInterface {
-  text: string;
-  type: string;
-  active: boolean;
-  top: boolean;
-  elevation: number;
-  elevationDirection: string;
-  transition?: string;
-}
 
 const Notification = ({
   text,
-  type = 'success',
-  active = false,
+  icon = null,
+  active,
   top = true,
   elevation = 1,
   elevationDirection = '',
   ...rest
-}: NotificationInterface) => {
+}: NotificationInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const [isActive, setIsActive] = useState(false);
   const ref = useRef<HTMLElement>(null);
@@ -58,14 +66,8 @@ const Notification = ({
     }
   }, [isActive]);
 
-  let color = configuration.text.success;
-  const k = type.toLowerCase();
+  const color = configuration.text.success;
 
-  const typeColors = ['success', 'warning', 'danger', 'info'];
-  /* istanbul ignore else */
-  if (typeColors.includes(type.toLowerCase())) {
-    color = configuration.text[k];
-  }
   return (
     <StyledNotification
       isActive={isActive}
@@ -85,13 +87,7 @@ const Notification = ({
           display: 'flex',
         }}
       >
-        <TypeIcon
-          type={type.toLowerCase()}
-          stroke='white'
-          border={2}
-          width='18px'
-          height='18px'
-        />
+        {icon && icon}
       </span>
       <Paragraph size='sm' color='white'>
         {text}
@@ -102,9 +98,8 @@ const Notification = ({
             setIsActive(false);
           }}
           data-testid='close-button'
-        >
-          <Close stroke='white' strokeWidth={2} width='18px' height='18px' />
-        </BareButton>
+          close
+        />
       </div>
     </StyledNotification>
   );

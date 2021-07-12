@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConfigProvider/> should change config 1`] = `
+<div>
+  <div
+    class="ConfigProvidertest__MyComponent-sc-153tyaj-0 dkKjlQ"
+  >
+    Hola
+  </div>
+</div>
+`;
+
+exports[`<ConfigProvider/> should create snapshot ConfigProvider 1`] = `
+<div>
+  <div>
+    AAAAA
+  </div>
+</div>
+`;
+
+exports[`<ConfigProvider/> should create snapshot of ConfigContext 1`] = `
+<div>
+  <div>
+    AAAAA
+  </div>
+</div>
+`;

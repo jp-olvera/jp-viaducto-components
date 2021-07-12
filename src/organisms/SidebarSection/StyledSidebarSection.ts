@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+import { ConfigProps } from 'ballena-types';
 
 const show = keyframes`
   0% {
@@ -18,13 +19,12 @@ const hide = keyframes`
 `;
 
 interface SideI {
-  configuration?: any;
+  configuration: ConfigProps;
   transition?: string;
 }
 
 const StyledSidebarSection = styled.div < SideI > `
   padding: 0;
-  /* min-width: 16.625rem; */
   width: 100%;
   box-sizing: border-box;
   & > * {
@@ -93,7 +93,7 @@ const getDecoration = () => css`
   }
 `;
 interface MenuItemProps {
-  configuration: any;
+  configuration: ConfigProps;
   active: boolean;
   nested: boolean;
 }
@@ -128,7 +128,7 @@ export const MenuItem = styled.li < MenuItemProps > `
   }`};
 `;
 interface SubmenuProps {
-  configuration: any;
+  configuration: ConfigProps;
   transition: string;
   isClosing: boolean;
   isActive: boolean;
@@ -188,7 +188,7 @@ export const StyledMenuTitle = styled.li < any > `
     ? css`
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
           `
-    : css``)};
+    : null)};
 
     background-position: right 0 center;
     background-repeat: no-repeat;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Title } from '../Title';
+import { getFontSize } from '../../utils/getSizes';
 
 const size = '25px';
 
@@ -17,9 +17,14 @@ const StyledLoader = styled.div < any > `
   }
 `;
 
-export const StyledStepProgress = styled(Title) < any > `
-  color: ${({ isFinished }) => (isFinished ? 'green' : 'gray')};
+export const StyledStepProgress = styled.h1 < any > `
+  margin: 0;
+  padding: 0;
+  color: ${(p) => (p.isFinished ? p.finishTextColor : p.color)};
+  font-family: ${(p) => p.family || 'inherit'};
+  font-size: ${({ titleLevel }) => getFontSize(titleLevel)};
 `;
+
 export const StyledProgressBar = styled.div < any > `
   & .progress-bar {
     background-color: #1a1a1a;
@@ -55,7 +60,7 @@ export const StyledProgressBar = styled.div < any > `
     display: block;
     height: 0.6rem;
     width: ${({ max, value }) => ((value * 100) / max).toFixed(0)}%;
-    background-color: #3ae25f;
+    background-color: ${(p) => p.color};
     border-radius: 3px;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
     position: relative;

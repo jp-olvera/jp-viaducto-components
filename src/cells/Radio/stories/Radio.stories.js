@@ -85,6 +85,13 @@ export default {
         defaultValue: { summary: null },
       },
     },
+    onClick: {
+      description: 'Trigger an action when radio is clicked',
+      type: { summary: 'Function(void)', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
     name: {
       description: 'Set a name for many radio components',
       type: { summary: 'String', required: true },
@@ -113,4 +120,5 @@ Default.args = {
   color: '#9060EB',
   spacing: 'none',
   onChange: () => {},
+  onClick: () => {},
 };

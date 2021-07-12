@@ -9,29 +9,41 @@ import React, {
 import { Div } from './StyledRange';
 import { ConfigContext } from '../../providers/ConfigProvider';
 
+/** Input range component */
+interface RangeInterface {
+  /** The min value for the input. Required */
+  min: number;
+  /** The max value for the input. Required */
+  max: number;
+  /** Set the background color for the slider */
+  color?: string;
+  /** Set the input with double range slider if it is set to true */
+  double?: boolean;
+  /** Set the font family for the value */
+  family?: string | null;
+  /** Set the font size for the value */
+  fontSize?: string;
+  /** Triggers an action when the value changes */
+  onChange?: Function;
+  /** Set the size of the range slider */
+  size?: string;
+  /** Set the text color for the value */
+  textColor?: string;
+}
+
 /**
  * Input range component
  * @param {number} min The min value for the input. Required
  * @param {number} max The max value for the input. Required
- * @param {boolean} double Set the input with double range slider if it is set to true
  * @param {string} color Set the background color for the slider
- * @param {string} fontSize Set the font size for the value
- * @param {string} textColor Set the text color for the value
+ * @param {boolean} double Set the input with double range slider if it is set to true
  * @param {string} family Set the font family for the value
- * @param {string} size Set the size of the range slider
+ * @param {string} fontSize Set the font size for the value
  * @param {string} onChange Triggers an action when the value changes
+ * @param {string} size Set the size of the range slider
+ * @param {string} textColor Set the text color for the value
  */
-interface RangeInterface {
-  min: number;
-  max: number;
-  color?: string;
-  fontSize?: string;
-  textColor?: string;
-  family?: string;
-  size?: string;
-  onChange?: Function;
-  double?: boolean;
-}
+
 const Range = ({
   min,
   max,
@@ -43,7 +55,7 @@ const Range = ({
   onChange,
   double,
   ...rest
-}: RangeInterface) => {
+}: RangeInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
   const { configuration } = useContext(ConfigContext);
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);

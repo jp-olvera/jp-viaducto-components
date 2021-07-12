@@ -76,10 +76,23 @@ export default {
         type: 'select',
       },
     },
+    radius: {
+      description: 'The radius size',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'sm' },
+      },
+      options: ['none', 'sm', 'md', 'lg'],
+      control: {
+        type: 'select',
+      },
+    },
   },
 };
 
-const Template = ({ position, elevation, elevationDirection }) => {
+const Template = ({
+  position, elevation, elevationDirection, radius,
+}) => {
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
@@ -102,7 +115,7 @@ const Template = ({ position, elevation, elevationDirection }) => {
       >
         <div
           style={{
-            height: '150px',
+            height: '250px',
             width: '100%',
           }}
         >
@@ -120,12 +133,17 @@ const Template = ({ position, elevation, elevationDirection }) => {
           />
           <Popover
             active={active}
-            content={<div style={{ width: '300px', height: '300px' }} />}
+            content={(
+              <div style={{ width: '300px', height: '200px' }}>
+                <button type='button'>hola</button>
+              </div>
+            )}
             target={ref}
             handleClose={handleClick}
-            position='right'
+            position={position}
             elevation={elevation}
             elevationDirection={elevationDirection}
+            radius={radius}
           />
         </div>
         <div style={{ width: '500px', overflowX: 'auto' }}>
@@ -140,12 +158,17 @@ const Template = ({ position, elevation, elevationDirection }) => {
               />
               <Popover
                 active={active2}
-                content={<div style={{ width: '300px', height: '300px' }} />}
+                content={(
+                  <div style={{ width: '300px', height: '200px' }}>
+                    <button type='button'>hola</button>
+                  </div>
+                )}
                 target={ref2}
                 handleClose={handleClick2}
                 position={position}
                 elevation={elevation}
                 elevationDirection={elevationDirection}
+                radius={radius}
               />
             </div>
           </div>
@@ -159,4 +182,7 @@ export const Default = Template.bind({});
 
 Default.args = {
   position: 'right',
+  radius: 'sm',
+  elevation: 1,
+  elevationDirection: 'bottom',
 };

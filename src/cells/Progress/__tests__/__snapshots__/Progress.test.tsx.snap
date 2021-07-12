@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CircleLoader/> should render Circle Loader and create Snapshot 1`] = `
+<div
+  class="StyleLoader__StyledLoader-sc-1bymfut-0 ihhiRc"
+  data-testid="loader"
+>
+  <svg
+    height="25px"
+    width="25px"
+  >
+    <circle
+      cx="12.5"
+      cy="12.5"
+      fill="transparent"
+      r="0"
+      stroke="#CECECE"
+      stroke-width="0"
+    />
+    <circle
+      class="progress-ring__circle"
+      cx="12.5"
+      cy="12.5"
+      fill="transparent"
+      r="0"
+      stroke="#3AE25F65"
+      stroke-dasharray="0 0"
+      stroke-width="0"
+      style="stroke-dashoffset: 0;"
+    />
+    <circle
+      class="progress-ring__circle"
+      cx="12.5"
+      cy="12.5"
+      fill="transparent"
+      r="0"
+      stroke="#3AE25F"
+      stroke-dasharray="0 0"
+      stroke-width="0"
+      style="stroke-dashoffset: 0;"
+    />
+  </svg>
+</div>
+`;
+
+exports[`<CircleLoader/> should render Circle Loader with props and create Snapshot 1`] = `
+<div
+  class="StyleLoader__StyledLoader-sc-1bymfut-0 ihhiRc"
+  data-testid="loader"
+>
+  <svg
+    height="25px"
+    width="25px"
+  >
+    <circle
+      cx="12.5"
+      cy="12.5"
+      fill="transparent"
+      r="10"
+      stroke="#CECECE"
+      stroke-width="2"
+    />
+    <circle
+      class="progress-ring__circle"
+      cx="12.5"
+      cy="12.5"
+      fill="transparent"
+      r="10"
+      stroke="#3AE25F65"
+      stroke-dasharray="5 5"
+      stroke-width="2"
+      style="stroke-dashoffset: 1;"
+    />
+    <circle
+      class="progress-ring__circle"
+      cx="12.5"
+      cy="12.5"
+      fill="transparent"
+      r="10"
+      stroke="#3AE25F"
+      stroke-dasharray="5 5"
+      stroke-width="2"
+      style="stroke-dashoffset: 1;"
+    />
+  </svg>
+</div>
+`;
+
+exports[`<ProgressBar/> should render ProgressBar and create snapshot 1`] = `
+<div
+  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 hAlbhN"
+  color="#3AE25F"
+  data-testid="loader"
+  max="50"
+  value="50"
+>
+  <div
+    class="progress-bar-container"
+  >
+    <div
+      class="progress-bar stripes animated reverse slower"
+    >
+      <span
+        class="progress-bar-inner"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProgressBar/> should render ProgressBar and create snapshot with props 1`] = `
+<div
+  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 cugMsp"
+  color="#3AE25F"
+  data-testid="loader"
+  max="10"
+  value="5"
+>
+  <div
+    class="progress-bar-container"
+  >
+    <div
+      class="progress-bar stripes animated reverse slower"
+    >
+      <span
+        class="progress-bar-inner"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<StepLoader/> should render StepLoader and create snapshot 1`] = `
+<h1
+  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 dfmgYQ"
+  color="dark"
+  data-testid="loader"
+>
+  14 / 14
+</h1>
+`;
+
+exports[`<StepLoader/> should render StepLoader and create snapshot with props 1`] = `
+<h1
+  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 bXpyun"
+  color="red"
+  data-testid="loader"
+>
+  7 / 15
+</h1>
+`;

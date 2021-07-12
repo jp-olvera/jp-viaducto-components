@@ -4,14 +4,32 @@ import { ConfigContext } from '../../providers';
 import { StyledMenuTitle } from './StyledSidebarSection';
 import { Spacer } from '../../cells';
 
+/** MenuTitle component */
 interface MenuTitleProps {
-  expanded: boolean;
-  type: string;
+  /** Set the Menu expanded */
+  expanded?: boolean;
+  /** Set the component as submenu or dropdrown */
+  type?: string;
+  /** Triggers an action when the component is clicked */
   onClick?: Function;
+  /** Triggers an action when the component have focus and press a key */
   onKeyUp?: Function;
-  icon: any;
-  title: string;
+  /** Place an icon */
+  icon?: any;
+  /** Set the title */
+  title?: string;
 }
+
+/**
+ * MenuTitle component
+ * @param {boolean} expanded Set the Menu expanded
+ * @param {string} type Set the component as submenu or dropdrown
+ * @param {Function} onClick Triggers an action when the component is clicked
+ * @param {Function} onKeyUp Triggers an action when the component have focus and press a key
+ * @param {any} icon Place an icon
+ * @param {string} title Set the title
+ */
+
 const MenuTitle = ({
   expanded,
   type,
@@ -19,7 +37,8 @@ const MenuTitle = ({
   onKeyUp,
   icon,
   title,
-}: MenuTitleProps) => {
+  ...rest
+}: MenuTitleProps & React.LiHTMLAttributes<HTMLLIElement>) => {
   const { configuration } = useContext(ConfigContext);
 
   return (
@@ -30,6 +49,7 @@ const MenuTitle = ({
       onClick={onClick}
       onKeyUp={onKeyUp}
       configuration={configuration}
+      {...rest}
     >
       <span style={{ display: 'flex', alignItems: 'center' }}>{icon}</span>
       {icon !== null && <Spacer size='sm' direction='horizontal' />}

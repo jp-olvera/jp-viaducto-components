@@ -1,5 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { ToastProvider } from 'react-toast-notifications';
+import { ConfigProps } from 'ballena-types';
+
 import config from '../utils/config';
 import { Toaster } from '..';
 
@@ -8,18 +10,17 @@ interface ConfigProviderInterface {
 }
 
 interface ConfigContextInterface {
-  configuration: any;
-  updateConfig: Function;
+  configuration: ConfigProps;
+  updateConfig?: Function;
 }
 
 export const ConfigContext = createContext<ConfigContextInterface>({
-  configuration: {},
-  updateConfig: Function,
+  configuration: config,
 });
 
 const ConfigProvider = ({ children }: ConfigProviderInterface) => {
   const [configuration, setConfiguration] = useState(config);
-  const updateConfig = (newConfig: any) => {
+  const updateConfig = (newConfig: ConfigProps) => {
     setConfiguration((oldConfig) => ({ ...oldConfig, ...newConfig }));
   };
   const placements = {
@@ -35,7 +36,7 @@ const ConfigProvider = ({ children }: ConfigProviderInterface) => {
     <ConfigContext.Provider value={{ configuration, updateConfig }}>
       <ToastProvider
         components={{ Toast: Toaster }}
-        placement={placements[configuration.toasterPlacement || 'top-right']}
+        placement={placements[configuration.toasterPlacement]}
       >
         {children}
       </ToastProvider>

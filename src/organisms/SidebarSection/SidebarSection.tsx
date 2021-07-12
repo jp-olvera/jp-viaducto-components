@@ -6,26 +6,36 @@ import { Spacer } from '../../cells';
 
 import StyledSidebarSection, { Submenu } from './StyledSidebarSection';
 import MenuTitle from './MenuTitle';
+
+/** Sidebar elements for a Sidebar Section */
+interface SidebarProps {
+  /** Title's section */
+  title: string;
+  /** Horizontal top separator for each section */
+  separator?: boolean;
+  /** Attribute for clickable section top/bottom */
+  isDropdown?: boolean;
+  /** Attribute for clickable section left/right */
+  isMenu?: boolean;
+  /** Overrides the transitionTimingFunction */
+  transition?: string;
+  /** Place an icon for the item */
+  icon?: any;
+  /** Element to place */
+  children?: any;
+}
+
 /**
  * Sidebar elements for a Sidebar Section
  *
- * @param {array} items Objects array for make sections in the sidebar
- * @param {boolean} separator Horizontal top separator for each section
  * @param {string} title Title's section
+ * @param {boolean} separator Horizontal top separator for each section
  * @param {boolean} isDropdown Attribute for clickable section top/bottom
  * @param {boolean} isMenu Attribute for clickable section left/right
+ * @param {string} transition Overrides the transitionTimingFunction
+ * @param {any} icon Place an icon for the item
+ * @param {any} children Element to place
  */
-
-interface SidebarProps {
-  items: { label: string; url: string }[];
-  separator: boolean;
-  title: string;
-  isDropdown: boolean;
-  isMenu: boolean;
-  transition?: string;
-  icon?: any;
-  children?: any;
-}
 
 const SidebarSection = ({
   separator = false,
@@ -36,7 +46,7 @@ const SidebarSection = ({
   transition = 'ease',
   children,
   ...rest
-}: SidebarProps) => {
+}: SidebarProps & React.HTMLAttributes<HTMLDivElement>) => {
   const [isActive, setIsActive] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const backRefButton = useRef<HTMLButtonElement>(null);
@@ -97,7 +107,7 @@ const SidebarSection = ({
             title !== null && (
               <MenuTitle
                 expanded={isActive}
-                type={`${isMenu && 'menu'}`}
+                type=''
                 icon={icon}
                 title={title}
               />

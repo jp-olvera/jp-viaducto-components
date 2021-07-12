@@ -15,7 +15,7 @@
     "module": "esNext" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
     "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
     "experimentalDecorators": true /* Enables experimental support for ES7 decorators. */,
-    "declaration": false /* Generates corresponding '.d.ts' file. */,
+    "declaration": true /* Generates corresponding '.d.ts' file. */,
     "removeComments": true /* Do not emit comments to output. */,
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
     "noUnusedLocals": false /* Report errors on unused locals. */,
@@ -23,11 +23,20 @@
     "outDir": "dist" /* Redirect output structure to the directory. */,
     "baseUrl": "src" /* Base directory to resolve non-absolute module names. */,
     "strictNullChecks": true /* Enable strict null checks. */,
-    "allowJs": true, /* Allow javascript files to be compiled. */
-		"skipLibCheck": true,
-		"esModuleInterop": true,
-		"noFallthroughCasesInSwitch": true
+    "allowJs": true /* Allow javascript files to be compiled. */,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "exclude": ["dist", "node_modules"],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "./src/**/__tests__/*",
+    "./src/**/stories/*",
+    "./src/stories/**",
+    "./src/examples/**",
+    "./src/test-utils.*",
+    "./src/sb.*"
+  ],
   "include": ["./src/**/*"]
 }

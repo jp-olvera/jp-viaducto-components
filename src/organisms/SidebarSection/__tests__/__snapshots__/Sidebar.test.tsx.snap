@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SidebarSection/> should render with default props 1`] = `
+<div>
+  <div
+    class="StyledSidebarSection-sc-12e8js3-0 kVABpO"
+  >
+    <div
+      class=""
+    >
+      <li
+        class="StyledSidebarSection__StyledMenuTitle-sc-12e8js3-3 gzvsVd"
+        tabindex="0"
+        type=""
+      >
+        <span
+          style="display: flex; align-items: center;"
+        />
+        <span
+          style="align-items: center; width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
+        />
+      </li>
+      <ul />
+    </div>
+  </div>
+</div>
+`;

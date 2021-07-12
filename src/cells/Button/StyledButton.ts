@@ -43,21 +43,19 @@ const StyledButton = styled.button < any > `
   display: inline-flex;
   flex-direction: ${(props) => (props.lead ? 'row' : 'row-reverse')};
   justify-content: center;
-  border-radius: 0.375rem;
+  border-radius: ${(props) => props.configuration.radius[props.radius] || '0.375rem'};
   box-sizing: border-box;
   transition: background-color 0.15s
     ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
   text-align: center;
 
   ${(props) => getLateralPadding(props)}
-  ${(props) => getHeight(props)}
+  height: ${(p) => p.height};
   ${(props) => getFontStyle(props)}
-  
+
   //disabled
   &:disabled {
-    background-color: ${(p) => (p.variant === 'solid' ? p.configuration.disableColor : 'white')};
-    border-color: ${(p) => p.configuration.disableColor};
-    color: ${(p) => (p.variant === 'solid' ? 'white' : p.configuration.disableColor)};
+    ${(p) => disabledColor(p)};
   }
 
   // just hover
@@ -170,16 +168,6 @@ const getLateralPadding = (props: any) => {
   `;
 };
 
-const getHeight = (props) => {
-  let height = '2.488rem';
-  if (props.height !== undefined) {
-    height = `${props.height}`;
-  }
-  return css`
-    height: ${height};
-  `;
-};
-
 const getFontStyle = (props) => {
   let fontSize = FONT_SIZE.default;
   switch (props.size) {
@@ -199,3 +187,23 @@ const getFontStyle = (props) => {
 };
 
 export default StyledButton;
+
+export const disabledColor = (p: {
+  variant: string;
+  configuration: { disableColor: string };
+  isLoading: boolean;
+  colors: { default: string; hover: string; click: string; text: string };
+}) => {
+  if (p.isLoading) {
+    return css`
+      opacity: 0.75;
+    `;
+  }
+  return css`
+    background-color: ${p.variant === 'solid'
+    ? p.configuration.disableColor
+    : 'white'};
+    border-color: ${p.configuration.disableColor};
+    color: ${p.variant === 'solid' ? 'white' : p.configuration.disableColor};
+  `;
+};

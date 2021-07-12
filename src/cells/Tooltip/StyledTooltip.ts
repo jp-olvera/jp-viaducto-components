@@ -5,7 +5,8 @@ export const TooltipContainer = styled.div < any > `
     ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
   font-family: ${({ family }) => (family ? `'${family}', sans-serif` : 'inherit')};
   position: relative;
-  display: inline-block;
+  display: block;
+  z-index: 1;
   & .tooltip {
     transition: all 0.05s
       ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
@@ -33,7 +34,7 @@ export const TooltipContainer = styled.div < any > `
   }
 `;
 
-const setPosition = (position) => {
+const setPosition = (position: string) => {
   switch (position) {
     case 'right':
       return css`
@@ -61,7 +62,7 @@ const setPosition = (position) => {
   }
 };
 
-const setArrow = (position, color) => {
+const setArrow = (position: string, color: string) => {
   switch (position) {
     case 'left':
       return css`

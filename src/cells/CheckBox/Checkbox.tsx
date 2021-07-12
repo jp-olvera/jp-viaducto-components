@@ -4,29 +4,37 @@ import { Spacer } from '..';
 import { ConfigContext } from '../../providers';
 import { StyledLabel } from './StyledCheckbox';
 
+/** Checkbox input component */
+interface CheckboxInterface {
+  /** Size of the input */
+  checkSize?: string;
+  /** Color for the checkbox */
+  color?: string;
+  /** Enable/disable input */
+  disabled?: boolean;
+  /** Font family fot the input */
+  family?: string | null;
+  /** Font size of the input */
+  fontSize?: string;
+  /** Label for the input */
+  label?: string;
+  /** Trigger an action */
+  onChange?: Function;
+  /** Spacing for the checkbox */
+  spacing?: string;
+}
+
 /**
  * Checkbox input component
- * @param {string} label Label for the input
- * @param {boolean} disabled Enable/disable input
- * @param {string} color Color for the checkbox
- * @param {string} family Font family fot the input
  * @param {string} checkSize Size of the input
+ * @param {string} color Color for the checkbox
+ * @param {boolean} disabled Enable/disable input
+ * @param {string} family Font family fot the input
  * @param {string} fontSize Font size of the input
- * @param {string} id ID for the input
+ * @param {string} label Label for the input
  * @param {Function} onChange Trigger an action
  * @param {string} spacing Spacing for the checkbox
  */
-interface CheckboxInterface {
-  label?: string;
-  disabled?: boolean;
-  family?: string | null;
-  checkSize?: string;
-  fontSize?: string;
-  id?: string;
-  color?: string;
-  spacing?: string;
-  onChange?: Function;
-}
 
 const Checkbox = ({
   label = '',
@@ -35,33 +43,32 @@ const Checkbox = ({
   checkSize = 'lg',
   fontSize = 'md',
   color = '#9060EB',
-  id,
   onChange = () => {},
   spacing = 'none',
   ...props
-}: CheckboxInterface) => {
+}: CheckboxInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
   const { configuration } = useContext(ConfigContext);
   const [check, setCheck] = useState(false);
   return (
     <StyledLabel
-      htmlFor={id}
+      htmlFor={props.id}
       configuration={configuration}
       family={family}
       checkSize={checkSize}
       fontSize={fontSize}
       color={color}
       disabled={disabled}
-      data-testid={id}
+      data-testid={props.id}
       {...props}
     >
       <input
-        onChange={() => {
+        onChange={(event) => {
           setCheck(!check);
-          onChange();
+          if (onChange) onChange(event);
         }}
         disabled={disabled}
         type='checkbox'
-        id={id}
+        id={props.id}
       />
       <Spacer size={spacing} direction='horizontal' />
       {label}

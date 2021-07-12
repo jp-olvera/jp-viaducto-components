@@ -17,16 +17,6 @@
 //   useFilters,
 // } from 'react-table';
 // import {
-//   Apps,
-//   ArrowUp,
-//   ArrowDown,
-//   ChevronLeft,
-//   ChevronRight,
-//   ChevronsLeft,
-//   ChevronsRight,
-//   Settings,
-// } from 'react-ikonate';
-// import {
 //   Input, Button, Select, Paragraph,
 // } from '../../cells';
 // import { Modal } from '../../organisms';

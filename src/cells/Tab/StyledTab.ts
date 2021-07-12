@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { ConfigProps } from 'ballena-types';
 
 const StyledTab = styled.button < any > `
   background-color: transparent;
@@ -25,97 +26,40 @@ const StyledTab = styled.button < any > `
     display: inline;
   }
 
-  ${(props) => (props.active ? getActiveProps(props).data : null)};
-  ${(props) => (props.active ? getActiveProps(props).after : null)};
-
   &:not([hover]):after {
     background-color: ${({ color }) => color};
-    bottom: 0;
     content: '';
-    height: 3px;
-    left: 0;
+    height: ${(p) => (p.position === 'right' || p.position === 'left' ? '100%' : '0.188rem')};
+    width: ${(p) => (p.position === 'right' || p.position === 'left'
+    ? '0.188rem'
+    : p.lineWidth)};
+    left: ${(p) => (p.position === 'right' ? '100%' : '0')};
+    bottom: ${(p) => (p.position === 'top' ? '100%' : '0')};
     position: absolute;
-    width: 100%;
   }
 
   &:hover {
     transition: all 0.2s
       ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
     &:after {
-      content: '';
-      height: 3px;
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-      left: 0;
       background-color: ${({ hoverColor }) => hoverColor};
     }
     & > .tab-text {
       transition: all 0.2s
         ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
-      transform: translateY(
-        -${({ configuration, verticalSpacing }) => configuration.spacing[verticalSpacing] || configuration.spacing.sm}
-      );
     }
   }
 
   &:active,
   :focus {
-    ${(props) => getActiveProps(props).data};
+    ${(p) => activeState(p)};
   }
+
+  ${(p) => p.active && activeState(p)};
 `;
 
-const getActiveProps = (props: any) => ({
-  data: css`
-    p {
-      color: ${props.activeTextColor};
-    }
-    .tab-text {
-      transition: all 0.2s
-        ${props.transition || props.configuration.transitionTimingFunction};
-      transform: translateY(
-        -${props.configuration.spacing[props.verticalSpacing] || props.configuration.spacing.sm}
-      );
-    }
-
-    &:after {
-      content: '';
-      transition: all 0.2s
-        ${props.transition || props.configuration.transitionTimingFunction};
-      height: 4px;
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      background-color: ${props.activeColor};
-    }
-  `,
-  after:
-    props.active
-    && css`
-      transition: all 0.2s
-        ${props.transition || props.configuration.transitionTimingFunction};
-      &:after {
-        content: '';
-        height: 3px;
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        background-color: ${props.activeColor} !important;
-      }
-      & > .tab-text {
-        transition: all 0.2s
-          ${props.transition || props.configuration.transitionTimingFunction};
-        transform: translateY(
-          -${props.configuration.spacing[props.verticalSpacing] || props.configuration.spacing.sm}
-        );
-      }
-    `,
-});
-
 const getPaddingTransition = (props: {
-  configuration: any;
+  configuration: ConfigProps;
   transition: string;
   horizontalSpacing: string;
 }) => css`
@@ -124,5 +68,32 @@ const getPaddingTransition = (props: {
     || props.configuration.spacing.none};
   transition: padding 0.2s
     ${props.transition || props.configuration.transitionTimingFunction};
+`;
+
+const activeState = (props: {
+  transition: string;
+  configuration: { transitionTimingFunction: string };
+  hoverColor: string;
+  position: string;
+  activeTextColor: string;
+  lineWidth: string;
+}) => css`
+  transition: all 0.2s
+    ${props.transition || props.configuration.transitionTimingFunction};
+  &:after {
+    background-color: ${props.hoverColor} !important;
+    height: ${props.position === 'right' || props.position === 'left'
+    ? '100%'
+    : '0.25rem'} !important;
+    width: ${props.position === 'right' || props.position === 'left'
+    ? '0.25rem'
+    : props.lineWidth} !important;
+  }
+  & > .tab-text > p {
+    color: ${props.activeTextColor} !important;
+    font-weight: 500 !important;
+    transition: all 0.2s
+      ${props.transition || props.configuration.transitionTimingFunction} !important;
+  }
 `;
 export default StyledTab;

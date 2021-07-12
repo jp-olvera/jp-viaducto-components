@@ -28,40 +28,14 @@ export const Activator = styled.button < any > `
   line-height: 1.375rem;
   margin: 0;
   padding: 0.313rem 0;
-  width: 1.5rem;
-  .small {
-    font-size: calc(1rem * 0.8);
+  span {
+    padding-left: 1.2rem;
+    padding-right: 0.6rem;
   }
-  .activator-icon {
+  img {
     height: 1rem;
-  }
-
-  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.sm}) {
-    min-width: 10.688rem;
-    height: 100%;
-    width: calc(12.06rem * 0.8);
-    .activator-text {
-      padding-left: 1.2rem;
-    }
-    .activator-icon {
-      height: 1rem;
-      margin-left: auto;
-      padding-right: 1.2rem;
-    }
-  }
-
-  @media screen and (min-width: ${({ configuration }) => configuration.breakpoints.lg}) {
-    width: 12.06rem;
-    height: 100%;
-    margin: auto;
-    .activator-text {
-      padding-left: 1.2rem;
-    }
-    .activator-icon {
-      height: 1rem;
-      margin-left: auto;
-      padding-right: 1.2rem;
-    }
+    margin-left: auto;
+    padding-right: 1.2rem;
   }
 `;
 
@@ -83,8 +57,6 @@ export const ItemsContainer = styled.div < any > `
   padding: 0;
   position: absolute;
   opacity: 0;
-  visibility: hidden;
-  width: 7.5rem !important;
   z-index: 1;
   flex-direction: column;
   &.active {

@@ -1,3 +1,4 @@
+import { ConfigProps } from 'ballena-types';
 import styled from 'styled-components';
 import { getSize } from '../../utils/getSizes';
 
@@ -20,7 +21,7 @@ interface Breadcrum {
   fontSize: string;
   spacing: string;
   family: string;
-  configuration?: any;
+  configuration: ConfigProps;
 }
 export const StyledBreadcrum = styled.li < Breadcrum > `
   // !important is needed because of the button inherited properties
@@ -43,8 +44,8 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     outline: none;
     cursor: pointer;
     box-sizing: border-box;
-    font-family: ${(p) => (p.family ? p.family : 'inherit')};
-    padding-left: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
+    font-family: ${(p) => p.family};
+    padding-left: ${(p) => p.configuration.spacing[p.spacing]};
   }
 
   .v-breadcrum:not([disabled]):hover {
@@ -57,7 +58,7 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     display: inline-flex;
     vertical-align: middle;
     align-items: center;
-    margin-left: ${(p) => p.configuration.spacing[p.spacing || 'sm']};
+    margin-left: ${(p) => p.configuration.spacing[p.spacing]};
     color: ${(p) => p.configuration.text.mutedGray};
     font-weight: normal;
   }

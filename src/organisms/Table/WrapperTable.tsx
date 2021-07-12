@@ -4,53 +4,52 @@ import { ConfigContext } from '../../providers';
 import { StyledTable } from './StyledTable';
 
 interface TableInterface {
+  /** text-align */
   align?: string;
+  /** background-color */
   background?: string;
-  border: string;
+  /** border style, all, vertical, horizontal, none */
+  border?: string;
+  /** border-color */
   borderColor?: string;
-  columns: [any];
-  colorSelected?: string;
-  data: [any];
-  headerColor?: string;
-  headerElevation?: number;
-  headerFixed?: boolean;
-  headerPadding?: string;
-  horizontalSpacing: string;
-  minHeight?: string;
-  textHeaderColor?: string;
-  verticalSpacing: string;
-  withGlobalFilter: boolean;
-  zebra?: boolean;
-  zebraHover?: boolean;
-  zebraColor?: string;
-  zebraHoverColor?: string;
-  fontSize?: string;
-  family?: string;
+  /** children */
   children: any;
+  /** background-color to apply when a tr has the ``.selected`` className */
+  colorSelected?: string;
+  /** Responsive font size to apply */
+  fontSize?: string;
+  /** font-family */
+  family?: string;
+  /**  horizontal padding to apply based on de spacing configuration */
+  horizontalSpacing?: string;
+  /** boolean to enable hover style */
+  hover?: boolean;
+  /** Color to apply on the when zebra is enabled */
+  hoverColor?: string;
+  /**  vertical padding to apply based on de spacing configuration */
+  verticalSpacing?: string;
+  /** boolean to enable the zebra style */
+  zebra?: boolean;
+  /** color to apply when zebra is enabled */
+  zebraColor?: string;
 }
 
+/** WrapperTable is a helper component to style your tables */
 const Wrapper = ({
   align = 'left',
   background = '#fff',
   border = 'all',
   borderColor = '#eaecef',
   colorSelected = '#FFF1A5',
-  columns,
-  data,
-  headerColor = '#fff',
-  headerElevation = 0,
-  headerFixed = false,
-  headerPadding,
-  horizontalSpacing = 'sm',
-  minHeight = '4.8rem',
-  textHeaderColor = '#5A5A5A',
-  verticalSpacing = 'sm',
-  zebraHover = true,
-  zebraColor = '#F6F8FA',
-  zebraHoverColor = '#D1D5DA',
   fontSize = 'md',
   family,
+  horizontalSpacing = 'sm',
+  hover = true,
+  hoverColor = '#D1D5DA',
   children,
+  verticalSpacing = 'sm',
+  zebra = true,
+  zebraColor = '#F6F8FA',
   ...rest
 }: TableInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -62,18 +61,14 @@ const Wrapper = ({
       borderColor={borderColor}
       configuration={configuration}
       colorSelected={colorSelected}
-      headerColor={headerColor}
-      headerElevation={headerElevation}
-      headerFixed={headerFixed}
-      horizontalSpacing={horizontalSpacing}
-      minHeight={minHeight}
-      textHeaderColor={textHeaderColor}
-      zebraHover={zebraHover}
+      hover={hover}
       zebraColor={zebraColor}
-      zebraHoverColor={zebraHoverColor}
+      hoverColor={hoverColor}
       verticalSpacing={verticalSpacing}
+      horizontalSpacing={horizontalSpacing}
       fontSize={fontSize}
       family={family}
+      zebra={zebra}
       {...rest}
     >
       {children}

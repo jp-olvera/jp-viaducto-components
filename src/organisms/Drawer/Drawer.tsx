@@ -4,26 +4,28 @@ import React, {
 import { createPortal } from 'react-dom';
 import StyledDrawer from './StyledDrawer';
 import { ConfigContext } from '../../providers';
+import { Overlay } from '../../cells/Overlay';
 
-/**
- * Drawer component
- * @param {boolean} active Attribute to show/hide drawer
- * @param {any} children Children component inside the drawer
- * @param {number} elevation Elevation indicator for shadows data
- * @param {string} elevationDirection Light indicator for shadows data
- */
 interface DrawerInterface {
-  active: boolean;
+  /** Indicates if the drawer should be open or not */
+  active?: boolean;
+  /** Content to put inside the drawer */
   children: any;
-  elevation: number;
-  elevationDirection: string;
-  transition?: string;
+  /** Elevation level */
+  elevation?: number;
+  /** Elevation direction */
+  elevationDirection?: string;
+  /** Function to close the popover when clicking outside */
   onClose: () => void;
-  overlayColor: string;
-  overlayOpacity?: string;
-  minWidth?: string;
+  /** Overlay color preferaby an rgba */
+  overlayColor?: string;
+  /** Size of the drawer, 'sm', 'md', 'lg', defaults to 'sm' */
+  size?: string;
+  /** Transition function to apply when opening and closing */
+  transition?: string;
 }
 
+/** Drawer component */
 const Drawer = ({
   active = false,
   children,
@@ -31,7 +33,8 @@ const Drawer = ({
   elevationDirection = '',
   onClose,
   overlayColor = 'rgba(0,0,0,0.3)',
-  minWidth = '22.25rem',
+  size = 'sm',
+  transition = 'ease',
   ...rest
 }: DrawerInterface) => {
   const { configuration } = useContext(ConfigContext);
@@ -51,6 +54,7 @@ const Drawer = ({
       || ev.keyCode === 13
       || ev.keyCode === 32
     ) {
+      /* istanbul ignore else */
       if (active) {
         setisClosing(true);
         setTimeout(() => {
@@ -59,46 +63,51 @@ const Drawer = ({
       }
     }
   };
+  let width = '22.25rem';
+  if (size === 'lg') {
+    width = '33.375rem';
+  }
 
-  if (!active) return null;
-
-  return createPortal(
-    <div
-      onClick={handleClose}
-      onKeyDown={handleClose}
-      data-testid='overlay'
-      role='dialog'
-      style={{
-        backgroundColor: overlayColor,
-        left: 0,
-        height: '100vh',
-        position: 'fixed',
-        top: 0,
-        width: '100vw',
-        zIndex: 9999,
-      }}
-    >
-      <StyledDrawer
-        active={active}
-        configuration={configuration}
-        data-testid='drawer'
-        elevation={elevation}
-        elevationDirection={elevationDirection}
-        minWidth={minWidth}
-        tabIndex={0}
-        ref={ref}
-        {...rest}
-        onClick={(ev) => {
-          // Yep! this is needed
-          ev.stopPropagation();
+  return active
+    ? createPortal(
+      <Overlay
+        onClick={handleClose}
+        onKeyDown={handleClose}
+        data-testid='overlay'
+        role='dialog'
+        style={{
+          backgroundColor: overlayColor,
+          left: 0,
+          height: '100vh',
+          position: 'fixed',
+          top: 0,
+          width: '100vw',
+          zIndex: 1,
         }}
-        isClosing={isClosing}
       >
-        {children}
-      </StyledDrawer>
-    </div>,
-    document.body,
-  );
+        <StyledDrawer
+          configuration={configuration}
+          data-testid='drawer'
+          elevation={elevation}
+          transition={transition}
+          elevationDirection={elevationDirection}
+          width={width}
+          tabIndex={0}
+          ref={ref}
+          {...rest}
+          onClick={(ev: any) => {
+            // Yep! this is needed
+            ev.stopPropagation();
+          }}
+          isClosing={isClosing}
+          size={size}
+        >
+          {children}
+        </StyledDrawer>
+      </Overlay>,
+      document.body,
+    )
+    : null;
 };
 
 export default Drawer;

@@ -1,25 +1,44 @@
 import React, { useContext } from 'react';
 
 import { StyledProgressBar } from './StyleLoader';
-import { ConfigContext } from '../../providers/ConfigProvider'
+import { ConfigContext } from '../../providers/ConfigProvider';
+
+/** Progress bar component */
 interface ProgressBarInterface {
-  totalSteps: number;
+  /** Set the color of the progress */
+  color?: string;
+  /** Set the completed steps in the bar */
   completedSteps: number;
+  /** Set the total steps to divide the progress bar */
+  totalSteps: number;
+  /** Overrides the transitionTimingFunction */
   transition?: string;
 }
 
+/**
+ * Progress bar component
+ * @param {String} color Set the color of the progress
+ * @param {Number} completedSteps Set the completed steps in the bar
+ * @param {Number} totalSteps Set the total steps to divide the progress bar
+ * @param {String} transition Overrides the transitionTimingFunction
+ */
+
 const ProgressBar = ({
-  totalSteps = 100,
-  completedSteps = 0,
+  totalSteps,
+  completedSteps,
+  color = '#3AE25F',
+  transition,
   ...rest
-}: ProgressBarInterface) => {
-  const { configuration } = useContext(ConfigContext)
+}: ProgressBarInterface & React.HTMLAttributes<HTMLDivElement>) => {
+  const { configuration } = useContext(ConfigContext);
   return (
     <StyledProgressBar
       max={totalSteps}
-      value={completedSteps}
+      value={completedSteps <= totalSteps ? completedSteps : totalSteps}
       data-testid='loader'
       configuration={configuration}
+      color={color}
+      transition={transition}
       {...rest}
     >
       <div className='progress-bar-container'>
@@ -28,6 +47,6 @@ const ProgressBar = ({
         </div>
       </div>
     </StyledProgressBar>
-  )
+  );
 };
 export default ProgressBar;
