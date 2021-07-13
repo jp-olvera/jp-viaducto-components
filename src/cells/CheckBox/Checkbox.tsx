@@ -59,7 +59,6 @@ const Checkbox = ({
       color={color}
       disabled={disabled}
       data-testid={props.id}
-      {...props}
     >
       <input
         onChange={(event) => {
@@ -69,6 +68,7 @@ const Checkbox = ({
         disabled={disabled}
         type='checkbox'
         id={props.id}
+        {...props}
       />
       <Spacer size={spacing} direction='horizontal' />
       {label}

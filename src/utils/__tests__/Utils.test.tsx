@@ -12,6 +12,7 @@ import {
   getCheckSizes,
   getRangeSize,
   getBorder,
+  getTitleLineHeight,
 } from '../getSizes';
 
 describe('getBorder file', () => {
@@ -21,6 +22,7 @@ describe('getBorder file', () => {
     ).not.toBeNull();
   });
 });
+
 describe('scroll file', () => {
   test('should not be null', () => {
     expect(findScrollParents(null)).not.toBeNull();
@@ -132,6 +134,21 @@ describe('getSizes file', () => {
     });
   });
 
+  describe('getTitleLineHeight function', () => {
+    test('should return lg size of line height with md font size', () => {
+      expect(getTitleLineHeight('lg', 'md', false)).not.toBeNull();
+    });
+    test('should return sm size of line height with lg font size with max props', () => {
+      expect(getTitleLineHeight('sm', 'lg', true)).not.toBeNull();
+    });
+    test('should return xs size props', () => {
+      expect(getTitleLineHeight('xs')).not.toBeNull();
+    });
+    test('should return default size props', () => {
+      expect(getTitleLineHeight('100%')).not.toBeNull();
+    });
+  });
+
   describe('getFontSize function', () => {
     test('should return level 3 size of title with max and no max prop', () => {
       const levelThree = 'clamp(1.296rem, calc(1.296rem + ((calc(1.125vw * 16) - 0.000625rem) * 0.4803)), 1.728rem) ';
@@ -142,6 +159,13 @@ describe('getSizes file', () => {
     test('should return level 5 size of title with max arg', () => {
       const levelFive = 'clamp(1.138rem, calc(1.138rem + ((calc(1.125vw * 16) - 0.000625rem) * 0.0689)), 1.2rem) ';
       expect(getFontSize('5', true)).toEqual(levelFive);
+    });
+    test('should return level 6 size of title with max arg', () => {
+      const levelFive = 'clamp(1.138rem, calc(1.138rem + ((calc(1.125vw * 16) - 0.000625rem) * 0.0689)), 1.2rem) ';
+      expect(getFontSize('6', true)).toEqual(levelFive);
+    });
+    test('should return level 6 size of title with no max arg', () => {
+      expect(getFontSize('6', false)).not.toBeNull();
     });
     test('should return display 1 size with max and no max prop', () => {
       const displayOne = 'clamp(1.913rem, calc(1.913rem + ((calc(1.125vw * 16) - 0.000625rem) * 3.6103)), 5.16rem) ';

@@ -4,16 +4,27 @@ import { ConfigContext } from '../../providers';
 import StyledTitle from './StyledTitle';
 
 interface TitleInterface {
+  /** value for children */
   children: any;
+  /** value for align */
   align?: string;
+  /** value for color */
   color?: string;
+  /** value for font-family */
   family?: string | null;
+  /** value for font-style property */
   fontStyle?: string;
+  /** value for title size, values between 1 - 6 or D1 - D4 */
   level?: string;
+  /** value for line-height property */
   lineHeight?: string;
+  /** value for margin */
   margin?: string;
+  /** value for leter-spacing, it'l be used with rem units */
   spacing?: string;
+  /** value for vertical-align property */
   verticalAlign?: string;
+  /** value for weight */
   weight?: string;
 }
 
@@ -35,6 +46,11 @@ interface TitleInterface {
  * @param {String} weight value for weight
  */
 
+/** Title component overrides HTML heading tag (h1)
+ * This components uses level arguent to decide the sie o the title
+ * you can use values from 1 to 6 for cases like h1, h2, h3 ...
+ * or u can use alues from D1 - D4 */
+
 const Title = ({
   family = null,
   children,
@@ -43,6 +59,26 @@ const Title = ({
   ...props
 }: TitleInterface & React.HTMLAttributes<HTMLHeadingElement>) => {
   const { configuration } = useContext(ConfigContext);
+  const actAs = (): string => {
+    let response: string = level;
+    switch (level) {
+      case 'd1':
+      case 'D1':
+      case 'd2':
+      case 'D2':
+      case 'd3':
+      case 'D3':
+      case 'd4':
+      case 'D4':
+      case '1':
+        response = '1';
+        break;
+      default:
+        break;
+    }
+    return response;
+  };
+  const element: any = `h${actAs()}`;
 
   return (
     <StyledTitle
@@ -51,6 +87,7 @@ const Title = ({
       family={family}
       configuration={configuration}
       {...props}
+      as={element}
     >
       {children}
     </StyledTitle>

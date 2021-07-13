@@ -7,14 +7,23 @@ import StyledToaster from './StyledToaster';
 
 /** A toast component, you can change ts position via top and right properties */
 interface ToasterInterface {
+  /** Icon Helper */
   icon?: any;
+  /** The title in the top */
   title?: string;
+  /** Elevation indicator for shadows data */
   elevation?: number;
+  /** Light indicator for shadows data */
   elevationDirection?: string;
+  /** Overrides transitionTimingFunction */
   transition?: string;
+  /** Trigger a function when closes the toaster */
   onDismiss?: Function;
+  /** Set the placement of the Toaster shown */
   placement?: string;
+  /** Set the transition state */
   transitionState?: string;
+  /** Set the child element */
   children?: any;
 }
 

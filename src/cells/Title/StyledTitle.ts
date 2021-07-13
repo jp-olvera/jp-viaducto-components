@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { getLineHeight, getFontSize } from '../../utils/getSizes';
+import { getTitleLineHeight, getFontSize } from '../../utils/getSizes';
 
 const StyledTitle = styled.h1 < any > `
   ${(p) => (p.family !== null
@@ -14,11 +14,11 @@ const StyledTitle = styled.h1 < any > `
   font-size: ${({ level }) => getFontSize(level)};
   text-align: ${({ align }) => align || 'left'};
   letter-spacing: ${({ spacing }) => spacing || 'normal'};
-  line-height: ${({ lineHeight, level }) => getLineHeight(lineHeight, level, false)};
+  line-height: ${({ lineHeight, level }) => getTitleLineHeight(lineHeight, level, false)};
   color: ${({ configuration, color }) => configuration.text[color] || color};
   vertical-align: ${({ verticalAlign }) => verticalAlign || 'baseline'};
   @media (min-width: ${({ configuration }) => configuration.breakpoints.xl}) {
-    line-height: ${({ lineHeight, level }) => getLineHeight(lineHeight, level, true)};
+    line-height: ${({ lineHeight, level }) => getTitleLineHeight(lineHeight, level, true)};
   }
 `;
 
