@@ -2,7 +2,7 @@ import React from 'react';
 import { SBConfigI } from '../../../sb';
 import { ConfigProvider } from '../../../providers';
 import { GroupTab } from '..';
-import { Container, Tab } from '../../../cells';
+import { Tab } from '../../../cells';
 
 const config: SBConfigI = {
   title: 'Andamio/Organisms/GroupTab',
@@ -129,16 +129,14 @@ export default config;
 
 const Template = (args: typeof Default) => (
   <ConfigProvider>
-    <Container horizontal='md' top='sm'>
-      <GroupTab {...args}>
-        <Tab text='All locations' />
-        <Tab text='Country' />
-        <Tab text='Region' />
-        <Tab text='State' />
-        <Tab text='Market' />
-        <Tab text='Last Mile' />
-      </GroupTab>
-    </Container>
+    <GroupTab {...args}>
+      <Tab text='Store' />
+      <Tab text='My apps' />
+      <Tab text='Organization Settings' />
+      <Tab text='Very large tab name but sill works' />
+      <Tab text='Market' />
+      <Tab text='Last Mile' />
+    </GroupTab>
   </ConfigProvider>
 );
 

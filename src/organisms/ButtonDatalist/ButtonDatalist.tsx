@@ -23,6 +23,8 @@ interface ButtonDatalistInterface {
   selectedOptionsList?: string[];
   /** Title of the component */
   titleComponent?: string | null;
+  /** Icon for the input */
+  inputIcon?: any;
 }
 
 /**
@@ -33,6 +35,7 @@ interface ButtonDatalistInterface {
  * @param {string | null} onClick Tringgers and action when the button is clicked
  * @param {Function} selectedOptionsList Pass to the component a list of pre-selected items
  * @param {string | null} titleComponent Title of the component
+ * @param {any} inputIcon Icon for the input
  */
 
 const ButtonDatalist = ({
@@ -41,6 +44,7 @@ const ButtonDatalist = ({
   titleComponent = 'Title',
   family,
   onClick,
+  inputIcon,
   selectedOptionsList = [],
   ...rest
 }: ButtonDatalistInterface & React.HTMLAttributes<HTMLDivElement>) => {
@@ -72,7 +76,7 @@ const ButtonDatalist = ({
       )}
       <Container expandHorizontal top='xs' bottom='sm' horizontal='xs'>
         <Input
-          icon='🔎'
+          icon={inputIcon}
           inputSize='small'
           onClick={() => setShowOptions(!showOptions)}
           onChange={(e: any) => {

@@ -7,7 +7,7 @@ import { ButtonDatalist } from '..';
 describe('<ButtonDatalist/>', () => {
   test('should be visible', () => {
     const { container } = render(
-      <ButtonDatalist options={[]} onClick={() => {}} />,
+      <ButtonDatalist options={[]} onClick={() => {}} inputIcon='❤' />,
     );
     expect(container).toBeVisible();
   });
