@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+import { ConfigProps } from 'ballena-types';
 import { SIZE, FONT_SIZE } from './constants';
 
 const turnOn = keyframes`
@@ -33,24 +34,46 @@ const loadingIda = keyframes`
     left: 0;
   }
 `;
-
-const StyledButton = styled.button < any > `
+interface ButtonProps {
+  configuration: ConfigProps;
+  variant: string;
+  colors: {
+    default: string;
+    hover: string;
+    click: string;
+    text: string;
+    shadow: string;
+  };
+  lead: boolean;
+  radius: string;
+  height: string;
+  block: boolean;
+  isIconOnly: boolean;
+  isLoading: boolean;
+  iconSpacing: string;
+  size: string;
+  leftSpacing: string | null;
+  rightSpacing: string | null;
+  isValid: boolean | null;
+}
+const StyledButton = styled.button < ButtonProps > `
   ${(props) => borderColor(props)};
-  background-color: ${(props) => (props.variant === 'solid' ? props.colors.default : 'transparent')};
-  color: ${(props) => (props.variant === 'solid' ? props.colors.text : props.colors.default)};
-  position: relative;
   align-items: center;
-  display: inline-flex;
-  flex-direction: ${(props) => (props.lead ? 'row' : 'row-reverse')};
-  justify-content: center;
+  background-color: ${(props) => (props.variant === 'solid' ? props.colors.default : 'transparent')};
+  border: 0.063rem solid
+    ${(props) => (props.variant === 'ghost' ? 'transparent' : props.colors.default)};
   border-radius: ${(props) => props.configuration.radius[props.radius] || '0.375rem'};
   box-sizing: border-box;
-  transition: background-color 0.15s
-    ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
-  text-align: center;
-
-  ${(props) => getLateralPadding(props)}
+  color: ${(props) => (props.variant === 'solid' ? props.colors.text : props.colors.default)};
+  display: inline-flex;
+  flex-direction: ${(props) => (props.lead ? 'row' : 'row-reverse')};
   height: ${(p) => p.height};
+  justify-content: center;
+  outline: none;
+  position: relative;
+  text-align: center;
+  transition: background-color 0.15s ease;
+  ${(props) => getLateralPadding(props)}
   ${(props) => getFontStyle(props)}
 
   //disabled
@@ -60,15 +83,16 @@ const StyledButton = styled.button < any > `
 
   // just hover
   &:not([disabled]):hover {
-    background-color: ${(props) => props.colors.hover};
+    background-color: ${(props) => (props.variant !== 'ghost' ? props.colors.hover : 'transparent')};
     cursor: pointer;
-    ${(props) => (props.variant !== 'solid' ? `color: ${props.colors.text}` : null)}
+    color: ${(props) => (props.variant !== 'ghost' ? props.colors.text : props.colors.default)};
+    border-color: ${(props) => (props.variant === 'ghost' ? props.colors.default : 'transparent')};
   }
 
   // active
   &:not([hover]):not([disabled]):active {
-    background-color: ${(props) => props.colors.click};
-    color: ${(props) => (props.variant !== 'solid' ? props.colors.text : props.colors.default)};
+    background-color: ${(props) => (props.variant === 'ghost' ? props.colors.shadow : props.colors.click)};
+    color: ${(props) => (props.variant !== 'ghost' ? props.colors.text : props.colors.default)};
   }
 
   // focus

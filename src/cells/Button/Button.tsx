@@ -53,38 +53,16 @@ interface ButtonInterface {
   type?: string;
   /** Button visual style */
   variant?: string;
-  /** Set the transitionTimingFunction */
-  transition?: string;
   /** Action to execute */
   onClick?: Function;
   /** Set the long loading bar */
   useLongLoading?: boolean;
 }
+
 /**
  * Button component overrides HTML button tag. This components accepts icons and/or labels
- * @param {boolean} block Set button with as 100% of the container
- * @param {String} colors Color of the button (with its states)
- * @param {boolean} disabled Enable/Disable button
- * @param {string} height Size of the component
- * @param {any} icon Icon component for the button
- * @param {String} iconSpacing The horizontal spacing between the label and icon (if both are defined)
- * @param {Boolean} isLoading Set loading button prop
- * @param {Boolean} isValid Set valid button prop
- * @param {String} label Label for the button
- * @param {Boolean} lead Indicates if the icon will be leading
- * @param {String} leftSpacing Left spacing between the content and the button
- * @param {String} radius Border Radius size
- * @param {String} rightSpacing Right spacing between the content and the button
- * @param {String} shapeColor Button variant (color)
- * @param {String} size Size of the button
- * @param {string} type Button type (for the color)
- * @param {String} variant Button visual style
- * @param {String} transition Set the transitionTimingFunction
- * @param {Function} onClick Action to execute
- * @param {Boolean} useLongLoading Set the long loading bar
  */
-
-const Button = forwardRef(
+const Button = forwardRef<HTMLButtonElement>(
   (
     {
       block = false,
