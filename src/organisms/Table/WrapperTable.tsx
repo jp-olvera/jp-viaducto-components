@@ -20,7 +20,11 @@ interface TableInterface {
   fontSize?: string;
   /** font-family */
   family?: string;
-  /**  horizontal padding to apply based on de spacing configuration */
+  /**  text color for the table header */
+  headerColor?: string;
+  /**  background color for the table header */
+  headerBackgroundColor?: string;
+  /**  horizontal padding to apply based on the spacing configuration */
   horizontalSpacing?: string;
   /** boolean to enable hover style */
   hover?: boolean;
@@ -44,6 +48,8 @@ const Wrapper = ({
   fontSize = 'md',
   family,
   horizontalSpacing = 'sm',
+  headerColor = 'black',
+  headerBackgroundColor = '#FAFAFA',
   hover = true,
   hoverColor = '#D1D5DA',
   children,
@@ -61,6 +67,8 @@ const Wrapper = ({
       borderColor={borderColor}
       configuration={configuration}
       colorSelected={colorSelected}
+      headerColor={headerColor}
+      headerBackgroundColor={headerBackgroundColor}
       hover={hover}
       zebraColor={zebraColor}
       hoverColor={hoverColor}

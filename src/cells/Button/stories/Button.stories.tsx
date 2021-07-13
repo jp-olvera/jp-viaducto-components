@@ -152,16 +152,6 @@ const config: SBConfigI = {
         type: 'select',
       },
     },
-    transition: {
-      description: 'Set the transitionTimingFunction',
-      type: {
-        summary: 'string',
-        required: false,
-      },
-      table: {
-        defaultValue: { summary: 'ease' },
-      },
-    },
     icon: {
       description: 'Set an icon with the label',
       type: { summary: 'JSX Element / String', required: false },
@@ -262,7 +252,6 @@ Default.args = {
   colors: null,
   disabled: false,
   block: false,
-  transition: 'ease',
   onClick: () => {},
   isLoading: false,
 };
@@ -282,7 +271,6 @@ Outline.args = {
   disabled: false,
   block: false,
   isLoading: false,
-  transition: 'ease',
   onClick: () => {},
 };
 export const Ghost = Template.bind({});
@@ -300,7 +288,6 @@ Ghost.args = {
   disabled: false,
   block: false,
   isLoading: false,
-  transition: 'ease',
   onClick: () => {},
 };
 
@@ -319,7 +306,6 @@ Custom.args = {
   disabled: false,
   isLoading: false,
   iconSpace: 'xs',
-  transition: 'ease',
   onClick: () => {},
 };
 export const Small = Template.bind({});
@@ -333,7 +319,6 @@ Small.args = {
   height: '',
   shapeColor: 'primary',
   variant: 'solid',
-  transition: 'ease',
   isLoading: false,
   onClick: () => {},
 };
@@ -349,7 +334,6 @@ IconOnly.args = {
   shapeColor: 'primary',
   variant: 'solid',
   isLoading: false,
-  transition: 'ease',
   onClick: () => {},
 };
 export const CustomHeight = Template.bind({});
@@ -363,7 +347,6 @@ CustomHeight.args = {
   shapeColor: 'primary',
   variant: 'solid',
   isLoading: false,
-  transition: 'ease',
   onClick: () => {},
 };
 export const LoadingButton = Template.bind({});
@@ -375,7 +358,6 @@ LoadingButton.args = {
   lead: false,
   shapeColor: 'primary',
   variant: 'solid',
-  transition: 'ease',
   onClick: () => {},
   isLoading: true,
   icon: Icon({ icon: '⭕' }),
@@ -390,7 +372,6 @@ StateButton.args = {
   lead: false,
   shapeColor: 'primary',
   variant: 'solid',
-  transition: 'ease',
   onClick: () => {},
   isLoading: false,
   isValid: true,

@@ -10,6 +10,8 @@ interface TableProps {
   hover?: boolean;
   zebraColor?: string;
   hoverColor?: string;
+  headerColor: string;
+  headerBackgroundColor?: string;
   verticalSpacing: string;
   horizontalSpacing: string;
   align?: string;
@@ -32,6 +34,10 @@ export const StyledTable = styled.div < TableProps > `
     border-spacing: 0;
     background-color: ${(p) => p.background};
 
+    thead {
+      color: ${(p) => p.configuration.text[p.headerColor] || p.headerColor};
+      background-color: ${(p) => p.headerBackgroundColor};
+    }
     thead > tr {
       border-bottom: ${(p) => `0.063rem solid ${p.borderColor}`};
     }
@@ -46,10 +52,10 @@ export const StyledTable = styled.div < TableProps > `
       padding: 0;
       margin: 0;
       &:hover {
-        background-color: ${(p) => (p.hover ? p.hoverColor : p.background)};
-        border-color: ${(p) => (p.hover ? p.hoverColor : p.background)};
+        ${(p) => (p.hover ? `background-color: ${p.hoverColor}` : null)};
+        ${(p) => (p.hover ? `border-color: ${p.hoverColor}` : null)};
         td {
-          border-color: ${(p) => (p.hover ? p.hoverColor : p.background)};
+          ${(p) => (p.hover ? `border-color: ${p.hoverColor}` : null)};
         }
       }
     }

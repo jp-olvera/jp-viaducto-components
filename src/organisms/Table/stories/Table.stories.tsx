@@ -14,6 +14,9 @@ const config: SBConfigI = {
     headerColor: {
       control: 'color',
     },
+    headerBackgroundColor: {
+      control: 'color',
+    },
     border: {
       options: ['all', 'horizontal', 'vertical', 'none'],
       control: {
