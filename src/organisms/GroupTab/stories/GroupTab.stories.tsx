@@ -68,6 +68,29 @@ const config: SBConfigI = {
         type: 'select',
       },
     },
+    spacing: {
+      description: 'Set the spacing between tabs',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'none' },
+      },
+      options: [
+        'none',
+        'nano',
+        'micro',
+        'tiny',
+        'xs',
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        'xxl',
+        'xxxl',
+      ],
+      control: {
+        type: 'select',
+      },
+    },
     verticalSpacing: {
       description:
         'Set the vertical spacing taking the tab content as reference',
@@ -108,10 +131,12 @@ const Template = (args: typeof Default) => (
   <ConfigProvider>
     <Container horizontal='md' top='sm'>
       <GroupTab {...args}>
-        <Tab text='Zombie' />
-        <Tab text='Patrol' />
-        <Tab text='Group' />
-        <Tab text='Tab' />
+        <Tab text='All locations' />
+        <Tab text='Country' />
+        <Tab text='Region' />
+        <Tab text='State' />
+        <Tab text='Market' />
+        <Tab text='Last Mile' />
       </GroupTab>
     </Container>
   </ConfigProvider>
@@ -125,4 +150,5 @@ Default.args = {
   verticalSpacing: 'sm',
   fontSize: 'md',
   position: 'bottom',
+  spacing: 'none',
 };

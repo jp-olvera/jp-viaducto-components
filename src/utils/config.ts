@@ -90,13 +90,13 @@ const config: ConfigProps = {
     },
   },
   radius: {
-    none: '0px',
+    none: '0rem',
     sm: '0.188rem',
     md: '0.375rem',
     lg: '0.75rem',
   },
   spacing: {
-    none: '0px',
+    none: '0rem',
     nano: '0.279rem',
     micro: '0.335rem',
     tiny: '0.402rem',

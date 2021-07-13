@@ -44,6 +44,8 @@ const config: SBConfigI = {
         defaultValue: { summary: 'md' },
         type: { summary: 'string' },
       },
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg'],
     },
     margin: {
       description: 'Value for margin property',

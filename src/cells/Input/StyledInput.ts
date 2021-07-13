@@ -74,12 +74,12 @@ export const Wrapper = styled.div < any > `
       }
 
       & ~ .icon {
-        ${(p) => (p.hasLabel
-          && p.size !== 'xsmall'
-          && p.border !== 'outside'
-          && p.border !== 'overlap'
-    ? 'padding-top: 0.75%'
-    : 'padding-top: 0%')};
+        padding-top: ${(p) => (p.hasLabel
+    ? p.size === 'xsmall'
+              || (p.border !== 'outside' && p.border !== 'overlap')
+      ? '0.75%'
+      : 0
+    : 0)};
       }
 
       & ~ .is-:invalid,

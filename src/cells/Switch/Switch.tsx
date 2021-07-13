@@ -41,7 +41,6 @@ const Switch = ({
       disabled={disabled}
       data-testid={rest.id}
       check={check}
-      {...rest}
     >
       <input
         type='checkbox'
@@ -51,6 +50,7 @@ const Switch = ({
           if (change) change(e);
         }}
         disabled={disabled}
+        {...rest}
       />
       <span className='slider round' data-testid='slider' />
     </StyledSwitch>

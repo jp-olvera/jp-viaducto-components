@@ -31,8 +31,6 @@ interface InputInterface {
   onChange?: Function;
   /** Set a function triggered when onClick is called */
   onClick?: Function;
-  /** Set a function triggered when onKeyUp is called */
-  onKeyUp?: Function;
   /** Icon for mark input is required */
   required?: boolean;
   /** Set the height of the input */
@@ -54,7 +52,6 @@ interface InputInterface {
  * @param {string} label The caption for the input
  * @param {Function} onChange Set a function triggered when onChange is called
  * @param {Function} onClick  Set a function triggered when onClick is called
- * @param {Function} onKeyUp  Set a function triggered when onKeyUp is called
  * @param {boolean} required Icon for mark input is required
  * @param {string} inputSize Set the height of the input
  * @param {string} type Set the input type (text, password, email, etc.)
@@ -74,7 +71,6 @@ const Input = ({
   iconColor = '#2329D6',
   onChange = () => {},
   onClick,
-  onKeyUp,
   family,
   ...rest
 }: InputInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
@@ -129,24 +125,24 @@ const Input = ({
           className='input'
           ref={inputRef}
           onChange={(ev) => {
-            setCardIcon(ev);
-            setNewValue(
-              type === 'card'
-                ? mask(ev.target.value.replace(/([^0-9])/g, ''), 4, '-').slice(
-                  0,
-                  cardType === 'american-express' ? 21 : 19,
-                )
-                : type === 'phone'
-                  ? mask(ev.target.value.replace(/([^0-9|+])/g, ''), 3, ' ')
-                  : ev.target.value,
-            );
+            if (type === 'card') {
+              setCardIcon(ev);
+              setNewValue(
+                type === 'card'
+                  ? mask(
+                    ev.target.value.replace(/([^0-9])/g, ''),
+                    4,
+                    '-',
+                  ).slice(0, cardType === 'american-express' ? 21 : 19)
+                  : type === 'phone'
+                    ? mask(ev.target.value.replace(/([^0-9|+])/g, ''), 3, ' ')
+                    : ev.target.value,
+              );
+            }
             onChange(ev);
           }}
           onClick={(e) => {
             if (onClick) onClick(e);
-          }}
-          onKeyUp={(e) => {
-            if (onKeyUp) onKeyUp(e);
           }}
           type={
             type === 'card' || type === 'phone'

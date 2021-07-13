@@ -30,6 +30,20 @@ const getLineHeight = (lineHeight = 'md', size = 'md', max = false) => {
       return lineHeight;
   }
 };
+const getTitleLineHeight = (lineHeight = 'md', size = '1', max = false) => {
+  switch (lineHeight) {
+    case 'xs':
+      return `calc(${getFontSize(size, max)} * 1.15)`;
+    case 'sm':
+      return `calc(${getFontSize(size, max)} * 1.25)`;
+    case 'lg':
+      return `calc(${getFontSize(size, max)} * 1.75)`;
+    case 'md':
+      return `calc(${getFontSize(size, max)} * 1.5)`;
+    default:
+      return lineHeight;
+  }
+};
 
 const getFontSize = (level: string, max: boolean = false) => {
   switch (level) {
@@ -202,6 +216,7 @@ const getCheckSizes = (size: string) => {
 export {
   getSize,
   getLineHeight,
+  getTitleLineHeight,
   getFontSize,
   getRadioSizes,
   getCheckSizes,
