@@ -33,8 +33,8 @@ const Accordion = ({
   ...rest
 }: AccordionInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
-  const px = configuration.spacing[paddingX] || configuration.spacing.md;
-  const py = configuration.spacing[paddingY] || configuration.spacing.md;
+  const px = configuration.spacing[paddingX];
+  const py = configuration.spacing[paddingY];
 
   return (
     <StyledAccordion {...rest}>
