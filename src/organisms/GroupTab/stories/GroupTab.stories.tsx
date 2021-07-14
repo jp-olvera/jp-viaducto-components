@@ -122,6 +122,13 @@ const config: SBConfigI = {
         defaultValue: { summary: 'ease' },
       },
     },
+    onTabChange: {
+      description: 'Triggers an action on tab changes',
+      type: { summary: 'Function', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
   },
 };
 
@@ -149,4 +156,6 @@ Default.args = {
   fontSize: 'md',
   position: 'bottom',
   spacing: 'none',
+  // eslint-disable-next-line no-console
+  onTabChange: () => console.log('tab change'),
 };
