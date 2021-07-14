@@ -12,7 +12,7 @@ interface InputInterface {
   /** The border type for the input (full, bottom, overlap) */
   border?: string;
   /** set the color border */
-  borderColor?: string;
+  borderColor?: string | null;
   /** Set the input disabled */
   disabled?: boolean;
   /** Set font family */
@@ -58,7 +58,6 @@ interface InputInterface {
  * @param {string} inputSize Set the height of the input
  * @param {string} type Set the input type (text, password, email, etc.)
  */
-
 const Input = ({
   label,
   border = 'default',
@@ -69,7 +68,7 @@ const Input = ({
   iconHelper = null,
   inputSize = 'default',
   required,
-  borderColor = '#001D48',
+  borderColor = null,
   iconColor = '#2329D6',
   onChange = () => {},
   onClick,
@@ -117,7 +116,11 @@ const Input = ({
         hasIcon={icon !== null}
         size={inputSize}
         configuration={configuration}
-        borderColor={borderColor}
+        borderColor={
+          borderColor === null
+            ? configuration.defaultInputBorderColor
+            : borderColor
+        }
         iconColor={iconColor}
         disabled={disabled}
         family={family}

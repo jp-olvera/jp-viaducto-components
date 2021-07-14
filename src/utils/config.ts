@@ -8,6 +8,7 @@ const config: ConfigProps = {
     lg: '62rem', // '992px'
     xl: '90rem', // '1440px'
   },
+  defaultInputBorderColor: '#001D48',
   colors: {
     primary: {
       default: '#937B3D',

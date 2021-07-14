@@ -5,6 +5,7 @@ export interface ConfigProps {
     default: string;
     large: string;
   };
+  defaultInputBorderColor: string;
   drawerSizes: {
     sm: string;
     md: string;
