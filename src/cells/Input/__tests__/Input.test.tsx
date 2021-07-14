@@ -11,9 +11,11 @@ describe('<Input/>', () => {
         label='Im the input tested'
         family={null}
         type='card'
+        icon='💳'
       />,
     );
     const input = container.querySelector('.input');
+    fireEvent.change(input, { target: { value: '999999' } });
     expect(input).toBeInTheDocument();
   });
 
@@ -22,12 +24,13 @@ describe('<Input/>', () => {
       <Input
         inputSize='small'
         label='Im the input tested'
-        type='card'
-        defaultValue={555555}
+        type='phone'
+        defaultValue='555555'
         border='overlap'
       />,
     );
     const input = container.querySelector('input');
+    fireEvent.keyDown(input, { target: { value: '5255' } });
     expect(input?.value).not.toBe('New value');
   });
 
@@ -48,6 +51,7 @@ describe('<Input/>', () => {
         type='card'
         border='overlap'
         defaultValue='55555555555'
+        getCardType='american-express'
         required
         onKeyUp={jest.fn}
       />,

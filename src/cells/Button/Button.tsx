@@ -62,7 +62,10 @@ interface ButtonInterface {
 /**
  * Button component overrides HTML button tag. This components accepts icons and/or labels
  */
-const Button = forwardRef<HTMLButtonElement>(
+const Button = forwardRef<
+  HTMLButtonElement,
+  ButtonInterface & React.ButtonHTMLAttributes<HTMLButtonElement>
+>(
   (
     {
       block = false,

@@ -31,8 +31,20 @@ describe('<GroupTab/>', () => {
     expect(container).toBeVisible();
   });
   test('should change tab', () => {
+    const { queryByText } = render(
+      <GroupTab position='top' spacing='none' onTabChange={jest.fn}>
+        <Tab text='Zombie' />
+        <Tab text='Act' />
+        <Tab text='Dinner' />
+      </GroupTab>,
+    );
+    const tab = queryByText('Dinner');
+    fireEvent.click(tab);
+    expect(tab).toMatchSnapshot();
+  });
+  test('should change tab and return to first tab', () => {
     const { container, queryByText } = render(
-      <GroupTab position='top' spacing='lg'>
+      <GroupTab position='top' spacing='none' onTabChange={jest.fn}>
         <Tab text='Zombie' />
         <Tab text='Act' />
         <Tab text='Dinner' />
@@ -42,7 +54,7 @@ describe('<GroupTab/>', () => {
     fireEvent.click(tab);
     fireEvent.click(queryByText('Zombie'));
     const line: HTMLDivElement = container.querySelector('.line');
-    expect(line).toHaveStyle('marginLeft: 0rem');
+    expect(line).toHaveStyle('marginLeft: 0');
   });
   describe('onload function', () => {
     const A = () => {
@@ -54,32 +66,8 @@ describe('<GroupTab/>', () => {
         onload(
           A.bind({}),
           0,
+          { spacing: 'lg' },
           'lg',
-          { spacing: { lg: '1rem' } },
-          () => {},
-          () => {},
-        ),
-      ).not.toBeNaN();
-    });
-    test('should call function with none spacing', () => {
-      expect(
-        onload(
-          A.bind({}),
-          0,
-          'none',
-          { spacing: { lg: '1rem', none: '0rem' } },
-          () => {},
-          () => {},
-        ),
-      ).not.toBeNaN();
-    });
-    test('should call function with undefined spacing', () => {
-      expect(
-        onload(
-          A.bind({}),
-          0,
-          'aaaa',
-          { spacing: { lg: '1rem', none: '0rem' } },
           () => {},
           () => {},
         ),

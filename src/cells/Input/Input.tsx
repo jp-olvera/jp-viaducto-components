@@ -35,6 +35,8 @@ interface InputInterface {
   required?: boolean;
   /** Set the height of the input */
   inputSize?: string;
+  /** set the card type */
+  getCardType?: string;
   /** Set the input type (text, password, email, etc.) */
   type?: string;
 }
@@ -72,17 +74,19 @@ const Input = ({
   onChange = () => {},
   onClick,
   family,
+  getCardType = 'card',
   ...rest
 }: InputInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
-  const [cardType, setCardType] = useState('card');
+  const [cardType, setCardType] = useState(getCardType);
   const [placeIcon, setIcon] = useState(icon);
   const { configuration } = useContext(ConfigContext);
-  const [newValue, setNewValue] = useState<any>(null);
+  const [newValue, setNewValue] = useState<any>(rest.defaultValue || undefined);
   const inputRef = useRef<any>();
 
   const setCardIcon = (ev: any) => {
     const { value: val }: { value: string } = ev.target;
     creditCardType(val).map((card) => {
+      /* istanbul ignore else */
       if (
         card.type === CardType.MASTERCARD
         || card.type === CardType.VISA
@@ -92,7 +96,7 @@ const Input = ({
         setIcon(card.type);
       } else {
         setCardType('card');
-        setIcon(null);
+        setIcon(icon || null);
       }
       return true;
     });
@@ -128,16 +132,13 @@ const Input = ({
             if (type === 'card') {
               setCardIcon(ev);
               setNewValue(
-                type === 'card'
-                  ? mask(
-                    ev.target.value.replace(/([^0-9])/g, ''),
-                    4,
-                    '-',
-                  ).slice(0, cardType === 'american-express' ? 21 : 19)
-                  : type === 'phone'
-                    ? mask(ev.target.value.replace(/([^0-9|+])/g, ''), 3, ' ')
-                    : ev.target.value,
+                mask(ev.target.value.replace(/([^0-9])/g, ''), 4, '-').slice(
+                  0,
+                  cardType === 'american-express' ? 21 : 19,
+                ),
               );
+            } else {
+              setNewValue(ev.target.value);
             }
             onChange(ev);
           }}
@@ -151,13 +152,11 @@ const Input = ({
                 ? 'date'
                 : type
           }
-          autoComplete={type === 'card' ? 'cc-number' : ''}
-          x-autocompletetype={type === 'card' ? 'cc-number' : ''}
           id={rest.id}
           required
+          defaultValue={newValue}
           disabled={disabled}
           min={rest.min}
-          defaultValue={rest.value || newValue}
           max={rest.max}
           {...rest}
         />
@@ -198,6 +197,5 @@ export const mask = (value: string, limit: number, separator: string = '-') => {
 
     output.push(value[i]);
   }
-
   return output.join('');
 };

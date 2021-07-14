@@ -58,6 +58,34 @@ describe('scroll file', () => {
     );
     expect(findScrollParents(queryByText('AAAAAAA'))).not.toBeNull();
   });
+  test('should call function very well', () => {
+    const A = () => (
+      <div
+        style={{
+          height: '10rem',
+          width: '10rem',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'flex-end',
+        }}
+      >
+        <div
+          style={{
+            height: '1000rem',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'flex-end',
+          }}
+        >
+          <p>AAAAAAA</p>
+          <p>BBBBBBB</p>
+          <p>CCCCCCC</p>
+          <p>DDDDDDD</p>
+        </div>
+      </div>
+    );
+    expect(findScrollParents(A.bind({}))).not.toBeNull();
+  });
 });
 
 describe('getElevation file', () => {

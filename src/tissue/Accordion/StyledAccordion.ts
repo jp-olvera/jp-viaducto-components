@@ -3,9 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface SAI {
-  paddingX: string;
-  paddingY: string;
-  expanded: boolean;
+  paddingX?: string;
+  paddingY?: string;
+  expanded?: boolean;
   transition?: string | null;
   configuration: ConfigProps;
 }
@@ -43,10 +43,10 @@ const StyledAccordion = styled.div`
 
 interface AccordionHeaderProps {
   icon: null | React.ReactNode;
-  paddingY: string;
-  paddingX: string;
-  transition: string;
-  expanded: boolean;
+  paddingY?: string;
+  paddingX?: string;
+  transition?: string;
+  expanded?: boolean;
 }
 export const AccordionHeader = styled.button < AccordionHeaderProps > `
   align-items: center;
@@ -63,8 +63,8 @@ export const AccordionHeader = styled.button < AccordionHeaderProps > `
 `;
 
 interface ChevronProps {
-  transition: string;
-  expanded: boolean;
+  transition?: string;
+  expanded?: boolean;
 }
 
 export const Chevron = styled.div < ChevronProps > `
