@@ -1,6 +1,7 @@
 import React, {
   useContext, useEffect, useRef, useState,
 } from 'react';
+import { ConfigProps } from 'ballena-types';
 import { StyledGroupTab } from './StyledGroupTab';
 
 import { ConfigContext } from '../../providers';
@@ -23,6 +24,8 @@ interface GTI {
   position?: string;
   /** Overrides the transitionTimingFunction */
   transition?: string;
+  /** Triggers a function changing the tab */
+  onTabChange?: Function;
 }
 
 /**
@@ -34,6 +37,7 @@ interface GTI {
  * @param {string} fontSize Set the font size
  * @param {string} position Set the line in position selected
  * @param {string} transition Overrides the transitionTimingFunction
+ * @param {string} onTabChange Triggers a function changing the tab
  */
 
 const GroupTab = ({
@@ -45,6 +49,7 @@ const GroupTab = ({
   position = 'bottom',
   transition,
   spacing = 'none',
+  onTabChange,
   ...rest
 }: GTI & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -58,7 +63,7 @@ const GroupTab = ({
   };
   const pos = position === 'top' ? 'top' : 'bottom';
   useEffect(() => {
-    onload(ref, getPosition, setPlace, setWidth);
+    onload(ref, getPosition / 100, configuration, spacing, setPlace, setWidth);
   }, [getPosition, spacing, horizontalSpacing]);
   return (
     <StyledGroupTab
@@ -83,16 +88,21 @@ const GroupTab = ({
           tabType,
           index,
           active: index === getPosition / 100,
-          onClick: () => translate(index),
+          onClick: (e: any) => {
+            /* istanbul ignore else */
+            if (onTabChange) onTabChange(e);
+            translate(index);
+          },
         }))}
       </div>
       <div
         className='line'
         style={{
-          marginLeft: `calc(${place}px + ${
-            place === 0 ? 0 : configuration.spacing[spacing]
-          })`,
-          width: getWidth || 0,
+          marginLeft:
+            getPosition === 0
+              ? 0
+              : `calc(${configuration.spacing[spacing]} + ${place}rem)`,
+          width: `${getWidth}rem` || 0,
         }}
       />
     </StyledGroupTab>
@@ -104,6 +114,8 @@ export default GroupTab;
 export const onload = (
   ref: React.RefObject<HTMLDivElement>,
   getPosition: number,
+  configuration: ConfigProps,
+  spacing: string,
   setPlace: Function,
   setWidth: Function,
 ) => {
@@ -112,11 +124,20 @@ export const onload = (
       setPlace(0);
     } else {
       let counter: number = 0;
-      for (let i = 0; i < getPosition / 100; i++) {
-        counter += ref.current.children[0].children[i].clientWidth;
+      for (let i = 0; i < getPosition; i++) {
+        if (i === 0) {
+          counter += ref.current.children[0].children[i].clientWidth / 16;
+        } else {
+          counter += ref.current.children[0].children[i].clientWidth / 16;
+          counter += parseFloat(
+            configuration.spacing[spacing].match(
+              /[-]{0,1}[\d]*[.]{0,1}[\d]+/g,
+            )[0],
+          );
+        }
       }
       setPlace(counter);
     }
-    setWidth(ref.current.children[0].children[getPosition / 100].clientWidth);
+    setWidth(ref.current.children[0].children[getPosition].clientWidth / 16);
   }
 };
