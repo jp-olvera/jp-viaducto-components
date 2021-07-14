@@ -55,7 +55,7 @@ interface TabI {
  */
 
 const Tab = ({
-  text = '',
+  text,
   tabType = 'tab',
   horizontalSpacing = 'sm',
   verticalSpacing = 'sm',

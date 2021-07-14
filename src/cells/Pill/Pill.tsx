@@ -86,6 +86,7 @@ const Pill = ({
       <span className='span-icon'>
         <BareButton
           onClick={(e) => {
+            /* istanbul ignore else */
             if (handleAction) handleAction(e);
           }}
           style={{ height: '100%', display: 'flex' }}

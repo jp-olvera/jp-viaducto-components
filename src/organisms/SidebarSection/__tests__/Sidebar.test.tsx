@@ -68,7 +68,7 @@ describe('<SidebarSection/>', () => {
         isMenu
         transition=''
       >
-        <MenuItem href='#' label='menu' nested active />
+        <MenuItem href='#' label='menu' nested active={false} />
       </SidebarSection>,
     );
     fireEvent.keyUp(screen.getByText('Comida'), {

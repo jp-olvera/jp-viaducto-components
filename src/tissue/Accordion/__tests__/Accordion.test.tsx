@@ -14,6 +14,7 @@ describe('<Accordion />', () => {
           icon='❤'
           paddingY={undefined}
           paddingX={undefined}
+          expanded
         >
           <p>Text1</p>
         </AccordionItem>

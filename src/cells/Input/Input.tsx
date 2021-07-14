@@ -80,8 +80,7 @@ const Input = ({
   const [cardType, setCardType] = useState(getCardType);
   const [placeIcon, setIcon] = useState(icon);
   const { configuration } = useContext(ConfigContext);
-  // eslint-disable-next-line no-unused-vars
-  const [_, setNewValue] = useState<any>(null);
+  const [newValue, setNewValue] = useState<any>(rest.defaultValue || undefined);
   const inputRef = useRef<any>();
 
   const setCardIcon = (ev: any) => {
@@ -133,18 +132,13 @@ const Input = ({
             if (type === 'card') {
               setCardIcon(ev);
               setNewValue(
-                type === 'card'
-                  ? mask(
-                    ev.target.value.replace(/([^0-9])/g, ''),
-                    4,
-                    '-',
-                  ).slice(0, cardType === 'american-express' ? 21 : 19)
-                  : ev.target.value,
+                mask(ev.target.value.replace(/([^0-9])/g, ''), 4, '-').slice(
+                  0,
+                  cardType === 'american-express' ? 21 : 19,
+                ),
               );
-            } else if (type === 'phone') {
-              setNewValue(
-                mask(ev.target.value.replace(/([^0-9|+])/g, ''), 3, ' '),
-              );
+            } else {
+              setNewValue(ev.target.value);
             }
             onChange(ev);
           }}
@@ -158,10 +152,9 @@ const Input = ({
                 ? 'date'
                 : type
           }
-          autoComplete={type === 'card' ? 'cc-number' : ''}
-          x-autocompletetype={type === 'card' ? 'cc-number' : ''}
           id={rest.id}
           required
+          defaultValue={newValue}
           disabled={disabled}
           min={rest.min}
           max={rest.max}
@@ -204,6 +197,5 @@ export const mask = (value: string, limit: number, separator: string = '-') => {
 
     output.push(value[i]);
   }
-
   return output.join('');
 };

@@ -3,8 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface SAI {
-  paddingX: string;
-  paddingY: string;
+  paddingX?: string;
+  paddingY?: string;
   expanded?: boolean;
   transition?: string | null;
   configuration: ConfigProps;
@@ -43,8 +43,8 @@ const StyledAccordion = styled.div`
 
 interface AccordionHeaderProps {
   icon: null | React.ReactNode;
-  paddingY: string;
-  paddingX: string;
+  paddingY?: string;
+  paddingX?: string;
   transition?: string;
   expanded?: boolean;
 }
