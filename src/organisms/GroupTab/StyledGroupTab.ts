@@ -31,7 +31,7 @@ export const StyledGroupTab = styled.div < any > `
     gap: ${(p) => p.configuration.spacing[p.spacing]};
   }
   & .line {
-    transition: 0.2s
+    transition: 0.35s
       ${(p) => p.transition || p.configuration.transitionTimingFunction};
     height: 0.188rem;
     background-color: ${(p) => p.configuration.colors[p.tabType].hover} !important;

@@ -40,7 +40,7 @@ export const getIcon = (icon: string | null) => {
         </span>
       );
     default:
-      return null;
+      return icon;
   }
 };
 
@@ -55,6 +55,6 @@ interface IconInterface {
  * @param {string} icon Select an icon to be rendered
  */
 
-const Icon = ({ icon }: IconInterface) => getIcon(icon);
+const Icon = ({ icon = null }: IconInterface) => getIcon(icon);
 
 export default Icon;

@@ -4,7 +4,7 @@ export const StyledButtonDatalist = styled.div < any > `
   * {
     ${(p) => css`
       font-family: ${p.family || 'inherit'};
-    `}
+    `};
   }
   transition: max-height 0.2s ease;
   overflow: hidden;
@@ -18,8 +18,6 @@ export const StyledButtonDatalist = styled.div < any > `
       background-color: transparent;
       border: none;
       padding: 0.5rem;
-      font-size: 1rem;
-      line-height: 1.375rem;
       cursor: pointer;
       width: 100%;
       text-align: left;

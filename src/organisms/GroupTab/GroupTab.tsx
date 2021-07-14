@@ -1,7 +1,6 @@
 import React, {
   useContext, useEffect, useRef, useState,
 } from 'react';
-import { ConfigProps } from 'ballena-types';
 import { StyledGroupTab } from './StyledGroupTab';
 
 import { ConfigContext } from '../../providers';
@@ -59,7 +58,7 @@ const GroupTab = ({
   };
   const pos = position === 'top' ? 'top' : 'bottom';
   useEffect(() => {
-    onload(ref, getPosition, spacing, configuration, setPlace, setWidth);
+    onload(ref, getPosition, setPlace, setWidth);
   }, [getPosition, spacing, horizontalSpacing]);
   return (
     <StyledGroupTab
@@ -90,7 +89,7 @@ const GroupTab = ({
       <div
         className='line'
         style={{
-          marginLeft: `${place}rem`,
+          marginLeft: `calc(${place}px + ${configuration.spacing[spacing]})`,
           width: getWidth || 0,
         }}
       />
@@ -101,10 +100,8 @@ const GroupTab = ({
 export default GroupTab;
 
 export const onload = (
-  ref: any,
+  ref: React.RefObject<HTMLDivElement>,
   getPosition: number,
-  spacing: string,
-  configuration: ConfigProps,
   setPlace: Function,
   setWidth: Function,
 ) => {
@@ -114,11 +111,7 @@ export const onload = (
     } else {
       let counter: number = 0;
       for (let i = 0; i < getPosition / 100; i++) {
-        const remValue = parseFloat(
-          configuration.spacing[spacing].split('rem')[0],
-        );
-        counter
-          += ref.current.children[0].children[i].clientWidth / 16 + remValue;
+        counter += ref.current.children[0].children[i].clientWidth;
       }
       setPlace(counter);
     }

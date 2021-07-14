@@ -8,7 +8,7 @@ import { Drawer } from '..';
 describe('<Drawer/>', () => {
   test('should be visible', () => {
     render(
-      <Drawer active onClose={() => {}}>
+      <Drawer active onClose={() => {}} size='notInconfig' transition={null}>
         <h1>Title</h1>
       </Drawer>,
     );

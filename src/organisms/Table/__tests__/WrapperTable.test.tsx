@@ -51,7 +51,7 @@ describe('<WrapperTable/>', () => {
   test('should render with not default props', () => {
     const { container } = render(
       <WrapperTable
-        zebraHover={false}
+        hover={false}
         verticalSpacing=''
         horizontalSpacing=''
         colorSelected='red'
@@ -73,7 +73,7 @@ describe('<WrapperTable/>', () => {
         zebraColor='blue'
         align=''
         border='horizontal'
-        zebraHover={false}
+        hover={false}
         verticalSpacing=''
         horizontalSpacing=''
       >
@@ -91,7 +91,7 @@ describe('<WrapperTable/>', () => {
         align=''
         border='vertical'
         zebra={false}
-        zebraHover={false}
+        hover={false}
         verticalSpacing=''
         horizontalSpacing=''
       >

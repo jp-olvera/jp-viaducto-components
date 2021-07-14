@@ -43,7 +43,7 @@ const Checkbox = ({
   checkSize = 'lg',
   fontSize = 'md',
   color = '#9060EB',
-  onChange = () => {},
+  onChange,
   spacing = 'none',
   ...props
 }: CheckboxInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
@@ -63,6 +63,7 @@ const Checkbox = ({
       <input
         onChange={(event) => {
           setCheck(!check);
+          /* istanbul ignore else */
           if (onChange) onChange(event);
         }}
         disabled={disabled}

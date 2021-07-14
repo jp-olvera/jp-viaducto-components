@@ -51,8 +51,8 @@ const Radio = ({
   color = '#9060EB',
   spacing = 'none',
   fontSize,
-  onChange = () => {},
-  onClick = () => {},
+  onChange,
+  onClick,
   ...props
 }: RadioInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -73,9 +73,11 @@ const Radio = ({
         name={name}
         onChange={(e) => {
           setCheck(!check);
+          /* istanbul ignore else */
           if (onChange) onChange(e);
         }}
         onClick={(e) => {
+          /* istanbul ignore else */
           if (onClick) onClick(e);
         }}
         disabled={disabled}

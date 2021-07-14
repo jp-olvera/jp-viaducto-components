@@ -18,7 +18,7 @@ interface StyledDrawerProps {
   isClosing: boolean;
   ref: any;
   size: string;
-  transition: string;
+  transition?: string;
   width: string;
 }
 

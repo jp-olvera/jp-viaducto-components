@@ -47,6 +47,7 @@ const Switch = ({
         id={rest.id}
         onChange={(e) => {
           setCheck(!check);
+          /* istanbul ignore else */
           if (change) change(e);
         }}
         disabled={disabled}
