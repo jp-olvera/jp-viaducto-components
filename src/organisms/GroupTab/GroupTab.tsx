@@ -65,6 +65,10 @@ const GroupTab = ({
   useEffect(() => {
     onload(ref, getPosition / 100, configuration, spacing, setPlace, setWidth);
   }, [getPosition, spacing, horizontalSpacing]);
+  const toPx: number = parseFloat(
+    configuration.spacing[spacing].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0],
+  ) * 16;
+
   return (
     <StyledGroupTab
       horizontalSpacing={horizontalSpacing}
@@ -98,11 +102,8 @@ const GroupTab = ({
       <div
         className='line'
         style={{
-          marginLeft:
-            getPosition === 0
-              ? 0
-              : `calc(${configuration.spacing[spacing]} + ${place}rem)`,
-          width: `${getWidth}rem` || 0,
+          marginLeft: getPosition === 0 ? 0 : `calc(${toPx}px + ${place}px)`,
+          width: `${getWidth}px` || 0,
         }}
       />
     </StyledGroupTab>
@@ -126,18 +127,19 @@ export const onload = (
       let counter: number = 0;
       for (let i = 0; i < getPosition; i++) {
         if (i === 0) {
-          counter += ref.current.children[0].children[i].clientWidth / 16;
+          counter += ref.current.children[0].children[i].clientWidth;
         } else {
-          counter += ref.current.children[0].children[i].clientWidth / 16;
-          counter += parseFloat(
-            configuration.spacing[spacing].match(
-              /[-]{0,1}[\d]*[.]{0,1}[\d]+/g,
-            )[0],
-          );
+          counter += ref.current.children[0].children[i].clientWidth;
+          counter
+            += parseFloat(
+              configuration.spacing[spacing].match(
+                /[-]{0,1}[\d]*[.]{0,1}[\d]+/g,
+              )[0],
+            ) * 16;
         }
       }
       setPlace(counter);
     }
-    setWidth(ref.current.children[0].children[getPosition].clientWidth / 16);
+    setWidth(ref.current.children[0].children[getPosition].clientWidth);
   }
 };
