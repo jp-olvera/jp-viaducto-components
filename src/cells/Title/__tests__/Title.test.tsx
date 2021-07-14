@@ -6,8 +6,76 @@ import { Title } from '..';
 
 describe('<Title/>', () => {
   test('should render properly', () => {
-    render(<Title color='green'>Dummy text</Title>);
+    render(
+      <Title level='2' color='green'>
+        Dummy text
+      </Title>,
+    );
     expect(screen.queryByText('Dummy text')).toBeVisible();
+  });
+  test('should render level D1', () => {
+    render(
+      <Title level='D1' color='green'>
+        D1
+      </Title>,
+    );
+    expect(screen.queryByText('D1')).toBeVisible();
+  });
+  test('should render level d1', () => {
+    render(
+      <Title level='d1' color='green'>
+        d1
+      </Title>,
+    );
+    expect(screen.queryByText('d1')).toBeVisible();
+  });
+  test('should render level D2', () => {
+    render(
+      <Title level='D2' color='green'>
+        D2
+      </Title>,
+    );
+    expect(screen.queryByText('D2')).toBeVisible();
+  });
+  test('should render level d2', () => {
+    render(
+      <Title level='d2' color='green'>
+        d2
+      </Title>,
+    );
+    expect(screen.queryByText('d2')).toBeVisible();
+  });
+  test('should render level D3', () => {
+    render(
+      <Title level='D3' color='green'>
+        D3
+      </Title>,
+    );
+    expect(screen.queryByText('D3')).toBeVisible();
+  });
+  test('should render level d3', () => {
+    render(
+      <Title level='d3' color='green'>
+        d3
+      </Title>,
+    );
+    expect(screen.queryByText('d3')).toBeVisible();
+  });
+  test('should render level D4', () => {
+    render(
+      <Title level='D4' color='green'>
+        D4
+      </Title>,
+    );
+    expect(screen.queryByText('D4')).toBeVisible();
+  });
+  test('should render level d4', () => {
+    render(
+      <Title level='d4' color='green'>
+        d4
+      </Title>,
+    );
+    expect(screen.queryByText('d4')).toBeVisible();
   });
   test('should render another text without family', () => {
     render(<Title family={null}>Another text</Title>);

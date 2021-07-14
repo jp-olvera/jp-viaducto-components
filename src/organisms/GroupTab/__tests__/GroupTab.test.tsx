@@ -32,7 +32,7 @@ describe('<GroupTab/>', () => {
   });
   test('should change tab', () => {
     const { container, queryByText } = render(
-      <GroupTab position='top' spacing='lg'>
+      <GroupTab position='top' spacing='none'>
         <Tab text='Zombie' />
         <Tab text='Act' />
         <Tab text='Dinner' />
@@ -42,7 +42,7 @@ describe('<GroupTab/>', () => {
     fireEvent.click(tab);
     fireEvent.click(queryByText('Zombie'));
     const line: HTMLDivElement = container.querySelector('.line');
-    expect(line).toHaveStyle('marginLeft: 0rem');
+    expect(line).toHaveStyle('marginLeft: calc(0px + 0rem');
   });
   describe('onload function', () => {
     const A = () => {
@@ -54,32 +54,6 @@ describe('<GroupTab/>', () => {
         onload(
           A.bind({}),
           0,
-          'lg',
-          { spacing: { lg: '1rem' } },
-          () => {},
-          () => {},
-        ),
-      ).not.toBeNaN();
-    });
-    test('should call function with none spacing', () => {
-      expect(
-        onload(
-          A.bind({}),
-          0,
-          'none',
-          { spacing: { lg: '1rem', none: '0rem' } },
-          () => {},
-          () => {},
-        ),
-      ).not.toBeNaN();
-    });
-    test('should call function with undefined spacing', () => {
-      expect(
-        onload(
-          A.bind({}),
-          0,
-          'aaaa',
-          { spacing: { lg: '1rem', none: '0rem' } },
           () => {},
           () => {},
         ),

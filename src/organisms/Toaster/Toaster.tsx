@@ -85,6 +85,7 @@ const Toaster = ({
           <BareButton
             data-testid='close-button'
             onClick={(e) => {
+              /* istanbul ignore else */
               if (onDismiss) onDismiss(e);
             }}
             close

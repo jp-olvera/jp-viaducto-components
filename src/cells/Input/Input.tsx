@@ -35,6 +35,8 @@ interface InputInterface {
   required?: boolean;
   /** Set the height of the input */
   inputSize?: string;
+  /** set the card type */
+  getCardType?: string;
   /** Set the input type (text, password, email, etc.) */
   type?: string;
 }
@@ -72,17 +74,20 @@ const Input = ({
   onChange = () => {},
   onClick,
   family,
+  getCardType = 'card',
   ...rest
 }: InputInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
-  const [cardType, setCardType] = useState('card');
+  const [cardType, setCardType] = useState(getCardType);
   const [placeIcon, setIcon] = useState(icon);
   const { configuration } = useContext(ConfigContext);
-  const [newValue, setNewValue] = useState<any>(null);
+  // eslint-disable-next-line no-unused-vars
+  const [_, setNewValue] = useState<any>(null);
   const inputRef = useRef<any>();
 
   const setCardIcon = (ev: any) => {
     const { value: val }: { value: string } = ev.target;
     creditCardType(val).map((card) => {
+      /* istanbul ignore else */
       if (
         card.type === CardType.MASTERCARD
         || card.type === CardType.VISA
@@ -92,7 +97,7 @@ const Input = ({
         setIcon(card.type);
       } else {
         setCardType('card');
-        setIcon(null);
+        setIcon(icon || null);
       }
       return true;
     });
@@ -134,9 +139,11 @@ const Input = ({
                     4,
                     '-',
                   ).slice(0, cardType === 'american-express' ? 21 : 19)
-                  : type === 'phone'
-                    ? mask(ev.target.value.replace(/([^0-9|+])/g, ''), 3, ' ')
-                    : ev.target.value,
+                  : ev.target.value,
+              );
+            } else if (type === 'phone') {
+              setNewValue(
+                mask(ev.target.value.replace(/([^0-9|+])/g, ''), 3, ' '),
               );
             }
             onChange(ev);
@@ -157,7 +164,6 @@ const Input = ({
           required
           disabled={disabled}
           min={rest.min}
-          defaultValue={rest.value || newValue}
           max={rest.max}
           {...rest}
         />
