@@ -127,6 +127,5 @@ export interface ConfigProps {
     warningDark: string;
     white: string;
   };
-  transitionTimingFunction: string;
   toasterPlacement: string;
 }

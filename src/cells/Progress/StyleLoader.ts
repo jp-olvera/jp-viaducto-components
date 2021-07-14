@@ -7,8 +7,7 @@ const StyledLoader = styled.div < any > `
   width: ${size};
   height: ${size};
   .progress-ring__circle {
-    transition: stroke-dashoffset 0.35s
-      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: stroke-dashoffset 0.35s ease;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
   }
@@ -55,8 +54,7 @@ export const StyledProgressBar = styled.div < any > `
     animation-direction: reverse;
   }
   & .progress-bar-inner {
-    transition: width 1s
-      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: width 1s ease;
     display: block;
     height: 0.6rem;
     width: ${({ max, value }) => ((value * 100) / max).toFixed(0)}%;

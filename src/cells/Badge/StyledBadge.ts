@@ -4,7 +4,6 @@ import { getSize } from '../../utils/getSizes';
 export const StyledBadge = styled.div < any > `
   ${(p) => getBadgeSize(p.size)}
   font-family: ${(p) => p.family || 'inherit'};
-  transition: all 0.2s ${(p) => p.configuration.transitionTimingFunction};
   background-image: ${(p) => (p.src !== null ? `url(${p.src})` : 'none')};
   background-position: ${(p) => (p.src !== null ? '50% 50%' : 'none')};
   background-size: ${(p) => (p.src !== null ? 'cover' : 'none')};

@@ -47,7 +47,7 @@ const GroupTab = ({
   verticalSpacing = 'sm',
   fontSize = 'md',
   position = 'bottom',
-  transition,
+  transition = 'ease',
   spacing = 'none',
   onTabChange,
   ...rest

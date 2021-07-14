@@ -6,8 +6,6 @@ export const StyledNormalCard = styled.div < any > `
   background-color: #ffffff;
   overflow-y: auto;
   overflow-x: hidden;
-  transition: all
-    ${({ configuration, transition }) => `0.2s ${transition || configuration.transitionTimingFunction}`};
   box-sizing: border-box;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
   width: 100%;

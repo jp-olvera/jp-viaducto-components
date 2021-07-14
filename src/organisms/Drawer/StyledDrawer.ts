@@ -23,8 +23,7 @@ interface StyledDrawerProps {
 }
 
 const StyledDrawer = styled.div < StyledDrawerProps > `
-  animation: ${show} 230ms
-    ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+  animation: ${show} 230ms ${(p) => p.transition};
 
   background: white;
   box-shadow: rgb(255 255 255) 0 5rem 0,
@@ -44,8 +43,7 @@ const StyledDrawer = styled.div < StyledDrawerProps > `
   ${(p) => p.isClosing
     && css`
       transform: translateX(100%);
-      transition: transform 230ms
-        ${p.transition || p.configuration.transitionTimingFunction};
+      transition: transform 230ms ${p.transition};
     `};
 `;
 export default StyledDrawer;

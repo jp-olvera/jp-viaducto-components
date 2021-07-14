@@ -11,6 +11,7 @@ interface PaddingProps {
 }
 
 const Padding = styled.div < PaddingProps > `
+  box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   padding: 0 ${(p) => p.gutter / 2}px;

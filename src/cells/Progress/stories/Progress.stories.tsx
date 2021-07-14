@@ -39,13 +39,6 @@ const config: SBConfigI = {
         defaultValue: { summary: 0 },
       },
     },
-    transition: {
-      description: 'Set the color of the component',
-      type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: 'ease' },
-      },
-    },
     color: {
       description: 'Set the color of the component',
       type: { summary: 'String', required: false },
@@ -72,7 +65,6 @@ Default.args = {
   completedSteps: 4,
   currentStep: 2,
   loader: 'circle',
-  transition: 'ease',
   color: '#3AE25F',
 };
 
@@ -82,7 +74,6 @@ ProgressBar.args = {
   totalSteps: 5,
   completedSteps: 4,
   loader: 'progress',
-  transition: 'ease',
   color: '#3AE25F',
 };
 
@@ -92,7 +83,6 @@ Steps.args = {
   totalSteps: 5,
   completedSteps: 4,
   loader: 'steps',
-  transition: 'ease',
   color: '#3AE25F',
   finishTextColor: 'red',
   family: 'Roboto',

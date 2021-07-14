@@ -19,8 +19,6 @@ interface TooltipInterface {
   position?: string;
   /** Text color */
   textColor?: string;
-  /** Overrides transitionTimingFunction */
-  transition?: string;
 }
 /**
  * Tooltip component
@@ -31,7 +29,6 @@ interface TooltipInterface {
  * @param {string} label Text in the tooltip
  * @param {string} position Set the position of the tooltip
  * @param {string} textColor Text color
- * @param {string} transition Overrides transitionTimingFunction
  */
 
 const Tooltip = ({

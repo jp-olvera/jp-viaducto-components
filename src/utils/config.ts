@@ -129,7 +129,6 @@ const config: ConfigProps = {
     warningDark: '#C6A700',
     white: '#FFFFFF',
   },
-  transitionTimingFunction: 'ease',
   toasterPlacement: 'top-right',
 };
 

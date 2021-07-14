@@ -34,8 +34,7 @@ export const StyledAnchor = styled.a < any > `
     display: inline-block;
     vertical-align: middle;
     margin-left: ${(props) => props.configuration.spacing.lg};
-    transition: transform 0.2s
-      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: transform 0.2s ease;
     height: 1em;
   }
 `;

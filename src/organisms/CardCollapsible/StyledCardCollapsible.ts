@@ -19,14 +19,12 @@ export const StyledCollapsibleCard = styled.div < any > `
 
 export const StyledCollapse = styled.div < any > `
   box-sizing: border-box;
-  transition: all
-    ${({ configuration, transition }) => `0.2s ${transition || configuration.transitionTimingFunction}`};
+  transition: all ${({ transition }) => `0.2s ${transition}`};
 
   height: 100%;
   max-height: ${({ collapse }) => (collapse ? '0' : '29.625rem')};
   .collapse {
-    transition: all
-      ${({ configuration, transition }) => `0.2s ${transition || configuration.transitionTimingFunction}`};
+    transition: all ${({ transition }) => `0.2s ${transition}`};
     opacity: ${({ collapse }) => (collapse ? '0' : 1)};
   }
 `;

@@ -21,8 +21,6 @@ interface AnchorInterface {
   icon?: any;
   /** Indicates if the icon will be leading */
   lead?: boolean;
-  /** Indicates the transitionTimingFunction */
-  transition?: string;
 }
 
 /**
@@ -37,7 +35,6 @@ interface AnchorInterface {
  * @param {Boolean} lead Indicates if the icon will be leading
  * @param {String} transition Indicates the transitionTimingFunction
  */
-
 const Anchor = ({
   label,
   href,

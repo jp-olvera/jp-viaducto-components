@@ -11,8 +11,6 @@ interface ProgressBarInterface {
   completedSteps: number;
   /** Set the total steps to divide the progress bar */
   totalSteps: number;
-  /** Overrides the transitionTimingFunction */
-  transition?: string;
 }
 
 /**
@@ -20,14 +18,12 @@ interface ProgressBarInterface {
  * @param {String} color Set the color of the progress
  * @param {Number} completedSteps Set the completed steps in the bar
  * @param {Number} totalSteps Set the total steps to divide the progress bar
- * @param {String} transition Overrides the transitionTimingFunction
  */
 
 const ProgressBar = ({
   totalSteps,
   completedSteps,
   color = '#3AE25F',
-  transition,
   ...rest
 }: ProgressBarInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -38,7 +34,6 @@ const ProgressBar = ({
       data-testid='loader'
       configuration={configuration}
       color={color}
-      transition={transition}
       {...rest}
     >
       <div className='progress-bar-container'>
