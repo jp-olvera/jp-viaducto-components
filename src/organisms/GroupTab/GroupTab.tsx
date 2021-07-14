@@ -89,7 +89,9 @@ const GroupTab = ({
       <div
         className='line'
         style={{
-          marginLeft: `calc(${place}px + ${configuration.spacing[spacing]})`,
+          marginLeft: `calc(${place}px + ${
+            place === 0 ? 0 : configuration.spacing[spacing]
+          })`,
           width: getWidth || 0,
         }}
       />
