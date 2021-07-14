@@ -96,7 +96,7 @@ const config: ConfigProps = {
     lg: '0.75rem',
   },
   spacing: {
-    none: '0px',
+    none: '0rem',
     nano: '0.279rem',
     micro: '0.335rem',
     tiny: '0.402rem',
