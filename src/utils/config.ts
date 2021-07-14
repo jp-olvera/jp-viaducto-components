@@ -96,7 +96,7 @@ const config: ConfigProps = {
     lg: '0.75rem',
   },
   spacing: {
-    none: '0rem',
+    none: '0px',
     nano: '0.279rem',
     micro: '0.335rem',
     tiny: '0.402rem',
@@ -129,7 +129,6 @@ const config: ConfigProps = {
     warningDark: '#C6A700',
     white: '#FFFFFF',
   },
-  transitionTimingFunction: 'ease',
   toasterPlacement: 'top-right',
 };
 

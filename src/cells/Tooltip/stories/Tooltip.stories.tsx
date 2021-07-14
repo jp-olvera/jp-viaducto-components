@@ -57,11 +57,6 @@ const config: SBConfigI = {
         type: { summary: 'boolean' },
       },
     },
-    transition: {
-      description: 'Linear transition to use',
-      type: { name: 'string' },
-      table: { type: { summary: 'string' }, defaultValue: { summary: 'ease' } },
-    },
   },
 };
 
@@ -80,11 +75,6 @@ const Template = (args: typeof Default) => (
     >
       <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
         <Tooltip {...args}>
-          <Input label='Input' id='example1' size='lg' />
-        </Tooltip>
-      </div>
-      <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
-        <Tooltip {...args}>
           <Input label='Input' id='example2' />
         </Tooltip>
       </div>
@@ -99,5 +89,4 @@ Default.args = {
     'Choose the type of configurationAdvanced configuration: finetune usages of data and bandwithSmart configuration: Define a budget for unlimited data and calculated bandwith',
   active: true,
   position: 'right',
-  transition: 'ease',
 };

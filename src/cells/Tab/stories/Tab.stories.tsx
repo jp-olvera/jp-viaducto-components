@@ -165,13 +165,6 @@ const config: SBConfigI = {
         defaultValue: { summary: null },
       },
     },
-    transition: {
-      description: 'Defines the transitionTimingFunction',
-      type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: 'ease' },
-      },
-    },
   },
 };
 
@@ -208,7 +201,6 @@ Default.args = {
   type: 'tab',
   icon: null,
   lead: false,
-  transition: 'ease',
   iconSpacing: 'none',
   fontSize: 'lg',
   active: false,
@@ -224,7 +216,6 @@ WithIcon.args = {
   type: 'tab',
   icon: Icon({ icon: '🥵' }).props.children,
   lead: false,
-  transition: 'ease',
   iconSpacing: 'xs',
   fontSize: 'lg',
   active: false,

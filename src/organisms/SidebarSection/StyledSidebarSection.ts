@@ -71,8 +71,7 @@ const StyledSidebarSection = styled.div < SideI > `
     height: 100%;
     opacity: 1;
     overflow: hidden;
-    transition: all 0.3s
-      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: all 0.3s ${({ transition }) => transition};
   }
 
   .toggleMenu {
@@ -165,8 +164,7 @@ export const Submenu = styled.ul < SubmenuProps > `
           animation: ${hide} 250ms ease;
         `
     : css`
-          animation: ${show} 230ms
-            ${p.transition || p.configuration.transitionTimingFunction};
+          animation: ${show} 230ms ${p.transition};
         `)};
 `;
 

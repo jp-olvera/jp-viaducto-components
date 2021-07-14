@@ -40,8 +40,7 @@ export const Activator = styled.button < any > `
 `;
 
 export const ItemsContainer = styled.div < any > `
-  transition: all 0.2s
-    ${({ configuration }) => configuration.transitionTimingFunction};
+  transition: visibility 0.2s ease, opacity 0.2s ease;
   .left {
     left: 100%;
   }
@@ -62,8 +61,7 @@ export const ItemsContainer = styled.div < any > `
   &.active {
     visibility: visible;
     opacity: 1;
-    transition: all 0.2s
-      ${({ configuration }) => configuration.transitionTimingFunction};
+    transition: visibility 0.2s ease, opacity 0.2s ease;
   }
   .hover {
     width: inherit;

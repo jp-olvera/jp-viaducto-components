@@ -36,23 +36,23 @@ export interface AccordionItemProps {
   /** Class to apply to the icon when the accordion is closed */
   iconClosed?: string;
   /** Horizontal padding to apply based on the spacing configuration */
-  paddingX?: string;
+  paddingX: string;
   /** Vertical padding to apply based on the spacing configuration */
-  paddingY?: string;
+  paddingY: string;
   /**  Content to use as the title */
   title: React.ReactNode;
   /** timing function to use when closing and opening */
-  transition?: string;
+  transition: string;
 }
 
 const AccordionItem = ({
   children,
-  expanded,
+  expanded = false,
   id,
-  title,
+  title = '',
   paddingX,
   paddingY,
-  transition,
+  transition = 'ease',
   icon = null,
   iconOpen = '',
   iconClosed = '',

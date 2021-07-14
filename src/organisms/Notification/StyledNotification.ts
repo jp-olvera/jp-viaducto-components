@@ -8,8 +8,7 @@ const StyledNotification = styled.div < any > `
   box-sizing: border-box;
   display: flex;
   visibility: ${({ isActive }) => (isActive ? 'visible' : 'hidden')};
-  transition: all 0.2s
-    ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+  transition: all 0.2s ${({ transition }) => transition};
   height: 48px;
   left: 0;
   padding: ${({ configuration }) => `${configuration.spacing.sm} ${configuration.spacing.xs}`};

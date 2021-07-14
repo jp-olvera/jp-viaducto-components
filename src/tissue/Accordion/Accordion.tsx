@@ -6,9 +6,6 @@ import { ConfigContext } from '../../providers';
 interface AccordionInterface {
   /** Children components for the accordion */
   children?: React.ReactElement[];
-  /** Accept multiple accordion items open at the same time */
-  expandMultiple?: boolean;
-  /** Padding in X */
   paddingX?: string;
   /** Padding in Y */
   paddingY?: string;
@@ -19,7 +16,6 @@ interface AccordionInterface {
 /**
  * Accordion component
  * @param {React.ReactElement} children Children components for the accordion
- * @param {Boolean} expandMultiple Accept multiple accordion items open at the same time
  * @param {String} paddingX Padding in X
  * @param {String} paddingY Padding in Y
  * @param {String} transition Overrides transitionTimingFunction

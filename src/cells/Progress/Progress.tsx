@@ -14,8 +14,6 @@ interface ProgressInterface {
   loader?: string;
   /** Indicates (and divides the progress indicator) the total steps */
   totalSteps?: number;
-  /** Overrides the transitionTimingFunction */
-  transition?: string;
 }
 /**
  * Progress component indicator for set the visual steps completed
@@ -24,7 +22,6 @@ interface ProgressInterface {
  * @param {string} currentStep Indicates actual step as a dark green
  * @param {string} loader Type of loder to render
  * @param {string} totalSteps Indicates (and divides the progress indicator) the total steps
- * @param {string} transition Overrides the transitionTimingFunction
  */
 const Progress = ({
   totalSteps = 0,

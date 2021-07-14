@@ -30,8 +30,6 @@ interface TabI {
   position?: any;
   /** Set the color variant (type definition colors) for the tab */
   tabType?: any;
-  /** Overrides the transitionTimingFunction */
-  transition?: any;
   /** Set the horizontal spacing taking the tab content as reference */
   verticalSpacing?: any;
 }
@@ -50,7 +48,6 @@ interface TabI {
  * @param {function} onClick function to call when tab is clicked
  * @param {string} position Set the line in position selected
  * @param {string} tabType Set the color variant (type definition colors) for the tab
- * @param {string} transition Overrides the transitionTimingFunction
  * @param {string} verticalSpacing Set the horizontal spacing taking the tab content as reference
  */
 
@@ -63,7 +60,6 @@ const Tab = ({
   icon = null,
   lead = false,
   iconSpacing = 'xs',
-  transition,
   active = false,
   fontSize = 'lg',
   position = 'bottom',
@@ -89,7 +85,6 @@ const Tab = ({
       configuration={configuration}
       iconSpacing={iconSpacing}
       lead={lead}
-      transition={transition}
       active={active}
       position={position}
       lineWidth={lineWidth}

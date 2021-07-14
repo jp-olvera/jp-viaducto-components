@@ -37,7 +37,6 @@ interface BadgeInterface {
  * @param {String} clipPath Badge shape
  * @param {String} align Content align
  */
-
 const Badge = ({
   content,
   src,

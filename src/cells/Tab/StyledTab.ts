@@ -16,8 +16,7 @@ const StyledTab = styled.button < any > `
 
   ${(props) => getPaddingTransition(props)};
   .tab-text {
-    transition: all 0.2s
-      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: all 0.2s ease;
     transform: translateY(0);
   }
   .tab-icon-span {
@@ -39,14 +38,12 @@ const StyledTab = styled.button < any > `
   }
 
   &:hover {
-    transition: all 0.2s
-      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    transition: all 0.2s ease;
     &:after {
       background-color: ${({ hoverColor }) => hoverColor};
     }
     & > .tab-text {
-      transition: all 0.2s
-        ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+      transition: all 0.2s ease;
     }
   }
 
@@ -66,8 +63,7 @@ const getPaddingTransition = (props: {
   padding: 0
     ${props.configuration.spacing[props.horizontalSpacing]
     || props.configuration.spacing.none};
-  transition: padding 0.2s
-    ${props.transition || props.configuration.transitionTimingFunction};
+  transition: padding 0.2s ease;
 `;
 
 const activeState = (props: {
@@ -78,8 +74,7 @@ const activeState = (props: {
   activeTextColor: string;
   lineWidth: string;
 }) => css`
-  transition: all 0.2s
-    ${props.transition || props.configuration.transitionTimingFunction};
+  transition: all 0.2s ease;
   &:after {
     background-color: ${props.hoverColor} !important;
     height: ${props.position === 'right' || props.position === 'left'
@@ -92,8 +87,7 @@ const activeState = (props: {
   & > .tab-text > p {
     color: ${props.activeTextColor} !important;
     font-weight: 500 !important;
-    transition: all 0.2s
-      ${props.transition || props.configuration.transitionTimingFunction} !important;
+    transition: all 0.2s ease !important;
   }
 `;
 export default StyledTab;

@@ -63,13 +63,6 @@ const config: SBConfigI = {
         defaultValue: { summary: false },
       },
     },
-    transition: {
-      description: 'Indicates the transitionTimingFunction',
-      type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: 'ease' },
-      },
-    },
   },
 };
 
@@ -103,7 +96,6 @@ Lead.args = {
   icon: '🥵',
   lead: true,
   size: 'md',
-  transition: 'ease',
 };
 
 export const NoIcon: any = Template.bind({});
@@ -116,5 +108,4 @@ NoIcon.args = {
   lead: false,
   icon: '',
   verticalAlign: 'baseline',
-  transition: 'ease',
 };

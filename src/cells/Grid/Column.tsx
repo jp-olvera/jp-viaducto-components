@@ -18,6 +18,7 @@ const getMedia = (xs: number, breakpoint: string, gap: number) => {
     return css`
       @media (min-width: ${breakpoint}) {
         flex-basis: calc(${width}% - ${gap}px);
+        width: calc(${width}% - ${gap}px);
         flex-grow: 0;
       }
     `;
@@ -35,13 +36,15 @@ interface DivProps {
   xl: number;
 }
 const Div = styled.div < DivProps > `
-  margin: ${(p) => `0 ${p.gap / 2}px`};
   flex-basis: 0%;
   flex-shrink: 0;
   flex-grow: 1;
-
+  margin: ${(p) => `0 ${p.gap / 2}px`};
+  max-width: ${(p) => `calc(100% - ${p.gap}px)`};
+  box-sizing: border-box;
   @media (max-width: ${(p) => p.configuration.breakpoints.xs}) {
     flex-basis: ${(p) => `calc(100% - ${p.gap}px)`};
+    width: ${(p) => `calc(100% - ${p.gap}px)`};
     flex-grow: 0;
   }
   ${(p) => getMedia(p.xs, p.configuration.breakpoints.xs, p.gap)};
@@ -82,7 +85,6 @@ interface ColumnProps {
  * @param {number} lg Size of column for different breakpoints
  * @param {number} xl Size of column for different breakpoints
  */
-
 const Column = ({
   children = null,
   size = 0,

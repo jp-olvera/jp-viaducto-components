@@ -37,7 +37,7 @@ const Content = ({ children }) => (
       minHeight: '50px',
       paddingTop: '1rem',
       paddingBottom: '1rem',
-      overflow: 'hidden',
+      overflow: 'auto',
     }}
   >
     {children}
