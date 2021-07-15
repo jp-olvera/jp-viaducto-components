@@ -15,7 +15,11 @@ export const getIcon = (icon: string | null) => {
           <img
             src={visa}
             alt='visa'
-            style={{ height: '2rem', width: '1.5rem', verticalAlign: 'bottom' }}
+            style={{
+              height: '1rem',
+              width: '1rem',
+              verticalAlign: 'bottom',
+            }}
           />
         </span>
       );
@@ -25,7 +29,11 @@ export const getIcon = (icon: string | null) => {
           <img
             src={mastercard}
             alt='master_card'
-            style={{ height: '2rem', width: '1.5rem', verticalAlign: 'bottom' }}
+            style={{
+              height: '1rem',
+              width: '1rem',
+              verticalAlign: 'bottom',
+            }}
           />
         </span>
       );
@@ -35,12 +43,16 @@ export const getIcon = (icon: string | null) => {
           <img
             src={amex}
             alt='amex'
-            style={{ height: '2rem', width: '1.5rem', verticalAlign: 'bottom' }}
+            style={{
+              height: '1rem',
+              width: '1rem',
+              verticalAlign: 'bottom',
+            }}
           />
         </span>
       );
     default:
-      return null;
+      return icon;
   }
 };
 
@@ -55,6 +67,6 @@ interface IconInterface {
  * @param {string} icon Select an icon to be rendered
  */
 
-const Icon = ({ icon }: IconInterface) => getIcon(icon);
+const Icon = ({ icon = null }: IconInterface) => getIcon(icon);
 
 export default Icon;

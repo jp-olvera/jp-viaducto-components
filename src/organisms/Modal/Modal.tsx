@@ -4,25 +4,39 @@ import StyledModal from './StyledModal';
 import { ConfigContext } from '../../providers';
 import { Overlay } from '../../cells/Overlay';
 
+/** Modal component */
 interface ModalProps {
+  /** Specifies if the modal is gonna be visible at first */
   active?: boolean;
-  handleActive?: Function;
-  overlayColor?: string;
-  backgroundColor?: string;
+  /** Specifies if the modal could be closed when clicking outside */
   allowClickOutside?: boolean;
-  elevation?: number;
-  elevationDirection?: string;
+  /** Background color for the modal content */
+  backgroundColor?: string;
+  /** Child to be render inside modal */
   children?: any;
+  /** The elevation level it should take, one of 1/2/3 */
+  elevation?: number;
+  /** The elevation direction, if '' direction goes everywhere */
+  elevationDirection?: string;
+  /** function to call to close the modal */
+  handleActive?: Function;
+  /** Background color for the overlay */
+  overlayColor?: string;
+  /** set the border radius */
   radius?: string;
 }
 
 /**
- *
+ * Modal component
  * @param {boolean} active Specifies if the modal is gonna be visible at first
- * @param {string} overlayColor Background color for the overlay
- * @param {string} backgroundColor Background color for the modal content
  * @param {boolean} allowClickOutside Specifies if the modal could be closed when clicking outside
- * @returns
+ * @param {string} backgroundColor Background color for the modal content
+ * @param {any} children Child to be render inside modal
+ * @param {number} elevation The elevation level it should take, one of 1/2/3
+ * @param {string} elevationDirection The elevation direction, if '' direction goes everywhere
+ * @param {Function} handleActive function to call to close the modal
+ * @param {string} overlayColor Background color for the overlay
+ * @param {string} radius set the border radius
  */
 const Modal = ({
   active = false,
@@ -34,7 +48,8 @@ const Modal = ({
   handleActive = () => {},
   overlayColor = 'rgba(255,255,255,0.5)',
   radius = 'md',
-}: ModalProps) => {
+  ...rest
+}: ModalProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const modalRef = useRef<HTMLElement>(null);
 
@@ -88,6 +103,7 @@ const Modal = ({
           tabIndex={0}
           ref={modalRef}
           radius={radius}
+          {...rest}
         >
           {children}
         </StyledModal>

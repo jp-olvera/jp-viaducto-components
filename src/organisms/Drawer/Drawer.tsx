@@ -34,7 +34,7 @@ const Drawer = ({
   onClose,
   overlayColor = 'rgba(0,0,0,0.3)',
   size = 'sm',
-  transition = 'ease',
+  transition,
   ...rest
 }: DrawerInterface) => {
   const { configuration } = useContext(ConfigContext);

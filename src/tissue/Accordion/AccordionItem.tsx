@@ -10,15 +10,24 @@ import { ConfigContext } from '../../providers';
 
 /**
  * Accordion Item component
- * @param {String} transition Overrides the transitionTimingFunction
+ @param {React.ReactNode} children children component
+  @param {boolean} Inidcates if it is open
+  @param {string} Id id
+  @param {React.ReactNode} Icon to use instead of the chevron
+  @param {string} Class to apply to the icon when the accordion is open
+  @param {string} Class to apply to the icon when the accordion is closed
+  @param {string} Horizontal padding to apply based on the spacing configuration
+  @param {string} Vertical padding to apply based on the spacing configuration
+  @param {React.ReactNode}  Content to use as the title
+  @param {string} timing function to use when closing and opening
  */
 
 export interface AccordionItemProps {
-  /** children */
+  /** children component */
   children: React.ReactNode;
   /** Inidcates if it is open */
-  expanded: boolean;
-  /** Id  */
+  expanded?: boolean;
+  /** id  */
   id?: string;
   /** Icon to use instead of the chevron */
   icon?: React.ReactNode;
@@ -27,29 +36,30 @@ export interface AccordionItemProps {
   /** Class to apply to the icon when the accordion is closed */
   iconClosed?: string;
   /** Horizontal padding to apply based on the spacing configuration */
-  paddingX?: string;
+  paddingX: string;
   /** Vertical padding to apply based on the spacing configuration */
-  paddingY?: string;
+  paddingY: string;
   /**  Content to use as the title */
   title: React.ReactNode;
   /** timing function to use when closing and opening */
-  transition?: string;
+  transition: string;
 }
 
 const AccordionItem = ({
   children,
   expanded = false,
-  id = '',
+  id,
   title = '',
-  paddingX = 'sm',
-  paddingY = 'sm',
-  transition = 'linear',
+  paddingX,
+  paddingY,
+  transition = 'ease',
   icon = null,
   iconOpen = '',
   iconClosed = '',
-}: AccordionItemProps) => {
+  ...rest
+}: AccordionItemProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
-  const [isOpen, setisOpen] = useState(expanded);
+  const [isOpen, setisOpen] = useState(expanded || false);
   const ref = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(
     expanded ? undefined : 0,
@@ -82,6 +92,7 @@ const AccordionItem = ({
       expanded={expanded}
       transition={transition}
       configuration={configuration}
+      {...rest}
     >
       <AccordionHeader
         type='button'

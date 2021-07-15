@@ -72,11 +72,6 @@ const config: SBConfigI = {
         defaultValue: { summary: 'inherit' },
       },
     },
-    transition: {
-      description: 'Linear transition to use',
-      type: { name: 'string' },
-      table: { type: { summary: 'string' }, defaultValue: { summary: 'ease' } },
-    },
   },
 };
 
@@ -121,7 +116,6 @@ Default.args = {
     'https://images.freeimages.com/images/large-previews/478/jack-o-lanterns-1326113.jpg',
   elevation: 1,
   elevationDirection: 'radial',
-  transition: 'ease',
   breakpoint: 'md',
   family: 'Arial',
 };
@@ -130,7 +124,6 @@ NoImage.args = {
   src: null,
   elevation: 1,
   elevationDirection: 'radial',
-  transition: 'ease',
   breakpoint: 'md',
   family: 'Arial',
 };
@@ -140,7 +133,6 @@ OnlyImage.args = {
   onlyImage: true,
   elevation: 1,
   elevationDirection: 'radial',
-  transition: 'ease',
   breakpoint: 'md',
   family: 'Arial',
 };

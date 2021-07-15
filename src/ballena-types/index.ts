@@ -5,6 +5,7 @@ export interface ConfigProps {
     default: string;
     large: string;
   };
+  defaultInputBorderColor: string;
   drawerSizes: {
     sm: string;
     md: string;
@@ -127,6 +128,5 @@ export interface ConfigProps {
     warningDark: string;
     white: string;
   };
-  transitionTimingFunction: string;
   toasterPlacement: string;
 }

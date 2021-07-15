@@ -8,6 +8,7 @@ const config: ConfigProps = {
     lg: '62rem', // '992px'
     xl: '90rem', // '1440px'
   },
+  defaultInputBorderColor: '#001D48',
   colors: {
     primary: {
       default: '#937B3D',
@@ -90,13 +91,13 @@ const config: ConfigProps = {
     },
   },
   radius: {
-    none: '0px',
+    none: '0rem',
     sm: '0.188rem',
     md: '0.375rem',
     lg: '0.75rem',
   },
   spacing: {
-    none: '0px',
+    none: '0rem',
     nano: '0.279rem',
     micro: '0.335rem',
     tiny: '0.402rem',
@@ -129,7 +130,6 @@ const config: ConfigProps = {
     warningDark: '#C6A700',
     white: '#FFFFFF',
   },
-  transitionTimingFunction: 'ease',
   toasterPlacement: 'top-right',
 };
 

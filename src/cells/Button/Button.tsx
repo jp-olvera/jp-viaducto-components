@@ -53,15 +53,13 @@ interface ButtonInterface {
   type?: string;
   /** Button visual style */
   variant?: string;
-  /** Set the transitionTimingFunction */
-  transition?: string;
   /** Action to execute */
   onClick?: Function;
   /** Set the long loading bar */
   useLongLoading?: boolean;
 }
-/**
- * Button component overrides HTML button tag. This components accepts icons and/or labels
+
+/** * Button component overrides HTML button tag. This components accepts icons and/or labels
  * @param {boolean} block Set button with as 100% of the container
  * @param {String} colors Color of the button (with its states)
  * @param {boolean} disabled Enable/Disable button
@@ -83,8 +81,10 @@ interface ButtonInterface {
  * @param {Function} onClick Action to execute
  * @param {Boolean} useLongLoading Set the long loading bar
  */
-
-const Button = forwardRef(
+const Button = forwardRef<
+  HTMLButtonElement,
+  ButtonInterface & React.ButtonHTMLAttributes<HTMLButtonElement>
+>(
   (
     {
       block = false,

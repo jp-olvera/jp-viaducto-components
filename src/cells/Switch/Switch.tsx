@@ -41,16 +41,17 @@ const Switch = ({
       disabled={disabled}
       data-testid={rest.id}
       check={check}
-      {...rest}
     >
       <input
         type='checkbox'
         id={rest.id}
         onChange={(e) => {
           setCheck(!check);
+          /* istanbul ignore else */
           if (change) change(e);
         }}
         disabled={disabled}
+        {...rest}
       />
       <span className='slider round' data-testid='slider' />
     </StyledSwitch>

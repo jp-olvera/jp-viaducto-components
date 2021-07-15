@@ -2,33 +2,38 @@ import React, { useContext } from 'react';
 import StyledAccordion from './StyledAccordion';
 import { ConfigContext } from '../../providers';
 
+/** Accordion component */
+interface AccordionInterface {
+  /** Children components for the accordion */
+  children?: React.ReactElement[];
+  paddingX?: string;
+  /** Padding in Y */
+  paddingY?: string;
+  /** Overrides transitionTimingFunction */
+  transition?: string;
+}
+
 /**
  * Accordion component
  * @param {React.ReactElement} children Children components for the accordion
- * @param {Number} defaultIndex Index to set open the accordion item
- * @param {Boolean} expandMultiple Accept multiple accordion items open at the same time
  * @param {String} paddingX Padding in X
  * @param {String} paddingY Padding in Y
+ * @param {String} transition Overrides transitionTimingFunction
  */
-interface AccordionInterface {
-  children?: React.ReactElement[];
-  paddingX?: string;
-  paddingY?: string;
-  transition?: string;
-}
 
 const Accordion = ({
   children,
   paddingX = 'sm',
   paddingY = 'sm',
   transition = 'linear',
-}: AccordionInterface) => {
+  ...rest
+}: AccordionInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
-  const px = configuration.spacing[paddingX] || configuration.spacing.md;
-  const py = configuration.spacing[paddingY] || configuration.spacing.md;
+  const px = configuration.spacing[paddingX];
+  const py = configuration.spacing[paddingY];
 
   return (
-    <StyledAccordion>
+    <StyledAccordion {...rest}>
       {React.Children.map(children, (child, i) => {
         /* istanbul ignore if */
         if (!child) {

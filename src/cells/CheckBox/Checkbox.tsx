@@ -43,7 +43,7 @@ const Checkbox = ({
   checkSize = 'lg',
   fontSize = 'md',
   color = '#9060EB',
-  onChange = () => {},
+  onChange,
   spacing = 'none',
   ...props
 }: CheckboxInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
@@ -59,16 +59,17 @@ const Checkbox = ({
       color={color}
       disabled={disabled}
       data-testid={props.id}
-      {...props}
     >
       <input
         onChange={(event) => {
           setCheck(!check);
+          /* istanbul ignore else */
           if (onChange) onChange(event);
         }}
         disabled={disabled}
         type='checkbox'
         id={props.id}
+        {...props}
       />
       <Spacer size={spacing} direction='horizontal' />
       {label}

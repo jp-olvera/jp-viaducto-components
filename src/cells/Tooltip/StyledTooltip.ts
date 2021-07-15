@@ -1,15 +1,13 @@
 import styled, { css } from 'styled-components';
 
 export const TooltipContainer = styled.div < any > `
-  transition: all 0.05s
-    ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+  /* transition: all 0.2s linear; */
   font-family: ${({ family }) => (family ? `'${family}', sans-serif` : 'inherit')};
   position: relative;
   display: block;
   z-index: 1;
   & .tooltip {
-    transition: all 0.05s
-      ${({ configuration, transition }) => transition || configuration.transitionTimingFunction};
+    /* transition: all 0.2s linear; */
     background-color: ${({ color }) => color};
     text-align: center;
     padding: 0.313rem;

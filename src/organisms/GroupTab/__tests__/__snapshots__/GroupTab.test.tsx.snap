@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GroupTab/> should change tab 1`] = `
+<p
+  class="StyledParagraph-sc-dbd4lw-0 dxtxsJ"
+  color="#01579B"
+>
+  Dinner
+</p>
+`;

@@ -5,30 +5,35 @@ import { render, fireEvent } from '../../../test-utils';
 import { ButtonDatalist } from '..';
 
 describe('<ButtonDatalist/>', () => {
+  const options = [
+    { accessor: 'a', data: <div>a</div> },
+    { accessor: 'b', data: <div>b</div> },
+  ];
+
   test('should be visible', () => {
     const { container } = render(
-      <ButtonDatalist options={[]} onClick={() => {}} />,
+      <ButtonDatalist options={[]} onClick={() => {}} inputIcon='❤' />,
     );
     expect(container).toBeVisible();
   });
   test('should render with onClick prop', () => {
     const click = jest.fn();
     const { getByTestId } = render(
-      <ButtonDatalist options={['a', 'b']} onClick={click} buttonLabel='Save' />,
+      <ButtonDatalist options={options} onClick={click} buttonLabel='Save' />,
     );
     fireEvent.click(getByTestId('btn-data'));
     expect(click).toHaveBeenCalled();
   });
   test('should input be clicked', () => {
     const { container } = render(
-      <ButtonDatalist options={['a', 'b']} onClick={() => {}} />,
+      <ButtonDatalist options={options} onClick={() => {}} />,
     );
     fireEvent.click(container.querySelector('input') || window);
     expect(container).not.toBeNull();
   });
   test('should search options', () => {
     const { container, getByTestId } = render(
-      <ButtonDatalist options={['a']} onClick={() => {}} />,
+      <ButtonDatalist options={options} onClick={() => {}} />,
     );
     const input = container.querySelector('input');
     fireEvent.click(input || window);
@@ -38,7 +43,7 @@ describe('<ButtonDatalist/>', () => {
   });
   test('should have 0 lenght value on input', () => {
     const { container } = render(
-      <ButtonDatalist options={['a', 'b']} onClick={() => {}} />,
+      <ButtonDatalist options={options} onClick={() => {}} />,
     );
     const input = container.querySelector('input');
     fireEvent.click(input || window);
@@ -48,9 +53,10 @@ describe('<ButtonDatalist/>', () => {
   test('should remove option pre selected', () => {
     const { container, getByTestId } = render(
       <ButtonDatalist
-        options={['a', 'b']}
-        selectedOptionsList={['a']}
+        options={options}
+        selectedOptionsList={[{ accessor: 'a', data: <div>a</div> }]}
         onClick={() => {}}
+        buttonLabel='save'
       />,
     );
     const input = container.querySelector('input');

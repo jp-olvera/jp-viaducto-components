@@ -12,7 +12,7 @@ interface InputInterface {
   /** The border type for the input (full, bottom, overlap) */
   border?: string;
   /** set the color border */
-  borderColor?: string;
+  borderColor?: string | null;
   /** Set the input disabled */
   disabled?: boolean;
   /** Set font family */
@@ -31,12 +31,12 @@ interface InputInterface {
   onChange?: Function;
   /** Set a function triggered when onClick is called */
   onClick?: Function;
-  /** Set a function triggered when onKeyUp is called */
-  onKeyUp?: Function;
   /** Icon for mark input is required */
   required?: boolean;
   /** Set the height of the input */
   inputSize?: string;
+  /** set the card type */
+  getCardType?: string;
   /** Set the input type (text, password, email, etc.) */
   type?: string;
 }
@@ -54,12 +54,10 @@ interface InputInterface {
  * @param {string} label The caption for the input
  * @param {Function} onChange Set a function triggered when onChange is called
  * @param {Function} onClick  Set a function triggered when onClick is called
- * @param {Function} onKeyUp  Set a function triggered when onKeyUp is called
  * @param {boolean} required Icon for mark input is required
  * @param {string} inputSize Set the height of the input
  * @param {string} type Set the input type (text, password, email, etc.)
  */
-
 const Input = ({
   label,
   border = 'default',
@@ -70,23 +68,24 @@ const Input = ({
   iconHelper = null,
   inputSize = 'default',
   required,
-  borderColor = '#001D48',
+  borderColor = null,
   iconColor = '#2329D6',
   onChange = () => {},
   onClick,
-  onKeyUp,
   family,
+  getCardType = 'card',
   ...rest
 }: InputInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
-  const [cardType, setCardType] = useState('card');
+  const [cardType, setCardType] = useState(getCardType);
   const [placeIcon, setIcon] = useState(icon);
   const { configuration } = useContext(ConfigContext);
-  const [newValue, setNewValue] = useState<any>(null);
+  const [newValue, setNewValue] = useState<any>(rest.defaultValue || undefined);
   const inputRef = useRef<any>();
 
   const setCardIcon = (ev: any) => {
     const { value: val }: { value: string } = ev.target;
     creditCardType(val).map((card) => {
+      /* istanbul ignore else */
       if (
         card.type === CardType.MASTERCARD
         || card.type === CardType.VISA
@@ -96,7 +95,7 @@ const Input = ({
         setIcon(card.type);
       } else {
         setCardType('card');
-        setIcon(null);
+        setIcon(icon || null);
       }
       return true;
     });
@@ -117,7 +116,11 @@ const Input = ({
         hasIcon={icon !== null}
         size={inputSize}
         configuration={configuration}
-        borderColor={borderColor}
+        borderColor={
+          borderColor === null
+            ? configuration.defaultInputBorderColor
+            : borderColor
+        }
         iconColor={iconColor}
         disabled={disabled}
         family={family}
@@ -129,24 +132,21 @@ const Input = ({
           className='input'
           ref={inputRef}
           onChange={(ev) => {
-            setCardIcon(ev);
-            setNewValue(
-              type === 'card'
-                ? mask(ev.target.value.replace(/([^0-9])/g, ''), 4, '-').slice(
+            if (type === 'card') {
+              setCardIcon(ev);
+              setNewValue(
+                mask(ev.target.value.replace(/([^0-9])/g, ''), 4, '-').slice(
                   0,
                   cardType === 'american-express' ? 21 : 19,
-                )
-                : type === 'phone'
-                  ? mask(ev.target.value.replace(/([^0-9|+])/g, ''), 3, ' ')
-                  : ev.target.value,
-            );
+                ),
+              );
+            } else {
+              setNewValue(ev.target.value);
+            }
             onChange(ev);
           }}
           onClick={(e) => {
             if (onClick) onClick(e);
-          }}
-          onKeyUp={(e) => {
-            if (onKeyUp) onKeyUp(e);
           }}
           type={
             type === 'card' || type === 'phone'
@@ -155,13 +155,11 @@ const Input = ({
                 ? 'date'
                 : type
           }
-          autoComplete={type === 'card' ? 'cc-number' : ''}
-          x-autocompletetype={type === 'card' ? 'cc-number' : ''}
           id={rest.id}
           required
+          defaultValue={newValue}
           disabled={disabled}
           min={rest.min}
-          defaultValue={rest.value || newValue}
           max={rest.max}
           {...rest}
         />
@@ -202,6 +200,5 @@ export const mask = (value: string, limit: number, separator: string = '-') => {
 
     output.push(value[i]);
   }
-
   return output.join('');
 };

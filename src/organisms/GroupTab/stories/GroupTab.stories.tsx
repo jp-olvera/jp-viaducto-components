@@ -2,7 +2,7 @@ import React from 'react';
 import { SBConfigI } from '../../../sb';
 import { ConfigProvider } from '../../../providers';
 import { GroupTab } from '..';
-import { Container, Tab } from '../../../cells';
+import { Tab } from '../../../cells';
 
 const config: SBConfigI = {
   title: 'Andamio/Organisms/GroupTab',
@@ -68,6 +68,29 @@ const config: SBConfigI = {
         type: 'select',
       },
     },
+    spacing: {
+      description: 'Set the spacing between tabs',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'none' },
+      },
+      options: [
+        'none',
+        'nano',
+        'micro',
+        'tiny',
+        'xs',
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        'xxl',
+        'xxxl',
+      ],
+      control: {
+        type: 'select',
+      },
+    },
     verticalSpacing: {
       description:
         'Set the vertical spacing taking the tab content as reference',
@@ -99,6 +122,13 @@ const config: SBConfigI = {
         defaultValue: { summary: 'ease' },
       },
     },
+    onTabChange: {
+      description: 'Triggers an action on tab changes',
+      type: { summary: 'Function', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+    },
   },
 };
 
@@ -106,14 +136,14 @@ export default config;
 
 const Template = (args: typeof Default) => (
   <ConfigProvider>
-    <Container horizontal='md' top='sm'>
-      <GroupTab {...args}>
-        <Tab text='Zombie' />
-        <Tab text='Patrol' />
-        <Tab text='Group' />
-        <Tab text='Tab' />
-      </GroupTab>
-    </Container>
+    <GroupTab {...args}>
+      <Tab text='Store' />
+      <Tab text='My apps' />
+      <Tab text='Organization Settings' />
+      <Tab text='Very large tab name but sill works' />
+      <Tab text='Market' />
+      <Tab text='Last Mile' />
+    </GroupTab>
   </ConfigProvider>
 );
 
@@ -125,4 +155,8 @@ Default.args = {
   verticalSpacing: 'sm',
   fontSize: 'md',
   position: 'bottom',
+  spacing: 'none',
+  // eslint-disable-next-line no-console
+  onTabChange: () => console.log('tab change'),
+  transition: 'ease',
 };

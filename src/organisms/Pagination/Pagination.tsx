@@ -160,6 +160,7 @@ const Pagination = ({
             }}
           >
             <Anchor
+              href=''
               label={previousLabel ? 'Previous Page' : ''}
               color={textColor}
               size={fontSize}
@@ -172,7 +173,7 @@ const Pagination = ({
           role='button'
           className={`${active === 1 ? 'active' : ''}`}
         >
-          <Anchor label={(1).toString()} />
+          <Anchor label={(1).toString()} href='' />
         </li>
         {pages.map((page: any, index: number) => (
           <li
@@ -183,7 +184,7 @@ const Pagination = ({
               page === '...' && 'dots'
             }`}
           >
-            <Anchor label={page.toString()} />
+            <Anchor label={page.toString()} href='' />
           </li>
         ))}
         {totalPages > 1 && (
@@ -192,7 +193,7 @@ const Pagination = ({
             role='button'
             className={`${active === totalPages ? 'active' : ''}`}
           >
-            <Anchor label={totalPages.toString()} />
+            <Anchor label={totalPages.toString()} href='' />
           </li>
         )}
         {totalPages > 1 && (
@@ -207,6 +208,7 @@ const Pagination = ({
             }}
           >
             <Anchor
+              href=''
               label={nextLabel ? 'Next Page' : ''}
               color={textColor}
               size={fontSize}
