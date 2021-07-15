@@ -39,6 +39,8 @@ interface InputInterface {
   getCardType?: string;
   /** Set the input type (text, password, email, etc.) */
   type?: string;
+  /** Placeholder */
+  placeholder?: string;
 }
 
 /**
@@ -74,6 +76,7 @@ const Input = ({
   onClick,
   family,
   getCardType = 'card',
+  placeholder,
   ...rest
 }: InputInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
   const [cardType, setCardType] = useState(getCardType);
@@ -161,6 +164,7 @@ const Input = ({
           disabled={disabled}
           min={rest.min}
           max={rest.max}
+          placeholder={placeholder}
           {...rest}
         />
         {iconHelper && <span className='is-helper'>{iconHelper}</span>}
