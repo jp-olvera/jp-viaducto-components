@@ -25,7 +25,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'text' },
       },
-      options: ['text', 'number', 'card', 'date', 'color', 'phone', 'time'],
+      options: ['text', 'number', 'card', 'date', 'color', 'time'],
       control: {
         type: 'select',
       },
@@ -161,20 +161,7 @@ Color.args = {
   borderColor: null,
   iconColor: null,
 };
-export const Phone = Template.bind({});
 
-Phone.args = {
-  label: 'Phone',
-  type: 'phone',
-  icon: '❤',
-  border: 'default',
-  required: false,
-  disabled: false,
-  transition: 'ease',
-  inputSize: 'small',
-  borderColor: null,
-  iconColor: null,
-};
 export const Time = Template.bind({});
 
 Time.args = {

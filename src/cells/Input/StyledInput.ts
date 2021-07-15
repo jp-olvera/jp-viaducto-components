@@ -27,32 +27,23 @@ export const Wrapper = styled.div < any > `
     font-size: 1rem !important;
     padding-right: ${({ configuration }) => configuration.spacing.tiny};
     padding-left: ${({ configuration, hasIcon }) => (hasIcon ? 0 : configuration.spacing.xs)};
-    &::placeholder {
-      color: transparent;
-    }
     &:disabled {
       cursor: not-allowed;
       background-color: #cecece;
       pointer-events: none;
       user-select: none;
-      &:not(:placeholder-shown) {
-        & ~ .label {
-          background: transparent;
-          border: none;
-          color: #333;
-          padding: 0;
-          outline: none;
-          left: 0;
-          .icon-required {
-            display: inline-flex;
-            padding-left: ${({ configuration }) => configuration.spacing.nano};
-            color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor} !important;
-          }
+      &[value=''] {
+        color: transparent;
+        &[type='date'],
+        &[type='time'] {
+          color: inherit;
         }
       }
     }
     &:focus,
-    :valid {
+    :valid,
+    :placeholder-shown,
+    :not([value='']) {
       ${(p) => (p.hasLabel
         && p.size !== 'xsmall'
         && p.border !== 'outside'
