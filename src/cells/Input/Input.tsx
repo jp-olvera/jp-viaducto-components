@@ -21,6 +21,10 @@ interface InputInterface {
   icon?: any;
   /** set the icon color */
   iconColor?: string;
+  /** Helper icon to support the user for input required */
+  iconRequired?: any;
+  /** set the icon color required */
+  iconColorRequired?: string;
   /** The caption for the input */
   label?: string;
   /** Set a function triggered when onChange is called */
@@ -48,7 +52,9 @@ interface InputInterface {
  * @param {boolean} disabled Set the input disabled
  * @param {boolean} family Set font family
  * @param {any} icon Helper icon to support the user
+ * @param {any} iconRequired Helper icon to support the user for required inputs
  * @param {string} iconColor set the icon color
+ * @param {string} iconColorRequired set the icon color required
  * @param {string} label The caption for the input
  * @param {Function} onChange Set a function triggered when onChange is called
  * @param {Function} onClick  Set a function triggered when onClick is called
@@ -61,9 +67,11 @@ const Input = ({
   border = 'default',
   type = 'text',
   icon,
+  iconRequired,
   inputSize = 'default',
   borderColor,
   iconColor,
+  iconColorRequired,
   onChange = () => {},
   onClick,
   family,
@@ -166,7 +174,13 @@ const Input = ({
         {type !== 'color' && type !== 'time' && label && (
           <label className='label' htmlFor={rest.id}>
             <span>{label}</span>
+            {iconRequired && (
+              <span className='icon-required-label'>{iconRequired}</span>
+            )}
           </label>
+        )}
+        {required && iconRequired && (
+          <span className='icon-required'>{iconRequired}</span>
         )}
         {type === 'color' && (
           <span className='show-value'>

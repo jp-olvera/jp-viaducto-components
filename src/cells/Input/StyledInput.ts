@@ -2,11 +2,10 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div < any > `
-  & * {
-    transition: all 0.08s ease-in-out;
-  }
   font-family: ${(p) => p.family || p.configuration.fontFamily};
-  background-color: ${({ disabled, configuration }) => (disabled ? configuration.disableColor : configuration.colors.background)};
+  background-color: ${({ disabled, configuration }) => (disabled
+    ? configuration.colors.disableColor
+    : configuration.colors.background)};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'default')};
   height: ${({ size, configuration }) => configuration.controlHeight[size]};
   position: relative;
@@ -49,7 +48,6 @@ export const Wrapper = styled.div < any > `
     : 'padding-top: 0%')};
       & ~ .label:not(.icon),
       ~ .label:not(.icon) {
-        transition: all 0.25s ease-in-out;
         position: absolute;
         border: none;
         color: #000;
@@ -58,12 +56,23 @@ export const Wrapper = styled.div < any > `
         font-size: 1rem;
         outline: none;
         ${(p) => setLabel(p.border, p.size)};
+        transition: left 0.2s ${(p) => p.transition || 'ease'};
         left: 0 !important;
         background-color: ${(p) => (p.border === 'outside' ? 'transparent' : 'inherit')};
+        & .icon-required-label {
+          transition: opacity 0.2s ${(p) => p.transition || 'ease'};
+          opacity: 1;
+          transform: scale(80%);
+        }
       }
 
       & ~ .icon {
         padding-top: ${(p) => (p.hasLabel && p.border === 'overlap' ? '0.75%' : 0)};
+      }
+
+      & ~ .icon-required {
+        transition: opacity 0.2s ${(p) => p.transition || 'ease'};
+        opacity: 0;
       }
     }
   }
@@ -77,6 +86,25 @@ export const Wrapper = styled.div < any > `
       || configuration.colors.iconColor};
   }
 
+  .icon-required {
+    position: absolute;
+    padding: 0 ${({ configuration }) => configuration.spacing.xs};
+    color: ${({ iconColorRequired, configuration }) => configuration.colors.text[iconColorRequired]
+      || iconColorRequired
+      || configuration.colors.iconColor};
+    height: 100%;
+    opacity: 1;
+    transition: opacity 0.2s ${(p) => p.transition || 'ease'};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon-required-label {
+    opacity: 0;
+    transition: opacity 0.2s ${(p) => p.transition || 'ease'};
+  }
+
   .label {
     background: ${({ border }) => (border === 'outside' ? 'transparent' : 'inherit')};
     color: #808080;
@@ -86,7 +114,6 @@ export const Wrapper = styled.div < any > `
     position: absolute;
     pointer-events: none;
     user-select: none;
-    transition: all 0.2s ease;
   }
 
   .input[type='time'] {

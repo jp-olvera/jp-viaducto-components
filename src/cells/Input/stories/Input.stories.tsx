@@ -38,6 +38,14 @@ const config: SBConfigI = {
       },
       control: null,
     },
+    iconRequired: {
+      description: 'Add an icon helper for required inputs',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+      control: null,
+    },
     inputSize: {
       description: 'Set the size (height) of the input',
       type: { summary: 'String', required: false },
@@ -92,7 +100,15 @@ const config: SBConfigI = {
       control: 'color',
     },
     iconColor: {
-      description: 'Set the icon color (if the border is defined)',
+      description: 'Set the icon color ',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+      control: 'color',
+    },
+    iconColorRequired: {
+      description: 'Set the icon color required',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: null },
@@ -124,6 +140,7 @@ Text.args = {
   borderColor: null,
   iconColor: null,
   icon: '❤',
+  iconRequired: '⭕',
   inputSize: 'small',
   caption: 'Caption: this message has .caption className',
 };
