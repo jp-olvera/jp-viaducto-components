@@ -15,8 +15,8 @@ interface CardCollapsibleInterface {
   mainContent: any;
   /** Set the collapsible content for the card */
   collapseContent?: any;
-  /** Set the breakpoint size for responsive design */
-  breakpoint?: string;
+  /** Set border radius */
+  radius?: string;
   /** Overrides the transitionTimingFunction */
   transition?: string;
   /** Set font family */
@@ -30,7 +30,7 @@ interface CardCollapsibleInterface {
  * @param {string} elevationDirection Set the elevation direction shadow
  * @param {JSX Element} mainContent Set the main content for the card
  * @param {JSX Element} collapseContent Set the collapsible content for the card
- * @param {string} breakpoint Set the breakpoint size for responsive design
+ * @param {string} radius Set border radius
  * @param {string} transition Overrides the transitionTimingFunction
  * @param {string} family Set font family
  */
@@ -41,7 +41,7 @@ const CardCollapsible = ({
   elevationDirection = 'top',
   mainContent,
   collapseContent,
-  breakpoint = 'md',
+  radius,
   transition,
   family,
   ...rest
@@ -53,7 +53,7 @@ const CardCollapsible = ({
       configuration={configuration}
       elevation={elevation}
       elevationDirection={elevationDirection}
-      breakpoint={breakpoint}
+      radius={radius}
       family={family}
       {...rest}
     >

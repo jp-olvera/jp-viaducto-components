@@ -21,7 +21,10 @@ export const ConfigContext = createContext<ConfigContextInterface>({
 const ConfigProvider = ({ children }: ConfigProviderInterface) => {
   const [configuration, setConfiguration] = useState(config);
   const updateConfig = (newConfig: ConfigProps) => {
-    setConfiguration((oldConfig) => ({ ...oldConfig, ...newConfig }));
+    setConfiguration((oldConfig: ConfigProps) => ({
+      ...oldConfig,
+      ...newConfig,
+    }));
   };
   const placements = {
     'bottom-left': 'bottom-left',

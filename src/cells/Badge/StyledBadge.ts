@@ -3,11 +3,11 @@ import { getSize } from '../../utils/getSizes';
 
 export const StyledBadge = styled.div < any > `
   ${(p) => getBadgeSize(p.size)}
-  font-family: ${(p) => p.family || 'inherit'};
+  font-family: ${(p) => p.family || p.configuration.fontFamily};
   background-image: ${(p) => (p.src !== null ? `url(${p.src})` : 'none')};
   background-position: ${(p) => (p.src !== null ? '50% 50%' : 'none')};
   background-size: ${(p) => (p.src !== null ? 'cover' : 'none')};
-  background-color: ${(p) => p.background};
+  background-color: ${(p) => p.background || p.configuration.background};
   background-repeat: no-repeat;
   ${(p) => getClipPath(p.clipPath)};
   box-sizing: border-box;
@@ -15,7 +15,9 @@ export const StyledBadge = styled.div < any > `
   ${(p) => alignContent(p.align)}
 
   & {
-    color: ${(p) => p.configuration.text[p.color] || p.color};
+    color: ${(p) => p.configuration.colors.text[p.color]
+      || p.color
+      || p.configuration.colors.text.dark};
     z-index: 1;
     font-size: ${(p) => getSize(p.fontSize)};
   }

@@ -32,6 +32,8 @@ interface TabI {
   tabType?: any;
   /** Set the horizontal spacing taking the tab content as reference */
   verticalSpacing?: any;
+  /** Set font family */
+  fontFamily?: string;
 }
 
 /**
@@ -49,6 +51,7 @@ interface TabI {
  * @param {string} position Set the line in position selected
  * @param {string} tabType Set the color variant (type definition colors) for the tab
  * @param {string} verticalSpacing Set the horizontal spacing taking the tab content as reference
+ * @param {string} fontFamily Set font family
  */
 
 const Tab = ({
@@ -65,6 +68,7 @@ const Tab = ({
   position = 'bottom',
   lineWidth = '100%',
   index = 0,
+  fontFamily,
   ...rest
 }: TabI & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -89,6 +93,7 @@ const Tab = ({
       position={position}
       lineWidth={lineWidth}
       index={index}
+      fontFamily={fontFamily}
       {...rest}
     >
       <div

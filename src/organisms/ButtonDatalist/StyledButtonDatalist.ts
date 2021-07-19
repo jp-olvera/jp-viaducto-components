@@ -1,11 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const StyledButtonDatalist = styled.div < any > `
-  * {
-    ${(p) => css`
-      font-family: ${p.family || 'inherit'};
-    `};
-  }
+  font-family: ${(p) => p.family || p.configuration.fontFamily};
   transition: max-height 0.2s ease;
   overflow: hidden;
   .options {

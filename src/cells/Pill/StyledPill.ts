@@ -3,17 +3,15 @@ import styled, { css } from 'styled-components';
 import { getSize } from '../../utils/getSizes';
 
 const StyledPill = styled.div < any > `
-  ${(p) => (p.family !== null
-    ? css`
-          font-family: ${p.family};
-        `
-    : css``)};
+  font-family: ${(p) => p.family || p.configuration.fontFamily};
   align-items: center;
   display: inline-flex;
   box-sizing: border-box;
-  background-color: ${(p) => p.background};
-  border-radius: ${(p) => (p.circleBorder === true ? '6.25rem' : '0.125rem')};
-  color: ${(p) => p.color};
+  background-color: ${(p) => p.background || p.configuration.colors.background};
+  border-radius: ${(p) => (p.circleBorder === true ? '6.25rem' : p.configuration.radius[p.radius])};
+  color: ${(p) => p.configuration.colors.text[p.color]
+    || p.color
+    || p.configuration.colors.text.dark};
   font-size: ${({ size }) => getSize(size)};
   height: 1.875rem;
   vertical-align: ${({ verticalAlign }) => verticalAlign};

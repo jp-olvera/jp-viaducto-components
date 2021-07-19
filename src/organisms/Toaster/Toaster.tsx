@@ -54,7 +54,7 @@ const Toaster = ({
 }: ToasterInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const ref = useRef<HTMLElement>(null);
-  const color = configuration.text.success;
+  const color = configuration.colors.text.success;
 
   return (
     <StyledToaster

@@ -10,7 +10,7 @@ describe('<Accordion />', () => {
     const { getByText } = render(
       <Accordion>
         <AccordionItem
-          title='Open1'
+          titleItem='Open1'
           icon='❤'
           paddingY={undefined}
           paddingX={undefined}
@@ -18,7 +18,7 @@ describe('<Accordion />', () => {
         >
           <p>Text1</p>
         </AccordionItem>
-        <AccordionItem title='Open2'>
+        <AccordionItem titleItem='Open2'>
           <p>Text2</p>
         </AccordionItem>
       </Accordion>,
@@ -29,7 +29,7 @@ describe('<Accordion />', () => {
     const { getByText } = render(
       <Accordion expandMultiple>
         <AccordionItem
-          title='Open1'
+          titleItem='Open1'
           id='1'
           expanded
           paddingX='sm'
@@ -39,7 +39,7 @@ describe('<Accordion />', () => {
           <p>Text1</p>
         </AccordionItem>
         <AccordionItem
-          title='Open2'
+          titleItem='Open2'
           id='3'
           expanded
           paddingX='xs'
@@ -57,7 +57,7 @@ describe('<Accordion />', () => {
     const { getByText } = render(
       <Accordion expandMultiple>
         <AccordionItem
-          title='Open1'
+          titleItem='Open1'
           id='1'
           expanded
           paddingX='none'
@@ -67,7 +67,7 @@ describe('<Accordion />', () => {
           <p>Text1</p>
         </AccordionItem>
         <AccordionItem
-          title='Open2'
+          titleItem='Open2'
           id='2'
           expanded
           paddingX='tiny'
@@ -93,12 +93,12 @@ describe('<Accordion />', () => {
           id='0'
           paddingX='tiny'
           paddingY='none'
-          title='AAAAAA'
+          titleItem='AAAAAA'
         >
           <p>Text1</p>
         </AccordionItem>
         <AccordionItem
-          title={undefined}
+          titleItem={undefined}
           id='2'
           expanded
           paddingX='tiny'

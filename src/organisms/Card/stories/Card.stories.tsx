@@ -56,13 +56,12 @@ const config: SBConfigI = {
       },
       control: null,
     },
-    breakpoint: {
-      description:
-        'Use breakpoint to set the minimum width 100%, resize to verify',
+    radius: {
+      description: 'Set border radius',
       type: { name: 'string' },
-      table: { type: { summary: 'string' }, defaultValue: { summary: 'md' } },
+      table: { type: { summary: 'string' }, defaultValue: { summary: 'none' } },
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      options: ['none', 'sm', 'md', 'lg'],
     },
     family: {
       description: 'Set font family',
@@ -116,16 +115,14 @@ Default.args = {
     'https://images.freeimages.com/images/large-previews/478/jack-o-lanterns-1326113.jpg',
   elevation: 1,
   elevationDirection: 'radial',
-  breakpoint: 'md',
-  family: 'Arial',
+  radius: 'none',
 };
 
 NoImage.args = {
   src: null,
   elevation: 1,
   elevationDirection: 'radial',
-  breakpoint: 'md',
-  family: 'Arial',
+  radius: 'none',
 };
 
 OnlyImage.args = {
@@ -133,6 +130,5 @@ OnlyImage.args = {
   onlyImage: true,
   elevation: 1,
   elevationDirection: 'radial',
-  breakpoint: 'md',
-  family: 'Arial',
+  radius: 'none',
 };

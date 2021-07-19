@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { getBorder } from '../../utils/getSizes';
 
 export const Wrapper = styled.div < any > `
@@ -8,14 +8,10 @@ export const Wrapper = styled.div < any > `
   height: ${({ height }) => height};
 `;
 export const Activator = styled.button < any > `
-  ${(p) => (p.family !== null
-    ? css`
-          font-family: ${p.family};
-        `
-    : css``)};
-  ${({ border }) => getBorder(border)};
+  font-family: ${(p) => p.family || p.configuration.fontFamily};
+  ${({ border, configuration }) => getBorder(border, configuration)};
   align-items: center;
-  background-color: inherit;
+  background-color: ${(p) => p.configuration.colors.background};
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -44,7 +40,7 @@ export const ItemsContainer = styled.div < any > `
   .left {
     left: 100%;
   }
-  background: #ffffff;
+  background-color: ${(p) => p.configuration.colors.background};
   border: 0.063rem solid #eaedf3;
   box-sizing: border-box;
   box-shadow: 0 0.063rem 0.188rem rgba(0, 0, 0, 0.04);

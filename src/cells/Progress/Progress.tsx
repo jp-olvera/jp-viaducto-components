@@ -28,7 +28,7 @@ const Progress = ({
   completedSteps = 0,
   currentStep = 0,
   loader,
-  color = '#3AE25F',
+  color,
   ...rest
 }: ProgressInterface & React.HTMLAttributes<HTMLElement>) => {
   const strokeWidth = 2;

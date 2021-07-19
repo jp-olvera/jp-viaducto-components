@@ -2,7 +2,7 @@
 
 exports[`<CircleLoader/> should render Circle Loader and create Snapshot 1`] = `
 <div
-  class="StyleLoader__StyledLoader-sc-1bymfut-0 ihhiRc"
+  class="StyleLoader__StyledLoader-sc-1bymfut-0 czEfaT"
   data-testid="loader"
 >
   <svg
@@ -23,7 +23,7 @@ exports[`<CircleLoader/> should render Circle Loader and create Snapshot 1`] = `
       cy="12.5"
       fill="transparent"
       r="0"
-      stroke="#3AE25F65"
+      stroke="#937B3D65"
       stroke-dasharray="0 0"
       stroke-width="0"
       style="stroke-dashoffset: 0;"
@@ -34,7 +34,7 @@ exports[`<CircleLoader/> should render Circle Loader and create Snapshot 1`] = `
       cy="12.5"
       fill="transparent"
       r="0"
-      stroke="#3AE25F"
+      stroke="#937B3D"
       stroke-dasharray="0 0"
       stroke-width="0"
       style="stroke-dashoffset: 0;"
@@ -45,7 +45,7 @@ exports[`<CircleLoader/> should render Circle Loader and create Snapshot 1`] = `
 
 exports[`<CircleLoader/> should render Circle Loader with props and create Snapshot 1`] = `
 <div
-  class="StyleLoader__StyledLoader-sc-1bymfut-0 ihhiRc"
+  class="StyleLoader__StyledLoader-sc-1bymfut-0 czEfaT"
   data-testid="loader"
 >
   <svg
@@ -66,7 +66,7 @@ exports[`<CircleLoader/> should render Circle Loader with props and create Snaps
       cy="12.5"
       fill="transparent"
       r="10"
-      stroke="#3AE25F65"
+      stroke="#937B3D65"
       stroke-dasharray="5 5"
       stroke-width="2"
       style="stroke-dashoffset: 1;"
@@ -77,7 +77,7 @@ exports[`<CircleLoader/> should render Circle Loader with props and create Snaps
       cy="12.5"
       fill="transparent"
       r="10"
-      stroke="#3AE25F"
+      stroke="#937B3D"
       stroke-dasharray="5 5"
       stroke-width="2"
       style="stroke-dashoffset: 1;"
@@ -88,8 +88,8 @@ exports[`<CircleLoader/> should render Circle Loader with props and create Snaps
 
 exports[`<ProgressBar/> should render ProgressBar and create snapshot 1`] = `
 <div
-  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 hAlbhN"
-  color="#3AE25F"
+  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 ggstzA"
+  color="#937B3D"
   data-testid="loader"
   max="50"
   value="50"
@@ -110,8 +110,8 @@ exports[`<ProgressBar/> should render ProgressBar and create snapshot 1`] = `
 
 exports[`<ProgressBar/> should render ProgressBar and create snapshot with props 1`] = `
 <div
-  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 cugMsp"
-  color="#3AE25F"
+  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 hzUqFE"
+  color="#937B3D"
   data-testid="loader"
   max="10"
   value="5"
@@ -132,7 +132,7 @@ exports[`<ProgressBar/> should render ProgressBar and create snapshot with props
 
 exports[`<StepLoader/> should render StepLoader and create snapshot 1`] = `
 <h1
-  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 dfmgYQ"
+  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 PtLXC"
   color="dark"
   data-testid="loader"
 >
@@ -142,7 +142,7 @@ exports[`<StepLoader/> should render StepLoader and create snapshot 1`] = `
 
 exports[`<StepLoader/> should render StepLoader and create snapshot with props 1`] = `
 <h1
-  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 bXpyun"
+  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 jNbuyV"
   color="red"
   data-testid="loader"
 >

@@ -14,7 +14,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'default' },
       },
-      options: ['outside', 'overlap', 'bottom', 'default'],
+      options: ['outside', 'overlap', 'bottom'],
       control: {
         type: 'select',
       },
@@ -75,6 +75,14 @@ const config: SBConfigI = {
         defaultValue: { summary: 'ease' },
       },
     },
+    caption: {
+      description: 'Set caption message',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: '' },
+      },
+      control: 'text',
+    },
     borderColor: {
       description: 'Set the border color (if the border is defined)',
       type: { summary: 'String', required: false },
@@ -117,6 +125,7 @@ Text.args = {
   iconColor: null,
   icon: '❤',
   inputSize: 'small',
+  caption: 'Caption: this message has .caption className',
 };
 
 export const Card = Template.bind({});

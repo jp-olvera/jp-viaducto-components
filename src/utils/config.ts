@@ -8,8 +8,9 @@ const config: ConfigProps = {
     lg: '62rem', // '992px'
     xl: '90rem', // '1440px'
   },
-  defaultInputBorderColor: '#001D48',
+  border: '0.063rem solid #001D48',
   colors: {
+    background: '#fff',
     primary: {
       default: '#937B3D',
       hover: '#AD9043',
@@ -59,6 +60,46 @@ const config: ConfigProps = {
       text: '#000',
       shadow: 'rgba(1, 87, 155, 0.53)',
     },
+    text: {
+      danger: '#B71C1C',
+      dangerLight: '#F05545',
+      dangerDark: '#7F0000',
+      dark: '#050505',
+      darkGray: '#5A5A5A',
+      info: '#64B5F6',
+      infoLight: '#9BE7FF',
+      infoDark: '#2286C3',
+      lightGray: '#EFEFEF',
+      mutedGray: '#A0A0A0',
+      primary: '#937B3D',
+      secondary: '#573D3D',
+      success: '#689F38',
+      successLight: '#99D066',
+      successDark: '#387002',
+      warning: '#FDD835',
+      warningLight: '#FFFF6B',
+      warningDark: '#C6A700',
+      white: '#FFFFFF',
+    },
+    defaultInputBorderColor: '#001D48',
+    disableColor: '#BFBFBF',
+    neutral: {
+      light: '#FFD1D1',
+      invert: '#000',
+    },
+    surface: {
+      light: '#F9F9F9',
+      dark: '#242020',
+    },
+    table: {
+      background: '#fff',
+      footerColor: '#fff',
+      headerColor: '#FAFAFA',
+      selectedColor: '#d9d9d9',
+      zebraColor: '#F6F8FA',
+      hoverColor: '#D1D5DA',
+    },
+    iconColor: '#595959',
   },
   controlHeight: {
     xsmall: '1.2rem',
@@ -71,7 +112,6 @@ const config: ConfigProps = {
     md: '53rem',
     lg: '64rem',
   },
-  disableColor: '#BFBFBF',
   display: {
     mobile: {
       xs: '2.986rem',
@@ -109,28 +149,9 @@ const config: ConfigProps = {
     xxl: '2.986rem',
     xxxl: '3.5rem',
   },
-  text: {
-    danger: '#B71C1C',
-    dangerLight: '#F05545',
-    dangerDark: '#7F0000',
-    dark: '#050505',
-    darkGray: '#5A5A5A',
-    info: '#64B5F6',
-    infoLight: '#9BE7FF',
-    infoDark: '#2286C3',
-    lightGray: '#EFEFEF',
-    mutedGray: '#A0A0A0',
-    primary: '#937B3D',
-    secondary: '#573D3D',
-    success: '#689F38',
-    successLight: '#99D066',
-    successDark: '#387002',
-    warning: '#FDD835',
-    warningLight: '#FFFF6B',
-    warningDark: '#C6A700',
-    white: '#FFFFFF',
-  },
   toasterPlacement: 'top-right',
+  fontFamily: 'Arial',
+  titleFontFamily: 'system-ui',
 };
 
 export default config;

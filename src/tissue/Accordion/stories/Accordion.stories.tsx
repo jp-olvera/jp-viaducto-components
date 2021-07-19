@@ -75,7 +75,7 @@ const Template = (args) => (
   <ConfigProvider>
     <Accordion {...args}>
       <AccordionItem
-        title={
+        titleItem={
           <Title level='6'>Hola, no olvides revisar los Docs arriba</Title>
         }
         icon={<span style={{ fontSize: '22px', lineHeight: 1 }}>+</span>}

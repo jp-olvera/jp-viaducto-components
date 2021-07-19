@@ -37,14 +37,13 @@ interface CheckboxInterface {
  */
 
 const Checkbox = ({
-  label = '',
-  disabled = false,
-  family = null,
-  checkSize = 'lg',
-  fontSize = 'md',
-  color = '#9060EB',
+  label,
+  family,
+  checkSize,
+  fontSize,
+  color,
   onChange,
-  spacing = 'none',
+  spacing,
   ...props
 }: CheckboxInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -57,7 +56,7 @@ const Checkbox = ({
       checkSize={checkSize}
       fontSize={fontSize}
       color={color}
-      disabled={disabled}
+      disabled={props.disabled}
       data-testid={props.id}
     >
       <input
@@ -66,12 +65,11 @@ const Checkbox = ({
           /* istanbul ignore else */
           if (onChange) onChange(event);
         }}
-        disabled={disabled}
         type='checkbox'
         id={props.id}
         {...props}
       />
-      <Spacer size={spacing} direction='horizontal' />
+      <Spacer size={spacing || 'none'} direction='horizontal' />
       {label}
     </StyledLabel>
   );

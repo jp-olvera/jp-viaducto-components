@@ -1,14 +1,12 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { getSize } from '../../utils/getSizes';
 
 export const StyledAnchor = styled.a < any > `
-  ${(p) => (p.family !== null
-    ? css`
-          font-family: ${p.family};
-        `
-    : null)};
-  color: ${(props) => props.configuration.text[props.color] || props.color} !important;
+  font-family: ${(p) => p.family || p.configuration.fontFamily};
+  color: ${(props) => props.configuration.colors.text[props.color]
+    || props.color
+    || props.configuration.colors.text.dark} !important;
   font-size: ${(props) => getSize(props.size)};
   box-sizing: border-box;
   vertical-align: ${(props) => props.verticalAlign || 'baseline'};

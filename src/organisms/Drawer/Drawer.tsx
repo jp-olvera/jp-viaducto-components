@@ -36,7 +36,7 @@ const Drawer = ({
   size = 'sm',
   transition,
   ...rest
-}: DrawerInterface) => {
+}: DrawerInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const [isClosing, setisClosing] = useState(false);
   const ref = useRef<HTMLElement>();

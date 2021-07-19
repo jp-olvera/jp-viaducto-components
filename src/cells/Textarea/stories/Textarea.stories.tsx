@@ -18,12 +18,14 @@ const config: SBConfigI = {
     border: {
       description: 'Set the border(s) of the component',
       type: {
-        summary: 'Object(top, bottom, left, right)/String',
+        summary: 'String',
         required: false,
       },
       table: {
-        defaultValue: { summary: 'none' },
+        defaultValue: { summary: 'all' },
       },
+      control: 'select',
+      options: ['none', 'bottom', 'all'],
     },
     borderColor: {
       description: 'Overrides the border color (if it is defined)',

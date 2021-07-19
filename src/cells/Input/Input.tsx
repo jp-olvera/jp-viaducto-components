@@ -21,10 +21,6 @@ interface InputInterface {
   icon?: any;
   /** set the icon color */
   iconColor?: string;
-  /** set the icon helper */
-  iconHelper?: any;
-  /** set the icon required */
-  iconRequired?: any;
   /** The caption for the input */
   label?: string;
   /** Set a function triggered when onChange is called */
@@ -41,6 +37,8 @@ interface InputInterface {
   type?: string;
   /** Placeholder */
   placeholder?: string;
+  /** Caption message */
+  caption?: string;
 }
 
 /**
@@ -51,32 +49,28 @@ interface InputInterface {
  * @param {boolean} family Set font family
  * @param {any} icon Helper icon to support the user
  * @param {string} iconColor set the icon color
- * @param {any} iconHelper set the icon helper
- * @param {any} iconRequired set the icon required
  * @param {string} label The caption for the input
  * @param {Function} onChange Set a function triggered when onChange is called
  * @param {Function} onClick  Set a function triggered when onClick is called
- * @param {boolean} required Icon for mark input is required
  * @param {string} inputSize Set the height of the input
  * @param {string} type Set the input type (text, password, email, etc.)
+ * @param {string} caption Set caption message
  */
 const Input = ({
   label,
   border = 'default',
-  disabled = false,
   type = 'text',
-  icon = null,
-  iconRequired = null,
-  iconHelper = null,
+  icon,
   inputSize = 'default',
-  required,
-  borderColor = null,
-  iconColor = '#2329D6',
+  borderColor,
+  iconColor,
   onChange = () => {},
   onClick,
   family,
   getCardType = 'card',
   placeholder,
+  required,
+  caption,
   ...rest
 }: InputInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
   const [cardType, setCardType] = useState(getCardType);
@@ -107,7 +101,6 @@ const Input = ({
   const hasLabel = label !== null
     && label !== undefined
     && label !== ''
-    && type !== 'date'
     && type !== 'color'
     && type !== 'time';
   return (
@@ -120,12 +113,10 @@ const Input = ({
         size={inputSize}
         configuration={configuration}
         borderColor={
-          borderColor === null
-            ? configuration.defaultInputBorderColor
-            : borderColor
+          borderColor || configuration.colors.defaultInputBorderColor
         }
         iconColor={iconColor}
-        disabled={disabled}
+        disabled={rest.disabled}
         family={family}
         type={type}
         hasLabel={hasLabel}
@@ -161,26 +152,20 @@ const Input = ({
           id={rest.id}
           required
           defaultValue={newValue}
-          disabled={disabled}
+          disabled={rest.disabled}
           min={rest.min}
           max={rest.max}
           placeholder={placeholder}
           {...rest}
         />
-        {iconHelper && <span className='is-helper'>{iconHelper}</span>}
         {placeIcon !== null && (
           <span className='icon'>
             {type === 'card' ? getIcon(placeIcon) : placeIcon}
           </span>
         )}
-        {type !== 'date' && type !== 'color' && type !== 'time' && label && (
+        {type !== 'color' && type !== 'time' && label && (
           <label className='label' htmlFor={rest.id}>
             <span>{label}</span>
-            {required && (
-              <span className='icon-required'>
-                {iconRequired && iconRequired}
-              </span>
-            )}
           </label>
         )}
         {type === 'color' && (
@@ -188,6 +173,7 @@ const Input = ({
             <span>{inputRef?.current?.value.toUpperCase() || '#FFFFFF'}</span>
           </span>
         )}
+        {caption && <span className='caption'>{caption}</span>}
       </Wrapper>
     </>
   );

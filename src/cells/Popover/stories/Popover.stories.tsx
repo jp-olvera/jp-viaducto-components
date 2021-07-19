@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { ConfigProvider } from '../../../providers';
 import { Popover } from '..';
-import { Button } from '../../../cells';
+import { Button } from '../..';
 
 export default {
   title: 'Andamio/Cells/Popover',

@@ -24,10 +24,9 @@ interface SwitchInterface {
  */
 
 const Switch = ({
-  color = '#9060EB',
-  inputSize = 'lg',
-  disabled = false,
-  change = () => {},
+  color,
+  inputSize,
+  change,
   ...rest
 }: SwitchInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -38,7 +37,7 @@ const Switch = ({
       configuration={configuration}
       color={color}
       size={inputSize}
-      disabled={disabled}
+      disabled={rest.disabled}
       data-testid={rest.id}
       check={check}
     >
@@ -50,7 +49,6 @@ const Switch = ({
           /* istanbul ignore else */
           if (change) change(e);
         }}
-        disabled={disabled}
         {...rest}
       />
       <span className='slider round' data-testid='slider' />

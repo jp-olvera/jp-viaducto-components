@@ -17,9 +17,13 @@ import {
 
 describe('getBorder file', () => {
   test('should return not null value', () => {
-    expect(
-      getBorder({ bottom: 'none', left: '1px solid', right: 'none' }),
-    ).not.toBeNull();
+    expect(getBorder('all', { border: '1px solid black' })).not.toBeNull();
+  });
+  test('should return with no border', () => {
+    expect(getBorder('none', { border: '1px solid black' })).not.toBeNull();
+  });
+  test('should return with bottom border', () => {
+    expect(getBorder('bottom', { border: '1px solid black' })).not.toBeNull();
   });
 });
 

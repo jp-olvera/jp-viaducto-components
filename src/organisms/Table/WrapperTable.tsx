@@ -41,21 +41,21 @@ interface TableInterface {
 /** WrapperTable is a helper component to style your tables */
 const Wrapper = ({
   align = 'left',
-  background = '#fff',
+  background,
   border = 'all',
-  borderColor = '#eaecef',
-  colorSelected = '#FFF1A5',
+  borderColor,
+  colorSelected,
   fontSize = 'md',
   family,
   horizontalSpacing = 'sm',
-  headerColor = 'black',
-  headerBackgroundColor = '#FAFAFA',
+  headerColor,
+  headerBackgroundColor,
   hover = true,
-  hoverColor = '#D1D5DA',
+  hoverColor,
   children,
   verticalSpacing = 'sm',
   zebra = true,
-  zebraColor = '#F6F8FA',
+  zebraColor,
   ...rest
 }: TableInterface) => {
   const { configuration } = useContext(ConfigContext);

@@ -8,6 +8,15 @@ const config: SBConfigI = {
   component: Pill,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
+    radius: {
+      description: 'Set border radius',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: 'none' },
+      },
+      control: { type: 'select' },
+      options: ['none', 'sm', 'md', 'lg'],
+    },
     background: {
       description: 'Set background color for the pill',
       type: { summary: 'String', required: true },
@@ -99,4 +108,5 @@ Default.args = {
   iconLead: IconLead({ icon: '😈' }).props.children,
   handleAction: () => {},
   circleBorder: true,
+  radius: 'none',
 };

@@ -38,13 +38,13 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     letter-spacing: 0.062rem !important;
     transition: all 300ms ease;
     color: ${(p) => (p.active
-    ? p.configuration.text.darkGray
-    : p.configuration.text.mutedGray)};
+    ? p.configuration.colors.text.darkGray
+    : p.configuration.colors.text.mutedGray)};
     font-weight: normal;
     outline: none;
     cursor: pointer;
     box-sizing: border-box;
-    font-family: ${(p) => p.family};
+    font-family: ${(p) => p.family || p.configuration.fontFamily};
     padding-left: ${(p) => p.configuration.spacing[p.spacing]};
   }
 
@@ -59,7 +59,7 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     vertical-align: middle;
     align-items: center;
     margin-left: ${(p) => p.configuration.spacing[p.spacing]};
-    color: ${(p) => p.configuration.text.mutedGray};
+    color: ${(p) => p.configuration.colors.text.mutedGray};
     font-weight: normal;
   }
 `;

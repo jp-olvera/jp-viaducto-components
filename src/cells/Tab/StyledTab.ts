@@ -1,20 +1,22 @@
 import styled, { css } from 'styled-components';
-import { ConfigProps } from 'ballena-types';
 
 const StyledTab = styled.button < any > `
+  font-family: ${(p) => p.fontFamily || p.configuration.fontFamily};
   background-color: transparent;
   border: none;
   box-sizing: border-box;
   cursor: pointer;
-  ${({ configuration, verticalSpacing }) => css`
-    height: calc(
+  height: ${({ configuration, verticalSpacing }) => `
+     calc(
       ${configuration.spacing[verticalSpacing] || configuration.spacing.sm} * 5
     );
   `};
   min-height: calc(${({ configuration }) => configuration.spacing.micro} * 5);
   position: relative;
 
-  ${(props) => getPaddingTransition(props)};
+  padding: 0
+    ${(p) => p.configuration.spacing[p.horizontalSpacing]
+      || p.configuration.spacing.none};
   .tab-text {
     transition: all 0.2s ease;
     transform: translateY(0);
@@ -53,17 +55,6 @@ const StyledTab = styled.button < any > `
   }
 
   ${(p) => p.active && activeState(p)};
-`;
-
-const getPaddingTransition = (props: {
-  configuration: ConfigProps;
-  transition: string;
-  horizontalSpacing: string;
-}) => css`
-  padding: 0
-    ${props.configuration.spacing[props.horizontalSpacing]
-    || props.configuration.spacing.none};
-  transition: padding 0.2s ease;
 `;
 
 const activeState = (props: {
