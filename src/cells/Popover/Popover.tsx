@@ -33,7 +33,8 @@ const Popover = ({
   position = 'bottom',
   target,
   radius = 'sm',
-}: PopoverProps) => {
+  ...rest
+}: PopoverProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const dropRef = useRef<HTMLDivElement>(null);
   const clickOutsideHandler = (event) => {
@@ -175,6 +176,7 @@ const Popover = ({
           position: 'fixed',
         }}
         tabIndex={0}
+        {...rest}
       >
         {content}
       </StyledDrop>,

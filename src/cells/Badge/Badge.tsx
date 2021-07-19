@@ -7,19 +7,19 @@ import { StyledBadge } from './StyledBadge';
 interface BadgeInterface {
   /** Content for the badge */
   content: any;
-  /** Background image */
+  /** Source path image */
   src?: string;
   /** Text color */
   color?: string;
-  /** Background color */
+  /** Background shape */
   clipPath?: string;
-  /** Font family */
-  fontSize?: string;
   /** Font size */
-  size?: any;
+  fontSize?: string;
   /** Badge size */
+  size?: string | { width: string; height: string };
+  /** Font family */
   family?: string;
-  /** Badge shape */
+  /** Background color */
   background?: string;
   /** Content align */
   align?: string;

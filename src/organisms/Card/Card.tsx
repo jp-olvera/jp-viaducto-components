@@ -17,8 +17,8 @@ interface CardInterface {
   transition?: string;
   /** Set font family */
   family?: string;
-  /** Set the breakpoint size for responsive design */
-  breakpoint?: string;
+  /** Set the border radius */
+  radius?: string;
 }
 
 /**
@@ -29,7 +29,7 @@ interface CardInterface {
  * @param {string} elevationDirection Light indicator for shadows data
  * @param {string} transition Overrides transitionTimingFunction
  * @param {string} family Set font family
- * @param {string} breakpoint Set the breakpoint size for responsive design
+ * @param {string} radius Set border radius
  */
 
 const Card = ({
@@ -38,7 +38,7 @@ const Card = ({
   elevation = 1,
   elevationDirection = '',
   family,
-  breakpoint = 'md',
+  radius,
   ...rest
 }: CardInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -52,7 +52,7 @@ const Card = ({
       elevation={elevation}
       elevationDirection={elevationDirection}
       family={family}
-      breakpoint={breakpoint}
+      radius={radius}
       {...rest}
     >
       {src !== null && <img className='img' src={src} alt={src} />}

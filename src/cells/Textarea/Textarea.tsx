@@ -51,13 +51,12 @@ interface TextareaInterface {
 
 const Textarea = ({
   resizable = false,
-  border = null,
+  border,
   borderColor,
   radius,
   family,
   textColor,
   fontSize,
-  disabled = false,
   lateralPadding,
   verticalPadding,
   rows = 1,
@@ -73,7 +72,7 @@ const Textarea = ({
       family={family}
       textColor={textColor}
       fontSize={fontSize}
-      disabled={disabled}
+      disabled={rest.disabled}
       configuration={configuration}
       lateralPadding={lateralPadding}
       verticalPadding={verticalPadding}

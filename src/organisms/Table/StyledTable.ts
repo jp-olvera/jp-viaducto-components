@@ -10,13 +10,13 @@ interface TableProps {
   hover?: boolean;
   zebraColor?: string;
   hoverColor?: string;
-  headerColor: string;
+  headerColor?: string;
   headerBackgroundColor?: string;
   verticalSpacing: string;
   horizontalSpacing: string;
   align?: string;
   colorSelected?: string;
-  borderColor: string;
+  borderColor?: string;
   fontSize?: string;
   family?: string;
 }
@@ -26,40 +26,59 @@ export const StyledTable = styled.div < TableProps > `
   }
 
   & > table {
-    font-family: ${({ family }) => (family ? `${family}, monospace` : "'Roboto', monospace")};
+    font-family: ${(p) => p.family || p.configuration.fontFamily};
     border-collapse: collapse;
     font-size: ${({ fontSize }) => getSize(fontSize)};
     padding: 0;
     margin: 0;
     border-spacing: 0;
-    background-color: ${(p) => p.background};
+    background-color: ${(p) => p.background || p.configuration.colors.table.background};
 
     thead {
-      color: ${(p) => p.configuration.text[p.headerColor] || p.headerColor};
-      background-color: ${(p) => p.headerBackgroundColor};
+      color: ${(p) => p.headerColor || p.configuration.colors.text[p.headerColor || 'dark']};
+      background-color: ${(p) => p.headerBackgroundColor || p.configuration.colors.table.headerColor};
     }
     thead > tr {
-      border-bottom: ${(p) => `0.063rem solid ${p.borderColor}`};
+      border-bottom: ${(p) => `0.063rem solid ${
+    p.borderColor || p.configuration.colors.defaultInputBorderColor
+  }`};
     }
     .selected > td {
-      background-color: ${(p) => p.colorSelected || '#ffd37c'};
+      background-color: ${(p) => p.colorSelected || p.configuration.colors.table.selectedColor};
     }
 
     tbody > tr {
       &:nth-of-type(odd) {
-        background-color: ${(p) => (p.zebra ? p.zebraColor : 'inherit')};
+        background-color: ${(p) => (p.zebra
+    ? p.zebraColor || p.configuration.colors.table.zebraColor
+    : 'inherit')};
       }
       padding: 0;
       margin: 0;
       &:hover {
-        ${(p) => (p.hover ? `background-color: ${p.hoverColor}` : null)};
-        ${(p) => (p.hover ? `border-color: ${p.hoverColor}` : null)};
+        ${(p) => (p.hover
+    ? `background-color: ${
+      p.hoverColor || p.configuration.colors.table.hoverColor
+    }`
+    : null)};
+        ${(p) => (p.hover
+    ? `border-color: ${
+      p.hoverColor || p.configuration.colors.table.hoverColor
+    }`
+    : null)};
         td {
-          ${(p) => (p.hover ? `border-color: ${p.hoverColor}` : null)};
+          ${(p) => (p.hover
+    ? `border-color: ${
+      p.hoverColor || p.configuration.colors.table.hoverColor
+    }`
+    : null)};
         }
       }
     }
-    ${(p) => getBorder(p.border, p.borderColor)};
+    ${(p) => getBorder(
+    p.border,
+    p.borderColor || p.configuration.colors.defaultInputBorderColor,
+  )};
     td,
     th {
       overflow: hidden;

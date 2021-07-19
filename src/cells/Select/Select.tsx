@@ -22,7 +22,7 @@ interface SelectInterface {
   onChange?: Function;
   radius?: string;
   inputSize?: string;
-  titleProps?: { label: string; position: string } | null;
+  titleProps?: null | { label: string; position: string };
 }
 
 /**
@@ -38,7 +38,7 @@ interface SelectInterface {
  * @param {Function} onChange Trigger an action
  * @param {string} radius Set border radius property
  * @param {string} inputSize Set size of the select component
- * @param {object} title Set a title in the select component in/on/over the wrapper
+ * @param {object} titleProps Set a title in the select component in/on/over the wrapper
  */
 const Select = ({
   children,
@@ -56,10 +56,9 @@ const Select = ({
   ...rest
 }: SelectInterface & React.SelectHTMLAttributes<HTMLSelectElement>) => {
   const { configuration } = useContext(ConfigContext);
-
   return (
     <StyledSelectWrapper
-      title={multiple ? null : titleProps}
+      titleProps={multiple ? null : titleProps}
       background={background}
       height={height}
       fontFamily={fontFamily}
@@ -67,7 +66,7 @@ const Select = ({
     >
       <StyledSelect
         configuration={configuration}
-        size={inputSize}
+        inputSize={inputSize}
         height={height}
         border={border}
         fontSize={fontSize}
@@ -80,7 +79,7 @@ const Select = ({
         data-testid='select'
         multiple={multiple}
         onChange={onChange}
-        title={multiple ? null : titleProps}
+        titleProps={multiple ? null : titleProps}
       >
         {children}
       </StyledSelect>

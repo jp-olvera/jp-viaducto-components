@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { getSize, getBorder } from '../../utils/getSizes';
 
 interface SelectI {
-  size?: any;
+  inputSize: string;
   configuration: ConfigProps;
   height?: string;
   border?: any;
@@ -15,96 +15,78 @@ interface SelectI {
   outline?: boolean;
   outlineColor?: string;
   multiple: boolean;
-  title?: any;
+  titleProps: null | { label: string; position: string };
 }
 
 export const StyledSelectWrapper = styled.div < any > `
   position: relative;
   box-sizing: border-box;
-  ${(p) => p.title !== null
-    && setLabelPosition(p.title.position, p.background, getHeight(p))};
+  ${(p) => (p.titleProps !== null
+    ? setLabelPosition(p.titleProps.position, p.background)
+    : 'color:red')};
   & > label {
     opacity: 0.65;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
-    padding: 1rem 0.75rem;
     pointer-events: none;
-    border: 0.063rem solid transparent;
     transform-origin: 0 0;
     transition: all 0.2s ease;
     display: inline-block;
-    font-family: ${({ fontFamily }) => fontFamily || 'inherit'};
+    font-family: ${(p) => p.fontFamily || p.configuration.fontFamily};
   }
 `;
 
-export const setLabelPosition = (
-  position: string,
-  background: string,
-  height: any,
-) => {
+export const setLabelPosition = (position: string, background: string) => {
   switch (position) {
     case 'on':
       return css`
-        & > label {
-          transform: scale(0.9) translateY(-0.6rem) translateX(0.5rem);
+        & label {
+          transform: scale(0.9) translateY(-0.6rem) translateX(0.5rem) !important;
           background-color: ${background} !important;
           opacity: 1 !important;
           padding: 0 !important;
           height: auto !important;
         }
-        & > select {
+        & ~ select {
           padding-top: 0.2rem !important;
-          ${getHeight({ height })};
         }
       `;
     case 'over':
+    default:
       return css`
-        & > label {
-          transform: scale(1) translateY(-1.12rem) translateX(0rem);
+        & label {
+          transform: scale(1) translateY(-1.12rem) translateX(0rem) !important;
           opacity: 1 !important;
           padding: 0 !important;
           height: auto !important;
         }
-        & > select {
+        & ~ select {
           padding-top: 0rem !important;
-          ${getHeight({ height })};
-        }
-      `;
-    case 'in':
-    default:
-      return css`
-        & > label {
-          transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
         }
       `;
   }
 };
 
 export const StyledSelect = styled.select < SelectI > `
-  color: ${({ color }) => color || 'inherit'};
-  background-color: ${({ background }) => background || 'inherit'};
-  font-family: ${({ fontFamily }) => fontFamily || "'Roboto', sans-serif"};
+  color: ${({ color, configuration }) => color || configuration.colors.text.dark};
+  background-color: ${(p) => p.background || p.configuration.colors.background};
+  font-family: ${(p) => p.fontFamily || p.configuration.fontFamily};
   font-size: ${({ fontSize }) => getSize(fontSize)};
   width: 100%;
   ${(props) => (props.multiple ? null : getHeight(props))};
   overflow: ${(props) => (props.multiple ? 'auto' : 'hidden')};
   ${(props) => getLateralPadding(props)};
-  ${({ border }) => getBorder(border)};
+  ${({ border, configuration }) => getBorder(border, configuration)};
   border-radius: ${(p) => p.configuration.radius[p.radius || 'none']};
   padding: 0 ${(p) => p.configuration.spacing.sm};
-  padding-top: ${(p) => (p.multiple
-    ? p.configuration.spacing.sm
-    : p.title !== null
-      ? p.configuration.spacing.md
-      : '0')};
+  padding-top: ${(p) => (p.multiple ? p.configuration.spacing.sm : '0')};
   padding-right: ${(p) => (!p.multiple ? p.configuration.spacing.lg : '0')};
-  ${({ multiple }) => (multiple
-    ? null
-    : css`
-          background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-        `)}
+  background: ${(p) => !p.multiple
+    && `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${
+      p.color || p.configuration.colors.text.dark.replace('#', '%23')
+    }' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");`};
   background-position: right ${(p) => p.configuration.spacing.sm} center;
   background-repeat: no-repeat;
   background-size: 1rem 0.75rem;
@@ -114,7 +96,7 @@ export const StyledSelect = styled.select < SelectI > `
 
 const getLateralPadding = (props) => {
   let padding = `0 ${props.configuration.spacing.md}`;
-  switch (props.size) {
+  switch (props.inputSize) {
     case 'xsmall':
     case 'small':
       padding = `0 ${props.configuration.spacing.sm} `;
@@ -131,18 +113,8 @@ const getLateralPadding = (props) => {
 };
 
 const getHeight = (props) => {
-  let height = '2.488rem';
-  if (props.height !== undefined) {
-    height = `${props.height}`;
-  } else {
-    height = props.title !== null
-      ? `calc(${
-        props.configuration.controlHeight[props.size || 'default']
-      } * ${props.title.position === 'in' ? '1.44' : '1'})`
-      : props.configuration.controlHeight[props.size]
-          || props.configuration.controlHeight.default;
-  }
+  const height = props.configuration.controlHeight[props.inputSize || 'default'];
   return css`
-    height: ${height};
+    height: ${props.height || height};
   `;
 };

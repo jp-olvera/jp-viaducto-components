@@ -43,13 +43,12 @@ interface RadioInterface {
  */
 
 const Radio = ({
-  label = '',
-  disabled = false,
+  label,
   name,
-  family = null,
-  radioSize = 'lg',
-  color = '#9060EB',
-  spacing = 'none',
+  family,
+  radioSize,
+  color,
+  spacing,
   fontSize,
   onChange,
   onClick,
@@ -66,7 +65,7 @@ const Radio = ({
       radioSize={radioSize}
       fontSize={fontSize}
       color={color}
-      disabled={disabled}
+      disabled={props.disabled}
       data-testid={props.id}
     >
       <input
@@ -80,12 +79,11 @@ const Radio = ({
           /* istanbul ignore else */
           if (onClick) onClick(e);
         }}
-        disabled={disabled}
         type='radio'
         id={props.id}
         {...props}
       />
-      <Spacer size={spacing} direction='horizontal' />
+      <Spacer size={spacing || 'none'} direction='horizontal' />
       {label}
     </StyledLabel>
   );

@@ -66,7 +66,7 @@ const Notification = ({
     }
   }, [isActive]);
 
-  const color = configuration.text.success;
+  const color = configuration.colors.text.success;
 
   return (
     <StyledNotification

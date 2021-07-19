@@ -5,7 +5,7 @@ export const StyledPagination = styled.div < any > `
   width: 100%;
   & * {
     transition: all 0.1s ease-in-out;
-    font-family: ${({ family }) => family || 'inherit'};
+    font-family: ${(p) => p.family || p.configuration.fontFamily};
   }
   & ul {
     list-style: none;
@@ -16,9 +16,9 @@ export const StyledPagination = styled.div < any > `
     margin-left: 0;
     & > * > * {
       font-size: ${(p) => getSize(p.fontSize)};
-      color: ${(p) => p.configuration.text[p.textColor]
+      color: ${(p) => p.configuration.colors.text[p.textColor]
         || p.textColor
-        || p.configuration.text.dark} !important;
+        || p.configuration.colors.text.dark} !important;
       &:hover {
         text-decoration: none;
         filter: ${(p) => (p.variant === 'outline' ? 'invert(1)' : 'invert(0)')} !important;

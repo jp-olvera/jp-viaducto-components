@@ -10,9 +10,6 @@ export default {
     color: {
       description: 'Set the active/checked color',
       type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: '#9060EB' },
-      },
       control: 'color',
     },
     family: {
@@ -117,7 +114,6 @@ Default.args = {
   name: 'radio',
   radioSize: 'lg',
   fontSize: 'md',
-  color: '#9060EB',
   spacing: 'none',
   onChange: () => {},
   onClick: () => {},

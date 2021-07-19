@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { ConfigProps } from 'ballena-types';
 import getElevation from '../../utils/getElevation';
 
@@ -25,7 +25,7 @@ interface StyledDrawerProps {
 const StyledDrawer = styled.div < StyledDrawerProps > `
   animation: ${show} 230ms ${(p) => p.transition};
 
-  background: white;
+  background: ${(p) => p.configuration.colors.background};
   box-shadow: rgb(255 255 255) 0 5rem 0,
     rgb(9 30 66 / 8%) -0.313rem -0.125rem 0.438rem;
   height: 100%;

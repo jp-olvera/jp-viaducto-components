@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import { ConfigContext } from '../../providers';
 import { StyledStepProgress } from './StyleLoader';
 
 /** Step progress loader component */
@@ -31,26 +32,30 @@ interface StepLoaderInterface {
 const StepLoader = ({
   completed,
   totalSteps,
-  family = null,
+  family,
   color = 'dark',
   titleLevel = '4',
   finishTextColor = '#3AE25F',
   ...rest
-}: StepLoaderInterface & React.HTMLAttributes<HTMLHeadingElement>) => (
-  <StyledStepProgress
-    level='4'
-    family={family}
-    isFinished={totalSteps === completed}
-    data-testid='loader'
-    color={color}
-    titleLevel={titleLevel}
-    finishTextColor={finishTextColor}
-    {...rest}
-  >
-    {completed <= totalSteps
-      ? `${completed.toString()} / ${totalSteps.toString()}`
-      : `${totalSteps.toString()} / ${totalSteps.toString()}`}
-  </StyledStepProgress>
-);
+}: StepLoaderInterface & React.HTMLAttributes<HTMLHeadingElement>) => {
+  const { configuration } = useContext(ConfigContext);
+  return (
+    <StyledStepProgress
+      level='4'
+      family={family}
+      isFinished={totalSteps === completed}
+      data-testid='loader'
+      color={color}
+      titleLevel={titleLevel}
+      finishTextColor={finishTextColor}
+      configuration={configuration}
+      {...rest}
+    >
+      {completed <= totalSteps
+        ? `${completed.toString()} / ${totalSteps.toString()}`
+        : `${totalSteps.toString()} / ${totalSteps.toString()}`}
+    </StyledStepProgress>
+  );
+};
 
 export default StepLoader;

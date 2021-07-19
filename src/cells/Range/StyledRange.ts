@@ -1,12 +1,10 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { getSize, getRangeSize } from '../../utils/getSizes';
 
 export const Div = styled.div < any > `
-  ${(p) => (p.family !== null
-    ? css`
-          font-family: ${p.family};
-        `
-    : css``)};
+  opacity: ${(p) => (p.disabled ? '0.65' : '1')};
+  font-family: ${(p) => p.family || p.configuration.fontFamily};
+  ${(p) => p.disabled && 'cursor:not-allowed'};
   .slider {
     position: relative;
     width: 100%;
@@ -27,19 +25,21 @@ export const Div = styled.div < any > `
   }
 
   .slider__track {
-    background-color: ${(p) => (p.double ? '#ced4da' : p.color)};
+    background-color: ${(p) => (p.double ? '#ced4da' : p.color || p.configuration.colors.primary.default)};
     width: 100%;
     z-index: 1;
   }
 
   .slider__range {
-    background-color: ${(p) => (p.double ? p.color : '#cecece')};
+    background-color: ${(p) => (p.double ? p.color || p.configuration.colors.primary.default : '#cecece')};
     z-index: 2;
   }
 
   .slider__left-value,
   .slider__right-value {
-    color: ${(p) => p.configuration.text[p.textColor] || p.textColor};
+    color: ${(p) => p.configuration.colors.text[p.textColor]
+      || p.textColor
+      || p.configuration.colors.text.dark};
     font-size: ${(p) => getSize(p.fontSize)};
     margin-top: 1.25rem;
   }
@@ -72,7 +72,7 @@ export const Div = styled.div < any > `
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 0.063rem 0.063rem #ced4da;
-    cursor: pointer;
+    cursor: ${(p) => (p.disabled ? 'not-allowed' : 'pointer')};
     height: ${(p) => getRangeSize(p.size)};
     width: ${(p) => getRangeSize(p.size)};
     margin-top: 0.25rem;
@@ -94,7 +94,7 @@ export const Div = styled.div < any > `
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 0.063rem 0.063rem #ced4da;
-    cursor: pointer;
+    cursor: ${(p) => (p.disabled ? 'not-allowed' : 'pointer')};
     height: ${(p) => getRangeSize(p.size)};
     width: ${(p) => getRangeSize(p.size)};
     margin-top: 0.25rem;

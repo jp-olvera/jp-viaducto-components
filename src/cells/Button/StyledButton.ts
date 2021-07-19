@@ -214,7 +214,7 @@ export default StyledButton;
 
 export const disabledColor = (p: {
   variant: string;
-  configuration: { disableColor: string };
+  configuration: { colors: { disableColor: string } };
   isLoading: boolean;
   colors: { default: string; hover: string; click: string; text: string };
 }) => {
@@ -225,9 +225,11 @@ export const disabledColor = (p: {
   }
   return css`
     background-color: ${p.variant === 'solid'
-    ? p.configuration.disableColor
+    ? p.configuration.colors.disableColor
     : 'white'};
-    border-color: ${p.configuration.disableColor};
-    color: ${p.variant === 'solid' ? 'white' : p.configuration.disableColor};
+    border-color: ${p.configuration.colors.disableColor};
+    color: ${p.variant === 'solid'
+    ? 'white'
+    : p.configuration.colors.disableColor};
   `;
 };

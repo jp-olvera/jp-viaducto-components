@@ -38,12 +38,12 @@ interface AnchorInterface {
 const Anchor = ({
   label,
   href,
-  size = 'md',
-  family = null,
-  color = 'dark',
-  icon = null,
+  size,
+  family,
+  color,
+  icon,
   target,
-  lead = false,
+  lead,
   ...rest
 }: AnchorInterface & React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   const { configuration } = useContext(ConfigContext);

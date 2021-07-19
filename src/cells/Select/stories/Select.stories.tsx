@@ -55,10 +55,12 @@ const config: SBConfigI = {
     },
     border: {
       description: 'Set the border(s) of the component',
-      type: { summary: 'Object(top, bottom, left, right)', required: false },
+      type: { summary: 'String', required: false },
       table: {
-        defaultValue: { summary: 'none' },
+        defaultValue: { summary: 'all' },
       },
+      control: 'select',
+      options: ['none', 'bottom', 'all'],
     },
     multiple: {
       description: 'Set the argument to choose multiple options',
@@ -72,7 +74,7 @@ const config: SBConfigI = {
     },
     titleProps: {
       description:
-        'If it is defined, set a title in/on/over the select wrapper (affects the height)',
+        'If it is defined, set a title in/over the select wrapper (affects the height)',
       type: { summary: '{label:string; position: string}', required: false },
       table: { defaultValue: { summary: null } },
     },
@@ -100,12 +102,7 @@ export const Default = Template.bind({});
 
 Default.args = {
   inputSize: 'small',
-  border: {
-    top: '1px solid black',
-    right: '1px solid black',
-    bottom: '1px solid black',
-    left: '1px solid black',
-  },
+  border: 'all',
   fontSize: 'md',
   fontFamily: 'Roboto',
   background: '#fff',
@@ -120,17 +117,12 @@ export const Multiple = Template.bind({});
 
 Multiple.args = {
   inputSize: 'default',
-  border: {
-    top: '1px solid black',
-    right: '1px solid black',
-    bottom: '1px solid black',
-    left: '1px solid black',
-  },
+  border: 'all',
   fontSize: 'md',
   fontFamily: 'Roboto',
   background: '#fff',
   color: '#000',
-  radius: 'md',
+  radius: 'none',
   onChange: () => {},
   multiple: true,
 };
@@ -153,18 +145,13 @@ export const withTitle = withTitleTemplate.bind({});
 
 withTitle.args = {
   inputSize: 'default',
-  border: {
-    top: '1px solid black',
-    right: '1px solid black',
-    bottom: '1px solid black',
-    left: '1px solid black',
-  },
+  border: 'all',
   fontSize: 'md',
   fontFamily: 'Roboto',
   background: '#fff',
   color: '#000',
-  radius: 'lg',
+  radius: 'none',
   onChange: () => {},
   multiple: false,
-  titleProps: { label: 'Title', position: 'in' },
+  titleProps: { label: 'Title', position: 'over' },
 };

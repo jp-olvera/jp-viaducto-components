@@ -4,12 +4,12 @@ import getElevation from '../../utils/getElevation';
 const StyledToaster = styled.div < any > `
   display: flex;
   box-sizing: border-box;
-  background-color: ${({ backgoundColor }) => backgoundColor};
-  border-radius: 5px;
+  background-color: ${(p) => p.backgoundColor || p.configuration.colors.background};
+  border-radius: 0.313rem;
   flex-direction: column;
   margin-bottom: 0.5rem;
   max-width: 100%;
-  width: 454px;
+  width: 28.375rem;
   transform: all 1s;
   transition: ${(p) => `transform 220ms ${p.transition}, opacity 220ms`};
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
@@ -23,12 +23,12 @@ const StyledToaster = styled.div < any > `
 
   .toaster-message {
     align-self: center;
-    background-color: white;
-    border-radius: 3px;
+    background-color: ${(p) => p.configuration.colors.background};
+    border-radius: 0.188rem;
     box-sizing: border-box;
-    margin-bottom: 1px;
+    margin-bottom: 0.063rem;
     padding: ${({ configuration }) => `${configuration.spacing.md} ${configuration.spacing.md}`};
-    width: calc(100% - 2px);
+    width: calc(100% - 0.125rem);
   }
 `;
 // https://github.com/jossmac/react-toast-notifications/blob/master/src/ToastElement.js

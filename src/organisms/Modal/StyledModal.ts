@@ -12,7 +12,7 @@ interface StyledModalProps {
   radius: string;
 }
 const StyledModal = styled.div < StyledModalProps > `
-  background: ${(p) => p.backgroundColor};
+  background: ${(p) => p.backgroundColor || p.configuration.colors.background};
   border-radius: ${(p) => p.configuration.radius[p.radius]};
   max-width: 100%;
   max-height: calc(100% - 96px);

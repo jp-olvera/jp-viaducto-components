@@ -30,6 +30,7 @@ const StyledSidebarSection = styled.div < SideI > `
   & > * {
     overflow-x: hidden;
   }
+  background-color: ${(p) => p.configuration.colors.background};
 
   hr {
     border-color: rgba(23, 125, 239, 0.5);
@@ -134,7 +135,7 @@ interface SubmenuProps {
 }
 
 export const Submenu = styled.ul < SubmenuProps > `
-  background-color: white;
+  background-color: ${(p) => p.configuration.colors.background};
   opacity: ${(p) => (p.isActive ? 1 : 0)};
   height: 100%;
   position: absolute;
@@ -154,7 +155,7 @@ export const Submenu = styled.ul < SubmenuProps > `
     text-align: left;
     width: 100%;
     &:active {
-      background-color: white;
+      background-color: ${(p) => p.configuration.colors.background};
       border: none;
       font-size: 1rem;
     }

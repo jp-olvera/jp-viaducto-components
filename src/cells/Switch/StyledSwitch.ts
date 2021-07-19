@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-const hover = '0.125rem';
 export const StyledSwitch = styled.label < any > `
   * {
     box-sizing: border-box;
@@ -19,15 +18,20 @@ export const StyledSwitch = styled.label < any > `
     width: 0;
     &:checked {
       & ~ span {
-        background-color: ${({ color, disabled }) => (disabled ? '#a6a6a6' : color)};
-
+        background-color: ${({ color, configuration }) => color || configuration.colors.primary.default};
+        opacity: ${(p) => (p.disabled ? 0.65 : 1)};
         &:after {
           left: calc(
             ${({ size }) => switchSize(size).width} -
               calc(${({ size }) => switchSize(size).width} / 2)
           );
-          background-color: ${({ disabled }) => (disabled ? '#cecece' : '#fff')};
+          background-color: #fff;
         }
+      }
+    }
+    &:disabled:not(:checked) {
+      & ~ span {
+        opacity: 0.65;
       }
     }
   }
@@ -40,8 +44,8 @@ export const StyledSwitch = styled.label < any > `
     width: ${({ size }) => switchSize(size).width};
     background-color: darkgray;
     transition: background-color 0.2s ease;
-    &:hover {
-      &:after {
+    &:hover:not(:disabled) {
+      &:after:not(:disabled) {
         box-sizing: border-box;
         left: ${({ size }) => switchSize(size).gutter};
         top: ${({ size }) => switchSize(size).gutter};
@@ -51,7 +55,7 @@ export const StyledSwitch = styled.label < any > `
         height: ${({ size }) => `calc(calc(${switchSize(size).width} / 2) - ${
     switchSize(size).gutter
   })`};
-        border: ${hover} solid #444444;
+        border: ${(p) => p.configuration.border};
       }
     }
     &:after {

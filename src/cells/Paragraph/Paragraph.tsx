@@ -41,8 +41,8 @@ interface ParagraphInterface {
 
 const Paragraph = ({
   children,
-  color = 'dark',
-  size = 'md',
+  color,
+  size,
   ...props
 }: ParagraphInterface & React.HTMLAttributes<HTMLParagraphElement>) => {
   const { configuration } = useContext(ConfigContext);
