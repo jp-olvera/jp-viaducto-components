@@ -174,7 +174,7 @@ const Input = ({
         {type !== 'color' && type !== 'time' && label && (
           <label className='label' htmlFor={rest.id}>
             <span>{label}</span>
-            {iconRequired && (
+            {required && iconRequired && (
               <span className='icon-required-label'>{iconRequired}</span>
             )}
           </label>
