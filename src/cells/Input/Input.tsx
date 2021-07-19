@@ -171,7 +171,7 @@ const Input = ({
             {type === 'card' ? getIcon(placeIcon) : placeIcon}
           </span>
         )}
-        {type !== 'color' && type !== 'time' && label && (
+        {label && (
           <label className='label' htmlFor={rest.id}>
             <span>{label}</span>
             {required && iconRequired && (

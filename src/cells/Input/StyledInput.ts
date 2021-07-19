@@ -43,29 +43,7 @@ export const Wrapper = styled.div < any > `
     :valid,
     :placeholder-shown,
     :not([value='']) {
-      ${(p) => (p.hasLabel && p.border === 'overlap'
-    ? 'padding-top: 0.75%'
-    : 'padding-top: 0%')};
-      & ~ .label:not(.icon),
-      ~ .label:not(.icon) {
-        position: absolute;
-        border: none;
-        color: #000;
-        ${(p) => p.hasLabel && p.border === 'overlap' && 'transform: scale(80%)'};
-        padding: 0;
-        font-size: 1rem;
-        outline: none;
-        ${(p) => setLabel(p.border, p.size)};
-        transition: left 0.2s ${(p) => p.transition || 'ease'};
-        left: 0 !important;
-        background-color: ${(p) => (p.border !== 'overlap' ? 'transparent' : 'inherit')};
-        & .icon-required-label {
-          transition: opacity 0.2s ${(p) => p.transition || 'ease'};
-          opacity: 1;
-          transform: scale(80%);
-        }
-      }
-
+      ${(p) => label(p)};
       & ~ .icon {
         padding-top: ${(p) => (p.hasLabel && p.border === 'overlap' ? '0.75%' : 0)};
       }
@@ -123,6 +101,7 @@ export const Wrapper = styled.div < any > `
   .input[type='date'],
   .input[type='time'],
   .input[type='color'] {
+    ${(p) => label(p)};
     & ~ .icon {
       left: 0.482rem;
     }
@@ -180,3 +159,33 @@ export const setLabel = (border: string, size: string) => {
     top: ${() => (size === 'xsmall' ? '-80%' : '-55%')};
   `;
 };
+
+export const label = (p: {
+  hasLabel: boolean;
+  border: string;
+  size: string;
+  transition: string;
+}) => css`
+  ${p.hasLabel && p.border === 'overlap'
+    ? 'padding-top: 0.75%'
+    : 'padding-top: 0%'};
+  & ~ .label:not(.icon),
+  ~ .label:not(.icon) {
+    position: absolute;
+    border: none;
+    color: #000;
+    ${p.hasLabel && p.border === 'overlap' && 'transform: scale(80%)'};
+    padding: 0;
+    font-size: 1rem;
+    outline: none;
+    ${setLabel(p.border, p.size)};
+    transition: left 0.2s ${p.transition || 'ease'};
+    left: 0 !important;
+    background-color: ${p.border !== 'overlap' ? 'transparent' : 'inherit'};
+    & .icon-required-label {
+      transition: opacity 0.2s ${p.transition || 'ease'};
+      opacity: 1;
+      transform: scale(80%);
+    }
+  }
+`;
