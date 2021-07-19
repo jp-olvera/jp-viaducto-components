@@ -3,7 +3,7 @@ import { ConfigContext } from '../../providers';
 
 import { StyledMenuTitle } from './StyledSidebarSection';
 import { Spacer } from '../../cells';
-
+import Chevron from './Chevron';
 /** MenuTitle component */
 interface MenuTitleProps {
   /** Set the Menu expanded */
@@ -49,6 +49,7 @@ const MenuTitle = ({
       onClick={onClick}
       onKeyUp={onKeyUp}
       configuration={configuration}
+      title={title}
       {...rest}
     >
       <span style={{ display: 'flex', alignItems: 'center' }}>{icon}</span>
@@ -64,6 +65,9 @@ const MenuTitle = ({
       >
         {title}
       </span>
+      {type === 'menu' || type === 'dropdown' ? (
+        <Chevron type={type} expanded={expanded} />
+      ) : null}
     </StyledMenuTitle>
   );
 };
