@@ -37,10 +37,11 @@ const CircleLoader = ({
   actualProgress = 0,
   currentProgress = 0,
   radius = 0,
-  color = '#3AE25F',
+  color,
   ...rest
 }: CircleLoaderInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
+  const getcolor = color || configuration.colors.primary.default;
   return (
     <StyledLoader data-testid='loader' configuration={configuration} {...rest}>
       <svg width='25px' height='25px'>
@@ -56,7 +57,7 @@ const CircleLoader = ({
           className='progress-ring__circle'
           strokeWidth={strokeWidth}
           fill='transparent'
-          stroke={`${color}65`}
+          stroke={`${getcolor}65`}
           strokeDasharray={`${circumference} ${circumference}`}
           r={radius}
           cx={12.5}
@@ -69,7 +70,7 @@ const CircleLoader = ({
           className='progress-ring__circle'
           strokeWidth={strokeWidth}
           fill='transparent'
-          stroke={color}
+          stroke={getcolor}
           strokeDasharray={`${circumference} ${circumference}`}
           style={{
             strokeDashoffset: currentProgress,

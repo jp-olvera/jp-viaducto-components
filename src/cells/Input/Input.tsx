@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import creditCardType, { types as CardType } from 'credit-card-type';
 
 import { ConfigContext } from '../../providers';
@@ -21,10 +21,10 @@ interface InputInterface {
   icon?: any;
   /** set the icon color */
   iconColor?: string;
-  /** set the icon helper */
-  iconHelper?: any;
-  /** set the icon required */
+  /** Helper icon to support the user for input required */
   iconRequired?: any;
+  /** set the icon color required */
+  iconColorRequired?: string;
   /** The caption for the input */
   label?: string;
   /** Set a function triggered when onChange is called */
@@ -41,6 +41,8 @@ interface InputInterface {
   type?: string;
   /** Placeholder */
   placeholder?: string;
+  /** Caption message */
+  caption?: string;
 }
 
 /**
@@ -50,40 +52,40 @@ interface InputInterface {
  * @param {boolean} disabled Set the input disabled
  * @param {boolean} family Set font family
  * @param {any} icon Helper icon to support the user
+ * @param {any} iconRequired Helper icon to support the user for required inputs
  * @param {string} iconColor set the icon color
- * @param {any} iconHelper set the icon helper
- * @param {any} iconRequired set the icon required
+ * @param {string} iconColorRequired set the icon color required
  * @param {string} label The caption for the input
  * @param {Function} onChange Set a function triggered when onChange is called
  * @param {Function} onClick  Set a function triggered when onClick is called
- * @param {boolean} required Icon for mark input is required
  * @param {string} inputSize Set the height of the input
  * @param {string} type Set the input type (text, password, email, etc.)
+ * @param {string} caption Set caption message
  */
 const Input = ({
   label,
   border = 'default',
-  disabled = false,
   type = 'text',
-  icon = null,
-  iconRequired = null,
-  iconHelper = null,
+  icon,
+  iconRequired,
   inputSize = 'default',
-  required,
-  borderColor = null,
-  iconColor = '#2329D6',
+  borderColor,
+  iconColor,
+  iconColorRequired,
   onChange = () => {},
   onClick,
   family,
   getCardType = 'card',
   placeholder,
+  required,
+  caption,
   ...rest
 }: InputInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
   const [cardType, setCardType] = useState(getCardType);
   const [placeIcon, setIcon] = useState(icon);
   const { configuration } = useContext(ConfigContext);
   const [newValue, setNewValue] = useState<any>(rest.defaultValue || undefined);
-  const inputRef = useRef<any>();
+  const [color, setColor] = useState('#000000'); // black is the default value for input color
 
   const setCardIcon = (ev: any) => {
     const { value: val }: { value: string } = ev.target;
@@ -107,7 +109,6 @@ const Input = ({
   const hasLabel = label !== null
     && label !== undefined
     && label !== ''
-    && type !== 'date'
     && type !== 'color'
     && type !== 'time';
   return (
@@ -120,12 +121,10 @@ const Input = ({
         size={inputSize}
         configuration={configuration}
         borderColor={
-          borderColor === null
-            ? configuration.defaultInputBorderColor
-            : borderColor
+          borderColor || configuration.colors.defaultInputBorderColor
         }
         iconColor={iconColor}
-        disabled={disabled}
+        disabled={rest.disabled}
         family={family}
         type={type}
         hasLabel={hasLabel}
@@ -133,7 +132,6 @@ const Input = ({
       >
         <input
           className='input'
-          ref={inputRef}
           onChange={(ev) => {
             if (type === 'card') {
               setCardIcon(ev);
@@ -143,6 +141,9 @@ const Input = ({
                   cardType === 'american-express' ? 21 : 19,
                 ),
               );
+            } else if (type === 'color') {
+              setColor(ev.target.value);
+              setNewValue(ev.target.value);
             } else {
               setNewValue(ev.target.value);
             }
@@ -161,33 +162,37 @@ const Input = ({
           id={rest.id}
           required
           defaultValue={newValue}
-          disabled={disabled}
+          disabled={rest.disabled}
           min={rest.min}
           max={rest.max}
           placeholder={placeholder}
           {...rest}
         />
-        {iconHelper && <span className='is-helper'>{iconHelper}</span>}
         {placeIcon !== null && (
-          <span className='icon'>
+          <span
+            className='icon'
+            style={type === 'color' ? { color, stroke: color } : {}}
+          >
             {type === 'card' ? getIcon(placeIcon) : placeIcon}
           </span>
         )}
-        {type !== 'date' && type !== 'color' && type !== 'time' && label && (
+        {label && (
           <label className='label' htmlFor={rest.id}>
             <span>{label}</span>
-            {required && (
-              <span className='icon-required'>
-                {iconRequired && iconRequired}
-              </span>
+            {required && iconRequired && (
+              <span className='icon-required-label'>{iconRequired}</span>
             )}
           </label>
         )}
+        {required && iconRequired && (
+          <span className='icon-required'>{iconRequired}</span>
+        )}
         {type === 'color' && (
           <span className='show-value'>
-            <span>{inputRef?.current?.value.toUpperCase() || '#FFFFFF'}</span>
+            <span>{color}</span>
           </span>
         )}
+        {caption && <span className='caption'>{caption}</span>}
       </Wrapper>
     </>
   );

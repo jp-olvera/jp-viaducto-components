@@ -42,9 +42,6 @@ const config: SBConfigI = {
     color: {
       description: 'Set the color of the component',
       type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: '#3AE25F' },
-      },
       control: 'color',
     },
   },
@@ -65,7 +62,6 @@ Default.args = {
   completedSteps: 4,
   currentStep: 2,
   loader: 'circle',
-  color: '#3AE25F',
 };
 
 export const ProgressBar = Template.bind({});
@@ -74,7 +70,6 @@ ProgressBar.args = {
   totalSteps: 5,
   completedSteps: 4,
   loader: 'progress',
-  color: '#3AE25F',
 };
 
 export const Steps = Template.bind({});
@@ -83,7 +78,7 @@ Steps.args = {
   totalSteps: 5,
   completedSteps: 4,
   loader: 'steps',
-  color: '#3AE25F',
+
   finishTextColor: 'red',
   family: 'Roboto',
   titleLevel: '4',

@@ -2,25 +2,22 @@ import styled from 'styled-components';
 import getElevation from '../../utils/getElevation';
 
 export const StyledCollapsibleCard = styled.div < any > `
-  background-color: #ffffff;
+  background-color: ${(p) => p.configuration.colors.background};
   box-sizing: border-box;
   width: 100%;
-  border: 0.063rem solid #d9d9d9;
-  border-radius: 0.25rem;
+  border: ${(p) => p.configuration.colors.defaultInputBorderColor};
+  border-radius: ${(p) => p.configuration.radius[p.radius]};
   height: 100%;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
-  @media screen and (min-width: ${(p) => p.configuration.breakpoints[p.breakpoint]}) {
-    max-width: 69.375rem;
-  }
   & {
-    font-family: ${(p) => p.family || 'inherit'};
+    font-family: ${(p) => p.family || p.configuration.fontFamily};
   }
 `;
 
 export const StyledCollapse = styled.div < any > `
   box-sizing: border-box;
   transition: all ${({ transition }) => `0.2s ${transition}`};
-
+  background-color: ${(p) => p.configuration.colors.background};
   height: 100%;
   max-height: ${({ collapse }) => (collapse ? '0' : '29.625rem')};
   .collapse {

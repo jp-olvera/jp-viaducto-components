@@ -30,6 +30,13 @@ const config: SBConfigI = {
         defaultValue: { summary: false },
       },
     },
+    disabled: {
+      description: 'Set the input disabled',
+      type: { summary: 'boolean', required: false },
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
     color: {
       description: 'Set the background color for the slider',
       type: { summary: 'string', required: false },
@@ -54,6 +61,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'dark' },
       },
+      control: 'text',
     },
     family: {
       description: 'Set the font family for the value',
@@ -102,11 +110,12 @@ Double.args = {
   max: 100,
   color: null,
   fontSize: 'md',
-  textColor: 'dark',
+  textColor: '',
   family: 'null',
   size: 'lg',
   onChange: () => {},
   double: true,
+  disabled: false,
 };
 export const Single = Template.bind({});
 
@@ -115,9 +124,10 @@ Single.args = {
   max: 100,
   color: null,
   fontSize: 'md',
-  textColor: 'dark',
+  textColor: '',
   family: 'null',
   size: 'lg',
   onChange: () => {},
   double: false,
+  disabled: false,
 };

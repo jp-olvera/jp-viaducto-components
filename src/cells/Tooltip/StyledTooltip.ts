@@ -1,14 +1,12 @@
 import styled, { css } from 'styled-components';
 
 export const TooltipContainer = styled.div < any > `
-  /* transition: all 0.2s linear; */
-  font-family: ${({ family }) => (family ? `'${family}', sans-serif` : 'inherit')};
+  font-family: ${(p) => p.family || p.configuration.fontFamily};
   position: relative;
   display: block;
   z-index: 1;
   & .tooltip {
-    /* transition: all 0.2s linear; */
-    background-color: ${({ color }) => color};
+    background-color: ${({ color, configuration }) => color || configuration.colors.primary.default};
     text-align: center;
     padding: 0.313rem;
     border-radius: 0.375rem;
@@ -20,12 +18,18 @@ export const TooltipContainer = styled.div < any > `
     overflow-wrap: break-word;
     height: ${({ active }) => (active ? 'auto' : ' 0')};
     font-size: ${({ active }) => (active ? '0.9rem' : ' 0')};
-    color: ${({ textColor, configuration, active }) => (active ? configuration.text[textColor] || textColor : 'transparent')};
+    color: ${({ textColor, configuration, active }) => (active
+    ? configuration.colors.text[textColor]
+          || textColor
+          || configuration.colors.text.dark
+    : 'transparent')};
     position: absolute;
     z-index: 1;
     ${({ position }) => setPosition(position)}
-    & ::after {
-      ${({ position, color }) => setArrow(position, color)}
+    &:after {
+      content: ' ';
+      position: absolute;
+      ${({ position, color, configuration }) => setArrow(position, color || configuration.colors.primary.default)}
       border-width: 0.313rem;
       border-style: solid;
     }
@@ -64,8 +68,6 @@ const setArrow = (position: string, color: string) => {
   switch (position) {
     case 'left':
       return css`
-        content: ' ';
-        position: absolute;
         top: 50%;
         left: 100%;
         margin-top: -0.313rem;
@@ -73,8 +75,6 @@ const setArrow = (position: string, color: string) => {
       `;
     case 'right':
       return css`
-        content: ' ';
-        position: absolute;
         top: 50%;
         right: 100%;
         margin-top: -0.313rem;
@@ -82,8 +82,6 @@ const setArrow = (position: string, color: string) => {
       `;
     case 'bottom':
       return css`
-        content: ' ';
-        position: absolute;
         bottom: 100%;
         left: 50%;
         margin-left: -0.313rem;
@@ -92,8 +90,6 @@ const setArrow = (position: string, color: string) => {
     case 'top':
     default:
       return css`
-        content: ' ';
-        position: absolute;
         top: 100%;
         left: 50%;
         margin-left: -0.313rem;

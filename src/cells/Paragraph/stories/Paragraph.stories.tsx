@@ -115,6 +115,6 @@ Default.args = {
   margin: '0',
   weight: 'normal',
   spacing: 'normal',
-  color: '#000',
+  color: '',
   lineHeight: 'md',
 };

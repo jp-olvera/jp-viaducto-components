@@ -29,6 +29,8 @@ interface PillInterface {
   size?: string;
   /** Set the vertical align */
   verticalAlign?: string;
+  /** set border radius */
+  radius?: string;
 }
 
 /**
@@ -45,6 +47,7 @@ interface PillInterface {
  * @param {string} label Text in the label
  * @param {string} size Size of the pill
  * @param {string} verticalAling Set the vertical align
+ * @param {string} radius  set border radius
  */
 
 const Pill = ({
@@ -58,6 +61,7 @@ const Pill = ({
   verticalAlign = 'baseline',
   handleAction,
   circleBorder = true,
+  radius,
   borderColor = null,
   closeIcon = true,
   ...rest
@@ -80,6 +84,7 @@ const Pill = ({
       {...rest}
       circleBorder={circleBorder}
       borderColor={borderColor}
+      radius={radius}
     >
       {iconLead !== null && <span className='span-icon-lead'>{iconLead}</span>}
       <span>{label}</span>

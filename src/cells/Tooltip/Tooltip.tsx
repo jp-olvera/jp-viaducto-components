@@ -33,11 +33,11 @@ interface TooltipInterface {
 
 const Tooltip = ({
   children,
-  label = 'Tooltip',
+  label,
   active = false,
-  position = 'top',
-  color = '#C4C4C4',
-  textColor = '#000',
+  position,
+  color,
+  textColor,
   family,
   ...rest
 }: TooltipInterface & React.HTMLAttributes<HTMLDivElement>) => {

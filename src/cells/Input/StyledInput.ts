@@ -2,13 +2,12 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div < any > `
-  & * {
-    transition: all 0.08s ease-in-out;
-  }
-  font-family: ${(p) => p.family || 'inherit'};
-  background-color: ${({ disabled }) => (disabled ? '#CECECE' : 'white')};
+  font-family: ${(p) => p.family || p.configuration.fontFamily};
+  background-color: ${({ disabled, configuration }) => (disabled
+    ? configuration.colors.disableColor
+    : configuration.colors.background)};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'default')};
-  height: ${({ size, configuration }) => configuration.controlHeight[size] || configuration.controlHeight.default};
+  height: ${({ size, configuration }) => configuration.controlHeight[size]};
   position: relative;
   width: 100%;
   box-sizing: border-box;
@@ -17,7 +16,7 @@ export const Wrapper = styled.div < any > `
   flex-direction: row-reverse;
   align-items: center;
 
-  ${({ border, configuration, borderColor }) => getBorderStyle(border, configuration.text[borderColor] || borderColor)};
+  ${({ border, configuration, borderColor }) => getBorderStyle(border, borderColor, configuration)};
 
   .input {
     border: none;
@@ -29,7 +28,7 @@ export const Wrapper = styled.div < any > `
     padding-left: ${({ configuration, hasIcon }) => (hasIcon ? 0 : configuration.spacing.xs)};
     &:disabled {
       cursor: not-allowed;
-      background-color: #cecece;
+      background-color: ${(p) => p.configuration.colors.disableColor};
       pointer-events: none;
       user-select: none;
       &[value=''] {
@@ -44,39 +43,14 @@ export const Wrapper = styled.div < any > `
     :valid,
     :placeholder-shown,
     :not([value='']) {
-      ${(p) => (p.hasLabel
-        && p.size !== 'xsmall'
-        && p.border !== 'outside'
-        && p.border !== 'overlap'
-    ? 'padding-top: 0.75%'
-    : 'padding-top: 0%')};
-      & ~ .label:not(.icon),
-      ~ .label:not(.icon) {
-        transition: all 0.25s ease-in-out;
-        position: absolute;
-        border: none;
-        color: #000;
-        padding: 0;
-        outline: none;
-        transform: scale(0.68);
-        ${(p) => setLabel(p.border, p.size)};
-        left: 0;
-        background-color: ${(p) => (p.border === 'outside' ? 'transparent' : 'inherit')};
-      }
-
+      ${(p) => label(p)};
       & ~ .icon {
-        padding-top: ${(p) => (p.hasLabel
-    ? p.size === 'xsmall'
-              || (p.border !== 'outside' && p.border !== 'overlap')
-      ? '0.75%'
-      : 0
-    : 0)};
+        padding-top: ${(p) => (p.hasLabel && p.border === 'overlap' ? '0.75%' : 0)};
       }
 
-      & ~ .is-:invalid,
-      ~ .is-required,
-      ~ .is-valid {
-        display: none;
+      & ~ .icon-required {
+        transition: opacity 0.2s ${(p) => p.transition || 'ease'};
+        opacity: 0;
       }
     }
   }
@@ -85,7 +59,28 @@ export const Wrapper = styled.div < any > `
     padding: 0 ${({ configuration }) => configuration.spacing.xs};
     display: flex;
     align-items: center;
-    color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
+    color: ${({ iconColor, configuration }) => configuration.colors.text[iconColor]
+      || iconColor
+      || configuration.colors.iconColor};
+  }
+
+  .icon-required {
+    position: absolute;
+    padding: 0 ${({ configuration }) => configuration.spacing.xs};
+    color: ${({ iconColorRequired, configuration }) => configuration.colors.text[iconColorRequired]
+      || iconColorRequired
+      || configuration.colors.iconColor};
+    height: 100%;
+    opacity: 1;
+    transition: opacity 0.2s ${(p) => p.transition || 'ease'};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon-required-label {
+    opacity: 0;
+    transition: opacity 0.2s ${(p) => p.transition || 'ease'};
   }
 
   .label {
@@ -97,12 +92,6 @@ export const Wrapper = styled.div < any > `
     position: absolute;
     pointer-events: none;
     user-select: none;
-    transition: all 0.2s ease;
-    .icon-required {
-      padding-left: ${({ configuration }) => configuration.spacing.nano};
-      margin-left: auto;
-      display: none;
-    }
   }
 
   .input[type='time'] {
@@ -112,6 +101,7 @@ export const Wrapper = styled.div < any > `
   .input[type='date'],
   .input[type='time'],
   .input[type='color'] {
+    ${(p) => label(p)};
     & ~ .icon {
       left: 0.482rem;
     }
@@ -129,42 +119,35 @@ export const Wrapper = styled.div < any > `
       user-select: none;
     }
   }
-
-  .is-helper,
-  .icon-helper {
-    padding: 0 ${({ configuration }) => configuration.spacing.xs};
+  .caption {
+    color: ${(p) => p.configuration.colors.disableColor};
+    transform: scale(80%);
     position: absolute;
-    float: right;
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
-
-  .icon-helper {
-    color: ${({ iconColor, configuration }) => configuration.text[iconColor] || iconColor};
+    top: 110%;
+    left: calc(-0.9rem - 20px);
   }
 `;
 
-export const getBorderStyle = (border: string, color: string) => {
+export const getBorderStyle = (
+  border: string,
+  color: string,
+  config: { colors: { defaultInputBorderColor: string } },
+) => {
   switch (border) {
     case 'bottom':
       return css`
-        border-bottom: 0.063rem solid ${color};
+        border-bottom: 0.063rem solid
+          ${color || config.colors.defaultInputBorderColor};
       `;
     case 'overlap':
     default:
       return css`
-        border: 0.063rem solid ${color};
+        border: 0.063rem solid ${color || config.colors.defaultInputBorderColor};
       `;
   }
 };
 
 export const setLabel = (border: string, size: string) => {
-  if (border === 'outside') {
-    return css`
-      top: ${() => (size === 'xsmall' ? '-80%' : '-55%')};
-    `;
-  }
   if (border === 'overlap') {
     return css`
       background-color: inherit !important;
@@ -173,6 +156,36 @@ export const setLabel = (border: string, size: string) => {
     `;
   }
   return css`
-    top: 0;
+    top: ${() => (size === 'xsmall' ? '-80%' : '-55%')};
   `;
 };
+
+export const label = (p: {
+  hasLabel: boolean;
+  border: string;
+  size: string;
+  transition: string;
+}) => css`
+  ${p.hasLabel && p.border === 'overlap'
+    ? 'padding-top: 0.75%'
+    : 'padding-top: 0%'};
+  & ~ .label:not(.icon),
+  ~ .label:not(.icon) {
+    position: absolute;
+    border: none;
+    color: #000;
+    ${p.hasLabel && p.border === 'overlap' && 'transform: scale(80%)'};
+    padding: 0;
+    font-size: 1rem;
+    outline: none;
+    ${setLabel(p.border, p.size)};
+    transition: left 0.2s ${p.transition || 'ease'};
+    left: 0 !important;
+    background-color: ${p.border !== 'overlap' ? 'transparent' : 'inherit'};
+    & .icon-required-label {
+      transition: opacity 0.2s ${p.transition || 'ease'};
+      opacity: 1;
+      transform: scale(80%);
+    }
+  }
+`;

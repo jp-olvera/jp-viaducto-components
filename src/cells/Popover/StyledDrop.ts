@@ -25,7 +25,7 @@ export const StyledDrop = styled.div < StyledDropProps > `
   animation: ${dropKeyFrames} 230ms forwards;
   animation-delay: 0.01;
   border-radius: ${(p) => p.configuration.radius[p.radius]};
-  background-color: white;
+  background-color: ${(p) => p.configuration.colors.background};
   min-width: 1rem;
   min-height: 1rem;
   transform-origin: right left;

@@ -41,7 +41,7 @@ const MenuItem = ({
   const { configuration } = useContext(ConfigContext);
 
   const content = (
-    <span style={{ display: 'flex', alignItems: 'center' }} title={label}>
+    <span style={{ display: 'flex', alignItems: 'center' }}>
       {lead && icon !== null && (
         <span style={{ display: 'flex', alignItems: 'center' }}>{icon}</span>
       )}
@@ -79,6 +79,7 @@ const MenuItem = ({
       key={label}
       active={active}
       nested={nested}
+      title={label}
       {...rest}
     >
       {href !== undefined ? (

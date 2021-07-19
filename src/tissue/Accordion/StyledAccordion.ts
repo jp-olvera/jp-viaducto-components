@@ -13,6 +13,7 @@ interface SAI {
 export const StyledAccordionItem = styled.div < SAI > `
   box-sizing: border-box;
   width: 100%;
+  background-color: ${(p) => p.configuration.colors.background};
 
   .chevron {
     align-items: center;
@@ -24,7 +25,7 @@ export const StyledAccordionItem = styled.div < SAI > `
     }
   }
   .section {
-    border-bottom: 0.063rem solid #ddd;
+    border-bottom: ${(p) => p.configuration.colors.defaultInputBorderColor};
     box-sizing: border-box;
     overflow: hidden;
     opacity: 1;
@@ -34,9 +35,8 @@ export const StyledAccordionItem = styled.div < SAI > `
   }
 `;
 
-const StyledAccordion = styled.div`
-  border-top: 0.063rem solid #ddd;
-  /* border-radius: 0.313rem; */
+const StyledAccordion = styled.div < { configuration: ConfigProps } > `
+  border-top: ${(p) => p.configuration.colors.defaultInputBorderColor};
   box-sizing: border-box;
   width: 100%;
 `;

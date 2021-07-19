@@ -22,7 +22,7 @@ const config: SBConfigI = {
     color: {
       description: 'Color of the background',
       table: {
-        defaultValue: { summary: '#C4C4C4' },
+        defaultValue: { summary: null },
         type: { summary: 'string' },
       },
       control: 'color',

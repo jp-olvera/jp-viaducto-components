@@ -49,7 +49,7 @@ export default config;
 const Template = (args: typeof Default) => (
   <ConfigProvider>
     <div>
-      <Switch {...args} />;
+      <Switch {...args} />
     </div>
   </ConfigProvider>
 );
@@ -59,6 +59,6 @@ export const Default = Template.bind({});
 Default.args = {
   inputSize: 'lg',
   disabled: false,
-  color: '#9060EB',
+  color: null,
   change: () => {},
 };

@@ -97,6 +97,7 @@ const Range = ({
       family={family}
       size={size}
       double={double}
+      disabled={rest.disabled}
     >
       <input
         type='range'

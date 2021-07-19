@@ -92,21 +92,22 @@ const getFontSize = (level: string, max: boolean = false) => {
   }
 };
 
-const getBorder = (borders: any = 'none') => {
-  if (borders === 'none' || borders === null) {
-    return css`
-      border: none;
-    `;
+const getBorder = (border: string, config: { border: string }) => {
+  switch (border) {
+    case 'none':
+      return css`
+        border: none;
+      `;
+    case 'bottom':
+      return css`
+        border: none;
+        border-bottom: ${config.border};
+      `;
+    default:
+      return css`
+        border: ${config.border};
+      `;
   }
-  let border = '';
-  border += `border-top: ${borders.top || 'none'}; `;
-  border += `border-right: ${borders.right || 'none'}; `;
-  border += `border-bottom: ${borders.bottom || 'none'}; `;
-  border += `border-left: ${borders.left || 'none'}; `;
-
-  return css`
-    ${border}
-  `;
 };
 
 const getRangeSize = (size: string = 'md') => {

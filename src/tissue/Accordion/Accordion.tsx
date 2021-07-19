@@ -6,11 +6,14 @@ import { ConfigContext } from '../../providers';
 interface AccordionInterface {
   /** Children components for the accordion */
   children?: React.ReactElement[];
+  /** Padding in X */
   paddingX?: string;
   /** Padding in Y */
   paddingY?: string;
   /** Overrides transitionTimingFunction */
   transition?: string;
+  /** Expand multiple items */
+  expandMultiple?: boolean;
 }
 
 /**
@@ -26,6 +29,7 @@ const Accordion = ({
   paddingX = 'sm',
   paddingY = 'sm',
   transition = 'linear',
+  expandMultiple,
   ...rest
 }: AccordionInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -33,7 +37,7 @@ const Accordion = ({
   const py = configuration.spacing[paddingY];
 
   return (
-    <StyledAccordion {...rest}>
+    <StyledAccordion configuration={configuration} {...rest}>
       {React.Children.map(children, (child, i) => {
         /* istanbul ignore if */
         if (!child) {

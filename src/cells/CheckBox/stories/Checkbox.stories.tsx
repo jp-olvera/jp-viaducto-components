@@ -104,7 +104,7 @@ Default.args = {
   disabled: false,
   checkSize: 'lg',
   spacing: 'none',
-  color: '#9060EB',
+  color: '',
   fontSize: 'md',
   onChange: () => {},
 };

@@ -23,17 +23,18 @@ interface ProgressBarInterface {
 const ProgressBar = ({
   totalSteps,
   completedSteps,
-  color = '#3AE25F',
+  color,
   ...rest
 }: ProgressBarInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
+  const getcolor = color || configuration.colors.primary.default;
   return (
     <StyledProgressBar
       max={totalSteps}
       value={completedSteps <= totalSteps ? completedSteps : totalSteps}
       data-testid='loader'
       configuration={configuration}
-      color={color}
+      color={getcolor}
       {...rest}
     >
       <div className='progress-bar-container'>

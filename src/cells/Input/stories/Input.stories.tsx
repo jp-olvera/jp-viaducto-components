@@ -14,7 +14,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'default' },
       },
-      options: ['outside', 'overlap', 'bottom', 'default'],
+      options: ['outside', 'overlap', 'bottom'],
       control: {
         type: 'select',
       },
@@ -32,6 +32,14 @@ const config: SBConfigI = {
     },
     icon: {
       description: 'Add an icon helper',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+      control: null,
+    },
+    iconRequired: {
+      description: 'Add an icon helper for required inputs',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: null },
@@ -75,6 +83,14 @@ const config: SBConfigI = {
         defaultValue: { summary: 'ease' },
       },
     },
+    caption: {
+      description: 'Set caption message',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: '' },
+      },
+      control: 'text',
+    },
     borderColor: {
       description: 'Set the border color (if the border is defined)',
       type: { summary: 'String', required: false },
@@ -84,7 +100,15 @@ const config: SBConfigI = {
       control: 'color',
     },
     iconColor: {
-      description: 'Set the icon color (if the border is defined)',
+      description: 'Set the icon color ',
+      type: { summary: 'String', required: false },
+      table: {
+        defaultValue: { summary: null },
+      },
+      control: 'color',
+    },
+    iconColorRequired: {
+      description: 'Set the icon color required',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: null },
@@ -116,7 +140,9 @@ Text.args = {
   borderColor: null,
   iconColor: null,
   icon: '❤',
+  iconRequired: '⭕',
   inputSize: 'small',
+  caption: 'Caption: this message has .caption className',
 };
 
 export const Card = Template.bind({});
