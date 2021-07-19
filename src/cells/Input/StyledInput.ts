@@ -58,7 +58,7 @@ export const Wrapper = styled.div < any > `
         ${(p) => setLabel(p.border, p.size)};
         transition: left 0.2s ${(p) => p.transition || 'ease'};
         left: 0 !important;
-        background-color: ${(p) => (p.border === 'outside' ? 'transparent' : 'inherit')};
+        background-color: ${(p) => (p.border !== 'overlap' ? 'transparent' : 'inherit')};
         & .icon-required-label {
           transition: opacity 0.2s ${(p) => p.transition || 'ease'};
           opacity: 1;
