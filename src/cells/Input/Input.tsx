@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import creditCardType, { types as CardType } from 'credit-card-type';
 
 import { ConfigContext } from '../../providers';
