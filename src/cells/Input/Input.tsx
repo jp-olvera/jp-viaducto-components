@@ -85,7 +85,7 @@ const Input = ({
   const [placeIcon, setIcon] = useState(icon);
   const { configuration } = useContext(ConfigContext);
   const [newValue, setNewValue] = useState<any>(rest.defaultValue || undefined);
-  const inputRef = useRef<any>();
+  const [color, setColor] = useState('#000000'); // black is the default value for input color
 
   const setCardIcon = (ev: any) => {
     const { value: val }: { value: string } = ev.target;
@@ -132,7 +132,6 @@ const Input = ({
       >
         <input
           className='input'
-          ref={inputRef}
           onChange={(ev) => {
             if (type === 'card') {
               setCardIcon(ev);
@@ -142,6 +141,9 @@ const Input = ({
                   cardType === 'american-express' ? 21 : 19,
                 ),
               );
+            } else if (type === 'color') {
+              setColor(ev.target.value);
+              setNewValue(ev.target.value);
             } else {
               setNewValue(ev.target.value);
             }
@@ -167,7 +169,10 @@ const Input = ({
           {...rest}
         />
         {placeIcon !== null && (
-          <span className='icon'>
+          <span
+            className='icon'
+            style={type === 'color' ? { color, stroke: color } : {}}
+          >
             {type === 'card' ? getIcon(placeIcon) : placeIcon}
           </span>
         )}
@@ -184,7 +189,7 @@ const Input = ({
         )}
         {type === 'color' && (
           <span className='show-value'>
-            <span>{inputRef?.current?.value.toUpperCase() || '#FFFFFF'}</span>
+            <span>{color}</span>
           </span>
         )}
         {caption && <span className='caption'>{caption}</span>}
