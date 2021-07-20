@@ -129,7 +129,6 @@ const Input = ({
         family={family}
         type={type}
         hasLabel={hasLabel}
-        {...rest}
       >
         <input
           className='input'

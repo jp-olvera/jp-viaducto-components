@@ -38,7 +38,7 @@ const MenuTitle = ({
   icon,
   title,
   ...rest
-}: MenuTitleProps & React.LiHTMLAttributes<HTMLLIElement>) => {
+}: MenuTitleProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
 
   return (
