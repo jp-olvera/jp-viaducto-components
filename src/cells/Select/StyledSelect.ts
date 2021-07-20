@@ -27,7 +27,7 @@ export const StyledSelectWrapper = styled.div < any > `
   & > label {
     opacity: 0.65;
     position: absolute;
-    top: 0;
+    top: -15%;
     left: 0;
     height: 100%;
     pointer-events: none;
