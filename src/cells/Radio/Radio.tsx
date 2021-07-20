@@ -84,7 +84,7 @@ const Radio = ({
         {...props}
       />
       <Spacer size={spacing || 'none'} direction='horizontal' />
-      {label}
+      <label htmlFor={props.id}>{label}</label>
     </StyledLabel>
   );
 };
