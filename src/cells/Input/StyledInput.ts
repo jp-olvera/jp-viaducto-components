@@ -21,6 +21,7 @@ export const Wrapper = styled.div < any > `
 
   .input {
     border: none;
+    color: ${(p) => p.configuration.colors.text.dark};
     flex-grow: 1;
     background: transparent;
     outline: none;
@@ -90,7 +91,7 @@ export const Wrapper = styled.div < any > `
 
   .label {
     background: ${({ border }) => (border === 'outside' ? 'transparent' : 'inherit')};
-    color: #808080;
+    color: ${(p) => p.configuration.colors.text.dark};
     left: ${(p) => (p.hasIcon ? p.configuration.spacing.lg : p.configuration.spacing.micro)};
     font-size: 1rem;
     line-height: 1rem;
