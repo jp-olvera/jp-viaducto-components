@@ -1,12 +1,26 @@
+import { ConfigProps } from 'ballena-types';
 import styled from 'styled-components';
 import StyledTab from '../../cells/Tab/StyledTab';
 
-export const StyledGroupTab = styled.div < any > `
+interface SGTI {
+  horizontalSpacing?: string;
+  verticalSpacing?: string;
+  configuration: ConfigProps;
+  count: number;
+  transition?: string;
+  tabType: string;
+  position: string;
+  index: number;
+  spacing: string;
+}
+
+export const StyledGroupTab = styled.div < SGTI > `
   * {
     box-sizing: border-box;
   }
   display: flex;
   flex-direction: column;
+  width: max-content;
   & ${StyledTab} {
     display: flex;
     justify-content: center;
@@ -36,6 +50,5 @@ export const StyledGroupTab = styled.div < any > `
     background-color: ${(p) => p.configuration.colors[p.tabType].hover} !important;
     position: sticky;
     bottom: ${(p) => (p.position === 'top' ? '100%' : 0)};
-    left: 0;
   }
 `;

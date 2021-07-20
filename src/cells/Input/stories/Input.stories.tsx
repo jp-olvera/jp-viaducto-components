@@ -14,7 +14,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'default' },
       },
-      options: ['outside', 'overlap', 'bottom'],
+      options: ['outside', 'overlap', 'bottom', 'none'],
       control: {
         type: 'select',
       },

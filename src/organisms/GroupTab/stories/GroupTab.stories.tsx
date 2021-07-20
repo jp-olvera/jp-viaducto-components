@@ -151,11 +151,11 @@ export const Default = Template.bind({});
 
 Default.args = {
   tabType: 'tab',
-  horizontalSpacing: 'md',
+  horizontalSpacing: 'none',
   verticalSpacing: 'sm',
   fontSize: 'md',
   position: 'bottom',
-  spacing: 'none',
+  spacing: 'md',
   // eslint-disable-next-line no-console
   onTabChange: () => console.log('tab change'),
   transition: 'ease',
