@@ -65,6 +65,7 @@ const GroupTab = ({
   useEffect(() => {
     onload(ref, getPosition / 100, configuration, spacing, setPlace, setWidth);
   }, [getPosition, spacing, horizontalSpacing]);
+
   const toPx: number = parseFloat(
     configuration.spacing[spacing].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0],
   ) * 16;
@@ -79,6 +80,7 @@ const GroupTab = ({
       tabType={tabType}
       position={position}
       spacing={spacing}
+      index={getPosition / 100}
       ref={ref}
       {...rest}
     >
@@ -126,10 +128,8 @@ export const onload = (
     } else {
       let counter: number = 0;
       for (let i = 0; i < getPosition; i++) {
-        if (i === 0) {
-          counter += ref.current.children[0].children[i].clientWidth;
-        } else {
-          counter += ref.current.children[0].children[i].clientWidth;
+        counter += ref.current.children[0].children[i].clientWidth;
+        if (i > 0) {
           counter
             += parseFloat(
               configuration.spacing[spacing].match(

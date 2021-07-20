@@ -7,7 +7,6 @@ const StyledContainer = styled.div < any > `
   ${(p) => p.padding};
   width: ${(p) => (p.expandHorizontal ? '100%' : 'auto')};
   height: ${(p) => (p.expandVertical ? '100%' : 'auto')};
-  background-color: ${(p) => p.configuration.colors.background};
 `;
 /** Container component. This component will set padding in the direction implemented to children */
 interface ContainerInterface {

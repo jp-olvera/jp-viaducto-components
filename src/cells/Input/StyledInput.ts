@@ -1,4 +1,5 @@
 /* eslint-disable radix */
+import { ConfigProps } from 'ballena-types';
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div < any > `
@@ -20,12 +21,16 @@ export const Wrapper = styled.div < any > `
 
   .input {
     border: none;
-    width: 100%;
+    flex-grow: 1;
     background: transparent;
     outline: none;
     font-size: 1rem !important;
     padding-right: ${({ configuration }) => configuration.spacing.tiny};
-    padding-left: ${({ configuration, hasIcon }) => (hasIcon ? 0 : configuration.spacing.xs)};
+    padding-left: ${({ configuration, hasIcon }) => (hasIcon ? 0 : configuration.spacing.tiny)};
+    &:read-only {
+      ${(p) => label(p)};
+      pointer-events: none;
+    }
     &:disabled {
       cursor: not-allowed;
       background-color: ${(p) => p.configuration.colors.disableColor};
@@ -86,7 +91,7 @@ export const Wrapper = styled.div < any > `
   .label {
     background: ${({ border }) => (border === 'outside' ? 'transparent' : 'inherit')};
     color: #808080;
-    left: ${(p) => (p.hasIcon ? p.configuration.spacing.lg : p.configuration.spacing.xs)};
+    left: ${(p) => (p.hasIcon ? p.configuration.spacing.lg : p.configuration.spacing.micro)};
     font-size: 1rem;
     line-height: 1rem;
     position: absolute;
@@ -119,13 +124,11 @@ export const Wrapper = styled.div < any > `
       user-select: none;
     }
   }
-  .caption {
-    color: ${(p) => p.configuration.colors.disableColor};
-    transform: scale(80%);
-    position: absolute;
-    top: 110%;
-    left: calc(-0.9rem - 20px);
-  }
+`;
+
+export const Caption = styled.span < { configuration: ConfigProps } > `
+  color: ${(p) => p.configuration.colors.disableColor};
+  transform: scale(80%);
 `;
 
 export const getBorderStyle = (
@@ -138,6 +141,10 @@ export const getBorderStyle = (
       return css`
         border-bottom: 0.063rem solid
           ${color || config.colors.defaultInputBorderColor};
+      `;
+    case 'none':
+      return css`
+        border: none;
       `;
     case 'overlap':
     default:
@@ -156,7 +163,7 @@ export const setLabel = (border: string, size: string) => {
     `;
   }
   return css`
-    top: ${() => (size === 'xsmall' ? '-80%' : '-55%')};
+    top: -75%;
   `;
 };
 
