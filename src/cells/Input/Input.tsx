@@ -2,8 +2,9 @@
 import React, { useState, useContext } from 'react';
 import creditCardType, { types as CardType } from 'credit-card-type';
 
+import { Spacer } from '..';
 import { ConfigContext } from '../../providers';
-import { Wrapper } from './StyledInput';
+import { Caption, Wrapper } from './StyledInput';
 import { getIcon } from './Icon';
 
 creditCardType.resetModifications();
@@ -66,7 +67,7 @@ const Input = ({
   label,
   border = 'default',
   type = 'text',
-  icon,
+  icon = null,
   iconRequired,
   inputSize = 'default',
   borderColor,
@@ -117,7 +118,7 @@ const Input = ({
         border={
           border !== 'bottom' && inputSize === 'xsmall' ? 'outside' : border
         }
-        hasIcon={icon !== null}
+        hasIcon={placeIcon !== null}
         size={inputSize}
         configuration={configuration}
         borderColor={
@@ -192,8 +193,13 @@ const Input = ({
             <span>{color}</span>
           </span>
         )}
-        {caption && <span className='caption'>{caption}</span>}
       </Wrapper>
+      {caption && <Spacer size='tiny' />}
+      {caption && (
+        <Caption configuration={configuration} className='caption'>
+          {caption}
+        </Caption>
+      )}
     </>
   );
 };
