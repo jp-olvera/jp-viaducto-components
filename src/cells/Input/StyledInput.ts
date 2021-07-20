@@ -172,15 +172,20 @@ export const label = (p: {
   border: string;
   size: string;
   transition: string;
+  configuration: ConfigProps;
 }) => css`
   ${p.hasLabel && p.border === 'overlap'
     ? 'padding-top: 0.75%'
     : 'padding-top: 0%'};
   & ~ .label:not(.icon),
   ~ .label:not(.icon) {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    height: 100%;
     position: absolute;
     border: none;
-    color: #000;
+    color: ${p.configuration.colors.text.dark};
     ${p.hasLabel && p.border === 'overlap' && 'transform: scale(80%)'};
     padding: 0;
     font-size: 1rem;
