@@ -169,7 +169,7 @@ export const Submenu = styled.ul < SubmenuProps > `
         `)};
 `;
 
-export const StyledMenuTitle = styled.li < any > `
+export const StyledMenuTitle = styled.div < any > `
   align-items: center;
   align-content: center;
   box-sizing: border-box;
