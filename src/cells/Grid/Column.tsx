@@ -28,6 +28,7 @@ const getMedia = (xs: number, breakpoint: string, gap: number) => {
 
 interface DivProps {
   gap: number;
+  innerGap: number;
   configuration: ConfigProps;
   xs: number;
   sm: number;
@@ -42,6 +43,8 @@ const Div = styled.div < DivProps > `
   margin: ${(p) => `0 ${p.gap / 2}px`};
   max-width: ${(p) => `calc(100% - ${p.gap}px)`};
   box-sizing: border-box;
+  padding-left: ${(p) => `${p.innerGap}px`};
+  padding-right: ${(p) => `${p.innerGap}px`};
   @media (max-width: ${(p) => p.configuration.breakpoints.xs}) {
     flex-basis: ${(p) => `calc(100% - ${p.gap}px)`};
     width: ${(p) => `calc(100% - ${p.gap}px)`};
@@ -96,7 +99,7 @@ const Column = ({
   xl = 0,
   ...rest
 }: ColumnProps) => {
-  const { gap } = useContext(GridContext);
+  const { gap, innerGap } = useContext(GridContext);
   const { configuration } = useContext(ConfigContext);
   let newXs = xs;
   if (xs === 0) {
@@ -106,6 +109,7 @@ const Column = ({
     <Div
       style={style}
       gap={gap}
+      innerGap={innerGap}
       configuration={configuration}
       xs={newXs}
       sm={sm}

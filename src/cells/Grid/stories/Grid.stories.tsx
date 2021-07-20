@@ -47,66 +47,66 @@ const Template = (args: typeof Default) => (
   <ConfigProvider>
     <Grid style={{ backgroundColor: 'pink' }} {...args}>
       <Row>
-        <Column>
+        <Column style={{ background: 'aqua' }}>
           <Content>default</Content>
         </Column>
-        <Column>
+        <Column style={{ background: 'aqua' }}>
           <Content>default</Content>
         </Column>
-        <Column>
+        <Column style={{ background: 'aqua' }}>
           <Content>default</Content>
         </Column>
       </Row>
       <Row>
-        <Column size={12}>
+        <Column style={{ background: 'aqua' }} size={12}>
           <Content>12 cols</Content>
         </Column>
       </Row>
       <Row>
-        <Column size={1}>
+        <Column style={{ background: 'aqua' }} size={1}>
           <Content>1 cols</Content>
         </Column>
-        <Column size={11}>
+        <Column style={{ background: 'aqua' }} size={11}>
           <Content>11 cols</Content>
         </Column>
       </Row>
       <Row>
-        <Column size={2}>
+        <Column style={{ background: 'aqua' }} size={2}>
           <Content>2 cols</Content>
         </Column>
-        <Column size={10}>
+        <Column style={{ background: 'aqua' }} size={10}>
           <Content>10 cols</Content>
         </Column>
       </Row>
       <Row style={{ backgroundColor: 'green' }}>
-        <Column size={3}>
+        <Column style={{ background: 'aqua' }} size={3}>
           <Content>3 cols</Content>
         </Column>
-        <Column size={9}>
+        <Column style={{ background: 'aqua' }} size={9}>
           <Content>9 cols</Content>
         </Column>
       </Row>
       <Row>
-        <Column size={4}>
+        <Column style={{ background: 'aqua' }} size={4}>
           <Content>3 cols</Content>
         </Column>
-        <Column size={8}>
+        <Column style={{ background: 'aqua' }} size={8}>
           <Content>8 cols</Content>
         </Column>
       </Row>
       <Row>
-        <Column size={5}>
+        <Column style={{ background: 'aqua' }} size={5}>
           <Content>5 cols</Content>
         </Column>
-        <Column size={7}>
+        <Column style={{ background: 'aqua' }} size={7}>
           <Content>7 cols</Content>
         </Column>
       </Row>
       <Row>
-        <Column size={6}>
+        <Column style={{ background: 'aqua' }} size={6}>
           <Content>6 cols</Content>
         </Column>
-        <Column size={6}>
+        <Column style={{ background: 'aqua' }} size={6}>
           <Content>6 cols</Content>
         </Column>
       </Row>

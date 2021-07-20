@@ -45,6 +45,8 @@ interface GridProps {
   expanded?: boolean;
   /** Set gutter spacing */
   gutter?: number;
+  /** Set columns paddings */
+  innerGutter?: number;
 }
 
 /**
@@ -52,17 +54,19 @@ interface GridProps {
  * @param {React.ReactNode} children Child element
  * @param {boolean} expanded Set full width parent size
  * @param {number} gutter Set gutter spacing
+ * @param {number} innerGutter Set gutter spacing
  */
 
 const Grid = ({
   children = null,
   gutter = 24,
+  innerGutter = 0,
   expanded = false,
   ...rest
 }: GridProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   return (
-    <GridContext.Provider value={{ gap: gutter }}>
+    <GridContext.Provider value={{ gap: gutter, innerGap: innerGutter}}>
       <Padding
         configuration={configuration}
         gutter={gutter}
