@@ -128,6 +128,15 @@ const Template = (args: typeof Default) => (
             <td>Cell 2,5</td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+          </tr>
+        </tfoot>
       </table>
     </WrapperTable>
   </ConfigProvider>

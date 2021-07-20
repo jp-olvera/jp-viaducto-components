@@ -61,18 +61,6 @@ export const StyledTable = styled.div < TableProps > `
       p.hoverColor || p.configuration.colors.table.hoverColor
     }`
     : null)};
-        ${(p) => (p.hover
-    ? `border-color: ${
-      p.hoverColor || p.configuration.colors.table.hoverColor
-    }`
-    : null)};
-        td {
-          ${(p) => (p.hover
-    ? `border-color: ${
-      p.hoverColor || p.configuration.colors.table.hoverColor
-    }`
-    : null)};
-        }
       }
     }
     ${(p) => getBorder(
@@ -94,9 +82,6 @@ export const StyledTable = styled.div < TableProps > `
     tfoot > tr {
       &:hover {
         background-color: transparent !important;
-      }
-      &td {
-        border: none !important;
       }
     }
   }
@@ -124,37 +109,29 @@ export const getBorder = (border: string, borderColor: string) => {
         tr > td:last-child {
           border-right: 0.063rem solid ${borderColor};
         }
+        tr > th:last-child {
+          border-right: 0.063rem solid ${borderColor};
+        }
       `;
     case 'horizontal':
       return css`
         tr {
           border-bottom: 0.063rem solid ${borderColor};
         }
-        tr:nth-child(1) {
-          border-top: 0.063rem solid ${borderColor};
-        }
-        tr:nth-child(2) {
-          border-top: 0.063rem solid ${borderColor};
-        }
       `;
     case 'all':
     default:
       return css`
-        tr {
-          border-left: 0.063rem solid ${borderColor};
-          border-right: 0.063rem solid ${borderColor};
-        }
-        tr:first-child {
+        thead {
           border-top: 0.063rem solid ${borderColor};
         }
-        tr > td,
-        tr > th {
-          border-right: 0.063rem solid ${borderColor};
+        tr {
           border-bottom: 0.063rem solid ${borderColor};
+          border-left: 0.063rem solid ${borderColor};
         }
-        tr > :last-child {
-          border: none;
-          border-bottom: 0.063rem solid ${borderColor};
+        td,
+        th {
+          border-right: 0.063rem solid ${borderColor};
         }
       `;
   }
