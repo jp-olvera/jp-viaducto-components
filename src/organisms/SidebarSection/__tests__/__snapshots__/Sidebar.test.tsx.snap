@@ -3,13 +3,13 @@
 exports[`<SidebarSection/> should render with default props 1`] = `
 <div>
   <div
-    class="StyledSidebarSection-sc-12e8js3-0 dKtVtT"
+    class="StyledSidebarSection-sc-12e8js3-0 bCUxxz"
   >
     <div
       class=""
     >
-      <li
-        class="StyledSidebarSection__StyledMenuTitle-sc-12e8js3-3 hPCDwh"
+      <div
+        class="StyledSidebarSection__StyledMenuTitle-sc-12e8js3-3 iLSyTJ"
         tabindex="0"
         title=""
         type=""
@@ -20,7 +20,7 @@ exports[`<SidebarSection/> should render with default props 1`] = `
         <span
           style="align-items: center; width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
         />
-      </li>
+      </div>
       <ul />
     </div>
   </div>

@@ -26,6 +26,10 @@ export interface ConfigProps {
     defaultInputBorderColor: string;
     disableColor: string;
     iconColor: string;
+    navigation: {
+      background: string;
+      color: string;
+    };
     neutral: {
       light: string;
       invert: string;
