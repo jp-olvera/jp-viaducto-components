@@ -16,7 +16,13 @@ export const Wrapper = styled.div < any > `
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-
+  label {
+    // sólo para el overflow
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 95%;
+  }
   ${({ border, configuration, borderColor }) => getBorderStyle(border, borderColor, configuration)};
 
   .input {
@@ -94,6 +100,7 @@ export const Wrapper = styled.div < any > `
     color: ${(p) => p.configuration.colors.text.dark};
     left: ${(p) => (p.hasIcon ? p.configuration.spacing.lg : p.configuration.spacing.micro)};
     font-size: 1rem;
+    height: 1.1rem;
     line-height: 1rem;
     position: absolute;
     pointer-events: none;
@@ -156,15 +163,21 @@ export const getBorderStyle = (
 };
 
 export const setLabel = (border: string, size: string) => {
+  if (border === 'outside' && size === 'xsmall') {
+    return css`
+      top: -124%;
+    `;
+  }
   if (border === 'overlap') {
     return css`
       background-color: inherit !important;
       padding: 0 0.25rem !important;
-      top: ${() => (size === 'xsmall' ? '-40%' : '-20%')};
+      top: -0.5rem;
     `;
   }
+
   return css`
-    top: -75%;
+    top: -1.3rem;
   `;
 };
 
@@ -180,21 +193,21 @@ export const label = (p: {
     : 'padding-top: 0%'};
   & ~ .label:not(.icon),
   ~ .label:not(.icon) {
-    white-space: nowrap;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-    height: 100%;
-    width: 100%;
+    /* height: 100%; */
     position: absolute;
     border: none;
     color: ${p.configuration.colors.text.dark};
-    ${p.hasLabel && p.border === 'overlap' && 'transform: scale(80%)'};
     padding: 0;
-    font-size: 1rem;
+    font-size: ${p.hasLabel && p.border === 'overlap'
+    ? '0.8rem !important'
+    : '1rem'};
+    height: ${p.hasLabel && p.border === 'overlap'
+    ? '1rem !important'
+    : '1.1rem'};
     outline: none;
     ${setLabel(p.border, p.size)};
     transition: left 0.2s ${p.transition || 'ease'};
-    left: 0 !important;
+    left: ${p.border === 'overlap' ? '0.2rem !important' : '0px'};
     background-color: ${p.border !== 'overlap' ? 'transparent' : 'inherit'};
     & .icon-required-label {
       transition: opacity 0.2s ${p.transition || 'ease'};
