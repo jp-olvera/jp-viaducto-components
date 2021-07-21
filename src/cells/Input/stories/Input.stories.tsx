@@ -143,6 +143,7 @@ Text.args = {
   iconRequired: '⭕',
   inputSize: 'small',
   caption: 'Caption: this message has .caption className',
+  readOnly: false,
 };
 
 export const Card = Template.bind({});
@@ -157,6 +158,7 @@ Card.args = {
   borderColor: null,
   iconColor: null,
   inputSize: 'small',
+  readOnly: false,
 };
 
 export const Date = Template.bind({});
@@ -171,6 +173,7 @@ Date.args = {
   borderColor: null,
   iconColor: null,
   inputSize: 'small',
+  readOnly: false,
 };
 
 export const Color = Template.bind({});
@@ -186,6 +189,7 @@ Color.args = {
   inputSize: 'small',
   borderColor: null,
   iconColor: null,
+  readOnly: false,
 };
 
 export const Time = Template.bind({});
@@ -201,4 +205,5 @@ Time.args = {
   inputSize: 'small',
   borderColor: null,
   iconColor: null,
+  readOnly: false,
 };

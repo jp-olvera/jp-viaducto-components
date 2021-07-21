@@ -129,6 +129,14 @@ const config: SBConfigI = {
         defaultValue: { summary: null },
       },
     },
+    base: {
+      description: 'REM base to match any change, base 16',
+      type: { summary: 'number', required: false },
+      table: {
+        defaultValue: { summary: 16 },
+      },
+      control: 'number',
+    },
   },
 };
 
@@ -159,4 +167,5 @@ Default.args = {
   // eslint-disable-next-line no-console
   onTabChange: () => console.log('tab change'),
   transition: 'ease',
+  base: 16,
 };

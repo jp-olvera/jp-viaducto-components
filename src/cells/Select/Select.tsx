@@ -51,7 +51,7 @@ interface SelectInterface {
  */
 const Select = ({
   children,
-  inputSize = 'lg',
+  inputSize = 'default',
   height,
   border,
   fontSize,
@@ -78,6 +78,8 @@ const Select = ({
       fontFamily={fontFamily}
       multiple={multiple}
       configuration={configuration}
+      inputSize={inputSize}
+      labelPosition={labelPosition}
     >
       <StyledSelect
         configuration={configuration}
