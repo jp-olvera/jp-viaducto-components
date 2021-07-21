@@ -27,7 +27,7 @@ export const StyledSelectWrapper = styled.div < any > `
   & > label {
     opacity: 0.65;
     position: absolute;
-    top: ${(p) => (p.multiple ? 0 : '-15%')};
+    top: ${(p) => (p.multiple ? 0 : '-26%')};
     left: 0;
     height: 100%;
     pointer-events: none;
@@ -48,6 +48,10 @@ export const setLabelPosition = (position: string, background: string) => {
           opacity: 1 !important;
           padding: 0 !important;
           height: auto !important;
+          white-space: nowrap;
+          overflow-x: hidden;
+          text-overflow: ellipsis;
+          width: 100%;
         }
         & ~ select {
           padding-top: 0.2rem !important;
@@ -61,6 +65,10 @@ export const setLabelPosition = (position: string, background: string) => {
           opacity: 1 !important;
           padding: 0 !important;
           height: auto !important;
+          white-space: nowrap;
+          overflow-x: hidden;
+          text-overflow: ellipsis;
+          width: 100%;
         }
         & ~ select {
           padding-top: 0rem !important;
