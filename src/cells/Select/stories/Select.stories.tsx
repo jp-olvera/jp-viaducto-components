@@ -72,11 +72,18 @@ const config: SBConfigI = {
       type: { summary: 'Function', required: false },
       table: { defaultValue: { summary: null } },
     },
-    titleProps: {
-      description:
-        'If it is defined, set a title in/over the select wrapper (affects the height)',
-      type: { summary: '{label:string; position: string}', required: false },
+    label: {
+      description: 'If it is defined, set a label in the select wrapper',
+      type: { summary: 'string', required: false },
       table: { defaultValue: { summary: null } },
+    },
+    labelPosition: {
+      description:
+        'If it is defined, set a label overlap/outside the select wrapper',
+      type: { summary: 'string', required: false },
+      table: { defaultValue: { summary: 'outside' } },
+      control: 'select',
+      options: ['outside', 'overlap'],
     },
   },
 };
@@ -110,7 +117,8 @@ Default.args = {
   radius: 'none',
   onChange: () => {},
   multiple: false,
-  titleProps: null,
+  label: 'Title',
+  labelPosition: 'outside',
 };
 
 export const Multiple = Template.bind({});
@@ -125,33 +133,4 @@ Multiple.args = {
   radius: 'none',
   onChange: () => {},
   multiple: true,
-};
-
-const withTitleTemplate = (args: typeof withTitle) => (
-  <ConfigProvider>
-    Set in the Controls <code>in</code>/<code>on</code>/<code>over</code> to
-    place the title
-    <br />
-    <br />
-    <Select {...args}>
-      <option value='1'>Change in control section</option>
-      <option value='2'>Here it is just a option</option>
-      <option value='3'>Hello World</option>
-    </Select>
-  </ConfigProvider>
-);
-
-export const withTitle = withTitleTemplate.bind({});
-
-withTitle.args = {
-  inputSize: 'default',
-  border: 'all',
-  fontSize: 'md',
-  fontFamily: 'Roboto',
-  background: '#fff',
-  color: '#000',
-  radius: 'none',
-  onChange: () => {},
-  multiple: false,
-  titleProps: { label: 'Title', position: 'over' },
 };

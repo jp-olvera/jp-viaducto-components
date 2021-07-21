@@ -3,26 +3,34 @@ import React, { useContext } from 'react';
 import { StyledSelect, StyledSelectWrapper } from './StyledSelect';
 import { ConfigContext } from '../../providers';
 
+/** Select input component */
 interface SelectInterface {
+  /** Options to render */
   children: any;
+  /** Set background color for the select component */
   background?: string;
-  border?:
-    | string
-    | {
-        top?: string;
-        right?: string;
-        bottom?: string;
-        left?: string;
-      };
+  /** Set the border(s) of the component */
+  border?: string;
+  /** Set font color for the select component */
   color?: string;
+  /** Set the font family */
   fontFamily?: string;
+  /** Set the font size */
   fontSize?: string;
+  /** Set the custom height for the element */
   height?: string;
+  /** Set the argument to choose multiple options */
   multiple?: boolean;
+  /** Trigger an action */
   onChange?: Function;
+  /** Set border radius property */
   radius?: string;
+  /** Set size of the select component */
   inputSize?: string;
-  titleProps?: null | { label: string; position: string };
+  /** Set a label in the select component */
+  label?: string;
+  /** Set a label in selected position */
+  labelPosition?: string;
 }
 
 /**
@@ -38,7 +46,8 @@ interface SelectInterface {
  * @param {Function} onChange Trigger an action
  * @param {string} radius Set border radius property
  * @param {string} inputSize Set size of the select component
- * @param {object} titleProps Set a title in the select component in/on/over the wrapper
+ * @param {string} label Set a label in the select component
+ * @param {string} labelPosition Set a label in selected position
  */
 const Select = ({
   children,
@@ -52,16 +61,22 @@ const Select = ({
   multiple = false,
   radius,
   onChange,
-  titleProps = null,
+  label,
+  labelPosition = 'outside',
   ...rest
 }: SelectInterface & React.SelectHTMLAttributes<HTMLSelectElement>) => {
   const { configuration } = useContext(ConfigContext);
+  const titleProps: { label?: string; position?: string } = {
+    label,
+    position: labelPosition,
+  };
   return (
     <StyledSelectWrapper
-      titleProps={multiple ? null : titleProps}
+      titleProps={titleProps}
       background={background}
       height={height}
       fontFamily={fontFamily}
+      multiple={multiple}
       configuration={configuration}
     >
       <StyledSelect
@@ -79,13 +94,11 @@ const Select = ({
         data-testid='select'
         multiple={multiple}
         onChange={onChange}
-        titleProps={multiple ? null : titleProps}
+        titleProps={titleProps}
       >
         {children}
       </StyledSelect>
-      {multiple === false && titleProps !== null && (
-        <label htmlFor={rest.id}>{titleProps.label}</label>
-      )}
+      {label && <label htmlFor={rest.id}>{label}</label>}
     </StyledSelectWrapper>
   );
 };

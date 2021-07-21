@@ -11,6 +11,10 @@ const config: ConfigProps = {
   border: '0.063rem solid #001D48',
   colors: {
     background: '#fff',
+    navigation: {
+      background: '#e7f2fd',
+      color: '#177def',
+    },
     primary: {
       default: '#937B3D',
       hover: '#AD9043',
