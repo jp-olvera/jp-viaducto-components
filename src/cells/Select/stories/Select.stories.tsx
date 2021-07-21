@@ -119,6 +119,7 @@ Default.args = {
   multiple: false,
   label: 'Title',
   labelPosition: 'outside',
+  disabled: false,
 };
 
 export const Multiple = Template.bind({});
@@ -133,4 +134,5 @@ Multiple.args = {
   radius: 'none',
   onChange: () => {},
   multiple: true,
+  disabled: false,
 };
