@@ -26,6 +26,8 @@ interface GTI {
   transition?: string;
   /** Triggers a function changing the tab */
   onTabChange?: Function;
+  /** REM base to match any change, base 16 */
+  base?: number;
 }
 
 /**
@@ -38,6 +40,7 @@ interface GTI {
  * @param {string} position Set the line in position selected
  * @param {string} transition Overrides the transitionTimingFunction
  * @param {string} onTabChange Triggers a function changing the tab
+ * @param {number} base  REM base to match any change, base 16
  */
 
 const GroupTab = ({
@@ -50,6 +53,7 @@ const GroupTab = ({
   transition = 'ease',
   spacing = 'none',
   onTabChange,
+  base = 16,
   ...rest
 }: GTI & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -63,12 +67,20 @@ const GroupTab = ({
   };
   const pos = position === 'top' ? 'top' : 'bottom';
   useEffect(() => {
-    onload(ref, getPosition / 100, configuration, spacing, setPlace, setWidth);
+    onload(
+      ref,
+      getPosition / 100,
+      configuration,
+      spacing,
+      setPlace,
+      setWidth,
+      base,
+    );
   }, [getPosition, spacing, horizontalSpacing]);
 
   const toPx: number = parseFloat(
     configuration.spacing[spacing].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0],
-  ) * 16;
+  ) * (base || 16);
 
   return (
     <StyledGroupTab
@@ -121,6 +133,7 @@ export const onload = (
   spacing: string,
   setPlace: Function,
   setWidth: Function,
+  base: number = 16,
 ) => {
   if (ref && ref.current) {
     if (getPosition === 0) {
@@ -135,7 +148,7 @@ export const onload = (
               configuration.spacing[spacing].match(
                 /[-]{0,1}[\d]*[.]{0,1}[\d]+/g,
               )[0],
-            ) * 16;
+            ) * base;
         }
       }
       setPlace(counter);

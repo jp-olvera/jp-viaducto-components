@@ -73,5 +73,18 @@ describe('<GroupTab/>', () => {
         ),
       ).not.toBeNaN();
     });
+    test('should call function with base 14', () => {
+      expect(
+        onload(
+          A.bind({}),
+          0,
+          { spacing: 'lg' },
+          'lg',
+          () => {},
+          () => {},
+          14,
+        ),
+      ).not.toBeNaN();
+    });
   });
 });
