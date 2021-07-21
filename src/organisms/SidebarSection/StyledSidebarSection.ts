@@ -33,8 +33,8 @@ const StyledSidebarSection = styled.div < SideI > `
   background-color: ${(p) => p.configuration.colors.background};
 
   hr {
-    border-color: rgba(23, 125, 239, 0.5);
-    background-color: rgba(23, 125, 239, 0.5);
+    border-color: ${(p) => p.configuration.colors.defaultInputBorderColor};
+    background-color: ${(p) => p.configuration.colors.defaultInputBorderColor};
   }
 
   ul {
@@ -80,9 +80,9 @@ const StyledSidebarSection = styled.div < SideI > `
   }
 `;
 
-const getDecoration = () => css`
-  color: rgba(23, 125, 239, 1);
-  background-color: rgba(23, 125, 239, 0.1);
+const getDecoration = (p: { configuration: ConfigProps }) => css`
+  color: ${p.configuration.colors.navigation.color};
+  background-color: ${p.configuration.colors.navigation.background};
   &::after {
     content: '';
     border-left: 3px solid rgba(23, 125, 239);
@@ -99,6 +99,7 @@ interface MenuItemProps {
 }
 
 export const MenuItem = styled.li < MenuItemProps > `
+  background-color: ${(p) => p.configuration.colors.background};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -119,9 +120,9 @@ export const MenuItem = styled.li < MenuItemProps > `
 
   &:hover,
   :focus {
-    ${getDecoration()};
+    ${(p) => getDecoration(p)};
   }
-  ${(p) => p.active && getDecoration()};
+  ${(p) => p.active && getDecoration(p)};
 
   padding: ${(p) => `${p.configuration.spacing.sm} ${
     p.nested ? p.configuration.spacing.lg : p.configuration.spacing.sm
@@ -144,9 +145,12 @@ export const Submenu = styled.ul < SubmenuProps > `
   width: 100%;
   z-index: 1;
   & > button {
-    background-color: rgba(23, 125, 239, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: ${(p) => p.configuration.colors.navigation.background};
     border: none;
-    color: rgba(23, 125, 239, 1);
+    color: ${(p) => p.configuration.colors.navigation.color};
     cursor: pointer;
     font-size: 1rem;
     height: 4rem;
@@ -183,8 +187,8 @@ export const StyledMenuTitle = styled.div < any > `
   padding: ${(p) => p.configuration.spacing.sm};
   overflow: hidden;
   &:hover {
-    color: rgba(23, 125, 239, 1);
-    background-color: rgba(23, 125, 239, 0.1);
+    color: ${(p) => p.configuration.colors.navigation.color};
+    background-color: ${(p) => p.configuration.colors.navigation.background};
   }
 `;
 

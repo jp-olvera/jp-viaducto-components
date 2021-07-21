@@ -18,13 +18,14 @@ describe('<Select/>', () => {
     const { container } = render(
       <Select
         inputSize='large'
-        border={{ top: '1px solid red' }}
+        border='all'
         fontSize='lg'
         fontFamily='Arial'
         background='blue'
         color='white'
         radius='md'
-        titleProps={{ label: 'a', position: 'in' }}
+        label='Title'
+        labelPosition='outside'
       >
         <option value='B'>B</option>
       </Select>,
@@ -36,13 +37,12 @@ describe('<Select/>', () => {
       const { container } = render(
         <Select
           inputSize='small'
-          border={{ top: '1px solid red' }}
+          border='all'
           fontSize='lg'
           fontFamily='Arial'
           background='blue'
           color='white'
           radius='sm'
-          titleProps={null}
         >
           <option value='B'>B</option>
         </Select>,
@@ -53,13 +53,12 @@ describe('<Select/>', () => {
       const { container } = render(
         <Select
           inputSize='aaaa'
-          border={{ top: '1px solid red' }}
+          border='all'
           fontSize='lg'
           fontFamily='Arial'
           background='blue'
           color='white'
           radius='lg'
-          titleProps={null}
         >
           <option value='B'>B</option>
         </Select>,
@@ -71,13 +70,14 @@ describe('<Select/>', () => {
     const { container } = render(
       <Select
         inputSize='xsmall'
-        border={{ top: '1px solid red' }}
+        border='all'
         height={undefined}
         fontSize='lg'
         fontFamily='Arial'
         background='blue'
         color='white'
-        titleProps={{ label: 'a', position: 'on' }}
+        label='a'
+        labelPosition='overlap'
       >
         <option value='B'>B</option>
       </Select>,
@@ -90,7 +90,8 @@ describe('<Select/>', () => {
         radius='none'
         inputSize='small'
         height='2rem'
-        titleProps={{ label: 'a', position: 'over' }}
+        label='a'
+        labelPosition='overlap'
       >
         {options.map((option) => (
           <option key={option} value={option}>
@@ -108,7 +109,8 @@ describe('<Select/>', () => {
       <Select
         radius='md'
         inputSize='small'
-        titleProps={{ label: 'a', position: 'in' }}
+        label='Title'
+        labelPosition='outside'
       >
         {options.map((option) => (
           <option key={option} value={option}>

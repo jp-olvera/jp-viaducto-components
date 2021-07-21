@@ -6,6 +6,9 @@ export const StyledLabel = styled.label < any > `
   font-family: ${(p) => p.family || p.configuration.fontFamily};
   font-size: ${({ fontSize }) => getSize(fontSize)};
   ${(p) => p.disabled && `color: ${p.configuration.colors.disableColor}`};
+  & label {
+    color: ${(p) => p.configuration.colors.text.dark};
+  }
   & input {
     &:not(:disabled) {
       cursor: pointer;
