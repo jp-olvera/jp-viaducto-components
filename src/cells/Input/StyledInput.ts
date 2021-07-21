@@ -184,6 +184,7 @@ export const label = (p: {
     overflow-x: hidden;
     text-overflow: ellipsis;
     height: 100%;
+    width: 100%;
     position: absolute;
     border: none;
     color: ${p.configuration.colors.text.dark};
