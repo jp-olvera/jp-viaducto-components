@@ -7,7 +7,7 @@ import { Switch } from '..';
 
 describe('<Switch/>', () => {
   test('should render properly', () => {
-    render(<Switch id='Switch' inputSize='xl' />);
+    render(<Switch id='Switch' inputSize='large' />);
     expect(screen.getByTestId('Switch')).toBeVisible();
   });
 
@@ -30,7 +30,7 @@ describe('<Switch/>', () => {
 
   test('should be disabled', () => {
     const { getByTestId } = render(
-      <Switch id='Switch1' inputSize='sm' disabled />,
+      <Switch id='Switch1' inputSize='small' disabled />,
     );
     expect(
       getByTestId('Switch1').querySelector('input')?.hasAttribute('disabled'),
@@ -39,14 +39,16 @@ describe('<Switch/>', () => {
 
   test('should not be disabled', () => {
     const { getByTestId } = render(
-      <Switch id='Switch1' inputSize='md' disabled={false} />,
+      <Switch id='Switch1' inputSize='default' disabled={false} />,
     );
     expect(
       getByTestId('Switch1').querySelector('input')?.hasAttribute('disabled'),
     ).toEqual(false);
   });
   test('should fire hover event', () => {
-    const { getByTestId, container } = render(<Switch disabled={false} />);
+    const { getByTestId, container } = render(
+      <Switch disabled={false} circular={false} />,
+    );
     fireEvent.mouseOver(getByTestId('slider'));
     expect(container).toMatchSnapshot();
   });

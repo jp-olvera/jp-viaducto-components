@@ -158,21 +158,8 @@ const getLateralPadding = (props: any) => {
     const l = props.configuration.spacing[props.leftSpacing] || '0';
     const r = props.configuration.spacing[props.rightSpacing] || '0';
     padding = `0 ${r} 0 ${l}`;
-  } else if (!props.isIconOnly) {
-    // not icon at all
-    switch (props.size) {
-      case SIZE.small:
-        padding = `0 ${props.configuration.spacing.sm} `;
-        break;
-      case SIZE.large:
-        padding = `0 ${props.configuration.spacing.lg} `;
-        break;
-      case SIZE.default:
-      default:
-        padding = `0 ${props.configuration.spacing.md} `;
-        break;
-    }
   } else {
+    // not icon at all
     switch (props.size) {
       case SIZE.small:
         padding = `0 ${props.configuration.spacing.sm} `;

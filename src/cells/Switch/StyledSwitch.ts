@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ConfigProps } from '../../ballena-types';
 
 export const StyledSwitch = styled.label < any > `
   * {
@@ -7,7 +8,6 @@ export const StyledSwitch = styled.label < any > `
   }
   display: block;
   position: relative;
-  padding-left: ${({ size }) => switchSize(size).width};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   user-select: none;
   input {
@@ -21,11 +21,7 @@ export const StyledSwitch = styled.label < any > `
         background-color: ${({ color, configuration }) => color || configuration.colors.primary.default};
         opacity: ${(p) => (p.disabled ? 0.65 : 1)};
         &:after {
-          left: calc(
-            ${({ size }) => switchSize(size).width} -
-              calc(${({ size }) => switchSize(size).width} / 2)
-          );
-          background-color: #fff;
+          left: calc(${(p) => switchSize(p).size} * 0.85);
         }
       }
     }
@@ -39,53 +35,36 @@ export const StyledSwitch = styled.label < any > `
     position: absolute;
     top: 0;
     left: 0;
-    height: ${({ size }) => switchSize(size).height};
-    border-radius: 1.563rem;
-    width: ${({ size }) => switchSize(size).width};
+    height: ${(p) => switchSize(p).size};
+    width: calc(${(p) => switchSize(p).size} * 1.75);
+    border-radius: ${(p) => (p.circular ? '1.563rem' : 0)};
     background-color: darkgray;
     transition: background-color 0.2s ease;
     &:hover:not(:disabled) {
       &:after:not(:disabled) {
         box-sizing: border-box;
-        left: ${({ size }) => switchSize(size).gutter};
-        top: ${({ size }) => switchSize(size).gutter};
-        width: ${({ size }) => `calc(calc(${switchSize(size).width} / 2) - ${
-    switchSize(size).gutter
-  })`};
-        height: ${({ size }) => `calc(calc(${switchSize(size).width} / 2) - ${
-    switchSize(size).gutter
-  })`};
+        left: ${(p) => switchSize(p).gutter};
+        top: ${(p) => switchSize(p).gutter};
         border: ${(p) => p.configuration.border};
       }
     }
     &:after {
       content: '';
       position: absolute;
-      left: ${({ size }) => switchSize(size).gutter};
-      top: ${({ size }) => switchSize(size).gutter};
-      width: ${({ size }) => `calc(calc(${switchSize(size).width} / 2) - ${
-    switchSize(size).gutter
-  })`};
-      height: ${({ size }) => `calc(calc(${switchSize(size).width} / 2) - ${
-    switchSize(size).gutter
-  })`};
-      border-radius: 50%;
+      left: ${(p) => switchSize(p).gutter};
+      top: ${(p) => switchSize(p).gutter};
+      width: calc(${(p) => switchSize(p).size} * 0.8);
+      height: calc(${(p) => switchSize(p).size} * 0.8);
+      border-radius: ${(p) => (p.circular ? '50%' : 0)};
       background-color: white;
       transition: left 0.2s ease;
     }
   }
 `;
 
-export const switchSize = (size: string) => {
-  switch (size) {
-    case 'sm':
-      return { width: '1.8rem', height: '1rem', gutter: '0.1rem' };
-    case 'md':
-      return { width: '2.8rem', height: '1.75rem', gutter: '0.313rem' };
-    case 'lg':
-    default:
-      return { width: '3.75rem', height: '2.25rem', gutter: '0.313rem' };
-    case 'xl':
-      return { width: '5rem', height: '3rem', gutter: '0.5rem' };
-  }
-};
+export const switchSize = (p: { size: string; configuration: ConfigProps }) => ({
+  size: p.configuration.controlHeight[p.size],
+  gutter: `calc(calc(calc(${
+    p.configuration.controlHeight[p.size]
+  } * 1.75) * 0.1) * 0.6)`,
+});
