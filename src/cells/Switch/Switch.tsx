@@ -13,6 +13,8 @@ interface SwitchInterface {
   inputSize?: string;
   /** Triggers an action */
   change?: Function;
+  /** Set circular/rectangular switch */
+  circular?: boolean;
 }
 
 /**
@@ -21,12 +23,14 @@ interface SwitchInterface {
  * @param {boolean} disabled Enable/disable input
  * @param {string} inputSize Size of the input
  * @param {Function} change Triggers an action
+ * @param {boolean} circular Set circular/rectangular switch
  */
 
 const Switch = ({
   color,
-  inputSize,
+  inputSize = 'default',
   change,
+  circular = true,
   ...rest
 }: SwitchInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -40,6 +44,7 @@ const Switch = ({
       disabled={rest.disabled}
       data-testid={rest.id}
       check={check}
+      circular={circular}
     >
       <input
         type='checkbox'

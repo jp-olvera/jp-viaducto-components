@@ -31,6 +31,8 @@ interface SelectInterface {
   label?: string;
   /** Set a label in selected position */
   labelPosition?: string;
+  /** Set a readonly prop */
+  readonly?: boolean;
 }
 
 /**
@@ -48,6 +50,7 @@ interface SelectInterface {
  * @param {string} inputSize Set size of the select component
  * @param {string} label Set a label in the select component
  * @param {string} labelPosition Set a label in selected position
+ * @param {boolean} readonly Set a readonly prop
  */
 const Select = ({
   children,
@@ -63,6 +66,7 @@ const Select = ({
   onChange,
   label,
   labelPosition = 'outside',
+  readonly = false,
   ...rest
 }: SelectInterface & React.SelectHTMLAttributes<HTMLSelectElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -91,6 +95,7 @@ const Select = ({
         background={background}
         color={color}
         radius={radius}
+        readonly={readonly}
         {...rest}
         id={rest.id}
         data-testid='select'

@@ -67,6 +67,11 @@ const config: SBConfigI = {
       type: { summary: 'Boolean', required: false },
       table: { defaultValue: { summary: false } },
     },
+    readonly: {
+      description: 'Set readonly prop',
+      type: { summary: 'Boolean', required: false },
+      table: { defaultValue: { summary: false } },
+    },
     onChange: {
       description: 'Trigger an action',
       type: { summary: 'Function', required: false },
@@ -120,6 +125,7 @@ Default.args = {
   label: 'Title',
   labelPosition: 'outside',
   disabled: false,
+  readonly: false,
 };
 
 export const Multiple = Template.bind({});
@@ -135,4 +141,5 @@ Multiple.args = {
   onChange: () => {},
   multiple: true,
   disabled: false,
+  readonly: false,
 };
