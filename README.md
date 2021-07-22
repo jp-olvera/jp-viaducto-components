@@ -36,8 +36,8 @@ ReactDOM.render(
 Through our `ConfigContext` context, you can get access to the default configurations and to the `updateConfig` function.
 You can find all the available configurations [here](https://github.com/jp-olvera/jp-viaducto-components/blob/staging/src/utils/config.ts)
 
-**Note:** There are configurations that are objects, if you want to override some therir keys, you need to provide the rest of them,
-for example iy you want to override the `xs` breakpoint, you also need to provide the `sm`,`md`,`lg` and`xl` breakpoints, check the example below.
+**Note:** There are configurations that are objects, if you want to overwrite some the keys, you need to provide the rest of them,
+for example iy you want to overwrite the `xs` breakpoint, you also need to provide the `sm`,`md`,`lg` and`xl` breakpoints, check the example below.
 
 ```js
 import React, { useContext, useEffect } from 'react';
@@ -66,7 +66,7 @@ const App = () => {
 
 ## Storybook
 
-Find all about our components in the [Storybook Project ](https://jp-olvera.github.io/jp-viaducto-components/?path=/story/andamio-cells-anchor--default)
+Find all about our components in the [Storybook Project](https://jp-olvera.github.io/jp-viaducto-components/?path=/story/andamio-cells-anchor--default)
 
 ## Modal
 

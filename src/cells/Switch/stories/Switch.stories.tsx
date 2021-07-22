@@ -12,9 +12,9 @@ const config: SBConfigI = {
       description: 'Set the size of the component',
       type: { summary: 'String', required: false },
       table: {
-        defaultValue: { summary: 'lg' },
+        defaultValue: { summary: 'default' },
       },
-      options: ['sm', 'md', 'lg', 'xl'],
+      options: ['xsmall', 'small', 'default', 'large'],
       control: {
         type: 'select',
       },
@@ -29,9 +29,16 @@ const config: SBConfigI = {
     },
     disabled: {
       description: 'Set the component disabled/enabled',
-      type: { summary: 'String', required: false },
+      type: { summary: 'boolean', required: false },
       table: {
         defaultValue: { summary: false },
+      },
+    },
+    circular: {
+      description: 'Set circular/rectangular switch',
+      type: { summary: 'boolean', required: false },
+      table: {
+        defaultValue: { summary: true },
       },
     },
     change: {
@@ -48,17 +55,16 @@ export default config;
 
 const Template = (args: typeof Default) => (
   <ConfigProvider>
-    <div>
-      <Switch {...args} />
-    </div>
+    <Switch {...args} />
   </ConfigProvider>
 );
 
 export const Default = Template.bind({});
 
 Default.args = {
-  inputSize: 'lg',
+  inputSize: 'default',
   disabled: false,
   color: null,
+  circular: true,
   change: () => {},
 };

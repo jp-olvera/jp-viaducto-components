@@ -16,13 +16,14 @@ interface SelectI {
   outlineColor?: string;
   multiple: boolean;
   titleProps: { label?: string; position?: string } | null;
+  readonly?: boolean;
 }
 
 export const StyledSelectWrapper = styled.div < any > `
   position: relative;
   box-sizing: border-box;
   ${(p) => (p.titleProps !== null
-    ? setLabelPosition(p.titleProps.position, p.background, p.inputSize, p)
+    ? setLabelPosition(p.titleProps.position, p.inputSize, p)
     : 'color:red')};
   & > label {
     color: ${(p) => p.configuration.colors.text.dark};
@@ -39,7 +40,11 @@ export const StyledSelectWrapper = styled.div < any > `
   }
 `;
 
-const getTopLabel = (inputSize, position, multiple) => {
+const getTopLabel = (
+  inputSize: string,
+  position: string,
+  multiple: boolean,
+) => {
   if (multiple) {
     return css`
       top: 0;
@@ -64,9 +69,9 @@ const getTopLabel = (inputSize, position, multiple) => {
     top: -4%;
   `;
 };
+
 export const setLabelPosition = (
   position: string,
-  background: string,
   inputSize: string,
   p: { configuration: ConfigProps },
 ) => {
@@ -122,11 +127,12 @@ export const StyledSelect = styled.select < SelectI > `
   padding: 0 ${(p) => p.configuration.spacing.sm};
   padding-top: ${(p) => (p.multiple ? p.configuration.spacing.sm : '0')};
   padding-right: ${(p) => (!p.multiple ? p.configuration.spacing.lg : '0')};
-  background: ${(p) => !p.multiple
-    && `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${
+  background: ${(p) => (p.multiple || p.readonly
+    ? ''
+    : `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${
       p.color?.replace('#', '%23')
-      || p.configuration.colors.text.dark.replace('#', '%23')
-    }' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");`};
+          || p.configuration.colors.text.dark.replace('#', '%23')
+    }' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");`)};
   background-position: right ${(p) => p.configuration.spacing.sm} center;
   background-repeat: no-repeat;
   background-size: 1rem 0.75rem;
