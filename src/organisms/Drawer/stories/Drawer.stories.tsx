@@ -154,6 +154,7 @@ Default.args = {
   transition: 'ease',
   overlayColor: 'rgba(0,0,0,0.3)',
   size: 'sm',
+  zIndex: 1,
 };
 
 export const Medium = Template.bind({});
@@ -164,6 +165,7 @@ Medium.args = {
   transition: 'ease',
   overlayColor: 'rgba(0,0,0,0.3)',
   size: 'md',
+  zIndex: 1,
 };
 export const Large = Template2.bind({});
 
@@ -173,4 +175,5 @@ Large.args = {
   transition: 'ease',
   overlayColor: 'rgba(0,0,0,0.3)',
   size: 'lg',
+  zIndex: 1,
 };

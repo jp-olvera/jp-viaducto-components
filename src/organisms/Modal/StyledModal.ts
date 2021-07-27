@@ -10,6 +10,7 @@ interface StyledModalProps {
   elevationDirection: string;
   ref: any;
   radius: string;
+  zIndex: number;
 }
 const StyledModal = styled.div < StyledModalProps > `
   background: ${(p) => p.backgroundColor || p.configuration.colors.background};
@@ -18,7 +19,7 @@ const StyledModal = styled.div < StyledModalProps > `
   max-height: calc(100% - 96px);
   min-height: 30%;
   width: 520px;
-  z-index: 1;
+  z-index: ${(p) => p.zIndex};
   overflow-x: auto;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
 `;

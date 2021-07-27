@@ -4,7 +4,10 @@ import React, {
 import { ConfigContext } from '../../providers';
 import { Spacer } from '../../cells';
 
-import StyledSidebarSection, { Submenu } from './StyledSidebarSection';
+import StyledSidebarSection, {
+  Submenu,
+  Separator,
+} from './StyledSidebarSection';
 import MenuTitle from './MenuTitle';
 
 /** Sidebar elements for a Sidebar Section */
@@ -91,7 +94,7 @@ const SidebarSection = ({
         configuration={configuration}
         {...rest}
       >
-        {separator && <hr />}
+        {separator && <Separator configuration={configuration} />}
 
         <div className={dropClassName}>
           {isDropdown || isMenu ? (

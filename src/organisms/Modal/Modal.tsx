@@ -24,6 +24,8 @@ interface ModalProps {
   overlayColor?: string;
   /** set the border radius */
   radius?: string;
+  /** z-index value, it defaults to 1 */
+  zIndex?: number;
 }
 
 /**
@@ -48,6 +50,7 @@ const Modal = ({
   handleActive = () => {},
   overlayColor = 'rgba(255,255,255,0.5)',
   radius = 'md',
+  zIndex = 1,
   ...rest
 }: ModalProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -90,7 +93,7 @@ const Modal = ({
           position: 'fixed',
           top: '0',
           width: '100%',
-          zIndex: 999,
+          zIndex: 9999,
         }}
       >
         <StyledModal
@@ -103,6 +106,7 @@ const Modal = ({
           tabIndex={0}
           ref={modalRef}
           radius={radius}
+          zIndex={zIndex}
           {...rest}
         >
           {children}

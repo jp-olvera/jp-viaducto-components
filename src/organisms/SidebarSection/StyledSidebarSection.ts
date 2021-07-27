@@ -30,13 +30,7 @@ const StyledSidebarSection = styled.div < SideI > `
   & > * {
     overflow-x: hidden;
   }
-  background-color: ${(p) => p.configuration.colors.background};
-
-  hr {
-    border-color: ${(p) => p.configuration.colors.defaultInputBorderColor};
-    background-color: ${(p) => p.configuration.colors.defaultInputBorderColor};
-  }
-
+  /* background-color: ${(p) => p.configuration.colors.background}; */
   ul {
     margin: 0;
     padding: 0;
@@ -81,11 +75,11 @@ const StyledSidebarSection = styled.div < SideI > `
 `;
 
 const getDecoration = (p: { configuration: ConfigProps }) => css`
-  color: ${p.configuration.colors.navigation.color};
   background-color: ${p.configuration.colors.navigation.background};
+  color: ${p.configuration.colors.navigation.color};
   &::after {
     content: '';
-    border-left: 3px solid rgba(23, 125, 239);
+    border-left: 3px solid ${p.configuration.colors.navigation.color};
     position: absolute;
     height: 100%;
     right: 0px;
@@ -99,7 +93,6 @@ interface MenuItemProps {
 }
 
 export const MenuItem = styled.li < MenuItemProps > `
-  background-color: ${(p) => p.configuration.colors.background};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -136,7 +129,7 @@ interface SubmenuProps {
 }
 
 export const Submenu = styled.ul < SubmenuProps > `
-  background-color: ${(p) => p.configuration.colors.background};
+  /* background-color: ${(p) => p.configuration.colors.background}; */
   opacity: ${(p) => (p.isActive ? 1 : 0)};
   height: 100%;
   position: absolute;
@@ -192,4 +185,8 @@ export const StyledMenuTitle = styled.div < any > `
   }
 `;
 
+export const Separator = styled.hr < { configuration: ConfigProps } > `
+  border-color: ${(p) => p.configuration.colors.defaultInputBorderColor};
+  background-color: ${(p) => p.configuration.colors.defaultInputBorderColor};
+`;
 export default StyledSidebarSection;
