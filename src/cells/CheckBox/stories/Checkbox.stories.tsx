@@ -106,5 +106,6 @@ Default.args = {
   spacing: 'none',
   color: '',
   fontSize: 'md',
+  id: 'check',
   onChange: () => {},
 };

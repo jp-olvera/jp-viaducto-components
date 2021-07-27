@@ -70,7 +70,9 @@ const Checkbox = ({
         {...props}
       />
       <Spacer size={spacing || 'none'} direction='horizontal' />
-      {label}
+      <label className='check-label' htmlFor={props.id}>
+        {label}
+      </label>
     </StyledLabel>
   );
 };

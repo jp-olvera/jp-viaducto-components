@@ -129,7 +129,7 @@ interface SubmenuProps {
 }
 
 export const Submenu = styled.ul < SubmenuProps > `
-  /* background-color: ${(p) => p.configuration.colors.background}; */
+  background-color: ${(p) => p.configuration.colors.background};
   opacity: ${(p) => (p.isActive ? 1 : 0)};
   height: 100%;
   position: absolute;
