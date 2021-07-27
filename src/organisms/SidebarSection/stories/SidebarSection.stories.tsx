@@ -53,6 +53,21 @@ const Template = (args: typeof Default) => (
         label='First item in the menu with a large text'
         nested
       />
+      <MenuItem
+        href='#'
+        label='Second item in the menu with a large text'
+        nested
+      />
+      <MenuItem
+        href='#'
+        label='Third item in the menu with a large text'
+        nested
+      />
+      <MenuItem
+        href='#'
+        label='Fourth item in the menu with a large text'
+        nested
+      />
       <a href='http://www.google.com' target='_blank' rel='noreferrer'>
         <MenuItem label='Wrap with an anchor or Link' nested />
       </a>

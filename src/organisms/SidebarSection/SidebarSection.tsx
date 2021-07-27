@@ -139,8 +139,9 @@ const SidebarSection = ({
             >
               {'←'} {title}
             </button>
+
             <Spacer size='xs' />
-            {children}
+            <div>{children}</div>
           </Submenu>
         ) : null}
       </StyledSidebarSection>

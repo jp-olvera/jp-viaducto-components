@@ -137,7 +137,7 @@ export const Submenu = styled.ul < SubmenuProps > `
   top: 0;
   width: 100%;
   z-index: 1;
-  & > button {
+  & button {
     position: sticky;
     top: 0;
     z-index: 1;
