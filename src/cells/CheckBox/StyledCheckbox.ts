@@ -9,6 +9,9 @@ export const StyledLabel = styled.label < any > `
   align-items: center;
   ${({ disabled, configuration }) => (disabled ? `color: ${configuration.colors.disableColor}` : null)};
   opacity: ${(p) => (p.disabled ? '0.8' : '1')};
+  & > .check-label {
+    color: ${(p) => p.configuration.colors.text.dark};
+  }
   & input {
     &:not(:disabled) {
       cursor: pointer;
