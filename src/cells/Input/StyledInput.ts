@@ -32,6 +32,7 @@ export const Wrapper = styled.div < any > `
     background: transparent;
     outline: none;
     font-size: 1rem !important;
+    overflow: hidden !important;
     padding-right: ${({ configuration }) => configuration.spacing.tiny};
     padding-left: ${({ configuration, hasIcon }) => (hasIcon ? 0 : configuration.spacing.tiny)};
     &:read-only {
