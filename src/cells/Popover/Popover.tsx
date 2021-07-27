@@ -1,4 +1,6 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, {
+  useRef, useEffect, useContext, useState,
+} from 'react';
 import { createPortal } from 'react-dom';
 import { findScrollParents } from '../../utils/scroll';
 import { StyledDrop } from './StyledDrop';
@@ -21,6 +23,8 @@ interface PopoverProps {
   radius?: string;
   /** A ref pointing to the activator */
   target: React.RefObject<HTMLElement> | any;
+  /** z-index value, it defaults to 1 */
+  zIndex?: number;
 }
 
 /** Popover component attached to an activator, like a button */
@@ -33,22 +37,19 @@ const Popover = ({
   position = 'bottom',
   target,
   radius = 'sm',
+  zIndex = 1,
   ...rest
 }: PopoverProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const dropRef = useRef<HTMLDivElement>(null);
-  const clickOutsideHandler = (event) => {
-    if (dropRef.current && target.current) {
-      /* istanbul ignore if */
-      if (
-        dropRef.current.contains(event.target)
-        || target.current.contains(event.target)
-      ) {
-        return;
-      }
-      handleClose();
+  const [isClosing, setisClosing] = useState(false);
+
+  useEffect(() => {
+    setisClosing(false);
+    if (active && dropRef.current) {
+      dropRef.current.focus();
     }
-  };
+  }, [active]);
 
   const move = () => {
     if (dropRef.current && target.current) {
@@ -150,6 +151,24 @@ const Popover = ({
       scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
       scrollParents = [];
     };
+    let timer;
+    const clickOutsideHandler = (event) => {
+      if (dropRef.current && target.current) {
+        /* istanbul ignore if */
+        if (
+          dropRef.current.contains(event.target)
+          || target.current.contains(event.target)
+        ) {
+          return;
+        }
+        if (active && dropRef.current) {
+          setisClosing(true);
+          timer = setTimeout(() => {
+            handleClose();
+          }, 230);
+        }
+      }
+    };
     if (active && target && target.current) {
       addScrollListeners();
       document.addEventListener('mouseup', (event) => clickOutsideHandler(event));
@@ -160,6 +179,9 @@ const Popover = ({
       removeScrollListeners();
       document.removeEventListener('mouseup', (event) => clickOutsideHandler(event));
       window.removeEventListener('resize', move);
+      if (timer) {
+        clearTimeout(timer);
+      }
     };
   }, [active, target]);
 
@@ -169,6 +191,7 @@ const Popover = ({
         configuration={configuration}
         elevation={elevation}
         elevationDirection={elevationDirection}
+        isClosing={isClosing}
         radius={radius}
         ref={dropRef}
         role='dialog'
@@ -176,6 +199,7 @@ const Popover = ({
           position: 'fixed',
         }}
         tabIndex={0}
+        zIndex={zIndex}
         {...rest}
       >
         {content}
