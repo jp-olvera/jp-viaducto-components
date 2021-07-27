@@ -140,8 +140,10 @@ const SidebarSection = ({
               {'←'} {title}
             </button>
 
-            <Spacer size='xs' />
-            <div>{children}</div>
+            <div style={{ overflow: 'auto' }}>
+              <Spacer size='xs' />
+              {children}
+            </div>
           </Submenu>
         ) : null}
       </StyledSidebarSection>
