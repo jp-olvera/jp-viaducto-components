@@ -23,6 +23,8 @@ interface DrawerInterface {
   size?: string;
   /** Transition function to apply when opening and closing */
   transition?: string;
+  /** z-index value, it defaults to 1 */
+  zIndex?: number;
 }
 
 /** Drawer component */
@@ -35,6 +37,7 @@ const Drawer = ({
   overlayColor = 'rgba(0,0,0,0.3)',
   size = 'sm',
   transition,
+  zIndex = 1,
   ...rest
 }: DrawerInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -82,7 +85,7 @@ const Drawer = ({
           position: 'fixed',
           top: 0,
           width: '100vw',
-          zIndex: 1,
+          zIndex: 9999,
         }}
       >
         <StyledDrawer
@@ -93,6 +96,7 @@ const Drawer = ({
           elevationDirection={elevationDirection}
           width={width}
           tabIndex={0}
+          zIndex={zIndex}
           ref={ref}
           {...rest}
           onClick={(ev: any) => {
