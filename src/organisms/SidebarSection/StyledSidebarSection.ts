@@ -130,6 +130,8 @@ interface SubmenuProps {
 
 export const Submenu = styled.ul < SubmenuProps > `
   background-color: ${(p) => p.configuration.colors.background};
+  display: flex;
+  flex-direction: column;
   opacity: ${(p) => (p.isActive ? 1 : 0)};
   height: 100%;
   position: absolute;
