@@ -91,7 +91,11 @@ export default {
 };
 
 const Template = ({
-  position, elevation, elevationDirection, radius,
+  position,
+  elevation,
+  elevationDirection,
+  radius,
+  zIndex,
 }) => {
   const [active, setActive] = useState(false);
   const handleClick = () => {
@@ -109,7 +113,6 @@ const Template = ({
     <ConfigProvider>
       <div
         style={{
-          height: '2000px',
           width: '100%',
         }}
       >
@@ -144,6 +147,7 @@ const Template = ({
             elevation={elevation}
             elevationDirection={elevationDirection}
             radius={radius}
+            zIndex={zIndex}
           />
         </div>
         <div style={{ width: '500px', overflowX: 'auto' }}>
@@ -169,6 +173,7 @@ const Template = ({
                 elevation={elevation}
                 elevationDirection={elevationDirection}
                 radius={radius}
+                zIndex={zIndex}
               />
             </div>
           </div>
@@ -185,4 +190,5 @@ Default.args = {
   radius: 'sm',
   elevation: 1,
   elevationDirection: 'bottom',
+  zIndex: 1,
 };

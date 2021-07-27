@@ -20,6 +20,7 @@ interface StyledDrawerProps {
   size: string;
   transition?: string;
   width: string;
+  zIndex: number;
 }
 
 const StyledDrawer = styled.div < StyledDrawerProps > `
@@ -37,7 +38,7 @@ const StyledDrawer = styled.div < StyledDrawerProps > `
   right: 0;
   max-width: 100%;
   width: ${(p) => p.configuration.drawerSizes[p.size] || p.configuration.drawerSizes.sm};
-  z-index: 1;
+  z-index: ${(p) => p.zIndex};
   ${(p) => getElevation(p.elevation, p.elevationDirection)};
 
   ${(p) => p.isClosing
