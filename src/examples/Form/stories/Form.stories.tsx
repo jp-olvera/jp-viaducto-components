@@ -6,7 +6,7 @@ import {
 } from '../../../cells';
 
 const config: any = {
-  title: 'Examples/Elevation',
+  title: 'Examples/Form',
 };
 export default config;
 

@@ -101,15 +101,8 @@ describe('<Popover/>', () => {
     fireEvent.click(getByText('show'));
     expect(getByText('content')).toBeInTheDocument();
   });
-  // we'll fix this later
-  // test('should call onClose when mouseup outside', () => {
-  //   const { getByText } = render(<Template position='right' />);
-  //   fireEvent.click(getByText('show'));
-  //   expect(getByText('content')).toBeVisible();
-  //   fireEvent.mouseUp(getByText('outside'));
-  //   expect(getByText('content')).not.toBeVisible();
-  // });
   test('should content be visible when is wider than window width', () => {
+    jest.useFakeTimers();
     const { getByText } = render(<Template />);
     fireEvent.click(getByText('show'));
     globalThis.innerWidth = 299;
