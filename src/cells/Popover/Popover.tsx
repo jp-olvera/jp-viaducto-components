@@ -2,7 +2,11 @@ import React, {
   useRef, useEffect, useContext, useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { findScrollParents } from '../../utils/scroll';
+import {
+  findScrollParents,
+  ownerWindow,
+  ownerDocument,
+} from '../../utils/scroll';
 import { StyledDrop } from './StyledDrop';
 import { ConfigContext } from '../../providers';
 
@@ -142,16 +146,22 @@ const Popover = ({
   }, [dropRef, active]);
   useEffect(() => {
     move();
-    let scrollParents: (Element | Document)[] = [];
     const addScrollListeners = () => {
       scrollParents = findScrollParents(target.current);
       scrollParents.forEach((scrollParent) => scrollParent.addEventListener('scroll', move));
+      const thisDocument = ownerDocument(target.current);
+      thisDocument.addEventListener('mouseup', clickOutsideHandler);
+      thisDocument.addEventListener('resize', move);
     };
+    let scrollParents: (Element | Document)[] = [];
     const removeScrollListeners = () => {
       scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
       scrollParents = [];
+      const thisDocument = ownerDocument(target.current);
+      thisDocument.removeEventListener('mouseup', clickOutsideHandler);
+      thisDocument.removeEventListener('resize', move);
     };
-    let timer;
+    let timer: number;
     const clickOutsideHandler = (event) => {
       if (dropRef.current && target.current) {
         /* istanbul ignore if */
@@ -161,30 +171,22 @@ const Popover = ({
         ) {
           return;
         }
-        if (active && dropRef.current) {
-          setisClosing(true);
-          timer = setTimeout(() => {
-            handleClose();
-          }, 230);
-        }
+        setisClosing(true);
+        timer = setTimeout(() => {
+          handleClose();
+          setisClosing(false);
+        }, 230);
       }
     };
-    if (active && target && target.current) {
+
+    if (active && target.current && dropRef.current) {
       addScrollListeners();
-      document.addEventListener('mouseup', (event) => clickOutsideHandler(event));
-      window.addEventListener('resize', move);
     }
-    document.removeEventListener('mouseup', (event) => clickOutsideHandler(event));
     return function cleanup() {
       removeScrollListeners();
-      document.removeEventListener('mouseup', (event) => clickOutsideHandler(event));
-      window.removeEventListener('resize', move);
-      if (timer) {
-        clearTimeout(timer);
-      }
+      clearTimeout(timer);
     };
-  }, [active, target]);
-
+  }, [active, target, target.current]);
   if (active && target && target.current) {
     return createPortal(
       <StyledDrop
