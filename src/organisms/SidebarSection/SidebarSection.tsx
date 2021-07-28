@@ -12,6 +12,8 @@ import MenuTitle from './MenuTitle';
 
 /** Sidebar elements for a Sidebar Section */
 interface SidebarProps {
+  /** A boolean to indicate if the sidebar should be open */
+  active?: boolean;
   /** Title's section */
   title: string;
   /** Horizontal top separator for each section */
@@ -41,6 +43,7 @@ interface SidebarProps {
  */
 
 const SidebarSection = ({
+  active = false,
   separator = false,
   title,
   isDropdown = false,
@@ -50,7 +53,10 @@ const SidebarSection = ({
   children,
   ...rest
 }: SidebarProps & React.HTMLAttributes<HTMLDivElement>) => {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(active);
+  useEffect(() => {
+    setIsActive(active);
+  }, [active]);
   const [isClosing, setIsClosing] = useState(false);
   const backRefButton = useRef<HTMLButtonElement>(null);
   const { configuration } = useContext(ConfigContext);

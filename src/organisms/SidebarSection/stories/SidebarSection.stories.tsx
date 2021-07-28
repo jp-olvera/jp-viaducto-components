@@ -100,6 +100,7 @@ const Template = (args: typeof Default) => (
 export const Default = Template.bind({});
 
 Default.args = {
+  active: false,
   separator: true,
   title: 'Section title',
   isDropdown: false,
@@ -111,6 +112,7 @@ Default.args = {
 export const Submenu = Template.bind({});
 
 Submenu.args = {
+  active: false,
   separator: true,
   title: 'Section title',
   isDropdown: false,
@@ -122,6 +124,7 @@ Submenu.args = {
 export const Dropdown = Template.bind({});
 
 Dropdown.args = {
+  active: false,
   separator: true,
   title: 'Section title',
   isDropdown: true,
