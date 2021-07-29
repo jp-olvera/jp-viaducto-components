@@ -74,7 +74,14 @@ const config: SBConfigI = {
 
 export default config;
 
-const Template = (args: typeof Default) => {
+const Template = ({
+  elevation,
+  elevationDirection,
+  transition,
+  overlayColor,
+  size,
+  zIndex,
+}: typeof Default) => {
   const [open, setOpen] = useState(false);
   return (
     <ConfigProvider>
@@ -90,7 +97,12 @@ const Template = (args: typeof Default) => {
         onClose={() => {
           setOpen(false);
         }}
-        {...args}
+        elevation={elevation}
+        elevationDirection={elevationDirection}
+        transition={transition}
+        overlayColor={overlayColor}
+        size={size}
+        zIndex={zIndex}
       >
         <div style={{ height: '80px', background: 'green' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Hola</h3>

@@ -23,7 +23,7 @@ interface DrawerInterface {
   size?: string;
   /** Transition function to apply when opening and closing */
   transition?: string;
-  /** z-index value, it defaults to 1 */
+  /** z-index value for the overlay, it defaults to 9999 */
   zIndex?: number;
 }
 
@@ -37,19 +37,37 @@ const Drawer = ({
   overlayColor = 'rgba(0,0,0,0.3)',
   size = 'sm',
   transition,
-  zIndex = 1,
+  zIndex = 9999,
   ...rest
 }: DrawerInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
-  const [isClosing, setisClosing] = useState(false);
   const ref = useRef<HTMLElement>();
+  const [isClosing, setisClosing] = useState(false);
+  const [keepActive, setKeepActive] = useState(false);
+  let timer;
   useEffect(() => {
-    setisClosing(false);
     if (active && ref.current) {
       ref.current.focus();
+      setisClosing(false);
+      setKeepActive(true);
+    } else if (!active && keepActive) {
+      setisClosing(true);
+      setKeepActive(true);
+      timer = setTimeout(() => {
+        setisClosing(false);
+        setKeepActive(false);
+      }, 230);
     }
-  }, [active]);
+  }, [active, ref]);
 
+  useEffect(
+    () => () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    },
+    [],
+  );
   const handleClose = (ev) => {
     if (
       ev.type === 'click'
@@ -71,7 +89,7 @@ const Drawer = ({
     width = '33.375rem';
   }
 
-  return active
+  return active || keepActive
     ? createPortal(
       <Overlay
         onClick={handleClose}
@@ -85,7 +103,7 @@ const Drawer = ({
           position: 'fixed',
           top: 0,
           width: '100vw',
-          zIndex: 9999,
+          zIndex,
         }}
       >
         <StyledDrawer
@@ -96,7 +114,6 @@ const Drawer = ({
           elevationDirection={elevationDirection}
           width={width}
           tabIndex={0}
-          zIndex={zIndex}
           ref={ref}
           {...rest}
           onClick={(ev: any) => {

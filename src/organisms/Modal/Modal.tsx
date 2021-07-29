@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, {
+  useContext, useEffect, useRef, useState,
+} from 'react';
 import { createPortal } from 'react-dom';
 import StyledModal from './StyledModal';
 import { ConfigContext } from '../../providers';
@@ -24,7 +26,7 @@ interface ModalProps {
   overlayColor?: string;
   /** set the border radius */
   radius?: string;
-  /** z-index value, it defaults to 1 */
+  /** z-index value for the overlay, it defaults to 9999 */
   zIndex?: number;
 }
 
@@ -50,39 +52,63 @@ const Modal = ({
   handleActive = () => {},
   overlayColor = 'rgba(255,255,255,0.5)',
   radius = 'md',
-  zIndex = 1,
+  zIndex = 9999,
   ...rest
 }: ModalProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const modalRef = useRef<HTMLElement>(null);
+  const [isClosing, setisClosing] = useState(false);
+  const [keepActive, setKeepActive] = useState(false);
 
-  const clickOutsideHandler = (event: any) => {
-    /* istanbul ignore else */
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
-      handleActive();
+  let timer;
+  const handleClose = (ev) => {
+    if (!allowClickOutside) {
+      return;
+    }
+    if (
+      ev === null
+      || ev.type === 'click'
+      || ev.type === 'Enter'
+      || ev.keyCode === 13
+      || ev.keyCode === 32
+    ) {
+      if (active) {
+        setKeepActive(true);
+        setisClosing(true);
+        timer = setTimeout(() => {
+          setisClosing(false);
+          setKeepActive(false);
+          handleActive();
+        }, 230);
+      }
     }
   };
 
   useEffect(() => {
-    if (allowClickOutside) {
-      if (active) {
-        document.addEventListener('mouseup', clickOutsideHandler);
-      } else {
-        document.removeEventListener('mouseup', clickOutsideHandler);
-      }
-    }
     if (active && modalRef.current) {
       modalRef.current.focus();
+      setisClosing(false);
+      setKeepActive(true);
+    } else if (!active && keepActive) {
+      handleClose(null);
     }
-    return function cleanup() {
-      document.removeEventListener('mouseup', clickOutsideHandler);
-    };
   }, [active, modalRef]);
 
-  return active
+  useEffect(
+    () => () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    },
+    [],
+  );
+
+  return active || keepActive
     ? createPortal(
       <Overlay
         data-testid='overlay'
+        onClick={handleClose}
+        onKeyDown={handleClose}
         style={{
           alignItems: 'center',
           backgroundColor: overlayColor,
@@ -93,7 +119,7 @@ const Modal = ({
           position: 'fixed',
           top: '0',
           width: '100%',
-          zIndex: 9999,
+          zIndex,
         }}
       >
         <StyledModal
@@ -106,7 +132,7 @@ const Modal = ({
           tabIndex={0}
           ref={modalRef}
           radius={radius}
-          zIndex={zIndex}
+          isClosing={isClosing}
           {...rest}
         >
           {children}

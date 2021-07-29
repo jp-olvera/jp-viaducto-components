@@ -1,10 +1,10 @@
 /* eslint-env jest */
 
 import React from 'react';
-
 import { render, screen, fireEvent } from '../../../test-utils';
 import { Modal } from '..';
 
+jest.useFakeTimers();
 describe('<Modal></Modal>', () => {
   test('should not be visible', () => {
     render(<Modal allowClickOutside={false} />);
@@ -19,16 +19,9 @@ describe('<Modal></Modal>', () => {
   test('click on the overlay should call handleActive function', () => {
     const handleActive = jest.fn();
     render(<Modal active handleActive={handleActive} />);
-    fireEvent.mouseUp(screen.getByTestId('overlay'));
-    expect(handleActive).toBeCalled();
-  });
-  test('should click outside of the modal component', () => {
-    const { container } = render(
-      <div id='a'>
-        <Modal active={false} allowClickOutside />
-      </div>,
-    );
-    fireEvent.click(container.querySelector('#a') || window);
-    expect(container).toMatchSnapshot();
+    fireEvent.click(screen.getByTestId('overlay'));
+    jest.runOnlyPendingTimers();
+    expect(handleActive).toBeCalledTimes(1);
+    jest.useRealTimers();
   });
 });
