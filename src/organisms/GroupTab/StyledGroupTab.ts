@@ -36,8 +36,18 @@ export const StyledGroupTab = styled.div < SGTI > `
       }
     }
     &:after {
-      width: 0 !important;
-      height: 0 !important;
+      bottom: -0.188rem !important;
+    }
+    &:hover:not(:nth-child(${(p) => p.index + 1})) {
+      filter: brightness(1.2);
+      &:after {
+        transition: 0.35s ease;
+        width: 100% !important;
+        height: 0.188rem !important;
+        background-color: ${(p) => p.configuration.colors[p.tabType].hover};
+        opacity: 0.2;
+        position: absolute;
+      }
     }
   }
   & .tabs {
