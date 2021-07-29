@@ -113,7 +113,8 @@ const Template = ({
     <ConfigProvider>
       <div
         style={{
-          width: '100%',
+          width: '2000px',
+          height: '1000px',
         }}
       >
         <div
@@ -173,7 +174,7 @@ const Template = ({
                 elevation={elevation}
                 elevationDirection={elevationDirection}
                 radius={radius}
-                zIndex={zIndex}
+                zIndex={5}
               />
             </div>
           </div>

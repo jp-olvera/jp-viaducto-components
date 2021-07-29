@@ -3,7 +3,7 @@
 exports[`<SidebarSection/> should render with default props 1`] = `
 <div>
   <div
-    class="StyledSidebarSection-sc-12e8js3-0 bCUxxz"
+    class="StyledSidebarSection-sc-12e8js3-0 hSyKwI"
   >
     <div
       class=""

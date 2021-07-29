@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Modal></Modal> should click outside of the modal component 1`] = `
-<div>
-  <div
-    id="a"
-  />
-</div>
-`;
