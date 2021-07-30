@@ -10,36 +10,32 @@ const config: any = {
 export default config;
 
 const Template = (args: any) => {
-  const [active, setActive] = useState(false);
-  const handleClick = () => {
-    setActive(!active);
-  };
   const ref = useRef(null);
-  const [open, setOpen] = useState(false);
-
+  const [popoverActive, setPopoverActive] = useState(false);
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [modalActive, setModalActive] = useState(false);
-  const handleActive = () => {
-    setModalActive(!modalActive);
-  };
+
   return (
     <ConfigProvider>
       <Button
         label='Abrir drawer'
         shapeColor='success'
         onClick={() => {
-          setOpen(true);
+          setDrawerIsOpen(true);
         }}
       />
       <Button
         label='Abrir modal'
         variant='outline'
         shapeColor='success'
-        onClick={handleActive}
+        onClick={() => {
+          setModalActive(!modalActive);
+        }}
       />
       <Drawer
-        active={open}
+        active={drawerIsOpen}
         onClose={() => {
-          setOpen(false);
+          setDrawerIsOpen(!drawerIsOpen);
         }}
         overlayColor='green'
       >
@@ -47,15 +43,17 @@ const Template = (args: any) => {
           label='X'
           shapeColor='info'
           onClick={() => {
-            setOpen((d) => !d);
+            setDrawerIsOpen((d) => !d);
           }}
           variant='outline'
         />
-        hola
+        <button type='button'>Do nothing</button>
         <Button
           ref={ref}
           type='button'
-          onClick={handleClick}
+          onClick={() => {
+            setPopoverActive(!popoverActive);
+          }}
           label='Popover'
           shapeColor='success'
           style={{
@@ -65,14 +63,24 @@ const Template = (args: any) => {
           }}
         />
         <Popover
-          active={active}
+          active={popoverActive}
           content={(
             <div style={{ width: '300px', height: '200px' }}>
-              <button type='button'>hola</button>
+              <button
+                type='button'
+                onClick={() => {
+                  setPopoverActive(!popoverActive);
+                }}
+              >
+                X
+              </button>
+              <button type='button'>do nothing</button>
             </div>
           )}
           target={ref}
-          handleClose={handleClick}
+          handleClose={() => {
+            setPopoverActive(!popoverActive);
+          }}
           position='bottom'
           elevation={1}
           elevationDirection='bottom'
@@ -81,7 +89,9 @@ const Template = (args: any) => {
 
       <Modal
         active={modalActive}
-        handleActive={handleActive}
+        handleActive={() => {
+          setModalActive(!modalActive);
+        }}
         allowClickOutside
         overlayColor='red'
       >
@@ -89,12 +99,11 @@ const Template = (args: any) => {
           label='X'
           variant='outline'
           shapeColor='info'
-          onClick={handleActive}
+          onClick={() => {
+            setModalActive(false);
+          }}
         />
-        <div>
-          Aquí van los children. Si no proporcionas las funciones onReject y
-          onAccept, no se mostrará la sección de controles
-        </div>
+        <div />
       </Modal>
     </ConfigProvider>
   );

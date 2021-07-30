@@ -2,7 +2,7 @@
 
 exports[`<Drawer/> should click drawer 1`] = `
 <div
-  class="StyledDrawer-sc-etbwfh-0 eqVNQi"
+  class="StyledDrawer-sc-etbwfh-0 iiNNfm"
   data-testid="drawer"
   elevation="1"
   tabindex="0"
@@ -11,26 +11,6 @@ exports[`<Drawer/> should click drawer 1`] = `
   <h1>
     Title
   </h1>
-</div>
-`;
-
-exports[`<Drawer/> should fire keydown on overlay 1`] = `
-<div
-  data-testid="overlay"
-  role="dialog"
-  style="background-color: rgba(0, 0, 0, 0.3); left: 0px; height: 100vh; position: fixed; top: 0px; width: 100vw; z-index: 9999;"
->
-  <div
-    class="StyledDrawer-sc-etbwfh-0 iRNSqa"
-    data-testid="drawer"
-    elevation="1"
-    tabindex="0"
-    width="33.375rem"
-  >
-    <h1>
-      Title
-    </h1>
-  </div>
 </div>
 `;
 

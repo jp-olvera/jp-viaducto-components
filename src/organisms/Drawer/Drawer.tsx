@@ -19,6 +19,8 @@ interface DrawerInterface {
   onClose: () => void;
   /** Overlay color preferaby an rgba */
   overlayColor?: string;
+  /** From what edge of the screen should appear */
+  placement?: string;
   /** Size of the drawer, 'sm', 'md', 'lg', defaults to 'sm' */
   size?: string;
   /** Transition function to apply when opening and closing */
@@ -35,8 +37,9 @@ const Drawer = ({
   elevationDirection = '',
   onClose,
   overlayColor = 'rgba(0,0,0,0.3)',
+  placement = 'right',
   size = 'sm',
-  transition,
+  transition = 'linear',
   zIndex = 9999,
   ...rest
 }: DrawerInterface & React.HTMLAttributes<HTMLDivElement>) => {
@@ -45,6 +48,7 @@ const Drawer = ({
   const [isClosing, setisClosing] = useState(false);
   const [keepActive, setKeepActive] = useState(false);
   let timer;
+  let timer2;
   useEffect(() => {
     if (active && ref.current) {
       ref.current.focus();
@@ -65,20 +69,18 @@ const Drawer = ({
       if (timer) {
         clearTimeout(timer);
       }
+      if (timer2) {
+        clearTimeout(timer2);
+      }
     },
     [],
   );
   const handleClose = (ev) => {
-    if (
-      ev.type === 'click'
-      || ev.type === 'Enter'
-      || ev.keyCode === 13
-      || ev.keyCode === 32
-    ) {
+    if (ev.type === 'click' || ev.key === 'Escape') {
       /* istanbul ignore else */
       if (active) {
         setisClosing(true);
-        setTimeout(() => {
+        timer2 = setTimeout(() => {
           onClose();
         }, 230);
       }
@@ -92,17 +94,15 @@ const Drawer = ({
   return active || keepActive
     ? createPortal(
       <Overlay
-        onClick={handleClose}
-        onKeyDown={handleClose}
         data-testid='overlay'
-        role='dialog'
+        onClick={handleClose}
+        onKeyUp={handleClose}
+        role='presentation'
+        tabIndex={0}
         style={{
           backgroundColor: overlayColor,
-          left: 0,
-          height: '100vh',
+          inset: 0,
           position: 'fixed',
-          top: 0,
-          width: '100vw',
           zIndex,
         }}
       >
@@ -110,18 +110,23 @@ const Drawer = ({
           configuration={configuration}
           data-testid='drawer'
           elevation={elevation}
-          transition={transition}
           elevationDirection={elevationDirection}
-          width={width}
+          isClosing={isClosing}
           tabIndex={0}
+          transition={transition}
           ref={ref}
+          size={size}
+          placement={placement}
+          width={width}
           {...rest}
           onClick={(ev: any) => {
             // Yep! this is needed
             ev.stopPropagation();
           }}
-          isClosing={isClosing}
-          size={size}
+          onKeyUp={(ev: any) => {
+            // Yep! this is needed
+            ev.stopPropagation();
+          }}
         >
           {children}
         </StyledDrawer>

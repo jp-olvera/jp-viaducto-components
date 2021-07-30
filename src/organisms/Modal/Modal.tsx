@@ -65,13 +65,7 @@ const Modal = ({
     if (!allowClickOutside) {
       return;
     }
-    if (
-      ev === null
-      || ev.type === 'click'
-      || ev.type === 'Enter'
-      || ev.keyCode === 13
-      || ev.keyCode === 32
-    ) {
+    if (ev === null || ev.type === 'click' || ev.key === 'Escape') {
       if (active) {
         setKeepActive(true);
         setisClosing(true);
@@ -90,7 +84,13 @@ const Modal = ({
       setisClosing(false);
       setKeepActive(true);
     } else if (!active && keepActive) {
-      handleClose(null);
+      setisClosing(true);
+      setKeepActive(true);
+      timer = setTimeout(() => {
+        setisClosing(false);
+        setKeepActive(false);
+        handleClose(null);
+      }, 230);
     }
   }, [active, modalRef]);
 
@@ -108,7 +108,9 @@ const Modal = ({
       <Overlay
         data-testid='overlay'
         onClick={handleClose}
-        onKeyDown={handleClose}
+        onKeyUp={handleClose}
+        tabIndex={0}
+        role='presentation'
         style={{
           alignItems: 'center',
           backgroundColor: overlayColor,
@@ -133,6 +135,14 @@ const Modal = ({
           ref={modalRef}
           radius={radius}
           isClosing={isClosing}
+          onClick={(ev: any) => {
+            // Yep! this is needed
+            ev.stopPropagation();
+          }}
+          onKeyUp={(ev: any) => {
+            // Yep! this is needed
+            ev.stopPropagation();
+          }}
           {...rest}
         >
           {children}
