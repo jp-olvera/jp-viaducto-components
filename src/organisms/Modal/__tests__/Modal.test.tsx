@@ -1,13 +1,28 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, screen, fireEvent } from '../../../test-utils';
+import ReactDOM from 'react-dom';
+import {
+  render, screen, fireEvent, act,
+} from '../../../test-utils';
 import { Modal } from '..';
 
-jest.useFakeTimers();
+let container;
+
 describe('<Modal></Modal>', () => {
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(container);
+    container = null;
+  });
   test('should not be visible', () => {
-    render(<Modal allowClickOutside={false} />);
+    act(() => {
+      ReactDOM.render(<Modal allowClickOutside={false} />, container);
+    });
     expect(screen.queryByTestId('overlay')).toBe(null);
     expect(screen.queryByTestId('modal')).toBe(null);
   });
@@ -17,9 +32,15 @@ describe('<Modal></Modal>', () => {
     expect(screen.getByTestId('modal')).toBeVisible();
   });
   test('click on the overlay should call handleActive function', () => {
+    jest.useFakeTimers();
+
     const handleActive = jest.fn();
-    render(<Modal active handleActive={handleActive} />);
-    fireEvent.click(screen.getByTestId('overlay'));
+    act(() => {
+      ReactDOM.render(<Modal active handleActive={handleActive} />, container);
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('overlay'));
+    });
     jest.runOnlyPendingTimers();
     expect(handleActive).toBeCalledTimes(1);
     jest.useRealTimers();

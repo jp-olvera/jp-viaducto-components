@@ -69,6 +69,18 @@ const config: SBConfigI = {
         type: 'select',
       },
     },
+    placement: {
+      description: 'From what edge of the screen should appear',
+      type: { name: 'string' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'right' },
+      },
+      options: ['right', 'top', 'left', 'bottom'],
+      control: {
+        type: 'select',
+      },
+    },
   },
 };
 
@@ -81,6 +93,7 @@ const Template = ({
   overlayColor,
   size,
   zIndex,
+  placement,
 }: typeof Default) => {
   const [open, setOpen] = useState(false);
   return (
@@ -103,28 +116,31 @@ const Template = ({
         overlayColor={overlayColor}
         size={size}
         zIndex={zIndex}
+        placement={placement}
       >
-        <div style={{ height: '80px', background: 'green' }} tabIndex={0}>
+        <button type='button'>hola</button>
+        {/* <div style={{ height: '80px' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Hola</h3>
         </div>
-        <div style={{ height: '80px', background: 'yellow' }} tabIndex={0}>
+        <div style={{ height: '80px' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Aquí</h3>
         </div>
-        <div style={{ height: '80px', background: 'red' }} tabIndex={0}>
+        <div style={{ height: '80px' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Puedes</h3>
         </div>
-        <div style={{ height: '80px', background: 'red' }} tabIndex={0}>
+        <div style={{ height: '80px' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Poner</h3>
         </div>
-        <div style={{ height: '80px', background: 'yellow' }} tabIndex={0}>
+        <div style={{ height: '80px' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Lo</h3>
         </div>
-        <div style={{ height: '80px', background: 'green' }} tabIndex={0}>
+        <div style={{ height: '80px' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Que</h3>
         </div>
-        <div style={{ height: '80px', background: 'yellow' }} tabIndex={0}>
+        <div style={{ height: '80px' }} tabIndex={0}>
           <h3 style={{ margin: 0 }}>Desees</h3>
         </div>
+        <hr /> */}
       </Drawer>
     </ConfigProvider>
   );
@@ -167,6 +183,7 @@ Default.args = {
   overlayColor: 'rgba(0,0,0,0.3)',
   size: 'sm',
   zIndex: 1,
+  placement: 'right',
 };
 
 export const Medium = Template.bind({});
@@ -178,6 +195,7 @@ Medium.args = {
   overlayColor: 'rgba(0,0,0,0.3)',
   size: 'md',
   zIndex: 1,
+  placement: 'right',
 };
 export const Large = Template2.bind({});
 
@@ -188,4 +206,5 @@ Large.args = {
   overlayColor: 'rgba(0,0,0,0.3)',
   size: 'lg',
   zIndex: 1,
+  placement: 'right',
 };

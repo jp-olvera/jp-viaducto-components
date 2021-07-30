@@ -43,7 +43,7 @@ const Popover = ({
   const { configuration } = useContext(ConfigContext);
   const dropRef = useRef<HTMLDivElement>(null);
   const [isClosing, setisClosing] = useState(false);
-
+  let timer;
   useEffect(() => {
     setisClosing(false);
     if (active && dropRef.current) {
@@ -155,26 +155,8 @@ const Popover = ({
       scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
       scrollParents = [];
       const thisDocument = ownerDocument(target.current);
-      // thisDocument.removeEventListener('mouseup', clickOutsideHandler);
       thisDocument.removeEventListener('resize', move);
     };
-    let timer: number;
-    // const clickOutsideHandler = (event) => {
-    //   if (dropRef.current && target.current) {
-    //     /* istanbul ignore if */
-    //     if (
-    //       dropRef.current.contains(event.target)
-    //       || target.current.contains(event.target)
-    //     ) {
-    //       return;
-    //     }
-    //     setisClosing(true);
-    //     timer = setTimeout(() => {
-    //       handleClose();
-    //       setisClosing(false);
-    //     }, 230);
-    //   }
-    // };
 
     if (active && target.current && dropRef.current) {
       addScrollListeners();
@@ -185,13 +167,21 @@ const Popover = ({
     };
   }, [active, target, target.current]);
 
+  const closeHandler = () => {
+    setisClosing(true);
+    timer = setTimeout(() => {
+      setisClosing(false);
+      handleClose();
+    }, 230);
+  };
+
   if (active && target && target.current) {
     return createPortal(
       <div
         data-testid='overlay'
         style={{ position: 'fixed', inset: 0, zIndex }}
         role='presentation'
-        onClick={handleClose}
+        onClick={closeHandler}
       >
         <StyledDrop
           configuration={configuration}
@@ -205,6 +195,10 @@ const Popover = ({
             position: 'fixed',
           }}
           tabIndex={0}
+          onClick={(ev: any) => {
+            // Yep! this is needed
+            ev.stopPropagation();
+          }}
           {...rest}
         >
           {content}

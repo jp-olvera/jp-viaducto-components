@@ -46,15 +46,4 @@ describe('<Drawer/>', () => {
     fireEvent.click(drawer);
     expect(drawer).toMatchSnapshot();
   });
-  test('should fire keydown on overlay', () => {
-    const onClose = jest.fn();
-    const { getByTestId } = render(
-      <Drawer onClose={onClose} active size='lg' transition={null}>
-        <h1>Title</h1>
-      </Drawer>,
-    );
-    const overlay = getByTestId('overlay');
-    fireEvent.keyDown(overlay, { key: 'Enter', code: 'Enter' });
-    expect(overlay).toMatchSnapshot();
-  });
 });
