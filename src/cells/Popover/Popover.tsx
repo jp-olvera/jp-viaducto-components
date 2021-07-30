@@ -2,11 +2,7 @@ import React, {
   useRef, useEffect, useContext, useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import {
-  findScrollParents,
-  ownerWindow,
-  ownerDocument,
-} from '../../utils/scroll';
+import { findScrollParents, ownerDocument } from '../../utils/scroll';
 import { StyledDrop } from './StyledDrop';
 import { ConfigContext } from '../../providers';
 
@@ -27,7 +23,7 @@ interface PopoverProps {
   radius?: string;
   /** A ref pointing to the activator */
   target: React.RefObject<HTMLElement> | any;
-  /** z-index value, it defaults to 1 */
+  /** z-index value for the overlay, it defaults to 9999 */
   zIndex?: number;
 }
 
@@ -41,7 +37,7 @@ const Popover = ({
   position = 'bottom',
   target,
   radius = 'sm',
-  zIndex = 1,
+  zIndex = 9999,
   ...rest
 }: PopoverProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -144,13 +140,14 @@ const Popover = ({
       dropRef.current.focus();
     }
   }, [dropRef, active]);
+
   useEffect(() => {
     move();
     const addScrollListeners = () => {
       scrollParents = findScrollParents(target.current);
       scrollParents.forEach((scrollParent) => scrollParent.addEventListener('scroll', move));
       const thisDocument = ownerDocument(target.current);
-      thisDocument.addEventListener('mouseup', clickOutsideHandler);
+      // thisDocument.addEventListener('mouseup', clickOutsideHandler);
       thisDocument.addEventListener('resize', move);
     };
     let scrollParents: (Element | Document)[] = [];
@@ -158,26 +155,26 @@ const Popover = ({
       scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
       scrollParents = [];
       const thisDocument = ownerDocument(target.current);
-      thisDocument.removeEventListener('mouseup', clickOutsideHandler);
+      // thisDocument.removeEventListener('mouseup', clickOutsideHandler);
       thisDocument.removeEventListener('resize', move);
     };
     let timer: number;
-    const clickOutsideHandler = (event) => {
-      if (dropRef.current && target.current) {
-        /* istanbul ignore if */
-        if (
-          dropRef.current.contains(event.target)
-          || target.current.contains(event.target)
-        ) {
-          return;
-        }
-        setisClosing(true);
-        timer = setTimeout(() => {
-          handleClose();
-          setisClosing(false);
-        }, 230);
-      }
-    };
+    // const clickOutsideHandler = (event) => {
+    //   if (dropRef.current && target.current) {
+    //     /* istanbul ignore if */
+    //     if (
+    //       dropRef.current.contains(event.target)
+    //       || target.current.contains(event.target)
+    //     ) {
+    //       return;
+    //     }
+    //     setisClosing(true);
+    //     timer = setTimeout(() => {
+    //       handleClose();
+    //       setisClosing(false);
+    //     }, 230);
+    //   }
+    // };
 
     if (active && target.current && dropRef.current) {
       addScrollListeners();
@@ -187,28 +184,36 @@ const Popover = ({
       clearTimeout(timer);
     };
   }, [active, target, target.current]);
+
   if (active && target && target.current) {
     return createPortal(
-      <StyledDrop
-        configuration={configuration}
-        elevation={elevation}
-        elevationDirection={elevationDirection}
-        isClosing={isClosing}
-        radius={radius}
-        ref={dropRef}
-        role='dialog'
-        style={{
-          position: 'fixed',
-        }}
-        tabIndex={0}
-        zIndex={zIndex}
-        {...rest}
+      <div
+        data-testid='overlay'
+        style={{ position: 'fixed', inset: 0, zIndex }}
+        role='presentation'
+        onClick={handleClose}
       >
-        {content}
-      </StyledDrop>,
+        <StyledDrop
+          configuration={configuration}
+          elevation={elevation}
+          elevationDirection={elevationDirection}
+          isClosing={isClosing}
+          radius={radius}
+          ref={dropRef}
+          role='dialog'
+          style={{
+            position: 'fixed',
+          }}
+          tabIndex={0}
+          {...rest}
+        >
+          {content}
+        </StyledDrop>
+      </div>,
       document.body,
     );
   }
   return null;
 };
+
 export default Popover;

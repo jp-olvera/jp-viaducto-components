@@ -1,7 +1,15 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { ConfigProps } from 'ballena-types';
 import getElevation from '../../utils/getElevation';
 
+const show = keyframes`
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(100%);
+  }
+`;
 interface StyledModalProps {
   configuration: ConfigProps;
   isActive: boolean;
@@ -10,18 +18,23 @@ interface StyledModalProps {
   elevationDirection: string;
   ref: any;
   radius: string;
-  zIndex: number;
+  isClosing: boolean;
 }
 const StyledModal = styled.div < StyledModalProps > `
+  animation: ${show} 230ms ease-out;
   background: ${(p) => p.backgroundColor || p.configuration.colors.background};
   border-radius: ${(p) => p.configuration.radius[p.radius]};
   max-width: 100%;
   max-height: calc(100% - 96px);
   min-height: 30%;
   width: 520px;
-  z-index: ${(p) => p.zIndex};
   overflow-x: auto;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
+  ${(p) => p.isClosing
+    && css`
+      transform: scale(0);
+      transition: transform 230ms linear;
+    `};
 `;
 
 export default StyledModal;

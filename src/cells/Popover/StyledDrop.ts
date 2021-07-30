@@ -29,7 +29,6 @@ interface StyledDropProps {
   isClosing: boolean;
   radius: string;
   configuration: ConfigProps;
-  zIndex: number;
 }
 
 export const StyledDrop = styled.div < StyledDropProps > `
@@ -41,7 +40,6 @@ export const StyledDrop = styled.div < StyledDropProps > `
   min-width: 1rem;
   min-height: 1rem;
   transform-origin: right left;
-  z-index: ${(p) => p.zIndex};
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
   ${(p) => p.isClosing
     && css`
