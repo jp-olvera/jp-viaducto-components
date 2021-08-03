@@ -1,4 +1,4 @@
-import { ConfigProps } from 'ballena-types';
+// import { ConfigProps } from 'ballena-types';
 import styled from 'styled-components';
 import { getSize } from '../../utils/getSizes';
 
@@ -16,14 +16,14 @@ export const StyledBreadcrums = styled.nav`
     padding-left: 0 !important;
   }
 `;
-interface Breadcrum {
-  active: boolean;
-  fontSize: string;
-  spacing: string;
-  family: string;
-  configuration: ConfigProps;
-}
-export const StyledBreadcrum = styled.div < Breadcrum > `
+// interface Breadcrum {
+//   active: boolean;
+//   fontSize: string;
+//   spacing: string;
+//   family: string;
+//   configuration: ConfigProps;
+// }
+export const StyledBreadcrum = styled.div < any > `
   // !important is needed because of the button inherited properties
   .v-breadcrum {
     appearance: none;
