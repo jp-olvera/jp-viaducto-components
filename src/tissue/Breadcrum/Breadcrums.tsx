@@ -41,40 +41,26 @@ const Breadcrums = ({
   // If you wanna know a little more about Children.toArray and this code
   // https://dev.to/boywithsilverwings/counting-react-children-kde
   return (
-    <nav aria-label='breadcrum'>
-      <StyledBreadcrums>
-        <BreadcrumContext.Provider value={{ breadcrumConfig }} {...rest}>
-          {showAll || Children.toArray(children).length <= 4 ? (
-            children
-          ) : (
-            <>
-              {Children.toArray(children)[0]}
-              <Breadcrum
-                label='...'
-                onClick={() => {
-                  setShowAll(true);
-                }}
-              />
-              {
-                Children.toArray(children)[
-                  Children.toArray(children).length - 3
-                ]
-              }
-              {
-                Children.toArray(children)[
-                  Children.toArray(children).length - 2
-                ]
-              }
-              {
-                Children.toArray(children)[
-                  Children.toArray(children).length - 1
-                ]
-              }
-            </>
-          )}
-        </BreadcrumContext.Provider>
-      </StyledBreadcrums>
-    </nav>
+    <StyledBreadcrums aria-label='breadcrum'>
+      <BreadcrumContext.Provider value={{ breadcrumConfig }} {...rest}>
+        {showAll || Children.toArray(children).length <= 4 ? (
+          children
+        ) : (
+          <>
+            {Children.toArray(children)[0]}
+            <Breadcrum
+              label='...'
+              onClick={() => {
+                setShowAll(true);
+              }}
+            />
+            {Children.toArray(children)[Children.toArray(children).length - 3]}
+            {Children.toArray(children)[Children.toArray(children).length - 2]}
+            {Children.toArray(children)[Children.toArray(children).length - 1]}
+          </>
+        )}
+      </BreadcrumContext.Provider>
+    </StyledBreadcrums>
   );
 };
 

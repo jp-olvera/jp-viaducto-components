@@ -43,7 +43,7 @@ const Breadcrum = ({
   const content = (
     <>
       <span className='label'>{label}</span>
-      {separator && <div className='v-separator'>/</div>}
+      {separator && <span className='v-separator'>/</span>}
     </>
   );
   return (

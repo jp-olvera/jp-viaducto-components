@@ -1,7 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { axe, toHaveNoViolations } from 'jest-axe';
 import '@testing-library/jest-dom/';
 import { ConfigProvider } from './providers';
+
+expect.extend(toHaveNoViolations);
 
 const AllTheProviders = ({ children }: any) => (
   <ConfigProvider>{children}</ConfigProvider>
@@ -18,4 +21,4 @@ const customRender = (ui, options?) => render(ui, { wrapper: AllTheProviders, ..
 export * from '@testing-library/react';
 
 // override render method
-export { customRender as render };
+export { customRender as render, axe };
