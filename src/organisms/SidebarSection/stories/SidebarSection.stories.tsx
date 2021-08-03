@@ -92,7 +92,13 @@ const Template = (args: typeof Default) => (
         <MenuItem label='Maybe use a button' nested />
       </button>
       <MenuItem label='Use an icon' href='' icon='❤' />
-      <MenuItem label='Change icon position' active icon='❤' lead={false} />
+      <MenuItem
+        label='Change icon position'
+        active
+        icon='❤'
+        href=''
+        lead={false}
+      />
     </SidebarSection>
   </ConfigProvider>
 );

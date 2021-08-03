@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render } from '../../../test-utils';
+import { render, axe } from '../../../test-utils';
 import { AvatarWithText } from '..';
 
 describe('<AvatarWithText/>', () => {
@@ -9,20 +9,22 @@ describe('<AvatarWithText/>', () => {
     src: 'aaa',
     alt: 'alt_test',
   };
-  test('should render with default values', () => {
-    const { getByAltText } = render(
+  test('should render with default values', async () => {
+    const { container, getByAltText } = render(
       <AvatarWithText avatar={avatarProps}>
         <p>Hi, Hello</p>
       </AvatarWithText>,
     );
     expect(getByAltText('alt_test')).toBeVisible();
+    expect(await axe(container)).toHaveNoViolations();
   });
-  test('should render with reverse prop', () => {
-    const { getByAltText } = render(
+  test('should render with reverse prop', async () => {
+    const { container, getByAltText } = render(
       <AvatarWithText avatar={avatarProps} reverse>
         <p>John Doe</p>
       </AvatarWithText>,
     );
     expect(getByAltText('alt_test')).toBeVisible();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

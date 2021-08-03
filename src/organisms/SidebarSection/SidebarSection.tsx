@@ -122,9 +122,9 @@ const SidebarSection = ({
               />
             )
           )}
-          {!isDropdown && !isMenu ? <ul>{children}</ul> : null}
+          {!isDropdown && !isMenu ? <div>{children}</div> : null}
           {isDropdown && !isMenu && isActive ? (
-            <ul className='nested-list'>{children}</ul>
+            <div className='nested-list'>{children}</div>
           ) : null}
         </div>
         {isMenu && isActive ? (

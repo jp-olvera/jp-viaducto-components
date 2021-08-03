@@ -1,12 +1,14 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, screen, fireEvent } from '../../../test-utils';
+import {
+  render, screen, fireEvent, axe,
+} from '../../../test-utils';
 import { SidebarSection, MenuItem } from '..';
 
 describe('<SidebarSection/>', () => {
-  test('should be visible', () => {
-    render(
+  test('should be visible', async () => {
+    const { container } = render(
       <SidebarSection
         separator
         title='Comida'
@@ -16,13 +18,19 @@ describe('<SidebarSection/>', () => {
       />,
     );
     expect(screen.getByText('Comida')).toBeVisible();
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
-  test('should render with default props', () => {
-    render(<SidebarSection separator title='Comida' icon='😊' />);
+  test('should render with default props', async () => {
+    const { container } = render(
+      <SidebarSection separator title='Comida' icon='😊' />,
+    );
     expect(screen.getByText('Comida')).toBeVisible();
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
-  test('should render option of SidebarSection', () => {
-    render(
+  test('should render option of SidebarSection', async () => {
+    const { container } = render(
       <SidebarSection
         separator
         title='Comida'
@@ -34,9 +42,11 @@ describe('<SidebarSection/>', () => {
       </SidebarSection>,
     );
     expect(screen.getByText('menu')).toBeVisible();
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
-  test('should render option after dropdown click', () => {
-    render(
+  test('should render option after dropdown click', async () => {
+    const { container } = render(
       <SidebarSection separator title='Comida' isDropdown isMenu={false}>
         <MenuItem href='#' label='menu' nested icon='❤' lead />
       </SidebarSection>,
@@ -44,9 +54,11 @@ describe('<SidebarSection/>', () => {
     expect(screen.queryByText('menu')).not.toBeInTheDocument();
     fireEvent.click(screen.getByText('Comida'));
     expect(screen.getByText('menu')).toBeVisible();
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
-  test('should render option after menu keycode 13 press', () => {
-    render(
+  test('should render option after menu keycode 13 press', async () => {
+    const { container } = render(
       <SidebarSection separator title='Comida' isDropdown={false} isMenu>
         <MenuItem href={undefined} label='menu' icon='❤' lead={false} active />
       </SidebarSection>,
@@ -57,10 +69,12 @@ describe('<SidebarSection/>', () => {
       keyCode: '13',
     });
     expect(screen.getByText('Comida')).toBeVisible();
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 
-  test('should render option after menu keycode 32 press', () => {
-    const { getByTestId } = render(
+  test('should render option after menu keycode 32 press', async () => {
+    const { getByTestId, container } = render(
       <SidebarSection
         separator
         title='Comida'
@@ -79,11 +93,15 @@ describe('<SidebarSection/>', () => {
     const button = getByTestId('button');
     fireEvent.click(button);
     expect(screen.getByText('Comida')).toBeVisible();
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
-  test('should render with default props', () => {
+  test('should render with default props', async () => {
     const { container } = render(
       <SidebarSection isDropdown={false} isMenu={false} title='' />,
     );
     expect(container).toMatchSnapshot();
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

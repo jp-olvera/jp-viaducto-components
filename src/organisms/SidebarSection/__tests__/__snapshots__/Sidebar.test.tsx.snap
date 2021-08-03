@@ -21,7 +21,7 @@ exports[`<SidebarSection/> should render with default props 1`] = `
           style="align-items: center; width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
         />
       </div>
-      <ul />
+      <div />
     </div>
   </div>
 </div>

@@ -1,8 +1,8 @@
-import { ConfigProps } from 'ballena-types';
+// import { ConfigProps } from 'ballena-types';
 import styled from 'styled-components';
 import { getSize } from '../../utils/getSizes';
 
-export const StyledBreadcrums = styled.ol`
+export const StyledBreadcrums = styled.nav`
   -webkit-box-direction: normal !important;
   -webkit-box-orient: horizontal !important;
   display: flex !important;
@@ -16,14 +16,14 @@ export const StyledBreadcrums = styled.ol`
     padding-left: 0 !important;
   }
 `;
-interface Breadcrum {
-  active: boolean;
-  fontSize: string;
-  spacing: string;
-  family: string;
-  configuration: ConfigProps;
-}
-export const StyledBreadcrum = styled.li < Breadcrum > `
+// interface Breadcrum {
+//   active: boolean;
+//   fontSize: string;
+//   spacing: string;
+//   family: string;
+//   configuration: ConfigProps;
+// }
+export const StyledBreadcrum = styled.div < any > `
   // !important is needed because of the button inherited properties
   .v-breadcrum {
     appearance: none;
@@ -41,7 +41,6 @@ export const StyledBreadcrum = styled.li < Breadcrum > `
     ? p.configuration.colors.text.darkGray
     : p.configuration.colors.text.mutedGray)};
     font-weight: normal;
-    outline: none;
     cursor: pointer;
     box-sizing: border-box;
     font-family: ${(p) => p.family || p.configuration.fontFamily};

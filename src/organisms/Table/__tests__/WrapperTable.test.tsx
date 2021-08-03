@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { render } from '../../../test-utils';
+import { render, axe } from '../../../test-utils';
 import { WrapperTable } from '..';
 
 describe('<WrapperTable/>', () => {
@@ -40,15 +40,16 @@ describe('<WrapperTable/>', () => {
       </tbody>
     </table>
   );
-  test('should render properly', () => {
+  test('should render properly', async () => {
     const { container } = render(
       <WrapperTable>
         <TestTable />
       </WrapperTable>,
     );
     expect(container).toBeVisible();
+    expect(await axe(container)).toHaveNoViolations();
   });
-  test('should render with not default props', () => {
+  test('should render with not default props', async () => {
     const { container } = render(
       <WrapperTable
         hover={false}
@@ -64,8 +65,9 @@ describe('<WrapperTable/>', () => {
       </WrapperTable>,
     );
     expect(container).toBeVisible();
+    expect(await axe(container)).toHaveNoViolations();
   });
-  test('should render with horizontal border', () => {
+  test('should render with horizontal border', async () => {
     const { container } = render(
       <WrapperTable
         colorSelected=''
@@ -81,8 +83,9 @@ describe('<WrapperTable/>', () => {
       </WrapperTable>,
     );
     expect(container).toBeVisible();
+    expect(await axe(container)).toHaveNoViolations();
   });
-  test('should render with vertical border', () => {
+  test('should render with vertical border', async () => {
     const { container } = render(
       <WrapperTable
         colorSelected=''
@@ -99,5 +102,6 @@ describe('<WrapperTable/>', () => {
       </WrapperTable>,
     );
     expect(container).toBeVisible();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

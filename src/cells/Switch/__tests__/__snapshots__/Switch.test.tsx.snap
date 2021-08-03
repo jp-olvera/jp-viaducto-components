@@ -3,15 +3,24 @@
 exports[`<Switch/> should fire hover event 1`] = `
 <div>
   <label
-    class="StyledSwitch-sc-10hvevw-0 kirfCf"
+    for="Switch1"
   >
-    <input
-      type="checkbox"
-    />
-    <span
-      class="slider round"
-      data-testid="slider"
-    />
+    Switch
+    <label
+      class="StyledSwitch-sc-10hvevw-0 kirfCf"
+      data-testid="Switch1"
+      for="Switch1"
+    >
+      <input
+        id="Switch1"
+        type="checkbox"
+      />
+      <span
+        class="slider round"
+        data-testid="slider"
+      />
+    </label>
+    ,
   </label>
 </div>
 `;
