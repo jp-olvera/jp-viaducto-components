@@ -45,4 +45,6 @@ describe('<Modal></Modal>', () => {
     expect(handleActive).toBeCalledTimes(1);
     jest.useRealTimers();
   });
+
+  test('ev', async () => {});
 });

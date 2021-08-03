@@ -1,11 +1,14 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, screen, fireEvent } from '../../../test-utils';
+import {
+  render, screen, fireEvent, axe,
+} from '../../../test-utils';
+
 import { Button } from '..';
 
 describe('<Button/>', () => {
-  test('should render properly', () => {
+  test('should render properly without violations', async () => {
     const { container } = render(
       <Button
         label='Continue'
@@ -19,6 +22,8 @@ describe('<Button/>', () => {
       />,
     );
     expect(container).toBeDefined();
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 
   test('should have focus', () => {

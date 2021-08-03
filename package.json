@@ -1,6 +1,6 @@
 {
   "name": "@jp-olvera/jp-viaducto-components",
-  "version": "6.2.2",
+  "version": "6.2.3",
   "description": "Los componentes de este repositorio están diseñados particular de los proyectos de viaducto",
   "main": "dist/index.js",
   "scripts": {
@@ -58,6 +58,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@types/jest": "^26.0.24",
+    "@types/jest-axe": "^3.5.2",
     "@types/node": "^16.0.1",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",

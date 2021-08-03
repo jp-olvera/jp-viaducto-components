@@ -86,13 +86,8 @@ const getDecoration = (p: { configuration: ConfigProps }) => css`
     top: 0px;
   }
 `;
-interface MenuItemProps {
-  configuration: ConfigProps;
-  active: boolean;
-  nested: boolean;
-}
 
-export const MenuItem = styled.li < MenuItemProps > `
+export const MenuItem = styled.div < any > `
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -128,7 +123,7 @@ interface SubmenuProps {
   isActive: boolean;
 }
 
-export const Submenu = styled.ul < SubmenuProps > `
+export const Submenu = styled.div < SubmenuProps > `
   background-color: ${(p) => p.configuration.colors.background};
   display: flex;
   flex-direction: column;

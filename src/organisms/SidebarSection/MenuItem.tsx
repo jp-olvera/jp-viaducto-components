@@ -74,12 +74,8 @@ const MenuItem = ({
     <Wrapper
       configuration={configuration}
       className='b'
-      role='button'
-      tabIndex={0}
-      key={label}
       active={active}
       nested={nested}
-      title={label}
       {...rest}
     >
       {href !== undefined ? (
