@@ -8,11 +8,22 @@ interface BreadcrumsProps {
   /** React Elements, use Breadcrum for wrap the children */
   children: React.ReactNode[];
   /** Set the font size */
-  fontSize?: string;
+  fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Set font family */
   family?: string;
   /** Horizontal spacing for the item and the separator */
-  separatorSpacing?: string;
+  separatorSpacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
 }
 
 /**

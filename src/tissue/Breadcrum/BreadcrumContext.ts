@@ -1,8 +1,19 @@
 import { createContext } from 'react';
 
 export interface BreadcrumValuesProps {
-  separatorSpacing: string;
-  fontSize: string;
+  separatorSpacing:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
+  fontSize: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   family: string;
 }
 

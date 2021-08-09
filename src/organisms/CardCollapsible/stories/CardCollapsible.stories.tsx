@@ -14,10 +14,17 @@ const config: SBConfigI = {
         type: { summary: 'number' },
         defaultValue: { summary: 1 },
       },
-      options: [1, 2, 3],
+      options: [0, 1, 2, 3],
       control: {
         type: 'select',
       },
+    },
+    radius: {
+      description: 'Set border radius',
+      type: { name: 'string' },
+      table: { type: { summary: 'string' }, defaultValue: { summary: 'none' } },
+      control: 'select',
+      options: ['none', 'sm', 'md', 'lg'],
     },
     elevationDirection: {
       description: "The elevation direction, if '' direction goes everywhere",
@@ -60,14 +67,6 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: null },
       },
-    },
-    breakpoint: {
-      description:
-        'Use breakpoint to set the minimum width 100%, resize to verify',
-      type: { name: 'string' },
-      table: { type: { summary: 'string' }, defaultValue: { summary: 'md' } },
-      control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     family: {
       description: 'Set font family',
@@ -152,4 +151,5 @@ Default.args = {
   transition: 'ease',
   breakpoint: 'md',
   family: 'Roboto',
+  radius: 'sm',
 };

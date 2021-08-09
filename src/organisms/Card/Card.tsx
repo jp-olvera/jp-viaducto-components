@@ -10,15 +10,24 @@ interface CardInterface {
   /** Body component */
   children?: any;
   /** Elevation indicator for shadows data */
-  elevation?: number;
+  elevation?: 0 | 1 | 2 | 3;
   /** Light indicator for shadows data */
-  elevationDirection?: string;
+  elevationDirection?:
+    | 'radial'
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'topRight'
+    | 'topLeft'
+    | 'bottomRight'
+    | 'bottomLeft';
   /** Overrides transitionTimingFunction */
   transition?: string;
   /** Set font family */
   family?: string;
   /** Set the border radius */
-  radius?: string;
+  radius?: 'none' | 'sm' | 'md' | 'lg';
 }
 
 /**
@@ -36,7 +45,7 @@ const Card = ({
   src = null,
   children = null,
   elevation = 1,
-  elevationDirection = '',
+  elevationDirection = 'radial',
   family,
   radius,
   ...rest

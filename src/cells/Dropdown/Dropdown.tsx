@@ -27,7 +27,7 @@ interface DropdownProps {
   /** Triggers an action when an element is selected */
   onClick: Function;
   /** size of the dropdown */
-  size?: string;
+  size?: 'default' | 'small' | 'large';
 }
 
 /**

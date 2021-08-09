@@ -7,7 +7,7 @@ import { StyledLabel } from './StyledCheckbox';
 /** Checkbox input component */
 interface CheckboxInterface {
   /** Size of the input */
-  checkSize?: string;
+  checkSize?: 'xl' | 'lg' | 'md' | 'sm';
   /** Color for the checkbox */
   color?: string;
   /** Enable/disable input */
@@ -15,13 +15,24 @@ interface CheckboxInterface {
   /** Font family fot the input */
   family?: string | null;
   /** Font size of the input */
-  fontSize?: string;
+  fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Label for the input */
   label?: string;
   /** Trigger an action */
   onChange?: Function;
   /** Spacing for the checkbox */
-  spacing?: string;
+  spacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
 }
 
 /**

@@ -17,9 +17,18 @@ interface NotificationInterface {
   /** Set to true for stick at top or false to stick in bottom */
   top?: boolean;
   /** Elevation indicator for shadows data */
-  elevation?: number;
+  elevation?: 0 | 1 | 2 | 3;
   /** Light indicator for shadows data */
-  elevationDirection?: string;
+  elevationDirection?:
+    | 'radial'
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'topRight'
+    | 'topLeft'
+    | 'bottomRight'
+    | 'bottomLeft';
   /** Overrides transitionTimingFunction */
   transition?: string;
 }
@@ -41,7 +50,7 @@ const Notification = ({
   active,
   top = true,
   elevation = 1,
-  elevationDirection = '',
+  elevationDirection = 'radial',
   ...rest
 }: NotificationInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);

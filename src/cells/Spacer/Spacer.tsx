@@ -11,11 +11,22 @@ const Box = styled.div < any > `
 /** A component that renders a spacer element */
 interface SpacerInterface {
   /** direction of the spacing */
-  direction?: string;
+  direction?: 'vertical' | 'horizontal';
   /** border color for storybook */
   sb?: string | null;
   /** size of the spacing */
-  size?: string;
+  size?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
 }
 
 /**

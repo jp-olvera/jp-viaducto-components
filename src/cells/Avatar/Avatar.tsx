@@ -9,7 +9,7 @@ export interface AvatarProps {
   /** HTML alt attribute */
   alt: string;
   /** The size of the image (large or default) */
-  size?: string;
+  size?: 'large' | 'default' | 'small';
   /** Custom height */
   height?: string;
   /** Custom width */
@@ -31,7 +31,7 @@ export interface AvatarProps {
 const Avatar = ({
   src,
   alt,
-  size = SIZE.default,
+  size = 'default',
   height,
   width,
   clipPath = null,

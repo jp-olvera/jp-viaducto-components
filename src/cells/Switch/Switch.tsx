@@ -10,7 +10,7 @@ interface SwitchInterface {
   /** Enable/disable input */
   disabled?: boolean;
   /** Size of the input */
-  inputSize?: string;
+  inputSize?: 'xsmall' | 'small' | 'default' | 'large';
   /** Triggers an action */
   change?: Function;
   /** Set circular/rectangular switch */

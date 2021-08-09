@@ -108,7 +108,7 @@ const config: SBConfigI = {
         type: { summary: 'number' },
         defaultValue: { summary: 1 },
       },
-      options: [1, 2, 3],
+      options: [0, 1, 2, 3],
       control: {
         type: 'select',
       },
@@ -117,10 +117,10 @@ const config: SBConfigI = {
       description: "The elevation direction, if '' direction goes everywhere",
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: "''" },
+        defaultValue: { summary: 'radial' },
       },
       options: [
-        '',
+        'radial',
         'top',
         'right',
         'bottom',
@@ -148,18 +148,6 @@ const config: SBConfigI = {
         type: { summary: 'string' },
       },
     },
-    type: {
-      description: 'One of success/danger/warning/info',
-      type: { name: 'string' },
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'success' },
-      },
-      options: ['success', 'warning', 'info', 'danger'],
-      control: {
-        type: 'select',
-      },
-    },
     transition: {
       description: 'Linear transition to use',
       type: { name: 'string' },
@@ -181,7 +169,6 @@ export const Default = Template.bind({});
 Default.args = {
   text: 'El mensaje del Toaster',
   title: 'Success',
-  type: 'success',
   elevation: 1,
   elevationDirection: 'bottom',
   transition: 'cubic-bezier(0.2, 0, 0, 1)',

@@ -6,12 +6,7 @@ import { ConfigContext } from '../../providers/ConfigProvider';
 /** Text area component */
 interface TextareaInterface {
   /** Set the border(s) of the component */
-  border?: {
-    top?: string;
-    bottom?: string;
-    left?: string;
-    right?: string;
-  } | null;
+  border?: 'none' | 'bottom' | 'all';
   /** Overrides the border color (if it is defined) */
   borderColor?: string;
   /** Sets text area disabled */
@@ -19,11 +14,21 @@ interface TextareaInterface {
   /** Sets the font family */
   family?: string;
   /** Sets the font size */
-  fontSize?: string;
+  fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Sets lateral padding */
-  lateralPadding?: string;
-  /** Set the border radius (if the border is defined). if Dtring, this value will set as you writted, if is a number, this value will be a REM size */
-  radius?: string;
+  lateralPadding?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl';
+  /** Set the border radius (if the border is defined). */
+  radius?: 'none' | 'sm' | 'md' | 'lg';
   /** Set text area with resizable props */
   resizable?: boolean;
   /** Set text area rows attribute (makes taller) */
@@ -31,7 +36,17 @@ interface TextareaInterface {
   /** Sets the font color */
   textColor?: string;
   /** Sets vertical padding */
-  verticalPadding?: string;
+  verticalPadding?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl';
 }
 
 /**

@@ -10,13 +10,13 @@ interface SelectInterface {
   /** Set background color for the select component */
   background?: string;
   /** Set the border(s) of the component */
-  border?: string;
+  border?: 'none' | 'bottom' | 'all';
   /** Set font color for the select component */
   color?: string;
   /** Set the font family */
   fontFamily?: string;
   /** Set the font size */
-  fontSize?: string;
+  fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Set the custom height for the element */
   height?: string;
   /** Set the argument to choose multiple options */
@@ -24,13 +24,13 @@ interface SelectInterface {
   /** Trigger an action */
   onChange?: Function;
   /** Set border radius property */
-  radius?: string;
+  radius?: 'none' | 'sm' | 'md' | 'lg';
   /** Set size of the select component */
-  inputSize?: string;
+  inputSize?: 'xsmall' | 'small' | 'default' | 'large';
   /** Set a label in the select component */
   label?: string;
   /** Set a label in selected position */
-  labelPosition?: string;
+  labelPosition?: 'outside' | 'overlap';
   /** Set a readonly prop */
   readonly?: boolean;
 }

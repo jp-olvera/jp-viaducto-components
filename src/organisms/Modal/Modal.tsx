@@ -16,16 +16,25 @@ interface ModalProps {
   backgroundColor?: string;
   /** Child to be render inside modal */
   children?: any;
-  /** The elevation level it should take, one of 1/2/3 */
-  elevation?: number;
-  /** The elevation direction, if '' direction goes everywhere */
-  elevationDirection?: string;
+  /** Elevation indicator for shadows data */
+  elevation?: 0 | 1 | 2 | 3;
+  /** Light indicator for shadows data */
+  elevationDirection?:
+    | 'radial'
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'topRight'
+    | 'topLeft'
+    | 'bottomRight'
+    | 'bottomLeft';
   /** function to call to close the modal */
   handleActive?: Function;
   /** Background color for the overlay */
   overlayColor?: string;
-  /** set the border radius */
-  radius?: string;
+  /** Set border radius */
+  radius?: 'none' | 'sm' | 'md' | 'lg';
   /** z-index value for the overlay, it defaults to 9999 */
   zIndex?: number;
 }
@@ -48,7 +57,7 @@ const Modal = ({
   backgroundColor = 'white',
   children,
   elevation = 1,
-  elevationDirection = '',
+  elevationDirection = 'radial',
   handleActive = () => {},
   overlayColor = 'rgba(255,255,255,0.5)',
   radius = 'md',
