@@ -15,7 +15,7 @@ interface RadioInterface {
   /** Font family fot the input */
   family?: string | null;
   /** Font Size of the input */
-  fontSize?: string;
+  fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Label for the input */
   label?: string;
   /** Triger an action on value change */
@@ -23,9 +23,20 @@ interface RadioInterface {
   /** Triger an action on input click */
   onClick?: Function;
   /** Size of the input */
-  radioSize?: string;
+  radioSize?: 'xl' | 'lg' | 'md' | 'sm';
   /** Set the horizontal spacing between the label (if it is defined) and the radio */
-  spacing?: string;
+  spacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
 }
 
 /**

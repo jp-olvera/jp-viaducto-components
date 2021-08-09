@@ -15,7 +15,7 @@ const config: SBConfigI = {
         type: { summary: 'number' },
         defaultValue: { summary: 1 },
       },
-      options: [1, 2, 3],
+      options: [0, 1, 2, 3],
       control: {
         type: 'select',
       },
@@ -27,7 +27,7 @@ const config: SBConfigI = {
         defaultValue: { summary: "''" },
       },
       options: [
-        '',
+        'radial',
         'top',
         'right',
         'bottom',

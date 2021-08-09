@@ -10,7 +10,7 @@ interface PaginationInterface {
   /** Set the number of total pages in the component */
   totalPages: number;
   /** Set the number of sibilings of the actual page */
-  sibilings: number;
+  sibilings: 0 | 1;
   /** Set an icon to prev page */
   iconLeft?: any | null;
   /** Set a label to prev page */
@@ -20,11 +20,11 @@ interface PaginationInterface {
   /** Set a label to next page */
   nextLabel?: boolean;
   /** Align the component to center, start, end */
-  position?: string;
+  position?: 'center' | 'start' | 'end';
   /** Set font family */
   family?: string;
   /** Set font size */
-  fontSize?: string;
+  fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Set the active color page */
   activeColor?: string;
   /** Set the hover color page */
@@ -32,13 +32,23 @@ interface PaginationInterface {
   /** Set font color */
   textColor?: string;
   /** Set border radius */
-  radius?: string;
+  radius?: 'none' | 'sm' | 'md' | 'lg';
   /** Set spacing in page component */
-  spacing?: string;
+  spacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl';
   /** Triggers a function when page is changed */
   onPageChange?: Function;
   /** Set button color variant */
-  variant?: string;
+  variant?: 'normal' | 'outline';
 }
 
 /**

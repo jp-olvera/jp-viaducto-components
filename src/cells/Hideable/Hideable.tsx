@@ -14,7 +14,7 @@ interface HideableInterface {
   /** Breakpoint from which it's gonna be visible */
   after?: boolean;
   /** Indicates if visible after the breakpoint, defaults to true */
-  visibleOn?: string | null;
+  visibleOn?: null | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
 /**

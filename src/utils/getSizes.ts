@@ -70,22 +70,18 @@ const getFontSize = (level: string, max: boolean = false) => {
         max ? 'calc(1.125vw * 16)' : '1vw'
       } - 0.000625rem) * 0.0689)), 1.2rem) `;
     case 'D1':
-    case 'd1':
       return `clamp(1.913rem, calc(1.913rem + ((${
         max ? 'calc(1.125vw * 16)' : '1vw'
       } - 0.000625rem) * 3.6103)), 5.16rem) `;
     case 'D2':
-    case 'd2':
       return `clamp(1.793rem, calc(1.793rem + ((${
         max ? 'calc(1.125vw * 16)' : '1vw'
       } - 0.000625rem) * 2.7875)), 4.3rem) `;
     case 'D3':
-    case 'd3':
       return `clamp(1.68rem, calc(1.68rem + ((${
         max ? 'calc(1.125vw * 16)' : '1vw'
       } - 0.000625rem) * 2.1159)), 3.583rem) `;
     case 'D4':
-    case 'd4':
       return `clamp(1.575rem, calc(1.575rem + ((${
         max ? 'calc(1.125vw * 16)' : '1vw'
       } - 0.000625rem) * 1.5689)), 2.986rem) `;

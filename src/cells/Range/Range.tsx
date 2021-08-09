@@ -22,7 +22,7 @@ interface RangeInterface {
   /** Set the font family for the value */
   family?: string | null;
   /** Set the font size for the value */
-  fontSize?: string;
+  fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Triggers an action when the value changes */
   onChange?: Function;
   /** Set the size of the range slider */

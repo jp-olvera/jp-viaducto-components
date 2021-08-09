@@ -8,22 +8,95 @@ const StyledContainer = styled.div < any > `
   width: ${(p) => (p.expandHorizontal ? '100%' : 'auto')};
   height: ${(p) => (p.expandVertical ? '100%' : 'auto')};
 `;
+
 /** Container component. This component will set padding in the direction implemented to children */
 interface ContainerInterface {
   /** Child element */
   children: any;
   /** Set padding selected in top direction, this will override parallel props */
-  top?: string | null;
+  top?:
+    | null
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Set padding selected in right direction, this will override parallel props */
-  right?: string | null;
+  right?:
+    | null
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Set padding selected in bottom direction, this will override parallel props */
-  bottom?: string | null;
+  bottom?:
+    | null
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Set padding selected in left direction, this will override parallel props */
-  left?: string | null;
+  left?:
+    | null
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Set padding selected in vertical direction */
-  vertical?: string | null;
+  vertical?:
+    | null
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Set padding selected in horizontal direction */
-  horizontal?: string | null;
+  horizontal?:
+    | null
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Set the width prop as 100% of the parent */
   expandHorizontal?: boolean | null;
   /** Set the height prop as 100% of the parent */

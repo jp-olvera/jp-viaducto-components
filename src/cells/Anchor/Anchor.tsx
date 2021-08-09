@@ -12,7 +12,7 @@ interface AnchorInterface {
   /** Target to open link */
   target?: string;
   /** The color of the anchor */
-  size?: string;
+  size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** The anchor size */
   family?: string | null;
   /** The anchor font-family */

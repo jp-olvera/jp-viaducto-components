@@ -12,15 +12,24 @@ interface PopoverProps {
   /** Any valid React element to put inside the box */
   content: React.ReactNode;
   /** Elevation level */
-  elevation?: number;
+  elevation?: 0 | 1 | 2 | 3;
   /** Elevation direction */
-  elevationDirection?: string;
+  elevationDirection?:
+    | ''
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'topRight'
+    | 'topLeft'
+    | 'bottomRight'
+    | 'bottomLeft';
   /** Function to close the popover when clicking outside */
   handleClose: () => void;
   /** Position to put the popover according to the activator, top, bottom(deafult), right or left */
-  position?: string;
+  position?: 'top' | 'bottom' | 'right' | 'left';
   /** Radius size, defaults to 'md' */
-  radius?: string;
+  radius?: 'none' | 'sm' | 'md' | 'lg';
   /** A ref pointing to the activator */
   target: React.RefObject<HTMLElement> | any;
   /** z-index value for the overlay, it defaults to 9999 */

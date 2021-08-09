@@ -11,18 +11,27 @@ interface DrawerInterface {
   active?: boolean;
   /** Content to put inside the drawer */
   children: any;
-  /** Elevation level */
-  elevation?: number;
-  /** Elevation direction */
-  elevationDirection?: string;
+  /** Elevation indicator for shadows data */
+  elevation?: 0 | 1 | 2 | 3;
+  /** Light indicator for shadows data */
+  elevationDirection?:
+    | 'radial'
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'topRight'
+    | 'topLeft'
+    | 'bottomRight'
+    | 'bottomLeft';
   /** Function to close the popover when clicking outside */
   onClose: () => void;
   /** Overlay color preferaby an rgba */
   overlayColor?: string;
   /** From what edge of the screen should appear */
-  placement?: string;
+  placement?: 'right' | 'top' | 'left' | 'bottom';
   /** Size of the drawer, 'sm', 'md', 'lg', defaults to 'sm' */
-  size?: string;
+  size?: 'sm' | 'md' | 'lg';
   /** Transition function to apply when opening and closing */
   transition?: string;
   /** z-index value for the overlay, it defaults to 9999 */
@@ -34,7 +43,7 @@ const Drawer = ({
   active = false,
   children,
   elevation = 1,
-  elevationDirection = '',
+  elevationDirection = 'radial',
   onClose,
   overlayColor = 'rgba(0,0,0,0.3)',
   placement = 'right',

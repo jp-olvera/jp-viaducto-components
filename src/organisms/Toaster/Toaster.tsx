@@ -12,9 +12,18 @@ interface ToasterInterface {
   /** The title in the top */
   title?: string;
   /** Elevation indicator for shadows data */
-  elevation?: number;
+  elevation?: 0 | 1 | 2 | 3;
   /** Light indicator for shadows data */
-  elevationDirection?: string;
+  elevationDirection?:
+    | 'radial'
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'topRight'
+    | 'topLeft'
+    | 'bottomRight'
+    | 'bottomLeft';
   /** Overrides transitionTimingFunction */
   transition?: string;
   /** Trigger a function when closes the toaster */
@@ -45,7 +54,7 @@ const Toaster = ({
   placement,
   transitionState,
   elevation = 1,
-  elevationDirection = '',
+  elevationDirection = 'radial',
   title = '',
   icon = null,
   transition = 'cubic-bezier(0.2, 0, 0, 1)',

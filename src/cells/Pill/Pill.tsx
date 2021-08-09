@@ -26,11 +26,11 @@ interface PillInterface {
   /** Text in the label */
   label?: string;
   /** Size of the pill */
-  size?: string;
+  size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Set the vertical align */
   verticalAlign?: string;
   /** set border radius */
-  radius?: string;
+  radius?: 'none' | 'sm' | 'md' | 'lg';
 }
 
 /**

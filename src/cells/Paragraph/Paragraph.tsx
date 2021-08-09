@@ -6,19 +6,19 @@ interface ParagraphInterface {
   /** The content of the Paragraph */
   children: any;
   /** Aligns the text */
-  align?: string;
+  align?: 'left' | 'right' | 'center';
   /** It defines the paragraph color */
   color?: string;
   /** Set the font family */
   family?: string | null;
   /** Defines the style of the letter */
-  fontStyle?: string;
+  fontStyle?: 'normal' | 'italic';
   /** Defines the line height of the paragraph */
   lineHeight?: string;
   /** Set the margin taking the paragraph as reference */
   margin?: string;
   /** Set the font size */
-  size?: string;
+  size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Set the letter spacing */
   spacing?: string;
   /** Set the bold (font weight) of the letter */

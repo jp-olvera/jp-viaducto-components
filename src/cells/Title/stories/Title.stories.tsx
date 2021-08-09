@@ -83,17 +83,6 @@ const config: SBConfigI = {
         type: 'select',
       },
     },
-    verticalAlign: {
-      description: 'value for vertical-align property',
-      table: {
-        defaultValue: { summary: 'baseline' },
-        type: { summary: 'string' },
-      },
-      options: ['baseline', 'top', 'bottom', 'middle'],
-      control: {
-        type: 'select',
-      },
-    },
     color: {
       description: 'value for color property',
       table: {

@@ -11,7 +11,7 @@ interface ProgressInterface {
   /** Indicates actual step as a dark green */
   currentStep?: number;
   /** Type of loder to render */
-  loader?: string;
+  loader?: 'circle' | 'progress' | 'steps';
   /** Indicates (and divides the progress indicator) the total steps */
   totalSteps?: number;
 }

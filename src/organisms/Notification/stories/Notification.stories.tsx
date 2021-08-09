@@ -9,25 +9,13 @@ const config: SBConfigI = {
   component: Notification,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
-    type: {
-      description: 'One of success/danger/warning/info',
-      type: { name: 'string' },
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'success' },
-      },
-      options: ['success', 'warning', 'info', 'danger'],
-      control: {
-        type: 'select',
-      },
-    },
     elevation: {
       description: 'The elevation level it should take, one of 1/2/3',
       table: {
         type: { summary: 'number' },
         defaultValue: { summary: 1 },
       },
-      options: [1, 2, 3],
+      options: [0, 1, 2, 3],
       control: {
         type: 'select',
       },
@@ -36,10 +24,10 @@ const config: SBConfigI = {
       description: "The elevation direction, if '' direction goes everywhere",
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: "''" },
+        defaultValue: { summary: 'radial' },
       },
       options: [
-        '',
+        'radial',
         'top',
         'right',
         'bottom',

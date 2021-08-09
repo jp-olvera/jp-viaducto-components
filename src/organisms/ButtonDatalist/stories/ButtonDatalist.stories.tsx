@@ -148,7 +148,7 @@ Default.args = {
     {
       accessor: 'Chrome',
       data: (
-        <Title level='d2'>
+        <Title level='D2'>
           This is the Title component level 2 rendered for <code>Chrome</code>
         </Title>
       ),

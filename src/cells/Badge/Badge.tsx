@@ -12,17 +12,43 @@ interface BadgeInterface {
   /** Text color */
   color?: string;
   /** Background shape */
-  clipPath?: string;
+  clipPath?:
+    | 'hexagon'
+    | 'pentagon'
+    | 'rhombus'
+    | 'ellipse'
+    | 'rabbet'
+    | 'star'
+    | 'triangle'
+    | 'circle'
+    | 'square';
   /** Font size */
-  fontSize?: string;
+  fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Badge size */
-  size?: string | { width: string; height: string };
+  size?:
+    | 'xxs'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | { width: string; height: string };
   /** Font family */
   family?: string;
   /** Background color */
   background?: string;
   /** Content align */
-  align?: string;
+  align?:
+    | 'center'
+    | 'center-right'
+    | 'center-left'
+    | 'top-center'
+    | 'bottom-center'
+    | 'top-right'
+    | 'top-left'
+    | 'bottom-right'
+    | 'bottom-left';
 }
 
 /**

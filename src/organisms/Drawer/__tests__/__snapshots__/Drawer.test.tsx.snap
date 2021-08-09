@@ -2,7 +2,7 @@
 
 exports[`<Drawer/> should click drawer 1`] = `
 <div
-  class="StyledDrawer-sc-etbwfh-0 iiNNfm"
+  class="StyledDrawer-sc-etbwfh-0 eDKkk"
   data-testid="drawer"
   elevation="1"
   tabindex="0"

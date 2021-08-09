@@ -16,7 +16,7 @@ interface TooltipInterface {
   /** Text in the tooltip */
   label?: string;
   /** Set the position of the tooltip */
-  position?: string;
+  position?: 'top' | 'right' | 'left' | 'bottom';
   /** Text color */
   textColor?: string;
 }

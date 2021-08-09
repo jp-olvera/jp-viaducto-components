@@ -11,13 +11,34 @@ interface TabI {
   /** Set tab as active */
   active?: any;
   /** Set the font size */
-  fontSize?: any;
+  fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Set the horizontal spacing taking the tab content as reference */
-  horizontalSpacing?: any;
+  horizontalSpacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Defines the icon in the tab */
   icon?: any;
   /** Set the horizontal spacing taking the icon as reference (if it is defined) */
-  iconSpacing?: any;
+  iconSpacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl';
   /** Defines a tab index for helper function */
   index?: number;
   /** Set the icon as main children and it will be place before the label (if it is defined) */
@@ -27,11 +48,29 @@ interface TabI {
   /** function to call when tab is clicked */
   onClick?: any;
   /** Set the line in position selected */
-  position?: any;
+  position?: 'bottom' | 'top' | 'right' | 'left';
   /** Set the color variant (type definition colors) for the tab */
-  tabType?: any;
+  tabType?:
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'danger'
+    | 'tab';
   /** Set the horizontal spacing taking the tab content as reference */
-  verticalSpacing?: any;
+  verticalSpacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Set font family */
   fontFamily?: string;
 }

@@ -7,9 +7,29 @@ interface AccordionInterface {
   /** Children components for the accordion */
   children?: React.ReactElement[];
   /** Padding in X */
-  paddingX?: string;
+  paddingX?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl';
   /** Padding in Y */
-  paddingY?: string;
+  paddingY?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl';
   /** Overrides transitionTimingFunction */
   transition?: string;
   /** Expand multiple items */
