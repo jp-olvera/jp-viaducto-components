@@ -9,7 +9,7 @@ export const Intro = () => (
     <ConfigProvider>
       <Spacer size='md' />
       <div style={{ fontFamily: 'Arial ' }}>
-        <Title level='d4' lineHeight='normal' color='#595959'>
+        <Title level='D4' lineHeight='normal' color='#595959'>
           Ahoy! Welcome to Andamio components
         </Title>
         <Paragraph color='grey'> - By Viaducto Team.</Paragraph>

@@ -43,7 +43,7 @@ export const StyledBreadcrum = styled.div < any > `
     font-weight: normal;
     cursor: pointer;
     box-sizing: border-box;
-    font-family: ${(p) => p.family || p.configuration.fontFamily};
+    font-family: ${(p) => p.family};
     padding-left: ${(p) => p.configuration.spacing[p.spacing]};
   }
 

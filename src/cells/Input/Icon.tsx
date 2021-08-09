@@ -59,7 +59,7 @@ export const getIcon = (icon: string | null) => {
 /** Icon component return SVG elements for Input type card */
 interface IconInterface {
   /** Select an icon to be rendered */
-  icon: string | null;
+  icon?: string | null;
 }
 
 /**
@@ -67,6 +67,6 @@ interface IconInterface {
  * @param {string} icon Select an icon to be rendered
  */
 
-const Icon = ({ icon = null }: IconInterface) => getIcon(icon);
+const Icon = ({ icon = null }: IconInterface) => <>{getIcon(icon)}</>;
 
 export default Icon;

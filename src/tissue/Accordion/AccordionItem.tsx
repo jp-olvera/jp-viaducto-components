@@ -52,7 +52,7 @@ const AccordionItem = ({
   titleItem = '',
   paddingX,
   paddingY,
-  transition = 'ease',
+  transition,
   icon = null,
   iconOpen = '',
   iconClosed = '',
@@ -65,6 +65,7 @@ const AccordionItem = ({
     expanded ? undefined : 0,
   );
   useEffect(() => {
+    /* istanbul ignore else */
     if (!height || !isOpen || !ref.current) return undefined;
     // @ts-ignore
     const resizeObserver = new ResizeObserver((el) => {

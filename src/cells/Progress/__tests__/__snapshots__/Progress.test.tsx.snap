@@ -132,8 +132,7 @@ exports[`<ProgressBar/> should render ProgressBar and create snapshot with props
 
 exports[`<StepLoader/> should render StepLoader and create snapshot 1`] = `
 <h1
-  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 PtLXC"
-  color="dark"
+  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 jhFylE"
   data-testid="loader"
 >
   14 / 14

@@ -16,7 +16,7 @@ describe('<GroupTab/>', () => {
   );
   test('should render properly', async () => {
     const { container } = render(
-      <GroupTab>
+      <GroupTab spacing={null}>
         <Tabs />
       </GroupTab>,
     );

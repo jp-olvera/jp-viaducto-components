@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextArea /> component should render disabled textarea 1`] = `
+<textarea
+  class="StyledTextarea-sc-1jfvl7f-0 ddRsYE"
+  disabled=""
+  rows="1"
+/>
+`;

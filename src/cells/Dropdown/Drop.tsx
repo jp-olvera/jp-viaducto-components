@@ -20,6 +20,7 @@ const Drop = ({ target, children, contentRef }: DropProps) => {
       let top = targetRect.bottom;
       const dropR = targetRect.left + dropW;
       // ajustar verticalmente
+      /* istanbul ignore else */
       if (windowHeight - targetRect.bottom > dropH) {
         // abajo hay espacio
         top = targetRect.bottom + 3;

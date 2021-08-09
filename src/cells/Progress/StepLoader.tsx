@@ -33,7 +33,7 @@ const StepLoader = ({
   completed,
   totalSteps,
   family,
-  color = 'dark',
+  color,
   titleLevel = '4',
   finishTextColor = '#3AE25F',
   ...rest

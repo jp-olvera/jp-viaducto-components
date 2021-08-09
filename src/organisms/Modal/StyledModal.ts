@@ -13,7 +13,7 @@ const show = keyframes`
 interface StyledModalProps {
   configuration: ConfigProps;
   isActive: boolean;
-  backgroundColor: string;
+  backgroundColor?: string;
   elevation: number;
   elevationDirection: string;
   ref: any;
@@ -22,7 +22,8 @@ interface StyledModalProps {
 }
 const StyledModal = styled.div < StyledModalProps > `
   animation: ${show} 230ms ease-out;
-  background: ${(p) => p.backgroundColor || p.configuration.colors.background};
+  background: ${(p) => p.configuration.colors[p.backgroundColor || 'background']
+    || p.backgroundColor};
   border-radius: ${(p) => p.configuration.radius[p.radius]};
   max-width: 100%;
   max-height: calc(100% - 96px);

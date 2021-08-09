@@ -85,6 +85,7 @@ const Drawer = ({
     [],
   );
   const handleClose = (ev) => {
+    /* istanbul ignore else */
     if (ev.type === 'click' || ev.key === 'Escape') {
       /* istanbul ignore else */
       if (active) {

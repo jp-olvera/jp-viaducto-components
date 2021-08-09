@@ -30,7 +30,6 @@ const StyledSidebarSection = styled.div < SideI > `
   & > * {
     overflow-x: hidden;
   }
-  /* background-color: ${(p) => p.configuration.colors.background}; */
   ul {
     margin: 0;
     padding: 0;

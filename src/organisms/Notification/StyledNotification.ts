@@ -3,7 +3,7 @@ import getElevation from '../../utils/getElevation';
 
 const StyledNotification = styled.div < any > `
   align-items: center;
-  background-color: ${(p) => p.backgroundColor || p.configuration.colors.background};
+  background-color: ${(p) => p.backgroundColor};
   border-radius: 5px;
   box-sizing: border-box;
   display: flex;

@@ -19,9 +19,7 @@ export const TooltipContainer = styled.div < any > `
     height: ${({ active }) => (active ? 'auto' : ' 0')};
     font-size: ${({ active }) => (active ? '0.9rem' : ' 0')};
     color: ${({ textColor, configuration, active }) => (active
-    ? configuration.colors.text[textColor]
-          || textColor
-          || configuration.colors.text.dark
+    ? textColor || configuration.colors.text[textColor || 'dark']
     : 'transparent')};
     position: absolute;
     z-index: 1;

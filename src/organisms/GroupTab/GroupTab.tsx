@@ -120,7 +120,7 @@ const GroupTab = ({
   }, [getPosition, space, horizontalSpacing]);
   const toPx: number = parseFloat(
     configuration.spacing[space].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0],
-  ) * (base || 16);
+  ) * base;
 
   return (
     <StyledGroupTab
@@ -157,7 +157,7 @@ const GroupTab = ({
         className='line'
         style={{
           marginLeft: getPosition === 0 ? 0 : `calc(${toPx}px + ${place}px)`,
-          width: `${getWidth}px` || 0,
+          width: `${getWidth}px`,
         }}
       />
     </StyledGroupTab>

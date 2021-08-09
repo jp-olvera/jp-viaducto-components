@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React, { useState, useRef } from 'react';
-import { render, fireEvent, screen } from '../../../test-utils';
+import { render, fireEvent } from '../../../test-utils';
 import { Popover } from '..';
 
 const clickOutside = jest.fn();
