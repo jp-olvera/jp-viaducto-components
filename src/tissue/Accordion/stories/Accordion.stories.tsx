@@ -110,7 +110,7 @@ const Template = (args) => (
         </Paragraph>
       </AccordionItem>
       <AccordionItem
-        title={(
+        titleItem={(
           <Title level='6'>
             Presiona la D para que aparezcan los controles
           </Title>
@@ -130,7 +130,7 @@ const Template = (args) => (
         </Paragraph>
       </AccordionItem>
       <AccordionItem
-        title={
+        titleItem={
           <Title level='6'>Aquí puedes poner un texto o un componente</Title>
         }
         {...args}

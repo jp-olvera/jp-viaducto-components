@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getDateDifference file getMessageDifference should return days difference 1`] = `"5 days ago"`;
