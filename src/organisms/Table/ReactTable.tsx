@@ -192,17 +192,17 @@
 //         e.target.classList.remove('drag-sort-enter');
 //       }
 //       if (draggedId && id) {
-//         let id1, id2;
+//         let iD1, iD2;
 //         for (let i = 0; i < visibleColumns.length; i++) {
 //           if (visibleColumns[i].id === draggedId) {
-//             id1 = i;
+//             iD1 = i;
 //           } else if (visibleColumns[i].id === id) {
-//             id2 = i;
+//             iD2 = i;
 //           }
 //         }
 //         const newOrder = visibleColumns.map((d) => d.id);
-//         newOrder[id2] = draggedId;
-//         newOrder[id1] = id;
+//         newOrder[iD2] = draggedId;
+//         newOrder[iD1] = id;
 //         setColumnOrder(newOrder);
 //       }
 //     }

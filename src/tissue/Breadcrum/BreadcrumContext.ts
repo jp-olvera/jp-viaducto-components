@@ -14,7 +14,7 @@ export interface BreadcrumValuesProps {
     | 'xxl'
     | 'xxxl';
   fontSize: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
-  family: string;
+  family?: string;
 }
 
 export interface BreadcrumContextProps {

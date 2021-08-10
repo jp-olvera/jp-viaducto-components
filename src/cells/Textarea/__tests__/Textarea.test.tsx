@@ -15,6 +15,10 @@ describe('<TextArea /> component', () => {
     );
     expect(container.querySelector('textarea')).not.toBeNull();
   });
+  test('should render disabled textarea', () => {
+    const { container } = render(<Textarea disabled />);
+    expect(container.querySelector('textarea')).toMatchSnapshot();
+  });
   test('should write in the textarea', () => {
     const { container } = render(
       <Textarea family={undefined} resizable radius='lg' />,

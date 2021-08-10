@@ -21,7 +21,10 @@ describe('<Modal></Modal>', () => {
   });
   test('should not be visible', () => {
     act(() => {
-      ReactDOM.render(<Modal allowClickOutside={false} />, container);
+      ReactDOM.render(
+        <Modal allowClickOutside={false} backgroundColor={null} />,
+        container,
+      );
     });
     expect(screen.queryByTestId('overlay')).toBe(null);
     expect(screen.queryByTestId('modal')).toBe(null);
@@ -36,7 +39,10 @@ describe('<Modal></Modal>', () => {
 
     const handleActive = jest.fn();
     act(() => {
-      ReactDOM.render(<Modal active handleActive={handleActive} />, container);
+      ReactDOM.render(
+        <Modal active handleActive={handleActive} backgroundColor='red' />,
+        container,
+      );
     });
     act(() => {
       fireEvent.click(screen.getByTestId('overlay'));
@@ -45,6 +51,4 @@ describe('<Modal></Modal>', () => {
     expect(handleActive).toBeCalledTimes(1);
     jest.useRealTimers();
   });
-
-  test('ev', async () => {});
 });

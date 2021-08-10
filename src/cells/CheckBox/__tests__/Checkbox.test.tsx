@@ -48,9 +48,11 @@ describe('<Checkbox/>', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
   test('should be render withour label', async () => {
+    const mock = jest.fn();
     const { container } = render(
-      <Checkbox id='checkboxNoLabel' disabled label='check' />,
+      <Checkbox id='checkboxNoLabel' disabled label='check' onChange={mock} />,
     );
+    fireEvent.click(container.querySelector('input'));
     expect(container.querySelector('input')?.hasAttribute('disabled')).toEqual(
       true,
     );

@@ -58,7 +58,7 @@ const Accordion = ({
 
   return (
     <StyledAccordion configuration={configuration} {...rest}>
-      {React.Children.map(children, (child, i) => {
+      {React.Children.map(children, (child: any, i) => {
         /* istanbul ignore if */
         if (!child) {
           return null;

@@ -3,18 +3,18 @@ import { ConfigProps } from 'ballena-types';
 
 const show = keyframes`
   0% {
-    transform: translateX(-100%);
+    width: 0;
   }
   100% {
-    transform: translateX(0);
+    width: 100%;
   }
 `;
 const hide = keyframes`
   0% {
-    transform: translateX(0);
+    width: 100%;
   }
   100% {
-    transform: translateX(-100%);
+    width: 0;
   }
 `;
 
@@ -30,7 +30,6 @@ const StyledSidebarSection = styled.div < SideI > `
   & > * {
     overflow-x: hidden;
   }
-  /* background-color: ${(p) => p.configuration.colors.background}; */
   ul {
     margin: 0;
     padding: 0;

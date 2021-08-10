@@ -73,4 +73,20 @@ describe('<Range/> component', () => {
     expect(slider?.value).toBe('5');
     expect(mockFn).toHaveBeenCalled();
   });
+  test('should render disabled range', () => {
+    const { container } = render(
+      <Range
+        min={0}
+        max={10}
+        fontSize='sm'
+        textColor='info'
+        double
+        onChange={mockFn}
+        disabled
+      />,
+    );
+    const slider = container.querySelector('input');
+    fireEvent.change(slider || window, { target: { value: 5 } });
+    expect(slider).toHaveAttribute('disabled');
+  });
 });

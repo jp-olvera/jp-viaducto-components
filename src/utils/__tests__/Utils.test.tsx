@@ -14,6 +14,7 @@ import {
   getBorder,
   getTitleLineHeight,
 } from '../getSizes';
+import { getMessageDifference } from '../getDateDifference';
 
 describe('getBorder file', () => {
   test('should return not null value', () => {
@@ -295,6 +296,47 @@ describe('getSizes file', () => {
     });
     test('should return lg value', () => {
       expect(getRangeSize('lg')).not.toBeNull();
+    });
+  });
+});
+
+describe('getDateDifference file', () => {
+  const today = new Date('10/10/2021 12:00');
+  describe('getMessageDifference', () => {
+    test('should return yesterday', () => {
+      const yesterday = new Date('9/9/2021');
+      const newToday = new Date('9/10/2021 12:00');
+
+      expect(getMessageDifference(newToday, yesterday)).toEqual('Yesterday');
+    });
+    test('should return days difference', () => {
+      const date = new Date('9/9/2011');
+      const newToday = new Date('9/4/2011');
+      expect(getMessageDifference(newToday, date)).toMatchSnapshot();
+    });
+    test('should return hours difference', () => {
+      const date = new Date('10/10/2021 08:00');
+      expect(getMessageDifference(today, date)).toEqual('4 hours ago');
+    });
+    test('should return one hour difference', () => {
+      const date = new Date('10/10/2021 12:01');
+      const newToday = new Date('10/10/2021 11:00');
+      expect(getMessageDifference(newToday, date)).toEqual('1 hour ago');
+    });
+    test('should return minutes difference', () => {
+      const date = new Date('10/10/2021 11:58');
+      expect(getMessageDifference(today, date)).toEqual('2 minutes ago');
+    });
+    test('should return one minute difference', () => {
+      const date = new Date('10/10/2021 11:59');
+      expect(getMessageDifference(today, date)).toEqual('1 minute ago');
+    });
+    test('should return exact date', () => {
+      const date = new Date('1/2/2011');
+      expect(getMessageDifference(today, date)).toEqual('01/2/2011');
+    });
+    test('should return exact date with milliseconds', () => {
+      expect(getMessageDifference(today, 1323669600000)).toEqual('12/12/2011');
     });
   });
 });

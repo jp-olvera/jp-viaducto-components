@@ -4,7 +4,7 @@ import getElevation from '../../utils/getElevation';
 const StyledToaster = styled.div < any > `
   display: flex;
   box-sizing: border-box;
-  background-color: ${(p) => p.backgoundColor || p.configuration.colors.background};
+  background-color: ${(p) => p.backgoundColor};
   border-radius: 0.313rem;
   flex-direction: column;
   margin-bottom: 0.5rem;

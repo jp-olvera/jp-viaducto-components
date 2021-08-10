@@ -7,5 +7,6 @@ export * from './Modal';
 export * from './Notification';
 export * from './Pagination';
 export * from './SidebarSection';
+export * from './Snackbar';
 export * from './Table';
 export * from './Toaster';

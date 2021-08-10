@@ -1,32 +1,19 @@
-import styled, { css } from 'styled-components';
-import getElevation from '../../utils/getElevation';
+import { ConfigProps } from 'ballena-types';
+import styled from 'styled-components';
 
-const StyledNotification = styled.div < any > `
-  align-items: center;
-  background-color: ${(p) => p.backgroundColor || p.configuration.colors.background};
-  border-radius: 5px;
-  box-sizing: border-box;
-  display: flex;
-  visibility: ${({ isActive }) => (isActive ? 'visible' : 'hidden')};
-  transition: all 0.2s ${({ transition }) => transition};
-  height: 48px;
-  left: 0;
-  padding: ${({ configuration }) => `${configuration.spacing.sm} ${configuration.spacing.xs}`};
-  position: fixed;
+interface SNI {
+  configuration: ConfigProps;
+}
+export const StyledNotification = styled.div < SNI > `
   width: 100%;
-  ${(p) => getElevation(p.elevation, p.elevationDirection)}
-  ${({ top }) => getPosition(top)}
-`;
-
-const getPosition = (top) => {
-  if (top) {
-    return css`
-      top: 0;
-    `;
+  cursor: pointer;
+  .notification-hours {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
-  return css`
-    bottom: 0;
-  `;
-};
-
-export { StyledNotification };
+  .notification-props {
+    display: flex;
+    flex-direction: column;
+  }
+`;

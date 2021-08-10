@@ -1,115 +1,89 @@
-import React, {
-  useContext, useState, useEffect, useRef,
-} from 'react';
-import { ConfigContext } from '../../providers/ConfigProvider';
+import React, { useContext } from 'react';
+import { AvatarWithText } from '../../tissue';
+import { Container, Paragraph } from '../../cells';
+import { ConfigContext } from '../../providers';
 import { StyledNotification } from './StyledNotification';
-import { Paragraph } from '../../cells/Paragraph';
-import { BareButton } from '../../cells/BareButton';
+import { AvatarProps } from '../../cells/Avatar/Avatar';
+import { getMessageDifference } from '../../utils/getDateDifference';
 
-/** Notification component with close button */
+/** Notification component */
 interface NotificationInterface {
-  /** Text label for the notification */
-  text: string;
-  /** Icon Helper */
-  icon?: any;
-  /** Attribute for shown/hide component */
-  active: boolean;
-  /** Set to true for stick at top or false to stick in bottom */
-  top?: boolean;
-  /** Elevation indicator for shadows data */
-  elevation?: 0 | 1 | 2 | 3;
-  /** Light indicator for shadows data */
-  elevationDirection?:
-    | 'radial'
-    | 'top'
-    | 'right'
-    | 'bottom'
-    | 'left'
-    | 'topRight'
-    | 'topLeft'
-    | 'bottomRight'
-    | 'bottomLeft';
-  /** Overrides transitionTimingFunction */
-  transition?: string;
+  /** Notification's title */
+  title: string;
+  /** Avatar cell props */
+  avatar: AvatarProps;
+  /** Notification date (MM/DD/YYYY HH:MM) always return absolute value, the Date object needs to be minor/equal as today's date. By default, the Time value is Today */
+  time?: Date | number;
+  /** Some component to add under the notification title, could be a text, JSX component or null */
+  description?: any;
+  /** Spacing between Avatar and text */
+  spacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
+  /** Triggers and action on click */
+  onClick?: Function;
 }
 
 /**
- * Notification component with close button
- * @param {string} text Text label for the notification
- * @param {any} icon Icon Helper
- * @param {boolean} active Attribute for shown/hide component
- * @param {boolean} top Set to true for stick at top or false to stick in bottom
- * @param {number} elevation Elevation indicator for shadows data
- * @param {string} elevationDirection Light indicator for shadows data
- * @param {string} transition Overrides transitionTimingFunction
+ * Notification component
+ * @param {string} title Notification's title
+ * @param {AvatarProps} avatar Avatar cell props
+ * @param {Date|number} time Notification date (MM/DD/YYYY HH:MM) always return absolute value, the Date object needs to be minor/equal as today's date. By default, the Time value is Today
+ * @param {any} description Some component to add under the notification title, could be a text, JSX component or null
+ * @param {string} spacing  Spacing between Avatar and text
+ * @param {Function} onClick Triggers and action on click
  */
 
 const Notification = ({
-  text,
-  icon = null,
-  active,
-  top = true,
-  elevation = 1,
-  elevationDirection = 'radial',
+  title,
+  avatar,
+  time = new Date(),
+  description,
+  spacing,
+  onClick = undefined,
   ...rest
 }: NotificationInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
-  const [isActive, setIsActive] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const today = new Date();
 
-  useEffect(() => {
-    setIsActive(active);
-  }, [active]);
-
-  useEffect(() => {
-    /* istanbul ignore else */
-    if (ref && ref.current) {
-      if (isActive) {
-        ref.current.style.setProperty('transform', 'translateX(0)');
-      } else {
-        ref.current.style.setProperty(
-          'transform',
-          top ? 'translateY(-100%)' : 'translateY(100%)',
-        );
-      }
-    }
-  }, [isActive]);
-
-  const color = configuration.colors.text.success;
+  const difference: string = getMessageDifference(today, time);
 
   return (
     <StyledNotification
-      isActive={isActive}
-      backgroundColor={color}
       configuration={configuration}
-      data-testid='notification'
-      ref={ref}
-      top={top}
-      elevation={elevation}
-      elevationDirection={elevationDirection}
       {...rest}
+      onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+        /* istanbul ignore else */
+        if (onClick) {
+          onClick(e);
+        }
+      }}
     >
-      <span
-        style={{
-          marginRight: configuration.spacing.sm,
-          alignItems: 'center',
-          display: 'flex',
-        }}
+      <Container
+        vertical='xs'
+        horizontal='xs'
+        expandHorizontal
+        className='notification-hours'
       >
-        {icon && icon}
-      </span>
-      <Paragraph size='sm' color='white'>
-        {text}
-      </Paragraph>
-      <div style={{ marginLeft: 'auto' }}>
-        <BareButton
-          onClick={() => {
-            setIsActive(false);
-          }}
-          data-testid='close-button'
-          close
-        />
-      </div>
+        <AvatarWithText avatar={avatar} spacing={spacing || 'xs'}>
+          <div className='notification-props'>
+            <Paragraph lineHeight='100%'>{title}</Paragraph>
+            {description}
+          </div>
+        </AvatarWithText>
+        <Paragraph size='xs' color='gray'>
+          {difference}
+        </Paragraph>
+      </Container>
     </StyledNotification>
   );
 };

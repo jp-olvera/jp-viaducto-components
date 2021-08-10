@@ -54,7 +54,7 @@ interface ModalProps {
 const Modal = ({
   active = false,
   allowClickOutside = true,
-  backgroundColor = 'white',
+  backgroundColor,
   children,
   elevation = 1,
   elevationDirection = 'radial',

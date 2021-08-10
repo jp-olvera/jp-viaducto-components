@@ -23,7 +23,7 @@ export const Wrapper = styled.div < any > `
     text-overflow: ellipsis;
     max-width: 95%;
   }
-  ${({ border, configuration, borderColor }) => getBorderStyle(border, borderColor, configuration)};
+  ${({ border, borderColor }) => getBorderStyle(border, borderColor)};
 
   .input {
     border: none;
@@ -140,16 +140,11 @@ export const Caption = styled.span < { configuration: ConfigProps } > `
   transform: scale(80%);
 `;
 
-export const getBorderStyle = (
-  border: string,
-  color: string,
-  config: { colors: { defaultInputBorderColor: string } },
-) => {
+export const getBorderStyle = (border: string, color: string) => {
   switch (border) {
     case 'bottom':
       return css`
-        border-bottom: 0.063rem solid
-          ${color || config.colors.defaultInputBorderColor};
+        border-bottom: 0.063rem solid ${color};
       `;
     case 'none':
       return css`
@@ -158,7 +153,7 @@ export const getBorderStyle = (
     case 'overlap':
     default:
       return css`
-        border: 0.063rem solid ${color || config.colors.defaultInputBorderColor};
+        border: 0.063rem solid ${color};
       `;
   }
 };
