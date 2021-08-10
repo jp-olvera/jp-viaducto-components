@@ -3,18 +3,18 @@ import { ConfigProps } from 'ballena-types';
 
 const show = keyframes`
   0% {
-    transform: translateX(-100%);
+    width: 0;
   }
   100% {
-    transform: translateX(0);
+    width: 100%;
   }
 `;
 const hide = keyframes`
   0% {
-    transform: translateX(0);
+    width: 100%;
   }
   100% {
-    transform: translateX(-100%);
+    width: 0;
   }
 `;
 
