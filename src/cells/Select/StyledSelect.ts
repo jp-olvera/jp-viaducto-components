@@ -22,9 +22,8 @@ interface SelectI {
 export const StyledSelectWrapper = styled.div < any > `
   position: relative;
   box-sizing: border-box;
-  ${(p) => (p.titleProps !== null
-    ? setLabelPosition(p.titleProps.position, p.inputSize, p)
-    : 'color:red')};
+  ${(p) => p.titleProps !== null
+    && setLabelPosition(p.titleProps.position, p.inputSize, p)};
   & > label {
     color: ${(p) => p.configuration.colors.text.dark};
     opacity: 0.65;
@@ -159,7 +158,7 @@ const getLateralPadding = (props) => {
 };
 
 const getHeight = (props) => {
-  const height = props.configuration.controlHeight[props.inputSize || 'default'];
+  const height = props.configuration.controlHeight[props.inputSize];
   return css`
     height: ${props.height || height};
   `;

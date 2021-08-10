@@ -8,7 +8,6 @@ import { Tooltip } from '..';
 const props = {
   label: 'This is a tooltip',
   active: true,
-  position: 'top',
   color: '#f1f1f1',
   textColor: '#000',
   family: 'Manrope',
@@ -36,7 +35,7 @@ describe('<Tooltip/>', () => {
   });
   test('should render bottom tooltip', () => {
     render(
-      <Tooltip {...props} position='bottom'>
+      <Tooltip {...props} position='bottom' textColor={null} active>
         <Container />
       </Tooltip>,
     );
@@ -60,7 +59,7 @@ describe('<Tooltip/>', () => {
   });
   test('should render default tooltip', () => {
     const { container } = render(
-      <Tooltip>
+      <Tooltip position='top'>
         <Container />
       </Tooltip>,
     );

@@ -11,7 +11,7 @@ creditCardType.resetModifications();
 /** Input component wrapped with label and span tags for better UX */
 interface InputInterface {
   /** The border type for the input (full, bottom, overlap) */
-  border?: string;
+  border?: 'outside' | 'overlap' | 'bottom' | 'none' | 'default';
   /** set the color border */
   borderColor?: string | null;
   /** Set the input disabled */
@@ -35,11 +35,11 @@ interface InputInterface {
   /** Icon for mark input is required */
   required?: boolean;
   /** Set the height of the input */
-  inputSize?: string;
+  inputSize?: 'xsmall' | 'small' | 'default' | 'large';
   /** set the card type */
   getCardType?: string;
-  /** Set the input type (text, password, email, etc.) */
-  type?: string;
+  /** Set the input type  */
+  type?: 'text' | 'number' | 'card' | 'date' | 'color' | 'time';
   /** Placeholder */
   placeholder?: string;
   /** Caption message */
@@ -152,13 +152,7 @@ const Input = ({
           onClick={(e) => {
             if (onClick) onClick(e);
           }}
-          type={
-            type === 'card' || type === 'phone'
-              ? 'tel'
-              : type === 'datetime-local'
-                ? 'date'
-                : type
-          }
+          type={type === 'card' ? 'tel' : type}
           id={rest.id}
           required
           defaultValue={newValue}

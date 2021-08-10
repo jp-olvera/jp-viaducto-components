@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-env jest */
 
 import React from 'react';
@@ -62,12 +63,20 @@ describe('<Switch/>', () => {
   });
 
   test('should not be disabled', async () => {
+    const mock = jest.fn();
     const { container, getByTestId } = render(
       <label htmlFor='Switch1'>
         Swicth
-        <Switch id='Switch1' inputSize='default' disabled={false} />,
+        <Switch
+          id='Switch1'
+          inputSize='default'
+          disabled={false}
+          change={mock}
+        />
+        ,
       </label>,
     );
+    fireEvent.click(getByTestId('Switch1').querySelector('input'));
     expect(
       getByTestId('Switch1').querySelector('input')?.hasAttribute('disabled'),
     ).toEqual(false);

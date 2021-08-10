@@ -7,16 +7,25 @@ import { StyledCollapsibleCard, StyledCollapse } from './StyledCardCollapsible';
 interface CardCollapsibleInterface {
   /** Set the collapse prop to hide content */
   collapse?: boolean;
-  /** Set the elevation prop */
-  elevation?: number;
-  /** Set the elevation direction shadow */
-  elevationDirection?: string;
+  /** Elevation indicator for shadows data */
+  elevation?: 0 | 1 | 2 | 3;
+  /** Light indicator for shadows data */
+  elevationDirection?:
+    | 'radial'
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'topRight'
+    | 'topLeft'
+    | 'bottomRight'
+    | 'bottomLeft';
   /** Set the main content for the card */
   mainContent: any;
   /** Set the collapsible content for the card */
   collapseContent?: any;
-  /** Set border radius */
-  radius?: string;
+  /** Set the border radius */
+  radius?: 'none' | 'sm' | 'md' | 'lg';
   /** Overrides the transitionTimingFunction */
   transition?: string;
   /** Set font family */

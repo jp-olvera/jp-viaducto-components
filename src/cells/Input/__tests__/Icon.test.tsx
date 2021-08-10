@@ -22,5 +22,9 @@ describe('<Icon/>', () => {
       const { container } = render(<Icon icon='american-express' />);
       expect(container).not.toBeNull();
     });
+    test('should render null icon', () => {
+      const { container } = render(<Icon />);
+      expect(container).not.toBeNull();
+    });
   });
 });

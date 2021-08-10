@@ -5,11 +5,11 @@ import { StyledTable } from './StyledTable';
 
 interface TableInterface {
   /** text-align */
-  align?: string;
+  align?: 'left' | 'right' | 'center';
   /** background-color */
   background?: string;
   /** border style, all, vertical, horizontal, none */
-  border?: string;
+  border?: 'all' | 'horizontal' | 'vertical' | 'none';
   /** border-color */
   borderColor?: string;
   /** children */
@@ -17,7 +17,7 @@ interface TableInterface {
   /** background-color to apply when a tr has the ``.selected`` className */
   colorSelected?: string;
   /** Responsive font size to apply */
-  fontSize?: string;
+  fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** font-family */
   family?: string;
   /**  text color for the table header */
@@ -25,13 +25,33 @@ interface TableInterface {
   /**  background color for the table header */
   headerBackgroundColor?: string;
   /**  horizontal padding to apply based on the spacing configuration */
-  horizontalSpacing?: string;
+  horizontalSpacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl';
   /** boolean to enable hover style */
   hover?: boolean;
   /** Color to apply on the when zebra is enabled */
   hoverColor?: string;
   /**  vertical padding to apply based on de spacing configuration */
-  verticalSpacing?: string;
+  verticalSpacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl';
   /** boolean to enable the zebra style */
   zebra?: boolean;
   /** color to apply when zebra is enabled */
@@ -57,7 +77,7 @@ const Wrapper = ({
   zebra = true,
   zebraColor,
   ...rest
-}: TableInterface) => {
+}: TableInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   return (
     <StyledTable

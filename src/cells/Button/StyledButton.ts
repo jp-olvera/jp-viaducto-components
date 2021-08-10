@@ -38,11 +38,11 @@ interface ButtonProps {
   configuration: ConfigProps;
   variant: string;
   colors: {
-    default: string;
-    hover: string;
-    click: string;
-    text: string;
-    shadow: string;
+    default?: string;
+    hover?: string;
+    click?: string;
+    text?: string;
+    shadow?: string;
   };
   lead: boolean;
   radius: string;
@@ -203,7 +203,13 @@ export const disabledColor = (p: {
   variant: string;
   configuration: { colors: { disableColor: string } };
   isLoading: boolean;
-  colors: { default: string; hover: string; click: string; text: string };
+  colors: {
+    default?: string;
+    hover?: string;
+    click?: string;
+    text?: string;
+    shadow?: string;
+  };
 }) => {
   if (p.isLoading) {
     return css`

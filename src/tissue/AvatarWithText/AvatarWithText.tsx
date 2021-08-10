@@ -16,7 +16,18 @@ interface ATI {
   /** Avatar component props */
   avatar: AvatarProps;
   /** Horizontal between avatar and children */
-  spacing?: string;
+  spacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Set the Avatar as last child */
   reverse?: boolean;
 }

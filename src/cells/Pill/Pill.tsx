@@ -26,11 +26,11 @@ interface PillInterface {
   /** Text in the label */
   label?: string;
   /** Size of the pill */
-  size?: string;
+  size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Set the vertical align */
   verticalAlign?: string;
   /** set border radius */
-  radius?: string;
+  radius?: 'none' | 'sm' | 'md' | 'lg';
 }
 
 /**
@@ -54,8 +54,8 @@ const Pill = ({
   label,
   iconLead = null,
   icon = null,
-  background = '#C4C4C4',
-  color = '#000',
+  background,
+  color,
   size = 'md',
   family = null,
   verticalAlign = 'baseline',

@@ -37,6 +37,7 @@ const config: SBConfigI = {
         'lg',
         'xl',
         'xxl',
+        'xxxl',
       ],
       control: {
         type: 'select',

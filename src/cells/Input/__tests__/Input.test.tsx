@@ -26,7 +26,6 @@ describe('<Input/>', () => {
       <Input
         inputSize='small'
         label='Im the input tested'
-        type='phone'
         defaultValue='555555'
         border='overlap'
         id='phone'
@@ -186,9 +185,7 @@ describe('<Input/>', () => {
   });
   test('should render a simple date input', async () => {
     const { container } = render(<Input label='label' type='date' id='date' />);
-    const { container: div } = render(
-      <Input label='label' type='datetime-local' />,
-    );
+    const { container: div } = render(<Input label='label' type='date' />);
     expect(container).not.toBeNull();
     expect(div).not.toBeNull();
     expect(await axe(container)).toHaveNoViolations();
@@ -202,26 +199,6 @@ describe('<Input/>', () => {
     const { container } = render(
       <Input label='label' type='color' id='color' />,
     );
-    expect(container).not.toBeNull();
-    expect(await axe(container)).toHaveNoViolations();
-  });
-  test('should render a simple phone input', async () => {
-    const { container } = render(
-      <Input
-        label='label'
-        type='phone'
-        border='overlap'
-        inputSize='xsmall'
-        id='phone'
-      />,
-    );
-    const input = container.querySelector('input');
-    fireEvent.change(input || window, { target: { value: 3654 } });
-    fireEvent.change(input || window, { target: { value: 454 } });
-    fireEvent.change(input || window, { target: { value: 5654 } });
-    fireEvent.select(input);
-    expect(input?.value).not.toBe(345);
-
     expect(container).not.toBeNull();
     expect(await axe(container)).toHaveNoViolations();
   });
@@ -239,6 +216,35 @@ describe('<Input/>', () => {
       />,
     );
     expect(container).not.toBeNull();
+    expect(await axe(container)).toHaveNoViolations();
+  });
+  test('should render color input', async () => {
+    const { container } = render(
+      <Input
+        border='none'
+        type='color'
+        required
+        placeholder='Placeholder'
+        id='card'
+        caption='Add color value'
+      />,
+    );
+    fireEvent.change(container.querySelector('input'), {
+      target: { value: '#123456' },
+    });
+    expect(await axe(container)).toHaveNoViolations();
+  });
+  test('should render color input with no value', async () => {
+    const { container } = render(
+      <Input
+        border='none'
+        type='color'
+        required
+        placeholder='Placeholder'
+        id='card'
+        caption='Add color value'
+      />,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 

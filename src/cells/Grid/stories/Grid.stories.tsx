@@ -31,7 +31,7 @@ export default config;
 const Content = ({ children }) => (
   <div
     style={{
-      backgroundColor: '#d2d4d6',
+      backgroundColor: '#D2d4d6',
       boxSizing: 'border-box',
       border: '1px solid #767b80',
       minHeight: '50px',

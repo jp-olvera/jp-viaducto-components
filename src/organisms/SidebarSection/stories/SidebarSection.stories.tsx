@@ -47,59 +47,71 @@ export default config;
 
 const Template = (args: typeof Default) => (
   <ConfigProvider>
-    <SidebarSection {...args}>
-      <MenuItem
-        href='#'
-        label='First item in the menu with a large text'
-        nested
-      />
-      <MenuItem
-        href='#'
-        label='Second item in the menu with a large text'
-        nested
-      />
-      <MenuItem
-        href='#'
-        label='Third item in the menu with a large text'
-        nested
-      />
-      <MenuItem
-        href='#'
-        label='Fourth item in the menu with a large text'
-        nested
-      />
-      <a href='http://www.google.com' target='_blank' rel='noreferrer'>
-        <MenuItem label='Wrap with an anchor or Link' nested />
-      </a>
-      <button
-        type='button'
-        onClick={() => {
-          // eslint-disable-next-line no-alert
-          alert('You clicked!');
-        }}
+    <div style={{ position: 'fixed', inset: 0 }}>
+      <div
         style={{
-          appearance: 'none',
-          border: 'none',
-          width: '100%',
-          background: 'inherit',
-          textAlign: 'left',
-          fontSize: 'inherit',
-          margin: '0',
-          padding: '0',
-          fontFamily: 'inherit',
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          width: '400px',
+          height: '100%',
         }}
       >
-        <MenuItem label='Maybe use a button' nested />
-      </button>
-      <MenuItem label='Use an icon' href='' icon='❤' />
-      <MenuItem
-        label='Change icon position'
-        active
-        icon='❤'
-        href=''
-        lead={false}
-      />
-    </SidebarSection>
+        <SidebarSection {...args}>
+          <MenuItem
+            href='#'
+            label='First item in the menu with a large text'
+            nested
+          />
+          <MenuItem
+            href='#'
+            label='Second item in the menu with a large text'
+            nested
+          />
+          <MenuItem
+            href='#'
+            label='Third item in the menu with a large text'
+            nested
+          />
+          <MenuItem
+            href='#'
+            label='Fourth item in the menu with a large text'
+            nested
+          />
+          <a href='http://www.google.com' target='_blank' rel='noreferrer'>
+            <MenuItem label='Wrap with an anchor or Link' nested />
+          </a>
+          <button
+            type='button'
+            onClick={() => {
+              // eslint-disable-next-line no-alert
+              alert('You clicked!');
+            }}
+            style={{
+              appearance: 'none',
+              border: 'none',
+              width: '100%',
+              background: 'inherit',
+              textAlign: 'left',
+              fontSize: 'inherit',
+              margin: '0',
+              padding: '0',
+              fontFamily: 'inherit',
+            }}
+          >
+            <MenuItem label='Maybe use a button' nested />
+          </button>
+          <MenuItem label='Use an icon' href='' icon='❤' />
+          <MenuItem
+            label='Change icon position'
+            active
+            icon='❤'
+            href=''
+            lead={false}
+          />
+        </SidebarSection>
+      </div>
+    </div>
   </ConfigProvider>
 );
 

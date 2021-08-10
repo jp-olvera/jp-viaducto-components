@@ -54,7 +54,7 @@ const StyledDrawer = styled.div < StyledDrawerProps > `
   max-width: 100%;
   overflow-x: auto;
   overflow-y: auto;
-  width: ${(p) => p.configuration.drawerSizes[p.size] || p.configuration.drawerSizes.sm};
+  width: ${(p) => p.configuration.drawerSizes[p.size]};
   ${(p) => getAnimation(p.placement, p.transition)}
   ${(p) => getPlacement(p.placement)}
   ${(p) => getElevation(p.elevation, p.elevationDirection)};

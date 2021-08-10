@@ -11,17 +11,57 @@ interface GTI {
   /** Tab component */
   children: any;
   /** Set the color variant (type definition colors) for the tabs */
-  tabType?: string;
+  tabType?:
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'danger'
+    | 'tab';
   /** Set the horizontal spacing taking the tab content as reference */
-  horizontalSpacing?: string;
+  horizontalSpacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Set the horizontal spacing taking the tab content as reference */
-  verticalSpacing?: string;
+  verticalSpacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Set the spacing between tabs */
-  spacing?: string;
+  spacing?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** Set the font size */
-  fontSize?: string;
+  fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Set the line in position selected */
-  position?: string;
+  position?: 'bottom' | 'top';
   /** Overrides the transitionTimingFunction */
   transition?: string;
   /** Triggers a function changing the tab */
@@ -66,21 +106,21 @@ const GroupTab = ({
     setPosition(index * 100);
   };
   const pos = position === 'top' ? 'top' : 'bottom';
+  const space: string = spacing || 'none';
   useEffect(() => {
     onload(
       ref,
       getPosition / 100,
       configuration,
-      spacing,
+      space,
       setPlace,
       setWidth,
       base,
     );
-  }, [getPosition, spacing, horizontalSpacing]);
-
+  }, [getPosition, space, horizontalSpacing]);
   const toPx: number = parseFloat(
-    configuration.spacing[spacing].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0],
-  ) * (base || 16);
+    configuration.spacing[space].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0],
+  ) * base;
 
   return (
     <StyledGroupTab
@@ -91,7 +131,7 @@ const GroupTab = ({
       transition={transition}
       tabType={tabType}
       position={position}
-      spacing={spacing}
+      spacing={spacing || 'none'}
       index={getPosition / 100}
       ref={ref}
       {...rest}
@@ -117,7 +157,7 @@ const GroupTab = ({
         className='line'
         style={{
           marginLeft: getPosition === 0 ? 0 : `calc(${toPx}px + ${place}px)`,
-          width: `${getWidth}px` || 0,
+          width: `${getWidth}px`,
         }}
       />
     </StyledGroupTab>

@@ -6,9 +6,17 @@ import { Select } from '..';
 
 describe('<Select/>', () => {
   const options = ['option1', 'option2', 'option3', 'option4'];
+  test('should render default select', () => {
+    const { container } = render(
+      <Select multiple labelPosition='overlap'>
+        <option value='B'>B</option>
+      </Select>,
+    );
+    expect(container).toBeInTheDocument();
+  });
   test('should render properly with default attributes', () => {
     const { container } = render(
-      <Select multiple>
+      <Select multiple inputSize='large' labelPosition='overlap'>
         <option value='A'>A</option>
       </Select>,
     );
@@ -25,7 +33,7 @@ describe('<Select/>', () => {
         color='white'
         radius='md'
         label='Title'
-        labelPosition='outside'
+        labelPosition='overlap'
       >
         <option value='B'>B</option>
       </Select>,
@@ -52,8 +60,9 @@ describe('<Select/>', () => {
     test('should render with lg size', () => {
       const { container } = render(
         <Select
-          inputSize='aaaa'
+          inputSize='default'
           border='all'
+          labelPosition='overlap'
           fontSize='lg'
           fontFamily='Arial'
           background='blue'

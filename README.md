@@ -33,7 +33,7 @@ ReactDOM.render(
 
 ## Overwrite configurations
 
-Through our `ConfigContext` context, you can get access to the default configurations and to the `updateConfig` function.
+Through our `ConfigContext`, you can get access to the default configurations and to the `updateConfig` function.
 You can find all the available configurations [here](https://github.com/jp-olvera/jp-viaducto-components/blob/staging/src/utils/config.ts)
 
 **Note:** There are configurations that are objects, if you want to overwrite some the keys, you need to provide the rest of them,

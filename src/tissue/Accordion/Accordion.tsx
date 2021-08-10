@@ -7,9 +7,29 @@ interface AccordionInterface {
   /** Children components for the accordion */
   children?: React.ReactElement[];
   /** Padding in X */
-  paddingX?: string;
+  paddingX?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl';
   /** Padding in Y */
-  paddingY?: string;
+  paddingY?:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl';
   /** Overrides transitionTimingFunction */
   transition?: string;
   /** Expand multiple items */
@@ -38,7 +58,7 @@ const Accordion = ({
 
   return (
     <StyledAccordion configuration={configuration} {...rest}>
-      {React.Children.map(children, (child, i) => {
+      {React.Children.map(children, (child: any, i) => {
         /* istanbul ignore if */
         if (!child) {
           return null;
