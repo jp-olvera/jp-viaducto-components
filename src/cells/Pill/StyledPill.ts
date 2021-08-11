@@ -12,11 +12,19 @@ const StyledPill = styled.div < any > `
   color: ${(p) => p.configuration.colors.text[p.color]
     || p.color
     || p.configuration.colors.text.dark};
+
+  svg {
+    font-size: ${({ size }) => getSize(size)};
+    fill: ${(p) => p.configuration.colors.text[p.color]
+      || p.color
+      || p.configuration.colors.text.dark};
+  }
   font-size: ${({ size }) => getSize(size)};
   height: 1.875rem;
   vertical-align: ${({ verticalAlign }) => verticalAlign};
   border: ${(p) => (p.borderColor !== null ? `0.063rem solid ${p.borderColor}` : 'transparent')};
   ${(p) => getPadding(p.configuration.spacing, p.hasIcon, p.hasIconLead, p.onlyText)}
+
   .span-icon {
     margin-left: ${({ configuration }) => configuration.spacing.micro};
   }

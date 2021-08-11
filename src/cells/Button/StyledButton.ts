@@ -69,6 +69,7 @@ const StyledButton = styled.button < ButtonProps > `
   flex-direction: ${(props) => (props.lead ? 'row' : 'row-reverse')};
   height: ${(p) => p.height};
   justify-content: center;
+  letter-spacing: ;
   outline: none;
   position: relative;
   text-align: center;
