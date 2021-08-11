@@ -2,6 +2,7 @@ import React from 'react';
 import { SBConfigI } from '../../../sb';
 import { Pill } from '..';
 import { ConfigProvider } from '../../../providers';
+import Icon from './iconLead.svg';
 
 const config: SBConfigI = {
   title: 'Andamio/Cells/Pill',
@@ -92,11 +93,124 @@ export default config;
 
 const Template = (args: typeof Default) => (
   <ConfigProvider>
-    <Pill {...args} />
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '10px',
+        width: '500px',
+      }}
+    >
+      <Pill {...args} />
+      <Pill label='Just label' />
+      <Pill label='Text in the pill' size='xxs' />
+      <Pill label='Text in the pill' size='xs' />
+      <Pill label='Text in the pill' size='sm' />
+      <Pill label='Text in the pill' size='md' />
+      <Pill label='Math' size='lg' />
+      <Pill label='Text in the pill' borderColor='#8b8b8b' />
+      <Pill
+        label='Text in the pill'
+        borderColor='#8b8b8b'
+        background='#eef2ffeb'
+      />
+      <Pill
+        label='Text in the pill'
+        borderColor='#8b8b8b'
+        background='#eef2ffeb'
+        color='#8b8b8b'
+      />
+      <Pill radius='lg' label='Text in the pill' borderColor='#4c72ec' />
+      <Pill
+        radius='md'
+        label='JSX'
+        borderColor='#4c72ec'
+        background='#4c71ec83'
+      />
+      <Pill radius='none' label='React' borderColor='#4c72ec' />
+      <Pill
+        radius='none'
+        label='React'
+        background='#f1f2f7'
+        handleAction={() => {}}
+      />
+      <Pill
+        radius='none'
+        label='React'
+        background='#f1f2f7'
+        borderColor='#4c72ec'
+        color='#4c72ec'
+        handleAction={() => {}}
+      />
+      <Pill radius='sm' label='Text in the pill' borderColor='#4c72ec' />
+      <Pill
+        handleAction={() => {}}
+        radius='lg'
+        label='Tag'
+        borderColor='#9f12bb'
+        background='#f0b0ddcc'
+      />
+      <Pill
+        handleAction={() => {}}
+        radius='md'
+        label='Heroku'
+        borderColor='#9f12bb'
+        background='#f0b0ddcc'
+      />
+      <Pill
+        handleAction={() => {}}
+        radius='none'
+        label='Text in the pill'
+        background='#9f12bb'
+        color='white'
+      />
+      <Pill
+        handleAction={() => {}}
+        radius='sm'
+        label='Text in the pill'
+        borderColor='#9f12bb'
+        color='#9f12bb'
+        background='#f0b0ddcc'
+      />
+      <Pill
+        handleAction={() => {}}
+        radius='sm'
+        label='Text in the pill'
+        borderColor='#9f12bb'
+        background='#f0b0ddcc'
+      />
+      <Pill
+        handleAction={() => {}}
+        label='Text in the pill'
+        background='#C4C4C4'
+        radius='none'
+      />
+      <Pill
+        handleAction={() => {}}
+        label='Text in the pill'
+        background='#C4C4C4'
+        radius='none'
+        size='lg'
+      />
+      <Pill
+        handleAction={() => {}}
+        label='Text in the pill'
+        background='#C4C4C4'
+        radius='none'
+        size='sm'
+      />
+      <Pill
+        handleAction={() => {}}
+        label='Text in the pill'
+        background='#C4C4C4'
+        radius='none'
+        size='xs'
+      />
+    </div>
   </ConfigProvider>
 );
 
-const IconLead = ({ icon }: { icon: string }) => <p>{icon}</p>;
+const IconLead = () => <img src={Icon} alt='icon' height='16px' width='16px' />;
 
 export const Default = Template.bind({});
 
@@ -105,7 +219,7 @@ Default.args = {
   background: '#C4C4C4',
   color: '#000',
   size: 'md',
-  iconLead: IconLead({ icon: '😈' }).props.children,
+  iconLead: <IconLead />,
   handleAction: () => {},
   circleBorder: true,
   radius: 'none',
