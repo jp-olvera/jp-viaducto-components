@@ -4,7 +4,7 @@ import { ConfigProvider } from '../../../providers';
 import { Accordion, AccordionItem } from '..';
 
 export default {
-  title: 'Andamio/Tissues/Accordion',
+  title: 'Ballena/Organs/Accordion',
   component: Accordion,
   argTypes: {
     paddingY: {

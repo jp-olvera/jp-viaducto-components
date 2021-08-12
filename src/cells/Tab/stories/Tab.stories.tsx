@@ -5,7 +5,7 @@ import { Tab } from '..';
 import { Container } from '../..';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Tab',
+  title: 'Ballena/Cells/Controls/Tab',
   component: Tab,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

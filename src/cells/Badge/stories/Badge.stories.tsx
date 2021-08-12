@@ -4,7 +4,7 @@ import { Badge } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Badge',
+  title: 'Ballena/Cells/Info/Badge',
   component: Badge,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

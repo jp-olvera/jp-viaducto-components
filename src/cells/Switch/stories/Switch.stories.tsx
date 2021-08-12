@@ -4,7 +4,7 @@ import { Switch } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Controls/Switch',
+  title: 'Ballena/Cells/Controls/Inputs/Switch',
   component: Switch,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

@@ -4,7 +4,7 @@ import { Grid, Column, Row } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Grid',
+  title: 'Ballena/Cells/Layout/Grid',
   component: Grid,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

@@ -4,7 +4,7 @@ import { Popover } from '..';
 import { Button } from '../..';
 
 export default {
-  title: 'Andamio/Cells/Popover',
+  title: 'Ballena/Dialog/Popover',
   component: Popover,
   argTypes: {
     active: {

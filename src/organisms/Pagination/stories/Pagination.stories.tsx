@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { Pagination } from '..';
 
 const config: SBConfigI = {
-  title: 'Andamio/Organisms/Pagination',
+  title: 'Ballena/Organs/Pagination',
   component: Pagination,
   parameters: {
     controls: { sort: 'requiredFirst' },

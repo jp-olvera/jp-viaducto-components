@@ -66,7 +66,7 @@ const App = () => {
 
 ## Storybook
 
-Find all about our components in the [Storybook Project](https://jp-olvera.github.io/jp-viaducto-components/?path=/story/andamio-cells-anchor--default)
+Find all about our components in the [Storybook Project](https://jp-olvera.github.io/jp-viaducto-components)
 
 ## Modal
 

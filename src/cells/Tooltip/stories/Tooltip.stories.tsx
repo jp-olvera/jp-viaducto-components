@@ -5,7 +5,7 @@ import { Tooltip } from '..';
 import { Input } from '../../Input';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Tooltip',
+  title: 'Ballena/Cells/Info/Tooltip',
   component: Tooltip,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

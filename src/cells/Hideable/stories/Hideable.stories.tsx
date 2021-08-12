@@ -4,7 +4,7 @@ import { Hideable } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Hideable',
+  title: 'Ballena/Cells/Layout/Hideable',
   component: Hideable,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

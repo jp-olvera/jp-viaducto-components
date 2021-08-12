@@ -4,7 +4,7 @@ import { ConfigProvider } from '../../../providers';
 import { State } from '..';
 
 const config: any = {
-  title: 'Andamio/Organisms/State',
+  title: 'Ballena/Organisms/State',
   component: State,
   parameters: { controls: { sort: 'requiredFirst' } },
 };

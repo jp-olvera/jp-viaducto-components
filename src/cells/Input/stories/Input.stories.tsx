@@ -4,7 +4,7 @@ import { Input } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Controls/Input',
+  title: 'Ballena/Cells/Controls/Inputs/Input',
   component: Input,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { Button } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Andamio/Organisms/Drawer',
+  title: 'Ballena/Dialog/Drawer',
   component: Drawer,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

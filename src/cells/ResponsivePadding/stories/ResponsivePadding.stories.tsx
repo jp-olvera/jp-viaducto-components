@@ -17,7 +17,7 @@ const commonOptions = {
 };
 
 const config: any = {
-  title: 'Andamio/Cells/ResponsivePadding',
+  title: 'Ballena/Cells/Layout/ResponsivePadding',
   component: ResponsivePadding,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

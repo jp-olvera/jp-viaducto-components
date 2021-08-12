@@ -4,7 +4,7 @@ import { Card } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Organisms/Card',
+  title: 'Ballena/Organs/Card',
   component: Card,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
