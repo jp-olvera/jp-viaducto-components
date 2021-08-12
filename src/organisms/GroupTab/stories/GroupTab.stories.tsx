@@ -5,7 +5,7 @@ import { GroupTab } from '..';
 import { Tab } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Andamio/Organisms/GroupTab',
+  title: 'Ballena/Organs/GroupTab',
   component: GroupTab,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

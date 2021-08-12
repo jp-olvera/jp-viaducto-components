@@ -12,7 +12,12 @@ export const Template = (args: any) => <UserPageExample {...args} />;
 
 Template.bind({});
 
-Template.args = {
+Template.parameters = {
   controls: { hideNoControlsWarning: true },
   options: { showPanel: false },
+  previewTabs: {
+    'storybook/docs/panel': {
+      hidden: true,
+    },
+  },
 };

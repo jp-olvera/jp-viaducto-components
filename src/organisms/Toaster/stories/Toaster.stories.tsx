@@ -90,7 +90,7 @@ const YourWrapper = ({ text, ...rest }) => {
 };
 
 const config: SBConfigI = {
-  title: 'Andamio/Organisms/Toaster',
+  title: 'Ballena/Dialog/Toaster',
   component: YourWrapper,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

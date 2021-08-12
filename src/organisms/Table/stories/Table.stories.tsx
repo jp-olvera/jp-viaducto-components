@@ -4,7 +4,7 @@ import { WrapperTable } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Organisms/WrapperTable',
+  title: 'Ballena/Cells/Layout/WrapperTable',
   component: WrapperTable,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

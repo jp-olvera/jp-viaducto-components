@@ -4,7 +4,7 @@ import { CardCollapsible } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Organisms/CardCollapsible',
+  title: 'Ballena/Organs/CardCollapsible',
   component: CardCollapsible,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

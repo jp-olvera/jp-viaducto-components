@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import Icon from './iconLead.svg';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Pill',
+  title: 'Ballena/Cells/Info/Pill',
   component: Pill,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

@@ -5,7 +5,7 @@ import { Breadcrums, Breadcrum } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Tissues/Breadcrum',
+  title: 'Ballena/Tissues/Breadcrum',
   component: Breadcrums,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

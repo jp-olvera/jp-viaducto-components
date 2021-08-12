@@ -32,7 +32,7 @@ export default create({
   inputBorderRadius: 2,
 
   // Brand settings
-  brandTitle: 'Andamio - Viaducto',
+  brandTitle: 'Ballena - Viaducto',
   brandUrl: 'https://github.com/viaducto',
   brandImage:
     'https://github.com/jl-rojas/graph-qlnest/blob/ballena/ballena.png?raw=true',

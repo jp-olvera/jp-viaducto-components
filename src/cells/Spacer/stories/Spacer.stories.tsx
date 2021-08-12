@@ -4,7 +4,7 @@ import { Spacer } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Spacer',
+  title: 'Ballena/Cells/Layout/Spacer',
   component: Spacer,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

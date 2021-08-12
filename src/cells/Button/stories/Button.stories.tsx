@@ -4,7 +4,7 @@ import { Button } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Controls/Button',
+  title: 'Ballena/Cells/Controls/Button',
   component: Button,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

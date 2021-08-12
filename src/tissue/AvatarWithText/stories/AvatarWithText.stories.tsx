@@ -5,14 +5,15 @@ import { AvatarWithText } from '../index';
 import { Container, Paragraph } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Andamio/Tissues/AvatarWithText',
+  title: 'Ballena/Tissues/AvatarWithText',
   component: AvatarWithText,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
     avatar: {
       description: 'Avatar component props',
       type: {
-        summary: '{src: string; alt: string; size?: string; height?: string; width?: string; clipPath?: string | null;}',
+        summary:
+          '{src: string; alt: string; size?: string; height?: string; width?: string; clipPath?: string | null;}',
         required: true,
       },
       table: {

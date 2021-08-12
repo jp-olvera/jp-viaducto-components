@@ -6,7 +6,7 @@ import { Button } from '../../../cells';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Organisms/Modal',
+  title: 'Ballena/Dialog/Modal',
   component: Modal,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

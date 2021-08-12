@@ -4,7 +4,7 @@ import { Checkbox } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Controls/Checkbox',
+  title: 'Ballena/Cells/Controls/Inputs/Checkbox',
   component: Checkbox,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

@@ -4,7 +4,7 @@ import { Title } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Title',
+  title: 'Ballena/Cells/Text/Title',
   component: Title,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

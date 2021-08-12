@@ -3,7 +3,7 @@ import { Dropdown } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Dropdown',
+  title: 'Ballena/Cells/Controls/Dropdown',
   component: Dropdown,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

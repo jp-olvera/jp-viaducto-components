@@ -6,7 +6,7 @@ import { Notification } from '..';
 import { Container, Paragraph } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Andamio/Organisms/Notification',
+  title: 'Ballena/Organs/Notification',
   component: Notification,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

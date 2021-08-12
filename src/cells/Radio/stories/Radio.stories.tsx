@@ -3,7 +3,7 @@ import { Radio } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Andamio/Cells/Controls/Radio',
+  title: 'Ballena/Cells/Controls/Inputs/Radio',
   component: Radio,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

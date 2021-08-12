@@ -31,7 +31,7 @@ const commonOptions = {
 };
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Container',
+  title: 'Ballena/Cells/Layout/Container',
   component: Container,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
