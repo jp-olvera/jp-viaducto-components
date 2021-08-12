@@ -70,7 +70,7 @@ export const Colors = () => {
       </pre>
       <Spacer size='lg' />
       <Title level='5'>Then, this is all our setted colors:</Title>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Not categorizated colors
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
@@ -79,28 +79,28 @@ export const Colors = () => {
         <Div c={colors.disableColor} t='disableColor' />
         <Div c={colors.iconColor} t='iconColor' />
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Navigation
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
         <Div c={colors.navigation.background} t='background' />
         <Div c={colors.navigation.color} t='color' invert />
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Neutral
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
         <Div c={colors.neutral.light} t='light' />
         <Div c={colors.neutral.invert} t='invert' />
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Surface
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
         <Div c={colors.surface.light} t='light' />
         <Div c={colors.surface.dark} t='dark' />
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Primary
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
@@ -110,7 +110,7 @@ export const Colors = () => {
         <Div c={colors.primary.text} t='text' />
         <Div c={colors.primary.shadow} t='shadow' invert />
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Secondary
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
@@ -120,7 +120,7 @@ export const Colors = () => {
         <Div c={colors.secondary.text} t='text' />
         <Div c={colors.secondary.shadow} t='shadow' invert />
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Info
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
@@ -130,7 +130,7 @@ export const Colors = () => {
         <Div c={colors.info.text} t='text' />
         <Div c={colors.info.shadow} t='shadow' invert />
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Success
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
@@ -140,7 +140,7 @@ export const Colors = () => {
         <Div c={colors.success.text} t='text' />
         <Div c={colors.success.shadow} t='shadow' invert />
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Warning
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
@@ -150,7 +150,7 @@ export const Colors = () => {
         <Div c={colors.warning.text} t='text' />
         <Div c={colors.warning.shadow} t='shadow' invert />
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Danger
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
@@ -160,7 +160,7 @@ export const Colors = () => {
         <Div c={colors.danger.text} t='text' />
         <Div c={colors.danger.shadow} t='shadow' invert />
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Tab
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
@@ -170,7 +170,7 @@ export const Colors = () => {
         <Div c={colors.tab.text} t='text' />
         <Div c={colors.tab.shadow} t='shadow' invert />
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Text
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
@@ -180,7 +180,7 @@ export const Colors = () => {
           </Paragraph>
         ))}
       </Container>
-      <Title level='6' align='center' weight='bold'>
+      <Title level='6' weight='bold'>
         Table
       </Title>
       <Container vertical='md' expandHorizontal style={flex}>
