@@ -16,6 +16,7 @@ export * from './Popover';
 export * from './Progress';
 export * from './Radio';
 export * from './Range';
+export * from './ResponsivePadding';
 export * from './Select';
 export * from './Spacer';
 export * from './Switch';
