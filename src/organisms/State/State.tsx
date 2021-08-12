@@ -23,8 +23,23 @@ interface StateProps {
     | 'warning'
     | 'danger'
     | 'tab';
+  /** Size to apply to the spacer between title and description */
+  spacerSize:
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
   /** title for the empty state */
   title: string;
+  /** Level for title */
+  titleLevel: '1' | '2' | '3' | '4' | '5' | '6' | 'D1' | 'D2' | 'D3' | 'D4';
 }
 
 /**
@@ -34,9 +49,11 @@ const State = ({
   children,
   direction = 'row',
   title,
+  titleLevel = '2',
   description,
   shapeColor = 'primary',
   buttonLabel,
+  spacerSize = 'md',
   clickHandler,
 }: StateProps) => {
   let actualDirection = direction;
@@ -66,11 +83,11 @@ const State = ({
         }}
       >
         <Spacer size='md' />
-        <Title level='2'>{title}</Title>
-        <Spacer size='md' />
+        <Title level={titleLevel}>{title}</Title>
+        <Spacer size={spacerSize} />
 
         <Paragraph size='lg'>{description}</Paragraph>
-        <Spacer size='md' />
+        <Spacer size={spacerSize} />
 
         <Button
           label={buttonLabel}
