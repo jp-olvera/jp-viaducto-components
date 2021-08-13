@@ -8,7 +8,7 @@ exports[`<Drawer/> should call keyup action drawer 1`] = `
   tabindex="0"
 >
   <div
-    class="StyledDrawer-sc-etbwfh-0 ganPxQ"
+    class="StyledDrawer-sc-192sb9b-0 iDxMiC"
     data-testid="drawer"
     elevation="1"
     tabindex="0"
@@ -23,7 +23,7 @@ exports[`<Drawer/> should call keyup action drawer 1`] = `
 
 exports[`<Drawer/> should click drawer 1`] = `
 <div
-  class="StyledDrawer-sc-etbwfh-0 iocrps"
+  class="StyledDrawer-sc-192sb9b-0 gDVBLG"
   data-testid="drawer"
   elevation="1"
   tabindex="0"
