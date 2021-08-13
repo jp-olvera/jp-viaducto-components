@@ -1,11 +1,6 @@
 import React from 'react';
 import {
-  Anchor,
-  Container,
-  Paragraph,
-  Spacer,
-  Title,
-  ResponsivePadding,
+  Container, Paragraph, Spacer, Title,
 } from '../cells';
 
 export const Typography = () => (

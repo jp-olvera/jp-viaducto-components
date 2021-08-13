@@ -24,7 +24,7 @@ interface StateProps {
     | 'danger'
     | 'tab';
   /** Size to apply to the spacer between title and description */
-  spacerSize:
+  spacerSize?:
     | 'none'
     | 'nano'
     | 'micro'
@@ -39,7 +39,7 @@ interface StateProps {
   /** title for the empty state */
   title: string;
   /** Level for title */
-  titleLevel: '1' | '2' | '3' | '4' | '5' | '6' | 'D1' | 'D2' | 'D3' | 'D4';
+  titleLevel?: '1' | '2' | '3' | '4' | '5' | '6' | 'D1' | 'D2' | 'D3' | 'D4';
 }
 
 /**
@@ -55,51 +55,45 @@ const State = ({
   buttonLabel,
   spacerSize = 'md',
   clickHandler,
-}: StateProps) => {
-  let actualDirection = direction;
-  if (direction !== 'row' && direction !== 'column') {
-    actualDirection = 'row';
-  }
-  return (
-    <div style={{ display: 'flex', flexDirection: actualDirection }}>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        {children}
-      </div>
-      <Spacer
-        direction={actualDirection === 'row' ? 'horizontal' : 'vertical'}
-        size='lg'
-      />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: actualDirection === 'row' ? 'flex-start' : 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Spacer size='md' />
-        <Title level={titleLevel}>{title}</Title>
-        <Spacer size={spacerSize} />
-
-        <Paragraph size='lg'>{description}</Paragraph>
-        <Spacer size={spacerSize} />
-
-        <Button
-          label={buttonLabel}
-          shapeColor={shapeColor}
-          onClick={() => {
-            clickHandler();
-          }}
-        />
-        <Spacer size='md' />
-      </div>
+}: StateProps) => (
+  <div style={{ display: 'flex', flexDirection: direction }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      {children}
     </div>
-  );
-};
+    <Spacer
+      direction={direction === 'row' ? 'horizontal' : 'vertical'}
+      size='lg'
+    />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: direction === 'row' ? 'flex-start' : 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Spacer size='md' />
+      <Title level={titleLevel}>{title}</Title>
+      <Spacer size={spacerSize} />
+
+      <Paragraph size='lg'>{description}</Paragraph>
+      <Spacer size={spacerSize} />
+
+      <Button
+        label={buttonLabel}
+        shapeColor={shapeColor}
+        onClick={() => {
+          clickHandler();
+        }}
+      />
+      <Spacer size='md' />
+    </div>
+  </div>
+);
 
 export default State;
