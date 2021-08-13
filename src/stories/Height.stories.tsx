@@ -32,7 +32,12 @@ export const Height = () => (
     </Title>
     <Paragraph>
       We set controlHeight value, so it is less difficult to forget and easy to
-      use. This is an example how to use controlHeight:
+      use.
+    </Paragraph>
+    <Paragraph>
+      Many components (like Input, Select, Button, etc.) are using controlHeight
+      values and have commond armony between them This is an example how to use
+      controlHeight:
     </Paragraph>
     <Spacer size='md' />
     <div style={{ display: 'flex', gap: 10 }}>
