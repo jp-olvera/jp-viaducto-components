@@ -27,7 +27,14 @@
     "react-component",
     "awesome"
   ],
-  "author": "",
+  "author": {
+    "name": "Juan Pablo Olvera Sánchez",
+    "email": "jp.olvera@viaducto.io"
+  },
+  "contributors": [
+    "Juan Pablo Olvera Sánchez <jp.olvera@viaducto.io>",
+    "Jorge Luis Rojas Arcos <jl.rojas@viaducto.io>"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jp-olvera/jp-viaducto-components/issues"
