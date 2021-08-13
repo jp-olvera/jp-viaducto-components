@@ -4,7 +4,7 @@ import { Paragraph } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Paragraph',
+  title: 'Ballena/Cells/Text/Paragraph',
   component: Paragraph,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

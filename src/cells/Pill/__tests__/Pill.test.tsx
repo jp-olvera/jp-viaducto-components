@@ -3,7 +3,9 @@
 import React from 'react';
 
 import '@testing-library/react';
-import { render, screen } from '../../../test-utils';
+import {
+  render, screen, axe, fireEvent,
+} from '../../../test-utils';
 import { Pill } from '..';
 
 describe('<Pill/>', () => {
@@ -42,7 +44,7 @@ describe('<Pill/>', () => {
     expect(screen.queryByText('=>')).toBeVisible();
   });
   test('should render Pill without label with icon lead', () => {
-    render(<Pill iconLead='Icon' icon={null} family='Roboto' />);
+    render(<Pill iconLead='Icon' icon={null} family='Roboto' label='' />);
     expect(screen.queryByText('Icon')).toBeVisible();
   });
   test('should render Pill with several props', () => {
@@ -54,8 +56,18 @@ describe('<Pill/>', () => {
         size='sm'
         verticalAlign='middle'
         iconLead='😊'
+        label=''
       />,
     );
     expect(container).toBeVisible();
+  });
+  test('should call handleAction', async () => {
+    const click = jest.fn();
+    const { container, getByRole } = render(
+      <Pill label='' handleAction={click} />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+    fireEvent.click(getByRole('button'));
+    expect(click).toHaveBeenCalledTimes(1);
   });
 });

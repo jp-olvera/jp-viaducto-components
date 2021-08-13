@@ -10,7 +10,7 @@ export const Intro = () => (
       <Spacer size='md' />
       <div style={{ fontFamily: 'Arial ' }}>
         <Title level='D4' lineHeight='normal' color='#595959'>
-          Ahoy! Welcome to Andamio components
+          Ahoy! Welcome to Ballena components
         </Title>
         <Paragraph color='grey'> - By Viaducto Team.</Paragraph>
         <Spacer size='md' />
@@ -44,7 +44,7 @@ export const Intro = () => (
         <Spacer size='nano' />
         <Paragraph>
           We are gonna explain how this DS works and what you need to consider
-          when using it. First of all, Andamio uses a config file with colors,
+          when using it. First of all, Ballena uses a config file with colors,
           sizes and breakpoints. You can overwrite this values to apply your
           custom colors and button variations, even modify the breakpoints for
           media queries, although we don not recommend overwrite the predefined
@@ -58,7 +58,7 @@ export const Intro = () => (
         <Paragraph>
           There are components where you can assign a <b>family</b> property, so
           you can overwrite the inherited css font-family property, this does
-          not mean that Andamio components is importing that font for you, but
+          not mean that Ballena components is importing that font for you, but
           if you import more than one font-family via global styles you can make
           the switch between fonts, for example in the case you want titles and
           paragraphs have different font families you could assign Consolas to
@@ -91,6 +91,11 @@ export const Intro = () => (
 Intro.parameters = {
   controls: { hideNoControlsWarning: true },
   options: { showPanel: false },
+  previewTabs: {
+    'storybook/docs/panel': {
+      hidden: true,
+    },
+  },
 };
 
 export const Usage = () => (
@@ -167,6 +172,11 @@ export const Usage = () => (
 Usage.parameters = {
   controls: { hideNoControlsWarning: true },
   options: { showPanel: false },
+  previewTabs: {
+    'storybook/docs/panel': {
+      hidden: true,
+    },
+  },
 };
 
 export const Configuration = () => (
@@ -289,6 +299,11 @@ export const Configuration = () => (
 Configuration.parameters = {
   controls: { hideNoControlsWarning: true },
   options: { showPanel: false },
+  previewTabs: {
+    'storybook/docs/panel': {
+      hidden: true,
+    },
+  },
 };
 
 export default {

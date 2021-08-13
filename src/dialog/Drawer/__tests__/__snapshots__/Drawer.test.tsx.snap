@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Drawer/> should call keyup action drawer 1`] = `
+<div
+  data-testid="overlay"
+  role="presentation"
+  style="background-color: rgba(0, 0, 0, 0.3); inset: 0; position: fixed; z-index: 9999;"
+  tabindex="0"
+>
+  <div
+    class="StyledDrawer-sc-192sb9b-0 iDxMiC"
+    data-testid="drawer"
+    elevation="1"
+    tabindex="0"
+    width="22.25rem"
+  >
+    <h1>
+      Title
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`<Drawer/> should click drawer 1`] = `
+<div
+  class="StyledDrawer-sc-192sb9b-0 gDVBLG"
+  data-testid="drawer"
+  elevation="1"
+  tabindex="0"
+  width="22.25rem"
+>
+  <h1>
+    Title
+  </h1>
+</div>
+`;
+
+exports[`<Drawer/> should no be visible 1`] = `null`;

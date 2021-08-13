@@ -4,7 +4,7 @@ import { Select } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Controls/Select',
+  title: 'Ballena/Cells/Controls/Inputs/Select',
   component: Select,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

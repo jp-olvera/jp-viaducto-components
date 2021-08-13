@@ -4,7 +4,7 @@ import { Progress } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Progress',
+  title: 'Ballena/Cells/Controls/Progress',
   component: Progress,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

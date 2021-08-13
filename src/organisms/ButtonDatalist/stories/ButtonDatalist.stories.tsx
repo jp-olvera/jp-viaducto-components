@@ -8,7 +8,7 @@ import { Paragraph, Title } from '../../../cells';
 import { AvatarWithText } from '../../../tissue';
 
 const config: SBConfigI = {
-  title: 'Andamio/Organisms/ButtonDatalist',
+  title: 'Ballena/Organisms/ButtonDatalist',
   component: ButtonDatalist,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

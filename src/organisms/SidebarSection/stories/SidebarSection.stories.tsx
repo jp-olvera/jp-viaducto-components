@@ -4,7 +4,7 @@ import { SidebarSection, MenuItem } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Organisms/SidebarSection',
+  title: 'Ballena/Organisms/SidebarSection',
   component: SidebarSection,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

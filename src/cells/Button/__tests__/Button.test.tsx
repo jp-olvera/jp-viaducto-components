@@ -101,7 +101,7 @@ describe('<Button/>', () => {
     render(
       <Button
         icon={OnlyIcon}
-        leftSpacing='large'
+        leftSpacing='lg'
         height={undefined}
         size='default'
       />,
@@ -112,7 +112,7 @@ describe('<Button/>', () => {
   test('should render button with isIconOnly props and lg padding props', () => {
     const OnlyIcon = 'OnlyIcon';
     render(
-      <Button icon={OnlyIcon} leftSpacing='large' size='large' height='48px' />,
+      <Button icon={OnlyIcon} leftSpacing='lg' size='large' height='48px' />,
     );
     expect(screen.queryByRole('button')).toBeInTheDocument();
   });

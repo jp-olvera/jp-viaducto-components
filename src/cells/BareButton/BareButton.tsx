@@ -9,12 +9,6 @@ const StyledButton = styled.button`
   cursor: pointer;
   box-sizing: border-box;
 
-  &:hover {
-    transform: translateY(-1px);
-  }
-  &:active {
-    transform: translateY(0);
-  }
   & > .close {
     width: 0.7rem !important;
   }

@@ -10,4 +10,10 @@ export const Template = (args: any) => <Elevation {...args} />;
 
 Template.bind({});
 
-Template.args = {};
+Template.parameters = {
+  previewTabs: {
+    'storybook/docs/panel': {
+      hidden: true,
+    },
+  },
+};

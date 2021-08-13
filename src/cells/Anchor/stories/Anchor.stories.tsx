@@ -4,7 +4,7 @@ import { ConfigProvider } from '../../../providers';
 import { Anchor } from '../index';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Anchor',
+  title: 'Ballena/Cells/Text/Anchor',
   component: Anchor,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

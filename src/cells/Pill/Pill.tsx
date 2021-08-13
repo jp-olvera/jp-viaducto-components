@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { ConfigContext } from '../../providers';
 import StyledPill from './StyledPill';
-import { BareButton } from '../BareButton';
 
 /** Pill component */
 interface PillInterface {
+  /** Aria label for the handleAaction button */
+  ariaLabelAction?: string;
   /** Color of the pill */
   background?: string;
   /** Color of the border */
@@ -18,19 +19,19 @@ interface PillInterface {
   /** Font family */
   family?: string | null;
   /** Action to execute */
-  handleAction?: Function | null;
+  handleAction?: React.MouseEventHandler<HTMLButtonElement> | null;
   /** Place an icon */
   icon?: any;
   /** Icon as a first child component */
   iconLead?: any;
   /** Text in the label */
-  label?: string;
+  label: string;
   /** Size of the pill */
   size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Set the vertical align */
   verticalAlign?: string;
   /** set border radius */
-  radius?: 'none' | 'sm' | 'md' | 'lg';
+  radius?: 'none' | 'sm' | 'md' | 'lg' | null;
 }
 
 /**
@@ -59,15 +60,16 @@ const Pill = ({
   size = 'md',
   family = null,
   verticalAlign = 'baseline',
-  handleAction,
+  handleAction = null,
   circleBorder = true,
-  radius,
+  radius = null,
   borderColor = null,
-  closeIcon = true,
+  ariaLabelAction = 'close',
   ...rest
 }: PillInterface & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
 
+  const actualCircleBorder = radius === null || !circleBorder;
   return (
     <StyledPill
       hasIcon={icon !== null || icon !== ''}
@@ -82,25 +84,71 @@ const Pill = ({
       configuration={configuration}
       verticalAlign={verticalAlign}
       {...rest}
-      circleBorder={circleBorder}
+      circleBorder={actualCircleBorder}
       borderColor={borderColor}
       radius={radius}
     >
-      {iconLead !== null && <span className='span-icon-lead'>{iconLead}</span>}
-      <span>{label}</span>
-      <span className='span-icon'>
-        <BareButton
-          onClick={(e) => {
-            /* istanbul ignore else */
-            if (handleAction) handleAction(e);
+      {iconLead !== null && (
+        <span
+          className='span-icon-lead'
+          style={{
+            display: 'flex',
+            alignContent: 'center',
+            alignItems: 'center',
+            height: '100%',
           }}
-          style={{ height: '100%', display: 'flex' }}
-          data-testid='btn-bare'
-          close={closeIcon}
         >
-          {icon && icon}
-        </BareButton>
+          {iconLead}
+        </span>
+      )}
+      <span
+        style={{
+          display: 'flex',
+          alignContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+        }}
+      >
+        {label}
       </span>
+      {handleAction !== null ? (
+        <span
+          className='span-icon'
+          style={{
+            display: 'flex',
+            alignContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+          }}
+        >
+          <button
+            onClick={handleAction}
+            data-testid='btn-bare'
+            aria-label={ariaLabelAction}
+            type='button'
+            style={{
+              padding: 0,
+              backgroundColor: 'transparent',
+              border: '1px solid transparent',
+              cursor: 'pointer',
+              boxSizing: 'border-box',
+            }}
+          >
+            {icon !== null ? (
+              icon
+            ) : (
+              <svg
+                height='10pt'
+                viewBox='0 0 329.26933 329'
+                width='9pt'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path d='m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0' />
+              </svg>
+            )}
+          </button>
+        </span>
+      ) : null}
     </StyledPill>
   );
 };

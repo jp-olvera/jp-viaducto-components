@@ -4,7 +4,7 @@ import { Range } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Controls/Range',
+  title: 'Ballena/Cells/Controls/Inputs/Range',
   component: Range,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

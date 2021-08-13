@@ -1,6 +1,6 @@
 {
   "name": "@jp-olvera/jp-viaducto-components",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "Los componentes de este repositorio están diseñados particular de los proyectos de viaducto",
   "main": "dist/index.js",
   "scripts": {
@@ -27,7 +27,14 @@
     "react-component",
     "awesome"
   ],
-  "author": "",
+  "author": {
+    "name": "Juan Pablo Olvera Sánchez",
+    "email": "jp.olvera@viaducto.io"
+  },
+  "contributors": [
+    "Juan Pablo Olvera Sánchez <jp.olvera@viaducto.io>",
+    "Jorge Luis Rojas Arcos <jl.rojas@viaducto.io>"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jp-olvera/jp-viaducto-components/issues"

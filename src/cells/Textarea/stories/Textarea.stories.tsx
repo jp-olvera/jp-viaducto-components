@@ -4,7 +4,7 @@ import { ConfigProvider } from '../../../providers';
 import { Textarea } from '..';
 
 const config: SBConfigI = {
-  title: 'Andamio/Cells/Controls/Textarea',
+  title: 'Ballena/Cells/Controls/Inputs/Textarea',
   component: Textarea,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
