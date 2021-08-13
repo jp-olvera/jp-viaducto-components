@@ -3,7 +3,7 @@ import { ToastProvider } from 'react-toast-notifications';
 import { ConfigProps } from 'ballena-types';
 
 import config from '../utils/config';
-import { Toaster } from '..';
+import { Toaster } from '../dialog';
 
 interface ConfigProviderInterface {
   children: any;

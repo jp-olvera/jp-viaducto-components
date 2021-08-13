@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Button, Paragraph, Title, Spacer,
-} from '../../cells';
+} from '..';
 
 interface StateProps {
   /** shapeColor to apply in teh button */
