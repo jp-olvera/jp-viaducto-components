@@ -34,73 +34,82 @@ export const Spacings = () => (
         <thead>
           <tr>
             <th>Spacer size</th>
-            <th> </th>
-            <th> </th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>none</td> <td align='right'>0rem</td>
+            <td>none</td>
+            <td align='right'>0rem</td>
             <td>
               <Box s='0rem' />
             </td>
           </tr>
           <tr>
-            <td>nano</td> <td align='right'>0.279rem</td>
+            <td>nano</td>
+            <td align='right'>0.279rem</td>
             <td>
               <Box s='0.279rem' />
             </td>
           </tr>
           <tr>
-            <td>micro</td> <td align='right'>0.335rem</td>
+            <td>micro</td>
+            <td align='right'>0.335rem</td>
             <td>
               <Box s='0.335rem' />
             </td>
           </tr>
           <tr>
-            <td>tiny</td> <td align='right'>0.402rem</td>
+            <td>tiny</td>
+            <td align='right'>0.402rem</td>
             <td>
               <Box s='0.402rem' />
             </td>
           </tr>
           <tr>
-            <td>xs</td> <td align='right'>0.482rem</td>
+            <td>xs</td>
+            <td align='right'>0.482rem</td>
             <td>
               <Box s='0.482rem' />
             </td>
           </tr>
           <tr>
-            <td>sm</td> <td align='right'>0.694rem</td>
+            <td>sm</td>
+            <td align='right'>0.694rem</td>
             <td>
               <Box s='0.694rem' />
             </td>
           </tr>
           <tr>
-            <td>md</td> <td align='right'>1.2rem</td>
+            <td>md</td>
+            <td align='right'>1.2rem</td>
             <td>
               <Box s='1.2rem' />
             </td>
           </tr>
           <tr>
-            <td>lg</td> <td align='right'>2.074rem</td>
+            <td>lg</td>
+            <td align='right'>2.074rem</td>
             <td>
               <Box s='2.074rem' />
             </td>
           </tr>
           <tr>
-            <td>xl</td> <td align='right'>2.488rem</td>
+            <td>xl</td>
+            <td align='right'>2.488rem</td>
             <td>
               <Box s='2.488rem' />
             </td>
           </tr>
           <tr>
-            <td>xxl</td> <td align='right'>2.986rem</td>
+            <td>xxl</td>
+            <td align='right'>2.986rem</td>
             <td>
               <Box s='2.986rem' />
             </td>
           </tr>
           <tr>
-            <td>xxxl</td> <td align='right'>3.5rem</td>
+            <td>xxxl</td>
+            <td align='right'>3.5rem</td>
             <td>
               <Box s='3.5rem' />
             </td>
