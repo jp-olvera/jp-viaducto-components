@@ -1,6 +1,16 @@
-const MS_PER_DAY = 1000 * 60 * 60 * 24;
-const MS_PER_HOUR = 1000 * 60 * 60;
 const MS_PER_MINUTE = 1000 * 60;
+const MS_PER_HOUR = MS_PER_MINUTE * 60;
+const MS_PER_DAY = MS_PER_HOUR * 24;
+
+const convertToUTC = (b: Date | number) => (typeof b === 'object'
+  ? Date.UTC(
+    b.getFullYear(),
+    b.getMonth(),
+    b.getDate(),
+    b.getHours(),
+    b.getMinutes(),
+  )
+  : b);
 
 export const getDayDifference = (a: Date, b: Date | number) => {
   const utc1: number = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
@@ -19,15 +29,7 @@ export const getHoursDifference = (a: Date, b: Date | number) => {
     a.getHours(),
     a.getMinutes(),
   );
-  const utc2: number = typeof b === 'object'
-    ? Date.UTC(
-      b.getFullYear(),
-      b.getMonth(),
-      b.getDate(),
-      b.getHours(),
-      b.getMinutes(),
-    )
-    : b;
+  const utc2 = convertToUTC(b);
 
   return Math.floor((utc2 - utc1) / MS_PER_HOUR);
 };
@@ -40,16 +42,7 @@ export const getMinutesDifference = (a: Date, b: Date | number) => {
     a.getHours(),
     a.getMinutes(),
   );
-  const utc2: number = typeof b === 'object'
-    ? Date.UTC(
-      b.getFullYear(),
-      b.getMonth(),
-      b.getDate(),
-      b.getHours(),
-      b.getMinutes(),
-    )
-    : b;
-
+  const utc2 = convertToUTC(b);
   return Math.floor((utc2 - utc1) / MS_PER_MINUTE);
 };
 
