@@ -42,8 +42,11 @@ export const ResizeHook = () => {
           <br />
           <br />
           {'  '}// The first parameter is window size (in px) to trigger the
-          state and overwrite the 576px window value // The second one is the
-          initial state (true/false) of the offset, both optional
+          state and overwrite the 576px window value
+          <br />
+          <br />
+          {'  '}// The second one is the initial state (true/false) of the
+          offset, both optional
           <br />
           <br />
           {
