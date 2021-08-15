@@ -5,8 +5,8 @@ import {
   Spacer,
   Title,
   ResponsivePadding,
+  WrapperTable,
 } from '../cells';
-import { WrapperTable } from '../organisms';
 
 const Box = ({ s }: any) => (
   <div

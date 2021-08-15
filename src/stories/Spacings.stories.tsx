@@ -1,8 +1,7 @@
 import React from 'react';
 import {
-  Container, Paragraph, Spacer, Title,
+  Container, Paragraph, Spacer, Title, WrapperTable,
 } from '../cells';
-import { WrapperTable } from '../organisms';
 
 const Box = ({ s }: any) => (
   <div
