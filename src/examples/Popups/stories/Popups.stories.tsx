@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { ConfigProvider } from '../../../providers';
-import { Popover, Button } from '../../../cells';
-import { Modal, Drawer } from '../../../organisms';
+import { Button } from '../../../cells';
+import { Popover, Modal, Drawer } from '../../../dialog';
 
 const config: any = {
   title: 'Examples/Popups',
@@ -9,7 +9,7 @@ const config: any = {
 
 export default config;
 
-const Template = (args: any) => {
+const Template = () => {
   const ref = useRef(null);
   const [popoverActive, setPopoverActive] = useState(false);
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);

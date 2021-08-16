@@ -20,6 +20,7 @@ jest.mock('./cells/Pill/closePill.svg', () => null);
 const customRender = (ui, options?) => render(ui, { wrapper: AllTheProviders, ...options });
 // re-export everything
 export * from '@testing-library/react';
+export { renderHook, act } from '@testing-library/react-hooks';
 
 // override render method
 export { customRender as render, axe };
