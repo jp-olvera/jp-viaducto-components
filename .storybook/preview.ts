@@ -12,7 +12,7 @@ export const parameters = {
           'Tissues',
           'Organs',
           'Organisms',
-          'Dialogs',
+          'Dialog',
           'Hooks',
         ],
       ],
