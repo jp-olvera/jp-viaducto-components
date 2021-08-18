@@ -134,6 +134,7 @@ const Template = (args) => (
           <Title level='6'>Aquí puedes poner un texto o un componente</Title>
         }
         {...args}
+        icon='X'
       >
         <Paragraph>
           Un andamio es una construcción provisional con la que se permite el
