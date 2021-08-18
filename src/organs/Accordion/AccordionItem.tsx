@@ -111,6 +111,7 @@ const AccordionItem = ({
             textOverflow: 'text-elipsis',
             whiteSpace: 'nowrap',
             marginRight: 'auto',
+            width: 'calc(100% - 25px)'
           }}
         >
           {titleItem}
@@ -118,6 +119,11 @@ const AccordionItem = ({
         <span
           style={{
             paddingLeft: '5px',
+            width: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            alignContent: 'center',
           }}
           className={isOpen ? iconOpen : iconClosed}
         >
