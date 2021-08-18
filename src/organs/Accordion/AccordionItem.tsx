@@ -111,7 +111,7 @@ const AccordionItem = ({
             textOverflow: 'text-elipsis',
             whiteSpace: 'nowrap',
             marginRight: 'auto',
-            width: 'calc(100% - 25px)'
+            width: 'calc(100% - 25px)',
           }}
         >
           {titleItem}
