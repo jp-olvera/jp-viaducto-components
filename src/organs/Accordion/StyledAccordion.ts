@@ -49,7 +49,7 @@ interface AccordionHeaderProps {
   expanded?: boolean;
 }
 export const AccordionHeader = styled.button < AccordionHeaderProps > `
-  align-items: center;
+  align-items: baseline;
   background: transparent;
   border: none;
   border-bottom: 0.063rem solid #ddd;
