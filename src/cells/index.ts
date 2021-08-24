@@ -5,6 +5,7 @@ export * from './Button';
 export * from './BareButton';
 export * from './CheckBox';
 export * from './Container';
+export * from './DatePicker';
 export * from './Dropdown';
 export * from './Grid';
 export * from './Hideable';
