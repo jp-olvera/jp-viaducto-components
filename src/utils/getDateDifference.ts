@@ -12,6 +12,8 @@ const convertToUTC = (b: Date | number) => (typeof b === 'object'
   )
   : b);
 
+export const dateCompare = (a: Date, b: Date) => new Date(a) > new Date(b);
+
 export const getDayDifference = (a: Date, b: Date | number) => {
   const utc1: number = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
   const utc2: number = typeof b === 'object'
