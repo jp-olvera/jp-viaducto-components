@@ -4,7 +4,7 @@ import { StyledDatePicker } from './StyledDatePicker';
 import Calendar from './Calendar';
 
 export interface DPI {
-  range?: boolean;
+  range: boolean;
   date?: Date | number;
   shapeColor?:
     | 'primary'
@@ -24,7 +24,7 @@ const DatePicker = ({
   date = new Date(),
   onDateSelected,
   shapeColor = 'danger',
-  range = true,
+  range,
 }: DPI) => {
   const { configuration } = useContext(ConfigContext);
 
@@ -34,6 +34,7 @@ const DatePicker = ({
         date={date}
         onDateSelected={onDateSelected}
         shapeColor={shapeColor}
+        range={range}
       />
     </StyledDatePicker>
   );

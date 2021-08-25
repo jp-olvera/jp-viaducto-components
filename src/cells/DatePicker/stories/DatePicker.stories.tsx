@@ -20,4 +20,6 @@ const Template = (args: typeof Default) => (
 
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  range: true,
+};
