@@ -6,9 +6,6 @@ export const StyledDatePicker = styled.div < SDP > `
   background-color: ${(p) => p.config.colors.background};
   max-width: 17rem;
   height: 18rem;
-  .calendar{
-    border: ${(p) => (!p.range ? `0.063rem solid ${p.config.colors.defaultInputBorderColor}` : 'none')};
-  }
   .date-picker-head {
     display: flex;
     flex-direction: row;
