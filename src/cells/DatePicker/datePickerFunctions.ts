@@ -74,6 +74,7 @@ export const onClickDay = (
   setSecondDate: Function,
   secondDate: Date | null | undefined,
   onDateSelected: Function,
+  setIsBetween: Function,
 ): void => {
   setToday((before: Date) => {
     if (range) {
@@ -119,6 +120,10 @@ export const onClickDay = (
               dateToString(new Date(b.getFullYear(), b.getMonth(), data + 1)),
             ],
           });
+          setIsBetween(
+            Date.UTC(f.getFullYear(), f.getMonth(), f.getDate())
+              < Date.UTC(b.getFullYear(), b.getMonth(), data + 1),
+          );
 
           return new Date(b.getFullYear(), b.getMonth(), data + 1);
         });
@@ -130,7 +135,7 @@ export const onClickDay = (
         setSecondDate(null);
       }
     } else {
-      setSelected({ selected: data });
+      setSelected({ selected: data, selectedDate: new Date(before.getFullYear(), before.getMonth(), data)});
       onDateSelected({
         date: new Date(before.getFullYear(), before.getMonth(), data + 1),
         dateString: dateToString(
@@ -141,3 +146,16 @@ export const onClickDay = (
     return new Date(before.getFullYear(), before.getMonth(), data + 1);
   });
 };
+
+export const dateBetweenSelected = (
+  isBetween: boolean,
+  firstDate: Date | undefined | null,
+  today: Date,
+  data: number,
+) => isBetween
+  && firstDate
+  && convertToUTC(firstDate) < convertToUTC(today)
+  && data + 1 >= firstDate?.getDate()
+  && data + 1 <= today.getDate()
+  && firstDate.getMonth() === today.getMonth()
+  && firstDate.getFullYear() === today.getFullYear();

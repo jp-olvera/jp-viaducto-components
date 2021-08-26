@@ -11,11 +11,22 @@ import { ConfigContext } from '../../providers';
 import { Container, Paragraph } from '..';
 import { Day } from './StyledDatePicker';
 import { DPI } from './DatePicker';
-import { isToday, onClickDay, setClassName } from './datePickerFunctions';
+import {
+  dateBetweenSelected,
+  isToday,
+  onClickDay,
+  setClassName,
+} from './datePickerFunctions';
 import WeekDays from './WeekDays';
 import DatePickerHeader from './DatePickerHeader';
 
-// TODO: Set backColor of the days between firstDate and secondDate
+/**
+ * Calendar Component
+ * @param {boolean} range Set a multi select date on True or just one date on False
+ * @param {Date|number} date Set the inital date in calendar (defaults to new Date())
+ * @param {string} shapeColor Set the shapeColor of the details
+ * @returns onDateSelected (data: {date Date |Date[], dateString: string|string[]}) => void
+ */
 
 const Calendar = ({
   date = new Date(),
@@ -26,6 +37,7 @@ const Calendar = ({
   const [firstDate, setFirstDate] = useState<Date | null>();
   const [secondDate, setSecondDate] = useState<Date | null>();
   const [isSelecting, setIsSelecting] = useState(false);
+  const [isBetween, setIsBetween] = useState(false);
   const { configuration } = useContext(ConfigContext);
   const [today, setToday] = useState<Date>(new Date(date));
   const now = new Date();
@@ -117,9 +129,14 @@ const Calendar = ({
               setSecondDate,
               secondDate,
               onDateSelected,
+              setIsBetween,
             )}
             className={`${
-              setClassName(
+              ((selected.selectedDate?.getDate() || -50) + 1 === data + 1
+                && range === false)
+              || (range === true
+                && dateBetweenSelected(isBetween, firstDate, today, data))
+              || setClassName(
                 today,
                 firstDate,
                 selected.prevSelectedDate,
@@ -134,8 +151,6 @@ const Calendar = ({
                 true,
               )
                 && range === true)
-              || ((selected.selectedDate?.getDate() || -50) + 1 === data + 1
-                && range === false)
                 ? 'date-selected'
                 : ''
             } ${isToday(now, today, data, selected) ? 'date-today' : ''}`}
