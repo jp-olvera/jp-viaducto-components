@@ -10,8 +10,12 @@ const Div = styled.div < DI > `
   width: 1rem;
   margin-left: auto;
 `;
-const ChevronDatePicker = ({ type = 'l', color = '#000000' }: DI) => (
-  <Div type={type}>
+const ChevronDatePicker = ({
+  type,
+  color = '#000000',
+  ...rest
+}: DI & React.HTMLAttributes<HTMLDivElement>) => (
+  <Div type={type} {...rest}>
     {type === 'r' && (
       <svg
         xmlns='http://www.w3.org/2000/svg'

@@ -10,7 +10,6 @@ import {
 import { ConfigContext } from '../../providers';
 import { Container, Paragraph } from '..';
 import { Day } from './StyledDatePicker';
-import { DPI } from './DatePicker';
 import {
   dateBetweenSelected,
   isToday,
@@ -20,20 +19,28 @@ import {
 import WeekDays from './WeekDays';
 import DatePickerHeader from './DatePickerHeader';
 
-/**
- * Calendar Component
- * @param {boolean} range Set a multi select date on True or just one date on False
- * @param {Date|number} date Set the inital date in calendar (defaults to new Date())
- * @param {string} shapeColor Set the shapeColor of the details
- * @returns onDateSelected (data: {date Date |Date[], dateString: string|string[]}) => void
- */
-
 const Calendar = ({
-  date = new Date(),
-  shapeColor = 'danger',
+  date,
+  shapeColor,
   range,
   onDateSelected,
-}: DPI) => {
+  ...rest
+}: {
+  date: Date | number;
+  shapeColor:
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'danger'
+    | 'tab';
+  range: boolean;
+  onDateSelected: (data: {
+    date: Date | Date[];
+    dateString: string | string[];
+  }) => void | undefined;
+} & React.HTMLAttributes<HTMLDivElement>) => {
   const [firstDate, setFirstDate] = useState<Date | null>();
   const [secondDate, setSecondDate] = useState<Date | null>();
   const [isSelecting, setIsSelecting] = useState(false);
@@ -64,7 +71,7 @@ const Calendar = ({
   }, [today]);
 
   return (
-    <div className='calendar'>
+    <div className='calendar' {...rest}>
       <DatePickerHeader
         range={range}
         firstDate={firstDate}
@@ -141,16 +148,8 @@ const Calendar = ({
                 firstDate,
                 selected.prevSelectedDate,
                 data + 1,
-                true,
               )
-              || (setClassName(
-                today,
-                secondDate,
-                selected.selectedDate,
-                data + 1,
-                true,
-              )
-                && range === true)
+              || setClassName(today, secondDate, selected.selectedDate, data + 1)
                 ? 'date-selected'
                 : ''
             } ${isToday(now, today, data, selected) ? 'date-today' : ''}`}

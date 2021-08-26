@@ -9,6 +9,7 @@ export const handleChange = (
   range: boolean,
   setToday: Function,
 ) => {
+  /* istanbul ignore else */
   if (!range) {
     setSelected({ selected: -1 });
   }
@@ -45,11 +46,7 @@ export const setClassName = (
   date: Date | null | undefined,
   dateToCompare: Date | null | undefined,
   dayToCompare: number,
-  range: boolean,
 ) => {
-  if (dateToCompare && !range) {
-    return dateToCompare?.getDate() === dayToCompare;
-  }
   if (dateToCompare && date) {
     const compareToday = date.getFullYear() === today.getFullYear()
       && date.getMonth() === today.getMonth();
