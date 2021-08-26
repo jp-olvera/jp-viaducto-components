@@ -48,6 +48,12 @@ const style: React.CSSProperties = {
   flexWrap: 'wrap',
 };
 
+const PrintData = ({ data }: any) => (
+  <div>
+    <pre>{JSON.stringify(data, null, 2)}</pre>
+  </div>
+);
+
 const Template = (args: typeof Default) => {
   const [data, setData] = useState<{
     date?: Date | Date[];
@@ -57,9 +63,7 @@ const Template = (args: typeof Default) => {
     <ConfigProvider>
       <Container expandHorizontal style={style}>
         <DatePicker {...args} onDateSelected={(e) => setData(e)} />
-        <div>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        </div>
+        <PrintData data={data} />
       </Container>
     </ConfigProvider>
   );

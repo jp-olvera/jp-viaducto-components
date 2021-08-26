@@ -32,6 +32,7 @@ const DatePickerHeader = ({
           <button
             type='button'
             className='date-chevron'
+            aria-label='Go to last year'
             disabled={
               !!(
                 range
@@ -44,11 +45,12 @@ const DatePickerHeader = ({
               handleChange({ year: false }, setSelected, range, setToday);
             }}
           >
-            <ChevronDatePicker color={dark} type='dl' />
+            <ChevronDatePicker color={dark} type='dl' className='dl' />
           </button>
           <button
             type='button'
             className='date-chevron'
+            aria-label='Go to last month'
             disabled={
               !!(
                 range
@@ -61,7 +63,7 @@ const DatePickerHeader = ({
               handleChange({ month: false }, setSelected, range, setToday);
             }}
           >
-            <ChevronDatePicker color={dark} type='l' />
+            <ChevronDatePicker color={dark} type='l' className='l' />
           </button>
           <Paragraph weight='500' align='center' size='sm'>
             {months[today.getMonth()]} - {today.getFullYear()}
@@ -69,20 +71,22 @@ const DatePickerHeader = ({
           <button
             type='button'
             className='date-chevron'
+            aria-label='Go to next month'
             onClick={() => {
               handleChange({ month: true }, setSelected, range, setToday);
             }}
           >
-            <ChevronDatePicker color={dark} type='r' />
+            <ChevronDatePicker color={dark} type='r' className='r' />
           </button>
           <button
             type='button'
             className='date-chevron'
+            aria-label='Go to next year'
             onClick={() => {
               handleChange({ year: true }, setSelected, range, setToday);
             }}
           >
-            <ChevronDatePicker color={dark} type='dr' />
+            <ChevronDatePicker color={dark} type='dr' className='dr' />
           </button>
         </div>
       </Container>

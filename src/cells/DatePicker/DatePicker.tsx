@@ -37,11 +37,12 @@ const DatePicker = ({
   onDateSelected,
   shapeColor = 'danger',
   range,
-}: DPI) => {
+  ...rest
+}: DPI & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
 
   return (
-    <StyledDatePicker config={configuration} range={range}>
+    <StyledDatePicker config={configuration} range={range} {...rest}>
       <Calendar
         date={date}
         onDateSelected={onDateSelected}
