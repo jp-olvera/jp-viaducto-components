@@ -48,6 +48,17 @@ const Calendar = ({
   const { configuration } = useContext(ConfigContext);
   const [today, setToday] = useState<Date>(new Date(date));
   const now = new Date();
+  const diffDate = new Date(now) !== new Date(date);
+  const newDate = (day: number) => {
+    const d = new Date(date);
+    return (
+      Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())
+        === Date.UTC(d.getFullYear(), d.getMonth(), day)
+      && d.getFullYear() === today.getFullYear()
+      && d.getMonth() === today.getMonth()
+      && d.getDate() === day
+    );
+  };
   const [allDays] = useState(
     getAllDaysInMonth(today.getMonth(), today.getFullYear()),
   );
@@ -152,7 +163,12 @@ const Calendar = ({
               || setClassName(today, secondDate, selected.selectedDate, data + 1)
                 ? 'date-selected'
                 : ''
-            } ${isToday(now, today, data, selected) ? 'date-today' : ''}`}
+            } ${
+              isToday(now, today, data, selected)
+              || (diffDate && newDate(data + 1) && selected.selected === -1)
+                ? 'date-today'
+                : ''
+            }`}
           >
             <Paragraph align='center' size='sm' color='inherit'>
               {data + 1}
