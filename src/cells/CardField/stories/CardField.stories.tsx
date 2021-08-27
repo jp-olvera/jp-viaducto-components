@@ -1,10 +1,10 @@
 import React from 'react';
 import { ConfigProvider } from '../../../providers';
-import { TextField } from '..';
+import { CardField } from '..';
 
 const config: any = {
-  title: 'Ballena/Cells/FormFields/TextField',
-  component: TextField,
+  title: 'Ballena/Cells/FormFields/CardField',
+  component: CardField,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
     border: {
@@ -14,17 +14,6 @@ const config: any = {
         defaultValue: { summary: 'default' },
       },
       options: ['outside', 'overlap', 'bottom', 'none', 'default'],
-      control: {
-        type: 'select',
-      },
-    },
-    type: {
-      description: 'Set input type',
-      type: { summary: 'String', required: true },
-      table: {
-        defaultValue: { summary: 'text' },
-      },
-      options: ['text', 'number', 'date', 'color', 'time'],
       control: {
         type: 'select',
       },
@@ -74,7 +63,7 @@ export default config;
 
 const Template = ({...args}:any) => (
   <ConfigProvider>
-    <TextField {...args} />
+    <CardField {...args} />
   </ConfigProvider>
 );
 
@@ -86,7 +75,8 @@ Default.args = {
   disabled: false,
   family: '',
   inputSize: 'default',
-  label: 'Username:',
+  label: 'Your payment card:',
+  placeholder: 'XXXX - XXXX - XXXX - XXXX',
   required: true,
   type: 'text',
   readOnly: false,

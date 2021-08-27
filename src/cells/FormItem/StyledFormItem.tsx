@@ -16,9 +16,13 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
   box-sizing: border-box;
   display: flex;
   background-color: ${({ disabled, configuration }) => (disabled ? configuration.colors.disableColor : configuration.colors.background)};
-
+  ${({ border, borderColor }) => getBorderStyle(border, borderColor)};
+  
   select[multiple]{
     height: auto;
+    label {
+      top: -1em;
+    }
   }
   select:not([multiple]) {
     padding-right: ${(p) => p.configuration.spacing.lg};
@@ -30,15 +34,7 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
     -webkit-appearance: none;
     -moz-appearance: none !important;
   }
-  .ballena-input[required] ~ label{
-    padding-left: 0.625rem;
-    ::after{
-      content: "*";
-      position: absolute;
-      color: ${(p) => p.configuration.colors.text.danger};
-      left: 0px;
-    }
-  }
+  
   .ballena-input {
     background-color: inherit;
     border: none;
@@ -47,13 +43,13 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
     font-family: ${(p) => p.family || p.configuration.fontFamily};
     height: ${({ size, configuration }) => configuration.controlHeight[size]};
     overflow: hidden !important;
+    outline-color: ${(p) => p.borderColor};
     padding: 0px 0px;
     padding-left: ${(p) => p.configuration.spacing.sm};
     padding-right: ${(p) => p.configuration.spacing.sm};
 
     width: 100%;
     ${(p) => inputFontStyle(p.size)};
-    ${({ border, borderColor }) => getBorderStyle(border, borderColor)};
   }
 
   .label{
@@ -72,7 +68,18 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
 
   }
 
-  .ballena-input:read-only ~ .label {
+  .ballena-input[required] ~ label{
+    padding-left: 0.625rem;
+    ::after{
+      content: "*";
+      position: absolute;
+      color: ${(p) => p.configuration.colors.text.danger};
+      left: 0px;
+    }
+  }
+
+  .ballena-input[type='number'].ballena-input:not(placeholder-shown).ballena-input:not([value=""]) ~ label,
+  .ballena-input:read-only ~ .label{
     ${(p) => putLabelOutside(p.size, p.border, p.configuration)};
   }
 
@@ -84,13 +91,9 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
   }
 
   
-  .ballena-input ~ .active {
-    ${(p) => putLabelOutside(p.size, p.border, p.configuration)};
-  }
-  .ballena-input:placeholder-shown ~ label {
-    ${(p) => putLabelOutside(p.size, p.border, p.configuration)};
-  }
-  .ballena-input[type='date'], .ballena-input[type='time'] {
+  .ballena-input ~ .active,
+  .ballena-input:placeholder-shown ~ label,
+  .ballena-input[type='date'] ~ label, .ballena-input[type='time'] ~ label {
     ${(p) => putLabelOutside(p.size, p.border, p.configuration)};
   }
 `;

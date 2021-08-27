@@ -1,66 +1,33 @@
 import styled, { css } from 'styled-components';
+import { ConfigProps } from '../../ballena-types';
 
-export const TooltipContainer = styled.div < any > `
+interface TooltipContainerProps {
+  configuration: ConfigProps;
+  color: string;
+  backgroundColor: string;
+  family: string | undefined;
+  position: string;
+}
+
+export const TooltipContainer = styled.div < TooltipContainerProps > `
+  background-color: ${({ backgroundColor, configuration }) => backgroundColor || configuration.colors.primary.default};
   font-family: ${(p) => p.family || p.configuration.fontFamily};
-  position: relative;
-  display: block;
-  z-index: 1;
-  & .tooltip {
-    background-color: ${({ color, configuration }) => color || configuration.colors.primary.default};
-    text-align: center;
-    padding: 0.313rem;
-    border-radius: 0.375rem;
-    word-break: break-word;
-    hyphens: auto;
-    opacity: ${({ active }) => (active ? '1' : ' 0')};
-    width: clamp(10rem, calc(10rem + ((1vw - 0.1rem) * 22.7273)), 35rem);
-    word-break: break-all;
-    overflow-wrap: break-word;
-    height: ${({ active }) => (active ? 'auto' : ' 0')};
-    font-size: ${({ active }) => (active ? '0.9rem' : ' 0')};
-    color: ${({ textColor, configuration, active }) => (active
-    ? textColor || configuration.colors.text[textColor || 'dark']
-    : 'transparent')};
+  color: ${(p) => p.configuration.colors.text[p.color] || p.color};
+  border-radius: 0.125rem;
+  box-sizing: border-box;
+  hyphens: auto;
+  max-width: 15.625rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  padding: 0.373rem 0.5rem;
+  &:after {
+    content: ' ';
     position: absolute;
-    z-index: 1;
-    ${({ position }) => setPosition(position)}
-    &:after {
-      content: ' ';
-      position: absolute;
-      ${({ position, color, configuration }) => setArrow(position, color || configuration.colors.primary.default)}
-      border-width: 0.313rem;
-      border-style: solid;
-    }
+    ${(p) => setArrow(p.position, p.backgroundColor)}
+    border-width: 0.313rem;
+    border-style: solid;
   }
 `;
-
-const setPosition = (position: string) => {
-  switch (position) {
-    case 'right':
-      return css`
-        top: -0.313rem;
-        left: 105%;
-      `;
-    case 'left':
-      return css`
-        top: -0.313rem;
-        right: 105%;
-      `;
-    case 'bottom':
-      return css`
-        top: 120%;
-        left: 50%;
-        margin-left: -3.75rem;
-      `;
-    case 'top':
-    default:
-      return css`
-        bottom: 120%;
-        left: 50%;
-        margin-left: -3.75rem;
-      `;
-  }
-};
 
 const setArrow = (position: string, color: string) => {
   switch (position) {

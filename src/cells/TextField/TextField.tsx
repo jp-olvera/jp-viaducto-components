@@ -6,13 +6,13 @@ import { ConfigContext } from '../../providers';
 const TextField = forwardRef<HTMLInputElement, FormFieldProps & React.InputHTMLAttributes<HTMLInputElement>>((
   {
     border = 'outside',
+    borderColor,
     disabled = false,
     family,
     id,
     inputSize = 'default',
     label,
     type = 'text',
-    borderColor,
     ...rest
   },
   ref,
