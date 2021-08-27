@@ -61,6 +61,6 @@ const Template = (args: typeof Default) => {
 export const Default = Template.bind({});
 
 Default.args = {
-  timeFormat: '12h',
+  timeFormat: '24h',
   shapeColor: 'danger',
 };
