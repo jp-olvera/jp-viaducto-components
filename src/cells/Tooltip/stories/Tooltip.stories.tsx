@@ -2,7 +2,7 @@ import React from 'react';
 import { SBConfigI } from '../../../sb';
 import { ConfigProvider } from '../../../providers';
 import { Tooltip } from '..';
-import { Input } from '../../Input';
+import { Button } from '../../Button';
 
 const config: SBConfigI = {
   title: 'Ballena/Cells/Info/Tooltip',
@@ -19,7 +19,7 @@ const config: SBConfigI = {
       control: 'select',
       options: ['top', 'right', 'left', 'bottom'],
     },
-    color: {
+    backgroundColor: {
       description: 'Color of the background',
       table: {
         defaultValue: { summary: null },
@@ -27,7 +27,7 @@ const config: SBConfigI = {
       },
       control: 'color',
     },
-    textColor: {
+    color: {
       description: 'Text color',
       table: {
         defaultValue: { summary: '#C4C4C4' },
@@ -62,22 +62,47 @@ const config: SBConfigI = {
 
 export default config;
 
-const Template = (args: typeof Default) => (
+const Template = ({active, ...rest}: any) => (
   <ConfigProvider>
     <div
       style={{
         display: 'flex',
-        justifyContent: 'space-between',
+        flexDirection: 'column',
         alignItems: 'center',
-        height: '50vh',
-        width: '50%',
+        width: '100%',
+        gap: '10px',
       }}
     >
-      <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
-        <Tooltip {...args}>
-          <Input label='Input' id='example2' />
-        </Tooltip>
-      </div>
+      <Tooltip {...rest}>
+        <Button shapeColor='success' label='Start play' />
+      </Tooltip>
+      <Tooltip label='prompt text' position='left'>
+        <Button shapeColor='info' variant='outline' label='left' />
+      </Tooltip>
+      <Tooltip label='prompt text' position='right'>
+        <Button shapeColor='info' variant='outline' label='right' />
+      </Tooltip>
+      <Tooltip label='prompt text' position='top'>
+        <Button shapeColor='info' variant='outline' label='top' />
+      </Tooltip>
+      <Tooltip label='prompt text' position='bottom'>
+        <Button shapeColor='info' variant='outline' label='bottom' />
+      </Tooltip>
+      <Tooltip label='prompt text' position='right' backgroundColor='magenta'>
+        <Button shapeColor='info' variant='outline' label='magenta' />
+      </Tooltip>
+      <Tooltip label='prompt text' position='right' backgroundColor='cyan'>
+        <Button shapeColor='info' variant='outline' label='cyan' />
+      </Tooltip>
+      <Tooltip label='prompt text' position='right' backgroundColor='orange'>
+        <Button shapeColor='info' variant='outline' label='orange' />
+      </Tooltip>
+      <Tooltip label='prompt text' position='right' backgroundColor='purple'>
+        <Button shapeColor='info' variant='outline' label='purple' />
+      </Tooltip>
+      <Tooltip label='prompt text' position='right' backgroundColor='lime'>
+        <Button shapeColor='info' variant='outline' label='lime' />
+      </Tooltip>
     </div>
   </ConfigProvider>
 );
@@ -86,7 +111,8 @@ export const Default = Template.bind({});
 
 Default.args = {
   label:
-    'Choose the type of configurationAdvanced configuration: finetune usages of data and bandwithSmart configuration: Define a budget for unlimited data and calculated bandwith',
-  active: true,
+    'Prompt text',
   position: 'right',
+  backgroundColor: 'black',
+  color: 'white',
 };
