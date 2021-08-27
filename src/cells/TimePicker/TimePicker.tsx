@@ -90,6 +90,15 @@ const TimePicker = ({
       <Container className='time-column t-hour' expandHorizontal expandVertical>
         {hours.map((num: number) => (
           <Option
+            data-testid={`${
+              timeFormat === '12h'
+                ? num + 1 < 10
+                  ? `0${num + 1}`
+                  : num + 1
+                : num < 10
+                  ? `0${num}`
+                  : num
+            }-h`}
             shapeColor={shapeColor}
             className={
               (timeFormat === '12h' ? selected.hour + 1 : selected.hour)
@@ -159,6 +168,7 @@ const TimePicker = ({
       >
         {minutesSeconds.map((num: number) => (
           <Option
+            data-testid={`${num < 10 ? `0${num}` : num}-m`}
             shapeColor={shapeColor}
             className={
               selected.minutes === num ? 'time-selected' : 'time-not-selected'
@@ -202,6 +212,7 @@ const TimePicker = ({
       >
         {minutesSeconds.map((num: number) => (
           <Option
+            data-testid={`${num < 10 ? `0${num}` : num}-s`}
             shapeColor={shapeColor}
             className={
               selected.seconds === num ? 'time-selected' : 'time-not-selected'
@@ -244,7 +255,11 @@ const TimePicker = ({
         ))}
       </Container>
       {timeFormat === '12h' && (
-        <Container className='time-column' expandHorizontal expandVertical>
+        <Container
+          className='time-column t-meridian'
+          expandHorizontal
+          expandVertical
+        >
           {mer.map((opt) => (
             <Option
               shapeColor={shapeColor}
@@ -254,19 +269,13 @@ const TimePicker = ({
               onClick={() => {
                 setTimeSelected((before) => ({
                   ...before,
-                  fullTime:
-                    timeFormat === '12h'
-                      ? `${before.fullTime?.split(' ')[0]} ${opt}`
-                      : before.fullTime,
-                  meridian: timeFormat === '12h' ? opt : 'am',
+                  fullTime: `${before.fullTime?.split(' ')[0]} ${opt}`,
+                  meridian: opt,
                 }));
                 onTimeSelected({
                   ...timeSelected,
-                  fullTime:
-                    timeFormat === '12h'
-                      ? `${timeSelected.fullTime?.split(' ')[0]} ${opt}`
-                      : timeSelected.fullTime,
-                  meridian: timeFormat === '12h' ? opt : 'am',
+                  fullTime: `${timeSelected.fullTime?.split(' ')[0]} ${opt}`,
+                  meridian: opt,
                 });
                 setZone(opt);
               }}
@@ -274,6 +283,7 @@ const TimePicker = ({
               <Paragraph
                 align='center'
                 size='sm'
+                data-testid={`meridian-${opt}`}
                 color={zone === opt ? colors[shapeColor].text : 'dark'}
               >
                 {opt}

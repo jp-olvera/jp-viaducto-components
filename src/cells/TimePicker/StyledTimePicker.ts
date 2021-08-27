@@ -58,8 +58,7 @@ export const Option = styled.button < OI > `
     background-color: ${(p) => p.config.colors.background};
   }
   &.time-selected {
-    background-color: ${(p) => p.config.colors[p.shapeColor].shadow
-      || `${p.config.colors[p.shapeColor].default}53`};
+    background-color: ${(p) => p.config.colors[p.shapeColor].shadow};
     &:hover {
       opacity: 0.9;
     }
