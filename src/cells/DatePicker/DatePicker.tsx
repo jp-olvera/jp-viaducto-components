@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ConfigContext } from '../../providers';
 import { StyledDatePicker } from './StyledDatePicker';
 import Calendar from './Calendar';
@@ -40,11 +40,14 @@ const DatePicker = ({
   ...rest
 }: DPI & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
-
+  const [d, setD] = useState<Date | number>(date || new Date(date));
+  useEffect(() => {
+    setD(typeof date === 'number' ? new Date(date) : date);
+  }, [date]);
   return (
     <StyledDatePicker config={configuration} range={range} {...rest}>
       <Calendar
-        date={date}
+        date={d}
         onDateSelected={onDateSelected}
         shapeColor={shapeColor}
         range={range}
