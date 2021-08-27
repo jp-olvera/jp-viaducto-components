@@ -50,13 +50,6 @@ const config: SBConfigI = {
         type: { summary: 'string' },
       },
     },
-    active: {
-      description: 'Show/hide the tooltip',
-      table: {
-        defaultValue: { summary: false },
-        type: { summary: 'boolean' },
-      },
-    },
   },
 };
 
