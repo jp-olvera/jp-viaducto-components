@@ -86,7 +86,7 @@ export const Day = styled.button < DayI > `
   }
   &.date-today {
     background-color: ${(p) => p.config.colors.background} !important;
-    border: 0.063rem solid ${(p) => p.config.colors[p.shapeColor].default} !important;
+    border: 0.063rem dashed ${(p) => p.config.colors[p.shapeColor].default} !important;
   }
   &.date-selected {
     background-color: ${(p) => p.config.colors[p.shapeColor].default} !important;
@@ -97,4 +97,5 @@ export const Day = styled.button < DayI > `
 export const hoverBehevior = (p: { config:ConfigProps, shapeColor:string}) => css`
     background-color: ${p.config.colors[p.shapeColor].default}95 !important;
     color: ${p.config.colors[p.shapeColor].text} !important;
+    border: 0.063rem dashed ${p.config.colors[p.shapeColor].default} !important;
   `;
