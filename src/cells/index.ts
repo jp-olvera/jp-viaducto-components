@@ -24,5 +24,6 @@ export * from './Switch';
 export * from './Tab';
 export * from './Table';
 export * from './Textarea';
+export * from './TimePicker';
 export * from './Title';
 export * from './Tooltip';
