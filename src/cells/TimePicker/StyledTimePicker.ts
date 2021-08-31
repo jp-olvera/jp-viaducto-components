@@ -6,8 +6,8 @@ interface STPI {
 }
 export const StyledTimePicker = styled.div < STPI > `
   transition: all 0.2s linear;
-  max-width: ${(p) => (p.timeFormat === '12h' ? '100%' : '10.7rem')};
-  max-height: 16.875rem;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(
