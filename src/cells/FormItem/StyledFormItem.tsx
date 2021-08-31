@@ -1,6 +1,8 @@
 /* eslint-disable radix */
 import { ConfigProps } from 'ballena-types';
+import { HouseSimple, ThermometerCold } from 'phosphor-react';
 import styled, { css } from 'styled-components';
+import { getAllDaysInMonth } from 'utils/getDateDifference';
 
 interface StyledFormItemProps {
   configuration: ConfigProps;
@@ -8,16 +10,18 @@ interface StyledFormItemProps {
   family: string | undefined;
   border: string;
   borderColor: string;
-  disabled: boolean;
+  hasPrefix: boolean;
+  hasSuffix: boolean;
+  isValid: boolean | null;
+  radius: 'none' | 'sm' | 'md' | 'lg';
 }
 export const StyledFormItem = styled.div < StyledFormItemProps > `
   position: relative;
   align-items: center;
   box-sizing: border-box;
   display: flex;
-  background-color: ${({ disabled, configuration }) => (disabled ? configuration.colors.disableColor : configuration.colors.background)};
-  ${({ border, borderColor }) => getBorderStyle(border, borderColor)};
-  
+  height: ${({ size, configuration }) => configuration.controlHeight[size]};
+
   select[multiple]{
     height: auto;
     label {
@@ -36,36 +40,44 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
   }
   
   .ballena-input {
-    background-color: inherit;
-    border: none;
+    background-color: ${(p) => (p.configuration.colors.background)};
     box-sizing: border-box;
+    border-radius: unset;
+    border: none;
     color: ${(p) => p.configuration.colors.text.dark};
     font-family: ${(p) => p.family || p.configuration.fontFamily};
-    height: ${({ size, configuration }) => configuration.controlHeight[size]};
+    flex-grow: 1;
+    height: 100%;
     overflow: hidden !important;
-    outline-color: ${(p) => p.borderColor};
-    padding: 0px 0px;
-    padding-left: ${(p) => p.configuration.spacing.sm};
-    padding-right: ${(p) => p.configuration.spacing.sm};
-
-    width: 100%;
+    outline: none;
+    padding: 0px ${(p) => p.configuration.spacing.sm};
     ${(p) => inputFontStyle(p.size)};
+    ${(p) => getIsValidBorder(p.isValid, p.configuration.colors.success.click, p.configuration.colors.danger.click)};
+    ${(p) => getInputBorderStyle(p.border, p.borderColor, p.hasPrefix, p.hasSuffix)};
+    ${(p) => getBorderRadius(p.border, p.hasPrefix, p.hasSuffix, p.radius, p.configuration.radius, false, false)};
+  }
+  .ballena-input:valid,
+  .ballena-input:valid ~ .ballena-prefix-input,
+  .ballena-input:valid ~ .ballena-suffix-input {
+    border-color: ${(p) => p.configuration.colors.success.click};
   }
 
-  .label{
-    background: ${({ border }) => (border === 'outside' ? 'transparent' : 'inherit')};
+  .ballena-input:invalid,
+  .ballena-input:invalid ~ .ballena-prefix-input,
+  .ballena-input:invalid ~ .ballena-suffix-input {
+    border-color: ${(p) => p.configuration.colors.danger.click};
+  }
+  .ballena-label{
     color: ${(p) => p.configuration.colors.text.dark};
+    font-family: ${(p) => p.family || p.configuration.fontFamily};
+    left: ${(p) => p.hasPrefix ? '2.408rem' : p.configuration.spacing.sm};
     max-width: 95%;
-    left: ${(p) => (p.configuration.spacing.micro)};
     overflow: hidden;
-    pointer-events: none;
     position: absolute;
     text-overflow: ellipsis;
-    user-select: none;
-    white-space: nowrap;
     transition: transform 230ms ease, left 230ms ease;
-    left: ${(p) => p.configuration.spacing.sm};
-
+    cursor: text;
+    white-space: nowrap;
   }
 
   .ballena-input[required] ~ label{
@@ -79,48 +91,186 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
   }
 
   .ballena-input[type='number'].ballena-input:not(placeholder-shown).ballena-input:not([value=""]) ~ label,
-  .ballena-input:read-only ~ .label{
+  .ballena-input:read-only ~ .ballena-label{
     ${(p) => putLabelOutside(p.size, p.border, p.configuration)};
   }
 
-  .ballena-input:disabled {
+  .ballena-input:disabled, .ballena-input:disabled ~ .ballena-prefix-input, .ballena-input:disabled ~ .ballena-suffix-input {
     cursor: not-allowed;
     background-color: ${(p) => p.configuration.colors.disableColor};
-    pointer-events: none;
-    user-select: none;
+    border-color: ${(p) => p.configuration.colors.disableColor};
+    opacity: 1;
+  }
+  .ballena-input:disabled ~ label {
+    background-color: ${(p) => p.border === 'overlap' ? p.configuration.colors.disableColor : p.configuration.colors.background } !important;
   }
 
-  
   .ballena-input ~ .active,
   .ballena-input:placeholder-shown ~ label,
   .ballena-input[type='date'] ~ label, .ballena-input[type='time'] ~ label {
     ${(p) => putLabelOutside(p.size, p.border, p.configuration)};
   }
+
+  .ballena-prefix-input{
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    max-width: 1.632rem;
+    order: -1;
+    padding-left: 0.694rem;
+    ${(p) => getIsValidBorder(p.isValid, p.configuration.colors.success.click, p.configuration.colors.danger.click)};
+    ${(p) => getPrefixBorderStyle(p.border, p.borderColor)};
+    ${(p) => getBorderRadius(p.border, false, false, p.radius, p.configuration.radius, true, false)};
+
+  }
+  .ballena-suffix-input{
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    max-width: 1.632rem;
+    order: 2;
+    padding-right: 0.694rem;
+
+    ${(p) => getIsValidBorder(p.isValid, p.configuration.colors.success.click, p.configuration.colors.danger.click)};
+    ${(p) => getSuffixBorderStyle(p.border, p.borderColor)};
+    ${(p) => getBorderRadius(p.border, false, false, p.radius, p.configuration.radius, false, true)};
+
+  }
 `;
 
-export const Caption = styled.span < { configuration: ConfigProps } > `
-  color: ${(p) => p.configuration.colors.disableColor};
-  transform: scale(80%);
-`;
+const getIsValidBorder = (isValid, successColor, dangerColor) => {
+  if (isValid === null) {
+    return css``;
+  } else if (isValid) {
+    return css`
+      border-color: ${successColor} !important;
+    `;
+  }
+    return css`
+      border-color: ${dangerColor} !important;
+    `;
+  
+}
 
-export const getBorderStyle = (border: string, color: string) => {
+export const getInputBorderStyle = (border: string, borderColor: string, hasPrefix: boolean, hasSuffix: boolean) => {
   switch (border) {
     case 'bottom':
       return css`
-        border: 0.031rem solid transparent;
-        border-bottom: 0.031rem solid ${color};
-      `;
+          border: 0.031rem solid transparent;
+          border-bottom: 0.031rem solid ${borderColor};
+        `;
     case 'none':
       return css`
         border: 0.031rem solid transparent;
       `;
     case 'overlap':
     default:
+      if (hasPrefix && !hasSuffix) {
+        return css`
+          border-top: 0.031rem solid ${borderColor};
+          border-bottom: 0.031rem solid ${borderColor};
+          border-right: 0.031rem solid ${borderColor};
+        `;
+      } else if (!hasPrefix && hasSuffix) {
+        return css`
+          border-top: 0.031rem solid ${borderColor};
+          border-bottom: 0.031rem solid ${borderColor};
+          border-left: 0.031rem solid ${borderColor};
+        `;
+      } else if (!hasPrefix && !hasSuffix) {
+        return css`
+          border-top: 0.031rem solid ${borderColor};
+          border-left: 0.031rem solid ${borderColor};
+          border-right: 0.031rem solid ${borderColor};
+          border-bottom: 0.031rem solid ${borderColor};
+        `;
+      }
       return css`
-        border: 0.031rem solid ${color};
+        border-top: 0.031rem solid ${borderColor};
+        border-bottom: 0.031rem solid ${borderColor};
       `;
   }
 };
+
+export const getBorderRadius = (border: string, hasPrefix: boolean, hasSuffix: boolean, radius: string, radiusConfig, isPrefix, isSuffix) => {
+  if (isPrefix) {
+    return css`
+      border-top-left-radius: ${radiusConfig[radius]};
+      border-bottom-left-radius: ${radiusConfig[radius]};
+    `;
+  } else if (isSuffix) {
+    return css`
+      border-top-right-radius: ${radiusConfig[radius]};
+      border-bottom-right-radius: ${radiusConfig[radius]};
+    `;
+  }
+  switch (border) {
+    case 'overlap':
+    case 'default':
+    case 'outside':
+      if (hasPrefix && !hasSuffix) {
+        return css`
+          border-top-right-radius: ${radiusConfig[radius]};
+          border-bottom-right-radius: ${radiusConfig[radius]};
+        `;
+      } else if (!hasPrefix && hasSuffix) {
+        return css`
+          border-top-left-radius: ${radiusConfig[radius]};
+          border-bottom-left-radius: ${radiusConfig[radius]};
+        `;
+      } else if (!hasPrefix && !hasSuffix) {
+        return css`
+          border-radius: ${radiusConfig[radius]};
+        `;
+      }
+      return css``;
+    default:
+      return css``;
+  }
+};
+
+const  getPrefixBorderStyle = (border: string, borderColor: string) => {
+  switch (border) {
+    case 'bottom':
+      return css`
+          border: 0.031rem solid transparent;
+          border-bottom: 0.031rem solid ${borderColor};
+        `;
+    case 'none':
+      return css`
+        border: 0.031rem solid transparent;
+      `;
+    case 'overlap': // overlap & default & outside
+    default:
+      return css`
+        border-left: 0.031rem solid ${borderColor};
+        border-top: 0.031rem solid ${borderColor};
+        border-bottom: 0.031rem solid ${borderColor};
+      `;
+  }
+}
+const  getSuffixBorderStyle = (border: string, borderColor: string) => {
+  switch (border) {
+    case 'bottom':
+      return css`
+          border: 0.031rem solid transparent;
+          border-bottom: 0.031rem solid ${borderColor};
+        `;
+    case 'none':
+      return css`
+        border: 0.031rem solid transparent;
+      `;
+    case 'overlap': // overlap & default & outside
+    default:
+      return css`
+        border-right: 0.031rem solid ${borderColor};
+        border-top: 0.031rem solid ${borderColor};
+        border-bottom: 0.031rem solid ${borderColor};
+      `;
+  }
+}
 
 export const putLabelInside = (size: string, configuration: ConfigProps) => {
   switch (size) {
@@ -155,7 +305,7 @@ const putLabelOutside = (size: string, border: string, configuration: ConfigProp
   switch (size) {
     case 'xsmall':
       return css`
-        font-size: 0.625rem;
+        font-size: 0.75rem;
         left: ${border === 'overlap' ? `${configuration.spacing.sm}` : '0'};
         position: absolute;
         top: -1.188rem;
@@ -163,17 +313,16 @@ const putLabelOutside = (size: string, border: string, configuration: ConfigProp
       `;
     case 'small':
       return css`
-        background: ${border === 'overlap' ? 'inherit' : 'transparent'};
-        font-size: 0.625rem;
+        background: ${border === 'overlap' ? configuration.colors.background : 'transparent'};
+        font-size: 1rem;
         left: ${border === 'overlap' ? `${configuration.spacing.sm}` : '0'};
         position: absolute;
         transform: ${border === 'overlap' ? 'translateY(-1.188rem)' : 'translateY(-1.688rem)'};
         /* line-height: 1.125rem; */
-        
       `;
     case 'large':
       return css`
-        background: ${border === 'overlap' ? 'inherit' : 'transparent'};
+        background: ${border === 'overlap' ? configuration.colors.background : 'transparent'};
         font-size: 1rem;
         left: ${border === 'overlap' ? `${configuration.spacing.sm}` : '0'};
         position: absolute;
@@ -182,7 +331,7 @@ const putLabelOutside = (size: string, border: string, configuration: ConfigProp
       `;
     default:
       return css`
-        background: ${border === 'overlap' ? 'inherit' : 'transparent'};
+        background: ${border === 'overlap' ? configuration.colors.background : 'transparent'};
         font-size: 1rem;
         left: ${border === 'overlap' ? `${configuration.spacing.sm}` : '0'};
         position: absolute;
