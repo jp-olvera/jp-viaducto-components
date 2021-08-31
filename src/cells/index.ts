@@ -8,6 +8,7 @@ export * from './Container';
 export * from './DatePicker';
 export * from './Dropdown';
 export * from './Grid';
+export * from './FormItem';
 export * from './Hideable';
 export * from './Input';
 export * from './Overlay';

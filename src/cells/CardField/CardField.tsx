@@ -53,17 +53,15 @@ const CardField = forwardRef<HTMLInputElement, FormFieldProps & CardFieldProps>(
     <FormItem
       border={border}
       borderColor={borderColor || configuration.colors.defaultInputBorderColor}
-      disabled={disabled}
       family={family}
-      htmlFor={id}
       inputSize={inputSize}
-      label={label}
     >
       <input
         ref={ref}
         type='text'
         value={newValue}
         placeholder={placeholder}
+        disabled={disabled}
         onChange={(ev) => {
           setCardIcon(ev);
           const cardNumber = mask(ev.target.value.replace(/([^0-9])/g, ''), 4, '-').slice(
@@ -75,8 +73,10 @@ const CardField = forwardRef<HTMLInputElement, FormFieldProps & CardFieldProps>(
             onChange(cardNumber);
           }
         }}
+        id={id}
         {...rest}
       />
+      <label htmlFor={id}>{label}</label>
     </FormItem>
   );
 });
