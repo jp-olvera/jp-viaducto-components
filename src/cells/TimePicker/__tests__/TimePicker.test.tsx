@@ -60,9 +60,12 @@ describe('<TimePicker/>', () => {
     const m = getByTestId('15-m');
     const s = getByTestId('03-s');
     const meridian = getByTestId('meridian-pm');
+    const meridiaM = getByTestId('meridian-am');
     fireEvent.click(h);
     fireEvent.click(m);
     fireEvent.click(s);
+    fireEvent.click(meridian);
+    fireEvent.click(meridiaM);
     fireEvent.click(meridian);
     expect(mockFn()).toEqual(result);
   });
