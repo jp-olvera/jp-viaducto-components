@@ -4,7 +4,6 @@ import { StyledFormControl } from './StyledFormControl';
 import { ConfigContext } from '../../providers';
 import PrefixInput from './PrefixInput';
 import SuffixInput from './SuffixInput';
-import { Horse, Heart, Cube } from "phosphor-react";
 
 interface FormItemProps {
   /** The border type for the input (full, bottom, overlap) */
