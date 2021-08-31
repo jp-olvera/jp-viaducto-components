@@ -51,7 +51,9 @@ const Template = (args: typeof Default) => {
   return (
     <ConfigProvider>
       <Container expandHorizontal style={style}>
-        <TimePicker {...args} onTimeSelected={(e) => setData(e)} />
+        <div style={{ width: 200, height: 200 }}>
+          <TimePicker {...args} onTimeSelected={(e) => setData(e)} />
+        </div>
         <PrintData data={data} />
       </Container>
     </ConfigProvider>

@@ -3,6 +3,14 @@ import { ConfigContext } from '../../providers';
 import { StyledDatePicker } from './StyledDatePicker';
 import Calendar from './Calendar';
 
+/** onDateSelectedProps for DatePicker component */
+export interface onDateSelectedProps {
+  /* Date selected (string for range=false and string[] for true) */
+  date: Date | Date[];
+  /* Date as string selected (string for range=false and string[] for true) */
+  dateString: string | string[];
+}
+
 /** DatePicker Component */
 export interface DPI {
   /** Set a multi select date on True or just one date on False */
@@ -19,10 +27,7 @@ export interface DPI {
     | 'danger'
     | 'tab';
   /** onDateSelected (data: {date Date |Date[], dateString: string|string[]}) => void */
-  onDateSelected: (data: {
-    date: Date | Date[];
-    dateString: string | string[];
-  }) => void | undefined;
+  onDateSelected: (data: onDateSelectedProps) => void | undefined;
 }
 
 /**

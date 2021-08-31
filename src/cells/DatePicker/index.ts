@@ -1,3 +1,4 @@
-import DatePicker from './DatePicker';
+import DatePicker, { onDateSelectedProps } from './DatePicker';
 
-export {DatePicker};
+export { DatePicker };
+export type { onDateSelectedProps };
