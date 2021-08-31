@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { Paragraph, Container } from '..';
 import { ConfigContext } from '../../providers';
+import OptionTime from './OptionTime';
 import { Option, StyledTimePicker } from './StyledTimePicker';
+import { handleOnClick } from './timePickerFunctions';
 
 /** onTimeSelected props */
 export interface onTimeSelectedProps {
@@ -68,192 +70,47 @@ const TimePicker = ({
   const hours: number[] = [...Array(lenghtH).keys()];
   const minutesSeconds: number[] = [...Array(lenghtM).keys()];
   const mer: ('am' | 'pm')[] = ['am', 'pm'];
-  const handleSelect = (num: number, opt: 'h' | 'm' | 's' = 'h') => {
-    const setOpt = () => {
-      switch (opt) {
-        case 'm':
-          return { minutes: num };
-        case 's':
-          return { seconds: num };
-        case 'h':
-        default:
-          return { hour: num };
-      }
-    };
-    setSelected((before: typeof selected) => ({
-      ...before,
-      ...setOpt(),
-    }));
-  };
   return (
     <StyledTimePicker timeFormat={timeFormat}>
-      <Container className='time-column t-hour' expandHorizontal expandVertical>
-        {hours.map((num: number) => (
-          <Option
-            data-testid={`${
-              timeFormat === '12h'
-                ? num + 1 < 10
-                  ? `0${num + 1}`
-                  : num + 1
-                : num < 10
-                  ? `0${num}`
-                  : num
-            }-h`}
-            shapeColor={shapeColor}
-            className={
-              (timeFormat === '12h' ? selected.hour + 1 : selected.hour)
-              === (timeFormat === '12h' ? num + 1 : num)
-                ? 'time-selected'
-                : 'time-not-selected'
-            }
-            config={config}
-            key={timeFormat === '12h' ? num + 1 : num}
-            onClick={() => {
-              setTimeSelected((before) => ({
-                ...before,
-                fullTime: `${
-                  num < 10 ? `0${timeFormat === '12h' ? num + 1 : num}` : num
-                }:${before.fullTime?.split(':')[1]}:${
-                  before.fullTime?.split(':')[2]
-                }`,
-                hour:
-                  num < 10
-                    ? `0${timeFormat === '12h' ? num + 1 : num}`
-                    : timeFormat === '12h'
-                      ? (num + 1).toString()
-                      : num.toString(),
-              }));
-              onTimeSelected({
-                ...timeSelected,
-                fullTime: `${
-                  num < 10 ? `0${timeFormat === '12h' ? num + 1 : num}` : num
-                }:${timeSelected.fullTime?.split(':')[1]}:${
-                  timeSelected.fullTime?.split(':')[2]
-                }`,
-                hour:
-                  num < 10
-                    ? `0${timeFormat === '12h' ? num + 1 : num}`
-                    : timeFormat === '12h'
-                      ? (num + 1).toString()
-                      : num.toString(),
-              });
-              handleSelect(num);
-            }}
-          >
-            <Paragraph
-              align='center'
-              size='sm'
-              color={
-                (timeFormat === '12h' ? selected.hour + 1 : selected.hour)
-                === (timeFormat === '12h' ? num + 1 : num)
-                  ? colors[shapeColor].text
-                  : 'dark'
-              }
-            >
-              {`${
-                (timeFormat === '12h' ? num + 1 : num) < 10
-                  ? `0${timeFormat === '12h' ? num + 1 : num}`
-                  : timeFormat === '12h'
-                    ? num + 1
-                    : num
-              }`}
-            </Paragraph>
-          </Option>
-        ))}
-      </Container>
-      <Container
-        className='time-column t-minute'
-        expandHorizontal
-        expandVertical
-      >
-        {minutesSeconds.map((num: number) => (
-          <Option
-            data-testid={`${num < 10 ? `0${num}` : num}-m`}
-            shapeColor={shapeColor}
-            className={
-              selected.minutes === num ? 'time-selected' : 'time-not-selected'
-            }
-            config={config}
-            key={num}
-            onClick={() => {
-              setTimeSelected((before) => ({
-                ...before,
-                fullTime: `${before.fullTime?.split(':')[0]}:${
-                  num < 10 ? `0${num}` : num
-                }:${before.fullTime?.split(':')[2]}`,
-                minutes: num < 10 ? `0${num}` : num.toString(),
-              }));
-              onTimeSelected({
-                ...timeSelected,
-                fullTime: `${timeSelected.fullTime?.split(':')[0]}:${
-                  num < 10 ? `0${num}` : num
-                }:${timeSelected.fullTime?.split(':')[2]}`,
-                minutes: num < 10 ? `0${num}` : num.toString(),
-              });
-              handleSelect(num, 'm');
-            }}
-          >
-            <Paragraph
-              align='center'
-              size='sm'
-              color={
-                selected.minutes === num ? colors[shapeColor].text : 'dark'
-              }
-            >
-              {`${num < 10 ? `0${num}` : num}`}
-            </Paragraph>
-          </Option>
-        ))}
-      </Container>
-      <Container
-        className='time-column t-second'
-        expandHorizontal
-        expandVertical
-      >
-        {minutesSeconds.map((num: number) => (
-          <Option
-            data-testid={`${num < 10 ? `0${num}` : num}-s`}
-            shapeColor={shapeColor}
-            className={
-              selected.seconds === num ? 'time-selected' : 'time-not-selected'
-            }
-            config={config}
-            key={num}
-            onClick={() => {
-              setTimeSelected((before) => ({
-                ...before,
-                fullTime: `${before.fullTime?.split(':')[0]}:${
-                  before.fullTime?.split(':')[1]
-                }:${num < 10 ? `0${num}` : num}${
-                  timeFormat === '12h' ? ` ${before.meridian}` : ''
-                }`,
-                seconds: num < 10 ? `0${num}` : num.toString(),
-              }));
-              onTimeSelected({
-                ...timeSelected,
-                fullTime: `${timeSelected.fullTime?.split(':')[0]}:${
-                  timeSelected.fullTime?.split(':')[1]
-                }:${num < 10 ? `0${num}` : num}${
-                  timeFormat === '12h' ? ` ${timeSelected.meridian}` : ''
-                }`,
-                seconds: num < 10 ? `0${num}` : num.toString(),
-              });
-
-              handleSelect(num, 's');
-            }}
-          >
-            <Paragraph
-              align='center'
-              size='sm'
-              color={
-                selected.seconds === num ? colors[shapeColor].text : 'dark'
-              }
-            >
-              {`${num < 10 ? `0${num}` : num}`}
-            </Paragraph>
-          </Option>
-        ))}
-      </Container>
+      <OptionTime
+        timeSet='h'
+        shapeColor={shapeColor}
+        selected={selected}
+        array={hours}
+        options={{
+          setTimeSelected,
+          onTimeSelected,
+          setSelected,
+          timeSelected,
+          timeFormat,
+        }}
+      />
+      <OptionTime
+        timeSet='m'
+        shapeColor={shapeColor}
+        selected={selected}
+        array={minutesSeconds}
+        options={{
+          setTimeSelected,
+          onTimeSelected,
+          setSelected,
+          timeSelected,
+          timeFormat,
+        }}
+      />
+      <OptionTime
+        timeSet='s'
+        shapeColor={shapeColor}
+        selected={selected}
+        array={minutesSeconds}
+        options={{
+          setTimeSelected,
+          onTimeSelected,
+          setSelected,
+          timeSelected,
+          timeFormat,
+        }}
+      />
       {timeFormat === '12h' && (
         <Container
           className='time-column t-meridian'
@@ -267,17 +124,12 @@ const TimePicker = ({
               config={config}
               key={opt}
               onClick={() => {
-                setTimeSelected((before) => ({
-                  ...before,
-                  fullTime: `${before.fullTime?.split(' ')[0]} ${opt}`,
-                  meridian: opt,
-                }));
-                onTimeSelected({
-                  ...timeSelected,
-                  fullTime: `${timeSelected.fullTime?.split(' ')[0]} ${opt}`,
-                  meridian: opt,
+                handleOnClick(opt, setTimeSelected, onTimeSelected, -50, {
+                  format: timeFormat,
+                  time: timeSelected,
+                  setSelected,
+                  setZone,
                 });
-                setZone(opt);
               }}
             >
               <Paragraph
