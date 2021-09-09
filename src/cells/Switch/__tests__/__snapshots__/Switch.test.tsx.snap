@@ -7,7 +7,7 @@ exports[`<Switch/> should fire hover event 1`] = `
   >
     Switch
     <label
-      class="StyledSwitch-sc-10hvevw-0 kirfCf"
+      class="StyledSwitch-sc-10hvevw-0 IHYuu"
       data-testid="Switch1"
       for="Switch1"
     >

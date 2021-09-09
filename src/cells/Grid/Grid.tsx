@@ -10,17 +10,17 @@ interface PaddingProps {
   configuration: ConfigProps;
 }
 
-const Padding = styled.div < PaddingProps > `
+const Padding = styled.div<PaddingProps>`
   box-sizing: border-box;
-  background-color: ${(p) => p.configuration.colors.background};
   display: flex;
   flex-wrap: wrap;
   padding: 0 ${(p) => p.gutter / 2}px;
-  ${(p) => (p.expanded
-    ? css`
+  ${(p) =>
+    p.expanded
+      ? css`
           max-width: 100% !important;
         `
-    : css``)};
+      : css``};
   @media (min-width: ${(p) => p.configuration.breakpoints.xs}) {
     max-width: ${(p) => p.configuration.breakpoints.xs};
   }
@@ -66,13 +66,8 @@ const Grid = ({
 }: GridProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   return (
-    <GridContext.Provider value={{ gap: gutter, innerGap: innerGutter}}>
-      <Padding
-        configuration={configuration}
-        gutter={gutter}
-        expanded={expanded}
-        {...rest}
-      >
+    <GridContext.Provider value={{ gap: gutter, innerGap: innerGutter }}>
+      <Padding configuration={configuration} gutter={gutter} expanded={expanded} {...rest}>
         {children}
       </Padding>
     </GridContext.Provider>
