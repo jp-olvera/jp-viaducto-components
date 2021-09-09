@@ -19,15 +19,23 @@ interface FormItemProps {
   /** isValid, null (default value) doesn't indicate is valid nor is invalid*/
   isValid: boolean | null;
   /** prefix */
-  prefix: React.ReactNode;
+  prefix?: React.ReactNode;
   /** radius */
-  radius: 'none' | 'sm' | 'md' | 'lg';
+  radius?: 'none' | 'sm' | 'md' | 'lg';
   /** suffix */
-  suffix: React.ReactNode;
+  suffix?: React.ReactNode;
 }
 
 const FormItem = ({
-  inputSize = 'default', border = 'default', children, family, borderColor, radius='sm', prefix, suffix, isValid,
+  inputSize = 'default',
+  border = 'default',
+  children,
+  family,
+  borderColor,
+  radius = 'sm',
+  prefix,
+  suffix,
+  isValid,
 }: FormItemProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { configuration } = useContext(ConfigContext);
@@ -49,10 +57,12 @@ const FormItem = ({
         labelTag.classList.remove('active');
       }
     };
-    
+
     if (ref.current) {
       const labelTags = ref.current.getElementsByTagName('label');
-      let inputTags: HTMLCollectionOf<HTMLSelectElement> | HTMLCollectionOf<HTMLInputElement> = ref.current.getElementsByTagName('input');
+      let inputTags:
+        | HTMLCollectionOf<HTMLSelectElement>
+        | HTMLCollectionOf<HTMLInputElement> = ref.current.getElementsByTagName('input');
       if (labelTags.length) {
         [labelTag] = labelTags;
         labelTag.classList.add('ballena-label');
@@ -82,18 +92,14 @@ const FormItem = ({
   return (
     <StyledFormControl>
       <StyledFormItem
-        border={
-          border !== 'bottom' && inputSize === 'xsmall' ? 'outside' : border
-        }
+        border={border !== 'bottom' && inputSize === 'xsmall' ? 'outside' : border}
         size={inputSize}
         radius={radius}
         hasPrefix={hasPrefix}
         hasSuffix={hasSuffix}
         isValid={isValid}
         configuration={configuration}
-        borderColor={
-          borderColor || configuration.colors.defaultInputBorderColor
-        }
+        borderColor={borderColor || configuration.colors.defaultInputBorderColor}
         family={family}
         ref={ref}
       >
