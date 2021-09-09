@@ -2,7 +2,7 @@
 
 exports[`<CircleLoader/> should render Circle Loader and create Snapshot 1`] = `
 <div
-  class="StyleLoader__StyledLoader-sc-1bymfut-0 czEfaT"
+  class="StyleLoader__StyledLoader-sc-1bymfut-0 kZnXVG"
   data-testid="loader"
 >
   <svg
@@ -45,7 +45,7 @@ exports[`<CircleLoader/> should render Circle Loader and create Snapshot 1`] = `
 
 exports[`<CircleLoader/> should render Circle Loader with props and create Snapshot 1`] = `
 <div
-  class="StyleLoader__StyledLoader-sc-1bymfut-0 czEfaT"
+  class="StyleLoader__StyledLoader-sc-1bymfut-0 kZnXVG"
   data-testid="loader"
 >
   <svg
@@ -88,7 +88,7 @@ exports[`<CircleLoader/> should render Circle Loader with props and create Snaps
 
 exports[`<ProgressBar/> should render ProgressBar and create snapshot 1`] = `
 <div
-  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 ggstzA"
+  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 cCSQrl"
   color="#937B3D"
   data-testid="loader"
   max="50"
@@ -110,7 +110,7 @@ exports[`<ProgressBar/> should render ProgressBar and create snapshot 1`] = `
 
 exports[`<ProgressBar/> should render ProgressBar and create snapshot with props 1`] = `
 <div
-  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 hzUqFE"
+  class="StyleLoader__StyledProgressBar-sc-1bymfut-2 deMAeB"
   color="#937B3D"
   data-testid="loader"
   max="10"
@@ -132,7 +132,7 @@ exports[`<ProgressBar/> should render ProgressBar and create snapshot with props
 
 exports[`<StepLoader/> should render StepLoader and create snapshot 1`] = `
 <h1
-  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 jhFylE"
+  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 uLVF"
   data-testid="loader"
 >
   14 / 14
@@ -141,7 +141,7 @@ exports[`<StepLoader/> should render StepLoader and create snapshot 1`] = `
 
 exports[`<StepLoader/> should render StepLoader and create snapshot with props 1`] = `
 <h1
-  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 jNbuyV"
+  class="StyleLoader__StyledStepProgress-sc-1bymfut-1 ilwoBs"
   color="red"
   data-testid="loader"
 >

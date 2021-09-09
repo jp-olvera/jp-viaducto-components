@@ -25,7 +25,7 @@ export const Intro = () => (
         />
         <Spacer size='sm' />
         <Paragraph>
-          This proyect was develop with{' '}
+          This project was develop with{' '}
           <Anchor
             href='https://reactjs.org/'
             label='React JS'

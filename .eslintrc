@@ -72,6 +72,9 @@
     "one-var": [0, "initializations"],
     "one-var-declaration-per-line": [0, "initializations"],
     "implicit-arrow-linebrak": 0,
-    "react/no-array-index-key": 0
+    "react/no-array-index-key": 0,
+    "required": {
+      "some": ["nesting", "id"]
+    }
   }
 }

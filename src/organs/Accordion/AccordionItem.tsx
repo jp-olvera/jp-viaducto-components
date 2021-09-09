@@ -8,20 +8,6 @@ import {
 } from './StyledAccordion';
 import { ConfigContext } from '../../providers';
 
-/**
- * Accordion Item component
- @param {React.ReactNode} children children component
-  @param {boolean} Inidcates if it is open
-  @param {string} Id id
-  @param {React.ReactNode} Icon to use instead of the chevron
-  @param {string} Class to apply to the icon when the accordion is open
-  @param {string} Class to apply to the icon when the accordion is closed
-  @param {string} Horizontal padding to apply based on the spacing configuration
-  @param {string} Vertical padding to apply based on the spacing configuration
-  @param {React.ReactNode}  Content to use as the title
-  @param {string} timing function to use when closing and opening
- */
-
 export interface AccordionItemProps {
   /** children component */
   children: React.ReactNode;
@@ -31,6 +17,8 @@ export interface AccordionItemProps {
   id?: string;
   /** Icon to use instead of the chevron */
   icon?: React.ReactNode;
+  /** Color for default chevron icon */
+  iconColor?: string;
   /** Class to apply to the icon when the accordion is open */
   iconOpen?: string;
   /** Class to apply to the icon when the accordion is closed */
@@ -45,6 +33,21 @@ export interface AccordionItemProps {
   transition?: string;
 }
 
+/**
+ * Accordion Item component
+ @param {React.ReactNode} children children component
+  @param {boolean} Inidcates if it is open
+  @param {string} Id id
+  @param {React.ReactNode} Icon to use instead of the chevron
+  @param {string} iconColor color for default chevron icon
+  @param {string} Class to apply to the icon when the accordion is open
+  @param {string} Class to apply to the icon when the accordion is closed
+  @param {string} Horizontal padding to apply based on the spacing configuration
+  @param {string} Vertical padding to apply based on the spacing configuration
+  @param {React.ReactNode}  Content to use as the title
+  @param {string} timing function to use when closing and opening
+ */
+
 const AccordionItem = ({
   children,
   expanded = false,
@@ -56,6 +59,7 @@ const AccordionItem = ({
   icon = null,
   iconOpen = '',
   iconClosed = '',
+  iconColor = 'dark',
   ...rest
 }: AccordionItemProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
@@ -86,6 +90,7 @@ const AccordionItem = ({
   const handleClick = () => {
     setisOpen((prev) => !prev);
   };
+
   return (
     <StyledAccordionItem
       paddingX={paddingX}
@@ -111,6 +116,7 @@ const AccordionItem = ({
             textOverflow: 'text-elipsis',
             whiteSpace: 'nowrap',
             marginRight: 'auto',
+            width: 'calc(100% - 25px)',
           }}
         >
           {titleItem}
@@ -118,13 +124,23 @@ const AccordionItem = ({
         <span
           style={{
             paddingLeft: '5px',
+            width: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            alignContent: 'center',
           }}
           className={isOpen ? iconOpen : iconClosed}
         >
           {icon !== null ? (
             icon
           ) : (
-            <Chevron expanded={isOpen} transition={transition} />
+            <Chevron
+              expanded={isOpen}
+              transition={transition}
+              config={configuration}
+              iconColor={iconColor}
+            />
           )}
         </span>
       </AccordionHeader>

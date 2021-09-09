@@ -2,67 +2,60 @@
 
 import React from 'react';
 
-import { render, screen } from '../../../test-utils';
+import { render, screen, fireEvent } from '../../../test-utils';
 import { Tooltip } from '..';
-
-const props = {
-  label: 'This is a tooltip',
-  active: true,
-  color: '#f1f1f1',
-  textColor: '#000',
-  family: 'Manrope',
-};
 
 const Container = () => <div>Container who has the tooltip</div>;
 
 describe('<Tooltip/>', () => {
-  test('should be visible', () => {
+  test('label should be visible when mouseEnter Container', () => {
     render(
-      <Tooltip {...props}>
+      <Tooltip family={undefined} label='a'>
         <Container />
       </Tooltip>,
     );
-    expect(screen.queryByText(props.label)).toBeVisible();
+    fireEvent.mouseEnter(screen.getByTestId('tooltip'));
+    expect(screen.queryByText('a')).toBeVisible();
   });
 
-  test('should not be visible', () => {
+  test('tooltip should not be rendered by default', () => {
     render(
-      <Tooltip family={undefined} active={false} label='a'>
+      <Tooltip label='a'>
         <Container />
       </Tooltip>,
     );
-    expect(screen.queryByText('a')).not.toBeVisible();
+    expect(screen.queryByText('a')).toBe(null);
   });
-  test('should render bottom tooltip', () => {
-    render(
-      <Tooltip {...props} position='bottom' textColor={null} active>
-        <Container />
-      </Tooltip>,
-    );
-    expect(screen.queryByText(props.label)).toBeVisible();
-  });
+
   test('should render left tooltip', () => {
     render(
-      <Tooltip {...props} position='left'>
+      <Tooltip label='tooltip' position='left'>
         <Container />
       </Tooltip>,
     );
-    expect(screen.queryByText(props.label)).toBeVisible();
+    fireEvent.mouseEnter(screen.getByTestId('tooltip'));
+
+    expect(screen.queryByText('tooltip')).toBeVisible();
   });
-  test('should render right tooltip', () => {
+
+  test('should render top tooltip', () => {
     render(
-      <Tooltip {...props} position='right'>
+      <Tooltip label='tooltip' position='top' color='white'>
         <Container />
       </Tooltip>,
     );
-    expect(screen.queryByText(props.label)).toBeVisible();
+    fireEvent.mouseEnter(screen.getByTestId('tooltip'));
+    expect(screen.queryByText('tooltip')).toBeVisible();
   });
-  test('should render default tooltip', () => {
-    const { container } = render(
-      <Tooltip position='top'>
+
+  test('should render bottom tooltip', () => {
+    render(
+      <Tooltip label='tooltip' position='bottom' color='white'>
         <Container />
       </Tooltip>,
     );
-    expect(container).toBeVisible();
+    fireEvent.mouseEnter(screen.getByTestId('tooltip'));
+
+    expect(screen.queryByText('tooltip')).toBeVisible();
   });
 });
