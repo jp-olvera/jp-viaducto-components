@@ -11,27 +11,14 @@ const commonOptions = {
   table: {
     defaultValue: { summary: null },
   },
-  options: [
-    null,
-    'none',
-    'nano',
-    'micro',
-    'tiny',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    'xxl',
-    'xxxl',
-  ],
+  options: [null, 'none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
   control: {
     type: 'select',
   },
 };
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Layout/Container',
+  title: 'Ballena/Shared/Container',
   component: Container,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

@@ -17,7 +17,7 @@ const commonOptions = {
 };
 
 const config: any = {
-  title: 'Ballena/Cells/Layout/ResponsivePadding',
+  title: 'Ballena/Shared/ResponsivePadding',
   component: ResponsivePadding,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

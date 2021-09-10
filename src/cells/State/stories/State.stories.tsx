@@ -4,7 +4,7 @@ import { ConfigProvider } from '../../../providers';
 import { State } from '..';
 
 const config: any = {
-  title: 'Ballena/Organisms/State',
+  title: 'Ballena/Shared/State',
   component: State,
   parameters: { controls: { sort: 'requiredFirst' } },
 };
@@ -45,8 +45,7 @@ export const Default = Template.bind({});
 
 Default.args = {
   title: 'This is an empty state',
-  description:
-    'Woooow this is truly empty. You need something to be able to work',
+  description: 'Woooow this is truly empty. You need something to be able to work',
   buttonLabel: 'Back',
   shapeColor: 'primary',
   clickHandler: () => {},

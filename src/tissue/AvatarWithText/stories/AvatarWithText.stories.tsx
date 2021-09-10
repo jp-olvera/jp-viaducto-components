@@ -5,7 +5,7 @@ import { AvatarWithText } from '../index';
 import { Container, Paragraph } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/Tissues/AvatarWithText',
+  title: 'Ballena/Shared/AvatarWithText',
   component: AvatarWithText,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -30,20 +30,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'sm' },
       },
-      options: [
-        null,
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: [null, 'none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: {
         type: 'select',
       },

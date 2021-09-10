@@ -4,7 +4,7 @@ import { SidebarSection, MenuItem } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Organisms/SidebarSection',
+  title: 'Ballena/App/SidebarSection',
   component: SidebarSection,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -16,8 +16,7 @@ const config: SBConfigI = {
       },
     },
     separator: {
-      description:
-        'A boolean to put a horizontal separator at the beginning of the section',
+      description: 'A boolean to put a horizontal separator at the beginning of the section',
       table: {
         type: { summary: 'boolean', defaultValue: false },
       },
@@ -58,26 +57,10 @@ const Template = (args: typeof Default) => (
         }}
       >
         <SidebarSection {...args}>
-          <MenuItem
-            href='#'
-            label='First item in the menu with a large text'
-            nested
-          />
-          <MenuItem
-            href='#'
-            label='Second item in the menu with a large text'
-            nested
-          />
-          <MenuItem
-            href='#'
-            label='Third item in the menu with a large text'
-            nested
-          />
-          <MenuItem
-            href='#'
-            label='Fourth item in the menu with a large text'
-            nested
-          />
+          <MenuItem href='#' label='First item in the menu with a large text' nested />
+          <MenuItem href='#' label='Second item in the menu with a large text' nested />
+          <MenuItem href='#' label='Third item in the menu with a large text' nested />
+          <MenuItem href='#' label='Fourth item in the menu with a large text' nested />
           <a href='http://www.google.com' target='_blank' rel='noreferrer'>
             <MenuItem label='Wrap with an anchor or Link' nested />
           </a>
@@ -102,13 +85,7 @@ const Template = (args: typeof Default) => (
             <MenuItem label='Maybe use a button' nested />
           </button>
           <MenuItem label='Use an icon' href='' icon='❤' />
-          <MenuItem
-            label='Change icon position'
-            active
-            icon='❤'
-            href=''
-            lead={false}
-          />
+          <MenuItem label='Change icon position' active icon='❤' href='' lead={false} />
         </SidebarSection>
       </div>
     </div>

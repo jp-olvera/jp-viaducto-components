@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { Snackbar } from '..';
 
 const config: SBConfigI = {
-  title: 'Ballena/Dialog/Snackbar',
+  title: 'Ballena/App/Dialog/Snackbar',
   component: Snackbar,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -21,8 +21,7 @@ const config: SBConfigI = {
       },
     },
     elevationDirection: {
-      description:
-        "The elevation direction, if 'radial' direction goes everywhere",
+      description: "The elevation direction, if 'radial' direction goes everywhere",
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'radial' },

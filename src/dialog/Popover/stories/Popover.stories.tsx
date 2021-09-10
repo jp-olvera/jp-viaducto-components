@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { ConfigProvider } from '../../../providers';
 import { Popover } from '..';
-import { Button } from '../..';
+import { Button } from '../../../';
 
 export default {
-  title: 'Ballena/Dialog/Popover',
+  title: 'Ballena/App/Dialog/Popover',
   component: Popover,
   argTypes: {
     active: {
@@ -90,13 +90,7 @@ export default {
   },
 };
 
-const Template = ({
-  position,
-  elevation,
-  elevationDirection,
-  radius,
-  zIndex,
-}) => {
+const Template = ({ position, elevation, elevationDirection, radius, zIndex }) => {
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
@@ -137,11 +131,11 @@ const Template = ({
           />
           <Popover
             active={active}
-            content={(
+            content={
               <div style={{ width: '300px', height: '200px' }}>
                 <button type='button'>hola</button>
               </div>
-            )}
+            }
             target={ref}
             handleClose={handleClick}
             position={position}
@@ -163,11 +157,11 @@ const Template = ({
               />
               <Popover
                 active={active2}
-                content={(
+                content={
                   <div style={{ width: '300px', height: '200px' }}>
                     <button type='button'>hola</button>
                   </div>
-                )}
+                }
                 target={ref2}
                 handleClose={handleClick2}
                 position={position}

@@ -4,7 +4,7 @@ import { Grid, Column, Row } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Layout/Column',
+  title: 'Ballena/Shared/Column',
   component: Column,
   parameters: {},
   argTypes: {
@@ -59,10 +59,7 @@ const TemplateResponsive = (args: typeof Default) => (
   <ConfigProvider>
     <Grid>
       <Row>
-        <Column
-          style={{ backgroundColor: 'rgb(100,69,145)', height: '230px' }}
-          {...args}
-        />
+        <Column style={{ backgroundColor: 'rgb(100,69,145)', height: '230px' }} {...args} />
       </Row>
     </Grid>
   </ConfigProvider>

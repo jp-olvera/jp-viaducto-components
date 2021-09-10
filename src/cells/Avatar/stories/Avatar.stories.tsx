@@ -4,7 +4,7 @@ import { ConfigProvider } from '../../../providers';
 import { Avatar } from '../index';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Info/Avatar',
+  title: 'Ballena/Shared/Avatar',
   component: Avatar,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

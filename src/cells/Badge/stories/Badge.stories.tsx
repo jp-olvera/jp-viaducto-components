@@ -4,13 +4,12 @@ import { Badge } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Info/Badge',
+  title: 'Ballena/Shared/Badge',
   component: Badge,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
     background: {
-      description:
-        'Set background color for the Badge (will not appear if the src is provided)',
+      description: 'Set background color for the Badge (will not appear if the src is provided)',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: '#C4C4C4' },
@@ -31,8 +30,7 @@ const config: SBConfigI = {
       control: 'text',
     },
     content: {
-      description:
-        'Set the the content inside the Badge as the principal children component',
+      description: 'Set the the content inside the Badge as the principal children component',
       type: { summary: 'JSX Element', required: true },
       table: {
         defaultValue: { summary: null },
