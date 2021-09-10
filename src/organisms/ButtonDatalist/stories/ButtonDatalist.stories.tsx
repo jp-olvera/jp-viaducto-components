@@ -8,7 +8,7 @@ import { Paragraph, Title } from '../../../cells';
 import { AvatarWithText } from '../../../tissue';
 
 const config: SBConfigI = {
-  title: 'Ballena/Organisms/ButtonDatalist',
+  title: 'Ballena/App/ButtonDatalist',
   component: ButtonDatalist,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -98,8 +98,7 @@ const Template = (args: typeof Default) => (
 export const Default = Template.bind({});
 const A = () => (
   <Paragraph weight='600'>
-    This option (<code>Paragraph weight=&#39;600&#39;</code>) has{' '}
-    <code>Safari</code> accessor
+    This option (<code>Paragraph weight=&#39;600&#39;</code>) has <code>Safari</code> accessor
   </Paragraph>
 );
 Default.args = {

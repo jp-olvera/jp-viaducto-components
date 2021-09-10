@@ -4,7 +4,7 @@ import { Card } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Organs/Card',
+  title: 'Ballena/App/Card',
   component: Card,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -111,8 +111,7 @@ const FakeContent = () => (
 );
 
 Default.args = {
-  src:
-    'https://images.freeimages.com/images/large-previews/478/jack-o-lanterns-1326113.jpg',
+  src: 'https://images.freeimages.com/images/large-previews/478/jack-o-lanterns-1326113.jpg',
   elevation: 1,
   elevationDirection: 'radial',
   radius: 'none',

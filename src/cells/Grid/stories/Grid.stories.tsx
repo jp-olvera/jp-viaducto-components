@@ -4,7 +4,7 @@ import { Grid, Column, Row } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Layout/Grid',
+  title: 'Ballena/Shared/Grid',
   component: Grid,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -168,29 +168,13 @@ const TemplateResponsive = (args: typeof Default) => (
         >
           {/* <pre>size = 6 | xs = 12 | lg = 9</pre> */}
         </Column>
-        <Column
-          style={{ backgroundColor: '#CECE', height: '230px' }}
-          xs={7}
-          md={6}
-          lg={8}
-          xl={3}
-        >
+        <Column style={{ backgroundColor: '#CECE', height: '230px' }} xs={7} md={6} lg={8} xl={3}>
           {/* <pre>size = 6 | xs = 12 | lg = 9</pre> */}
         </Column>
       </Row>
       <Row>
-        <Column
-          style={{ backgroundColor: '#DDDF', height: '230px' }}
-          size={12}
-          md={5}
-          lg={3}
-        />
-        <Column
-          style={{ backgroundColor: '#DDD5', height: '230px' }}
-          size={12}
-          md={7}
-          lg={9}
-        />
+        <Column style={{ backgroundColor: '#DDDF', height: '230px' }} size={12} md={5} lg={3} />
+        <Column style={{ backgroundColor: '#DDD5', height: '230px' }} size={12} md={7} lg={9} />
       </Row>
       <Row>
         <Column style={{ backgroundColor: '#DDDF', height: '230px' }} />

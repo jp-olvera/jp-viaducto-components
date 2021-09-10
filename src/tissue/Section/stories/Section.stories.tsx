@@ -2,11 +2,11 @@ import React from 'react';
 import { SBConfigI } from '../../../sb';
 import { ConfigProvider } from '../../../providers';
 import { Section } from '..';
-import { Container, Paragraph, Title } from '../../../cells';
+import { Paragraph, Title } from '../../../cells';
 import { SideToSide } from '../../../organs';
 
 const config: SBConfigI = {
-  title: 'Ballena/Tissues/Section',
+  title: 'Ballena/Marketing/Section',
   component: Section,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

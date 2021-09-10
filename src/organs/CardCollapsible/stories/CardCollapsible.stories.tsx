@@ -4,7 +4,7 @@ import { CardCollapsible } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Organs/CardCollapsible',
+  title: 'Ballena/App/CardCollapsible',
   component: CardCollapsible,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -89,13 +89,11 @@ export default config;
 const Template = (args: typeof Default) => (
   <ConfigProvider>
     <p style={{ fontFamily: 'Arial' }}>
-      this card collapsible is divided by two sections: main content and
-      collapse content.
+      this card collapsible is divided by two sections: main content and collapse content.
     </p>
     <p style={{ fontFamily: 'Arial' }}>
-      when the prop <code>collapse</code> is <code>true</code> the collapse
-      content will be collapsed (it is pretty clear) and only the header
-      component will be visible
+      when the prop <code>collapse</code> is <code>true</code> the collapse content will be
+      collapsed (it is pretty clear) and only the header component will be visible
     </p>
     <br />
     <CardCollapsible {...args} />
