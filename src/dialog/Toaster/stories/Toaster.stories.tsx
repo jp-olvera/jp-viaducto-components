@@ -90,7 +90,7 @@ const YourWrapper = ({ text, ...rest }) => {
 };
 
 const config: SBConfigI = {
-  title: 'Ballena/Dialog/Toaster',
+  title: 'Ballena/App/Dialog/Toaster',
   component: YourWrapper,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

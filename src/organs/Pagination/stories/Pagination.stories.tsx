@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { Pagination } from '..';
 
 const config: SBConfigI = {
-  title: 'Ballena/Organs/Pagination',
+  title: 'Ballena/App/Pagination',
   component: Pagination,
   parameters: {
     controls: { sort: 'requiredFirst' },
@@ -18,8 +18,7 @@ const config: SBConfigI = {
       control: 'number',
     },
     sibilings: {
-      description:
-        'Set the number of pages rendering as sibilings of the active page',
+      description: 'Set the number of pages rendering as sibilings of the active page',
       type: { summary: 'number (0,1)', required: true },
       table: { defaultValue: 0 },
       control: 'select',
@@ -79,18 +78,7 @@ const config: SBConfigI = {
       description: 'Set the padding for the page item',
       type: { summary: 'string', required: true },
       table: { defaultValue: 'xs' },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       control: {
         type: 'select',
       },

@@ -5,7 +5,7 @@ import { Breadcrums, Breadcrum } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Tissues/Breadcrum',
+  title: 'Ballena/Shared/Breadcrum',
   component: Breadcrums,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -18,18 +18,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'sm' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       control: {
         type: 'select',
       },
@@ -100,11 +89,7 @@ const Template2 = (args: typeof ExternalWrapper) => (
         }}
         style={{ padding: '0', margin: '0', border: 'none' }}
       >
-        <Breadcrum
-          label='This could be the Router Link'
-          active
-          separator={false}
-        />
+        <Breadcrum label='This could be the Router Link' active separator={false} />
       </button>
     </Breadcrums>
   </ConfigProvider>

@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { Button } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/Dialog/Drawer',
+  title: 'Ballena/App/Dialog/Drawer',
   component: Drawer,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -164,9 +164,7 @@ const Template2 = (args: typeof Large) => {
         }}
         {...args}
       >
-        <div
-          style={{ width: '850px', height: '450px', backgroundColor: 'gray' }}
-        >
+        <div style={{ width: '850px', height: '450px', backgroundColor: 'gray' }}>
           <h1 style={{ color: 'white' }}>This is 850px width</h1>
         </div>
       </Drawer>

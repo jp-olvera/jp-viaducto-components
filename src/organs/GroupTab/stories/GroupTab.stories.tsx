@@ -5,7 +5,7 @@ import { GroupTab } from '..';
 import { Tab } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/Organs/GroupTab',
+  title: 'Ballena/App/GroupTab',
   component: GroupTab,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -22,15 +22,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'tab' },
       },
-      options: [
-        'primary',
-        'secondary',
-        'info',
-        'success',
-        'warning',
-        'danger',
-        'tab',
-      ],
+      options: ['primary', 'secondary', 'info', 'success', 'warning', 'danger', 'tab'],
       control: 'select',
     },
     fontSize: {
@@ -45,25 +37,12 @@ const config: SBConfigI = {
       },
     },
     horizontalSpacing: {
-      description:
-        'Set the horizontal spacing taking the tab content as reference',
+      description: 'Set the horizontal spacing taking the tab content as reference',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: 'sm' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: {
         type: 'select',
       },
@@ -74,43 +53,18 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'none' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: {
         type: 'select',
       },
     },
     verticalSpacing: {
-      description:
-        'Set the vertical spacing taking the tab content as reference',
+      description: 'Set the vertical spacing taking the tab content as reference',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: 'sm' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: {
         type: 'select',
       },

@@ -6,7 +6,7 @@ import { Button } from '../../../cells';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Dialog/Modal',
+  title: 'Ballena/App/Dialog/Modal',
   component: Modal,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -73,8 +73,7 @@ const config: SBConfigI = {
       },
     },
     allowClickOutside: {
-      description:
-        'Specifies if the modal could be closed when clicking outside',
+      description: 'Specifies if the modal could be closed when clicking outside',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
@@ -109,9 +108,9 @@ const Template = (args: typeof Default) => {
       <div style={{ height: '980px' }}>
         <p>Contenido detrás del modal.</p>
         <p>
-          Es neceseraio controlar el estado del modal de manera externa, por lo
-          que es necesario proporcionar una variable que represente su estado
-          activo e inactivo y una función que pueda modificar este estado.
+          Es neceseraio controlar el estado del modal de manera externa, por lo que es necesario
+          proporcionar una variable que represente su estado activo e inactivo y una función que
+          pueda modificar este estado.
         </p>
         <pre>
           <code>
@@ -141,8 +140,8 @@ const Template = (args: typeof Default) => {
 
       <Modal active={active} handleActive={handleActive} {...args}>
         <div>
-          Aquí van los children. Si no proporcionas las funciones onReject y
-          onAccept, no se mostrará la sección de controles
+          Aquí van los children. Si no proporcionas las funciones onReject y onAccept, no se
+          mostrará la sección de controles
         </div>
       </Modal>
     </ConfigProvider>

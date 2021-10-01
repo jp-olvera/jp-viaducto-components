@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect, useState } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import { StyledFormItem } from './StyledFormItem';
 import { StyledFormControl } from './StyledFormControl';
 import { ConfigContext } from '../../providers';
@@ -7,17 +7,17 @@ import SuffixInput from './SuffixInput';
 
 interface FormItemProps {
   /** The border type for the input (full, bottom, overlap) */
-  border: 'outside' | 'overlap' | 'bottom' | 'none' | 'default';
+  border?: 'outside' | 'overlap' | 'bottom' | 'none' | 'default';
   /** set the color border */
-  borderColor: string | null;
+  borderColor?: string | null;
   /** Set font family */
-  family: string | undefined;
+  family?: string | undefined;
   /** children */
   children: React.ReactNode;
   /** Set the height of the input */
-  inputSize: 'xsmall' | 'small' | 'default' | 'large';
+  inputSize?: 'xsmall' | 'small' | 'default' | 'large';
   /** isValid, null (default value) doesn't indicate is valid nor is invalid*/
-  isValid: boolean | null;
+  isValid?: boolean | null;
   /** prefix */
   prefix?: React.ReactNode;
   /** radius */
@@ -27,15 +27,15 @@ interface FormItemProps {
 }
 
 const FormItem = ({
-  inputSize = 'default',
-  border = 'default',
-  children,
-  family,
-  borderColor,
-  radius = 'sm',
-  prefix,
-  suffix,
-  isValid,
+  inputSize = 'default', 
+  border = 'default', 
+  children, 
+  family, 
+  borderColor, 
+  radius='sm', 
+  prefix, 
+  suffix, 
+  isValid = null,
 }: FormItemProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { configuration } = useContext(ConfigContext);
@@ -112,3 +112,15 @@ const FormItem = ({
 };
 
 export default FormItem;
+
+
+/**
+ * Razones para no usar el label animado
+ * 1. Es difícil de controlar'
+ * 2. Hay cosas que podrían ser más importantes que la animación pero se están haciendo en torno a ella
+ * 3. No se puede hacer el onfocus desde los prefijos o sufijos
+ * 4. Nunca se va a ver bien con el select múltiple
+ * 5. Los prefijos siempre deben ser de cierto tamaño o van a salir recortados hacia los lados, no podría haber un texto como prefijo
+ * 6. No se puede agregar un box-shadow (alternativa al outline que se ve mal con los prefijos y sufijos) sin tener que usar addEventListeners cosa que se debe evitar
+ * 7. Se necesitan paddings o margins para recuperar el espacio donde el label se solapa, calcularlos es difícil considerando los tamaños de los inputs
+ */

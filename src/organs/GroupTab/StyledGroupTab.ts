@@ -36,7 +36,7 @@ export const StyledGroupTab = styled.div < SGTI > `
       }
     }
     &:after {
-      bottom: -0.188rem !important;
+      bottom: ${(p) => (p.position === 'top' ? 'calc(100% - 0.188rem)' : '-0.188rem')};
     }
     &:hover:not(:nth-child(${(p) => p.index + 1})) {
       filter: brightness(1.2);

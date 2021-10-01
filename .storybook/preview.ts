@@ -5,17 +5,19 @@ export const parameters = {
       order: [
         'Getting Started',
         'Ballena',
-        [
-          'Primitives',
-          ['Intro'],
-          'Cells',
-          'Tissues',
-          'Organs',
-          'Organisms',
-          'Dialog',
-          'Hooks',
-        ],
+        ['Primitives', ['Intro'], 'Cells', 'App', 'Marketing', 'Shared', 'Hooks'],
       ],
     },
   },
 };
+
+// [
+//           'Primitives',
+//           ['Intro'],
+//           'Cells',
+//           'Tissues',
+//           'Organs',
+//           'Organisms',
+//           'Dialog',
+//           'Hooks',
+//         ],
