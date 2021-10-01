@@ -20,6 +20,17 @@ const config: any = {
         type: 'select',
       },
     },
+    isValid: {
+      description: 'Indicates if thje input has errors or is valid',
+      type: { summary: 'boolean | null', required: false },
+      table: {
+        defaultValue: { summary: 'null' },
+      },
+      options: [null, false, true],
+      control: {
+        type: 'select',
+      },
+    },
     inputSize: {
       description: 'Set the size (height) of the input',
       type: { summary: 'String', required: false },
@@ -48,7 +59,7 @@ const Template = ({...args}:any) => (
       <Row style={{ alignItems: 'center' }}>
         <Column >
           <FormItem {...args} prefix={
-            <User color="#3f373c" size={32} />
+            <User color="#3f373c" size={16} />
           }>
             <input id='first-name' name='first-name' required/>
             <label htmlFor='first-name'>First name:</label>
@@ -58,9 +69,9 @@ const Template = ({...args}:any) => (
       <Row style={{ alignItems: 'center' }}>
         <Column >
         <FormItem {...args} prefix={
-            <User color="#3f373c" size={32} />
+            <User color="#3f373c" size={16} />
           } suffix={
-            <Cube color="#3f373c" size={32} />
+            <Cube color="#3f373c" size={16} />
           }>
             <input id='nickname' name='nickname' disabled />
             <label htmlFor='nickname'>Nickname:</label>
@@ -71,7 +82,7 @@ const Template = ({...args}:any) => (
       <Row>
         <Column xs={12} md={6} >
           <FormItem {...args} suffix={
-            <Horse color="#3f373c" size={32} />
+            <Horse color="#3f373c" size={16} />
           }>
             <input placeholder='last-name' id='last-name' name='last-name' />
             <label htmlFor='last-name'>Last name:</label>
@@ -91,7 +102,7 @@ const Template = ({...args}:any) => (
         </Column>
         <Column xs={12} md={4}>
           <FormItem {...args}>
-            <input id='readonly-input' name='readonly-input' readOnly/>
+            <input id='readonly-input' name='readonly-input' readOnly value='Just for reading'/>
             <label htmlFor='readonly-input'>readOnly input:</label>
           </FormItem>
         </Column>

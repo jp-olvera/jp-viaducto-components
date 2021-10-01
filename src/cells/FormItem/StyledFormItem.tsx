@@ -56,17 +56,17 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
     ${(p) => getInputBorderStyle(p.border, p.borderColor, p.hasPrefix, p.hasSuffix)};
     ${(p) => getBorderRadius(p.border, p.hasPrefix, p.hasSuffix, p.radius, p.configuration.radius, false, false)};
   }
-  .ballena-input:valid,
+  /* .ballena-input:valid,
   .ballena-input:valid ~ .ballena-prefix-input,
   .ballena-input:valid ~ .ballena-suffix-input {
     border-color: ${(p) => p.configuration.colors.success.click};
-  }
+  } */
 
-  .ballena-input:invalid,
+  /* .ballena-input:invalid,
   .ballena-input:invalid ~ .ballena-prefix-input,
   .ballena-input:invalid ~ .ballena-suffix-input {
     border-color: ${(p) => p.configuration.colors.danger.click};
-  }
+  } */
   .ballena-label{
     color: ${(p) => p.configuration.colors.text.dark};
     font-family: ${(p) => p.family || p.configuration.fontFamily};
@@ -113,10 +113,12 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
 
   .ballena-prefix-input{
     align-items: center;
+    border: none;
     box-sizing: border-box;
     display: flex;
     height: 100%;
-    max-width: 1.632rem;
+    width: auto;
+    min-width: 1.632rem;
     order: -1;
     padding-left: 0.694rem;
     ${(p) => getIsValidBorder(p.isValid, p.configuration.colors.success.click, p.configuration.colors.danger.click)};
@@ -126,10 +128,12 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
   }
   .ballena-suffix-input{
     align-items: center;
+    border: none;
     box-sizing: border-box;
     display: flex;
     height: 100%;
-    max-width: 1.632rem;
+    width: auto;
+    min-width: 1.632rem;
     order: 2;
     padding-right: 0.694rem;
 
@@ -158,7 +162,6 @@ export const getInputBorderStyle = (border: string, borderColor: string, hasPref
   switch (border) {
     case 'bottom':
       return css`
-          border: 0.031rem solid transparent;
           border-bottom: 0.031rem solid ${borderColor};
         `;
     case 'none':
