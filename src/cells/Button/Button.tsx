@@ -1,6 +1,6 @@
 import React, { useContext, forwardRef } from 'react';
 import { ConfigContext } from '../../providers';
-import StyledButton from './StyledButton';
+import StyledButton, { StyledLoader } from './StyledButton';
 
 const defaultColors = {
   default: '#937B3D',
@@ -27,18 +27,18 @@ interface ButtonInterface {
   icon?: any;
   /** The horizontal spacing between the label and icon (if both are defined) */
   iconSpacing?:
-    | null
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl'
-    | 'xxxl';
+  | null
+  | 'none'
+  | 'nano'
+  | 'micro'
+  | 'tiny'
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | 'xxl'
+  | 'xxxl';
   /** Set loading button prop */
   isLoading?: boolean;
   /** Set valid button prop */
@@ -49,44 +49,44 @@ interface ButtonInterface {
   lead?: boolean;
   /** Left spacing between the content and the button */
   leftSpacing?:
-    | null
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl'
-    | 'xxxl';
+  | null
+  | 'none'
+  | 'nano'
+  | 'micro'
+  | 'tiny'
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | 'xxl'
+  | 'xxxl';
   /** Border Radius size */
   radius?: string;
   /** Right spacing between the content and the button */
   rightSpacing?:
-    | null
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl'
-    | 'xxxl';
+  | null
+  | 'none'
+  | 'nano'
+  | 'micro'
+  | 'tiny'
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | 'xxl'
+  | 'xxxl';
   /** Button variant (color) */
   shapeColor?:
-    | null
-    | 'primary'
-    | 'secondary'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'danger'
-    | 'tab';
+  | null
+  | 'primary'
+  | 'secondary'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'tab';
   /** Size of the button */
   size?: 'small' | 'large' | 'default';
   /** Button type (for the color) */
@@ -190,7 +190,25 @@ const Button = forwardRef<
         ref={ref}
         {...rest}
       >
-        {hasIcon && <span className='button-icon-span'>{icon}</span>}
+        {hasIcon && !isLoading && <span className='button-icon-span'>{icon}</span>}
+        {hasIcon && isLoading && useLongLoading && <span className='button-icon-span'>{icon}</span>}
+        {isLoading && isValid === null && !useLongLoading ? (
+          <span className='button-icon-span'>
+            <svg width="25px" height="25px">
+              <circle 
+                className="progress-ring__circle" 
+                stroke-width="2" 
+                fill="transparent" 
+                stroke={variant === 'solid' ? c.text : c.default}
+                stroke-dasharray="53.40707511102649 53.40707511102649" 
+                r="8.5" 
+                cx="12.5" 
+                cy="12.5" 
+                strokeDashoffset='32.0442px'
+              ></circle>
+              </svg>
+          </span>
+        ):null}
         {isLoading && isValid === null && useLongLoading && (
           <div className='status' />
         )}

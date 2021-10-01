@@ -118,7 +118,10 @@ const StyledButton = styled.button < ButtonProps > `
     margin-right: ${(p) => (!p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
     margin-left: ${(p) => (!p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
     font-size: calc(1em * 1);
-    .turnOn {
+    .progress-ring__circle {
+      animation: ${turnOn} 1s linear infinite;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
       animation: ${turnOn} 1s linear infinite;
     }
   }
@@ -226,3 +229,12 @@ export const disabledColor = (p: {
     : p.configuration.colors.disableColor};
   `;
 };
+
+export const StyledLoader = styled.div < any > `
+  .progress-ring__circle {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    animation: ${turnOn} 1s linear infinite;
+  }
+  
+`;
