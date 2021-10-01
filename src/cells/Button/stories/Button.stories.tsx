@@ -253,7 +253,7 @@ Default.args = {
   disabled: false,
   block: false,
   onClick: () => {},
-  isLoading: false,
+  isLoading: true,
 };
 
 export const Outline = Template.bind({});
