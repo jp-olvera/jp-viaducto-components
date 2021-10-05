@@ -38,6 +38,9 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
     -webkit-appearance: none;
     -moz-appearance: none !important;
   }
+  .dark-decoration{
+    background-color: ${(p) => p.borderColor};
+  }
   
   .ballena-input {
     background-color: ${(p) => (p.configuration.colors.background)};
@@ -111,6 +114,7 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
     ${(p) => putLabelOutside(p.size, p.border, p.configuration)};
   }
 
+  
   .ballena-prefix-input{
     align-items: center;
     border: none;
@@ -121,6 +125,7 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
     min-width: 1.632rem;
     order: -1;
     padding-left: 0.694rem;
+    padding-right: 0.694rem;
     ${(p) => getIsValidBorder(p.isValid, p.configuration.colors.success.click, p.configuration.colors.danger.click)};
     ${(p) => getPrefixBorderStyle(p.border, p.borderColor)};
     ${(p) => getBorderRadius(p.border, false, false, p.radius, p.configuration.radius, true, false)};
@@ -136,7 +141,7 @@ export const StyledFormItem = styled.div < StyledFormItemProps > `
     min-width: 1.632rem;
     order: 2;
     padding-right: 0.694rem;
-
+    padding-left: 0.694rem;
     ${(p) => getIsValidBorder(p.isValid, p.configuration.colors.success.click, p.configuration.colors.danger.click)};
     ${(p) => getSuffixBorderStyle(p.border, p.borderColor)};
     ${(p) => getBorderRadius(p.border, false, false, p.radius, p.configuration.radius, false, true)};
