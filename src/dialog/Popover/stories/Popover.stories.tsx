@@ -132,7 +132,7 @@ const Template = ({ position, elevation, elevationDirection, radius, zIndex }) =
           <Popover
             active={active}
             content={
-              <div style={{ width: '300px', height: '200px' }}>
+              <div style={{width: '300px', height: '200px'}}>
                 <button type='button'>hola</button>
               </div>
             }
