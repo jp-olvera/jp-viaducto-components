@@ -74,6 +74,7 @@ const Modal = ({
     if (!allowClickOutside) {
       return;
     }
+    console.log(ev.key)
     if (ev === null || ev.type === 'click' || ev.key === 'Escape') {
       if (active) {
         setKeepActive(true);
@@ -145,10 +146,6 @@ const Modal = ({
           radius={radius}
           isClosing={isClosing}
           onClick={(ev: any) => {
-            // Yep! this is needed
-            ev.stopPropagation();
-          }}
-          onKeyUp={(ev: any) => {
             // Yep! this is needed
             ev.stopPropagation();
           }}

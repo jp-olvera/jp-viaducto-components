@@ -68,6 +68,18 @@ const Template = ({...args}:any) => (
       </Row>
       <Row style={{ alignItems: 'center' }}>
         <Column >
+          <FormItem {...args} prefix={
+            <div style={{height: '100%', alignItems: 'center', display: 'flex'}}>@troyo</div>
+          } suffix={
+            <div style={{height: '100%', alignItems: 'center', display: 'flex'}}>@troyo</div>
+          }>
+            <input id='empresarial-email' name='empresarial-email' placeholder='example.com' required/>
+            <label htmlFor='empresarial-email'>Empresarial email:</label>
+          </FormItem>
+        </Column>
+      </Row>
+      <Row style={{ alignItems: 'center' }}>
+        <Column >
         <FormItem {...args} prefix={
             <User color="#3f373c" size={16} />
           } suffix={
@@ -152,4 +164,5 @@ Default.args = {
   family: '',
   inputSize: 'default',
   isValid: null,
+  darkDecoration: false,
 };
