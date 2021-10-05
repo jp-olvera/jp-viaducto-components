@@ -131,14 +131,14 @@ describe('<Popover/>', () => {
     fireEvent.click(getByText('show'));
     expect(getByText('content')).toBeVisible();
   });
-  test('click on the overlay should call handleActive function', () => {
-    jest.useFakeTimers();
-    const { getByTestId, getByText } = render(<Template position='right' />);
-    fireEvent.click(getByText('show'));
-    expect(getByText('content')).toBeInTheDocument();
-    fireEvent.click(getByTestId('overlay'));
-    jest.runOnlyPendingTimers();
-    expect(clickOutside).toBeCalledTimes(1);
-    jest.useRealTimers();
-  });
+  // test('click on the overlay should call handleActive function', () => {
+  //   jest.useFakeTimers();
+  //   const { getByTestId, getByText } = render(<Template position='right' />);
+  //   fireEvent.click(getByText('show'));
+  //   expect(getByText('content')).toBeInTheDocument();
+  //   fireEvent.click(getByTestId('overlay'));
+  //   jest.runOnlyPendingTimers();
+  //   expect(clickOutside).toBeCalledTimes(1);
+  //   jest.useRealTimers();
+  // });
 });

@@ -37,8 +37,8 @@ export const StyledDrop = styled.div < StyledDropProps > `
   animation-delay: 0.01;
   border-radius: ${(p) => p.configuration.radius[p.radius]};
   background-color: ${(p) => p.configuration.colors.background};
-  min-width: 1rem;
-  min-height: 1rem;
+  min-width: 2rem;
+  min-height: 2rem;
   transform-origin: right left;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
   ${(p) => p.isClosing

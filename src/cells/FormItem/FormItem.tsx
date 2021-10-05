@@ -24,6 +24,8 @@ interface FormItemProps {
   radius?: 'none' | 'sm' | 'md' | 'lg';
   /** suffix */
   suffix?: React.ReactNode;
+  /** Indicates if the prefix and/or suffix should have a background-color */
+  darkDecoration?: boolean;
 }
 
 const FormItem = ({
@@ -36,6 +38,7 @@ const FormItem = ({
   prefix, 
   suffix, 
   isValid = null,
+  darkDecoration = false,
 }: FormItemProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { configuration } = useContext(ConfigContext);
@@ -104,8 +107,8 @@ const FormItem = ({
         ref={ref}
       >
         {children}
-        {prefix && <PrefixInput>{prefix}</PrefixInput>}
-        {suffix && <SuffixInput>{suffix}</SuffixInput>}
+        {prefix && <PrefixInput darkDecoration={darkDecoration}>{prefix}</PrefixInput>}
+        {suffix && <SuffixInput darkDecoration={darkDecoration}>{suffix}</SuffixInput>}
       </StyledFormItem>
     </StyledFormControl>
   );

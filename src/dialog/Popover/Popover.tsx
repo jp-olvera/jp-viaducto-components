@@ -1,6 +1,4 @@
-import React, {
-  useRef, useEffect, useContext, useState,
-} from 'react';
+import React, { useRef, useEffect, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { findScrollParents, ownerDocument } from '../../utils/scroll';
 import { StyledDrop } from './StyledDrop';
@@ -82,10 +80,7 @@ const Popover = ({
         if (position === 'left' && targetRect.left >= dropW) {
           // a la izquierda y sí hay espacio
           left = targetRect.left - dropW;
-        } else if (
-          position === 'right'
-          && windowWidth - targetRect.right >= dropW
-        ) {
+        } else if (position === 'right' && windowWidth - targetRect.right >= dropW) {
           // a la derecha y sí hay espacio
           left = targetRect.right;
         } else if (dropR > windowWidth) {
@@ -127,10 +122,7 @@ const Popover = ({
       } else if (position === 'top' && targetRect.top >= dropH) {
         // es top y cabe arriba
         top = targetRect.top - dropH;
-      } else if (
-        position === 'bottom'
-        && windowHeight - targetRect.bottom > dropH
-      ) {
+      } else if (position === 'bottom' && windowHeight - targetRect.bottom > dropH) {
         // es bottom y abajo cabe
         top = targetRect.bottom;
       } else if (targetRect.top >= dropH) {
@@ -150,70 +142,72 @@ const Popover = ({
     }
   }, [dropRef, active]);
 
-  useEffect(() => {
-    move();
-    const addScrollListeners = () => {
-      scrollParents = findScrollParents(target.current);
-      scrollParents.forEach((scrollParent) => scrollParent.addEventListener('scroll', move));
-      const thisDocument = ownerDocument(target.current);
-      // thisDocument.addEventListener('mouseup', clickOutsideHandler);
-      thisDocument.addEventListener('resize', move);
-    };
-    let scrollParents: (Element | Document)[] = [];
-    const removeScrollListeners = () => {
-      scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
-      scrollParents = [];
-      const thisDocument = ownerDocument(target.current);
-      thisDocument.removeEventListener('resize', move);
-    };
-
-    if (active && target.current && dropRef.current) {
-      addScrollListeners();
-    }
-    return function cleanup() {
-      removeScrollListeners();
-      clearTimeout(timer);
-    };
-  }, [active, target, target.current]);
-
   const closeHandler = () => {
     setisClosing(true);
     timer = setTimeout(() => {
       setisClosing(false);
+      if (target.current) {
+        target.current.focus();
+      }
       handleClose();
     }, 230);
   };
 
+  const clickOutsideHandler = (event) => {
+    if (dropRef !== null && dropRef.current) {
+      if (dropRef.current.contains(event.target) || target.current.contains(event.target)) {
+        return;
+      }
+      closeHandler();
+    }
+  };
+  useEffect(() => {
+    move();
+    const addListeners = () => {
+      scrollParents = findScrollParents(target.current);
+      scrollParents.forEach((scrollParent) => scrollParent.addEventListener('scroll', move));
+      const thisDocument = ownerDocument(target.current);
+      thisDocument.addEventListener('mouseup', clickOutsideHandler);
+      // thisDocument.addEventListener('mouseup', clickOutsideHandler);
+      window.addEventListener('resize', move);
+    };
+    let scrollParents: (Element | Document)[] = [];
+    const removeListeners = () => {
+      scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
+      scrollParents = [];
+      const thisDocument = ownerDocument(target.current);
+      thisDocument.removeEventListener('mouseup', clickOutsideHandler);
+      window.removeEventListener('resize', move);
+    };
+
+    if (active && target.current && dropRef.current) {
+      addListeners();
+    }
+    return function cleanup() {
+      removeListeners();
+      clearTimeout(timer);
+    };
+  }, [active, target, target.current]);
+
   if (active && target && target.current) {
     return createPortal(
-      <div
-        data-testid='overlay'
-        style={{ position: 'fixed', inset: 0, zIndex }}
-        role='presentation'
-        onClick={closeHandler}
+      <StyledDrop
+        configuration={configuration}
+        elevation={elevation}
+        elevationDirection={elevationDirection}
+        isClosing={isClosing}
+        radius={radius}
+        ref={dropRef}
+        role='dialog'
+        style={{
+          position: 'fixed',
+        }}
+        tabIndex={0}
+        {...rest}
       >
-        <StyledDrop
-          configuration={configuration}
-          elevation={elevation}
-          elevationDirection={elevationDirection}
-          isClosing={isClosing}
-          radius={radius}
-          ref={dropRef}
-          role='dialog'
-          style={{
-            position: 'fixed',
-          }}
-          tabIndex={0}
-          onClick={(ev: any) => {
-            // Yep! this is needed
-            ev.stopPropagation();
-          }}
-          {...rest}
-        >
-          {content}
-        </StyledDrop>
-      </div>,
-      document.body,
+        {content}
+      </StyledDrop>,
+      document.body
     );
   }
   return null;
