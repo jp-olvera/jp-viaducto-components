@@ -74,7 +74,6 @@ const Modal = ({
     if (!allowClickOutside) {
       return;
     }
-    console.log(ev.key)
     if (ev === null || ev.type === 'click' || ev.key === 'Escape') {
       if (active) {
         setKeepActive(true);
