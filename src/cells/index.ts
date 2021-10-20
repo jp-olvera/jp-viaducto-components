@@ -19,6 +19,7 @@ export * from './Radio';
 export * from './Range';
 export * from './ResponsivePadding';
 export * from './Select';
+export * from './SelectItem';
 export * from './Spacer';
 export * from './State';
 export * from './Switch';

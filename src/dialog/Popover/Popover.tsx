@@ -54,7 +54,7 @@ const Popover = ({
   useEffect(() => {
     setisClosing(false);
     if (active && dropRef.current) {
-      dropRef.current.focus();
+      // dropRef.current.focus();
     }
   }, [active]);
 
@@ -62,13 +62,14 @@ const Popover = ({
     if (dropRef.current && target.current) {
       const windowWidth = document.body.clientWidth;
       const windowHeight = window.innerHeight;
-      const tr = target.current.getBoundingClientRect();
+      const tr: DOMRect = target.current.getBoundingClientRect();
       const targetRect = {
         left: tr.left - 5,
         top: tr.top - 5,
         bottom: tr.bottom + 5,
         right: tr.right + 5,
       };
+      dropRef.current.style.width = tr.width + 'px';
       const dropW = dropRef.current?.offsetWidth || 0; // width drop
       const dropH = dropRef.current?.offsetHeight || 0; // height drop
       const dropR = targetRect.right + dropW;
@@ -138,7 +139,7 @@ const Popover = ({
 
   useEffect(() => {
     if (dropRef.current) {
-      dropRef.current.focus();
+      // dropRef.current.focus();
     }
   }, [dropRef, active]);
 
@@ -146,9 +147,6 @@ const Popover = ({
     setisClosing(true);
     timer = setTimeout(() => {
       setisClosing(false);
-      if (target.current) {
-        target.current.focus();
-      }
       handleClose();
     }, 230);
   };
@@ -202,7 +200,6 @@ const Popover = ({
         style={{
           position: 'fixed',
         }}
-        tabIndex={0}
         {...rest}
       >
         {content}

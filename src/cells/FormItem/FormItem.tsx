@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect, forwardRef } from 'react';
 import { StyledFormItem } from './StyledFormItem';
 import { StyledFormControl } from './StyledFormControl';
 import { ConfigContext } from '../../providers';
@@ -26,9 +26,16 @@ interface FormItemProps {
   suffix?: React.ReactNode;
   /** Indicates if the prefix and/or suffix should have a background-color */
   darkDecoration?: boolean;
+  /** Indicates if the prefix and/or suffix should have a background-color */
+  padding?: string;
 }
 
-const FormItem = ({
+const FormItem = forwardRef<
+  HTMLDivElement,
+  FormItemProps 
+>(
+  (
+    {
   inputSize = 'default', 
   border = 'default', 
   children, 
@@ -39,33 +46,34 @@ const FormItem = ({
   suffix, 
   isValid = null,
   darkDecoration = false,
-}: FormItemProps) => {
-  const ref = useRef<HTMLDivElement>(null);
+  padding = '1.563rem 0',
+  ...rest
+}, ref) => {
+  const inputRef = useRef<HTMLDivElement>(null);
   const { configuration } = useContext(ConfigContext);
   const hasPrefix = prefix !== undefined;
   const hasSuffix = suffix !== undefined;
-
+  let labelTag;
+  let formItem;
+  let formItemInitialValue;
+  
   useEffect(() => {
-    let labelTag;
-    let formItem;
-    let formItemInitialValue;
     const focusIn = () => {
       if (labelTag) {
         labelTag.classList.add('active');
       }
     };
-
+  
     const focusOut = () => {
       if (labelTag && formItem.value === formItemInitialValue) {
         labelTag.classList.remove('active');
       }
     };
-
-    if (ref.current) {
-      const labelTags = ref.current.getElementsByTagName('label');
+    if (inputRef.current) {
+      const labelTags = inputRef.current.getElementsByTagName('label');
       let inputTags:
         | HTMLCollectionOf<HTMLSelectElement>
-        | HTMLCollectionOf<HTMLInputElement> = ref.current.getElementsByTagName('input');
+        | HTMLCollectionOf<HTMLInputElement> = inputRef.current.getElementsByTagName('input');
       if (labelTags.length) {
         [labelTag] = labelTags;
         labelTag.classList.add('ballena-label');
@@ -73,7 +81,7 @@ const FormItem = ({
       if (inputTags.length) {
         [formItem] = inputTags;
       } else {
-        inputTags = ref.current.getElementsByTagName('select');
+        inputTags = inputRef.current.getElementsByTagName('select');
         if (inputTags.length) {
           [formItem] = inputTags;
         }
@@ -91,9 +99,9 @@ const FormItem = ({
         formItem.removeEventListener('focus', focusIn);
       }
     };
-  }, [ref]);
+  }, [inputRef]);
   return (
-    <StyledFormControl>
+    <StyledFormControl onClick={focus} ref={ref} padding={padding} {...rest}>
       <StyledFormItem
         border={border !== 'bottom' && inputSize === 'xsmall' ? 'outside' : border}
         size={inputSize}
@@ -104,7 +112,7 @@ const FormItem = ({
         configuration={configuration}
         borderColor={borderColor || configuration.colors.defaultInputBorderColor}
         family={family}
-        ref={ref}
+        ref={inputRef}
       >
         {children}
         {prefix && <PrefixInput darkDecoration={darkDecoration}>{prefix}</PrefixInput>}
@@ -112,7 +120,7 @@ const FormItem = ({
       </StyledFormItem>
     </StyledFormControl>
   );
-};
+});
 
 export default FormItem;
 

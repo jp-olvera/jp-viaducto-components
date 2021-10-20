@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { ConfigProvider } from '../../../providers';
 import { FormItem } from '..';
-import { Grid, Row, Column, Avatar } from '../../'
-import { Horse, User, Cube } from "phosphor-react";
+import { Grid, Row, Column, Button } from '../../';
+import { Popover } from '../../../dialog';
+import { Horse, User, Cube, CaretDown } from 'phosphor-react';
 
 const config: any = {
   title: 'Ballena/Cells/FormFields/FormItem',
@@ -53,75 +54,85 @@ const config: any = {
 
 export default config;
 
-const Template = ({...args}:any) => (
+const Template = ({ ...args }: any) => (
   <ConfigProvider>
     <Grid expanded>
       <Row style={{ alignItems: 'center' }}>
-        <Column >
-          <FormItem {...args} prefix={
-            <User color="#3f373c" size={16} />
-          }>
-            <input id='first-name' name='first-name' required/>
+        <Column>
+          <FormItem {...args} prefix={<User color='#3f373c' size={16} />}>
+            <input id='first-name' name='first-name' required />
             <label htmlFor='first-name'>First name:</label>
           </FormItem>
         </Column>
       </Row>
       <Row style={{ alignItems: 'center' }}>
-        <Column >
-          <FormItem {...args} prefix={
-            <div style={{height: '100%', alignItems: 'center', display: 'flex'}}>@troyo</div>
-          } suffix={
-            <div style={{height: '100%', alignItems: 'center', display: 'flex'}}>@troyo</div>
-          }>
-            <input id='empresarial-email' name='empresarial-email' placeholder='example.com' required/>
+        <Column>
+          <FormItem
+            {...args}
+            prefix={
+              <div style={{ height: '100%', alignItems: 'center', display: 'flex' }}>@troyo</div>
+            }
+            suffix={
+              <div style={{ height: '100%', alignItems: 'center', display: 'flex' }}>@troyo</div>
+            }
+          >
+            <input
+              id='empresarial-email'
+              name='empresarial-email'
+              placeholder='example.com'
+              required
+            />
             <label htmlFor='empresarial-email'>Empresarial email:</label>
           </FormItem>
         </Column>
       </Row>
       <Row style={{ alignItems: 'center' }}>
-        <Column >
-        <FormItem {...args} prefix={
-            <User color="#3f373c" size={16} />
-          } suffix={
-            <Cube color="#3f373c" size={16} />
-          }>
+        <Column>
+          <FormItem
+            {...args}
+            prefix={<User color='#3f373c' size={16} />}
+            suffix={<Cube color='#3f373c' size={16} />}
+          >
             <input id='nickname' name='nickname' disabled />
             <label htmlFor='nickname'>Nickname:</label>
           </FormItem>
-    
         </Column>
       </Row>
       <Row>
-        <Column xs={12} md={6} >
-          <FormItem {...args} suffix={
-            <Horse color="#3f373c" size={16} />
-          }>
+        <Column xs={12} md={6}>
+          <FormItem {...args} suffix={<Horse color='#3f373c' size={16} />}>
             <input placeholder='last-name' id='last-name' name='last-name' />
             <label htmlFor='last-name'>Last name:</label>
           </FormItem>
         </Column>
         <Column xs={12} md={4}>
           <FormItem {...args}>
-            <input id='username' name='username'/>
+            <input id='username' name='username' />
             <label htmlFor='username'>Username:</label>
           </FormItem>
         </Column>
         <Column xs={12} md={4}>
           <FormItem {...args}>
-            <input placeholder='disabled-input' id='disabled-input' name='disabled-input' disabled required/>
+            <input
+              placeholder='disabled-input'
+              id='disabled-input'
+              name='disabled-input'
+              disabled
+              required
+            />
             <label htmlFor='disabled-input'>Disabled input:</label>
           </FormItem>
         </Column>
         <Column xs={12} md={4}>
           <FormItem {...args}>
-            <input id='readonly-input' name='readonly-input' readOnly value='Just for reading'/>
+            <input id='readonly-input' name='readonly-input' readOnly value='Just for reading' />
             <label htmlFor='readonly-input'>readOnly input:</label>
           </FormItem>
         </Column>
       </Row>
       <Row>
         <Column xs={12} md={4}>
-          <FormItem {...args} >
+          <FormItem {...args}>
             <select id='select' required>
               <option> ----- </option>
               <option value='male'>male</option>
@@ -159,6 +170,82 @@ const Template = ({...args}:any) => (
 export const Default = Template.bind({});
 
 Default.args = {
+  border: 'default',
+  borderColor: '#d9d9d9',
+  family: '',
+  inputSize: 'default',
+  isValid: null,
+  darkDecoration: false,
+};
+
+const Template2 = ({ ...args }: any) => {
+  const ref = useRef(null);
+  const [active, setActive] = useState(false);
+  const [value, setValue] = useState('');
+  const handleActive = () => {
+    setActive(!active);
+  };
+  const items = ['Jorge', 'Juan', 'Raúl', 'Cano'];
+  const handleChange = (ev) => {
+    setValue(ev.target.value);
+    setActive(true)
+  };
+  const handleSelect = (value: string) => {
+    setValue(value);
+    setActive(false);
+    console.log(value);
+  };
+  return (
+    <ConfigProvider>
+      <Grid expanded>
+        <Row style={{ alignItems: 'center' }}>
+          <Column xs={12} md={4}>
+            <FormItem {...args} ref={ref} padding='1.563rem 0 0 0' suffix={<CaretDown size={24} />}>
+              <input
+                type='text'
+                onFocus={() => {
+                  console.log('focus');
+                  setActive(true)
+                }}
+                value={value}
+                onChange={handleChange}
+                placeholder='select something'
+                id='select'
+                readOnly
+              />
+              <label htmlFor='select'>select</label>
+            </FormItem>
+            <Popover
+              target={ref}
+              active={active}
+              handleClose={handleActive}
+              position= 'left'
+              content={
+                <div>
+                  {items.map((s, i) => (
+                    <Button key={s + i} block onClick={(ev) => handleSelect(s)} label={s} />
+                  ))}
+                </div>
+              }
+            />
+          </Column>
+        </Row>
+        <Row style={{ alignItems: 'center' }}>
+        <Column>
+          <FormItem {...args} prefix={<User color='#3f373c' size={16} />} padding='3rem 0 0 0'>
+            <input id='first-name' name='first-name' required />
+            <label htmlFor='first-name'>First name:</label>
+          </FormItem>
+        </Column>
+      </Row>
+      </Grid>
+    </ConfigProvider>
+  );
+};
+
+export const CustomSelect = Template2.bind({});
+
+Template2.args = {
   border: 'default',
   borderColor: '#d9d9d9',
   family: '',
