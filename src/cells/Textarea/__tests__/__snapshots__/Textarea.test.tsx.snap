@@ -2,7 +2,7 @@
 
 exports[`<TextArea /> component should render disabled textarea 1`] = `
 <textarea
-  class="StyledTextarea-sc-1jfvl7f-0 dkzxBB"
+  class="StyledTextarea-sc-1jfvl7f-0 fxxvXb"
   disabled=""
   rows="1"
 />
