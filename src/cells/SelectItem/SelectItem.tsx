@@ -15,22 +15,31 @@ const StyledOption = styled.button`
   }
 `;
 
-export const Option = ({
-  value = '',
-  children,
-  handleChange = null,
-  onChange,
-  ...rest
-}: {
+/** Option component as SelectItem children */
+interface OptionProps {
+  /** Option real value (form value) */
   value: string;
+  /** Option children, this will be rendered in the popover */
   children: any;
+  /** Function to help SelectItem component */
   handleChange?: null | ((s: string) => void);
+  /** Function to trigger when select value changes */
   onChange?: Function;
-}) => {
+}
+/**
+ * Option component as SelectItem children
+ * @param {string} value Option real value (form value)
+ * @param {any} children Option children, this will be rendered in the popover
+ * @param {null | ((s: string) => void)} handleChange Function to help SelectItem component
+ * @param {Function} onChange Function to trigger when select value changes
+ */
+export const Option = ({ value, children, handleChange, onChange, ...rest }: OptionProps) => {
   return (
     <StyledOption
       onClick={() => {
+        /* istanbul ignore else */
         if (handleChange) handleChange(value);
+        /* istanbul ignore else */
         if (onChange) onChange(value);
       }}
       {...rest}
@@ -39,7 +48,8 @@ export const Option = ({
     </StyledOption>
   );
 };
-interface FormItemProps {
+/** SelectItem component, take the same behavior as Select Input but the implementation is more flexible */
+interface SelectItemProps {
   /** The border type for the input (full, bottom, overlap) */
   border?: 'outside' | 'overlap' | 'bottom' | 'none' | 'default';
   /** set the color border */
@@ -73,6 +83,25 @@ interface FormItemProps {
   /** id for a11y */
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
+/**
+ * SelectItem component, take the same behavior as Select Input but the implementation is more flexible
+ * @param {string} border The border type for the input (full, bottom, overlap)
+ * @param {string | null} borderColor set the color border
+ * @param {string | undefined} family Set font family
+ * @param {React.ReactNode} children children
+ * @param {string} inputSize Set the height of the input
+ * @param {boolean | null} isValid isValid, null (default value) doesn't indicate is valid nor is invali
+ * @param {React.ReactNode} prefix prefix
+ * @param {string} radius radius
+ * @param {React.ReactNode} suffix suffix
+ * @param {boolean} darkDecoration Indicates if the prefix and/or suffix should have a background-color
+ * @param {string} padding Indicates if the prefix and/or suffix should have a background-color
+ * @param {string} label Label
+ * @param {string} placeholder Placeholder
+ * @param {string} id id for a11y
+ * @param {string} value id for a11y
+ * @param {React.ChangeEventHandler<HTMLInputElement> | undefined} onChange id for a11y
+ */
 
 const SelectItem = ({
   label,
@@ -82,7 +111,7 @@ const SelectItem = ({
   onChange,
   value = '',
   ...args
-}: FormItemProps) => {
+}: SelectItemProps) => {
   const ref = useRef(null);
   const myOptionType = React.createElement(Option).type;
 
@@ -91,6 +120,7 @@ const SelectItem = ({
   const handleActive = () => {
     setActive(!active);
   };
+  /* istanbul ignore  next*/
   const handleChange = (ev) => {
     setVal(ev.target.value);
     setActive(true);
@@ -122,10 +152,13 @@ const SelectItem = ({
         <input
           type='text'
           onFocus={() => {
+            /* istanbul ignore else */
             if (!active) setActive(true);
           }}
           value={val}
+          /* istanbul ignore  next*/
           onChange={(ev) => {
+            /* istanbul ignore  next*/
             handleChange(ev);
           }}
           placeholder={placeholder}
