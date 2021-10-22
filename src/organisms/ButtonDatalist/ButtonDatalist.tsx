@@ -1,12 +1,5 @@
 import React, { useContext, useState } from 'react';
-import {
-  Input,
-  Button,
-  Paragraph,
-  Container,
-  ConfigContext,
-  Pill,
-} from '../..';
+import { Button, Paragraph, Container, ConfigContext, Pill, FormItem } from '../..';
 import { StyledButtonDatalist } from './StyledButtonDatalist';
 
 /** Data list component using button and input */
@@ -48,13 +41,11 @@ const ButtonDatalist = ({
   selectedOptionsList,
   ...rest
 }: ButtonDatalistInterface & React.HTMLAttributes<HTMLDivElement>) => {
-  const [optionList, setOptionList] = useState<
-    { accessor: string; data: any }[]
-  >(options);
+  const [optionList, setOptionList] = useState<{ accessor: string; data: any }[]>(options);
   const [showOptions, setShowOptions] = useState<boolean>(false);
-  const [selectedOptions, setSelectedOptions] = useState<
-    { accessor: string; data: any }[]
-  >(selectedOptionsList || []);
+  const [selectedOptions, setSelectedOptions] = useState<{ accessor: string; data: any }[]>(
+    selectedOptionsList || []
+  );
   const { configuration } = useContext(ConfigContext);
 
   return (
@@ -77,20 +68,22 @@ const ButtonDatalist = ({
         </Container>
       )}
       <Container expandHorizontal top='xs' bottom='sm' horizontal='xs'>
-        <Input
-          icon={inputIcon}
-          inputSize='small'
-          onClick={() => setShowOptions(!showOptions)}
-          onChange={(e: any) => {
-            /* istanbul ignore if */
-            if (e.target.value === null) {
-              setOptionList(options);
-            }
-            setOptionList((before: { accessor: string; data: any }[]) => before.filter((opt: { accessor: string; data: any }) => opt.accessor
-              .toLocaleLowerCase()
-              .includes(e.target.value.toLowerCase())));
-          }}
-        />
+        <FormItem prefix={inputIcon} inputSize='small'>
+          <input
+            onClick={() => setShowOptions(!showOptions)}
+            onChange={(e: any) => {
+              /* istanbul ignore if */
+              if (e.target.value === null) {
+                setOptionList(options);
+              }
+              setOptionList((before: { accessor: string; data: any }[]) =>
+                before.filter((opt: { accessor: string; data: any }) =>
+                  opt.accessor.toLocaleLowerCase().includes(e.target.value.toLowerCase())
+                )
+              );
+            }}
+          />
+        </FormItem>
       </Container>
       <Container
         horizontal='sm'
@@ -98,35 +91,27 @@ const ButtonDatalist = ({
         style={{ borderBottom: '0.063rem solid #d9d9d9' }}
       >
         <div className='options'>
-          {optionList.map(
-            (opt: { accessor: string; data: any }, index: number) => (
-              <Container
-                vertical='xs'
-                expandHorizontal
-                key={index.toString() + opt}
+          {optionList.map((opt: { accessor: string; data: any }, index: number) => (
+            <Container vertical='xs' expandHorizontal key={index.toString() + opt}>
+              <button
+                data-testid='btn-opt'
+                onClick={() => {
+                  /* istanbul ignore else */
+                  if (!selectedOptions.includes(opt)) {
+                    setSelectedOptions((before: { accessor: string; data: any }[]) => [
+                      ...before,
+                      opt,
+                    ]);
+                    setShowOptions(false);
+                  }
+                  return null;
+                }}
+                type='button'
               >
-                <button
-                  data-testid='btn-opt'
-                  onClick={() => {
-                    /* istanbul ignore else */
-                    if (!selectedOptions.includes(opt)) {
-                      setSelectedOptions(
-                        (before: { accessor: string; data: any }[]) => [
-                          ...before,
-                          opt,
-                        ],
-                      );
-                      setShowOptions(false);
-                    }
-                    return null;
-                  }}
-                  type='button'
-                >
-                  {opt.data}
-                </button>
-              </Container>
-            ),
-          )}
+                {opt.data}
+              </button>
+            </Container>
+          ))}
         </div>
       </Container>
       <Container
@@ -136,28 +121,28 @@ const ButtonDatalist = ({
         style={{ display: 'flex', justifyContent: 'space-between' }}
       >
         <div className='selected'>
-          {selectedOptions.map(
-            (selected: { accessor: string; data: any }, index: number) => {
-              const label = selected.accessor;
+          {selectedOptions.map((selected: { accessor: string; data: any }, index: number) => {
+            const label = selected.accessor;
 
-              return (
-                <div key={selected + index.toString()} className='pill'>
-                  <Pill
-                    label={label}
-                    circleBorder={false}
-                    borderColor='#d9d9d9'
-                    size='sm'
-                    background='#F5F5F5'
-                    color='#595959'
-                    handleAction={() => selectedOptions.includes(selected)
-                      && setSelectedOptions(
-                        (before: { accessor: string; data: any }[]) => before.filter((option: any) => option !== selected),
-                      )}
-                  />
-                </div>
-              );
-            },
-          )}
+            return (
+              <div key={selected + index.toString()} className='pill'>
+                <Pill
+                  label={label}
+                  circleBorder={false}
+                  borderColor='#d9d9d9'
+                  size='sm'
+                  background='#F5F5F5'
+                  color='#595959'
+                  handleAction={() =>
+                    selectedOptions.includes(selected) &&
+                    setSelectedOptions((before: { accessor: string; data: any }[]) =>
+                      before.filter((option: any) => option !== selected)
+                    )
+                  }
+                />
+              </div>
+            );
+          })}
         </div>
         <Button
           data-testid='btn-data'

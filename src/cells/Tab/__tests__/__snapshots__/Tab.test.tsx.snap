@@ -3,7 +3,7 @@
 exports[`<Tab/> should render default props 1`] = `
 <div>
   <button
-    class="StyledTab-sc-7ood0w-0 kZERpL"
+    class="StyledTab-sc-7ood0w-0 eEDjph"
     color="#F1F1F1"
   >
     <div
@@ -11,7 +11,7 @@ exports[`<Tab/> should render default props 1`] = `
       style="display: flex; align-items: center;"
     >
       <p
-        class="StyledParagraph-sc-dbd4lw-0 tkjyw"
+        class="StyledParagraph-sc-dbd4lw-0 fySafa"
         color="darkGray"
       >
         Tab
@@ -24,7 +24,7 @@ exports[`<Tab/> should render default props 1`] = `
 exports[`<Tab/> should render with left line 1`] = `
 <div>
   <button
-    class="StyledTab-sc-7ood0w-0 jCshkj"
+    class="StyledTab-sc-7ood0w-0 LjWER"
     color="#F1F1F1"
   >
     <div
@@ -32,7 +32,7 @@ exports[`<Tab/> should render with left line 1`] = `
       style="display: flex; align-items: center;"
     >
       <p
-        class="StyledParagraph-sc-dbd4lw-0 tkjyw"
+        class="StyledParagraph-sc-dbd4lw-0 fySafa"
         color="darkGray"
       >
         left
@@ -45,7 +45,7 @@ exports[`<Tab/> should render with left line 1`] = `
 exports[`<Tab/> should render with right line 1`] = `
 <div>
   <button
-    class="StyledTab-sc-7ood0w-0 bpSeFz"
+    class="StyledTab-sc-7ood0w-0 ivsheN"
     color="#F1F1F1"
   >
     <div
@@ -53,7 +53,7 @@ exports[`<Tab/> should render with right line 1`] = `
       style="display: flex; align-items: center;"
     >
       <p
-        class="StyledParagraph-sc-dbd4lw-0 tkjyw"
+        class="StyledParagraph-sc-dbd4lw-0 fySafa"
         color="darkGray"
       >
         right
@@ -66,7 +66,7 @@ exports[`<Tab/> should render with right line 1`] = `
 exports[`<Tab/> should render with top line 1`] = `
 <div>
   <button
-    class="StyledTab-sc-7ood0w-0 gwVuQD"
+    class="StyledTab-sc-7ood0w-0 hqlCyh"
     color="#F1F1F1"
   >
     <div
@@ -74,7 +74,7 @@ exports[`<Tab/> should render with top line 1`] = `
       style="display: flex; align-items: center;"
     >
       <p
-        class="StyledParagraph-sc-dbd4lw-0 tkjyw"
+        class="StyledParagraph-sc-dbd4lw-0 fySafa"
         color="darkGray"
       >
         top
