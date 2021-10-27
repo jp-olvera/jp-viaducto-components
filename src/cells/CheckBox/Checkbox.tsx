@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
 
 import { Spacer } from '..';
 import { ConfigContext } from '../../providers';
@@ -21,18 +21,7 @@ interface CheckboxInterface {
   /** Trigger an action */
   onChange?: Function;
   /** Spacing for the checkbox */
-  spacing?:
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl'
-    | 'xxxl';
+  spacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
 }
 
 /**
@@ -47,45 +36,54 @@ interface CheckboxInterface {
  * @param {string} spacing Spacing for the checkbox
  */
 
-const Checkbox = ({
-  label,
-  family,
-  checkSize,
-  fontSize,
-  color,
-  onChange,
-  spacing,
-  ...props
-}: CheckboxInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
-  const { configuration } = useContext(ConfigContext);
-  const [check, setCheck] = useState(false);
-  return (
-    <StyledLabel
-      htmlFor={props.id}
-      configuration={configuration}
-      family={family}
-      checkSize={checkSize}
-      fontSize={fontSize}
-      color={color}
-      disabled={props.disabled}
-      data-testid={props.id}
-    >
-      <input
-        onChange={(event) => {
-          setCheck(!check);
-          /* istanbul ignore else */
-          if (onChange) onChange(event);
-        }}
-        type='checkbox'
-        id={props.id}
-        {...props}
-      />
-      <Spacer size={spacing || 'none'} direction='horizontal' />
-      <label className='check-label' htmlFor={props.id}>
-        {label}
-      </label>
-    </StyledLabel>
-  );
-};
+const Checkbox = forwardRef<
+  HTMLInputElement,
+  CheckboxInterface & React.InputHTMLAttributes<HTMLInputElement>
+>(
+  (
+    {
+      label,
+      family,
+      checkSize,
+      fontSize,
+      color,
+      onChange,
+      spacing,
+      ...props
+    }: CheckboxInterface & React.InputHTMLAttributes<HTMLInputElement>,
+    ref
+  ) => {
+    const { configuration } = useContext(ConfigContext);
+    const [check, setCheck] = useState(false);
+    return (
+      <StyledLabel
+        htmlFor={props.id}
+        configuration={configuration}
+        family={family}
+        checkSize={checkSize}
+        fontSize={fontSize}
+        color={color}
+        disabled={props.disabled}
+        data-testid={props.id}
+      >
+        <input
+          ref={ref}
+          onChange={(event) => {
+            setCheck(!check);
+            /* istanbul ignore else */
+            if (onChange) onChange(event);
+          }}
+          type='checkbox'
+          id={props.id}
+          {...props}
+        />
+        <Spacer size={spacing || 'none'} direction='horizontal' />
+        <label className='check-label' htmlFor={props.id}>
+          {label}
+        </label>
+      </StyledLabel>
+    );
+  }
+);
 
 export default Checkbox;

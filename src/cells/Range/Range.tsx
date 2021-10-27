@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-  useRef,
-  useContext,
-} from 'react';
+import React, { useCallback, useEffect, useState, useRef, useContext, forwardRef } from 'react';
 
 import { Div } from './StyledRange';
 import { ConfigContext } from '../../providers/ConfigProvider';
@@ -44,103 +38,112 @@ interface RangeInterface {
  * @param {string} textColor Set the text color for the value
  */
 
-const Range = ({
-  min,
-  max,
-  color,
-  fontSize,
-  textColor,
-  family,
-  size,
-  onChange,
-  double,
-  ...rest
-}: RangeInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
-  const { configuration } = useContext(ConfigContext);
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
-  const minValRef = useRef(min);
-  const maxValRef = useRef(max);
-  const range = useRef<any>(null);
+const Range = forwardRef<
+  HTMLInputElement,
+  RangeInterface & React.InputHTMLAttributes<HTMLInputElement>
+>(
+  (
+    {
+      min,
+      max,
+      color,
+      fontSize,
+      textColor,
+      family,
+      size,
+      onChange,
+      double,
+      ...rest
+    }: RangeInterface & React.InputHTMLAttributes<HTMLInputElement>,
+    ref
+  ) => {
+    const { configuration } = useContext(ConfigContext);
+    const [minVal, setMinVal] = useState(min);
+    const [maxVal, setMaxVal] = useState(max);
+    const minValRef = useRef(min);
+    const maxValRef = useRef(max);
+    const range = useRef<HTMLInputElement>(null);
 
-  const getPercent = useCallback(
-    (value) => Math.round(((value - min) / (max - min)) * 100),
-    [min, max],
-  );
+    const getPercent = useCallback((value) => Math.round(((value - min) / (max - min)) * 100), [
+      min,
+      max,
+    ]);
 
-  useEffect(() => {
-    const minPercent = getPercent(minVal);
-    const maxPercent = getPercent(maxValRef.current);
-    /* istanbul ignore else */
-    if (range.current) {
-      range.current.style.left = `${minPercent}%`;
-      range.current.style.width = `${maxPercent - minPercent}%`;
-    }
-  }, [minVal, getPercent]);
+    useEffect(() => {
+      const minPercent = getPercent(minVal);
+      const maxPercent = getPercent(maxValRef.current);
+      /* istanbul ignore else */
+      if (range.current) {
+        range.current.style.left = `${minPercent}%`;
+        range.current.style.width = `${maxPercent - minPercent}%`;
+      }
+    }, [minVal, getPercent]);
 
-  useEffect(() => {
-    const minPercent = getPercent(minValRef.current);
-    const maxPercent = getPercent(maxVal);
-    /* istanbul ignore else */
-    if (range.current) {
-      range.current.style.width = `${maxPercent - minPercent}%`;
-    }
-  }, [maxVal, getPercent]);
+    useEffect(() => {
+      const minPercent = getPercent(minValRef.current);
+      const maxPercent = getPercent(maxVal);
+      /* istanbul ignore else */
+      if (range.current) {
+        range.current.style.width = `${maxPercent - minPercent}%`;
+      }
+    }, [maxVal, getPercent]);
 
-  return (
-    <Div
-      className='container'
-      configuration={configuration}
-      color={color}
-      fontSize={fontSize}
-      textColor={textColor}
-      family={family}
-      size={size}
-      double={double}
-      disabled={rest.disabled}
-    >
-      <input
-        type='range'
-        min={min}
-        max={max}
-        value={minVal}
-        onChange={(event) => {
-          const value = Math.min(Number(event.target.value), maxVal - 0);
-          setMinVal(value);
-          minValRef.current = value;
-          /* istanbul ignore else */
-          if (onChange !== null && onChange !== undefined) onChange(event);
-        }}
-        className='thumb thumb--left'
-        style={{ zIndex: minVal > max - 100 ? 5 : 0 }}
-        {...rest}
-      />
-      {double && (
+    return (
+      <Div
+        className='container'
+        configuration={configuration}
+        color={color}
+        fontSize={fontSize}
+        textColor={textColor}
+        family={family}
+        size={size}
+        double={double}
+        disabled={rest.disabled}
+      >
         <input
           type='range'
           min={min}
           max={max}
-          value={maxVal}
+          value={minVal}
           onChange={(event) => {
-            const value = Math.max(Number(event.target.value), minVal + 1);
-            setMaxVal(value);
-            maxValRef.current = value;
+            const value = Math.min(Number(event.target.value), maxVal - 0);
+            setMinVal(value);
+            minValRef.current = value;
             /* istanbul ignore else */
             if (onChange !== null && onChange !== undefined) onChange(event);
           }}
-          className='thumb thumb--right'
+          className='thumb thumb--left'
+          style={{ zIndex: minVal > max - 100 ? 5 : 0 }}
           {...rest}
+          ref={ref}
         />
-      )}
+        {double && (
+          <input
+            type='range'
+            min={min}
+            max={max}
+            value={maxVal}
+            onChange={(event) => {
+              const value = Math.max(Number(event.target.value), minVal + 1);
+              setMaxVal(value);
+              maxValRef.current = value;
+              /* istanbul ignore else */
+              if (onChange !== null && onChange !== undefined) onChange(event);
+            }}
+            className='thumb thumb--right'
+            {...rest}
+          />
+        )}
 
-      <div className='slider'>
-        <div className='slider__track' />
-        <div ref={range} className='slider__range' />
-        <div className='slider__left-value'>{minVal}</div>
-        {double && <div className='slider__right-value'>{maxVal}</div>}
-      </div>
-    </Div>
-  );
-};
+        <div className='slider'>
+          <div className='slider__track' />
+          <div ref={range} className='slider__range' />
+          <div className='slider__left-value'>{minVal}</div>
+          {double && <div className='slider__right-value'>{maxVal}</div>}
+        </div>
+      </Div>
+    );
+  }
+);
 
 export default Range;
