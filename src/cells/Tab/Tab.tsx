@@ -5,7 +5,7 @@ import StyledTab from './StyledTab';
 import { ConfigContext } from '../../providers';
 
 /** Tab component */
-interface TabI {
+export interface TabI {
   /** Text to show */
   text: any;
   /** Set tab as active */
@@ -28,17 +28,7 @@ interface TabI {
   /** Defines the icon in the tab */
   icon?: any;
   /** Set the horizontal spacing taking the icon as reference (if it is defined) */
-  iconSpacing?:
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl';
+  iconSpacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
   /** Defines a tab index for helper function */
   index?: number;
   /** Set the icon as main children and it will be place before the label (if it is defined) */
@@ -50,14 +40,7 @@ interface TabI {
   /** Set the line in position selected */
   position?: 'bottom' | 'top' | 'right' | 'left';
   /** Set the color variant (type definition colors) for the tab */
-  tabType?:
-    | 'primary'
-    | 'secondary'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'danger'
-    | 'tab';
+  tabType?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger' | 'tab';
   /** Set the horizontal spacing taking the tab content as reference */
   verticalSpacing?:
     | 'none'
@@ -135,22 +118,12 @@ const Tab = ({
       fontFamily={fontFamily}
       {...rest}
     >
-      <div
-        className='tab-text'
-        style={{ display: 'flex', alignItems: 'center' }}
-      >
-        {icon !== null && icon !== '' && lead && (
-          <span className='tab-icon-span'>{icon}</span>
-        )}
-        <Paragraph
-          size={fontSize}
-          color={active ? activeTextColor : 'darkGray'}
-        >
+      <div className='tab-text' style={{ display: 'flex', alignItems: 'center' }}>
+        {icon !== null && icon !== '' && lead && <span className='tab-icon-span'>{icon}</span>}
+        <Paragraph size={fontSize} color={active ? activeTextColor : 'darkGray'}>
           {text}
         </Paragraph>
-        {icon !== null && icon !== '' && !lead && (
-          <span className='tab-icon-span'>{icon}</span>
-        )}
+        {icon !== null && icon !== '' && !lead && <span className='tab-icon-span'>{icon}</span>}
       </div>
     </StyledTab>
   );

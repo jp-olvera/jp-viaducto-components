@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, forwardRef } from 'react';
 
 import { ConfigContext } from '../../providers';
 import { StyledSwitch } from './StyledSwitch';
@@ -26,39 +26,48 @@ interface SwitchInterface {
  * @param {boolean} circular Set circular/rectangular switch
  */
 
-const Switch = ({
-  color,
-  inputSize = 'default',
-  change,
-  circular = true,
-  ...rest
-}: SwitchInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
-  const { configuration } = useContext(ConfigContext);
-  const [check, setCheck] = useState(false);
-  return (
-    <StyledSwitch
-      htmlFor={rest.id}
-      configuration={configuration}
-      color={color}
-      size={inputSize}
-      disabled={rest.disabled}
-      data-testid={rest.id}
-      check={check}
-      circular={circular}
-    >
-      <input
-        type='checkbox'
-        id={rest.id}
-        onChange={(e) => {
-          setCheck(!check);
-          /* istanbul ignore else */
-          if (change) change(e);
-        }}
-        {...rest}
-      />
-      <span className='slider round' data-testid='slider' />
-    </StyledSwitch>
-  );
-};
+const Switch = forwardRef<
+  HTMLInputElement,
+  SwitchInterface & React.InputHTMLAttributes<HTMLInputElement>
+>(
+  (
+    {
+      color,
+      inputSize = 'default',
+      change,
+      circular = true,
+      ...rest
+    }: SwitchInterface & React.InputHTMLAttributes<HTMLInputElement>,
+    ref
+  ) => {
+    const { configuration } = useContext(ConfigContext);
+    const [check, setCheck] = useState(false);
+    return (
+      <StyledSwitch
+        htmlFor={rest.id}
+        configuration={configuration}
+        color={color}
+        size={inputSize}
+        disabled={rest.disabled}
+        data-testid={rest.id}
+        check={check}
+        circular={circular}
+      >
+        <input
+          type='checkbox'
+          id={rest.id}
+          onChange={(e) => {
+            setCheck(!check);
+            /* istanbul ignore else */
+            if (change) change(e);
+          }}
+          ref={ref}
+          {...rest}
+        />
+        <span className='slider round' data-testid='slider' />
+      </StyledSwitch>
+    );
+  }
+);
 
 export default Switch;
