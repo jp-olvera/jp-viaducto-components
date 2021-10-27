@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
 import { Spacer } from '..';
 
 import { ConfigContext } from '../../providers';
@@ -25,18 +25,7 @@ interface RadioInterface {
   /** Size of the input */
   radioSize?: 'xl' | 'lg' | 'md' | 'sm';
   /** Set the horizontal spacing between the label (if it is defined) and the radio */
-  spacing?:
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl'
-    | 'xxxl';
+  spacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
 }
 
 /**
@@ -53,51 +42,60 @@ interface RadioInterface {
  * @param {string} spacing Set the horizontal spacing between the label (if it is defined) and the radio
  */
 
-const Radio = ({
-  label,
-  name,
-  family,
-  radioSize,
-  color,
-  spacing,
-  fontSize,
-  onChange,
-  onClick,
-  ...props
-}: RadioInterface & React.InputHTMLAttributes<HTMLInputElement>) => {
-  const { configuration } = useContext(ConfigContext);
-  const [check, setCheck] = useState(false);
+const Radio = forwardRef<
+  HTMLInputElement,
+  RadioInterface & React.InputHTMLAttributes<HTMLInputElement>
+>(
+  (
+    {
+      label,
+      name,
+      family,
+      radioSize,
+      color,
+      spacing,
+      fontSize,
+      onChange,
+      onClick,
+      ...props
+    }: RadioInterface & React.InputHTMLAttributes<HTMLInputElement>,
+    ref
+  ) => {
+    const { configuration } = useContext(ConfigContext);
+    const [check, setCheck] = useState(false);
 
-  return (
-    <StyledLabel
-      htmlFor={props.id}
-      configuration={configuration}
-      family={family}
-      radioSize={radioSize}
-      fontSize={fontSize}
-      color={color}
-      disabled={props.disabled}
-      data-testid={props.id}
-    >
-      <input
-        name={name}
-        onChange={(e) => {
-          setCheck(!check);
-          /* istanbul ignore else */
-          if (onChange) onChange(e);
-        }}
-        onClick={(e) => {
-          /* istanbul ignore else */
-          if (onClick) onClick(e);
-        }}
-        type='radio'
-        id={props.id}
-        {...props}
-      />
-      <Spacer size={spacing || 'none'} direction='horizontal' />
-      <label htmlFor={props.id}>{label}</label>
-    </StyledLabel>
-  );
-};
+    return (
+      <StyledLabel
+        htmlFor={props.id}
+        configuration={configuration}
+        family={family}
+        radioSize={radioSize}
+        fontSize={fontSize}
+        color={color}
+        disabled={props.disabled}
+        data-testid={props.id}
+      >
+        <input
+          ref={ref}
+          name={name}
+          onChange={(e) => {
+            setCheck(!check);
+            /* istanbul ignore else */
+            if (onChange) onChange(e);
+          }}
+          onClick={(e) => {
+            /* istanbul ignore else */
+            if (onClick) onClick(e);
+          }}
+          type='radio'
+          id={props.id}
+          {...props}
+        />
+        <Spacer size={spacing || 'none'} direction='horizontal' />
+        <label htmlFor={props.id}>{label}</label>
+      </StyledLabel>
+    );
+  }
+);
 
 export default Radio;

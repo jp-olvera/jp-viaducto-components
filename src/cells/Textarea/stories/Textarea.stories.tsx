@@ -81,44 +81,22 @@ const config: SBConfigI = {
         defaultValue: { summary: false },
       },
     },
-    lateralPadding: {
+    horizontalSpacing: {
       description: 'Set lateral padding',
       type: 'string',
       table: {
         defaultValue: { summary: 'sm' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       control: 'select',
     },
-    verticalPadding: {
+    verticalSpacing: {
       description: 'Set vertical padding',
       type: 'string',
       table: {
         defaultValue: { summary: 'sm' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       control: 'select',
     },
     rows: {
@@ -156,7 +134,7 @@ Default.args = {
   textColor: 'dark',
   fontSize: 'md',
   disabled: false,
-  lateralPadding: 'sm',
-  verticalPadding: 'sm',
+  horizontalSpacing: 'sm',
+  verticalSpacing: 'sm',
   rows: 1,
 };

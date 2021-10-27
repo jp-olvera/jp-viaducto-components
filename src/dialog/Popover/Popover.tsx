@@ -197,9 +197,7 @@ const Popover = ({
         radius={radius}
         ref={dropRef}
         role='dialog'
-        style={{
-          position: 'fixed',
-        }}
+        zIndex={zIndex}
         {...rest}
       >
         {content}

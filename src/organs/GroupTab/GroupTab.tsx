@@ -1,6 +1,4 @@
-import React, {
-  useContext, useEffect, useRef, useState,
-} from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ConfigProps } from 'ballena-types';
 import { StyledGroupTab } from './StyledGroupTab';
 
@@ -11,14 +9,7 @@ interface GTI {
   /** Tab component */
   children: any;
   /** Set the color variant (type definition colors) for the tabs */
-  tabType?:
-    | 'primary'
-    | 'secondary'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'danger'
-    | 'tab';
+  tabType?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger' | 'tab';
   /** Set the horizontal spacing taking the tab content as reference */
   horizontalSpacing?:
     | 'none'
@@ -46,18 +37,7 @@ interface GTI {
     | 'xxl'
     | 'xxxl';
   /** Set the spacing between tabs */
-  spacing?:
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl'
-    | 'xxxl';
+  spacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
   /** Set the font size */
   fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Set the line in position selected */
@@ -108,20 +88,18 @@ const GroupTab = ({
   const pos = position === 'top' ? 'top' : 'bottom';
   const space: string = spacing || 'none';
   useEffect(() => {
-    onload(
-      ref,
-      getPosition / 100,
-      configuration,
-      space,
-      setPlace,
-      setWidth,
-      base,
-    );
+    React.Children.map<React.ReactNode, React.ReactNode>(children, (child, index) => {
+      if (React.isValidElement(child)) {
+        if (child.props.active) {
+          translate(index);
+        }
+      }
+      return <></>;
+    });
+    onload(ref, getPosition / 100, configuration, space, setPlace, setWidth, base);
   }, [getPosition, space, horizontalSpacing]);
-  const toPx: number = parseFloat(
-    configuration.spacing[space].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0],
-  ) * base;
-
+  const toPx: number =
+    parseFloat(configuration.spacing[space].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0]) * base;
   return (
     <StyledGroupTab
       horizontalSpacing={horizontalSpacing}
@@ -137,21 +115,25 @@ const GroupTab = ({
       {...rest}
     >
       <div className='tabs'>
-        {React.Children.toArray(children).map((child: any, index: number) => React.cloneElement(child, {
-          horizontalSpacing,
-          verticalSpacing,
-          lineWidth: '0',
-          fontSize,
-          position: pos,
-          tabType,
-          index,
-          active: index === getPosition / 100,
-          onClick: (e: any) => {
-            /* istanbul ignore else */
-            if (onTabChange) onTabChange(e);
-            translate(index);
-          },
-        }))}
+        {React.Children.map<React.ReactNode, React.ReactNode>(children, (child, index) => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child, {
+              horizontalSpacing,
+              verticalSpacing,
+              lineWidth: '0',
+              fontSize,
+              position: pos,
+              tabType,
+              index,
+              active: child.props.active || index === getPosition / 100,
+              onClick: (e: any) => {
+                /* istanbul ignore else */
+                if (onTabChange) onTabChange(e);
+                translate(index);
+              },
+            });
+          } else return child;
+        })}
       </div>
       <div
         className='line'
@@ -173,7 +155,7 @@ export const onload = (
   spacing: string,
   setPlace: Function,
   setWidth: Function,
-  base: number = 16,
+  base: number = 16
 ) => {
   if (ref && ref.current) {
     if (getPosition === 0) {
@@ -183,12 +165,9 @@ export const onload = (
       for (let i = 0; i < getPosition; i++) {
         counter += ref.current.children[0].children[i].clientWidth;
         if (i > 0) {
-          counter
-            += parseFloat(
-              configuration.spacing[spacing].match(
-                /[-]{0,1}[\d]*[.]{0,1}[\d]+/g,
-              )[0],
-            ) * base;
+          counter +=
+            parseFloat(configuration.spacing[spacing].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0]) *
+            base;
         }
       }
       setPlace(counter);
