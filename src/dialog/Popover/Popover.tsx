@@ -59,7 +59,7 @@ const Popover = ({
   }, [active]);
 
   const move = () => {
-    if (dropRef.current && target.current) {
+    if (dropRef.current && target.current && window && document) {
       const windowWidth = document.body.clientWidth;
       const windowHeight = window.innerHeight;
       const tr: DOMRect = target.current.getBoundingClientRect();
@@ -162,20 +162,24 @@ const Popover = ({
   useEffect(() => {
     move();
     const addListeners = () => {
-      scrollParents = findScrollParents(target.current);
-      scrollParents.forEach((scrollParent) => scrollParent.addEventListener('scroll', move));
-      const thisDocument = ownerDocument(target.current);
-      thisDocument.addEventListener('mouseup', clickOutsideHandler);
-      // thisDocument.addEventListener('mouseup', clickOutsideHandler);
-      window.addEventListener('resize', move);
+      if (window) {
+        scrollParents = findScrollParents(target.current);
+        scrollParents.forEach((scrollParent) => scrollParent.addEventListener('scroll', move));
+        const thisDocument = ownerDocument(target.current);
+        thisDocument.addEventListener('mouseup', clickOutsideHandler);
+        // thisDocument.addEventListener('mouseup', clickOutsideHandler);
+        window.addEventListener('resize', move);
+      }
     };
     let scrollParents: (Element | Document)[] = [];
     const removeListeners = () => {
-      scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
-      scrollParents = [];
-      const thisDocument = ownerDocument(target.current);
-      thisDocument.removeEventListener('mouseup', clickOutsideHandler);
-      window.removeEventListener('resize', move);
+      if (window) {
+        scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
+        scrollParents = [];
+        const thisDocument = ownerDocument(target.current);
+        thisDocument.removeEventListener('mouseup', clickOutsideHandler);
+        window.removeEventListener('resize', move);
+      }
     };
 
     if (active && target.current && dropRef.current) {

@@ -1,6 +1,4 @@
-import React, {
-  useState, useEffect, useContext, useRef,
-} from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import StyledDrawer from './StyledDrawer';
 import { ConfigContext } from '../../providers';
@@ -82,7 +80,7 @@ const Drawer = ({
         clearTimeout(timer2);
       }
     },
-    [],
+    []
   );
   const handleClose = (ev) => {
     /* istanbul ignore else */
@@ -101,48 +99,48 @@ const Drawer = ({
     width = '33.375rem';
   }
 
-  return active || keepActive
+  return (active || keepActive) && document
     ? createPortal(
-      <Overlay
-        data-testid='overlay'
-        onClick={handleClose}
-        onKeyUp={handleClose}
-        role='presentation'
-        tabIndex={0}
-        style={{
-          backgroundColor: overlayColor,
-          inset: 0,
-          position: 'fixed',
-          zIndex,
-        }}
-      >
-        <StyledDrawer
-          configuration={configuration}
-          data-testid='drawer'
-          elevation={elevation}
-          elevationDirection={elevationDirection}
-          isClosing={isClosing}
+        <Overlay
+          data-testid='overlay'
+          onClick={handleClose}
+          onKeyUp={handleClose}
+          role='presentation'
           tabIndex={0}
-          transition={transition}
-          ref={ref}
-          size={size}
-          placement={placement}
-          width={width}
-          {...rest}
-          onClick={(ev: any) => {
-            // Yep! this is needed
-            ev.stopPropagation();
-          }}
-          onKeyUp={(ev: any) => {
-            // Yep! this is needed
-            ev.stopPropagation();
+          style={{
+            backgroundColor: overlayColor,
+            inset: 0,
+            position: 'fixed',
+            zIndex,
           }}
         >
-          {children}
-        </StyledDrawer>
-      </Overlay>,
-      document.body,
-    )
+          <StyledDrawer
+            configuration={configuration}
+            data-testid='drawer'
+            elevation={elevation}
+            elevationDirection={elevationDirection}
+            isClosing={isClosing}
+            tabIndex={0}
+            transition={transition}
+            ref={ref}
+            size={size}
+            placement={placement}
+            width={width}
+            {...rest}
+            onClick={(ev: any) => {
+              // Yep! this is needed
+              ev.stopPropagation();
+            }}
+            onKeyUp={(ev: any) => {
+              // Yep! this is needed
+              ev.stopPropagation();
+            }}
+          >
+            {children}
+          </StyledDrawer>
+        </Overlay>,
+        document.body
+      )
     : null;
 };
 

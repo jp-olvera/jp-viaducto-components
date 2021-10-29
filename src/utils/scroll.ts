@@ -19,10 +19,7 @@ export function findScrollParents(element: Element | null) {
       }
       parent = <Element>parent.parentNode;
     }
-    if (
-      result.length &&
-      documentTags.includes((result[0] as Element).tagName.toLowerCase())
-    ) {
+    if (result.length && documentTags.includes((result[0] as Element).tagName.toLowerCase())) {
       result.length = 0;
     }
     // last scrollable element will be the document
@@ -54,13 +51,10 @@ export function isWindowOverflowing(container: Element): boolean {
 export function getScrollbarSize(doc: Document): number {
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth#example
   const documentWidth = doc.documentElement.clientWidth; // the viewport's width, scroll width is not considered
-  return Math.abs(window.innerWidth - documentWidth);
+  return window ? Math.abs(window.innerWidth - documentWidth) : 0;
   // window.innerWidth returns the interior width of the window in pixels.
 }
 
 export function getPaddingRight(element: Element): number {
-  return (
-    parseInt(ownerWindow(element).getComputedStyle(element).paddingRight, 10) ||
-    0
-  );
+  return parseInt(ownerWindow(element).getComputedStyle(element).paddingRight, 10) || 0;
 }
