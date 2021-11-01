@@ -4,7 +4,7 @@ import { Checkbox } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Controls/Inputs/Checkbox',
+  title: 'Ballena/Controls/Inputs/Checkbox',
   component: Checkbox,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -50,19 +50,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'none' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: 'select',
     },
     disabled: {

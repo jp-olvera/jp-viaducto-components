@@ -44,10 +44,9 @@ interface StyledDrawerProps {
   ref: any;
   size: string;
   transition: string;
-  width: string;
 }
 
-const StyledDrawer = styled.div < StyledDrawerProps > `
+const StyledDrawer = styled.div<StyledDrawerProps>`
   background: ${(p) => p.configuration.colors.background};
   max-width: 100%;
   position: fixed;
@@ -58,8 +57,9 @@ const StyledDrawer = styled.div < StyledDrawerProps > `
   ${(p) => getAnimation(p.placement, p.transition)}
   ${(p) => getPlacement(p.placement)}
   ${(p) => getElevation(p.elevation, p.elevationDirection)};
-  ${(p) => p.isClosing
-    && css`
+  ${(p) =>
+    p.isClosing &&
+    css`
       transition: transform 230ms ${p.transition};
       ${getClosingTransform(p.placement)};
     `};

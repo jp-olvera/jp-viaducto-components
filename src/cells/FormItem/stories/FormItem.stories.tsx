@@ -6,7 +6,7 @@ import { Popover } from '../../../dialog';
 import { Horse, User, Cube, CaretDown } from 'phosphor-react';
 
 const config: any = {
-  title: 'Ballena/Cells/FormFields/FormItem',
+  title: 'Ballena/Controls/FormItem',
   component: FormItem,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -188,7 +188,7 @@ const Template2 = ({ ...args }: any) => {
   const items = ['Jorge', 'Juan', 'Raúl', 'Cano'];
   const handleChange = (ev) => {
     setValue(ev.target.value);
-    setActive(true)
+    setActive(true);
   };
   const handleSelect = (value: string) => {
     setValue(value);
@@ -205,7 +205,7 @@ const Template2 = ({ ...args }: any) => {
                 type='text'
                 onFocus={() => {
                   console.log('focus');
-                  setActive(true)
+                  setActive(true);
                 }}
                 value={value}
                 onChange={handleChange}
@@ -219,7 +219,7 @@ const Template2 = ({ ...args }: any) => {
               target={ref}
               active={active}
               handleClose={handleActive}
-              position= 'left'
+              position='left'
               content={
                 <div>
                   {items.map((s, i) => (
@@ -231,13 +231,13 @@ const Template2 = ({ ...args }: any) => {
           </Column>
         </Row>
         <Row style={{ alignItems: 'center' }}>
-        <Column>
-          <FormItem {...args} prefix={<User color='#3f373c' size={16} />} padding='3rem 0 0 0'>
-            <input id='first-name' name='first-name' required />
-            <label htmlFor='first-name'>First name:</label>
-          </FormItem>
-        </Column>
-      </Row>
+          <Column>
+            <FormItem {...args} prefix={<User color='#3f373c' size={16} />} padding='3rem 0 0 0'>
+              <input id='first-name' name='first-name' required />
+              <label htmlFor='first-name'>First name:</label>
+            </FormItem>
+          </Column>
+        </Row>
       </Grid>
     </ConfigProvider>
   );

@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { Button } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/App/Dialog/Drawer',
+  title: 'Ballena/Dialog/Drawer',
   component: Drawer,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -58,13 +58,6 @@ const config: SBConfigI = {
       },
     },
     size: {
-      description: 'The size of the drawer',
-      type: { name: 'string' },
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'md' },
-      },
-      options: ['sm', 'md', 'lg'],
       control: {
         type: 'select',
       },

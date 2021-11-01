@@ -4,7 +4,7 @@ import { Button } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Controls/Button',
+  title: 'Ballena/Controls/Button',
   component: Button,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -59,8 +59,7 @@ const config: SBConfigI = {
       },
     },
     iconSpacing: {
-      description:
-        'The horizontal spacing between the label and icon (if both are defined)',
+      description: 'The horizontal spacing between the label and icon (if both are defined)',
       type: {
         summary: 'string',
         required: false,
@@ -68,18 +67,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'none' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       control: {
         type: 'select',
       },
@@ -93,20 +81,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'none' },
       },
-      options: [
-        null,
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: [null, 'none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: {
         type: 'select',
       },
@@ -134,20 +109,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: null },
       },
-      options: [
-        null,
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: [null, 'none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: {
         type: 'select',
       },
@@ -217,8 +179,7 @@ const config: SBConfigI = {
       },
     },
     useLongLoading: {
-      description:
-        'Set the long loading bar if it is true or circle loading when it is false',
+      description: 'Set the long loading bar if it is true or circle loading when it is false',
       type: { summary: 'Boolean', required: false },
       table: {
         defaultValue: { summary: false },

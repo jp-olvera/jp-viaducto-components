@@ -34,6 +34,5 @@ export default create({
   // Brand settings
   brandTitle: 'Ballena - Viaducto',
   brandUrl: 'https://github.com/viaducto',
-  brandImage:
-    'https://github.com/jl-rojas/graph-qlnest/blob/ballena/ballena.png?raw=true',
+  brandImage: 'https://github.com/jl-rojas/graph-qlnest/blob/ballena/ballena.png?raw=true',
 });

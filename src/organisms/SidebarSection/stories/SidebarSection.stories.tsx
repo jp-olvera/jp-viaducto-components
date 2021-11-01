@@ -4,7 +4,7 @@ import { SidebarSection, MenuItem } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/App/SidebarSection',
+  title: 'Ballena/Navigation/SidebarSection',
   component: SidebarSection,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

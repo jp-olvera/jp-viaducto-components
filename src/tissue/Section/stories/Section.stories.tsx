@@ -3,10 +3,10 @@ import { SBConfigI } from '../../../sb';
 import { ConfigProvider } from '../../../providers';
 import { Section } from '..';
 import { Paragraph, Title } from '../../../cells';
-import { SideToSide } from '../../../organs';
+import { SideToSide } from '../../../organs/SideToSide';
 
 const config: SBConfigI = {
-  title: 'Ballena/Marketing/Section',
+  title: 'Recipes/Section',
   component: Section,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

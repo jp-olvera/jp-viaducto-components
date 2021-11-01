@@ -6,7 +6,7 @@ import { Notification } from '..';
 import { Container, Paragraph } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/App/Notification',
+  title: 'Recipes/Notification',
   component: Notification,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

@@ -1,9 +1,9 @@
 import React, { createContext, useState } from 'react';
-import { ToastProvider } from 'react-toast-notifications';
+// import { ToastProvider } from 'react-toast-notifications';
 import { ConfigProps } from 'ballena-types';
 
 import config from '../utils/config';
-import { Toaster } from '../dialog';
+// import { Toaster } from '../dialog';
 
 interface ConfigProviderInterface {
   children: any;
@@ -26,23 +26,23 @@ const ConfigProvider = ({ children }: ConfigProviderInterface) => {
       ...newConfig,
     }));
   };
-  const placements = {
-    'bottom-left': 'bottom-left',
-    'bottom-center': 'bottom-center',
-    'bottom-right': 'bottom-right',
-    'top-left': 'top-left',
-    'top-center': 'top-center',
-    'top-right': 'top-right',
-  };
+  // const placements = {
+  //   'bottom-left': 'bottom-left',
+  //   'bottom-center': 'bottom-center',
+  //   'bottom-right': 'bottom-right',
+  //   'top-left': 'top-left',
+  //   'top-center': 'top-center',
+  //   'top-right': 'top-right',
+  // };
 
   return (
     <ConfigContext.Provider value={{ configuration, updateConfig }}>
-      <ToastProvider
+      {/* <ToastProvider
         components={{ Toast: Toaster }}
         placement={placements[configuration.toasterPlacement]}
-      >
-        {children}
-      </ToastProvider>
+      > */}
+      {children}
+      {/* </ToastProvider> */}
     </ConfigContext.Provider>
   );
 };

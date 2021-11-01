@@ -5,13 +5,12 @@ import { Tooltip } from '..';
 import { Button } from '../../Button';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Info/Tooltip',
+  title: 'Ballena/Controls/Tooltip',
   component: Tooltip,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
     position: {
-      description:
-        'Set the position of the tooltip, top, left, right or bottom',
+      description: 'Set the position of the tooltip, top, left, right or bottom',
       table: {
         defaultValue: { summary: 'top' },
         type: { summary: 'string' },
@@ -55,7 +54,7 @@ const config: SBConfigI = {
 
 export default config;
 
-const Template = ({active, ...rest}: any) => (
+const Template = ({ active, ...rest }: any) => (
   <ConfigProvider>
     <div
       style={{
@@ -103,8 +102,7 @@ const Template = ({active, ...rest}: any) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  label:
-    'Prompt text',
+  label: 'Prompt text',
   position: 'right',
   backgroundColor: 'black',
   color: 'white',

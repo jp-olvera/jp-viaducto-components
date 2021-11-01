@@ -4,7 +4,7 @@ import { Popover } from '..';
 import { Button } from '../../../';
 
 export default {
-  title: 'Ballena/App/Dialog/Popover',
+  title: 'Ballena/Dialog/Popover',
   component: Popover,
   argTypes: {
     active: {
@@ -132,7 +132,7 @@ const Template = ({ position, elevation, elevationDirection, radius, zIndex }) =
           <Popover
             active={active}
             content={
-              <div style={{width: '300px', height: '200px'}}>
+              <div style={{ width: '300px', height: '200px' }}>
                 <button type='button'>hola</button>
               </div>
             }

@@ -4,7 +4,7 @@ import { Paragraph } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Text/Paragraph',
+  title: 'Ballena/Typography/Paragraph',
   component: Paragraph,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -100,8 +100,7 @@ export default config;
 const Template = (args: typeof Default) => (
   <ConfigProvider>
     <Paragraph {...args}>
-      This is a paragraph example, please write everything you need. Greetings.
-      Bye.
+      This is a paragraph example, please write everything you need. Greetings. Bye.
     </Paragraph>
   </ConfigProvider>
 );

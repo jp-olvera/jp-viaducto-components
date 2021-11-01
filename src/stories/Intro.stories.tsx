@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Anchor, Container, Paragraph, Spacer, Title,
-} from '../cells';
+import { Anchor, Container, Paragraph, Spacer, Title } from '../cells';
 
 export const Intro = () => (
   <Container horizontal='sm'>
@@ -9,26 +7,20 @@ export const Intro = () => (
       Welcome to Ballena/Primitives
     </Title>
     <Paragraph>
-      Primitives is the whole configuration file explained to be more
-      comfortable for you to use.
+      Primitives is the whole configuration file explained to be more comfortable for you to use.
     </Paragraph>
     <Paragraph>
-      In the next sections you will find the examples to use Colors,
-      Breakpoints, Height, etc. in several components.{' '}
-      <b>Not all components use all Primitives configuration</b>, for better
-      explanation, go to the specific component and take a look for the whole
-      controls.
+      In the next sections you will find the examples to use Colors, Breakpoints, Height, etc. in
+      several components. <b>Not all components use all Primitives configuration</b>, for better
+      explanation, go to the specific component and take a look for the whole controls.
     </Paragraph>
     <Spacer size='lg' />
-    <Paragraph>
-      Remember, for extract the configurations ,you can access with
-    </Paragraph>
+    <Paragraph>Remember, for extract the configurations ,you can access with</Paragraph>
     <ul>
       <li>
         <Paragraph>
-          <code style={{ color: '#0050B3' }}>ConfigContext.configuration</code>{' '}
-          using our <code style={{ color: '#0050B3' }}>ConfigProvider</code>{' '}
-          (see more in{' '}
+          <code style={{ color: '#0050B3' }}>ConfigContext.configuration</code> using our{' '}
+          <code style={{ color: '#0050B3' }}>ConfigProvider</code> (see more in{' '}
           <span>
             <Anchor
               label='Usage storie'
@@ -109,6 +101,6 @@ Intro.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Primitives/Intro',
+  title: 'Ballena/Tokens/Intro',
   component: Intro,
 };

@@ -34,17 +34,7 @@ interface PaginationInterface {
   /** Set border radius */
   radius?: 'none' | 'sm' | 'md' | 'lg';
   /** Set spacing in page component */
-  spacing?:
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl';
+  spacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
   /** Triggers a function when page is changed */
   onPageChange?: Function;
   /** Set button color variant */
@@ -129,13 +119,7 @@ const Pagination = ({
           if (sibilings <= 0) {
             setPages(['...', pageNumber, '...']);
           } else {
-            setPages([
-              '...',
-              pageNumber - 1,
-              pageNumber,
-              pageNumber + 1,
-              '...',
-            ]);
+            setPages(['...', pageNumber - 1, pageNumber, pageNumber + 1, '...']);
           }
           break;
       }
@@ -170,7 +154,6 @@ const Pagination = ({
             }}
           >
             <Anchor
-              href=''
               label={previousLabel ? 'Previous Page' : ''}
               color={textColor}
               size={fontSize}
@@ -178,12 +161,8 @@ const Pagination = ({
             />
           </li>
         )}
-        <li
-          onClick={() => goToPage(1)}
-          role='button'
-          className={`${active === 1 ? 'active' : ''}`}
-        >
-          <Anchor label={(1).toString()} href='' />
+        <li onClick={() => goToPage(1)} role='button' className={`${active === 1 ? 'active' : ''}`}>
+          <Anchor label={(1).toString()} />
         </li>
         {pages.map((page: any, index: number) => (
           <li
@@ -194,7 +173,7 @@ const Pagination = ({
               page === '...' && 'dots'
             }`}
           >
-            <Anchor label={page.toString()} href='' />
+            <Anchor label={page.toString()} />
           </li>
         ))}
         {totalPages > 1 && (
@@ -203,7 +182,7 @@ const Pagination = ({
             role='button'
             className={`${active === totalPages ? 'active' : ''}`}
           >
-            <Anchor label={totalPages.toString()} href='' />
+            <Anchor label={totalPages.toString()} />
           </li>
         )}
         {totalPages > 1 && (
@@ -218,7 +197,6 @@ const Pagination = ({
             }}
           >
             <Anchor
-              href=''
               label={nextLabel ? 'Next Page' : ''}
               color={textColor}
               size={fontSize}

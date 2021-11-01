@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { Pagination } from '..';
 
 const config: SBConfigI = {
-  title: 'Ballena/App/Pagination',
+  title: 'Ballena/Navigation/Pagination',
   component: Pagination,
   parameters: {
     controls: { sort: 'requiredFirst' },

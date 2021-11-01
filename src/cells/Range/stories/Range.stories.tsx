@@ -4,7 +4,7 @@ import { Range } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Controls/Inputs/Range',
+  title: 'Ballena/Controls/Inputs/Range',
   component: Range,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -23,8 +23,7 @@ const config: SBConfigI = {
       },
     },
     double: {
-      description:
-        'Set the input with double range slider if it is set to true',
+      description: 'Set the input with double range slider if it is set to true',
       type: { summary: 'boolean', required: true },
       table: {
         defaultValue: { summary: false },
@@ -91,10 +90,9 @@ export default config;
 
 const Template = (args: typeof Single) => (
   <ConfigProvider>
-    The change between <code>true/false</code> in <b>DOUBLE</b> prop will fail
-    because it is going to take the actual value as total. It is better if you
-    change to ne next page to see thye diference between double and single Range
-    component
+    The change between <code>true/false</code> in <b>DOUBLE</b> prop will fail because it is going
+    to take the actual value as total. It is better if you change to ne next page to see thye
+    diference between double and single Range component
     <br />
     <br />
     <br />

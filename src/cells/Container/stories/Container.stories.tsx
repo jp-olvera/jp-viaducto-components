@@ -18,7 +18,7 @@ const commonOptions = {
 };
 
 const config: SBConfigI = {
-  title: 'Ballena/Shared/Container',
+  title: 'Ballena/Layout/Container',
   component: Container,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

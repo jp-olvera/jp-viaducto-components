@@ -29,7 +29,7 @@ interface DrawerInterface {
   /** From what edge of the screen should appear */
   placement?: 'right' | 'top' | 'left' | 'bottom';
   /** Size of the drawer, 'sm', 'md', 'lg', defaults to 'sm' */
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'full';
   /** Transition function to apply when opening and closing */
   transition?: string;
   /** z-index value for the overlay, it defaults to 9999 */
@@ -94,11 +94,6 @@ const Drawer = ({
       }
     }
   };
-  let width = '22.25rem';
-  if (size === 'lg') {
-    width = '33.375rem';
-  }
-
   return (active || keepActive) && document
     ? createPortal(
         <Overlay
@@ -125,7 +120,6 @@ const Drawer = ({
             ref={ref}
             size={size}
             placement={placement}
-            width={width}
             {...rest}
             onClick={(ev: any) => {
               // Yep! this is needed

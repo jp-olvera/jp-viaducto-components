@@ -5,7 +5,7 @@ import { CohortTable } from '..';
 import { CellClickInterface } from '../CohortProps';
 
 const config: SBConfigI = {
-  title: 'Ballena/App/Cohort',
+  title: 'Recipes/Cohort',
   component: CohortTable,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {},

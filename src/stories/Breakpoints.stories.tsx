@@ -104,6 +104,6 @@ Breakpoints.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Primitives/Breakpoints',
+  title: 'Ballena/Tokens/Breakpoints',
   component: Breakpoints,
 };

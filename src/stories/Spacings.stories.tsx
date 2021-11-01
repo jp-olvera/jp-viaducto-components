@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Container, Paragraph, Spacer, Title, WrapperTable,
-} from '../cells';
+import { Container, Paragraph, Spacer, Title, WrapperTable } from '../cells';
 
 const Box = ({ s }: any) => (
   <div
@@ -21,11 +19,10 @@ export const Spacings = () => (
     <hr />
     <Spacer size='lg' />
     <Paragraph size='lg'>
-      We use the spacings configuration to apply white spaces inside our
-      components like paddings or margins, and white spaces between icons and
-      text, we also provide a special component, the Spacer component so you can
-      use these spacings on your own. These are the predefined sizes we use,
-      although you can overwrite them, we do not recommend doing that.
+      We use the spacings configuration to apply white spaces inside our components like paddings or
+      margins, and white spaces between icons and text, we also provide a special component, the
+      Spacer component so you can use these spacings on your own. These are the predefined sizes we
+      use, although you can overwrite them, we do not recommend doing that.
     </Paragraph>
     <Spacer size='lg' />
     <WrapperTable border='none' hover={false}>
@@ -178,6 +175,6 @@ Spacings.parameters = {
 };
 
 export default {
-  title: 'Ballena/Primitives/Spacings',
+  title: 'Ballena/Tokens/Spacings',
   component: Spacings,
 };

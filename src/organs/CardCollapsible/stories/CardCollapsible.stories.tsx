@@ -4,7 +4,7 @@ import { CardCollapsible } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/App/CardCollapsible',
+  title: 'Ballena/Content/CardCollapsible',
   component: CardCollapsible,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

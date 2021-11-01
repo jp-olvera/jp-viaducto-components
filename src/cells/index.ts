@@ -1,6 +1,5 @@
 export * from './Anchor';
 export * from './Avatar';
-export * from './Badge';
 export * from './Button';
 export * from './BareButton';
 export * from './CheckBox';
@@ -24,6 +23,6 @@ export * from './Switch';
 export * from './Tab';
 export * from './Table';
 export * from './Textarea';
-export * from './TimePicker';
+// export * from './TimePicker';
 export * from './Title';
 export * from './Tooltip';
