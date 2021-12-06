@@ -1,84 +1,89 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { SBConfigI } from '../../../sb';
 import { Drawer } from '..';
 import { ConfigProvider } from '../../../providers';
 import { Button } from '../../../cells';
+import { Modal, Popover } from '../../../dialog';
 
 const config: SBConfigI = {
   title: 'Ballena/Dialog/Drawer',
   component: Drawer,
   parameters: { controls: { sort: 'requiredFirst' } },
-  argTypes: {
-    elevation: {
-      description: 'The elevation level it should take, one of 1/2/3',
-      table: {
-        type: { summary: 'number' },
-        defaultValue: { summary: 1 },
-      },
-      options: [0, 1, 2, 3],
-      control: {
-        type: 'select',
-      },
-    },
-    elevationDirection: {
-      description: "The elevation direction, if '' direction goes everywhere",
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: "''" },
-      },
-      options: [
-        'radial',
-        'top',
-        'right',
-        'bottom',
-        'left',
-        'topRight',
-        'topLeft',
-        'bottomRight',
-        'bottomLeft',
-      ],
-      control: {
-        type: 'select',
-      },
-    },
-    transition: {
-      description: 'Linear transition to use',
-      type: { name: 'string' },
-      table: { type: { summary: 'string' }, defaultValue: { summary: 'ease' } },
-    },
-    overlayColor: {
-      description: 'The color for the overlay',
-      type: { name: 'string' },
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'rgba(0,0,0,0.3)' },
-      },
-      control: {
-        type: 'text',
-      },
-    },
-    size: {
-      control: {
-        type: 'select',
-      },
-    },
-    placement: {
-      description: 'From what edge of the screen should appear',
-      type: { name: 'string' },
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'right' },
-      },
-      options: ['right', 'top', 'left', 'bottom'],
-      control: {
-        type: 'select',
-      },
-    },
-  },
 };
 
 export default config;
-
+const Pop = () => {
+  const [active, setActive] = useState(false);
+  const handleClick = () => {
+    setActive(!active);
+  };
+  const ref = useRef(null);
+  return (
+    <>
+      <Button
+        ref={ref}
+        type='button'
+        onClick={handleClick}
+        label='Click to see the magic'
+        shapeColor='success'
+      />
+      <Popover
+        active={active}
+        content={
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              background: '#cecece',
+              maxWidth: '100vw',
+              overflow: 'auto',
+              border: '1px solid blue',
+            }}
+          >
+            <div style={{ width: '750px', height: '200px', background: '#cece' }}>
+              <button type='button'>hola</button>
+            </div>
+          </div>
+        }
+        target={ref}
+        handleActive={handleClick}
+      />
+    </>
+  );
+};
+const CustomModal = () => {
+  const [active, setActive] = useState(false);
+  const handleClick = () => {
+    setActive(!active);
+  };
+  const ref = useRef(null);
+  return (
+    <>
+      <Button
+        ref={ref}
+        type='button'
+        onClick={handleClick}
+        label='Click to see the magic'
+        shapeColor='success'
+      />
+      <Modal active={active} handleActive={handleClick}>
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            background: '#cecece',
+            maxWidth: '100vw',
+            overflow: 'auto',
+            border: '1px solid blue',
+          }}
+        >
+          <button type='button'>hola</button>
+          <Pop />
+        </div>
+      </Modal>
+    </>
+  );
+};
 const Template = ({
   elevation,
   elevationDirection,
@@ -100,7 +105,7 @@ const Template = ({
       />
       <Drawer
         active={open}
-        onClose={() => {
+        handleActive={() => {
           setOpen(false);
         }}
         elevation={elevation}
@@ -112,28 +117,7 @@ const Template = ({
         placement={placement}
       >
         <button type='button'>hola</button>
-        {/* <div style={{ height: '80px' }} tabIndex={0}>
-          <h3 style={{ margin: 0 }}>Hola</h3>
-        </div>
-        <div style={{ height: '80px' }} tabIndex={0}>
-          <h3 style={{ margin: 0 }}>Aquí</h3>
-        </div>
-        <div style={{ height: '80px' }} tabIndex={0}>
-          <h3 style={{ margin: 0 }}>Puedes</h3>
-        </div>
-        <div style={{ height: '80px' }} tabIndex={0}>
-          <h3 style={{ margin: 0 }}>Poner</h3>
-        </div>
-        <div style={{ height: '80px' }} tabIndex={0}>
-          <h3 style={{ margin: 0 }}>Lo</h3>
-        </div>
-        <div style={{ height: '80px' }} tabIndex={0}>
-          <h3 style={{ margin: 0 }}>Que</h3>
-        </div>
-        <div style={{ height: '80px' }} tabIndex={0}>
-          <h3 style={{ margin: 0 }}>Desees</h3>
-        </div>
-        <hr /> */}
+        <CustomModal />
       </Drawer>
     </ConfigProvider>
   );
@@ -152,7 +136,7 @@ const Template2 = (args: typeof Large) => {
       />
       <Drawer
         active={open}
-        onClose={() => {
+        handleActive={() => {
           setOpen(!open);
         }}
         {...args}

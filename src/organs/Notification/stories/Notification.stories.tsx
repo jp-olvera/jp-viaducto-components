@@ -153,5 +153,4 @@ Default.args = {
   },
   spacing: 'xs',
   time: new Date('10/10/2011'),
-  onClick: () => alert('Element clicked'),
 };

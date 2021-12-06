@@ -152,13 +152,6 @@ const config: SBConfigI = {
         defaultValue: { summary: false },
       },
     },
-    onClick: {
-      description: 'Handles the action to take when the button is pressed',
-      type: { summary: 'Function', required: false },
-      table: {
-        defaultValue: { summary: null },
-      },
-    },
     isLoading: {
       description: 'Set the button disabled with an icon',
       type: { summary: 'boolean', required: false },
@@ -184,6 +177,13 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: false },
         type: { summary: 'boolean' },
+      },
+    },
+    onClick: {
+      description: 'Trigger an action when button is clicked',
+      type: { summary: 'Function(void)', required: false },
+      table: {
+        defaultValue: { summary: null },
       },
     },
   },
@@ -213,8 +213,7 @@ Default.args = {
   colors: null,
   disabled: false,
   block: false,
-  onClick: () => {},
-  isLoading: true,
+  isLoading: false,
 };
 
 export const Outline = Template.bind({});
@@ -232,7 +231,6 @@ Outline.args = {
   disabled: false,
   block: false,
   isLoading: false,
-  onClick: () => {},
 };
 export const Ghost = Template.bind({});
 
@@ -249,7 +247,6 @@ Ghost.args = {
   disabled: false,
   block: false,
   isLoading: false,
-  onClick: () => {},
 };
 
 export const Custom = Template.bind({});
@@ -267,7 +264,6 @@ Custom.args = {
   disabled: false,
   isLoading: false,
   iconSpace: 'xs',
-  onClick: () => {},
 };
 export const Small = Template.bind({});
 
@@ -281,7 +277,6 @@ Small.args = {
   shapeColor: 'primary',
   variant: 'solid',
   isLoading: false,
-  onClick: () => {},
 };
 
 export const IconOnly = Template.bind({});
@@ -295,7 +290,6 @@ IconOnly.args = {
   shapeColor: 'primary',
   variant: 'solid',
   isLoading: false,
-  onClick: () => {},
 };
 export const CustomHeight = Template.bind({});
 
@@ -308,7 +302,6 @@ CustomHeight.args = {
   shapeColor: 'primary',
   variant: 'solid',
   isLoading: false,
-  onClick: () => {},
 };
 export const LoadingButton = Template.bind({});
 
@@ -319,7 +312,6 @@ LoadingButton.args = {
   lead: false,
   shapeColor: 'primary',
   variant: 'solid',
-  onClick: () => {},
   isLoading: true,
   icon: Icon({ icon: '⭕' }),
 };
@@ -333,7 +325,6 @@ StateButton.args = {
   lead: false,
   shapeColor: 'primary',
   variant: 'solid',
-  onClick: () => {},
   isLoading: false,
   isValid: true,
 };

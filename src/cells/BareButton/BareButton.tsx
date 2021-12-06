@@ -14,7 +14,7 @@ const StyledButton = styled.button`
   }
 `;
 /** BareButton is a component at the top of the parent component */
-interface BareButtonInterface {
+interface BareButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Child component */
   children?: any;
   /** Set close svg icon */
@@ -29,11 +29,7 @@ interface BareButtonInterface {
 
 const Close = () => <img src={svg} alt='close' className='close' />;
 
-const BareButton = ({
-  children,
-  close = true,
-  ...rest
-}: BareButtonInterface & React.ButtonHTMLAttributes<HTMLButtonElement>) => (
+const BareButton = ({ children, close = true, ...rest }: BareButton) => (
   <StyledButton type='button' {...rest} as='button'>
     {!close ? children : <Close />}
   </StyledButton>

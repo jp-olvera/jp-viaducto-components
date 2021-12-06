@@ -9,10 +9,13 @@ const getSize = (size: string = 'md', max: boolean = false) => {
     case 'sm':
       return max ? 'calc(0.83rem * 1.125)' : '0.83rem';
     case 'lg':
-      return max ? 'calc(1.2rem * 1.125)' : '1.2rem';
+      return max ? 'calc(1.125rem * 1.125)' : '1.125rem';
+    case 'xl':
+      return max ? 'calc(1.25rem * 1.125)' : '1.25rem';
     case 'md':
-    default:
       return max ? 'calc(1rem * 1.125)' : '1rem';
+    default:
+      return size;
   }
 };
 
@@ -48,7 +51,6 @@ const getTitleLineHeight = (lineHeight = 'md', size = '1', max = false) => {
 const getFontSize = (level: string, max: boolean = false) => {
   switch (level) {
     case '1':
-    default:
       return `clamp(1.467rem, calc(1.467rem + ((${
         max ? 'calc(1.125vw * 16)' : '1vw'
       } - 0.000625rem) * 1.1352)), 2.488rem) `;
@@ -85,6 +87,8 @@ const getFontSize = (level: string, max: boolean = false) => {
       return `clamp(1.575rem, calc(1.575rem + ((${
         max ? 'calc(1.125vw * 16)' : '1vw'
       } - 0.000625rem) * 1.5689)), 2.986rem) `;
+    default:
+      return level;
   }
 };
 

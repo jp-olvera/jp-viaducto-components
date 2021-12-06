@@ -69,7 +69,7 @@ const config: SBConfigI = {
         defaultValue: { summary: null },
       },
     },
-    size: {
+    inputSize: {
       description: 'Set the size of the range slider',
       type: { summary: 'string', required: false },
       table: {
@@ -78,7 +78,10 @@ const config: SBConfigI = {
     },
     onChange: {
       description: 'Triggers an action when the value changes',
-      type: { summary: 'function', required: false },
+      type: {
+        summary: '(value: number | { min?: number; max?: number; }) => void',
+        required: false,
+      },
       table: {
         defaultValue: { summary: null },
       },
@@ -109,9 +112,7 @@ Double.args = {
   color: null,
   fontSize: 'md',
   textColor: '',
-  family: 'null',
-  size: 'lg',
-  onChange: () => {},
+  inputSize: 'lg',
   double: true,
   disabled: false,
 };
@@ -123,9 +124,7 @@ Single.args = {
   color: null,
   fontSize: 'md',
   textColor: '',
-  family: 'null',
-  size: 'lg',
-  onChange: () => {},
+  inputSize: 'lg',
   double: false,
   disabled: false,
 };

@@ -3,7 +3,7 @@ import { ResponsivePadding } from '../../cells';
 import { SectionChild, StyledSection, Subsection } from './StyledSection';
 
 /** Section component */
-export interface SI {
+export interface Section extends React.HTMLAttributes<HTMLDivElement> {
   /** Child for section component */
   children: React.ReactNode;
   /** Sections placed behind the child */
@@ -35,7 +35,7 @@ const Section = ({
   sections,
   childMaxWidth = '1136px',
   children,
-}: SI & React.HTMLAttributes<HTMLDivElement>) => {
+}: Section) => {
   const ref = useRef<HTMLDivElement>(null);
   const [h, setH] = useState<number | string>('100%');
   useEffect(() => {

@@ -114,4 +114,5 @@ Default.args = {
   transition: 'linear',
   paddingX: 'sm',
   paddingY: 'sm',
+  expandMultiple: false,
 };

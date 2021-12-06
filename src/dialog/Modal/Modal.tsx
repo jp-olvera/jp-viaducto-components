@@ -5,7 +5,7 @@ import { ConfigContext } from '../../providers';
 import { Overlay } from '../../cells/Overlay';
 
 /** Modal component */
-interface ModalProps {
+export interface Modal extends React.HTMLAttributes<HTMLDivElement> {
   /** Specifies if the modal is gonna be visible at first */
   active?: boolean;
   /** Specifies if the modal could be closed when clicking outside */
@@ -61,7 +61,7 @@ const Modal = ({
   radius = 'md',
   zIndex = 9999,
   ...rest
-}: ModalProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: Modal) => {
   const { configuration } = useContext(ConfigContext);
   const modalRef = useRef<HTMLElement>(null);
   const [isClosing, setisClosing] = useState(false);
@@ -115,7 +115,7 @@ const Modal = ({
         <Overlay
           data-testid='overlay'
           onClick={handleClose}
-          onKeyUp={handleClose}
+          // onEsc={handleClose}
           tabIndex={0}
           role='presentation'
           style={{

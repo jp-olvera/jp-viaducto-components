@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { getSize, getRangeSize } from '../../utils/getSizes';
 
-export const Div = styled.div < any > `
+export const Div = styled.div<any>`
   opacity: ${(p) => (p.disabled ? '0.65' : '1')};
   font-family: ${(p) => p.family || p.configuration.fontFamily};
   ${(p) => p.disabled && 'cursor:not-allowed'};
@@ -25,21 +25,22 @@ export const Div = styled.div < any > `
   }
 
   .slider__track {
-    background-color: ${(p) => (p.double ? '#ced4da' : p.color || p.configuration.colors.primary.default)};
+    background-color: ${(p) =>
+      p.double ? '#ced4da' : p.color || p.configuration.colors.primary.default};
     width: 100%;
     z-index: 1;
   }
 
   .slider__range {
-    background-color: ${(p) => (p.double ? p.color || p.configuration.colors.primary.default : '#cecece')};
+    background-color: ${(p) =>
+      p.double ? p.color || p.configuration.colors.primary.default : '#cecece'};
     z-index: 2;
   }
 
   .slider__left-value,
   .slider__right-value {
-    color: ${(p) => p.configuration.colors.text[p.textColor]
-      || p.textColor
-      || p.configuration.colors.text.dark};
+    color: ${(p) =>
+      p.configuration.colors.text[p.textColor] || p.textColor || p.configuration.colors.text.dark};
     font-size: ${(p) => getSize(p.fontSize)};
     margin-top: 1.25rem;
   }
@@ -73,8 +74,8 @@ export const Div = styled.div < any > `
     border-radius: 50%;
     box-shadow: 0 0 0.063rem 0.063rem #ced4da;
     cursor: ${(p) => (p.disabled ? 'not-allowed' : 'pointer')};
-    height: ${(p) => getRangeSize(p.size)};
-    width: ${(p) => getRangeSize(p.size)};
+    height: ${(p) => getRangeSize(p.inputSize)};
+    width: ${(p) => getRangeSize(p.inputSize)};
     margin-top: 0.25rem;
     pointer-events: all;
     position: relative;
@@ -95,8 +96,8 @@ export const Div = styled.div < any > `
     border-radius: 50%;
     box-shadow: 0 0 0.063rem 0.063rem #ced4da;
     cursor: ${(p) => (p.disabled ? 'not-allowed' : 'pointer')};
-    height: ${(p) => getRangeSize(p.size)};
-    width: ${(p) => getRangeSize(p.size)};
+    height: ${(p) => getRangeSize(p.inputSize)};
+    width: ${(p) => getRangeSize(p.inputSize)};
     margin-top: 0.25rem;
     pointer-events: all;
     position: relative;

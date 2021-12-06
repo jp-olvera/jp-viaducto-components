@@ -3,7 +3,7 @@ import { ConfigContext } from '../../providers';
 import StyledPadding from './StyledPadding';
 
 /** Container component. This component will set padding in the direction implemented to children */
-interface PaddingInterface {
+export interface ResponsivePadding extends React.HTMLAttributes<HTMLDivElement> {
   /** Child element */
   children: any;
   /** Set padding selected in top direction, this will override parallel props */
@@ -42,7 +42,7 @@ const ResponsivePadding = ({
   horizontal = null,
   children,
   ...rest
-}: PaddingInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: ResponsivePadding) => {
   const { configuration } = useContext(ConfigContext);
   let pTop: null | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' = null;
   let pBottom: null | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' = null;

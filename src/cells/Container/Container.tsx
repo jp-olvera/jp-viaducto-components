@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { ConfigContext } from '../../providers';
 
-const StyledContainer = styled.div < any > `
+const StyledContainer = styled.div<any>`
   box-sizing: border-box;
   ${(p) => p.padding};
   width: ${(p) => (p.expandHorizontal ? '100%' : 'auto')};
@@ -10,7 +10,7 @@ const StyledContainer = styled.div < any > `
 `;
 
 /** Container component. This component will set padding in the direction implemented to children */
-interface ContainerInterface {
+export interface Container extends React.HTMLAttributes<HTMLDivElement> {
   /** Child element */
   children: any;
   /** Set padding selected in top direction, this will override parallel props */
@@ -127,7 +127,7 @@ const Container = ({
   horizontal = null,
   children,
   ...rest
-}: ContainerInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: Container) => {
   const { configuration } = useContext(ConfigContext);
   const getPadding = () => {
     let paddingTop = '0';

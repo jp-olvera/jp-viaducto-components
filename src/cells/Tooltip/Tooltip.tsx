@@ -4,7 +4,7 @@ import { TooltipContainer } from './StyledTooltip';
 import { ConfigContext } from '../../providers/ConfigProvider';
 
 /** Tooltip component */
-interface TooltipInterface {
+export interface Tooltip extends React.HTMLAttributes<HTMLDivElement> {
   /** Child component */
   children: any;
   /** Color of the background */
@@ -35,7 +35,7 @@ const Tooltip = ({
   family,
   label,
   position = 'right',
-}: TooltipInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: Tooltip) => {
   const { configuration } = useContext(ConfigContext);
   const ref = useRef<HTMLDivElement>(null);
   const popRef = useRef<HTMLDivElement>(null);

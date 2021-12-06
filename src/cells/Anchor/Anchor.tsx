@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import { ConfigContext } from '../../providers';
-
 import { StyledAnchor } from './StyledAnchor';
 
 /** Anchor component with icon (or not). */
-interface AnchorInterface {
+export interface Anchor extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Title or content of the component */
   label: string;
   /** The path of the page to visit */
@@ -21,6 +20,20 @@ interface AnchorInterface {
   icon?: any;
   /** Indicates if the icon will be leading */
   lead?: boolean;
+  /** Spacing between icon and label */
+  spacing?:
+    | null
+    | 'none'
+    | 'nano'
+    | 'micro'
+    | 'tiny'
+    | 'xs'
+    | 'sm'
+    | 'md'
+    | 'lg'
+    | 'xl'
+    | 'xxl'
+    | 'xxxl';
 }
 
 /**
@@ -34,9 +47,11 @@ interface AnchorInterface {
  * @param {any} icon The Icon component
  * @param {Boolean} lead Indicates if the icon will be leading
  * @param {String} transition Indicates the transitionTimingFunction
+ * @param {String} spacing Spacing between icon and label
  */
 const Anchor = ({
   label,
+  spacing = 'none',
   href,
   size,
   family,
@@ -45,7 +60,7 @@ const Anchor = ({
   target,
   lead,
   ...rest
-}: AnchorInterface & React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+}: Anchor) => {
   const { configuration } = useContext(ConfigContext);
 
   return (
@@ -56,11 +71,15 @@ const Anchor = ({
       family={family}
       configuration={configuration}
       target={target}
+      spacing={spacing}
       {...rest}
     >
-      {icon !== null && lead && icon}
-      {label}
-      {icon !== null && !lead && icon}
+      <span className='ballena-anchor-icon' style={{ order: lead ? 1 : 3 }}>
+        {icon}
+      </span>
+      <span className='ballena-anchor-label' style={{ order: lead ? 3 : 1 }}>
+        {label}
+      </span>
     </StyledAnchor>
   );
 };

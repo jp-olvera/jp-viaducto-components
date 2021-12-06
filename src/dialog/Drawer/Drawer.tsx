@@ -4,7 +4,7 @@ import StyledDrawer from './StyledDrawer';
 import { ConfigContext } from '../../providers';
 import { Overlay } from '../../cells/Overlay';
 
-interface DrawerInterface {
+export interface Drawer extends React.HTMLAttributes<HTMLDivElement> {
   /** Indicates if the drawer should be open or not */
   active?: boolean;
   /** Content to put inside the drawer */
@@ -23,7 +23,7 @@ interface DrawerInterface {
     | 'bottomRight'
     | 'bottomLeft';
   /** Function to close the popover when clicking outside */
-  onClose: () => void;
+  handleActive: () => void;
   /** Overlay color preferaby an rgba */
   overlayColor?: string;
   /** From what edge of the screen should appear */
@@ -42,14 +42,14 @@ const Drawer = ({
   children,
   elevation = 1,
   elevationDirection = 'radial',
-  onClose,
+  handleActive,
   overlayColor = 'rgba(0,0,0,0.3)',
   placement = 'right',
   size = 'sm',
   transition = 'linear',
   zIndex = 9999,
   ...rest
-}: DrawerInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: Drawer) => {
   const { configuration } = useContext(ConfigContext);
   const ref = useRef<HTMLElement>();
   const [isClosing, setisClosing] = useState(false);
@@ -89,7 +89,7 @@ const Drawer = ({
       if (active) {
         setisClosing(true);
         timer2 = setTimeout(() => {
-          onClose();
+          handleActive();
         }, 230);
       }
     }
@@ -99,7 +99,7 @@ const Drawer = ({
         <Overlay
           data-testid='overlay'
           onClick={handleClose}
-          onKeyUp={handleClose}
+          // onEsc={handleClose}
           role='presentation'
           tabIndex={0}
           style={{

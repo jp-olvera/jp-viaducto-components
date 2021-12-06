@@ -8,42 +8,14 @@ const config: SBConfigI = {
   component: Switch,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
-    inputSize: {
-      description: 'Set the size of the component',
-      type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: 'default' },
-      },
-      options: ['xsmall', 'small', 'default', 'large'],
-      control: {
-        type: 'select',
-      },
-    },
     color: {
-      description: 'Set the color when the switch is active',
-      type: { summary: 'String', required: false },
-      table: {
-        defaultValue: { summary: '#9060EB' },
-      },
       control: 'color',
     },
-    disabled: {
-      description: 'Set the component disabled/enabled',
-      type: { summary: 'boolean', required: false },
-      table: {
-        defaultValue: { summary: false },
-      },
-    },
-    circular: {
-      description: 'Set circular/rectangular switch',
-      type: { summary: 'boolean', required: false },
-      table: {
-        defaultValue: { summary: true },
-      },
-    },
-    change: {
-      description: 'Trigger an action when switch changes the state',
-      type: { summary: 'Function(void)', required: false },
+    fontSize: { control: 'text' },
+    label: { control: 'text' },
+    onChange: {
+      description: 'Trigger an action when switch changes',
+      type: { summary: 'Function', required: false },
       table: {
         defaultValue: { summary: null },
       },
@@ -61,10 +33,4 @@ const Template = (args: typeof Default) => (
 
 export const Default = Template.bind({});
 
-Default.args = {
-  inputSize: 'default',
-  disabled: false,
-  color: null,
-  circular: true,
-  change: () => {},
-};
+Default.args = {};

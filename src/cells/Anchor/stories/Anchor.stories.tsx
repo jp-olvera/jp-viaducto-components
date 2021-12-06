@@ -81,7 +81,7 @@ Default.args = {
   href: '#',
   color: '#ff8c69',
   icon: '😎',
-  family: 'Manrope',
+  family: 'Arial',
   size: 'md',
   lead: false,
   transition: 'ease',

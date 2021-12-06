@@ -65,10 +65,6 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'md' },
       },
-      options: ['xxs', 'xs', 'sm', 'md', 'lg'],
-      control: {
-        type: 'select',
-      },
     },
     spacing: {
       description: 'Set the letter spacing',

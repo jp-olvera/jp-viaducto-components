@@ -102,6 +102,4 @@ Default.args = {
   radioSize: 'lg',
   fontSize: 'md',
   spacing: 'none',
-  onChange: () => {},
-  onClick: () => {},
 };

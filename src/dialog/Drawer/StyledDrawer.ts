@@ -115,7 +115,7 @@ const getPlacement = (placement: string) => {
         top: 0;
         left: 0;
         min-height: 30% !important;
-        max-height: 70% !important;
+        max-height: 100% !important;
       `;
     case 'bottom':
       return css`
@@ -123,7 +123,7 @@ const getPlacement = (placement: string) => {
         bottom: 0;
         left: 0;
         min-height: 30% !important;
-        max-height: 70% !important;
+        max-height: 100% !important;
       `;
     case 'left':
       return css`

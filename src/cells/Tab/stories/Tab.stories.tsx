@@ -144,7 +144,6 @@ export const Default = Template.bind({});
 
 Default.args = {
   text: 'Zombie Patrol',
-  onClick: () => {},
   horizontalSpacing: 'sm',
   verticalSpacing: 'sm',
   type: 'tab',
@@ -159,7 +158,6 @@ export const WithIcon = Template.bind({});
 
 WithIcon.args = {
   text: 'Zombie Patrol',
-  onClick: () => {},
   horizontalSpacing: 'sm',
   verticalSpacing: 'sm',
   type: 'tab',

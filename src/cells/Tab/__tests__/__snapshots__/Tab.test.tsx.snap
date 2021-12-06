@@ -11,7 +11,7 @@ exports[`<Tab/> should render default props 1`] = `
       style="display: flex; align-items: center;"
     >
       <p
-        class="StyledParagraph-sc-dbd4lw-0 fySafa"
+        class="StyledParagraph-sc-dbd4lw-0 gKKAmW"
         color="darkGray"
       >
         Tab
@@ -32,7 +32,7 @@ exports[`<Tab/> should render with left line 1`] = `
       style="display: flex; align-items: center;"
     >
       <p
-        class="StyledParagraph-sc-dbd4lw-0 fySafa"
+        class="StyledParagraph-sc-dbd4lw-0 gKKAmW"
         color="darkGray"
       >
         left
@@ -53,7 +53,7 @@ exports[`<Tab/> should render with right line 1`] = `
       style="display: flex; align-items: center;"
     >
       <p
-        class="StyledParagraph-sc-dbd4lw-0 fySafa"
+        class="StyledParagraph-sc-dbd4lw-0 gKKAmW"
         color="darkGray"
       >
         right
@@ -74,7 +74,7 @@ exports[`<Tab/> should render with top line 1`] = `
       style="display: flex; align-items: center;"
     >
       <p
-        class="StyledParagraph-sc-dbd4lw-0 fySafa"
+        class="StyledParagraph-sc-dbd4lw-0 gKKAmW"
         color="darkGray"
       >
         top

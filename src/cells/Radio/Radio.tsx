@@ -5,7 +5,7 @@ import { ConfigContext } from '../../providers';
 import { StyledLabel } from './StyledRadio';
 
 /** Radio input component */
-interface RadioInterface {
+export interface Radio extends React.InputHTMLAttributes<HTMLInputElement> {
   /** HTML name attribute for the input */
   name: string;
   /** Color for the radio */
@@ -18,10 +18,6 @@ interface RadioInterface {
   fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Label for the input */
   label?: string;
-  /** Triger an action on value change */
-  onChange?: Function;
-  /** Triger an action on input click */
-  onClick?: Function;
   /** Size of the input */
   radioSize?: 'xl' | 'lg' | 'md' | 'sm';
   /** Set the horizontal spacing between the label (if it is defined) and the radio */
@@ -36,16 +32,12 @@ interface RadioInterface {
  * @param {string} family Font family fot the input
  * @param {string} fontSize Font Size of the input
  * @param {string} label Label for the input
- * @param {Function} onChange Triger an action on value change
  * @param {Function} onClick Triger an action on input click
  * @param {string} radioSize Size of the input
  * @param {string} spacing Set the horizontal spacing between the label (if it is defined) and the radio
  */
 
-const Radio = forwardRef<
-  HTMLInputElement,
-  RadioInterface & React.InputHTMLAttributes<HTMLInputElement>
->(
+const Radio = forwardRef<HTMLInputElement, Radio>(
   (
     {
       label,
@@ -58,7 +50,7 @@ const Radio = forwardRef<
       onChange,
       onClick,
       ...props
-    }: RadioInterface & React.InputHTMLAttributes<HTMLInputElement>,
+    }: Radio,
     ref
   ) => {
     const { configuration } = useContext(ConfigContext);

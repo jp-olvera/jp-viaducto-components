@@ -4,7 +4,7 @@ import { StyledBreadcrum } from './StyledBreadcrum';
 import BreadcrumContext from './BreadcrumContext';
 
 /** Breadcrum component, child of Breadcrums wrapper */
-interface BreadcrumProps {
+export interface Breadcrum extends React.LiHTMLAttributes<HTMLLIElement> {
   /** Label for the item */
   label: string;
   /** Set the item as active */
@@ -37,7 +37,7 @@ const Breadcrum = ({
   target = '_self',
   separator = true,
   ...rest
-}: BreadcrumProps & React.LiHTMLAttributes<HTMLLIElement>) => {
+}: Breadcrum) => {
   const { configuration } = useContext(ConfigContext);
   const { breadcrumConfig } = useContext(BreadcrumContext);
   const content = (

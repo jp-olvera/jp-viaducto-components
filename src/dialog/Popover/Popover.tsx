@@ -4,7 +4,7 @@ import { findScrollParents, ownerDocument } from '../../utils/scroll';
 import { StyledDrop } from './StyledDrop';
 import { ConfigContext } from '../../providers';
 
-interface PopoverProps {
+export interface Popover extends React.HTMLAttributes<HTMLDivElement> {
   /** Indicates if the popover shoulb be visible */
   active?: boolean;
   /** Any valid React element to put inside the box */
@@ -23,7 +23,7 @@ interface PopoverProps {
     | 'bottomRight'
     | 'bottomLeft';
   /** Function to close the popover when clicking outside */
-  handleClose: () => void;
+  handleActive: () => void;
   /** Position to put the popover according to the activator, top, bottom(deafult), right or left */
   position?: 'top' | 'bottom' | 'right' | 'left';
   /** Radius size, defaults to 'md' */
@@ -40,17 +40,17 @@ const Popover = ({
   content,
   elevation = 1,
   elevationDirection = '',
-  handleClose,
+  handleActive,
   position = 'bottom',
   target,
   radius = 'sm',
   zIndex = 9999,
   ...rest
-}: PopoverProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: Popover) => {
   const { configuration } = useContext(ConfigContext);
   const dropRef = useRef<HTMLDivElement>(null);
   const [isClosing, setisClosing] = useState(false);
-  let timer;
+  let timer: number;
   useEffect(() => {
     setisClosing(false);
     if (active && dropRef.current) {
@@ -69,10 +69,13 @@ const Popover = ({
         bottom: tr.bottom + 5,
         right: tr.right + 5,
       };
-      dropRef.current.style.width = tr.width + 'px';
-      const dropW = dropRef.current?.offsetWidth || 0; // width drop
-      const dropH = dropRef.current?.offsetHeight || 0; // height drop
-      const dropR = targetRect.right + dropW;
+      dropRef.current.style.minWidth = tr.width + 'px';
+      const dropW = dropRef.current?.offsetWidth || 0; // drop width
+      const dropH = dropRef.current?.offsetHeight || 0; // drop height
+      const tw = target.current?.offsetWidth; // target width
+      const diff = Math.abs((dropW - tw) / 2);
+      const dropR = targetRect.right + diff; // estimación del right del drop
+      const dropL = targetRect.left - diff; // estimación del left del drop
       let { left } = targetRect;
 
       // ajustar a los lados
@@ -84,12 +87,16 @@ const Popover = ({
         } else if (position === 'right' && windowWidth - targetRect.right >= dropW) {
           // a la derecha y sí hay espacio
           left = targetRect.right;
-        } else if (dropR > windowWidth) {
-          // el drop se sale a la derecha
-          left = targetRect.right - dropW - 5;
+        } else if (dropR > windowWidth || dropL < 0) {
+          // el drop se saldría a la derecha o izquierda
+          left = 0;
         } else {
-          // el drop no se sale a la derecha
-          left = targetRect.left + 5;
+          // el drop no se saldría a la derecha
+          if (dropW > tw) {
+            left = targetRect.left - diff + 5;
+          } else {
+            left = targetRect.left + 5;
+          }
         }
       } else {
         // la ventana es más pequeña
@@ -137,17 +144,11 @@ const Popover = ({
     }
   };
 
-  useEffect(() => {
-    if (dropRef.current) {
-      // dropRef.current.focus();
-    }
-  }, [dropRef, active]);
-
   const closeHandler = () => {
     setisClosing(true);
     timer = setTimeout(() => {
       setisClosing(false);
-      handleClose();
+      handleActive();
     }, 230);
   };
 
@@ -161,6 +162,9 @@ const Popover = ({
   };
   useEffect(() => {
     move();
+    // const handleEsc = (ev) => {
+    //   if (ev.code === 'Escape') closeHandler();
+    // };
     const addListeners = () => {
       if (window) {
         scrollParents = findScrollParents(target.current);
@@ -169,6 +173,7 @@ const Popover = ({
         thisDocument.addEventListener('mouseup', clickOutsideHandler);
         // thisDocument.addEventListener('mouseup', clickOutsideHandler);
         window.addEventListener('resize', move);
+        // window.addEventListener('keydown', handleEsc);
       }
     };
     let scrollParents: (Element | Document)[] = [];
@@ -179,6 +184,7 @@ const Popover = ({
         const thisDocument = ownerDocument(target.current);
         thisDocument.removeEventListener('mouseup', clickOutsideHandler);
         window.removeEventListener('resize', move);
+        // window.removeEventListener('keydown', handleEsc);
       }
     };
 

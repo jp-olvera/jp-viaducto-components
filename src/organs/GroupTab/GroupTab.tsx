@@ -5,7 +5,7 @@ import { StyledGroupTab } from './StyledGroupTab';
 import { ConfigContext } from '../../providers';
 
 /** GroupTab component */
-interface GTI {
+export interface GroupTab extends React.HTMLAttributes<HTMLDivElement> {
   /** Tab component */
   children: any;
   /** Set the color variant (type definition colors) for the tabs */
@@ -45,7 +45,7 @@ interface GTI {
   /** Overrides the transitionTimingFunction */
   transition?: string;
   /** Triggers a function changing the tab */
-  onTabChange?: Function;
+  onTabChange?: (tab: string) => void;
   /** REM base to match any change, base 16 */
   base?: number;
 }
@@ -59,7 +59,7 @@ interface GTI {
  * @param {string} fontSize Set the font size
  * @param {string} position Set the line in position selected
  * @param {string} transition Overrides the transitionTimingFunction
- * @param {string} onTabChange Triggers a function changing the tab
+ * @param {(tab: string) => void} onTabChange Triggers a function changing the tab
  * @param {number} base  REM base to match any change, base 16
  */
 
@@ -75,7 +75,7 @@ const GroupTab = ({
   onTabChange,
   base = 16,
   ...rest
-}: GTI & React.HTMLAttributes<HTMLDivElement>) => {
+}: GroupTab) => {
   const { configuration } = useContext(ConfigContext);
   const [getPosition, setPosition] = useState<number>(0);
   const [getWidth, setWidth] = useState<number>(0);
@@ -127,9 +127,9 @@ const GroupTab = ({
               index,
               active: child.props.active || index === getPosition / 100,
               onClick: (e: any) => {
-                /* istanbul ignore else */
-                if (onTabChange) onTabChange(e);
                 translate(index);
+                /* istanbul ignore else */
+                if (onTabChange) onTabChange(child.props.text);
               },
             });
           } else return child;

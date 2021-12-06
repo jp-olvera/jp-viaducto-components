@@ -1,15 +1,30 @@
 import styled from 'styled-components';
+import { getSize } from '../../utils/getSizes';
 import { ConfigProps } from '../../ballena-types';
 
-export const StyledSwitch = styled.label < any > `
+export const switchSize = (p: { size: string; configuration: ConfigProps }) => ({
+  size: p.configuration.controlHeight[p.size],
+  gutter: `calc(calc(calc(${p.configuration.controlHeight[p.size]} * 1.75) * 0.1) * 0.6)`,
+});
+
+export const DivWrapper = styled.div<any>`
+  box-sizing: border-box;
+  margin: 0 auto 0 0;
+  min-width: calc(${(p) => p.configuration.controlHeight.large} * 1.75);
+`;
+export const StyledSwitch = styled.label<any>`
   * {
     box-sizing: border-box;
     transition: all 0.2s ease;
   }
-  display: block;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   position: relative;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   user-select: none;
+  height: ${(p) => switchSize(p).size};
+  margin: 0 0 0 auto;
   input {
     position: absolute;
     opacity: 0;
@@ -18,7 +33,8 @@ export const StyledSwitch = styled.label < any > `
     width: 0;
     &:checked {
       & ~ span {
-        background-color: ${({ color, configuration }) => color || configuration.colors.primary.default};
+        background-color: ${({ color, configuration }) =>
+          color || configuration.colors.primary.default};
         opacity: ${(p) => (p.disabled ? 0.65 : 1)};
         &:after {
           left: calc(${(p) => switchSize(p).size} * 0.85);
@@ -31,7 +47,15 @@ export const StyledSwitch = styled.label < any > `
       }
     }
   }
+  label.switch-label {
+    position: relative;
+    left: calc(${(p) => switchSize(p).size} * 1.75);
+    top: 0;
+    font-size: ${(p) => getSize(p.fontSize)};
+    font-family: ${(p) => p.family || 'Arial'};
+  }
   span {
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
@@ -61,10 +85,3 @@ export const StyledSwitch = styled.label < any > `
     }
   }
 `;
-
-export const switchSize = (p: { size: string; configuration: ConfigProps }) => ({
-  size: p.configuration.controlHeight[p.size],
-  gutter: `calc(calc(calc(${
-    p.configuration.controlHeight[p.size]
-  } * 1.75) * 0.1) * 0.6)`,
-});

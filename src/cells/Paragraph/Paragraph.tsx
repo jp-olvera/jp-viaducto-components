@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { ConfigContext } from '../../providers';
 import StyledParagraph from './StyledParagraph';
+
 /** Paragraph component overrides the HTML p tag */
-interface ParagraphInterface {
+export interface Paragraph extends React.HTMLAttributes<HTMLParagraphElement> {
   /** The content of the Paragraph */
   children: any;
   /** Aligns the text */
@@ -18,7 +19,7 @@ interface ParagraphInterface {
   /** Set the margin taking the paragraph as reference */
   margin?: string;
   /** Set the font size */
-  size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
+  size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | string;
   /** Set the letter spacing */
   spacing?: string;
   /** Set the bold (font weight) of the letter */
@@ -38,22 +39,11 @@ interface ParagraphInterface {
  * @param {string} spacing Set the letter spacing
  * @param {string} weight Set the bold (font weight) of the letter
  */
-
-const Paragraph = ({
-  children,
-  color,
-  size,
-  ...props
-}: ParagraphInterface & React.HTMLAttributes<HTMLParagraphElement>) => {
+const Paragraph = ({ children, color, size, ...props }: Paragraph) => {
   const { configuration } = useContext(ConfigContext);
 
   return (
-    <StyledParagraph
-      color={color}
-      configuration={configuration}
-      size={size}
-      {...props}
-    >
+    <StyledParagraph color={color} configuration={configuration} size={size} {...props}>
       {children}
     </StyledParagraph>
   );

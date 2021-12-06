@@ -4,7 +4,7 @@ import { ConfigContext } from '../../providers';
 import { FlexList, StyledList, StyledListDiv } from './StyledList';
 
 /** List component */
-export interface ListProps {
+export interface List {
   /** ListItem component */
   children: ReactNode | ReactNode[];
   /** List style type for market list item (could be CSS default list, ReactNode<any component> or just a simple string)  */
@@ -54,7 +54,7 @@ const List = ({
   horizontalSpacing = 'xs',
   verticalSpacing = 'xs',
   markerColor = 'dark',
-}: ListProps & (React.HTMLAttributes<HTMLDivElement> | React.HTMLAttributes<HTMLUListElement>)) => {
+}: List & (React.HTMLAttributes<HTMLDivElement> | React.HTMLAttributes<HTMLUListElement>)) => {
   const { configuration } = useContext(ConfigContext);
 
   const listTypes = [

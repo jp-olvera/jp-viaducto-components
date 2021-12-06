@@ -5,20 +5,20 @@ import { ConfigProps } from 'ballena-types';
 import config from '../utils/config';
 // import { Toaster } from '../dialog';
 
-interface ConfigProviderInterface {
+export interface ConfigProvider {
   children: any;
 }
 
-interface ConfigContextInterface {
+export interface ConfigContext {
   configuration: ConfigProps;
   updateConfig?: Function;
 }
 
-export const ConfigContext = createContext<ConfigContextInterface>({
+export const ConfigContext = createContext<ConfigContext>({
   configuration: config,
 });
 
-const ConfigProvider = ({ children }: ConfigProviderInterface) => {
+const ConfigProvider = ({ children }: ConfigProvider) => {
   const [configuration, setConfiguration] = useState(config);
   const updateConfig = (newConfig: ConfigProps) => {
     setConfiguration((oldConfig: ConfigProps) => ({

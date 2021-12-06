@@ -95,5 +95,4 @@ Default.args = {
   color: '',
   fontSize: 'md',
   id: 'check',
-  onChange: () => {},
 };

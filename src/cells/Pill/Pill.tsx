@@ -3,7 +3,7 @@ import { ConfigContext } from '../../providers';
 import StyledPill from './StyledPill';
 
 /** Pill component */
-interface PillInterface {
+export interface Pill extends React.HTMLAttributes<HTMLDivElement> {
   /** Aria label for the handleAaction button */
   ariaLabelAction?: string;
   /** Color of the pill */
@@ -66,7 +66,7 @@ const Pill = ({
   borderColor = null,
   ariaLabelAction = 'close',
   ...rest
-}: PillInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: Pill) => {
   const { configuration } = useContext(ConfigContext);
 
   const actualCircleBorder = radius === null || !circleBorder;
@@ -74,9 +74,7 @@ const Pill = ({
     <StyledPill
       hasIcon={icon !== null || icon !== ''}
       hasIconLead={iconLead !== null || iconLead !== ''}
-      onlyText={
-        (icon === null && iconLead === null) || (icon === '' && iconLead === '')
-      }
+      onlyText={(icon === null && iconLead === null) || (icon === '' && iconLead === '')}
       background={background}
       color={color}
       size={size}

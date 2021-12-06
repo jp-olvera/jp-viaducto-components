@@ -201,6 +201,7 @@ const Template2 = ({ ...args }: any) => {
         <Row style={{ alignItems: 'center' }}>
           <Column xs={12} md={4}>
             <FormItem {...args} ref={ref} padding='1.563rem 0 0 0' suffix={<CaretDown size={24} />}>
+              <label htmlFor='select'>select</label>
               <input
                 type='text'
                 onFocus={() => {
@@ -213,12 +214,11 @@ const Template2 = ({ ...args }: any) => {
                 id='select'
                 readOnly
               />
-              <label htmlFor='select'>select</label>
             </FormItem>
             <Popover
               target={ref}
               active={active}
-              handleClose={handleActive}
+              handleActive={handleActive}
               position='left'
               content={
                 <div>
@@ -233,8 +233,8 @@ const Template2 = ({ ...args }: any) => {
         <Row style={{ alignItems: 'center' }}>
           <Column>
             <FormItem {...args} prefix={<User color='#3f373c' size={16} />} padding='3rem 0 0 0'>
-              <input id='first-name' name='first-name' required />
               <label htmlFor='first-name'>First name:</label>
+              <input id='first-name' name='first-name' required />
             </FormItem>
           </Column>
         </Row>
