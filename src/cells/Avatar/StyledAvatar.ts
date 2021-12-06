@@ -4,8 +4,9 @@ interface StyledAvatarProps {
   height: string;
   clipPath: string | null;
   width: string;
+  circular: boolean;
 }
-const StyledAvatar = styled.img < StyledAvatarProps > `
+const StyledAvatar = styled.img<StyledAvatarProps>`
   ${(p) => getShape(p)};
   object-fit: cover;
   display: inline-block;
@@ -20,7 +21,7 @@ const getShape = (props) => {
     `;
   }
   return css`
-    border-radius: 100%;
+    border-radius: ${props.circular ? '100%' : '0%'};
   `;
 };
 export default StyledAvatar;

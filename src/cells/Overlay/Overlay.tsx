@@ -20,15 +20,30 @@ import {
  */
 const Overlay = ({
   children,
+  onEsc,
   ...rest
 }: {
   /** Place a child element */
   children: any;
+  onEsc?: Function;
 } & React.HTMLAttributes<HTMLDivElement>) => {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     let doc = ownerDocument(undefined);
     let { overflow, paddingRight } = doc.body.style;
+    const handleEsc = (ev) => {
+      if (onEsc && ev.code == 'Escape') onEsc(ev);
+    };
+    const addListeners = () => {
+      if (window) {
+        window.addEventListener('keydown', handleEsc);
+      }
+    };
+    const removeListeners = () => {
+      if (window) {
+        window.removeEventListener('keydown', handleEsc);
+      }
+    };
     /* istanbul ignore else */
     if (ref.current) {
       const container = ref.current;
@@ -38,17 +53,18 @@ const Overlay = ({
         const scrollbarSize = getScrollbarSize(doc);
         overflow = doc.body.style.overflow;
         paddingRight = doc.body.style.paddingRight;
-        doc.body.style.paddingRight = `${
-          getPaddingRight(container) + scrollbarSize
-        }px`;
+        doc.body.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
         doc.body.style.overflow = 'hidden';
       }
+      addListeners();
     }
     return () => {
       doc.body.style.overflow = overflow;
       doc.body.style.paddingRight = paddingRight;
+      removeListeners();
     };
   }, [ref]);
+
   return (
     <div ref={ref} {...rest}>
       {children}

@@ -5,7 +5,7 @@ import { Tab } from '..';
 import { Container } from '../..';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Controls/Tab',
+  title: 'Ballena/Navigation/Tab',
   component: Tab,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -34,15 +34,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'tab' },
       },
-      options: [
-        'primary',
-        'secondary',
-        'info',
-        'success',
-        'warning',
-        'danger',
-        'tab',
-      ],
+      options: ['primary', 'secondary', 'info', 'success', 'warning', 'danger', 'tab'],
       control: 'select',
     },
     fontSize: {
@@ -65,72 +57,34 @@ const config: SBConfigI = {
       control: 'boolean',
     },
     horizontalSpacing: {
-      description:
-        'Set the horizontal spacing taking the tab content as reference',
+      description: 'Set the horizontal spacing taking the tab content as reference',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: 'sm' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: {
         type: 'select',
       },
     },
     verticalSpacing: {
-      description:
-        'Set the vertical spacing taking the tab content as reference',
+      description: 'Set the vertical spacing taking the tab content as reference',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: 'sm' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: {
         type: 'select',
       },
     },
     iconSpacing: {
-      description:
-        'Set the horizontal spacing taking the icon as reference (if it is defined)',
+      description: 'Set the horizontal spacing taking the icon as reference (if it is defined)',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: 'none' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       control: {
         type: 'select',
       },
@@ -174,13 +128,8 @@ const Template = (args: typeof Default) => (
   <ConfigProvider>
     <p style={{ fontFamily: 'Arial' }}>
       <b>Note</b>: set <code>left</code>/<code>right</code> position will invert{' '}
-      <code style={{ color: '#0050B3', margin: '0 .2rem' }}>
-        horizontalSpacing
-      </code>{' '}
-      and{' '}
-      <code style={{ color: '#0050B3', margin: '0 .2rem' }}>
-        verticalSpacing
-      </code>
+      <code style={{ color: '#0050B3', margin: '0 .2rem' }}>horizontalSpacing</code> and{' '}
+      <code style={{ color: '#0050B3', margin: '0 .2rem' }}>verticalSpacing</code>
       props
     </p>
     <Container horizontal='md' top='sm'>
@@ -195,7 +144,6 @@ export const Default = Template.bind({});
 
 Default.args = {
   text: 'Zombie Patrol',
-  onClick: () => {},
   horizontalSpacing: 'sm',
   verticalSpacing: 'sm',
   type: 'tab',
@@ -210,7 +158,6 @@ export const WithIcon = Template.bind({});
 
 WithIcon.args = {
   text: 'Zombie Patrol',
-  onClick: () => {},
   horizontalSpacing: 'sm',
   verticalSpacing: 'sm',
   type: 'tab',

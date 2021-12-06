@@ -4,7 +4,7 @@ import { ConfigProps } from 'ballena-types';
 import { ConfigContext } from '../../providers';
 import GridContext from './GridProvider';
 
-interface PaddingProps {
+export interface PaddingProps {
   gutter: number;
   expanded: boolean;
   configuration: ConfigProps;
@@ -38,7 +38,7 @@ const Padding = styled.div<PaddingProps>`
   }
 `;
 /** Grid component */
-interface GridProps {
+export interface Grid extends React.HTMLAttributes<HTMLDivElement> {
   /** Child element */
   children?: React.ReactNode;
   /** Set full width parent size */
@@ -63,7 +63,7 @@ const Grid = ({
   innerGutter = 0,
   expanded = false,
   ...rest
-}: GridProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: Grid) => {
   const { configuration } = useContext(ConfigContext);
   return (
     <GridContext.Provider value={{ gap: gutter, innerGap: innerGutter }}>

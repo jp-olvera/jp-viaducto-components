@@ -1,15 +1,13 @@
 import React, { CSSProperties, useContext } from 'react';
 import styled from 'styled-components';
 import { ConfigContext } from '..';
-import {
-  Container, Paragraph, Spacer, Title,
-} from '../cells';
+import { Container, Paragraph, Spacer, Title } from '../cells';
 
 interface BoxI {
   background: string;
   invert?: boolean;
 }
-const Box = styled.div < BoxI > `
+const Box = styled.div<BoxI>`
   background-color: ${(p) => p.background};
   display: flex;
   border: 1px solid#d9d9d9;
@@ -40,15 +38,14 @@ export const Colors = () => {
         Colors
       </Title>
       <Paragraph>
-        We have different color types for different situations: texts,
-        backgrounds, navigations, states, etc. Some components (like Paragraph,
-        Anchor, Title) use only text colors (pretty obvious), some others use
-        state colors (like Button, Tab, GroupTab) but you can actually use any
-        color you want.
+        We have different color types for different situations: texts, backgrounds, navigations,
+        states, etc. Some components (like Paragraph, Anchor, Title) use only text colors (pretty
+        obvious), some others use state colors (like Button, Tab, GroupTab) but you can actually use
+        any color you want.
       </Paragraph>
       <Paragraph>
-        For example, in Paragraph component, you can set a RGB, RGBA, HEX color
-        or one of our color setted:
+        For example, in Paragraph component, you can set a RGB, RGBA, HEX color or one of our color
+        setted:
       </Paragraph>
       <pre>
         <code style={{ color: 'rgb(85, 95, 230)' }}>
@@ -220,7 +217,7 @@ Colors.parameters = {
 };
 
 export default {
-  title: 'Ballena/Primitives/Colors',
+  title: 'Ballena/Tokens/Colors',
   component: Colors,
 };
 

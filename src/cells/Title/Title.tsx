@@ -3,7 +3,7 @@ import { ConfigContext } from '../../providers';
 
 import StyledTitle from './StyledTitle';
 
-interface TitleInterface {
+export interface Title extends React.HTMLAttributes<HTMLHeadingElement> {
   /** value for children */
   children: any;
   /** value for align */
@@ -15,7 +15,7 @@ interface TitleInterface {
   /** value for font-style property */
   fontStyle?: 'normal' | 'italic';
   /** value for title size, values between 1 - 6 or D1 - D4 */
-  level?: 'D1' | 'D2' | 'D3' | 'D4' | '1' | '2' | '3' | '4' | '5' | '6';
+  level?: 'D1' | 'D2' | 'D3' | 'D4' | '1' | '2' | '3' | '4' | '5' | '6' | string;
   /** value for line-height property */
   lineHeight?: 'xs' | 'sm' | 'md' | 'lg' | string;
   /** value for margin */
@@ -49,13 +49,7 @@ interface TitleInterface {
  * you can use values from 1 to 6 for cases like h1, h2, h3 ...
  * or u can use alues from D1 - D4 */
 
-const Title = ({
-  family = null,
-  children,
-  level = '1',
-  color = 'dark',
-  ...props
-}: TitleInterface & React.HTMLAttributes<HTMLHeadingElement>) => {
+const Title = ({ family = null, children, level = '1', color = 'dark', ...props }: Title) => {
   const { configuration } = useContext(ConfigContext);
   const actAs = (): string => {
     let response: string = level;

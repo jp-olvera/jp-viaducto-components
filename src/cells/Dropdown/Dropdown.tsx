@@ -7,7 +7,7 @@ import Icon from './sorting.svg';
 import Drop from './Drop';
 import { refs } from './DropdownRef';
 /** Dropdown component */
-interface DropdownProps {
+export interface Dropdown {
   /** border painted */
   border?: string | { top?: string; bottom?: string; left?: string; right?: string };
   /** List of elements to put in the dropdown box */
@@ -48,7 +48,7 @@ const Dropdown = ({
   height,
   onClick,
   ...rest
-}: DropdownProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: Dropdown & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const [isOpen, setIsOpen] = useState(false);
   const activatorRef = useRef<HTMLButtonElement>(null);

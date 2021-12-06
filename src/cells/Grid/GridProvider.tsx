@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-interface GridContextProps {
+export interface GridContextProps {
   gap: number;
   innerGap: number;
 }

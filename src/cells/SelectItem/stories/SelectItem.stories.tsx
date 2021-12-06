@@ -5,7 +5,7 @@ import { Grid, Row, Paragraph, Container } from '../..';
 import { CaretDown } from 'phosphor-react';
 
 const config: any = {
-  title: 'Ballena/Cells/FormFields/SelectItem',
+  title: 'Ballena/Controls/SelectItem',
   component: SelectItem,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

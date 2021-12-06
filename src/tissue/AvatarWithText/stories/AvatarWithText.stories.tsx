@@ -5,7 +5,7 @@ import { AvatarWithText } from '../index';
 import { Container, Paragraph } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/Shared/AvatarWithText',
+  title: 'Ballena/Content/AvatarWithText',
   component: AvatarWithText,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

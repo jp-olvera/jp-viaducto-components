@@ -6,7 +6,7 @@ import { Notification } from '..';
 import { Container, Paragraph } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/App/Notification',
+  title: 'Recipes/Notification',
   component: Notification,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -153,5 +153,4 @@ Default.args = {
   },
   spacing: 'xs',
   time: new Date('10/10/2011'),
-  onClick: () => alert('Element clicked'),
 };

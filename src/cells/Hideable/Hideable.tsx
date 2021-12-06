@@ -8,7 +8,7 @@ import StyledHideable from './StyledHideable';
  * If after is assigned to false, it's gonna be visible at the beginning
  * and hidden after the specified breakpoint, breakpoints are based on your configuration
  */
-interface HideableInterface {
+export interface Hideable extends React.HTMLAttributes<HTMLDivElement> {
   /** Component to render as child */
   children: any;
   /** Breakpoint from which it's gonna be visible */
@@ -28,19 +28,11 @@ interface HideableInterface {
  * @param {boolean} after Indicates if visible after the breakpoint, defaults to true
  */
 
-const Hideable = ({
-  children,
-  after = true,
-  visibleOn = null,
-}: HideableInterface & React.HTMLAttributes<HTMLDivElement>) => {
+const Hideable = ({ children, after = true, visibleOn = null, ...rest }: Hideable) => {
   const { configuration } = useContext(ConfigContext);
 
   return (
-    <StyledHideable
-      visibleOn={visibleOn}
-      after={after}
-      configuration={configuration}
-    >
+    <StyledHideable visibleOn={visibleOn} after={after} configuration={configuration} {...rest}>
       {children}
     </StyledHideable>
   );

@@ -4,7 +4,7 @@ import { Paragraph } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Text/Paragraph',
+  title: 'Ballena/Typography/Paragraph',
   component: Paragraph,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -65,10 +65,6 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'md' },
       },
-      options: ['xxs', 'xs', 'sm', 'md', 'lg'],
-      control: {
-        type: 'select',
-      },
     },
     spacing: {
       description: 'Set the letter spacing',
@@ -100,8 +96,7 @@ export default config;
 const Template = (args: typeof Default) => (
   <ConfigProvider>
     <Paragraph {...args}>
-      This is a paragraph example, please write everything you need. Greetings.
-      Bye.
+      This is a paragraph example, please write everything you need. Greetings. Bye.
     </Paragraph>
   </ConfigProvider>
 );

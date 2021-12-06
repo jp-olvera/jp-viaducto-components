@@ -5,7 +5,7 @@ import { GroupTab } from '..';
 import { Tab } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/App/GroupTab',
+  title: 'Ballena/Navigation/GroupTab',
   component: GroupTab,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -99,7 +99,7 @@ export default config;
 const Template = (args: typeof Default) => (
   <ConfigProvider>
     <GroupTab {...args}>
-      <Tab text='Store' />
+      <Tab text='Store' onClick={() => console.log(1)} />
       <Tab text='My apps' />
       <Tab text='Organization Settings' />
       <Tab text='Very large tab name but sill works' />
@@ -119,7 +119,9 @@ Default.args = {
   position: 'bottom',
   spacing: 'md',
   // eslint-disable-next-line no-console
-  onTabChange: () => console.log('tab change'),
+  onTabChange: (tab: string) => {
+    console.log('tab: ' + tab);
+  },
   transition: 'ease',
   base: 16,
 };

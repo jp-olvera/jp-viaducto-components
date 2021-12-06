@@ -6,7 +6,7 @@ import { Button } from '../../../cells';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/App/Dialog/Modal',
+  title: 'Ballena/Dialog/Modal',
   component: Modal,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -143,12 +143,7 @@ const Template = (args: typeof Default) => {
           Aquí van los children. Si no proporcionas las funciones onReject y onAccept, no se
           mostrará la sección de controles
         </div>
-        <Button
-          label='Close'
-          variant='outline'
-          shapeColor='success'
-          onClick={handleActive}
-        />
+        <Button label='Close' variant='outline' shapeColor='success' onClick={handleActive} />
       </Modal>
     </ConfigProvider>
   );

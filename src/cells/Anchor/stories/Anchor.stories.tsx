@@ -4,7 +4,7 @@ import { ConfigProvider } from '../../../providers';
 import { Anchor } from '../index';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Text/Anchor',
+  title: 'Ballena/Navigation/Anchor',
   component: Anchor,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -81,7 +81,7 @@ Default.args = {
   href: '#',
   color: '#ff8c69',
   icon: '😎',
-  family: 'Manrope',
+  family: 'Arial',
   size: 'md',
   lead: false,
   transition: 'ease',

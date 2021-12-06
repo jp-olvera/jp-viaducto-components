@@ -4,7 +4,7 @@ import { StyledProgressBar } from './StyleLoader';
 import { ConfigContext } from '../../providers/ConfigProvider';
 
 /** Progress bar component */
-interface ProgressBarInterface {
+export interface ProgressBar extends React.HTMLAttributes<HTMLDivElement> {
   /** Set the color of the progress */
   color?: string;
   /** Set the completed steps in the bar */
@@ -20,12 +20,7 @@ interface ProgressBarInterface {
  * @param {Number} totalSteps Set the total steps to divide the progress bar
  */
 
-const ProgressBar = ({
-  totalSteps,
-  completedSteps,
-  color,
-  ...rest
-}: ProgressBarInterface & React.HTMLAttributes<HTMLDivElement>) => {
+const ProgressBar = ({ totalSteps, completedSteps, color, ...rest }: ProgressBar) => {
   const { configuration } = useContext(ConfigContext);
   const getcolor = color || configuration.colors.primary.default;
   return (

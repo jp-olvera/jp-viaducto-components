@@ -4,7 +4,7 @@ import StyledDrawer from './StyledDrawer';
 import { ConfigContext } from '../../providers';
 import { Overlay } from '../../cells/Overlay';
 
-interface DrawerInterface {
+export interface Drawer extends React.HTMLAttributes<HTMLDivElement> {
   /** Indicates if the drawer should be open or not */
   active?: boolean;
   /** Content to put inside the drawer */
@@ -23,13 +23,13 @@ interface DrawerInterface {
     | 'bottomRight'
     | 'bottomLeft';
   /** Function to close the popover when clicking outside */
-  onClose: () => void;
+  handleActive: () => void;
   /** Overlay color preferaby an rgba */
   overlayColor?: string;
   /** From what edge of the screen should appear */
   placement?: 'right' | 'top' | 'left' | 'bottom';
   /** Size of the drawer, 'sm', 'md', 'lg', defaults to 'sm' */
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'full';
   /** Transition function to apply when opening and closing */
   transition?: string;
   /** z-index value for the overlay, it defaults to 9999 */
@@ -42,14 +42,14 @@ const Drawer = ({
   children,
   elevation = 1,
   elevationDirection = 'radial',
-  onClose,
+  handleActive,
   overlayColor = 'rgba(0,0,0,0.3)',
   placement = 'right',
   size = 'sm',
   transition = 'linear',
   zIndex = 9999,
   ...rest
-}: DrawerInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: Drawer) => {
   const { configuration } = useContext(ConfigContext);
   const ref = useRef<HTMLElement>();
   const [isClosing, setisClosing] = useState(false);
@@ -89,22 +89,17 @@ const Drawer = ({
       if (active) {
         setisClosing(true);
         timer2 = setTimeout(() => {
-          onClose();
+          handleActive();
         }, 230);
       }
     }
   };
-  let width = '22.25rem';
-  if (size === 'lg') {
-    width = '33.375rem';
-  }
-
   return (active || keepActive) && document
     ? createPortal(
         <Overlay
           data-testid='overlay'
           onClick={handleClose}
-          onKeyUp={handleClose}
+          // onEsc={handleClose}
           role='presentation'
           tabIndex={0}
           style={{
@@ -125,7 +120,6 @@ const Drawer = ({
             ref={ref}
             size={size}
             placement={placement}
-            width={width}
             {...rest}
             onClick={(ev: any) => {
               // Yep! this is needed

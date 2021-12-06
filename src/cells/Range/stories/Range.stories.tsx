@@ -4,7 +4,7 @@ import { Range } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Controls/Inputs/Range',
+  title: 'Ballena/Controls/Inputs/Range',
   component: Range,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -23,8 +23,7 @@ const config: SBConfigI = {
       },
     },
     double: {
-      description:
-        'Set the input with double range slider if it is set to true',
+      description: 'Set the input with double range slider if it is set to true',
       type: { summary: 'boolean', required: true },
       table: {
         defaultValue: { summary: false },
@@ -70,7 +69,7 @@ const config: SBConfigI = {
         defaultValue: { summary: null },
       },
     },
-    size: {
+    inputSize: {
       description: 'Set the size of the range slider',
       type: { summary: 'string', required: false },
       table: {
@@ -79,7 +78,10 @@ const config: SBConfigI = {
     },
     onChange: {
       description: 'Triggers an action when the value changes',
-      type: { summary: 'function', required: false },
+      type: {
+        summary: '(value: number | { min?: number; max?: number; }) => void',
+        required: false,
+      },
       table: {
         defaultValue: { summary: null },
       },
@@ -91,10 +93,9 @@ export default config;
 
 const Template = (args: typeof Single) => (
   <ConfigProvider>
-    The change between <code>true/false</code> in <b>DOUBLE</b> prop will fail
-    because it is going to take the actual value as total. It is better if you
-    change to ne next page to see thye diference between double and single Range
-    component
+    The change between <code>true/false</code> in <b>DOUBLE</b> prop will fail because it is going
+    to take the actual value as total. It is better if you change to ne next page to see thye
+    diference between double and single Range component
     <br />
     <br />
     <br />
@@ -111,9 +112,7 @@ Double.args = {
   color: null,
   fontSize: 'md',
   textColor: '',
-  family: 'null',
-  size: 'lg',
-  onChange: () => {},
+  inputSize: 'lg',
   double: true,
   disabled: false,
 };
@@ -125,9 +124,7 @@ Single.args = {
   color: null,
   fontSize: 'md',
   textColor: '',
-  family: 'null',
-  size: 'lg',
-  onChange: () => {},
+  inputSize: 'lg',
   double: false,
   disabled: false,
 };

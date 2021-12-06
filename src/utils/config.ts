@@ -115,6 +115,7 @@ const config: ConfigProps = {
     sm: '20rem',
     md: '53rem',
     lg: '64rem',
+    full: '100%',
   },
   display: {
     mobile: {

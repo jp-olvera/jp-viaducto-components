@@ -4,7 +4,7 @@ import { WrapperTable } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Layout/WrapperTable',
+  title: 'Ballena/Layout/WrapperTable',
   component: WrapperTable,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -42,35 +42,13 @@ const config: SBConfigI = {
       control: 'color',
     },
     verticalSpacing: {
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       control: {
         type: 'select',
       },
     },
     horizontalSpacing: {
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       control: {
         type: 'select',
       },

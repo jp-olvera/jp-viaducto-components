@@ -9,7 +9,7 @@ const defaultColors = {
   text: '#000',
 };
 /** Button component overrides HTML button tag. This components accepts icons and/or labels */
-interface ButtonInterface {
+export interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Set button with as 100% of the container */
   block?: boolean;
   /** Color of the button (with its states) */
@@ -81,12 +81,8 @@ interface ButtonInterface {
   shapeColor?: null | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger' | 'tab';
   /** Size of the button */
   size?: 'small' | 'large' | 'default';
-  /** Button type (for the color) */
-  type?: string;
   /** Button visual style */
   variant?: 'solid' | 'ghost' | 'outline';
-  /** Action to execute */
-  onClick?: Function;
   /** Set the long loading bar */
   useLongLoading?: boolean;
 }
@@ -107,16 +103,11 @@ interface ButtonInterface {
  * @param {String} rightSpacing Right spacing between the content and the button
  * @param {String} shapeColor Button variant (color)
  * @param {String} size Size of the button
- * @param {string} type Button type (for the color)
  * @param {String} variant Button visual style
  * @param {String} transition Set the transitionTimingFunction
- * @param {Function} onClick Action to execute
  * @param {Boolean} useLongLoading Set the long loading bar
  */
-const Button = forwardRef<
-  HTMLButtonElement,
-  ButtonInterface & React.ButtonHTMLAttributes<HTMLButtonElement>
->(
+const Button = forwardRef<HTMLButtonElement, Button>(
   (
     {
       block = false,
@@ -134,11 +125,10 @@ const Button = forwardRef<
       rightSpacing = null,
       shapeColor = 'primary',
       size = 'default',
-      type = 'button',
       variant = 'solid',
       useLongLoading = false,
       ...rest
-    }: ButtonInterface & React.ButtonHTMLAttributes<HTMLButtonElement>,
+    }: Button,
     ref
   ) => {
     const { configuration } = useContext(ConfigContext);
@@ -169,7 +159,6 @@ const Button = forwardRef<
         lead={lead}
         configuration={configuration}
         height={newHeight}
-        type={type}
         iconSpacing={iconSpacing || 'none'}
         leftSpacing={leftSpacing}
         radius={radius}

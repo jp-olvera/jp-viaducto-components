@@ -4,7 +4,7 @@ import { Progress } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Controls/Progress',
+  title: 'Ballena/Controls/Progress',
   component: Progress,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -32,8 +32,7 @@ const config: SBConfigI = {
       },
     },
     totalSteps: {
-      description:
-        'Indicates (and divides the progress indicator) the total steps',
+      description: 'Indicates (and divides the progress indicator) the total steps',
       type: { summary: 'Number', required: true },
       table: {
         defaultValue: { summary: 0 },

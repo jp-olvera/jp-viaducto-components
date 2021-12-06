@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { ConfigContext } from '../../providers';
 import { StyledTable } from './StyledTable';
 
-interface TableInterface {
+export interface WrapperTable extends React.HTMLAttributes<HTMLDivElement> {
   /** text-align */
   align?: 'left' | 'right' | 'center';
   /** background-color */
@@ -25,33 +25,13 @@ interface TableInterface {
   /**  background color for the table header */
   headerBackgroundColor?: string;
   /**  horizontal padding to apply based on the spacing configuration */
-  horizontalSpacing?:
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl';
+  horizontalSpacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
   /** boolean to enable hover style */
   hover?: boolean;
   /** Color to apply on the when zebra is enabled */
   hoverColor?: string;
   /**  vertical padding to apply based on de spacing configuration */
-  verticalSpacing?:
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl';
+  verticalSpacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
   /** boolean to enable the zebra style */
   zebra?: boolean;
   /** color to apply when zebra is enabled */
@@ -77,7 +57,7 @@ const Wrapper = ({
   zebra = true,
   zebraColor,
   ...rest
-}: TableInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: WrapperTable) => {
   const { configuration } = useContext(ConfigContext);
   return (
     <StyledTable

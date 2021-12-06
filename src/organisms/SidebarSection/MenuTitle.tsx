@@ -5,7 +5,8 @@ import { StyledMenuTitle } from './StyledSidebarSection';
 import { Spacer } from '../../cells';
 import Chevron from './Chevron';
 /** MenuTitle component */
-interface MenuTitleProps {
+export interface MenuTitleProps
+  extends Omit<Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'>, 'onKeyUp'> {
   /** Set the Menu expanded */
   expanded?: boolean;
   /** Set the component as submenu or dropdrown */
@@ -30,15 +31,7 @@ interface MenuTitleProps {
  * @param {string} title Set the title
  */
 
-const MenuTitle = ({
-  expanded,
-  type,
-  onClick,
-  onKeyUp,
-  icon,
-  title,
-  ...rest
-}: MenuTitleProps & React.HTMLAttributes<HTMLDivElement>) => {
+const MenuTitle = ({ expanded, type, onClick, onKeyUp, icon, title, ...rest }: MenuTitleProps) => {
   const { configuration } = useContext(ConfigContext);
 
   return (
@@ -65,9 +58,7 @@ const MenuTitle = ({
       >
         {title}
       </span>
-      {type === 'menu' || type === 'dropdown' ? (
-        <Chevron type={type} expanded={expanded} />
-      ) : null}
+      {type === 'menu' || type === 'dropdown' ? <Chevron type={type} expanded={expanded} /> : null}
     </StyledMenuTitle>
   );
 };

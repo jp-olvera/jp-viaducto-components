@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  Paragraph,
-  Spacer,
-  Title,
-  ResponsivePadding,
-  WrapperTable,
-} from '../cells';
+import { Container, Paragraph, Spacer, Title, ResponsivePadding, WrapperTable } from '../cells';
 
 const Box = ({ s }: any) => (
   <div
@@ -26,10 +19,9 @@ export const Display = () => (
     <hr />
     <Spacer size='lg' />
     <Paragraph size='lg'>
-      We use the display configuration to create a special component that
-      provides a responsive padding, the ResponsivePadding component, the goal
-      of this component is to wrap sections with a padding that adjust itself to
-      the current breakpoint via clamp
+      We use the display configuration to create a special component that provides a responsive
+      padding, the ResponsivePadding component, the goal of this component is to wrap sections with
+      a padding that adjust itself to the current breakpoint via clamp
     </Paragraph>
     <Spacer size='lg' />
     <div style={{ background: 'pink' }}>
@@ -42,10 +34,9 @@ export const Display = () => (
     <Spacer size='xl' />
 
     <Paragraph size='lg'>
-      The display configuration works with 6 sizes: xs, sm, md, lg, xl, and xxl
-      The values assigned in the mobile property represent the minimum value
-      each size will take and the the values assigned in the desktop property
-      represent the maximun values each size will take.
+      The display configuration works with 6 sizes: xs, sm, md, lg, xl, and xxl The values assigned
+      in the mobile property represent the minimum value each size will take and the the values
+      assigned in the desktop property represent the maximun values each size will take.
     </Paragraph>
     <Spacer size='xl' />
 
@@ -131,6 +122,6 @@ Display.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Primitives/Display',
+  title: 'Ballena/Tokens/Display',
   component: Display,
 };

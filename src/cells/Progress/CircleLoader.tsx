@@ -3,7 +3,7 @@ import StyledLoader from './StyleLoader';
 import { ConfigContext } from '../../providers/ConfigProvider';
 
 /** Circle loader component indicator for set the visual steps completed */
-interface CircleLoaderInterface {
+export interface CircleLoader extends React.HTMLAttributes<HTMLDivElement> {
   /** Set the width of the svg stroke */
   strokeWidth?: number;
   /** Set the stroke-dasharray */
@@ -39,7 +39,7 @@ const CircleLoader = ({
   radius = 0,
   color,
   ...rest
-}: CircleLoaderInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: CircleLoader) => {
   const { configuration } = useContext(ConfigContext);
   const getcolor = color || configuration.colors.primary.default;
   return (

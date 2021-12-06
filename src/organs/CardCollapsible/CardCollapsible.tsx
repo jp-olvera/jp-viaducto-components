@@ -4,7 +4,7 @@ import { ConfigContext } from '../../providers';
 import { StyledCollapsibleCard, StyledCollapse } from './StyledCardCollapsible';
 
 /** Card Collapsible component */
-interface CardCollapsibleInterface {
+export interface CardCollapsible extends React.HTMLAttributes<HTMLDivElement> {
   /** Set the collapse prop to hide content */
   collapse?: boolean;
   /** Elevation indicator for shadows data */
@@ -54,7 +54,7 @@ const CardCollapsible = ({
   transition,
   family,
   ...rest
-}: CardCollapsibleInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: CardCollapsible) => {
   const { configuration } = useContext(ConfigContext);
 
   return (

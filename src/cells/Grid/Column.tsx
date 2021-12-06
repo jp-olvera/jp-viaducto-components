@@ -36,7 +36,7 @@ interface DivProps {
   lg: number;
   xl: number;
 }
-const Div = styled.div < DivProps > `
+const Div = styled.div<DivProps>`
   flex-basis: 0%;
   flex-shrink: 0;
   flex-grow: 1;
@@ -58,13 +58,11 @@ const Div = styled.div < DivProps > `
 `;
 
 /** Column component */
-interface ColumnProps {
+export interface Column extends React.HTMLAttributes<HTMLDivElement> {
   /** Child element */
   children?: React.ReactNode;
   /** Number of columns sizes rendered */
   size?: number;
-  /** Size of column for different breakpoints */
-  style?: React.CSSProperties;
   /** Size of column for different breakpoints */
   xs?: number;
   /** Size of column for different breakpoints */
@@ -81,7 +79,6 @@ interface ColumnProps {
  * Column component
  * @param {React.ReactNode} children Child element
  * @param {number} size Number of columns sizes rendered
- * @param {React.CSSProperties} style Size of column for different breakpoints
  * @param {number} xs Size of column for different breakpoints
  * @param {number} sm Size of column for different breakpoints
  * @param {number} md Size of column for different breakpoints
@@ -91,14 +88,13 @@ interface ColumnProps {
 const Column = ({
   children = null,
   size = 0,
-  style = {},
   xs = 0,
   sm = 0,
   md = 0,
   lg = 0,
   xl = 0,
   ...rest
-}: ColumnProps) => {
+}: Column) => {
   const { gap, innerGap } = useContext(GridContext);
   const { configuration } = useContext(ConfigContext);
   let newXs = xs;
@@ -107,7 +103,6 @@ const Column = ({
   }
   return (
     <Div
-      style={style}
       gap={gap}
       innerGap={innerGap}
       configuration={configuration}

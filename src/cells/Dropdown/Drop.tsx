@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { findScrollParents } from '../../utils/scroll';
 
-interface DropProps {
+export interface DropProps {
   target: React.RefObject<HTMLElement> | any;
   contentRef: React.RefObject<HTMLElement> | any;
   children: React.ReactNode;

@@ -4,7 +4,7 @@ import { ConfigContext } from '../../providers';
 import { StyledStepProgress } from './StyleLoader';
 
 /** Step progress loader component */
-interface StepLoaderInterface {
+export interface StepLoader extends React.HTMLAttributes<HTMLHeadingElement> {
   /** Set the completed steps */
   completed: number;
   /** Set the total steps of the loader */
@@ -37,7 +37,7 @@ const StepLoader = ({
   titleLevel = '4',
   finishTextColor = '#3AE25F',
   ...rest
-}: StepLoaderInterface & React.HTMLAttributes<HTMLHeadingElement>) => {
+}: StepLoader) => {
   const { configuration } = useContext(ConfigContext);
   return (
     <StyledStepProgress

@@ -16,7 +16,7 @@ const StyledOption = styled.button`
 `;
 
 /** Option component as SelectItem children */
-interface OptionProps {
+export interface Option extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> {
   /** Option real value (form value) */
   value: string;
   /** Option children, this will be rendered in the popover */
@@ -33,7 +33,7 @@ interface OptionProps {
  * @param {null | ((s: string) => void)} handleChange Function to help SelectItem component
  * @param {Function} onChange Function to trigger when select value changes
  */
-export const Option = ({ value, children, handleChange, onChange, ...rest }: OptionProps) => {
+export const Option = ({ value, children, handleChange, onChange, ...rest }: Option) => {
   return (
     <StyledOption
       onClick={() => {
@@ -49,7 +49,7 @@ export const Option = ({ value, children, handleChange, onChange, ...rest }: Opt
   );
 };
 /** SelectItem component, take the same behavior as Select Input but the implementation is more flexible */
-interface SelectItemProps {
+export interface SelectItem {
   /** The border type for the input (full, bottom, overlap) */
   border?: 'outside' | 'overlap' | 'bottom' | 'none' | 'default';
   /** set the color border */
@@ -111,7 +111,7 @@ const SelectItem = ({
   onChange,
   value = '',
   ...args
-}: SelectItemProps) => {
+}: SelectItem) => {
   const ref = useRef(null);
   const myOptionType = React.createElement(Option).type;
 
@@ -171,7 +171,7 @@ const SelectItem = ({
       <Popover
         target={ref}
         active={active}
-        handleClose={handleActive}
+        handleActive={handleActive}
         position='bottom'
         elevationDirection='bottom'
         content={
