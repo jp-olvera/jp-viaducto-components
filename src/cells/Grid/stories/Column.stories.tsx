@@ -4,7 +4,7 @@ import { Grid, Column, Row } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Shared/Column',
+  title: 'Ballena/Layout/Column',
   component: Column,
   parameters: {},
   argTypes: {

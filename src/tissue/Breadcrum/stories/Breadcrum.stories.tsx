@@ -5,7 +5,7 @@ import { Breadcrums, Breadcrum } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Shared/Breadcrum',
+  title: 'Ballena/Navigation/Breadcrum',
   component: Breadcrums,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

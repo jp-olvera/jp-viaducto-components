@@ -1,7 +1,7 @@
 import React from 'react';
 import { Column, Grid, Row } from '../../cells';
 
-export interface S2SI {
+export interface SideToSide extends React.HTMLAttributes<HTMLDivElement> {
   /** Children component */
   children: React.ReactNode;
   /** Background color for children side */
@@ -41,7 +41,7 @@ const SideToSide = ({
   reverse = false,
   columnAlignment = true,
   childrenMaxWidth = '473px',
-}: S2SI & React.HTMLAttributes<HTMLDivElement>) => {
+}: SideToSide) => {
   const height: React.CSSProperties = { height: '100%' };
   const sizes = columnAlignment
     ? {

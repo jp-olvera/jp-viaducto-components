@@ -4,7 +4,7 @@ import { Button } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Controls/Button',
+  title: 'Ballena/Controls/Button',
   component: Button,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -59,8 +59,7 @@ const config: SBConfigI = {
       },
     },
     iconSpacing: {
-      description:
-        'The horizontal spacing between the label and icon (if both are defined)',
+      description: 'The horizontal spacing between the label and icon (if both are defined)',
       type: {
         summary: 'string',
         required: false,
@@ -68,18 +67,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'none' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
       control: {
         type: 'select',
       },
@@ -93,20 +81,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'none' },
       },
-      options: [
-        null,
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: [null, 'none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: {
         type: 'select',
       },
@@ -134,20 +109,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: null },
       },
-      options: [
-        null,
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: [null, 'none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: {
         type: 'select',
       },
@@ -190,13 +152,6 @@ const config: SBConfigI = {
         defaultValue: { summary: false },
       },
     },
-    onClick: {
-      description: 'Handles the action to take when the button is pressed',
-      type: { summary: 'Function', required: false },
-      table: {
-        defaultValue: { summary: null },
-      },
-    },
     isLoading: {
       description: 'Set the button disabled with an icon',
       type: { summary: 'boolean', required: false },
@@ -217,12 +172,18 @@ const config: SBConfigI = {
       },
     },
     useLongLoading: {
-      description:
-        'Set the long loading bar if it is true or circle loading when it is false',
+      description: 'Set the long loading bar if it is true or circle loading when it is false',
       type: { summary: 'Boolean', required: false },
       table: {
         defaultValue: { summary: false },
         type: { summary: 'boolean' },
+      },
+    },
+    onClick: {
+      description: 'Trigger an action when button is clicked',
+      type: { summary: 'Function(void)', required: false },
+      table: {
+        defaultValue: { summary: null },
       },
     },
   },
@@ -252,8 +213,7 @@ Default.args = {
   colors: null,
   disabled: false,
   block: false,
-  onClick: () => {},
-  isLoading: true,
+  isLoading: false,
 };
 
 export const Outline = Template.bind({});
@@ -271,7 +231,6 @@ Outline.args = {
   disabled: false,
   block: false,
   isLoading: false,
-  onClick: () => {},
 };
 export const Ghost = Template.bind({});
 
@@ -288,7 +247,6 @@ Ghost.args = {
   disabled: false,
   block: false,
   isLoading: false,
-  onClick: () => {},
 };
 
 export const Custom = Template.bind({});
@@ -306,7 +264,6 @@ Custom.args = {
   disabled: false,
   isLoading: false,
   iconSpace: 'xs',
-  onClick: () => {},
 };
 export const Small = Template.bind({});
 
@@ -320,7 +277,6 @@ Small.args = {
   shapeColor: 'primary',
   variant: 'solid',
   isLoading: false,
-  onClick: () => {},
 };
 
 export const IconOnly = Template.bind({});
@@ -334,7 +290,6 @@ IconOnly.args = {
   shapeColor: 'primary',
   variant: 'solid',
   isLoading: false,
-  onClick: () => {},
 };
 export const CustomHeight = Template.bind({});
 
@@ -347,7 +302,6 @@ CustomHeight.args = {
   shapeColor: 'primary',
   variant: 'solid',
   isLoading: false,
-  onClick: () => {},
 };
 export const LoadingButton = Template.bind({});
 
@@ -358,7 +312,6 @@ LoadingButton.args = {
   lead: false,
   shapeColor: 'primary',
   variant: 'solid',
-  onClick: () => {},
   isLoading: true,
   icon: Icon({ icon: '⭕' }),
 };
@@ -372,7 +325,6 @@ StateButton.args = {
   lead: false,
   shapeColor: 'primary',
   variant: 'solid',
-  onClick: () => {},
   isLoading: false,
   isValid: true,
 };

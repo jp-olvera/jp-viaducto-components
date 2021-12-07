@@ -1,7 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, {
-  useContext, useState, useRef, useEffect,
-} from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 
 import { ConfigContext } from '../../providers';
 import { Activator, Wrapper, ItemsContainer } from './StyledDropdown';
@@ -9,11 +7,9 @@ import Icon from './sorting.svg';
 import Drop from './Drop';
 import { refs } from './DropdownRef';
 /** Dropdown component */
-interface DropdownProps {
+export interface Dropdown {
   /** border painted */
-  border?:
-    | string
-    | { top?: string; bottom?: string; left?: string; right?: string };
+  border?: string | { top?: string; bottom?: string; left?: string; right?: string };
   /** List of elements to put in the dropdown box */
   content?: React.ReactNode[] | null;
   /** Text to show without any option selected */
@@ -52,7 +48,7 @@ const Dropdown = ({
   height,
   onClick,
   ...rest
-}: DropdownProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: Dropdown & React.HTMLAttributes<HTMLDivElement>) => {
   const { configuration } = useContext(ConfigContext);
   const [isOpen, setIsOpen] = useState(false);
   const activatorRef = useRef<HTMLButtonElement>(null);
@@ -70,8 +66,8 @@ const Dropdown = ({
     if (isOpen && activatorRef.current && dropdownListRef.current) {
       /* istanbul ignore if */
       if (
-        dropdownListRef.current.contains(event.target)
-        || activatorRef.current.contains(event.target)
+        dropdownListRef.current.contains(event.target) ||
+        activatorRef.current.contains(event.target)
       ) {
         return;
       }
@@ -80,14 +76,17 @@ const Dropdown = ({
   };
 
   useEffect(() => {
-    if (isOpen && dropdownListRef.current) {
-      window.addEventListener('mouseup', clickOutsideHandler);
-    } else {
-      window.removeEventListener('mouseup', clickOutsideHandler);
+    if (window) {
+      if (isOpen && dropdownListRef.current) {
+        window.addEventListener('mouseup', clickOutsideHandler);
+      } else {
+        window.removeEventListener('mouseup', clickOutsideHandler);
+      }
+      return function cleanup() {
+        window.removeEventListener('mouseup', clickOutsideHandler);
+      };
     }
-    return function cleanup() {
-      window.removeEventListener('mouseup', clickOutsideHandler);
-    };
+    return;
   }, [isOpen, dropdownListRef]);
 
   const dropContent = (

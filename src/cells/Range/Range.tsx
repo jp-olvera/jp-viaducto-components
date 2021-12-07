@@ -4,7 +4,7 @@ import { Div } from './StyledRange';
 import { ConfigContext } from '../../providers/ConfigProvider';
 
 /** Input range component */
-interface RangeInterface {
+export interface Range extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   /** The min value for the input. Required */
   min: number;
   /** The max value for the input. Required */
@@ -17,12 +17,12 @@ interface RangeInterface {
   family?: string | null;
   /** Set the font size for the value */
   fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
-  /** Triggers an action when the value changes */
-  onChange?: Function;
   /** Set the size of the range slider */
-  size?: string;
+  inputSize?: string;
   /** Set the text color for the value */
   textColor?: string;
+  /** Triggers an action when the value changes */
+  onChange?: (value: number | { min?: number; max?: number }) => void;
 }
 
 /**
@@ -33,15 +33,12 @@ interface RangeInterface {
  * @param {boolean} double Set the input with double range slider if it is set to true
  * @param {string} family Set the font family for the value
  * @param {string} fontSize Set the font size for the value
- * @param {string} onChange Triggers an action when the value changes
- * @param {string} size Set the size of the range slider
+ * @param {string} inputSize Set the size of the range slider
  * @param {string} textColor Set the text color for the value
+ * @param {(value: number | { min?: number; max?: number; }) => void} onChange Triggers an action when the value changes
  */
 
-const Range = forwardRef<
-  HTMLInputElement,
-  RangeInterface & React.InputHTMLAttributes<HTMLInputElement>
->(
+const Range = forwardRef<HTMLInputElement, Range>(
   (
     {
       min,
@@ -49,12 +46,12 @@ const Range = forwardRef<
       color,
       fontSize,
       textColor,
-      family,
-      size,
+      family = 'Arial',
+      inputSize,
       onChange,
       double,
       ...rest
-    }: RangeInterface & React.InputHTMLAttributes<HTMLInputElement>,
+    }: Range,
     ref
   ) => {
     const { configuration } = useContext(ConfigContext);
@@ -96,7 +93,7 @@ const Range = forwardRef<
         fontSize={fontSize}
         textColor={textColor}
         family={family}
-        size={size}
+        inputSize={inputSize}
         double={double}
         disabled={rest.disabled}
       >
@@ -110,7 +107,12 @@ const Range = forwardRef<
             setMinVal(value);
             minValRef.current = value;
             /* istanbul ignore else */
-            if (onChange !== null && onChange !== undefined) onChange(event);
+            if (onChange)
+              onChange(
+                double
+                  ? { min: Number(event.target.value), max: maxVal }
+                  : Number(event.target.value)
+              );
           }}
           className='thumb thumb--left'
           style={{ zIndex: minVal > max - 100 ? 5 : 0 }}
@@ -128,7 +130,7 @@ const Range = forwardRef<
               setMaxVal(value);
               maxValRef.current = value;
               /* istanbul ignore else */
-              if (onChange !== null && onChange !== undefined) onChange(event);
+              if (onChange) onChange({ min: minVal, max: Number(event.target.value) });
             }}
             className='thumb thumb--right'
             {...rest}

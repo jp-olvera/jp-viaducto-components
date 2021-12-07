@@ -1,13 +1,11 @@
-import React, {
-  useContext, useEffect, useRef, useState,
-} from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import StyledModal from './StyledModal';
 import { ConfigContext } from '../../providers';
 import { Overlay } from '../../cells/Overlay';
 
 /** Modal component */
-interface ModalProps {
+export interface Modal extends React.HTMLAttributes<HTMLDivElement> {
   /** Specifies if the modal is gonna be visible at first */
   active?: boolean;
   /** Specifies if the modal could be closed when clicking outside */
@@ -63,7 +61,7 @@ const Modal = ({
   radius = 'md',
   zIndex = 9999,
   ...rest
-}: ModalProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: Modal) => {
   const { configuration } = useContext(ConfigContext);
   const modalRef = useRef<HTMLElement>(null);
   const [isClosing, setisClosing] = useState(false);
@@ -109,52 +107,52 @@ const Modal = ({
         clearTimeout(timer);
       }
     },
-    [],
+    []
   );
 
-  return active || keepActive
+  return (active || keepActive) && document
     ? createPortal(
-      <Overlay
-        data-testid='overlay'
-        onClick={handleClose}
-        onKeyUp={handleClose}
-        tabIndex={0}
-        role='presentation'
-        style={{
-          alignItems: 'center',
-          backgroundColor: overlayColor,
-          display: 'flex',
-          height: '100%',
-          justifyContent: 'center',
-          left: '0',
-          position: 'fixed',
-          top: '0',
-          width: '100%',
-          zIndex,
-        }}
-      >
-        <StyledModal
-          data-testid='modal'
-          configuration={configuration}
-          isActive={active}
-          backgroundColor={backgroundColor}
-          elevation={elevation}
-          elevationDirection={elevationDirection}
+        <Overlay
+          data-testid='overlay'
+          onClick={handleClose}
+          // onEsc={handleClose}
           tabIndex={0}
-          ref={modalRef}
-          radius={radius}
-          isClosing={isClosing}
-          onClick={(ev: any) => {
-            // Yep! this is needed
-            ev.stopPropagation();
+          role='presentation'
+          style={{
+            alignItems: 'center',
+            backgroundColor: overlayColor,
+            display: 'flex',
+            height: '100%',
+            justifyContent: 'center',
+            left: '0',
+            position: 'fixed',
+            top: '0',
+            width: '100%',
+            zIndex,
           }}
-          {...rest}
         >
-          {children}
-        </StyledModal>
-      </Overlay>,
-      document.body,
-    )
+          <StyledModal
+            data-testid='modal'
+            configuration={configuration}
+            isActive={active}
+            backgroundColor={backgroundColor}
+            elevation={elevation}
+            elevationDirection={elevationDirection}
+            tabIndex={0}
+            ref={modalRef}
+            radius={radius}
+            isClosing={isClosing}
+            onClick={(ev: any) => {
+              // Yep! this is needed
+              ev.stopPropagation();
+            }}
+            {...rest}
+          >
+            {children}
+          </StyledModal>
+        </Overlay>,
+        document.body
+      )
     : null;
 };
 

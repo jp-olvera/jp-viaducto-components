@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { findScrollParents } from '../../utils/scroll';
 
-interface DropProps {
+export interface DropProps {
   target: React.RefObject<HTMLElement> | any;
   contentRef: React.RefObject<HTMLElement> | any;
   children: React.ReactNode;
@@ -11,7 +11,7 @@ const Drop = ({ target, children, contentRef }: DropProps) => {
   const dropRef = useRef<HTMLDivElement>(null);
 
   const move = () => {
-    if (contentRef.current && target.current && dropRef.current) {
+    if (window && document && contentRef.current && target.current && dropRef.current) {
       const windowHeight = window.innerHeight;
       const windowWidth = document.body.clientWidth;
       const targetRect: DOMRect = target.current.getBoundingClientRect();
@@ -62,13 +62,15 @@ const Drop = ({ target, children, contentRef }: DropProps) => {
       scrollParents.forEach((scrollParent) => scrollParent.removeEventListener('scroll', move));
       scrollParents = [];
     };
-    if (target && target.current) {
+    if (target && target.current && window) {
       addScrollListeners();
       window.addEventListener('resize', move);
     }
     return function cleanup() {
       removeScrollListeners();
-      window.removeEventListener('resize', move);
+      if (window) {
+        window.removeEventListener('resize', move);
+      }
     };
   }, []);
 
@@ -96,7 +98,7 @@ const Drop = ({ target, children, contentRef }: DropProps) => {
     >
       {children}
     </div>,
-    document.body,
+    document.body
   );
 };
 export default Drop;

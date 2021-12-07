@@ -6,7 +6,7 @@ import { Container } from '../..';
 import { onTimeSelectedProps } from '../TimePicker';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Controls/Inputs/TimePicker',
+  title: 'Recipes/TimePicker',
   component: TimePicker,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -18,8 +18,8 @@ const config: SBConfigI = {
     },
     onTimeSelected: {
       description:
-        'Set the time selected in key/value format. '
-        + 'The keys are { fullTime, hour, minutes, seconds, format, meridian } and all values are string type',
+        'Set the time selected in key/value format. ' +
+        'The keys are { fullTime, hour, minutes, seconds, format, meridian } and all values are string type',
     },
   },
 };

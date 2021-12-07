@@ -19,11 +19,9 @@ const Template = ({ wrapperStyles, args }: any) => {
       </button>
       <Popover
         active={active}
-        content={
-          <span style={{ width: '300px', height: '300px' }}>content</span>
-        }
+        content={<span style={{ width: '300px', height: '300px' }}>content</span>}
         target={ref}
-        handleClose={clickOutside}
+        handleActive={clickOutside}
         {...args}
       />
     </div>
@@ -35,12 +33,10 @@ describe('<Popover/>', () => {
     const { queryByText } = render(
       <Popover
         position='left'
-        content={
-          <span style={{ width: '300px', height: '300px' }}>content</span>
-        }
-        handleClose={() => {}}
+        content={<span style={{ width: '300px', height: '300px' }}>content</span>}
+        handleActive={() => {}}
         target={ref}
-      />,
+      />
     );
     expect(queryByText('content')).toEqual(null);
   });
@@ -61,9 +57,7 @@ describe('<Popover/>', () => {
     expect(bottom).toMatchSnapshot();
   });
   test('should render elevation', () => {
-    const { container } = render(
-      <Template elevation={1} elevationDirection='bottom' />,
-    );
+    const { container } = render(<Template elevation={1} elevationDirection='bottom' />);
     expect(container).toMatchSnapshot();
   });
   test('should render top', () => {
@@ -110,10 +104,7 @@ describe('<Popover/>', () => {
   });
   test('should content be visible with position top but no space available', () => {
     const { getByText } = render(
-      <Template
-        position='top'
-        wrapperStyles={{ position: 'fixed', top: '0' }}
-      />,
+      <Template position='top' wrapperStyles={{ position: 'fixed', top: '0' }} />
     );
     fireEvent.click(getByText('show'));
     globalThis.innerWidth = 500;
@@ -123,10 +114,7 @@ describe('<Popover/>', () => {
   });
   test('should content be visible with position right but no space available', () => {
     const { getByText } = render(
-      <Template
-        position='right'
-        wrapperStyles={{ position: 'fixed', right: '0' }}
-      />,
+      <Template position='right' wrapperStyles={{ position: 'fixed', right: '0' }} />
     );
     fireEvent.click(getByText('show'));
     expect(getByText('content')).toBeVisible();

@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { ConfigContext } from '..';
-import {
-  Container, Paragraph, Spacer, Title,
-} from '../cells';
+import { Container, Paragraph, Spacer, Title } from '../cells';
 
 const Box = ({ c }: any) => {
   const {
@@ -31,13 +29,11 @@ export const Height = () => (
       Height
     </Title>
     <Paragraph>
-      We set controlHeight value, so it is less difficult to forget and easy to
-      use.
+      We set controlHeight value, so it is less difficult to forget and easy to use.
     </Paragraph>
     <Paragraph>
-      Many components (like Input, Select, Button, etc.) are using controlHeight
-      values and have commond armony between them This is an example how to use
-      controlHeight:
+      Many components (like Input, Select, Button, etc.) are using controlHeight values and have
+      commond armony between them This is an example how to use controlHeight:
     </Paragraph>
     <Spacer size='md' />
     <div style={{ display: 'flex', gap: 10 }}>
@@ -64,6 +60,6 @@ Height.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Primitives/Height',
+  title: 'Ballena/Tokens/Height',
   component: Height,
 };

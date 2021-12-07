@@ -1,9 +1,7 @@
 import React from 'react';
-import {
-  Button, Paragraph, Title, Spacer,
-} from '..';
+import { Button, Paragraph, Title, Spacer } from '..';
 
-interface StateProps {
+export interface State extends React.HTMLAttributes<HTMLDivElement> {
   /** shapeColor to apply in teh button */
   buttonLabel: string;
   /** children */
@@ -15,14 +13,7 @@ interface StateProps {
   /** Flex direction to show the content */
   direction?: 'row' | 'column';
   /** shapeColor to apply in the button */
-  shapeColor?:
-    | 'primary'
-    | 'secondary'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'danger'
-    | 'tab';
+  shapeColor?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger' | 'tab';
   /** Size to apply to the spacer between title and description */
   spacerSize?:
     | 'none'
@@ -55,8 +46,9 @@ const State = ({
   buttonLabel,
   spacerSize = 'md',
   clickHandler,
-}: StateProps) => (
-  <div style={{ display: 'flex', flexDirection: direction }}>
+  ...rest
+}: State) => (
+  <div style={{ ...rest.style, display: 'flex', flexDirection: direction }} {...rest}>
     <div
       style={{
         display: 'flex',
@@ -65,10 +57,7 @@ const State = ({
     >
       {children}
     </div>
-    <Spacer
-      direction={direction === 'row' ? 'horizontal' : 'vertical'}
-      size='lg'
-    />
+    <Spacer direction={direction === 'row' ? 'horizontal' : 'vertical'} size='lg' />
     <div
       style={{
         display: 'flex',

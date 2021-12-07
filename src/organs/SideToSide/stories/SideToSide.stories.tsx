@@ -5,7 +5,7 @@ import { SideToSide } from '..';
 import { Container, Title } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/Marketing/SideToSide',
+  title: 'Recipes/SideToSide',
   component: SideToSide,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

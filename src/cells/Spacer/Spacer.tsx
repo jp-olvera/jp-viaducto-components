@@ -2,31 +2,20 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ConfigContext } from '../../providers';
 
-const Box = styled.div < any > `
+const Box = styled.div<any>`
   width: ${(p) => (p.direction === 'horizontal' ? p.configuration.spacing[p.size] : '100%')};
   height: ${(p) => (p.direction === 'vertical' ? p.configuration.spacing[p.size] : '100%')};
   display: ${(p) => (p.direction === 'vertical' ? 'block' : 'inline-block')};
   border: ${({ sb }) => (sb !== null ? `2px solid ${sb}` : 'none')};
 `;
 /** A component that renders a spacer element */
-interface SpacerInterface {
+export interface Spacer extends React.HTMLAttributes<HTMLDivElement> {
   /** direction of the spacing */
   direction?: 'vertical' | 'horizontal';
   /** border color for storybook */
   sb?: string | null;
   /** size of the spacing */
-  size?:
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl'
-    | 'xxxl';
+  size?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
 }
 
 /**
@@ -36,22 +25,9 @@ interface SpacerInterface {
  * @param {string} size size of the spacing
  */
 
-const Spacer = ({
-  size = 'none',
-  direction = 'vertical',
-  sb = null,
-  ...rest
-}: SpacerInterface & React.HTMLAttributes<HTMLDivElement>) => {
+const Spacer = ({ size = 'none', direction = 'vertical', sb = null, ...rest }: Spacer) => {
   const { configuration } = useContext(ConfigContext);
-  return (
-    <Box
-      size={size}
-      direction={direction}
-      sb={sb}
-      configuration={configuration}
-      {...rest}
-    />
-  );
+  return <Box size={size} direction={direction} sb={sb} configuration={configuration} {...rest} />;
 };
 
 export default Spacer;

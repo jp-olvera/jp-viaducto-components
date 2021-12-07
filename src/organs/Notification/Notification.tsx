@@ -3,44 +3,30 @@ import { AvatarWithText } from '../../tissue';
 import { Container, Paragraph } from '../../cells';
 import { ConfigContext } from '../../providers';
 import { StyledNotification } from './StyledNotification';
-import { AvatarProps } from '../../cells/Avatar/Avatar';
+import { Avatar } from '../../cells/Avatar/Avatar';
 import { getMessageDifference } from '../../utils/getDateDifference';
 
 /** Notification component */
-interface NotificationInterface {
+export interface Notification extends React.HTMLAttributes<HTMLDivElement> {
   /** Notification's title */
   title: string;
   /** Avatar cell props */
-  avatar: AvatarProps;
+  avatar: Avatar;
   /** Notification date (MM/DD/YYYY HH:MM) always return absolute value, the Date object needs to be minor/equal as today's date. By default, the Time value is Today */
   time?: Date | number;
   /** Some component to add under the notification title, could be a text, JSX component or null */
   description?: any;
   /** Spacing between Avatar and text */
-  spacing?:
-    | 'none'
-    | 'nano'
-    | 'micro'
-    | 'tiny'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl'
-    | 'xxxl';
-  /** Triggers and action on click */
-  onClick?: Function;
+  spacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
 }
 
 /**
  * Notification component
  * @param {string} title Notification's title
- * @param {AvatarProps} avatar Avatar cell props
+ * @param {Avatar} avatar Avatar cell props
  * @param {Date|number} time Notification date (MM/DD/YYYY HH:MM) always return absolute value, the Date object needs to be minor/equal as today's date. By default, the Time value is Today
  * @param {any} description Some component to add under the notification title, could be a text, JSX component or null
  * @param {string} spacing  Spacing between Avatar and text
- * @param {Function} onClick Triggers and action on click
  */
 
 const Notification = ({
@@ -49,9 +35,9 @@ const Notification = ({
   time = new Date(),
   description,
   spacing,
-  onClick = undefined,
+  onClick,
   ...rest
-}: NotificationInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: Notification) => {
   const { configuration } = useContext(ConfigContext);
   const today = new Date();
 
@@ -68,12 +54,7 @@ const Notification = ({
         }
       }}
     >
-      <Container
-        vertical='xs'
-        horizontal='xs'
-        expandHorizontal
-        className='notification-hours'
-      >
+      <Container vertical='xs' horizontal='xs' expandHorizontal className='notification-hours'>
         <AvatarWithText avatar={avatar} spacing={spacing || 'xs'}>
           <div className='notification-props'>
             <Paragraph lineHeight='100%'>{title}</Paragraph>

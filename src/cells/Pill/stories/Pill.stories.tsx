@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import Icon from './iconLead.svg';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Info/Pill',
+  title: 'Ballena/Controls/Pill',
   component: Pill,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -55,8 +55,7 @@ const config: SBConfigI = {
       control: 'text',
     },
     handleAction: {
-      description:
-        'Defines an action to take while close (X) button is pressed',
+      description: 'Defines an action to take while close (X) button is pressed',
       type: { summary: 'Function', required: false },
       table: {
         defaultValue: { summary: null },
@@ -70,8 +69,7 @@ const config: SBConfigI = {
       },
     },
     label: {
-      description:
-        'Set the the label inside the pill as the principal children component',
+      description: 'Set the the label inside the pill as the principal children component',
       type: { summary: 'String', required: true },
       table: {
         defaultValue: { summary: null },
@@ -109,31 +107,12 @@ const Template = (args: typeof Default) => (
       <Pill label='Text in the pill' size='md' />
       <Pill label='Math' size='lg' />
       <Pill label='Text in the pill' borderColor='#8b8b8b' />
-      <Pill
-        label='Text in the pill'
-        borderColor='#8b8b8b'
-        background='#eef2ffeb'
-      />
-      <Pill
-        label='Text in the pill'
-        borderColor='#8b8b8b'
-        background='#eef2ffeb'
-        color='#8b8b8b'
-      />
+      <Pill label='Text in the pill' borderColor='#8b8b8b' background='#eef2ffeb' />
+      <Pill label='Text in the pill' borderColor='#8b8b8b' background='#eef2ffeb' color='#8b8b8b' />
       <Pill radius='lg' label='Text in the pill' borderColor='#4c72ec' />
-      <Pill
-        radius='md'
-        label='JSX'
-        borderColor='#4c72ec'
-        background='#4c71ec83'
-      />
+      <Pill radius='md' label='JSX' borderColor='#4c72ec' background='#4c71ec83' />
       <Pill radius='none' label='React' borderColor='#4c72ec' />
-      <Pill
-        radius='none'
-        label='React'
-        background='#f1f2f7'
-        handleAction={() => {}}
-      />
+      <Pill radius='none' label='React' background='#f1f2f7' handleAction={() => {}} />
       <Pill
         radius='none'
         label='React'
@@ -179,12 +158,7 @@ const Template = (args: typeof Default) => (
         borderColor='#9f12bb'
         background='#f0b0ddcc'
       />
-      <Pill
-        handleAction={() => {}}
-        label='Text in the pill'
-        background='#C4C4C4'
-        radius='none'
-      />
+      <Pill handleAction={() => {}} label='Text in the pill' background='#C4C4C4' radius='none' />
       <Pill
         handleAction={() => {}}
         label='Text in the pill'

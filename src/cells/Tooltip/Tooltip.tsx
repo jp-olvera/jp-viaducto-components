@@ -1,12 +1,10 @@
-import React, {
-  useContext, useRef, useState, useEffect,
-} from 'react';
+import React, { useContext, useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { TooltipContainer } from './StyledTooltip';
 import { ConfigContext } from '../../providers/ConfigProvider';
 
 /** Tooltip component */
-interface TooltipInterface {
+export interface Tooltip extends React.HTMLAttributes<HTMLDivElement> {
   /** Child component */
   children: any;
   /** Color of the background */
@@ -37,7 +35,7 @@ const Tooltip = ({
   family,
   label,
   position = 'right',
-}: TooltipInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: Tooltip) => {
   const { configuration } = useContext(ConfigContext);
   const ref = useRef<HTMLDivElement>(null);
   const popRef = useRef<HTMLDivElement>(null);
@@ -58,10 +56,7 @@ const Tooltip = ({
   const handleMouseLeave = (ev) => {
     if (popRef.current && ref.current) {
       /* istanbul ignore if */
-      if (
-        popRef.current.contains(ev.target)
-        || ref.current.contains(ev.target)
-      ) {
+      if (popRef.current.contains(ev.target) || ref.current.contains(ev.target)) {
         return;
       }
       setShow(false);
@@ -69,7 +64,7 @@ const Tooltip = ({
   };
 
   useEffect(() => {
-    if (show && popRef.current) {
+    if (show && popRef.current && document) {
       document.addEventListener('mousemove', handleMouseLeave);
     } else {
       document.removeEventListener('mousemove', handleMouseLeave);
@@ -115,17 +110,11 @@ const Tooltip = ({
   }, [show, ref, popRef]);
   return (
     <div>
-      <div
-        onMouseEnter={handleMouseEnter}
-        role='presentation'
-        ref={ref}
-        data-testid='tooltip'
-      >
+      <div onMouseEnter={handleMouseEnter} role='presentation' ref={ref} data-testid='tooltip'>
         {children}
       </div>
-      {
-        ref.current && show
-          ? createPortal(
+      {ref.current && show && document
+        ? createPortal(
             <div
               ref={popRef}
               className='ballena-tooltip-content'
@@ -145,10 +134,9 @@ const Tooltip = ({
                 {label}
               </TooltipContainer>
             </div>,
-            document.body,
+            document.body
           )
-          : null
-      }
+        : null}
     </div>
   );
 };

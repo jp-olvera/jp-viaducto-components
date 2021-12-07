@@ -4,140 +4,70 @@ import { Popover } from '..';
 import { Button } from '../../../';
 
 export default {
-  title: 'Ballena/App/Dialog/Popover',
+  title: 'Ballena/Dialog/Popover',
   component: Popover,
-  argTypes: {
-    active: {
-      description: 'Indicates if the popover is visible',
-      table: {
-        defaultValue: { summary: false },
-        type: { summary: 'boolean' },
-      },
-    },
-    content: {
-      description: 'The content that goes in the popover',
-      table: {
-        type: { summary: 'React.ReactNode' },
-      },
-    },
-    position: {
-      description: 'The popover position',
-      type: { summary: 'string' },
-      table: {
-        defaultValue: { summary: 'bottom' },
-        type: { summary: 'string' },
-      },
-      options: ['top', 'bottom', 'right', 'left'],
-      control: {
-        type: 'select',
-      },
-    },
-    target: {
-      description: 'A ref pointing to the activator',
-      table: {
-        type: { summary: 'React.RefObject<HTMLElement>' },
-      },
-    },
-    handleClose: {
-      description: 'A function to close the modal',
-      table: {
-        type: { summary: '() => void' },
-      },
-    },
-    elevation: {
-      description: 'The elevation level it should take, one of 1/2/3',
-      table: {
-        type: { summary: 'number' },
-        defaultValue: { summary: 1 },
-      },
-      options: [0, 1, 2, 3],
-      control: {
-        type: 'select',
-      },
-    },
-    elevationDirection: {
-      description: "The elevation direction, if '' direction goes everywhere",
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: "''" },
-      },
-      options: [
-        '',
-        'top',
-        'right',
-        'bottom',
-        'left',
-        'topRight',
-        'topLeft',
-        'bottomRight',
-        'bottomLeft',
-      ],
-      control: {
-        type: 'select',
-      },
-    },
-    radius: {
-      description: 'The radius size',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'sm' },
-      },
-      options: ['none', 'sm', 'md', 'lg'],
-      control: {
-        type: 'select',
-      },
-    },
-  },
 };
 
-const Template = ({ position, elevation, elevationDirection, radius, zIndex }) => {
+const Pop = ({ position, elevation, elevationDirection, radius, zIndex }) => {
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
   };
   const ref = useRef(null);
+  return (
+    <>
+      <Button
+        ref={ref}
+        type='button'
+        onClick={handleClick}
+        label='Click to see the magic'
+        shapeColor='success'
+      />
+      <Popover
+        active={active}
+        content={
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              background: '#cecece',
+              maxWidth: '100vw',
+              overflow: 'auto',
+              border: '1px solid blue',
+            }}
+          >
+            <div style={{ width: '750px', height: '200px', background: '#cece' }}>
+              <button type='button'>hola</button>
+            </div>
+          </div>
+        }
+        target={ref}
+        handleActive={handleClick}
+        position={position}
+        elevation={elevation}
+        elevationDirection={elevationDirection}
+        radius={radius}
+        zIndex={zIndex}
+      />
+    </>
+  );
+};
 
-  const [active2, setActive2] = useState(false);
-  const handleClick2 = () => {
-    setActive2(!active2);
-  };
-  const ref2 = useRef(null);
-
+const Template = ({ position, elevation, elevationDirection, radius, zIndex }) => {
   return (
     <ConfigProvider>
       <div
         style={{
-          width: '2000px',
+          width: '100%',
           height: '1000px',
         }}
       >
         <div
           style={{
-            height: '250px',
-            width: '100%',
+            display: 'flex',
           }}
         >
-          <Button
-            ref={ref}
-            type='button'
-            onClick={handleClick}
-            label='Click to see the magic'
-            shapeColor='success'
-            style={{
-              position: 'fixed',
-              right: '2px',
-              top: '1px',
-            }}
-          />
-          <Popover
-            active={active}
-            content={
-              <div style={{width: '300px', height: '200px'}}>
-                <button type='button'>hola</button>
-              </div>
-            }
-            target={ref}
-            handleClose={handleClick}
+          <Pop
             position={position}
             elevation={elevation}
             elevationDirection={elevationDirection}
@@ -145,33 +75,33 @@ const Template = ({ position, elevation, elevationDirection, radius, zIndex }) =
             zIndex={zIndex}
           />
         </div>
-        <div style={{ width: '500px', overflowX: 'auto' }}>
-          <div style={{ width: '2000px' }}>
-            <div style={{ marginLeft: '30%', display: 'inline' }}>
-              <Button
-                ref={ref2}
-                type='button'
-                onClick={handleClick2}
-                label='Click to see the magic'
-                shapeColor='success'
-              />
-              <Popover
-                active={active2}
-                content={
-                  <div style={{ width: '300px', height: '200px' }}>
-                    <button type='button'>hola</button>
-                  </div>
-                }
-                target={ref2}
-                handleClose={handleClick2}
-                position={position}
-                elevation={elevation}
-                elevationDirection={elevationDirection}
-                radius={radius}
-                zIndex={5}
-              />
-            </div>
-          </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <Pop
+            position={position}
+            elevation={elevation}
+            elevationDirection={elevationDirection}
+            radius={radius}
+            zIndex={zIndex}
+          />
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Pop
+            position={position}
+            elevation={elevation}
+            elevationDirection={elevationDirection}
+            radius={radius}
+            zIndex={zIndex}
+          />
         </div>
       </div>
     </ConfigProvider>
@@ -181,7 +111,7 @@ const Template = ({ position, elevation, elevationDirection, radius, zIndex }) =
 export const Default = Template.bind({});
 
 Default.args = {
-  position: 'right',
+  position: 'bottom',
   radius: 'sm',
   elevation: 1,
   elevationDirection: 'bottom',

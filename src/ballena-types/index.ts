@@ -131,6 +131,7 @@ export interface ConfigProps {
     sm: string;
     md: string;
     lg: string;
+    full: string;
   };
   fontFamily: string;
   titleFontFamily: string;

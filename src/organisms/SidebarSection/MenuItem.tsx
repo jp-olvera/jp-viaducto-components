@@ -5,7 +5,7 @@ import { Spacer } from '../../cells';
 import { MenuItem as Wrapper } from './StyledSidebarSection';
 
 /** MenuItem component */
-interface MenuItemProps {
+export interface MenuItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
   /** Link to open when the element is selected */
   href?: string;
   /** Label for the item */
@@ -37,7 +37,7 @@ const MenuItem = ({
   icon = null,
   lead = true,
   ...rest
-}: MenuItemProps & React.LiHTMLAttributes<HTMLLIElement>) => {
+}: MenuItemProps) => {
   const { configuration } = useContext(ConfigContext);
 
   const content = (
@@ -71,18 +71,8 @@ const MenuItem = ({
     </span>
   );
   return (
-    <Wrapper
-      configuration={configuration}
-      className='b'
-      active={active}
-      nested={nested}
-      {...rest}
-    >
-      {href !== undefined ? (
-        <a href={href}> {content} </a>
-      ) : (
-        <span> {content} </span>
-      )}
+    <Wrapper configuration={configuration} className='b' active={active} nested={nested} {...rest}>
+      {href !== undefined ? <a href={href}> {content} </a> : <span> {content} </span>}
     </Wrapper>
   );
 };

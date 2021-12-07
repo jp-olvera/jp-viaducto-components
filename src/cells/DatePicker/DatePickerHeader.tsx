@@ -5,6 +5,16 @@ import ChevronDatePicker from './ChevronDatePicker';
 import { handleChange } from './datePickerFunctions';
 import { HR } from './StyledDatePicker';
 
+export interface DatePickerHeader {
+  range: boolean;
+  firstDate: Date | undefined | null;
+  isSelecting: boolean;
+  today: Date;
+  setSelected: Function;
+  setToday: Function;
+  months: string[];
+}
+
 const DatePickerHeader = ({
   range,
   firstDate,
@@ -13,15 +23,7 @@ const DatePickerHeader = ({
   setSelected,
   setToday,
   months,
-}: {
-  range: boolean;
-  firstDate: Date | undefined | null;
-  isSelecting: boolean;
-  today: Date;
-  setSelected: Function;
-  setToday: Function;
-  months: string[];
-}) => {
+}: DatePickerHeader) => {
   const { configuration } = useContext(ConfigContext);
   const { dark } = configuration.colors.text;
 
@@ -34,12 +36,7 @@ const DatePickerHeader = ({
             className='date-chevron'
             aria-label='Go to last year'
             disabled={
-              !!(
-                range
-                && firstDate
-                && isSelecting
-                && new Date(firstDate) >= new Date(today)
-              )
+              !!(range && firstDate && isSelecting && new Date(firstDate) >= new Date(today))
             }
             onClick={() => {
               handleChange({ year: false }, setSelected, range, setToday);
@@ -52,12 +49,7 @@ const DatePickerHeader = ({
             className='date-chevron'
             aria-label='Go to last month'
             disabled={
-              !!(
-                range
-                && firstDate
-                && isSelecting
-                && new Date(firstDate) >= new Date(today)
-              )
+              !!(range && firstDate && isSelecting && new Date(firstDate) >= new Date(today))
             }
             onClick={() => {
               handleChange({ month: false }, setSelected, range, setToday);

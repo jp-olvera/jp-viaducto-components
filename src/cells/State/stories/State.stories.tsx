@@ -4,7 +4,7 @@ import { ConfigProvider } from '../../../providers';
 import { State } from '..';
 
 const config: any = {
-  title: 'Ballena/Shared/State',
+  title: 'Ballena/Content/State',
   component: State,
   parameters: { controls: { sort: 'requiredFirst' } },
 };

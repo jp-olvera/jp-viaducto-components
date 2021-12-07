@@ -1,17 +1,12 @@
-import React, {
-  useState, useRef, useEffect, useContext,
-} from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { ConfigContext } from '../../providers';
 import { Spacer } from '../../cells';
 
-import StyledSidebarSection, {
-  Submenu,
-  Separator,
-} from './StyledSidebarSection';
+import StyledSidebarSection, { Submenu, Separator } from './StyledSidebarSection';
 import MenuTitle from './MenuTitle';
 
 /** Sidebar elements for a Sidebar Section */
-interface SidebarProps {
+interface Sidebar extends React.HTMLAttributes<HTMLDivElement> {
   /** A boolean to indicate if the sidebar should be open */
   active?: boolean;
   /** Title's section */
@@ -52,7 +47,7 @@ const SidebarSection = ({
   transition = 'ease',
   children,
   ...rest
-}: SidebarProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: Sidebar) => {
   const [isActive, setIsActive] = useState(active);
   useEffect(() => {
     setIsActive(active);
@@ -95,11 +90,7 @@ const SidebarSection = ({
 
   return (
     <>
-      <StyledSidebarSection
-        transition={transition}
-        configuration={configuration}
-        {...rest}
-      >
+      <StyledSidebarSection transition={transition} configuration={configuration} {...rest}>
         {separator && <Separator configuration={configuration} />}
 
         <div className={dropClassName}>
@@ -113,19 +104,10 @@ const SidebarSection = ({
               type={`${isDropdown && !isMenu ? 'dropdown' : 'menu'}`}
             />
           ) : (
-            title !== null && (
-              <MenuTitle
-                expanded={isActive}
-                type=''
-                icon={icon}
-                title={title}
-              />
-            )
+            title !== null && <MenuTitle expanded={isActive} type='' icon={icon} title={title} />
           )}
           {!isDropdown && !isMenu ? <div>{children}</div> : null}
-          {isDropdown && !isMenu && isActive ? (
-            <div className='nested-list'>{children}</div>
-          ) : null}
+          {isDropdown && !isMenu && isActive ? <div className='nested-list'>{children}</div> : null}
         </div>
         {isMenu && isActive ? (
           <Submenu

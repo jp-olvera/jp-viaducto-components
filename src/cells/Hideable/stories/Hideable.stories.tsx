@@ -4,7 +4,7 @@ import { Hideable } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Layout/Hideable',
+  title: 'Ballena/Layout/Hideable',
   component: Hideable,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

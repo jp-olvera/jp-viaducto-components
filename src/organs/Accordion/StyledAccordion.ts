@@ -10,11 +10,10 @@ interface SAI {
   configuration: ConfigProps;
 }
 
-export const StyledAccordionItem = styled.div < SAI > `
+export const StyledAccordionItem = styled.div<SAI>`
   box-sizing: border-box;
   width: 100%;
   background-color: ${(p) => p.configuration.colors.background};
-
   .chevron {
     align-items: center;
     display: flex;
@@ -35,7 +34,7 @@ export const StyledAccordionItem = styled.div < SAI > `
   }
 `;
 
-const StyledAccordion = styled.div < { configuration: ConfigProps } > `
+const StyledAccordion = styled.div<{ configuration: ConfigProps }>`
   border-top: ${(p) => p.configuration.colors.defaultInputBorderColor};
   box-sizing: border-box;
   width: 100%;
@@ -48,7 +47,7 @@ interface AccordionHeaderProps {
   transition?: string;
   expanded?: boolean;
 }
-export const AccordionHeader = styled.button < AccordionHeaderProps > `
+export const AccordionHeader = styled.button<AccordionHeaderProps>`
   align-items: baseline;
   background: transparent;
   border: none;
@@ -69,8 +68,9 @@ interface ChevronProps {
   iconColor: string;
 }
 
-export const Chevron = styled.div < ChevronProps > `
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23${(p) => (p.config.colors.text[p.iconColor] ? p.config.colors.text[p.iconColor].split('#')[1] : (p.iconColor.split('#')[1] || p.config.colors.text.dark.split('#')[1]))}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+//@ts-ignore
+export const Chevron = styled.div<ChevronProps>`
+  background-image: url(${(p) => color(p)});
   background-position: right 0 center;
   background-repeat: no-repeat;
   background-size: 1rem;
@@ -83,3 +83,8 @@ export const Chevron = styled.div < ChevronProps > `
 `;
 
 export default StyledAccordion;
+
+const color = (p: any) =>
+  `"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23${
+    p.config.colors.text[p.iconColor].split('#')[1] || p.iconColor || '000'
+  }' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"`;

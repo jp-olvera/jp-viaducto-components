@@ -1,14 +1,8 @@
-import React, {
-  useRef, useEffect, useContext, useState,
-} from 'react';
-import {
-  StyledAccordionItem,
-  AccordionHeader,
-  Chevron,
-} from './StyledAccordion';
+import React, { useRef, useContext, useState, useEffect } from 'react';
+import { StyledAccordionItem, AccordionHeader, Chevron } from './StyledAccordion';
 import { ConfigContext } from '../../providers';
-
-export interface AccordionItemProps {
+import { AccordionContext } from './Accordion';
+export interface AccordionItem extends React.HTMLAttributes<HTMLDivElement> {
   /** children component */
   children: React.ReactNode;
   /** Inidcates if it is open */
@@ -17,7 +11,7 @@ export interface AccordionItemProps {
   id?: string;
   /** Icon to use instead of the chevron */
   icon?: React.ReactNode;
-  /** Color for default chevron icon */
+  /** color for default chevron icon, must be without # symbol */
   iconColor?: string;
   /** Class to apply to the icon when the accordion is open */
   iconOpen?: string;
@@ -31,6 +25,8 @@ export interface AccordionItemProps {
   titleItem: any;
   /** timing function to use when closing and opening */
   transition?: string;
+  enabled?: boolean;
+  handleOpen?: (id: number) => void;
 }
 
 /**
@@ -39,7 +35,7 @@ export interface AccordionItemProps {
   @param {boolean} Inidcates if it is open
   @param {string} Id id
   @param {React.ReactNode} Icon to use instead of the chevron
-  @param {string} iconColor color for default chevron icon
+  @param {string} iconColor color for default chevron icon, must be without # symbol
   @param {string} Class to apply to the icon when the accordion is open
   @param {string} Class to apply to the icon when the accordion is closed
   @param {string} Horizontal padding to apply based on the spacing configuration
@@ -60,17 +56,18 @@ const AccordionItem = ({
   iconOpen = '',
   iconClosed = '',
   iconColor = 'dark',
+  enabled = true,
+  handleOpen,
   ...rest
-}: AccordionItemProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: AccordionItem) => {
   const { configuration } = useContext(ConfigContext);
-  const [isOpen, setisOpen] = useState(expanded || false);
+  const [isOpen, setisOpen] = useState(false);
+  // const [isOpen, setisOpen] = useState(expanded || false);
   const ref = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState<number | undefined>(
-    expanded ? undefined : 0,
-  );
+  const [height, setHeight] = useState<number | undefined>(expanded ? undefined : 0);
   useEffect(() => {
     /* istanbul ignore else */
-    if (!height || !isOpen || !ref.current) return undefined;
+    if (!height || !ref.current) return undefined;
     // @ts-ignore
     const resizeObserver = new ResizeObserver((el) => {
       setHeight(el[0].target.clientHeight);
@@ -79,18 +76,29 @@ const AccordionItem = ({
     return () => {
       resizeObserver.disconnect();
     };
-  }, [height, isOpen, expanded]);
+  }, [height, isOpen]);
+
+  const { expandMultiple, openIds } = useContext(AccordionContext);
   useEffect(() => {
-    if (isOpen) {
+    const index = Number(id?.charAt(id.length - 1)) || 0;
+    let isabierto = false;
+    if (openIds[index] !== undefined) {
+      setisOpen(() => openIds[index]);
+      isabierto = openIds[index];
+    }
+    if (isabierto) {
       setHeight(ref.current?.getBoundingClientRect().height);
     } else {
       setHeight(0);
     }
-  }, [isOpen]);
-  const handleClick = () => {
-    setisOpen((prev) => !prev);
-  };
+  }, [openIds]);
 
+  const handleClick = () => {
+    if (handleOpen) {
+      const index = Number(id?.charAt(id.length - 1)) || 0;
+      handleOpen(index);
+    }
+  };
   return (
     <StyledAccordionItem
       paddingX={paddingX}
@@ -144,11 +152,7 @@ const AccordionItem = ({
           )}
         </span>
       </AccordionHeader>
-      <section
-        id={`accordion-body-${id}`}
-        className='section'
-        style={{ height }}
-      >
+      <section id={`accordion-body-${id}`} className='section' style={{ height }}>
         <div
           ref={ref}
           style={{

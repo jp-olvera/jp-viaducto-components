@@ -4,7 +4,7 @@ import BreadcrumContext, { BreadcrumValuesProps } from './BreadcrumContext';
 import Breadcrum from './Breadcrum';
 
 /** Breadcrums component, parent of Breadcrum component */
-interface BreadcrumsProps {
+export interface Breadcrums extends React.OlHTMLAttributes<HTMLOListElement> {
   /** React Elements, use Breadcrum for wrap the children */
   children: React.ReactNode[];
   /** Set the font size */
@@ -40,7 +40,7 @@ const Breadcrums = ({
   separatorSpacing = 'sm',
   children,
   ...rest
-}: BreadcrumsProps & React.OlHTMLAttributes<HTMLOListElement>) => {
+}: Breadcrums) => {
   const [showAll, setShowAll] = useState(false);
 
   const [breadcrumConfig] = useState<BreadcrumValuesProps>({

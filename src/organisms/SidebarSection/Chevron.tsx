@@ -1,26 +1,28 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-interface DI {
+export interface DI {
   type: string;
   expanded: boolean;
 }
-const Div = styled.div < DI > `
+const Div = styled.div<DI>`
   height: 1rem;
   width: 1rem;
   margin-left: auto;
   transition: transform 0.2s ease;
 
-  ${(p) => (p.type === 'menu'
-    ? css`
+  ${(p) =>
+    p.type === 'menu'
+      ? css`
           transform: rotate(-90deg);
         `
-    : css``)};
-  ${(p) => (p.type === 'dropdown' && p.expanded
-    ? css`
+      : css``};
+  ${(p) =>
+    p.type === 'dropdown' && p.expanded
+      ? css`
           transform: rotate(-180deg);
         `
-    : css``)};
+      : css``};
 `;
 const Chevron = ({ type, expanded }) => (
   <Div type={type} expanded={expanded}>

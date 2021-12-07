@@ -22,18 +22,11 @@ export interface onTimeSelectedProps {
 }
 
 /** TimePicker component */
-interface TPI {
+export interface TimePicker extends React.HTMLAttributes<HTMLDivElement> {
   /** Shape color of the details */
   timeFormat?: '12h' | '24h';
   /** 12h/24h time format, with/without meridian */
-  shapeColor?:
-    | 'primary'
-    | 'secondary'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'danger'
-    | 'tab';
+  shapeColor?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger' | 'tab';
   /** Set the time selected in key/value format. The keys are { fullTime, hour, minutes, seconds, format, meridian } and all values are string type  */
   onTimeSelected: (time: onTimeSelectedProps) => void | undefined;
 }
@@ -48,7 +41,8 @@ const TimePicker = ({
   timeFormat = '24h',
   shapeColor = 'danger',
   onTimeSelected,
-}: TPI) => {
+  ...rest
+}: TimePicker) => {
   const { configuration: config } = useContext(ConfigContext);
   const [zone, setZone] = useState('am');
   const [timeSelected, setTimeSelected] = useState<onTimeSelectedProps>({
@@ -71,7 +65,7 @@ const TimePicker = ({
   const minutesSeconds: number[] = [...Array(lenghtM).keys()];
   const mer: ('am' | 'pm')[] = ['am', 'pm'];
   return (
-    <StyledTimePicker timeFormat={timeFormat}>
+    <StyledTimePicker timeFormat={timeFormat} {...rest}>
       <OptionTime
         timeSet='h'
         shapeColor={shapeColor}
@@ -112,11 +106,7 @@ const TimePicker = ({
         }}
       />
       {timeFormat === '12h' && (
-        <Container
-          className='time-column t-meridian'
-          expandHorizontal
-          expandVertical
-        >
+        <Container className='time-column t-meridian' expandHorizontal expandVertical>
           {mer.map((opt) => (
             <Option
               shapeColor={shapeColor}

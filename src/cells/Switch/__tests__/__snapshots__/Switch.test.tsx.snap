@@ -6,20 +6,36 @@ exports[`<Switch/> should fire hover event 1`] = `
     for="Switch1"
   >
     Switch
-    <label
-      class="StyledSwitch-sc-10hvevw-0 kUKahA"
-      data-testid="Switch1"
-      for="Switch1"
+    <div
+      class="StyledSwitch__DivWrapper-sc-10hvevw-0 kCfAgd ballena-switch-wrapper"
     >
-      <input
-        id="Switch1"
-        type="checkbox"
-      />
-      <span
-        class="slider round"
-        data-testid="slider"
-      />
-    </label>
+      <label
+        class="StyledSwitch-sc-10hvevw-1 kPDNZJ"
+        data-testid="Switch1"
+        font-size="md"
+        for="Switch1"
+      >
+        <input
+          id="Switch1"
+          type="checkbox"
+          value="false"
+        />
+        <span
+          class="slider round"
+          data-testid="slider"
+        />
+        <div
+          class="Spacer__Box-sc-1ka6dkz-0 hyFaJH"
+          direction="horizontal"
+        />
+        <label
+          class="switch-label"
+          for="Switch1"
+        >
+          Hola
+        </label>
+      </label>
+    </div>
     ,
   </label>
 </div>

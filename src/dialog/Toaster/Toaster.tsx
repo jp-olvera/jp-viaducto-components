@@ -6,7 +6,7 @@ import { BareButton } from '../../cells/BareButton';
 import StyledToaster from './StyledToaster';
 
 /** A toast component, you can change ts position via top and right properties */
-interface ToasterInterface {
+export interface Toaster extends React.HTMLAttributes<HTMLDivElement> {
   /** Icon Helper */
   icon?: any;
   /** The title in the top */
@@ -60,7 +60,7 @@ const Toaster = ({
   transition = 'cubic-bezier(0.2, 0, 0, 1)',
   children,
   ...rest
-}: ToasterInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: Toaster) => {
   const { configuration } = useContext(ConfigContext);
   const ref = useRef<HTMLElement>(null);
   const color = configuration.colors.text.success;

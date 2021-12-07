@@ -6,16 +6,10 @@ import { ConfigProvider } from './providers';
 
 expect.extend(toHaveNoViolations);
 
-const AllTheProviders = ({ children }: any) => (
-  <ConfigProvider>{children}</ConfigProvider>
-);
-
-jest.mock('./cells/Input/amex.svg', () => null);
-jest.mock('./cells/Input/mastercard.svg', () => null);
-jest.mock('./cells/Input/visa.svg', () => null);
+const AllTheProviders = ({ children }: any) => <ConfigProvider>{children}</ConfigProvider>;
 jest.mock('./cells/Dropdown/sorting.svg', () => null);
-jest.mock('./cells/BareButton/close.svg', () => null);
 jest.mock('./cells/Pill/closePill.svg', () => null);
+jest.mock('./cells/BareButton/close.svg', () => null);
 
 const customRender = (ui, options?) => render(ui, { wrapper: AllTheProviders, ...options });
 // re-export everything

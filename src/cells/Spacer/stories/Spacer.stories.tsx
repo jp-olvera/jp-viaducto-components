@@ -4,13 +4,12 @@ import { Spacer } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Layout/Spacer',
+  title: 'Ballena/Layout/Spacer',
   component: Spacer,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
     direction: {
-      description:
-        'Set direction to place the container to fill the parent wrapper',
+      description: 'Set direction to place the container to fill the parent wrapper',
       type: { summary: 'String', required: true },
       table: {
         defaultValue: { summary: 'vertical' },
@@ -26,19 +25,7 @@ const config: SBConfigI = {
       table: {
         defaultValue: { summary: 'none' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: {
         type: 'select',
       },

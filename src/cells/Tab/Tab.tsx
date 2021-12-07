@@ -5,7 +5,7 @@ import StyledTab from './StyledTab';
 import { ConfigContext } from '../../providers';
 
 /** Tab component */
-export interface TabI {
+export interface Tab extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Text to show */
   text: any;
   /** Set tab as active */
@@ -81,7 +81,6 @@ const Tab = ({
   tabType = 'tab',
   horizontalSpacing = 'sm',
   verticalSpacing = 'sm',
-  onClick,
   icon = null,
   lead = false,
   iconSpacing = 'xs',
@@ -92,7 +91,7 @@ const Tab = ({
   index = 0,
   fontFamily,
   ...rest
-}: TabI & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+}: Tab) => {
   const { configuration } = useContext(ConfigContext);
 
   const color = configuration.colors[tabType].default;
@@ -105,7 +104,6 @@ const Tab = ({
       hoverColor={hoverColor}
       activeColor={activeColor}
       activeTextColor={activeTextColor}
-      onClick={onClick}
       horizontalSpacing={horizontalSpacing}
       verticalSpacing={verticalSpacing}
       configuration={configuration}

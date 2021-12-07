@@ -4,7 +4,7 @@ import { ConfigContext } from '../../providers';
 import { StyledNormalCard } from './StyledCard';
 
 /** Card component */
-interface CardInterface {
+export interface Card extends React.HTMLAttributes<HTMLDivElement> {
   /** Source of the image of top image */
   src?: any;
   /** Body component */
@@ -49,7 +49,7 @@ const Card = ({
   family,
   radius,
   ...rest
-}: CardInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: Card) => {
   const { configuration } = useContext(ConfigContext);
   const hasOnlyImage: boolean = children === null;
 
@@ -66,9 +66,7 @@ const Card = ({
     >
       {src !== null && <img className='img' src={src} alt={src} />}
 
-      {children !== null && !hasOnlyImage && (
-        <div className='children'>{children}</div>
-      )}
+      {children !== null && !hasOnlyImage && <div className='children'>{children}</div>}
     </StyledNormalCard>
   );
 };

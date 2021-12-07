@@ -3,7 +3,7 @@ import CircleLoader from './CircleLoader';
 import ProgressBar from './ProgressBar';
 import StepLoader from './StepLoader';
 /** Progress component indicator for set the visual steps completed */
-interface ProgressInterface {
+export interface Progress extends React.HTMLAttributes<HTMLElement> {
   /** Set the color of the component */
   color?: string;
   /** Indicates the number of completed steps as a light green */
@@ -30,7 +30,7 @@ const Progress = ({
   loader,
   color,
   ...rest
-}: ProgressInterface & React.HTMLAttributes<HTMLElement>) => {
+}: Progress) => {
   const strokeWidth = 2;
   const width = 25;
 
@@ -67,12 +67,7 @@ const Progress = ({
   }
   if (loader === 'steps') {
     return (
-      <StepLoader
-        completed={completedSteps}
-        totalSteps={totalSteps}
-        color={color}
-        {...rest}
-      />
+      <StepLoader completed={completedSteps} totalSteps={totalSteps} color={color} {...rest} />
     );
   }
   return (

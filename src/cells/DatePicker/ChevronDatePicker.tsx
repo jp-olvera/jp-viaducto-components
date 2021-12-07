@@ -1,20 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface DI {
+export interface ChevronDatePicker extends React.HTMLAttributes<HTMLDivElement> {
   type: 'l' | 'r' | 'dr' | 'dl';
   color?: string;
 }
-const Div = styled.div < DI > `
+const Div = styled.div<ChevronDatePicker>`
   height: 1rem;
   width: 1rem;
   margin-left: auto;
 `;
-const ChevronDatePicker = ({
-  type,
-  color = '#000000',
-  ...rest
-}: DI & React.HTMLAttributes<HTMLDivElement>) => (
+const ChevronDatePicker = ({ type, color = '#000000', ...rest }: ChevronDatePicker) => (
   <Div type={type} {...rest}>
     {type === 'r' && (
       <svg

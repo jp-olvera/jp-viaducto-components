@@ -3,7 +3,7 @@ import { ConfigContext } from '../../providers/ConfigProvider';
 import { StyledTextarea } from './StyledTextarea';
 
 /** Textarea component */
-interface TextareaInterface {
+export interface Textarea extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   /** Set the border(s) of the component */
   border?: 'none' | 'bottom' | 'all';
   /** Overrides the border color (if it is defined) */
@@ -43,10 +43,7 @@ interface TextareaInterface {
  * @param {string} verticalSpacing Sets vertical padding
  */
 
-const Textarea = forwardRef<
-  HTMLTextAreaElement,
-  TextareaInterface & TextareaHTMLAttributes<HTMLTextAreaElement>
->(
+const Textarea = forwardRef<HTMLTextAreaElement, Textarea>(
   (
     {
       resizable = false,
@@ -60,7 +57,7 @@ const Textarea = forwardRef<
       verticalSpacing,
       rows = 1,
       ...rest
-    }: TextareaInterface & TextareaHTMLAttributes<HTMLTextAreaElement>,
+    }: Textarea,
     ref
   ) => {
     const { configuration } = useContext(ConfigContext);

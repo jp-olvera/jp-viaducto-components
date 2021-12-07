@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Container, Paragraph, Spacer, Title,
-} from '../cells';
+import { Container, Paragraph, Spacer, Title } from '../cells';
 
 export const Typography = () => (
   <Container horizontal='sm'>
@@ -67,6 +65,6 @@ Typography.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Primitives/Typography',
+  title: 'Ballena/Tokens/Typography',
   component: Typography,
 };

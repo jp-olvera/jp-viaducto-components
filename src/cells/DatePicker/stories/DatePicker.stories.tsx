@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { Container } from '../..';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Controls/Inputs/DatePicker',
+  title: 'Ballena/Controls/Inputs/DatePicker',
   component: DatePicker,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -23,15 +23,7 @@ const config: SBConfigI = {
     },
     shapeColor: {
       table: { defaultValue: { summary: 'danger' } },
-      options: [
-        'primary',
-        'secondary',
-        'info',
-        'success',
-        'warning',
-        'danger',
-        'tab',
-      ],
+      options: ['primary', 'secondary', 'info', 'success', 'warning', 'danger', 'tab'],
     },
     onDateSelected: {
       description: 'Retrieves the selected date/dates',

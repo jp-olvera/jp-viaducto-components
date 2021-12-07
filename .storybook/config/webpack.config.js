@@ -63,13 +63,10 @@ module.exports = {
     alias: {
       react: path.resolve(__dirname, './node_modules/react'),
       'prop-types': path.resolve(__dirname, './node_modules/prop-types'),
-      'styled-components': path.resolve(
-        __dirname,
-        '../node_modules/styled-components',
-      ),
+      'styled-components': path.resolve(__dirname, '../node_modules/styled-components'),
       'react-toast-notifications': path.resolve(
         __dirname,
-        '../node_modules/react-toast-notifications',
+        '../node_modules/react-toast-notifications'
       ),
       'ballena-types': path.resolve(__dirname, './src/ballena-types'),
     },

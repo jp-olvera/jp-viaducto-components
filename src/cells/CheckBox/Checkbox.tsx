@@ -5,7 +5,7 @@ import { ConfigContext } from '../../providers';
 import { StyledLabel } from './StyledCheckbox';
 
 /** Checkbox input component */
-interface CheckboxInterface {
+export interface Checkbox extends React.InputHTMLAttributes<HTMLInputElement> {
   /** Size of the input */
   checkSize?: 'xl' | 'lg' | 'md' | 'sm';
   /** Color for the checkbox */
@@ -18,8 +18,6 @@ interface CheckboxInterface {
   fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Label for the input */
   label?: string;
-  /** Trigger an action */
-  onChange?: Function;
   /** Spacing for the checkbox */
   spacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
 }
@@ -32,27 +30,11 @@ interface CheckboxInterface {
  * @param {string} family Font family fot the input
  * @param {string} fontSize Font size of the input
  * @param {string} label Label for the input
- * @param {Function} onChange Trigger an action
  * @param {string} spacing Spacing for the checkbox
  */
 
-const Checkbox = forwardRef<
-  HTMLInputElement,
-  CheckboxInterface & React.InputHTMLAttributes<HTMLInputElement>
->(
-  (
-    {
-      label,
-      family,
-      checkSize,
-      fontSize,
-      color,
-      onChange,
-      spacing,
-      ...props
-    }: CheckboxInterface & React.InputHTMLAttributes<HTMLInputElement>,
-    ref
-  ) => {
+const Checkbox = forwardRef<HTMLInputElement, Checkbox>(
+  ({ label, family, checkSize, fontSize, color, onChange, spacing, ...props }: Checkbox, ref) => {
     const { configuration } = useContext(ConfigContext);
     const [check, setCheck] = useState(false);
     return (

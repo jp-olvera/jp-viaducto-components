@@ -5,7 +5,7 @@ import { ConfigContext } from '../../providers';
 import PrefixInput from './PrefixInput';
 import SuffixInput from './SuffixInput';
 
-interface FormItemProps {
+interface FormIte {
   /** The border type for the input (full, bottom, overlap) */
   border?: 'outside' | 'overlap' | 'bottom' | 'none' | 'default';
   /** set the color border */
@@ -30,100 +30,76 @@ interface FormItemProps {
   padding?: string;
 }
 
-const FormItem = forwardRef<
-  HTMLDivElement,
-  FormItemProps 
->(
+const FormItem = forwardRef<HTMLDivElement, FormIte>(
   (
     {
-  inputSize = 'default', 
-  border = 'default', 
-  children, 
-  family, 
-  borderColor, 
-  radius='sm', 
-  prefix, 
-  suffix, 
-  isValid = null,
-  darkDecoration = false,
-  padding = '1.563rem 0',
-  ...rest
-}, ref) => {
-  const inputRef = useRef<HTMLDivElement>(null);
-  const { configuration } = useContext(ConfigContext);
-  const hasPrefix = prefix !== undefined;
-  const hasSuffix = suffix !== undefined;
-  let labelTag;
-  let formItem;
-  let formItemInitialValue;
-  
-  useEffect(() => {
-    const focusIn = () => {
-      if (labelTag) {
-        labelTag.classList.add('active');
-      }
-    };
-  
-    const focusOut = () => {
-      if (labelTag && formItem.value === formItemInitialValue) {
-        labelTag.classList.remove('active');
-      }
-    };
-    if (inputRef.current) {
-      const labelTags = inputRef.current.getElementsByTagName('label');
-      let inputTags:
-        | HTMLCollectionOf<HTMLSelectElement>
-        | HTMLCollectionOf<HTMLInputElement> = inputRef.current.getElementsByTagName('input');
-      if (labelTags.length) {
-        [labelTag] = labelTags;
-        labelTag.classList.add('ballena-label');
-      }
-      if (inputTags.length) {
-        [formItem] = inputTags;
-      } else {
-        inputTags = inputRef.current.getElementsByTagName('select');
+      inputSize = 'default',
+      border = 'default',
+      children,
+      family,
+      borderColor,
+      radius = 'sm',
+      prefix,
+      suffix,
+      isValid = null,
+      darkDecoration = false,
+      padding = '1.563rem 0',
+      ...rest
+    },
+    ref
+  ) => {
+    const inputRef = useRef<HTMLDivElement>(null);
+    const { configuration } = useContext(ConfigContext);
+    const hasPrefix = prefix !== undefined;
+    const hasSuffix = suffix !== undefined;
+
+    let formItem;
+    let formItemInitialValue;
+
+    useEffect(() => {
+      if (inputRef.current) {
+        let inputTags:
+          | HTMLCollectionOf<HTMLSelectElement>
+          | HTMLCollectionOf<HTMLInputElement> = inputRef.current.getElementsByTagName('input');
+
         if (inputTags.length) {
           [formItem] = inputTags;
+        } else {
+          inputTags = inputRef.current.getElementsByTagName('select');
+          if (inputTags.length) {
+            [formItem] = inputTags;
+          }
+        }
+        if (formItem) {
+          formItem.classList.add('ballena-input');
+          formItemInitialValue = formItem.value;
         }
       }
-      if (formItem) {
-        formItem.classList.add('ballena-input');
-        formItemInitialValue = formItem.value;
-        formItem.addEventListener('focusout', focusOut);
-        formItem.addEventListener('focus', focusIn);
-      }
-    }
-    return () => {
-      if (formItem) {
-        formItem.removeEventListener('focusout', focusOut);
-        formItem.removeEventListener('focus', focusIn);
-      }
-    };
-  }, [inputRef]);
-  return (
-    <StyledFormControl onClick={focus} ref={ref} padding={padding} {...rest}>
-      <StyledFormItem
-        border={border !== 'bottom' && inputSize === 'xsmall' ? 'outside' : border}
-        size={inputSize}
-        radius={radius}
-        hasPrefix={hasPrefix}
-        hasSuffix={hasSuffix}
-        isValid={isValid}
-        configuration={configuration}
-        borderColor={borderColor || configuration.colors.defaultInputBorderColor}
-        family={family}
-        ref={inputRef}
-      >
-        {children}
-        {prefix && <PrefixInput darkDecoration={darkDecoration}>{prefix}</PrefixInput>}
-        {suffix && <SuffixInput darkDecoration={darkDecoration}>{suffix}</SuffixInput>}
-      </StyledFormItem>
-    </StyledFormControl>
-  );
-});
+    }, [inputRef]);
+    return (
+      <StyledFormControl ref={ref} padding={padding} {...rest}>
+        <StyledFormItem
+          border={border !== 'bottom' && inputSize === 'xsmall' ? 'outside' : border}
+          size={inputSize}
+          radius={radius}
+          hasPrefix={hasPrefix}
+          hasSuffix={hasSuffix}
+          isValid={isValid}
+          configuration={configuration}
+          borderColor={borderColor || configuration.colors.defaultInputBorderColor}
+          family={family}
+          ref={inputRef}
+        >
+          {children}
+          {prefix && <PrefixInput darkDecoration={darkDecoration}>{prefix}</PrefixInput>}
+          {suffix && <SuffixInput darkDecoration={darkDecoration}>{suffix}</SuffixInput>}
+        </StyledFormItem>
+      </StyledFormControl>
+    );
+  }
+);
 
 export default FormItem;
-
 
 /**
  * Razones para no usar el label animado

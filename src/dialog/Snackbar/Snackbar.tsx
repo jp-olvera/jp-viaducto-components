@@ -1,13 +1,11 @@
-import React, {
-  useContext, useState, useEffect, useRef,
-} from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { ConfigContext } from '../../providers/ConfigProvider';
 import { StyledSnackbar } from './StyledSnackbar';
 import { Paragraph } from '../../cells/Paragraph';
 import { BareButton } from '../../cells/BareButton';
 
 /** Snackbar component with close button */
-interface SnackbarInterface {
+export interface Snackbar extends React.HTMLAttributes<HTMLDivElement> {
   /** Text label for the Snackbar */
   text: string;
   /** Icon Helper */
@@ -52,7 +50,7 @@ const Snackbar = ({
   elevation = 1,
   elevationDirection = 'radial',
   ...rest
-}: SnackbarInterface & React.HTMLAttributes<HTMLDivElement>) => {
+}: Snackbar) => {
   const { configuration } = useContext(ConfigContext);
   const [isActive, setIsActive] = useState(false);
   const ref = useRef<HTMLElement>(null);
@@ -67,10 +65,7 @@ const Snackbar = ({
       if (isActive) {
         ref.current.style.setProperty('transform', 'translateX(0)');
       } else {
-        ref.current.style.setProperty(
-          'transform',
-          top ? 'translateY(-100%)' : 'translateY(100%)',
-        );
+        ref.current.style.setProperty('transform', top ? 'translateY(-100%)' : 'translateY(100%)');
       }
     }
   }, [isActive]);

@@ -3,7 +3,7 @@ import { Radio } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Ballena/Cells/Controls/Inputs/Radio',
+  title: 'Ballena/Controls/Inputs/Radio',
   component: Radio,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -40,25 +40,12 @@ export default {
       },
     },
     spacing: {
-      description:
-        'Set the horizontal spacing between the label (if it is defined) and the radio',
+      description: 'Set the horizontal spacing between the label (if it is defined) and the radio',
       type: { summary: 'String', required: false },
       table: {
         defaultValue: { summary: 'none' },
       },
-      options: [
-        'none',
-        'nano',
-        'micro',
-        'tiny',
-        'xs',
-        'sm',
-        'md',
-        'lg',
-        'xl',
-        'xxl',
-        'xxxl',
-      ],
+      options: ['none', 'nano', 'micro', 'tiny', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'],
       control: 'select',
     },
     disabled: {
@@ -115,6 +102,4 @@ Default.args = {
   radioSize: 'lg',
   fontSize: 'md',
   spacing: 'none',
-  onChange: () => {},
-  onClick: () => {},
 };

@@ -1,24 +1,24 @@
 import React, { createContext, useState } from 'react';
-import { ToastProvider } from 'react-toast-notifications';
+// import { ToastProvider } from 'react-toast-notifications';
 import { ConfigProps } from 'ballena-types';
 
 import config from '../utils/config';
-import { Toaster } from '../dialog';
+// import { Toaster } from '../dialog';
 
-interface ConfigProviderInterface {
+export interface ConfigProvider {
   children: any;
 }
 
-interface ConfigContextInterface {
+export interface ConfigContext {
   configuration: ConfigProps;
   updateConfig?: Function;
 }
 
-export const ConfigContext = createContext<ConfigContextInterface>({
+export const ConfigContext = createContext<ConfigContext>({
   configuration: config,
 });
 
-const ConfigProvider = ({ children }: ConfigProviderInterface) => {
+const ConfigProvider = ({ children }: ConfigProvider) => {
   const [configuration, setConfiguration] = useState(config);
   const updateConfig = (newConfig: ConfigProps) => {
     setConfiguration((oldConfig: ConfigProps) => ({
@@ -26,23 +26,23 @@ const ConfigProvider = ({ children }: ConfigProviderInterface) => {
       ...newConfig,
     }));
   };
-  const placements = {
-    'bottom-left': 'bottom-left',
-    'bottom-center': 'bottom-center',
-    'bottom-right': 'bottom-right',
-    'top-left': 'top-left',
-    'top-center': 'top-center',
-    'top-right': 'top-right',
-  };
+  // const placements = {
+  //   'bottom-left': 'bottom-left',
+  //   'bottom-center': 'bottom-center',
+  //   'bottom-right': 'bottom-right',
+  //   'top-left': 'top-left',
+  //   'top-center': 'top-center',
+  //   'top-right': 'top-right',
+  // };
 
   return (
     <ConfigContext.Provider value={{ configuration, updateConfig }}>
-      <ToastProvider
+      {/* <ToastProvider
         components={{ Toast: Toaster }}
         placement={placements[configuration.toasterPlacement]}
-      >
-        {children}
-      </ToastProvider>
+      > */}
+      {children}
+      {/* </ToastProvider> */}
     </ConfigContext.Provider>
   );
 };

@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Icon/> should render null icon 1`] = `
-<div>
-  aaaaaaa
-</div>
-`;

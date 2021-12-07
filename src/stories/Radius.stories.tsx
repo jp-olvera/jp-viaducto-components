@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { ConfigContext } from '..';
-import {
-  Container, Paragraph, Spacer, Title,
-} from '../cells';
+import { Container, Paragraph, Spacer, Title } from '../cells';
 
 const Box = ({ r }: any) => {
   const {
@@ -32,8 +30,8 @@ export const Radius = () => (
       Radius
     </Title>
     <Paragraph>
-      We set Radius value, so it is less difficult to forget and easy to use.
-      This is an example how to use radius:
+      We set Radius value, so it is less difficult to forget and easy to use. This is an example how
+      to use radius:
     </Paragraph>
     <Spacer size='md' />
     <Box r='none' />
@@ -58,6 +56,6 @@ Radius.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Primitives/Radius',
+  title: 'Ballena/Tokens/Radius',
   component: Radius,
 };

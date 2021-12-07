@@ -4,7 +4,7 @@ import { Title } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Cells/Text/Title',
+  title: 'Ballena/Typography/Title',
   component: Title,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

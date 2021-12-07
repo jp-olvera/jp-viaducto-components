@@ -12,20 +12,13 @@ export interface onDateSelectedProps {
 }
 
 /** DatePicker Component */
-export interface DPI {
+export interface DatePicker extends React.HTMLAttributes<HTMLDivElement> {
   /** Set a multi select date on True or just one date on False */
   range: boolean;
   /** Set the inital date in calendar (defaults to new Date()) */
   date?: Date | number;
   /** Set the shapeColor of the details */
-  shapeColor?:
-    | 'primary'
-    | 'secondary'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'danger'
-    | 'tab';
+  shapeColor?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger' | 'tab';
   /** onDateSelected (data: {date Date |Date[], dateString: string|string[]}) => void */
   onDateSelected: (data: onDateSelectedProps) => void | undefined;
 }
@@ -43,7 +36,7 @@ const DatePicker = ({
   shapeColor = 'danger',
   range,
   ...rest
-}: DPI & React.HTMLAttributes<HTMLDivElement>) => {
+}: DatePicker) => {
   const { configuration } = useContext(ConfigContext);
   const [d, setD] = useState<Date | number>(date || new Date(date));
   useEffect(() => {
@@ -51,12 +44,7 @@ const DatePicker = ({
   }, [date]);
   return (
     <StyledDatePicker config={configuration} range={range} {...rest}>
-      <Calendar
-        date={d}
-        onDateSelected={onDateSelected}
-        shapeColor={shapeColor}
-        range={range}
-      />
+      <Calendar date={d} onDateSelected={onDateSelected} shapeColor={shapeColor} range={range} />
     </StyledDatePicker>
   );
 };

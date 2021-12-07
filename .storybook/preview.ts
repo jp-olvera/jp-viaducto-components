@@ -5,19 +5,23 @@ export const parameters = {
       order: [
         'Getting Started',
         'Ballena',
-        ['Primitives', ['Intro'], 'Cells', 'App', 'Marketing', 'Shared', 'Hooks'],
+        [
+          'Tokens',
+          ['Intro'],
+          'Typography',
+          'Controls',
+          'Dialog',
+          'Layout',
+          'Content',
+          'Navigation',
+          'Hooks',
+        ],
+        'Recipes',
       ],
     },
   },
 };
-
-// [
-//           'Primitives',
-//           ['Intro'],
-//           'Cells',
-//           'Tissues',
-//           'Organs',
-//           'Organisms',
-//           'Dialog',
-//           'Hooks',
-//         ],
+//TODO: cambiar las carpetas a nivel código
+//TODO: exportar los types/interfaces
+//TODO: Ajustar las recipes y añadir un intro
+//TODO: Arreglar switches y añadirles labels
