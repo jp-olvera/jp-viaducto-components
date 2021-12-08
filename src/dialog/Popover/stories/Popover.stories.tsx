@@ -31,7 +31,7 @@ const Pop = ({ position, elevation, elevationDirection, radius, zIndex }) => {
               width: '100%',
               height: '100%',
               background: '#cecece',
-              maxWidth: '100vw',
+              maxWidth: '95vw',
               overflow: 'auto',
               border: '1px solid blue',
             }}

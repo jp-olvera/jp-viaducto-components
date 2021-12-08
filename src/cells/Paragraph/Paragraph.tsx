@@ -24,6 +24,8 @@ export interface Paragraph extends React.HTMLAttributes<HTMLParagraphElement> {
   spacing?: string;
   /** Set the bold (font weight) of the letter */
   weight?: string;
+  /** Break the text into ellipsis */
+  ellipsis?: boolean;
 }
 
 /**
@@ -38,12 +40,19 @@ export interface Paragraph extends React.HTMLAttributes<HTMLParagraphElement> {
  * @param {string} size Set the font size
  * @param {string} spacing Set the letter spacing
  * @param {string} weight Set the bold (font weight) of the letter
+ * @param {boolean} ellipsis Break the text into ellipsis
  */
-const Paragraph = ({ children, color, size, ...props }: Paragraph) => {
+const Paragraph = ({ children, color = 'dark', ellipsis = false, size, ...props }: Paragraph) => {
   const { configuration } = useContext(ConfigContext);
 
   return (
-    <StyledParagraph color={color} configuration={configuration} size={size} {...props}>
+    <StyledParagraph
+      color={color}
+      configuration={configuration}
+      ellipsis={ellipsis}
+      size={size}
+      {...props}
+    >
       {children}
     </StyledParagraph>
   );

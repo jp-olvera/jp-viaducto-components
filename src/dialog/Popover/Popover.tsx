@@ -87,8 +87,10 @@ const Popover = ({
         } else if (position === 'right' && windowWidth - targetRect.right >= dropW) {
           // a la derecha y sí hay espacio
           left = targetRect.right;
-        } else if (dropR > windowWidth || dropL < 0) {
+        } else if (dropR > windowWidth) {
           // el drop se saldría a la derecha o izquierda
+          left = windowWidth - dropW - 5;
+        } else if (dropL < 0) {
           left = 0;
         } else {
           // el drop no se saldría a la derecha

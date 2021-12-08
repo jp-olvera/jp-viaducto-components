@@ -1,92 +1,79 @@
+import { getClamp } from '../cells/ResponsivePadding/StyledPadding';
 import { css } from 'styled-components';
 
-const getSize = (size: string = 'md', max: boolean = false) => {
+const minBreakpoint = '20rem',
+  maxBreakpoint = '90rem';
+const getSize = (size: string = 'md') => {
   switch (size) {
     case 'xxs':
-      return max ? 'calc(0.5rem * 1.125)' : '0.5rem';
+      return getClamp('0.5rem', '0.5625rem', minBreakpoint, maxBreakpoint);
     case 'xs':
-      return max ? 'calc(0.694rem * 1.125)' : '0.694rem';
+      return getClamp('0.694rem', '0.78075rem', minBreakpoint, maxBreakpoint);
     case 'sm':
-      return max ? 'calc(0.83rem * 1.125)' : '0.83rem';
+      return getClamp('0.83rem', '0.93375rem', minBreakpoint, maxBreakpoint);
     case 'lg':
-      return max ? 'calc(1.125rem * 1.125)' : '1.125rem';
+      return getClamp('1.125rem', '1.135rem', minBreakpoint, maxBreakpoint);
     case 'xl':
-      return max ? 'calc(1.25rem * 1.125)' : '1.25rem';
+      return getClamp('1.25rem', '1.42rem', minBreakpoint, maxBreakpoint);
     case 'md':
-      return max ? 'calc(1rem * 1.125)' : '1rem';
+      return getClamp('1rem', '1.125rem', minBreakpoint, maxBreakpoint);
     default:
       return size;
   }
 };
 
-const getLineHeight = (lineHeight = 'md', size = 'md', max = false) => {
+const getLineHeight = (lineHeight = 'md', size = 'md') => {
   switch (lineHeight) {
     case 'xs':
-      return `calc(${getSize(size, max)} * 1.15)`;
+      return `calc(${getSize(size).replace(';', '')} * 1.15)`;
     case 'sm':
-      return `calc(${getSize(size, max)} * 1.25)`;
+      return `calc(${getSize(size).replace(';', '')} * 1.25)`;
     case 'lg':
-      return `calc(${getSize(size, max)} * 1.75)`;
+      return `calc(${getSize(size).replace(';', '')} * 1.75)`;
     case 'md':
-      return `calc(${getSize(size, max)} * 1.5)`;
+      return `calc(${getSize(size).replace(';', '')} * 1.5)`;
     default:
       return lineHeight;
   }
 };
-const getTitleLineHeight = (lineHeight = 'md', size = '1', max = false) => {
+// calc(clamp(1rem,calc(1rem + (1.125 - 1) * ((100vw - 20rem) / (90 - 20))),1.125rem); * 1.5)
+// clamp(asdasdadasd);
+const getTitleLineHeight = (lineHeight = 'md', size = '1') => {
   switch (lineHeight) {
     case 'xs':
-      return `calc(${getFontSize(size, max)} * 1.15)`;
+      return `calc(${getFontSize(size).replace(';', '')} * 1.15)`;
     case 'sm':
-      return `calc(${getFontSize(size, max)} * 1.25)`;
+      return `calc(${getFontSize(size).replace(';', '')} * 1.25)`;
     case 'lg':
-      return `calc(${getFontSize(size, max)} * 1.75)`;
+      return `calc(${getFontSize(size).replace(';', '')} * 1.75)`;
     case 'md':
-      return `calc(${getFontSize(size, max)} * 1.5)`;
+      return `calc(${getFontSize(size).replace(';', '')} * 1.5)`;
     default:
       return lineHeight;
   }
 };
 
-const getFontSize = (level: string, max: boolean = false) => {
+const getFontSize = (level: string) => {
   switch (level) {
     case '1':
-      return `clamp(1.467rem, calc(1.467rem + ((${
-        max ? 'calc(1.125vw * 16)' : '1vw'
-      } - 0.000625rem) * 1.1352)), 2.488rem) `;
+      return getClamp('1.467rem', '2.488rem', minBreakpoint, maxBreakpoint);
     case '2':
-      return `clamp(1.383rem, calc(1.383rem + ((${
-        max ? 'calc(1.125vw * 16)' : '1vw'
-      } - 0.000625rem) * 0.7683)), 2.074rem) `;
+      return getClamp('1.383rem', '2.074rem', minBreakpoint, maxBreakpoint);
     case '3':
-      return `clamp(1.296rem, calc(1.296rem + ((${
-        max ? 'calc(1.125vw * 16)' : '1vw'
-      } - 0.000625rem) * 0.4803)), 1.728rem) `;
+      return getClamp('1.296rem', '1.728rem', minBreakpoint, maxBreakpoint);
     case '4':
-      return `clamp(1.215rem, calc(1.215rem + ((${
-        max ? 'calc(1.125vw * 16)' : '1vw'
-      } - 0.000625rem) * 0.2502)), 1.44rem) `;
+      return getClamp('1.215rem', '1.44rem', minBreakpoint, maxBreakpoint);
     case '5':
     case '6':
-      return `clamp(1.138rem, calc(1.138rem + ((${
-        max ? 'calc(1.125vw * 16)' : '1vw'
-      } - 0.000625rem) * 0.0689)), 1.2rem) `;
+      return getClamp('1.138rem', '1.2rem', minBreakpoint, maxBreakpoint);
     case 'D1':
-      return `clamp(1.913rem, calc(1.913rem + ((${
-        max ? 'calc(1.125vw * 16)' : '1vw'
-      } - 0.000625rem) * 3.6103)), 5.16rem) `;
+      return getClamp('1.913rem', '5.16rem', minBreakpoint, maxBreakpoint);
     case 'D2':
-      return `clamp(1.793rem, calc(1.793rem + ((${
-        max ? 'calc(1.125vw * 16)' : '1vw'
-      } - 0.000625rem) * 2.7875)), 4.3rem) `;
+      return getClamp('1.793rem', '4.3rem', minBreakpoint, maxBreakpoint);
     case 'D3':
-      return `clamp(1.68rem, calc(1.68rem + ((${
-        max ? 'calc(1.125vw * 16)' : '1vw'
-      } - 0.000625rem) * 2.1159)), 3.583rem) `;
+      return getClamp('1.68rem', '3.583rem', minBreakpoint, maxBreakpoint);
     case 'D4':
-      return `clamp(1.575rem, calc(1.575rem + ((${
-        max ? 'calc(1.125vw * 16)' : '1vw'
-      } - 0.000625rem) * 1.5689)), 2.986rem) `;
+      return getClamp('1.575rem', '2.986rem', minBreakpoint, maxBreakpoint);
     default:
       return level;
   }
