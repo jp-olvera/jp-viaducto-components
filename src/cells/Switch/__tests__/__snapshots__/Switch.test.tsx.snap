@@ -10,7 +10,7 @@ exports[`<Switch/> should fire hover event 1`] = `
       class="StyledSwitch__DivWrapper-sc-10hvevw-0 kCfAgd ballena-switch-wrapper"
     >
       <label
-        class="StyledSwitch-sc-10hvevw-1 kPDNZJ"
+        class="StyledSwitch-sc-10hvevw-1 losguA"
         data-testid="Switch1"
         font-size="md"
         for="Switch1"

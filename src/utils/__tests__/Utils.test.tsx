@@ -126,39 +126,26 @@ describe('getElevation file', () => {
 describe('getSizes file', () => {
   describe('getSize function', () => {
     test('should return xxs size', () => {
-      const xxs = '0.5rem';
-      expect(getSize('xxs', false)).toEqual(xxs);
-    });
-    test('should return xxs size with max prop', () => {
-      const xxs = 'calc(0.5rem * 1.125)';
-      expect(getSize('xxs', true)).toEqual(xxs);
+      expect(getSize('xxs')).not.toBeNull();
     });
     test('should return xs size', () => {
-      const xs = '0.694rem';
-      expect(getSize('xs', false)).toEqual(xs);
-    });
-    test('should return xs size with max prop', () => {
-      const xs = 'calc(0.694rem * 1.125)';
-      expect(getSize('xs', true)).toEqual(xs);
-    });
-    test('should return lg size with max arg', () => {
-      const largeMax = 'calc(1.125rem * 1.125)';
-      expect(getSize('lg', true)).toEqual(largeMax);
+      expect(getSize('xs')).not.toBeNull();
     });
     test('should return default size', () => {
-      expect(getSize()).toEqual('1rem');
+      expect(getSize()).not.toBeNull();
     });
   });
 
   describe('getLineHeight function', () => {
     test('should return lg size of line height with md font size', () => {
-      expect(getLineHeight('lg', 'md', false)).toEqual('calc(1rem * 1.75)');
-    });
-    test('should return sm size of line height with lg font size with max props', () => {
-      expect(getLineHeight('sm', 'lg', true)).toEqual('calc(calc(1.125rem * 1.125) * 1.25)');
+      expect(getLineHeight('lg', 'md')).toEqual(
+        'calc(clamp(1rem, calc(1rem + (1.125 - 1) * ((100vw - 20rem) / (90 - 20))), 1.125rem) * 1.75)'
+      );
     });
     test('should return xs size props', () => {
-      expect(getLineHeight('xs')).toEqual('calc(1rem * 1.15)');
+      expect(getLineHeight('xs')).toEqual(
+        'calc(clamp(1rem, calc(1rem + (1.125 - 1) * ((100vw - 20rem) / (90 - 20))), 1.125rem) * 1.15)'
+      );
     });
     test('should return default size props', () => {
       expect(getLineHeight('100%')).not.toBeNull();
@@ -167,10 +154,10 @@ describe('getSizes file', () => {
 
   describe('getTitleLineHeight function', () => {
     test('should return lg size of line height with md font size', () => {
-      expect(getTitleLineHeight('lg', 'md', false)).not.toBeNull();
+      expect(getTitleLineHeight('lg')).not.toBeNull();
     });
     test('should return sm size of line height with lg font size with max props', () => {
-      expect(getTitleLineHeight('sm', 'lg', true)).not.toBeNull();
+      expect(getTitleLineHeight('sm')).not.toBeNull();
     });
     test('should return xs size props', () => {
       expect(getTitleLineHeight('xs')).not.toBeNull();
@@ -183,77 +170,56 @@ describe('getSizes file', () => {
   describe('getFontSize function', () => {
     test('should return level 3 size of title with max and no max prop', () => {
       const levelThree =
-        'clamp(1.296rem, calc(1.296rem + ((calc(1.125vw * 16) - 0.000625rem) * 0.4803)), 1.728rem) ';
-      expect(getFontSize('3', true)).toEqual(levelThree);
-      const levelThreeNoMax =
-        'clamp(1.296rem, calc(1.296rem + ((1vw - 0.000625rem) * 0.4803)), 1.728rem) ';
-      expect(getFontSize('3', false)).toEqual(levelThreeNoMax);
+        'clamp(1.296rem, calc(1.296rem + (1.728 - 1.296) * ((100vw - 20rem) / (90 - 20))), 1.728rem);';
+      expect(getFontSize('3')).toEqual(levelThree);
     });
-    test('should return level 5 size of title with max arg', () => {
+    test('should return level 5 size of title ', () => {
       const levelFive =
-        'clamp(1.138rem, calc(1.138rem + ((calc(1.125vw * 16) - 0.000625rem) * 0.0689)), 1.2rem) ';
-      expect(getFontSize('5', true)).toEqual(levelFive);
+        'clamp(1.138rem, calc(1.138rem + (1.2 - 1.138) * ((100vw - 20rem) / (90 - 20))), 1.2rem);';
+      expect(getFontSize('5')).toEqual(levelFive);
     });
-    test('should return level 6 size of title with max arg', () => {
+    test('should return level 6 size of title ', () => {
       const levelFive =
-        'clamp(1.138rem, calc(1.138rem + ((calc(1.125vw * 16) - 0.000625rem) * 0.0689)), 1.2rem) ';
-      expect(getFontSize('6', true)).toEqual(levelFive);
+        'clamp(1.138rem, calc(1.138rem + (1.2 - 1.138) * ((100vw - 20rem) / (90 - 20))), 1.2rem);';
+      expect(getFontSize('6')).toEqual(levelFive);
     });
     test('should return level 6 size of title with no max arg', () => {
-      expect(getFontSize('6', false)).not.toBeNull();
+      expect(getFontSize('6')).not.toBeNull();
     });
-    test('should return display 1 size with max and no max prop', () => {
+    test('should return display 1 size ', () => {
       const displayOne =
-        'clamp(1.913rem, calc(1.913rem + ((calc(1.125vw * 16) - 0.000625rem) * 3.6103)), 5.16rem) ';
-      expect(getFontSize('D1', true)).toEqual(displayOne);
-      const displayOneWithNoMax =
-        'clamp(1.913rem, calc(1.913rem + ((1vw - 0.000625rem) * 3.6103)), 5.16rem) ';
-      expect(getFontSize('D1', false)).toEqual(displayOneWithNoMax);
+        'clamp(1.913rem, calc(1.913rem + (5.16 - 1.913) * ((100vw - 20rem) / (90 - 20))), 5.16rem);';
+      expect(getFontSize('D1')).toEqual(displayOne);
     });
-    test('should return display 2 size with max and no max prop', () => {
+    test('should return display 2 size ', () => {
       const displayTwo =
-        'clamp(1.793rem, calc(1.793rem + ((1vw - 0.000625rem) * 2.7875)), 4.3rem) ';
-      expect(getFontSize('D2', false)).toEqual(displayTwo);
-      const displayTwoWithMax =
-        'clamp(1.793rem, calc(1.793rem + ((calc(1.125vw * 16) - 0.000625rem) * 2.7875)), 4.3rem) ';
-      expect(getFontSize('D2', true)).toEqual(displayTwoWithMax);
+        'clamp(1.793rem, calc(1.793rem + (4.3 - 1.793) * ((100vw - 20rem) / (90 - 20))), 4.3rem);';
+      expect(getFontSize('D2')).toEqual(displayTwo);
     });
-    test('should return display 3 size with max arg and no max', () => {
+    test('should return display 3 size ', () => {
       const displayThree =
-        'clamp(1.68rem, calc(1.68rem + ((calc(1.125vw * 16) - 0.000625rem) * 2.1159)), 3.583rem) ';
-      expect(getFontSize('D3', true)).toEqual(displayThree);
-      const displayThreeNoMax =
-        'clamp(1.68rem, calc(1.68rem + ((1vw - 0.000625rem) * 2.1159)), 3.583rem) ';
-      expect(getFontSize('D3', false)).toEqual(displayThreeNoMax);
+        'clamp(1.68rem, calc(1.68rem + (3.583 - 1.68) * ((100vw - 20rem) / (90 - 20))), 3.583rem);';
+      expect(getFontSize('D3')).toEqual(displayThree);
     });
-    test('should return display 4 size with max arg and no max', () => {
+    test('should return display 4 size ', () => {
       const displayFour =
-        'clamp(1.575rem, calc(1.575rem + ((calc(1.125vw * 16) - 0.000625rem) * 1.5689)), 2.986rem) ';
-      expect(getFontSize('D4', true)).toEqual(displayFour);
-      const displayFourNoMax =
-        'clamp(1.575rem, calc(1.575rem + ((1vw - 0.000625rem) * 1.5689)), 2.986rem) ';
-      expect(getFontSize('D4', false)).toEqual(displayFourNoMax);
+        'clamp(1.575rem, calc(1.575rem + (2.986 - 1.575) * ((100vw - 20rem) / (90 - 20))), 2.986rem);';
+      expect(getFontSize('D4')).toEqual(displayFour);
     });
-    test('should return default title case with max prop', () => {
+    test('should return default title ', () => {
       const defaultType =
-        'clamp(1.467rem, calc(1.467rem + ((calc(1.125vw * 16) - 0.000625rem) * 1.1352)), 2.488rem) ';
-      expect(getFontSize('1', true)).toEqual(defaultType);
+        'clamp(1.467rem, calc(1.467rem + (2.488 - 1.467) * ((100vw - 20rem) / (90 - 20))), 2.488rem);';
+      expect(getFontSize('1')).toEqual(defaultType);
     });
-    test('should return level 2 title case with max prop and no max prop', () => {
+    test('should return level 2 title case', () => {
       const twoLevel =
-        'clamp(1.383rem, calc(1.383rem + ((calc(1.125vw * 16) - 0.000625rem) * 0.7683)), 2.074rem) ';
-      expect(getFontSize('2', true)).toEqual(twoLevel);
-      const twoLevelNoMax =
-        'clamp(1.383rem, calc(1.383rem + ((1vw - 0.000625rem) * 0.7683)), 2.074rem) ';
-      expect(getFontSize('2', false)).toEqual(twoLevelNoMax);
+        'clamp(1.383rem, calc(1.383rem + (2.074 - 1.383) * ((100vw - 20rem) / (90 - 20))), 2.074rem);';
+      expect(getFontSize('2')).toEqual(twoLevel);
     });
-    test('should return level 4 title case with max prop and no max prop', () => {
+    test('should return level 4 title case', () => {
       const fourLevel =
-        'clamp(1.215rem, calc(1.215rem + ((calc(1.125vw * 16) - 0.000625rem) * 0.2502)), 1.44rem) ';
-      expect(getFontSize('4', true)).toEqual(fourLevel);
-      const fourLevelNoMax =
-        'clamp(1.215rem, calc(1.215rem + ((1vw - 0.000625rem) * 0.2502)), 1.44rem) ';
-      expect(getFontSize('4', false)).toEqual(fourLevelNoMax);
+        'clamp(1.215rem, calc(1.215rem + (1.44 - 1.215) * ((100vw - 20rem) / (90 - 20))), 1.44rem);';
+      expect(getFontSize('4')).toEqual(fourLevel);
     });
   });
 
@@ -302,6 +268,7 @@ describe('getSizes file', () => {
       expect(getCheckSizes('xl')).not.toBeNull();
     });
   });
+
   describe('getRangeSize function', () => {
     test('should return non null value', () => {
       expect(getRangeSize()).not.toBeNull();

@@ -98,6 +98,12 @@ const Template = (args: typeof Default) => (
     <Paragraph {...args}>
       This is a paragraph example, please write everything you need. Greetings. Bye.
     </Paragraph>
+    <div style={{ maxWidth: 140, border: '1px dashed #d9d9d9', marginTop: 20 }}>
+      <Paragraph {...args}>
+        This is an example to test <code>ellipsis</code> prop, mark it as <code>true</code> in the
+        controls
+      </Paragraph>
+    </div>
   </ConfigProvider>
 );
 

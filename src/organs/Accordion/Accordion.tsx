@@ -32,6 +32,7 @@ export interface Accordion extends React.HTMLAttributes<HTMLDivElement> {
  * @param {String} paddingX Padding in X
  * @param {String} paddingY Padding in Y
  * @param {String} transition Overrides transitionTimingFunction
+ * @param {boolean} expandMultiple Expand multiple items
  */
 
 const Accordion = ({

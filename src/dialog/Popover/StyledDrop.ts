@@ -5,7 +5,7 @@ import getElevation from '../../utils/getElevation';
 const dropKeyFrames = keyframes`
   0% {
     opacity: 0;
-    transform: scale(0);
+    transform: scale(0.9);
   }
   100% {
     opacity: 1;
@@ -19,7 +19,7 @@ const dropHideKeyFrames = keyframes`
   }
   100% {
     opacity: 0;
-    transform: scale(0.2);
+    transform: scale(0.9);
   }
 `;
 
