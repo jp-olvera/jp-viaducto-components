@@ -4,7 +4,7 @@ import { ConfigContext } from '../../providers';
 import { FlexList, StyledList, StyledListDiv } from './StyledList';
 
 /** List component */
-export interface List {
+export interface List extends React.HTMLAttributes<HTMLOrSVGElement> {
   /** ListItem component */
   children: ReactNode | ReactNode[];
   /** List style type for market list item (could be CSS default list, ReactNode<any component> or just a simple string)  */
@@ -54,7 +54,8 @@ const List = ({
   horizontalSpacing = 'xs',
   verticalSpacing = 'xs',
   markerColor = 'dark',
-}: List & (React.HTMLAttributes<HTMLDivElement> | React.HTMLAttributes<HTMLUListElement>)) => {
+  ...rest
+}: List) => {
   const { configuration } = useContext(ConfigContext);
 
   const listTypes = [
@@ -82,6 +83,7 @@ const List = ({
       verticalSpacing={verticalSpacing}
       config={configuration}
       markerColor={markerColor}
+      {...rest}
     >
       {nodes.map((child: any, index: number) => {
         return (
@@ -102,6 +104,7 @@ const List = ({
       config={configuration}
       role='list'
       markerColor={markerColor}
+      {...rest}
     >
       {nodes.map((child: any) => {
         return React.cloneElement(child);

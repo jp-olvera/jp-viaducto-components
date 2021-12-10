@@ -11,17 +11,20 @@ import { StyledListItem, StyledListItemDiv } from './StyledList';
 const ListItem = ({
   children,
   as = 'li',
+  ...rest
 }: {
   /** ListItem content */
   children: React.ReactNode;
   /** Render behavior */
   as?: string;
-} & (React.HTMLAttributes<HTMLDivElement> | React.HTMLAttributes<HTMLLIElement>)) => {
+} & React.HTMLAttributes<HTMLOrSVGElement>) => {
   const { configuration } = useContext(ConfigContext);
   return as === 'li' ? (
-    <StyledListItem config={configuration}>{children}</StyledListItem>
+    <StyledListItem config={configuration} {...rest}>
+      {children}
+    </StyledListItem>
   ) : (
-    <StyledListItemDiv>{children}</StyledListItemDiv>
+    <StyledListItemDiv {...rest}>{children}</StyledListItemDiv>
   );
 };
 
