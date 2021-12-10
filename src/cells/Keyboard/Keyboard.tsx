@@ -15,21 +15,23 @@ const KEYS = {
 };
 
 interface KeyboardProps {
-  target: React.RefObject<HTMLElement> | any;
-  onBackspace: Function;
-  onComma: Function;
-  onDown: Function;
-  onEnter: Function;
-  onEsc: Function;
-  onKeyDown: Function;
-  onLeft: Function;
-  onRight: Function;
-  onShift: Function;
-  onSpace: Function;
-  onTab: Function;
-  onUp: Function;
+  /** target */
+  target?: 'document' | undefined;
+  onBackspace?: Function;
+  onComma?: Function;
+  onDown?: Function;
+  onEnter?: Function;
+  onEsc?: Function;
+  onKeyDown?: Function;
+  onLeft?: Function;
+  onRight?: Function;
+  onShift?: Function;
+  onSpace?: Function;
+  onTab?: Function;
+  onUp?: Function;
   children: any;
-  capture: boolean;
+  /** use capture */
+  capture?: boolean;
 }
 
 const Keyboard = ({ capture, target, children, onKeyDown, ...restProps }: KeyboardProps) => {
@@ -38,10 +40,12 @@ const Keyboard = ({ capture, target, children, onKeyDown, ...restProps }: Keyboa
       const key = event.keyCode ? event.keyCode : event.which;
       const callbackName = KEYS[key];
 
+      // call provided functions
       if (callbackName && restProps[callbackName]) {
         restProps[callbackName](event, ...rest);
       }
 
+      // call others keydown
       if (onKeyDown) {
         onKeyDown(event, ...rest);
       }
@@ -60,7 +64,7 @@ const Keyboard = ({ capture, target, children, onKeyDown, ...restProps }: Keyboa
       }
     };
   }, [capture, onKeyDownHandler, target]);
-
+  // console.log('keyboard');
   return target === 'document'
     ? children
     : cloneElement(Children.only(children), {
