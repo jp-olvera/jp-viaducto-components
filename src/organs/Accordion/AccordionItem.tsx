@@ -78,7 +78,7 @@ const AccordionItem = ({
     };
   }, [height, isOpen]);
 
-  const { expandMultiple, openIds } = useContext(AccordionContext);
+  const { openIds } = useContext(AccordionContext);
   useEffect(() => {
     const index = Number(id?.charAt(id.length - 1)) || 0;
     let isabierto = false;
