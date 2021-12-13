@@ -2,22 +2,18 @@ import React, { useContext, forwardRef } from 'react';
 import { ConfigContext } from '../../providers';
 import StyledButton from './StyledButton';
 
-const defaultColors = {
-  default: '#937B3D',
-  hover: '#AD9043',
-  click: '#C3A24A',
-  text: '#000',
-};
 /** Button component overrides HTML button tag. This components accepts icons and/or labels */
 export interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Set button with as 100% of the container */
   block?: boolean;
   /** Color of the button (with its states) */
   colors?: null | {
-    default?: string;
-    hover?: string;
-    click?: string;
-    text?: string;
+    default: string;
+    hover: string;
+    click: string;
+    text: string;
+    shadow: string;
+    [key: string]: string;
   };
   /** Enable/Disable button */
   disabled?: boolean;
@@ -41,8 +37,6 @@ export interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     | 'xxxl';
   /** Set loading button prop */
   isLoading?: boolean;
-  /** Set valid button prop */
-  isValid?: boolean | null;
   /** Label for the button */
   label?: string | null;
   /** Indicates if the icon will be leading */
@@ -95,7 +89,6 @@ export interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
  * @param {any} icon Icon component for the button
  * @param {String} iconSpacing The horizontal spacing between the label and icon (if both are defined)
  * @param {Boolean} isLoading Set loading button prop
- * @param {Boolean} isValid Set valid button prop
  * @param {String} label Label for the button
  * @param {Boolean} lead Indicates if the icon will be leading
  * @param {String} leftSpacing Left spacing between the content and the button
@@ -117,7 +110,6 @@ const Button = forwardRef<HTMLButtonElement, Button>(
       icon = null,
       iconSpacing = 'xs',
       isLoading = false,
-      isValid = null,
       label = null,
       lead = false,
       leftSpacing = null,
@@ -140,17 +132,14 @@ const Button = forwardRef<HTMLButtonElement, Button>(
       click?: string;
       text?: string;
     };
-    if (shapeColor !== null) {
-      c = colors || shapeColor ? configuration.colors[shapeColor] : defaultColors;
+    if (colors !== null) {
+      c = colors;
+    } else if (shapeColor !== null) {
+      c = configuration.colors[shapeColor];
     } else {
-      c = colors || defaultColors;
+      c = configuration.colors['primary'];
     }
-    if (isValid === false) {
-      c = configuration.colors.danger;
-    }
-    if (isValid === true) {
-      c = configuration.colors.success;
-    }
+
     return (
       <StyledButton
         size={size}
@@ -164,7 +153,6 @@ const Button = forwardRef<HTMLButtonElement, Button>(
         radius={radius}
         rightSpacing={rightSpacing}
         block={block}
-        isValid={isValid}
         disabled={disabled || isLoading}
         isLoading={isLoading}
         variant={variant}
@@ -173,7 +161,7 @@ const Button = forwardRef<HTMLButtonElement, Button>(
       >
         {hasIcon && !isLoading && <span className='button-icon-span'>{icon}</span>}
         {hasIcon && isLoading && useLongLoading && <span className='button-icon-span'>{icon}</span>}
-        {isLoading && isValid === null && !useLongLoading ? (
+        {isLoading && !useLongLoading ? (
           <span className='button-icon-span'>
             <svg width='25px' height='25px'>
               <circle
@@ -190,7 +178,7 @@ const Button = forwardRef<HTMLButtonElement, Button>(
             </svg>
           </span>
         ) : null}
-        {isLoading && isValid === null && useLongLoading && <div className='status' />}
+        {isLoading && useLongLoading && <div className='status' />}
         <span>{label}</span>
       </StyledButton>
     );
