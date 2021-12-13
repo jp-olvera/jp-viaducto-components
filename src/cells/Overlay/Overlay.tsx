@@ -5,7 +5,7 @@ import {
   getPaddingRight,
   ownerDocument,
 } from '../../utils/scroll';
-
+import { Keyboard } from '../';
 // we got inspired by airbnb solution and took some of their functions
 // you can check their code here
 // https://github.com/mui-org/material-ui/blob/next/packages/material-ui-unstyled/src/ModalUnstyled/ModalManager.ts
@@ -25,26 +25,13 @@ const Overlay = ({
 }: {
   /** Place a child element */
   children: any;
-  onEsc?: Function;
+  onEsc?: React.KeyboardEventHandler<HTMLDivElement>;
 } & React.HTMLAttributes<HTMLDivElement>) => {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     let doc = ownerDocument(undefined);
     let { overflow, paddingRight } = doc.body.style;
-    const handleEsc = (ev) => {
-      if (onEsc && ev.code == 'Escape') onEsc(ev);
-    };
-    const addListeners = () => {
-      if (window) {
-        window.addEventListener('keydown', handleEsc);
-      }
-    };
-    const removeListeners = () => {
-      if (window) {
-        window.removeEventListener('keydown', handleEsc);
-      }
-    };
-    /* istanbul ignore else */
+
     if (ref.current) {
       const container = ref.current;
       doc = ownerDocument(container);
@@ -56,19 +43,19 @@ const Overlay = ({
         doc.body.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
         doc.body.style.overflow = 'hidden';
       }
-      addListeners();
     }
     return () => {
       doc.body.style.overflow = overflow;
       doc.body.style.paddingRight = paddingRight;
-      removeListeners();
     };
   }, [ref]);
 
   return (
-    <div ref={ref} {...rest}>
-      {children}
-    </div>
+    <Keyboard onEsc={onEsc}>
+      <div ref={ref} {...rest} tabIndex={0}>
+        {children}
+      </div>
+    </Keyboard>
   );
 };
 

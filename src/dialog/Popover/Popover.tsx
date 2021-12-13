@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { findScrollParents, ownerDocument } from '../../utils/scroll';
 import { StyledDrop } from './StyledDrop';
 import { ConfigContext } from '../../providers';
+import { Keyboard } from '../../cells';
 
 export interface Popover extends React.HTMLAttributes<HTMLDivElement> {
   /** Indicates if the popover shoulb be visible */
@@ -32,6 +33,17 @@ export interface Popover extends React.HTMLAttributes<HTMLDivElement> {
   target: React.RefObject<HTMLElement> | any;
   /** z-index value for the overlay, it defaults to 9999 */
   zIndex?: number;
+  onBackspace?: React.KeyboardEventHandler<HTMLDivElement> | undefined;
+  onComma?: React.KeyboardEventHandler<HTMLDivElement> | undefined;
+  onDown?: React.KeyboardEventHandler<HTMLDivElement> | undefined;
+  onEnter?: React.KeyboardEventHandler<HTMLDivElement> | undefined;
+  onKeyDown?: React.KeyboardEventHandler<HTMLDivElement> | undefined;
+  onLeft?: React.KeyboardEventHandler<HTMLDivElement> | undefined;
+  onRight?: React.KeyboardEventHandler<HTMLDivElement> | undefined;
+  onShift?: React.KeyboardEventHandler<HTMLDivElement> | undefined;
+  onSpace?: React.KeyboardEventHandler<HTMLDivElement> | undefined;
+  onTab?: React.KeyboardEventHandler<HTMLDivElement> | undefined;
+  onUp?: React.KeyboardEventHandler<HTMLDivElement> | undefined;
 }
 
 /** Popover component attached to an activator, like a button */
@@ -45,6 +57,17 @@ const Popover = ({
   target,
   radius = 'sm',
   zIndex = 9999,
+  onBackspace,
+  onComma,
+  onDown,
+  onEnter,
+  onKeyDown,
+  onLeft,
+  onRight,
+  onShift,
+  onSpace,
+  onTab,
+  onUp,
   ...rest
 }: Popover) => {
   const { configuration } = useContext(ConfigContext);
@@ -54,7 +77,7 @@ const Popover = ({
   useEffect(() => {
     setisClosing(false);
     if (active && dropRef.current) {
-      // dropRef.current.focus();
+      dropRef.current.focus();
     }
   }, [active]);
 
@@ -146,7 +169,9 @@ const Popover = ({
     }
   };
 
-  const closeHandler = () => {
+  const closeHandler = (ev) => {
+    if (ev) ev?.stopPropagation();
+
     setisClosing(true);
     timer = setTimeout(() => {
       setisClosing(false);
@@ -159,7 +184,7 @@ const Popover = ({
       if (dropRef.current.contains(event.target) || target.current.contains(event.target)) {
         return;
       }
-      closeHandler();
+      closeHandler(event);
     }
   };
   useEffect(() => {
@@ -201,19 +226,35 @@ const Popover = ({
 
   if (active && target && target.current) {
     return createPortal(
-      <StyledDrop
-        configuration={configuration}
-        elevation={elevation}
-        elevationDirection={elevationDirection}
-        isClosing={isClosing}
-        radius={radius}
-        ref={dropRef}
-        role='dialog'
-        zIndex={zIndex}
-        {...rest}
+      <Keyboard
+        onEsc={closeHandler}
+        onBackspace={onBackspace}
+        onComma={onComma}
+        onDown={onDown}
+        onEnter={onEnter}
+        onKeyDown={onKeyDown}
+        onLeft={onLeft}
+        onRight={onRight}
+        onShift={onShift}
+        onSpace={onSpace}
+        onTab={onTab}
+        onUp={onUp}
       >
-        {content}
-      </StyledDrop>,
+        <StyledDrop
+          configuration={configuration}
+          elevation={elevation}
+          elevationDirection={elevationDirection}
+          isClosing={isClosing}
+          radius={radius}
+          ref={dropRef}
+          role='dialog'
+          zIndex={zIndex}
+          tabIndex={0}
+          {...rest}
+        >
+          {content}
+        </StyledDrop>
+      </Keyboard>,
       document.body
     );
   }
