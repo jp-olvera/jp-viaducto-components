@@ -24,7 +24,7 @@ const Pop = () => {
         ref={ref}
         type='button'
         onClick={handleClick}
-        label='Click to see the magic'
+        label='Open popup'
         shapeColor='success'
       />
       <Popover
@@ -63,7 +63,7 @@ const CustomModal = () => {
         ref={ref}
         type='button'
         onClick={handleClick}
-        label='Click to see the magic'
+        label='Open modal'
         shapeColor='success'
       />
       <Modal active={active} handleActive={handleClick}>
@@ -77,8 +77,12 @@ const CustomModal = () => {
             border: '1px solid blue',
           }}
         >
-          <button type='button'>hola</button>
+          <button type='button'>no hago nada</button>
           <Pop />
+          <input type='text' />
+          <input type='text' />
+          <input type='text' />
+          <button>Hola</button>
         </div>
       </Modal>
     </>
@@ -97,7 +101,7 @@ const Template = ({
   return (
     <ConfigProvider>
       <Button
-        label='Mostrar'
+        label='Open Drawer'
         shapeColor='success'
         onClick={() => {
           setOpen(true);

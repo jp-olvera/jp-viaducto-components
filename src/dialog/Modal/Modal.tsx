@@ -35,6 +35,7 @@ export interface Modal extends React.HTMLAttributes<HTMLDivElement> {
   radius?: 'none' | 'sm' | 'md' | 'lg';
   /** z-index value for the overlay, it defaults to 9999 */
   zIndex?: number;
+  onClick?: React.MouseEventHandler<HTMLDivElement> | undefined;
 }
 
 /**
@@ -60,6 +61,7 @@ const Modal = ({
   overlayColor = 'rgba(255,255,255,0.5)',
   radius = 'md',
   zIndex = 9999,
+  onClick,
   ...rest
 }: Modal) => {
   const { configuration } = useContext(ConfigContext);
@@ -69,19 +71,19 @@ const Modal = ({
 
   let timer;
   const handleClose = (ev) => {
+    if (ev) ev?.stopPropagation();
+
     if (!allowClickOutside) {
       return;
     }
-    if (ev === null || ev.type === 'click' || ev.key === 'Escape') {
-      if (active) {
-        setKeepActive(true);
-        setisClosing(true);
-        timer = setTimeout(() => {
-          setisClosing(false);
-          setKeepActive(false);
-          handleActive();
-        }, 230);
-      }
+    if (active) {
+      setKeepActive(true);
+      setisClosing(true);
+      timer = setTimeout(() => {
+        setisClosing(false);
+        setKeepActive(false);
+        handleActive();
+      }, 230);
     }
   };
 
@@ -115,7 +117,7 @@ const Modal = ({
         <Overlay
           data-testid='overlay'
           onClick={handleClose}
-          // onEsc={handleClose}
+          onEsc={handleClose}
           tabIndex={0}
           role='presentation'
           style={{
@@ -145,6 +147,7 @@ const Modal = ({
             onClick={(ev: any) => {
               // Yep! this is needed
               ev.stopPropagation();
+              if (onClick) onClick(ev);
             }}
             {...rest}
           >
