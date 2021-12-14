@@ -35,6 +35,9 @@ interface KeyboardProps {
   capture?: boolean;
 }
 
+// The whole credits of this code goes to grommet
+// https://github.com/grommet/grommet/blob/master/src/js/components/Keyboard/Keyboard.js
+
 const Keyboard = ({ capture, target, children, onKeyDown, ...restProps }: KeyboardProps) => {
   const onKeyDownHandler = useCallback(
     (event, ...rest) => {
