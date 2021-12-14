@@ -79,7 +79,7 @@ const Switch = forwardRef<HTMLInputElement, Switch>(
             {...rest}
           />
           <span className='slider round' data-testid='slider' />
-          <Spacer size={spacing || 'none'} direction='horizontal' />
+          <Spacer size={spacing} direction='horizontal' />
           <label className='switch-label' htmlFor={rest.id}>
             {label}
           </label>

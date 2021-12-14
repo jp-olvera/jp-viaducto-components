@@ -76,6 +76,7 @@ const Dropdown = ({
   };
 
   useEffect(() => {
+    /* istanbul ignore else */
     if (window) {
       if (isOpen && dropdownListRef.current) {
         window.addEventListener('mouseup', clickOutsideHandler);

@@ -103,6 +103,7 @@ const Template = (args: typeof Default) => {
   const handleActive = () => {
     setActive(!active);
   };
+
   return (
     <ConfigProvider>
       <div style={{ height: '980px' }}>
@@ -144,6 +145,10 @@ const Template = (args: typeof Default) => {
           mostrará la sección de controles
         </div>
         <Button label='Close' variant='outline' shapeColor='success' onClick={handleActive} />
+        <input type='text' />
+        <input type='text' />
+        <input type='text' />
+        <button>Hola</button>
       </Modal>
     </ConfigProvider>
   );

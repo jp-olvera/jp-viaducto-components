@@ -13,36 +13,46 @@ const KEYS = {
   188: 'onComma',
   16: 'onShift',
 };
+// addEVentListener('onkeyup')
 
 interface KeyboardProps {
-  target: React.RefObject<HTMLElement> | any;
-  onBackspace: Function;
-  onComma: Function;
-  onDown: Function;
-  onEnter: Function;
-  onEsc: Function;
-  onKeyDown: Function;
-  onLeft: Function;
-  onRight: Function;
-  onShift: Function;
-  onSpace: Function;
-  onTab: Function;
-  onUp: Function;
+  /** target */
+  target?: 'document' | undefined;
+  onBackspace?: React.KeyboardEventHandler<HTMLDivElement>;
+  onComma?: React.KeyboardEventHandler<HTMLDivElement>;
+  onDown?: React.KeyboardEventHandler<HTMLDivElement>;
+  onEnter?: React.KeyboardEventHandler<HTMLDivElement>;
+  onEsc?: React.KeyboardEventHandler<HTMLDivElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
+  onLeft?: React.KeyboardEventHandler<HTMLDivElement>;
+  onRight?: React.KeyboardEventHandler<HTMLDivElement>;
+  onShift?: React.KeyboardEventHandler<HTMLDivElement>;
+  onSpace?: React.KeyboardEventHandler<HTMLDivElement>;
+  onTab?: React.KeyboardEventHandler<HTMLDivElement>;
+  onUp?: React.KeyboardEventHandler<HTMLDivElement>;
   children: any;
-  capture: boolean;
+  /** use capture */
+  capture?: boolean;
 }
+
+// The whole credits of this code goes to grommet
+// https://github.com/grommet/grommet/blob/master/src/js/components/Keyboard/Keyboard.js
 
 const Keyboard = ({ capture, target, children, onKeyDown, ...restProps }: KeyboardProps) => {
   const onKeyDownHandler = useCallback(
     (event, ...rest) => {
       const key = event.keyCode ? event.keyCode : event.which;
+      // onKeyUp, onEsc, onUp
       const callbackName = KEYS[key];
 
+      // call provided functions
       if (callbackName && restProps[callbackName]) {
         restProps[callbackName](event, ...rest);
       }
 
+      // call others keydown
       if (onKeyDown) {
+        // @ts-ignore
         onKeyDown(event, ...rest);
       }
     },
@@ -60,7 +70,6 @@ const Keyboard = ({ capture, target, children, onKeyDown, ...restProps }: Keyboa
       }
     };
   }, [capture, onKeyDownHandler, target]);
-
   return target === 'document'
     ? children
     : cloneElement(Children.only(children), {

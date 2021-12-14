@@ -3,16 +3,64 @@
 import React from 'react';
 import { render, fireEvent } from '../../../test-utils';
 import { Pagination } from '..';
-
+import { Button } from '../../..';
+const CustomRender = (
+  current: number,
+  type: any,
+  element: any,
+  extra: { disabled: boolean; isActive: boolean }
+) => {
+  return element === '...' ? (
+    <span style={{ padding: '0 5px', marginRight: 8 }}>{element}</span>
+  ) : (
+    <Button
+      label={element}
+      size='small'
+      variant={extra?.isActive ? 'solid' : 'outline'}
+      disabled={extra?.disabled}
+      style={{ marginRight: 8 }}
+    />
+  );
+};
 describe('<Pagination/> component', () => {
   test('should render properly', () => {
     const { getByText } = render(<Pagination totalPages={10} siblings={0} iconRight='ICON' />);
     expect(getByText('1')).toBeInTheDocument();
   });
-  // test('should render pagination with style props', () => {
-  //   const { getByText } = render(<Pagination totalPages={5} siblings={0} iconLeft='AAAA' />);
-  //   expect(getByText('5')).toBeInTheDocument();
-  // });
+  test('should render pagination with custom item renderer', () => {
+    const pageChange = jest.fn();
+    const { container, getByText } = render(
+      <Pagination
+        totalPages={5}
+        siblings={0}
+        iconLeft='AAAA'
+        itemRender={CustomRender}
+        onPageChange={pageChange}
+      />
+    );
+    fireEvent.click(getByText('2'));
+    expect(container).toBeInTheDocument();
+  });
+  test('should render pagination with custom item renderer with 10 pages', () => {
+    const pageChange = jest.fn();
+    const { container, getByText } = render(
+      <Pagination
+        totalPages={10}
+        siblings={1}
+        itemRender={CustomRender}
+        onPageChange={pageChange}
+      />
+    );
+    fireEvent.click(getByText('>'));
+    expect(container).toBeInTheDocument();
+  });
+  test('should render pagination with 0 pages', () => {
+    const pageChange = jest.fn();
+    const { container } = render(
+      <Pagination totalPages={0} siblings={1} itemRender={CustomRender} onPageChange={pageChange} />
+    );
+    expect(container).toBeInTheDocument();
+  });
   // test('should not render pagination', () => {
   //   const { container } = render(<Pagination totalPages={0} siblings={0} />);
   //   expect(container).not.toHaveTextContent('1');

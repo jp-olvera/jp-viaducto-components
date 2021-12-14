@@ -1,9 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import {
-  render, screen, fireEvent, axe,
-} from '../../../test-utils';
+import { render, screen, fireEvent, axe } from '../../../test-utils';
 
 import { Button } from '..';
 
@@ -16,10 +14,9 @@ describe('<Button/>', () => {
         useLongLoading
         lead
         isLoading
-        isValid={null}
         shapeColor={null}
         radius={null}
-      />,
+      />
     );
     expect(container).toBeDefined();
     const results = await axe(container);
@@ -27,7 +24,7 @@ describe('<Button/>', () => {
   });
 
   test('should have focus', () => {
-    render(<Button label='Accept' size='large' isValid />);
+    render(<Button label='Accept' size='large' />);
     const button = screen.getByRole('button');
     button.focus();
     expect(button).toHaveFocus();
@@ -38,7 +35,6 @@ describe('<Button/>', () => {
     const Icon = 'Icon';
     render(
       <Button
-        isValid={false}
         label='Accept'
         size='small'
         onClick={handleClick}
@@ -46,7 +42,7 @@ describe('<Button/>', () => {
         colors={null}
         block
         leftSpacing={null}
-      />,
+      />
     );
     fireEvent.click(screen.getByRole('button'));
     expect(handleClick).toHaveBeenCalled();
@@ -60,12 +56,11 @@ describe('<Button/>', () => {
         onClick={handleClick}
         isLoading
         disabled
-        isValid
         label='label'
         size='default'
         leftSpacing={null}
         icon={Icon}
-      />,
+      />
     );
     fireEvent.click(screen.getByRole('button'));
     expect(handleClick).not.toHaveBeenCalled();
@@ -80,53 +75,39 @@ describe('<Button/>', () => {
         label='Button Test'
         icon={IconButton}
         leftSpacing='sm'
+        iconSpacing={null}
         isLoading
-        isValid={null}
         size='large'
         colors={{
           default: '#937B3D',
           hover: '#AD9043',
           click: '#C3A24A',
           text: '#000',
+          shadow: 'red',
         }}
         height={undefined}
         rightSpacing='sm'
-      />,
+      />
     );
     expect(screen.queryByText('Button Test')).toBeInTheDocument();
   });
 
   test('should render button with isIconOnly props and lg padding props', () => {
     const OnlyIcon = 'OnlyIcon';
-    render(
-      <Button
-        icon={OnlyIcon}
-        leftSpacing='lg'
-        height={undefined}
-        size='default'
-      />,
-    );
+    render(<Button icon={OnlyIcon} leftSpacing='lg' height={undefined} size='default' />);
     expect(screen.queryByRole('button')).toBeInTheDocument();
   });
 
   test('should render button with isIconOnly props and lg padding props', () => {
     const OnlyIcon = 'OnlyIcon';
-    render(
-      <Button icon={OnlyIcon} leftSpacing='lg' size='large' height='48px' />,
-    );
+    render(<Button icon={OnlyIcon} leftSpacing='lg' size='large' height='48px' />);
     expect(screen.queryByRole('button')).toBeInTheDocument();
   });
 
   test('should render button with isIconOnly props and small props', () => {
     const OnlyIcon = 'OnlyIcon';
     render(
-      <Button
-        icon={OnlyIcon}
-        size='small'
-        label={null}
-        leftSpacing={null}
-        rightSpacing={null}
-      />,
+      <Button icon={OnlyIcon} size='small' label={null} leftSpacing={null} rightSpacing={null} />
     );
     expect(screen.queryByRole('button')).toBeInTheDocument();
   });
@@ -138,9 +119,7 @@ describe('<Button/>', () => {
   });
 
   test('should render button with label props and small padding props', () => {
-    render(
-      <Button icon='❤' size='small' label='Not only Icon' height={undefined} />,
-    );
+    render(<Button icon='❤' size='small' label='Not only Icon' height={undefined} />);
     expect(screen.queryByRole('button')).toBeInTheDocument();
   });
 
@@ -160,6 +139,10 @@ describe('<Button/>', () => {
   });
   test('should render button with height null', () => {
     const { container } = render(<Button icon='❤' height={null} />);
+    expect(container).toBeInTheDocument();
+  });
+  test('should render button icon and long-loading', () => {
+    const { container } = render(<Button icon='❤' isLoading useLongLoading />);
     expect(container).toBeInTheDocument();
   });
 });

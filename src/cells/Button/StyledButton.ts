@@ -54,12 +54,12 @@ interface ButtonProps {
   size: string;
   leftSpacing: string | null;
   rightSpacing: string | null;
-  isValid: boolean | null;
 }
-const StyledButton = styled.button < ButtonProps > `
+const StyledButton = styled.button<ButtonProps>`
   ${(props) => borderColor(props)};
   align-items: center;
-  background-color: ${(props) => (props.variant === 'solid' ? props.colors.default : 'transparent')};
+  background-color: ${(props) =>
+    props.variant === 'solid' ? props.colors.default : 'transparent'};
   border: 0.063rem solid
     ${(props) => (props.variant === 'ghost' ? 'transparent' : props.colors.default)};
   border-radius: ${(props) => props.configuration.radius[props.radius] || '0.375rem'};
@@ -83,7 +83,8 @@ const StyledButton = styled.button < ButtonProps > `
 
   // just hover
   &:not([disabled]):hover {
-    background-color: ${(props) => (props.variant !== 'ghost' ? props.colors.hover : 'transparent')};
+    background-color: ${(props) =>
+      props.variant !== 'ghost' ? props.colors.hover : 'transparent'};
     cursor: pointer;
     color: ${(props) => (props.variant !== 'ghost' ? props.colors.text : props.colors.default)};
     border-color: ${(props) => (props.variant === 'ghost' ? props.colors.default : 'transparent')};
@@ -91,18 +92,19 @@ const StyledButton = styled.button < ButtonProps > `
 
   // active
   &:not([hover]):not([disabled]):active {
-    background-color: ${(props) => (props.variant === 'ghost' ? props.colors.shadow : props.colors.click)};
+    background-color: ${(props) =>
+      props.variant === 'ghost' ? props.colors.shadow : props.colors.click};
     color: ${(props) => (props.variant !== 'ghost' ? props.colors.text : props.colors.default)};
   }
 
   // focus
   &:focus {
-    box-shadow: ${(props) => props.colors.shadow || props.colors.click} 0px 0px
-      0px 3px;
+    box-shadow: ${(props) => props.colors.shadow || props.colors.click} 0px 0px 0px 3px;
   }
 
-  ${(props) => props.block
-    && css`
+  ${(props) =>
+    props.block &&
+    css`
       width: 100%;
     `}
 
@@ -115,8 +117,10 @@ const StyledButton = styled.button < ButtonProps > `
   }
 
   .button-icon-span {
-    margin-right: ${(p) => (!p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
-    margin-left: ${(p) => (!p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0')};
+    margin-right: ${(p) =>
+      !p.isIconOnly && p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
+    margin-left: ${(p) =>
+      !p.isIconOnly && !p.lead ? p.configuration.spacing[p.iconSpacing] : '0'};
     font-size: calc(1em * 1);
     .progress-ring__circle {
       animation: ${turnOn} 1s linear infinite;
@@ -138,20 +142,8 @@ const StyledButton = styled.button < ButtonProps > `
 `;
 
 const borderColor = (props: any) => {
-  if (props.isValid) {
-    return css`
-      border: 3px solid green;
-    `;
-  }
-  // DON'T CHANGE THIS TO !props.isValid
-  if (props.isValid === false) {
-    return css`
-      border: 3px solid red;
-    `;
-  }
   return css`
-    border: 0.063rem solid
-      ${props.variant === 'ghost' ? 'transparent' : props.colors.default};
+    border: 0.063rem solid ${props.variant === 'ghost' ? 'transparent' : props.colors.default};
   `;
 };
 
@@ -220,21 +212,16 @@ export const disabledColor = (p: {
     `;
   }
   return css`
-    background-color: ${p.variant === 'solid'
-    ? p.configuration.colors.disableColor
-    : 'white'};
+    background-color: ${p.variant === 'solid' ? p.configuration.colors.disableColor : 'white'};
     border-color: ${p.configuration.colors.disableColor};
-    color: ${p.variant === 'solid'
-    ? 'white'
-    : p.configuration.colors.disableColor};
+    color: ${p.variant === 'solid' ? 'white' : p.configuration.colors.disableColor};
   `;
 };
 
-export const StyledLoader = styled.div < any > `
+export const StyledLoader = styled.div<any>`
   .progress-ring__circle {
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
     animation: ${turnOn} 1s linear infinite;
   }
-  
 `;

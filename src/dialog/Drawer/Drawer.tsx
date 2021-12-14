@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import StyledDrawer from './StyledDrawer';
 import { ConfigContext } from '../../providers';
-import { Overlay } from '../../cells/Overlay';
+import { Overlay } from '../../cells';
 
 export interface Drawer extends React.HTMLAttributes<HTMLDivElement> {
   /** Indicates if the drawer should be open or not */
@@ -83,15 +83,12 @@ const Drawer = ({
     []
   );
   const handleClose = (ev) => {
-    /* istanbul ignore else */
-    if (ev.type === 'click' || ev.key === 'Escape') {
-      /* istanbul ignore else */
-      if (active) {
-        setisClosing(true);
-        timer2 = setTimeout(() => {
-          handleActive();
-        }, 230);
-      }
+    if (ev) ev?.stopPropagation();
+    if (active) {
+      setisClosing(true);
+      timer2 = setTimeout(() => {
+        handleActive();
+      }, 230);
     }
   };
   return (active || keepActive) && document
@@ -99,7 +96,7 @@ const Drawer = ({
         <Overlay
           data-testid='overlay'
           onClick={handleClose}
-          // onEsc={handleClose}
+          onEsc={handleClose}
           role='presentation'
           tabIndex={0}
           style={{
