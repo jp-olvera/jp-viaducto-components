@@ -18,24 +18,12 @@ describe('<Modal></Modal>', () => {
     container = null;
   });
   test('should not be visible', () => {
-    jest.useFakeTimers();
-
     ReactDOM.render(<Modal allowClickOutside={false} backgroundColor={null} />, container);
-    act(() => {
-      jest.advanceTimersByTime(230);
-    });
-
     expect(screen.queryByTestId('overlay')).toBe(null);
     expect(screen.queryByTestId('modal')).toBe(null);
   });
   test('should be visible', () => {
-    jest.useFakeTimers();
-
     ReactDOM.render(<Modal active />, container);
-
-    act(() => {
-      jest.advanceTimersByTime(230);
-    });
     expect(screen.getByTestId('overlay')).toBeVisible();
     expect(screen.getByTestId('modal')).toBeVisible();
   });
@@ -45,9 +33,6 @@ describe('<Modal></Modal>', () => {
     const handleActive = jest.fn();
     ReactDOM.render(<Modal active handleActive={handleActive} backgroundColor='red' />, container);
 
-    act(() => {
-      jest.advanceTimersByTime(230);
-    });
     fireEvent.click(screen.getByTestId('overlay'));
 
     act(() => {
@@ -65,10 +50,6 @@ describe('<Modal></Modal>', () => {
       </Modal>,
       container
     );
-
-    act(() => {
-      jest.advanceTimersByTime(230);
-    });
     fireEvent.keyDown(screen.getByText('content'), { keyCode: 27 });
     act(() => {
       jest.advanceTimersByTime(230);
@@ -85,9 +66,6 @@ describe('<Modal></Modal>', () => {
       </Modal>,
       container
     );
-    act(() => {
-      jest.advanceTimersByTime(230);
-    });
     fireEvent.keyDown(screen.getByText('content'), { keyCode: 27 });
     act(() => {
       jest.advanceTimersByTime(230);

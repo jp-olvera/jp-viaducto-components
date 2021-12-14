@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React, { useState, useRef } from 'react';
-import { render, fireEvent } from '../../../test-utils';
+import { render, fireEvent, act } from '../../../test-utils';
 import { Popover } from '..';
 
 const clickOutside = jest.fn();
@@ -118,6 +118,17 @@ describe('<Popover/>', () => {
     );
     fireEvent.click(getByText('show'));
     expect(getByText('content')).toBeVisible();
+  });
+  test('onEsc should call click outside', () => {
+    const { getByText } = render(<Template />);
+    fireEvent.click(getByText('show'));
+    fireEvent.keyDown(getByText('content'), { keyCode: 27 });
+    act(() => {
+      jest.advanceTimersByTime(230);
+    });
+
+    expect(getByText('content')).toBeInTheDocument();
+    expect(clickOutside).toBeCalledTimes(1);
   });
   // test('click on the overlay should call handleActive function', () => {
   //   jest.useFakeTimers();
