@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { render, screen, fireEvent } from '../../../test-utils';
+import { render, screen, fireEvent, act } from '../../../test-utils';
 import { Drawer } from '..';
 
 describe('<Drawer/>', () => {
@@ -31,9 +31,10 @@ describe('<Drawer/>', () => {
       </Drawer>
     );
     fireEvent.click(getByTestId('overlay'));
-    jest.runOnlyPendingTimers();
+    act(() => {
+      jest.advanceTimersByTime(230);
+    });
     expect(handleActive).toBeCalledTimes(1);
-    jest.useRealTimers();
   });
   test('should click drawer', () => {
     const handleActive = jest.fn();
