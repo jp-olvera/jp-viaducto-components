@@ -26,8 +26,7 @@ const StyledParagraph = styled.p<StyledParagraph>`
   font-size: ${({ size }) => getSize(size)};
   text-align: ${({ align }) => align || 'left'};
   line-height: ${({ lineHeight, size }) => getLineHeight(lineHeight, size)};
-  color: ${(p) =>
-    p.configuration.colors.text[p.color] || p.color || p.configuration.colors.text.dark};
+  color: ${(p) => p.configuration.colors.text[p.color] || p.color};
   vertical-align: ${({ verticalAlign }) => verticalAlign || 'baseline'};
   ${(p) => p.ellipsis && setEllipsisProps()};
 `;

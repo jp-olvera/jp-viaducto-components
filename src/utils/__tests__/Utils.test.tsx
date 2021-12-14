@@ -14,7 +14,7 @@ import {
   getBorder,
   getTitleLineHeight,
 } from '../getSizes';
-import { getMessageDifference } from '../getDateDifference';
+import { getMessageDifference, compareSelectedDates } from '../getDateDifference';
 
 describe('getBorder file', () => {
   test('should return not null value', () => {
@@ -319,6 +319,16 @@ describe('getDateDifference file', () => {
     });
     test('should return exact date with milliseconds', () => {
       expect(getMessageDifference(today, 1323669600000)).toEqual('12/12/2011');
+    });
+    test('should return compared dates', () => {
+      expect(compareSelectedDates(today, 1323669600000, 1323669600000)).toEqual(false);
+      expect(
+        compareSelectedDates(
+          today,
+          Number(new Date(today).toUTCString()),
+          Number(new Date(today).toUTCString())
+        )
+      ).toEqual(false);
     });
   });
 });

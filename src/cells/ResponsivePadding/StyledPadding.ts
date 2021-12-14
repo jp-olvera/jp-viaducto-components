@@ -81,19 +81,11 @@ export const getClamp = (
   return r;
 };
 
-const convertUnitsToNumber = (remPxUnit) => {
+const convertUnitsToNumber = (remPxUnit: string) => {
   // 13rem -> 13
   // 13px -> 13
   // 13em -> 13
-  if (remPxUnit.endsWith('rem')) {
-    return remPxUnit.split('rem')[0];
-  }
-  if (remPxUnit.endsWith('px')) {
-    return remPxUnit.split('px')[0];
-  }
-  if (remPxUnit.endsWith('em')) {
-    return remPxUnit.split('em')[0];
-  }
-  return 0;
+  const units = remPxUnit.replace('px', '').replace('rem', '').replace('em', '');
+  return isNaN(Number(units)) ? 0 : units;
 };
 export default StyledPadding;

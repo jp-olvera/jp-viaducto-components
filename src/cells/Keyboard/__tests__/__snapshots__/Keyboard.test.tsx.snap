@@ -2,20 +2,20 @@
 
 exports[`Keyboard change onKeyDown 1`] = `
 <span>
-  hi
+  content
 </span>
 `;
 
 exports[`Keyboard change onKeyDown 2`] = `
 <span>
-  hi
+  content
 </span>
 `;
 
 exports[`Keyboard onDown 1`] = `
 <div>
   <span>
-    hi
+    content
   </span>
 </div>
 `;
@@ -23,7 +23,7 @@ exports[`Keyboard onDown 1`] = `
 exports[`Keyboard onKeyDown 1`] = `
 <div>
   <span>
-    hi
+    content
   </span>
 </div>
 `;

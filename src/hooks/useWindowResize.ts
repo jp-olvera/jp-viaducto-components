@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export const useWindowResize = (size: number = 576, offset?: boolean) => {
+  /* istanbul ignore else */
   if (window) {
     const [off, setOffset] = useState(offset || !(window.innerWidth > size));
     useEffect(() => {

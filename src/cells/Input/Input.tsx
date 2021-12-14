@@ -44,8 +44,8 @@ const Input = forwardRef<HTMLInputElement, Input>(
       borderColor,
       backgroundColor = 'white',
       radius = 'sm',
-      preffix,
-      suffix,
+      preffix = null,
+      suffix = null,
       color = 'dark',
       isValid = null,
       darkDecoration = false,
@@ -57,11 +57,12 @@ const Input = forwardRef<HTMLInputElement, Input>(
     ref
   ) => {
     const { configuration } = useContext(ConfigContext);
-    const hasPrefix = preffix !== undefined;
-    const hasSuffix = suffix !== undefined;
+    const hasPrefix = preffix !== null || preffix !== undefined;
+    const hasSuffix = suffix !== null || suffix !== undefined;
     const [hasFocus, sethasFocus] = useState(false);
 
     const handleFocus = (ev) => {
+      /* istanbul ignore if */
       if (rest.onFocus) {
         rest.onFocus(ev);
       }
@@ -69,6 +70,7 @@ const Input = forwardRef<HTMLInputElement, Input>(
     };
 
     const handleBlur = (ev) => {
+      /* istanbul ignore if */
       if (rest.onBlur) {
         rest.onBlur(ev);
       }
@@ -76,7 +78,7 @@ const Input = forwardRef<HTMLInputElement, Input>(
     };
     return (
       <StyledInput
-        border={border !== 'bottom' && inputSize === 'xsmall' ? 'outside' : border}
+        border={border !== 'bottom' && inputSize === 'xsmall' ? 'default' : border}
         size={inputSize}
         radius={radius}
         hasPrefix={hasPrefix}
@@ -87,6 +89,7 @@ const Input = forwardRef<HTMLInputElement, Input>(
         borderColor={borderColor || configuration.colors.defaultInputBorderColor}
         backgroundColor={backgroundColor}
         color={color}
+        data-testid={id}
       >
         {preffix && <PrefixInput darkDecoration={darkDecoration}>{preffix}</PrefixInput>}
         <input type={type} ref={ref} onFocus={handleFocus} onBlur={handleBlur} {...rest} id={id} />

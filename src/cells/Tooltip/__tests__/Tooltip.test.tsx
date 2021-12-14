@@ -10,19 +10,20 @@ const Container = () => <div>Container who has the tooltip</div>;
 describe('<Tooltip/>', () => {
   test('label should be visible when mouseEnter Container', () => {
     render(
-      <Tooltip family={undefined} label='a'>
+      <Tooltip family={undefined} label='a' color='red'>
         <Container />
-      </Tooltip>,
+      </Tooltip>
     );
     fireEvent.mouseEnter(screen.getByTestId('tooltip'));
     expect(screen.queryByText('a')).toBeVisible();
+    fireEvent.mouseLeave(screen.getByTestId('tooltip'));
   });
 
   test('tooltip should not be rendered by default', () => {
     render(
       <Tooltip label='a'>
         <Container />
-      </Tooltip>,
+      </Tooltip>
     );
     expect(screen.queryByText('a')).toBe(null);
   });
@@ -31,7 +32,7 @@ describe('<Tooltip/>', () => {
     render(
       <Tooltip label='tooltip' position='left'>
         <Container />
-      </Tooltip>,
+      </Tooltip>
     );
     fireEvent.mouseEnter(screen.getByTestId('tooltip'));
 
@@ -40,9 +41,9 @@ describe('<Tooltip/>', () => {
 
   test('should render top tooltip', () => {
     render(
-      <Tooltip label='tooltip' position='top' color='white'>
+      <Tooltip label='tooltip' position='top' backgroundColor='primary'>
         <Container />
-      </Tooltip>,
+      </Tooltip>
     );
     fireEvent.mouseEnter(screen.getByTestId('tooltip'));
     expect(screen.queryByText('tooltip')).toBeVisible();
@@ -52,7 +53,7 @@ describe('<Tooltip/>', () => {
     render(
       <Tooltip label='tooltip' position='bottom' color='white'>
         <Container />
-      </Tooltip>,
+      </Tooltip>
     );
     fireEvent.mouseEnter(screen.getByTestId('tooltip'));
 

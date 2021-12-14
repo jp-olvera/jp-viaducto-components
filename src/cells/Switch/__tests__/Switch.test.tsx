@@ -3,9 +3,7 @@
 
 import React from 'react';
 
-import {
-  render, screen, fireEvent, axe,
-} from '../../../test-utils';
+import { render, screen, fireEvent, axe } from '../../../test-utils';
 import { Switch } from '..';
 
 describe('<Switch/>', () => {
@@ -14,7 +12,7 @@ describe('<Switch/>', () => {
       <label htmlFor='Switch'>
         Swicth
         <Switch id='Switch' inputSize='large' />
-      </label>,
+      </label>
     );
     expect(screen.getByTestId('Switch')).toBeVisible();
     expect(await axe(container)).toHaveNoViolations();
@@ -25,7 +23,7 @@ describe('<Switch/>', () => {
       <label htmlFor='Switch'>
         Swicth
         <Switch id='Switch' />
-      </label>,
+      </label>
     );
     const input = getByTestId('Switch');
     const selector = input.querySelector('input');
@@ -39,7 +37,7 @@ describe('<Switch/>', () => {
       <label htmlFor='switch1'>
         Swicth
         <Switch id='switch1' />
-      </label>,
+      </label>
     );
     const input = getByTestId('switch1');
     const selector = input.querySelector('input');
@@ -54,11 +52,9 @@ describe('<Switch/>', () => {
       <label htmlFor='Switch1'>
         Switch
         <Switch id='Switch1' inputSize='small' disabled />,
-      </label>,
+      </label>
     );
-    expect(
-      getByTestId('Switch1').querySelector('input')?.hasAttribute('disabled'),
-    ).toEqual(true);
+    expect(getByTestId('Switch1').querySelector('input')?.hasAttribute('disabled')).toEqual(true);
     expect(await axe(container)).toHaveNoViolations();
   });
 
@@ -67,19 +63,11 @@ describe('<Switch/>', () => {
     const { container, getByTestId } = render(
       <label htmlFor='Switch1'>
         Swicth
-        <Switch
-          id='Switch1'
-          inputSize='default'
-          disabled={false}
-          change={mock}
-        />
-        ,
-      </label>,
+        <Switch id='Switch1' inputSize='default' disabled={false} onChange={mock} />,
+      </label>
     );
     fireEvent.click(getByTestId('Switch1').querySelector('input'));
-    expect(
-      getByTestId('Switch1').querySelector('input')?.hasAttribute('disabled'),
-    ).toEqual(false);
+    expect(getByTestId('Switch1').querySelector('input')?.hasAttribute('disabled')).toEqual(false);
     expect(await axe(container)).toHaveNoViolations();
   });
   test('should fire hover event', async () => {
@@ -87,7 +75,7 @@ describe('<Switch/>', () => {
       <label htmlFor='Switch1'>
         Switch
         <Switch disabled={false} circular={false} id='Switch1' />,
-      </label>,
+      </label>
     );
     fireEvent.mouseOver(getByTestId('slider'));
     expect(container).toMatchSnapshot();
