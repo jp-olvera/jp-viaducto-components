@@ -9,6 +9,7 @@ export * from './Dropdown';
 export * from './Grid';
 export * from './FormItem';
 export * from './Hideable';
+export * from './Input';
 export * from './Overlay';
 export * from './Paragraph';
 export * from './Pill';
