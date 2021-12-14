@@ -7,17 +7,21 @@ import ChevronDatePicker from '../ChevronDatePicker';
 
 describe('<DatePicker/>', () => {
   test('should render properly', async () => {
-    const { container } = render(
-      <DatePicker range={false} onDateSelected={() => {}} />,
-    );
+    const { container } = render(<DatePicker range={false} onDateSelected={() => {}} />);
     expect(container).toBeVisible();
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
+  test('should render with date in number', async () => {
+    const { container } = render(
+      <DatePicker range={false} onDateSelected={() => {}} date={1639509703443} />
+    );
+    expect(container).toBeVisible();
+  });
   test('should navigate to the next month and lose the selected day', () => {
     const dateInJuly = new Date(2021, 6, 19);
     const { container, getByText } = render(
-      <DatePicker range={false} onDateSelected={() => {}} date={dateInJuly} />,
+      <DatePicker range={false} onDateSelected={() => {}} date={dateInJuly} />
     );
     expect(getByText('Jul - 2021')).toBeVisible();
     fireEvent.click(getByText('10'));
@@ -30,7 +34,7 @@ describe('<DatePicker/>', () => {
   test('should navigate to the next month', () => {
     const dateInJuly = new Date(2021, 6, 19);
     const { container, getByText } = render(
-      <DatePicker range={false} onDateSelected={() => {}} date={dateInJuly} />,
+      <DatePicker range={false} onDateSelected={() => {}} date={dateInJuly} />
     );
     expect(getByText('Jul - 2021')).toBeVisible();
     const nextMonthChevron = container.querySelector('.r');
@@ -40,7 +44,7 @@ describe('<DatePicker/>', () => {
   test('should navigate to the next year', () => {
     const dateInMay = new Date(2021, 4, 19);
     const { container, getByText } = render(
-      <DatePicker range={false} onDateSelected={() => {}} date={dateInMay} />,
+      <DatePicker range={false} onDateSelected={() => {}} date={dateInMay} />
     );
     expect(getByText('May - 2021')).toBeVisible();
     const nextYearChevron = container.querySelector('.dr');
@@ -50,7 +54,7 @@ describe('<DatePicker/>', () => {
   test('should navigate to the last month', () => {
     const dateInJuly = new Date(2021, 6, 19);
     const { container, getByText } = render(
-      <DatePicker range={false} onDateSelected={() => {}} date={dateInJuly} />,
+      <DatePicker range={false} onDateSelected={() => {}} date={dateInJuly} />
     );
     expect(getByText('Jul - 2021')).toBeVisible();
     const lastMonthChevron = container.querySelector('.l');
@@ -60,7 +64,7 @@ describe('<DatePicker/>', () => {
   test('should navigate to the last year', () => {
     const dateInMay = new Date(2021, 4, 19);
     const { container, getByText } = render(
-      <DatePicker range={false} onDateSelected={() => {}} date={dateInMay} />,
+      <DatePicker range={false} onDateSelected={() => {}} date={dateInMay} />
     );
     expect(getByText('May - 2021')).toBeVisible();
     const lastYearChevron = container.querySelector('.dl');
@@ -69,9 +73,7 @@ describe('<DatePicker/>', () => {
   });
   test('should select a date', () => {
     const mock = jest.fn();
-    const { getByText } = render(
-      <DatePicker range={false} onDateSelected={mock} />,
-    );
+    const { getByText } = render(<DatePicker range={false} onDateSelected={mock} />);
     fireEvent.click(getByText('20'));
     expect(mock).toHaveBeenCalled();
   });
@@ -82,12 +84,7 @@ describe('<DatePicker/>', () => {
     };
     const mock = jest.fn(() => result);
     const { getByText } = render(
-      <DatePicker
-        range
-        onDateSelected={mock}
-        date={new Date(1998, 6, 19)}
-        shapeColor='success'
-      />,
+      <DatePicker range onDateSelected={mock} date={new Date(1998, 6, 19)} shapeColor='success' />
     );
     fireEvent.click(getByText('20'));
     fireEvent.click(getByText('25'));

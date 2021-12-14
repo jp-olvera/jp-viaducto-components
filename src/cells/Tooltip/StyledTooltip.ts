@@ -9,8 +9,11 @@ interface TooltipContainerProps {
   position: string;
 }
 
-export const TooltipContainer = styled.div < TooltipContainerProps > `
-  background-color: ${({ backgroundColor, configuration }) => backgroundColor || configuration.colors.primary.default};
+export const TooltipContainer = styled.div<TooltipContainerProps>`
+  background-color: ${({ backgroundColor, configuration }) =>
+    configuration.colors[backgroundColor]
+      ? configuration.colors[backgroundColor].default
+      : backgroundColor};
   font-family: ${(p) => p.family || p.configuration.fontFamily};
   color: ${(p) => p.configuration.colors.text[p.color] || p.color};
   border-radius: 0.125rem;

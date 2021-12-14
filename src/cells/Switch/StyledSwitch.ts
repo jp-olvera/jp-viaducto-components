@@ -52,7 +52,7 @@ export const StyledSwitch = styled.label<any>`
     left: calc(${(p) => switchSize(p).size} * 1.75);
     top: 0;
     font-size: ${(p) => getSize(p.fontSize)};
-    font-family: ${(p) => p.family || 'Arial'};
+    font-family: ${(p) => p.family};
   }
   span {
     display: block;

@@ -9,9 +9,9 @@ import { Paragraph } from '..';
 describe('<Paragraph/>', () => {
   test('should render properly', () => {
     render(
-      <Paragraph color='green' family={null}>
+      <Paragraph color='green' family={null} ellipsis>
         Dummy text
-      </Paragraph>,
+      </Paragraph>
     );
     expect(screen.queryByText('Dummy text')).toBeVisible();
   });
@@ -20,7 +20,7 @@ describe('<Paragraph/>', () => {
     expect(screen.queryByText('Another text')).toBeVisible();
   });
   test('should render another text with default props', () => {
-    render(<Paragraph color={undefined}>Text with default props</Paragraph>);
+    render(<Paragraph color={'jlkj'}>Text with default props</Paragraph>);
     expect(screen.queryByText('Text with default props')).toBeVisible();
   });
 });

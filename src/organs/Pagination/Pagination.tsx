@@ -161,6 +161,7 @@ const Pagination = ({
       }
     }
     setActive((d) => pageNumber);
+    /* istanbul ignore else */
     if (onPageChange) {
       onPageChange(pageNumber);
     }

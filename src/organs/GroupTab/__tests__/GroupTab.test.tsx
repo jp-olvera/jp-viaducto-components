@@ -18,7 +18,7 @@ describe('<GroupTab/>', () => {
     const { container } = render(
       <GroupTab spacing={null}>
         <Tabs />
-      </GroupTab>,
+      </GroupTab>
     );
     expect(container).toBeVisible();
     expect(await axe(container)).toHaveNoViolations();
@@ -27,7 +27,7 @@ describe('<GroupTab/>', () => {
     const { container } = render(
       <GroupTab position='top'>
         <Tabs />
-      </GroupTab>,
+      </GroupTab>
     );
     expect(container).toBeVisible();
     expect(await axe(container)).toHaveNoViolations();
@@ -37,8 +37,8 @@ describe('<GroupTab/>', () => {
       <GroupTab position='top' spacing='none' onTabChange={jest.fn}>
         <Tab text='Zombie' />
         <Tab text='Act' />
-        <Tab text='Dinner' />
-      </GroupTab>,
+        <Tab text='Dinner' active />
+      </GroupTab>
     );
     const tab = queryByText('Dinner');
     fireEvent.click(tab);
@@ -51,7 +51,8 @@ describe('<GroupTab/>', () => {
         <Tab text='Zombie' />
         <Tab text='Act' />
         <Tab text='Dinner' />
-      </GroupTab>,
+        hola
+      </GroupTab>
     );
     const tab = queryByText('Dinner');
     fireEvent.click(tab);
@@ -73,8 +74,8 @@ describe('<GroupTab/>', () => {
           { spacing: 'lg' },
           'lg',
           () => {},
-          () => {},
-        ),
+          () => {}
+        )
       ).not.toBeNaN();
     });
     test('should call function with base 14', () => {
@@ -86,8 +87,8 @@ describe('<GroupTab/>', () => {
           'lg',
           () => {},
           () => {},
-          14,
-        ),
+          14
+        )
       ).not.toBeNaN();
     });
   });

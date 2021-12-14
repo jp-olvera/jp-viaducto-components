@@ -9,6 +9,7 @@ Object {
     <div>
       <div
         data-testid="overlay"
+        tabindex="0"
       >
         <div>
           sjsjs
@@ -19,6 +20,7 @@ Object {
   "container": <div>
     <div
       data-testid="overlay"
+      tabindex="0"
     >
       <div>
         sjsjs

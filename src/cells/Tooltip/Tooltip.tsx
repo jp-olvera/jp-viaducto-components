@@ -30,7 +30,7 @@ export interface Tooltip extends React.HTMLAttributes<HTMLDivElement> {
 
 const Tooltip = ({
   children,
-  backgroundColor = 'black',
+  backgroundColor = '#060606',
   color = 'white',
   family,
   label,
@@ -54,8 +54,8 @@ const Tooltip = ({
   };
 
   const handleMouseLeave = (ev) => {
+    /* istanbul ignore if */
     if (popRef.current && ref.current) {
-      /* istanbul ignore if */
       if (popRef.current.contains(ev.target) || ref.current.contains(ev.target)) {
         return;
       }

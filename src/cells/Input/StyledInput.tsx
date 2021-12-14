@@ -34,24 +34,6 @@ export const StyledInput = styled.div<StyledInputProps>`
       false,
       false
     )};
-  select[multiple] {
-    height: auto;
-    label {
-      top: -1em;
-    }
-  }
-  select:not([multiple]) {
-    padding-right: ${(p) => p.configuration.spacing.lg};
-    background: ${(p) =>
-      `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${
-        p.color?.replace('#', '%23') || p.configuration.colors.text.dark.replace('#', '%23')
-      }' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");`};
-    background-position: right ${(p) => p.configuration.spacing.sm} center;
-    background-repeat: no-repeat;
-    background-size: 1rem 0.75rem;
-    -webkit-appearance: none;
-    -moz-appearance: none !important;
-  }
   .dark-decoration {
     background-color: ${(p) => p.borderColor};
   }
@@ -91,7 +73,6 @@ export const StyledInput = styled.div<StyledInputProps>`
   label {
     color: ${(p) => p.configuration.colors.text.dark};
     font-family: ${(p) => p.configuration.fontFamily};
-    left: ${(p) => (p.hasPrefix ? '2.408rem' : p.configuration.spacing.sm)};
     max-width: 95%;
     overflow: hidden;
     position: absolute;
@@ -100,7 +81,6 @@ export const StyledInput = styled.div<StyledInputProps>`
     cursor: text;
     white-space: nowrap;
     position: absolute;
-    /* top: ${(p) => (p.hasFocus ? `calc(-${p.border === 'overlap' ? 8 : 16}px * 1.5)` : '24%')}; */
     top: calc(-${(p) => (p.border === 'overlap' ? 8 : 16)}px * 1.5);
     left: 8px;
     margin: 0;
@@ -124,7 +104,6 @@ export const StyledInput = styled.div<StyledInputProps>`
   input[type='number']input:not(placeholder-shown)input:not([value='']) ~ label,
   input:read-only ~ label {
     position: absolute;
-    /* top: ${(p) => (p.hasFocus ? `calc(-${p.border === 'overlap' ? 8 : 16}px * 1.5)` : '24%')}; */
     top: calc(-${(p) => (p.border === 'overlap' ? 8 : 16)}px * 1.5);
     left: 8px;
     margin: 0;
@@ -220,19 +199,24 @@ export const getInputBorderStyle = (
       `;
     case 'overlap':
     default:
+      /* istanbul ignore if */
       if (hasPrefix && !hasSuffix) {
         return css`
           border-top: 0.031rem solid ${borderColor};
           border-bottom: 0.031rem solid ${borderColor};
           border-right: 0.031rem solid ${borderColor};
         `;
-      } else if (!hasPrefix && hasSuffix) {
+      }
+      /* istanbul ignore if */
+      if (!hasPrefix && hasSuffix) {
         return css`
           border-top: 0.031rem solid ${borderColor};
           border-bottom: 0.031rem solid ${borderColor};
           border-left: 0.031rem solid ${borderColor};
         `;
-      } else if (!hasPrefix && !hasSuffix) {
+      }
+      /* istanbul ignore if */
+      if (!hasPrefix && !hasSuffix) {
         return css`
           border-top: 0.031rem solid ${borderColor};
           border-left: 0.031rem solid ${borderColor};
@@ -271,17 +255,22 @@ export const getBorderRadius = (
     case 'overlap':
     case 'default':
     case 'outside':
+      /* istanbul ignore if */
       if (hasPrefix && !hasSuffix) {
         return css`
           border-top-right-radius: ${radiusConfig[radius]};
           border-bottom-right-radius: ${radiusConfig[radius]};
         `;
-      } else if (!hasPrefix && hasSuffix) {
+      }
+      /* istanbul ignore if */
+      if (!hasPrefix && hasSuffix) {
         return css`
           border-top-left-radius: ${radiusConfig[radius]};
           border-bottom-left-radius: ${radiusConfig[radius]};
         `;
-      } else if (!hasPrefix && !hasSuffix) {
+      }
+      /* istanbul ignore if */
+      if (!hasPrefix && !hasSuffix) {
         return css`
           border-radius: ${radiusConfig[radius]};
         `;

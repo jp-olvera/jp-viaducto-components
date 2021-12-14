@@ -31,16 +31,16 @@ export interface DatePicker extends React.HTMLAttributes<HTMLDivElement> {
  * @returns onDateSelected (data: {date Date |Date[], dateString: string|string[]}) => void
  */
 const DatePicker = ({
-  date = new Date(),
+  date,
   onDateSelected,
   shapeColor = 'danger',
   range,
   ...rest
 }: DatePicker) => {
   const { configuration } = useContext(ConfigContext);
-  const [d, setD] = useState<Date | number>(date || new Date(date));
+  const [d, setD] = useState<Date | number>(date || new Date());
   useEffect(() => {
-    setD(typeof date === 'number' ? new Date(date) : date);
+    setD(typeof date === 'number' ? new Date(date) : new Date());
   }, [date]);
   return (
     <StyledDatePicker config={configuration} range={range} {...rest}>
