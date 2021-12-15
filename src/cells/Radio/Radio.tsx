@@ -19,7 +19,7 @@ export interface Radio extends React.InputHTMLAttributes<HTMLInputElement> {
   /** Label for the input */
   label?: string;
   /** Size of the input */
-  radioSize?: 'xl' | 'lg' | 'md' | 'sm';
+  inputSize?: 'xl' | 'lg' | 'md' | 'sm';
   /** Set the horizontal spacing between the label (if it is defined) and the radio */
   spacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
 }
@@ -33,7 +33,7 @@ export interface Radio extends React.InputHTMLAttributes<HTMLInputElement> {
  * @param {string} fontSize Font Size of the input
  * @param {string} label Label for the input
  * @param {Function} onClick Triger an action on input click
- * @param {string} radioSize Size of the input
+ * @param {string} inputSize Size of the input
  * @param {string} spacing Set the horizontal spacing between the label (if it is defined) and the radio
  */
 
@@ -43,8 +43,8 @@ const Radio = forwardRef<HTMLInputElement, Radio>(
       label,
       name,
       family,
-      radioSize,
-      color,
+      inputSize,
+      color = 'primary',
       spacing,
       fontSize,
       onChange,
@@ -61,7 +61,7 @@ const Radio = forwardRef<HTMLInputElement, Radio>(
         htmlFor={props.id}
         configuration={configuration}
         family={family}
-        radioSize={radioSize}
+        inputSize={inputSize}
         fontSize={fontSize}
         color={color}
         disabled={props.disabled}

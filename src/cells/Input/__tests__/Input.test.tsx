@@ -7,7 +7,12 @@ import { Input } from '..';
 
 describe('<Input/>', () => {
   test('should render properly', async () => {
-    const { container, getByTestId } = render(<Input id='testing' label='Axe testing' />);
+    const { container, getByTestId } = render(
+      <>
+        <Input id='testing' />
+        <label htmlFor='testing'>Default</label>
+      </>
+    );
     const input = getByTestId('testing').querySelector('input');
     expect(getByTestId('testing')).toBeVisible();
     const results = await axe(container);
@@ -16,21 +21,12 @@ describe('<Input/>', () => {
     expect(res).toHaveNoViolations();
   });
   test('should render with suffix', async () => {
-    const { container } = render(
-      <Input id='testing' label='Axe testing' suffix={<ArrowRight />} darkDecoration />
-    );
+    const { container } = render(<Input id='testing' suffix={<ArrowRight />} darkDecoration />);
     expect(container).toBeVisible();
   });
   test('should render with preffix and outside border', async () => {
     const { container } = render(
-      <Input
-        id='testing'
-        label='Axe testing'
-        preffix={<ArrowLeft />}
-        border='none'
-        inputSize='xsmall'
-        darkDecoration
-      />
+      <Input id='testing' preffix={<ArrowLeft />} border='none' inputSize='xsmall' darkDecoration />
     );
     expect(container).toBeVisible();
   });
@@ -44,7 +40,7 @@ describe('<Input/>', () => {
   });
   test('should render disabled input', async () => {
     const { container } = render(
-      <Input id='testing' backgroundColor='red' disabled border='overlap' label='disabled' />
+      <Input id='testing' backgroundColor='red' disabled border='overlap' />
     );
     const input = container.querySelector('input');
     expect(input.disabled).toBe(true);
@@ -57,45 +53,26 @@ describe('<Input/>', () => {
     expect(input).toBeVisible();
   });
   test('should render input with bottom border', async () => {
-    const { container } = render(
-      <Input id='testing' borderColor='red' border='bottom' label='Default label' />
-    );
+    const { container } = render(<Input id='testing' borderColor='red' border='bottom' />);
     const input = container.querySelector('input');
     expect(input).toBeVisible();
   });
   test('should render valid input with none border', async () => {
-    const { container } = render(
-      <Input id='testing' isValid border='none' label='Default label' />
-    );
+    const { container } = render(<Input id='testing' isValid border='none' />);
     const input = container.querySelector('input');
     expect(input).toBeVisible();
   });
   test('should render  invalid input with none border', async () => {
-    const { container } = render(
-      <Input id='testing' isValid={false} border='none' label='Default label' />
-    );
+    const { container } = render(<Input id='testing' isValid={false} border='none' />);
     const input = container.querySelector('input');
     expect(input).toBeVisible();
   });
   test('should render inputs with different sizes', async () => {
     const { container } = render(
       <>
-        <Input
-          id='testing'
-          isValid={false}
-          radius='sm'
-          inputSize='small'
-          border='overlap'
-          label='Default label'
-        />
-        <Input
-          id='testing2'
-          isValid={false}
-          border='none'
-          inputSize='large'
-          label='Default label 2'
-        />
-        <Input id='testing3' isValid={false} border='none' label='Default label 3' />
+        <Input id='testing' isValid={false} radius='sm' inputSize='small' border='overlap' />
+        <Input id='testing2' isValid={false} border='none' inputSize='large' />
+        <Input id='testing3' isValid={false} border='none' />
       </>
     );
     expect(container).toBeVisible();

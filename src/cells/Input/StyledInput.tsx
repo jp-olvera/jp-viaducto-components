@@ -70,48 +70,6 @@ export const StyledInput = styled.div<StyledInputProps>`
       )};
   }
 
-  label {
-    color: ${(p) => p.configuration.colors.text.dark};
-    font-family: ${(p) => p.configuration.fontFamily};
-    max-width: 95%;
-    overflow: hidden;
-    position: absolute;
-    text-overflow: ellipsis;
-    transition: top 230ms ease, left 230ms ease;
-    cursor: text;
-    white-space: nowrap;
-    position: absolute;
-    top: calc(-${(p) => (p.border === 'overlap' ? 8 : 16)}px * 1.5);
-    left: 8px;
-    margin: 0;
-    padding: 0;
-    line-height: 150%;
-    background-color: ${(p) =>
-      p.border === 'overlap' ? (p.backgroundColor ? p.backgroundColor : 'white') : 'transparent'};
-  }
-
-  input[required] ~ label {
-    padding-left: 0.625rem;
-    ::after {
-      content: '*';
-      color: ${(p) => p.configuration.colors.text.danger};
-      position: absolute;
-      color: #b71c1c;
-      left: 8px;
-    }
-  }
-
-  input[type='number']input:not(placeholder-shown)input:not([value='']) ~ label,
-  input:read-only ~ label {
-    position: absolute;
-    top: calc(-${(p) => (p.border === 'overlap' ? 8 : 16)}px * 1.5);
-    left: 8px;
-    margin: 0;
-    padding: 0;
-    line-height: 150%;
-    background-color: ${(p) => (p.border === 'overlap' ? p.backgroundColor : 'transparent')};
-  }
-
   input:disabled,
   input:disabled ~ .ballena-prefix-input,
   input:disabled ~ .ballena-suffix-input {
@@ -119,12 +77,6 @@ export const StyledInput = styled.div<StyledInputProps>`
     background-color: ${(p) => p.configuration.colors.disableColor};
     border-color: ${(p) => p.configuration.colors.disableColor};
     opacity: 1;
-  }
-  input:disabled ~ label {
-    background-color: ${(p) =>
-      p.border === 'overlap'
-        ? p.configuration.colors.disableColor
-        : p.configuration.colors.background} !important;
   }
 
   .ballena-prefix-input {
@@ -197,10 +149,9 @@ export const getInputBorderStyle = (
       return css`
         border: 0.031rem solid transparent;
       `;
-    case 'overlap':
     default:
       /* istanbul ignore if */
-      if (hasPrefix && !hasSuffix) {
+      if (hasPrefix === true && !hasSuffix) {
         return css`
           border-top: 0.031rem solid ${borderColor};
           border-bottom: 0.031rem solid ${borderColor};
@@ -208,7 +159,7 @@ export const getInputBorderStyle = (
         `;
       }
       /* istanbul ignore if */
-      if (!hasPrefix && hasSuffix) {
+      if (!hasPrefix === true && hasSuffix) {
         return css`
           border-top: 0.031rem solid ${borderColor};
           border-bottom: 0.031rem solid ${borderColor};
@@ -216,16 +167,20 @@ export const getInputBorderStyle = (
         `;
       }
       /* istanbul ignore if */
-      if (!hasPrefix && !hasSuffix) {
+      if (hasPrefix === true && hasSuffix === true) {
         return css`
           border-top: 0.031rem solid ${borderColor};
+          border-bottom: 0.031rem solid ${borderColor};
+          /* border-top: 0.031rem solid ${borderColor};
           border-left: 0.031rem solid ${borderColor};
           border-right: 0.031rem solid ${borderColor};
-          border-bottom: 0.031rem solid ${borderColor};
+          border-bottom: 0.031rem solid ${borderColor}; */
         `;
       }
       return css`
         border-top: 0.031rem solid ${borderColor};
+        border-left: 0.031rem solid ${borderColor};
+        border-right: 0.031rem solid ${borderColor};
         border-bottom: 0.031rem solid ${borderColor};
       `;
   }

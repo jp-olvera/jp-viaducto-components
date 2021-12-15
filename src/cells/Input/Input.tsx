@@ -4,6 +4,7 @@ import PrefixInput from './PrefixInput';
 import { StyledInput } from './StyledInput';
 import SuffixInput from './SuffixInput';
 
+/** Input component */
 interface Input extends React.InputHTMLAttributes<HTMLInputElement> {
   /** The border type for the input (full, bottom, overlap) */
   border?: 'bottom' | 'none' | 'default' | 'overlap';
@@ -31,10 +32,22 @@ interface Input extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: string;
   /** input ID */
   id: string;
-  /** Label text for input */
-  label?: string;
 }
-
+/**
+ * Input component
+ * @param {'bottom' | 'none' | 'default' | 'overlap'} border The border type for the input (full, bottom, overlap)
+ * @param {string | null} borderColor set the border colo
+ * @param {string} color set the text color
+ * @param {string} backgroundColor set the background color
+ * @param {'xsmall' | 'small' | 'default' | 'large'} inputSize Set the height of the input
+ * @param {boolean | null} isValid isValid, null (default value) doesn't indicate is valid nor is invali
+ * @param {React.ReactNode} preffix prefix
+ * @param {'none' | 'sm' | 'md' | 'lg'} radius radius
+ * @param {React.ReactNode} suffix suffix
+ * @param {boolean} darkDecoration Indicates if the prefix and/or suffix should have a background-color
+ * @param {string} type input type
+ * @param {string} id input ID
+ */
 const Input = forwardRef<HTMLInputElement, Input>(
   (
     {
@@ -49,32 +62,30 @@ const Input = forwardRef<HTMLInputElement, Input>(
       color = 'dark',
       isValid = null,
       darkDecoration = false,
-      padding = '1.563rem 0',
       id,
-      label,
+      onFocus,
+      onBlur,
       ...rest
     }: Input,
     ref
   ) => {
     const { configuration } = useContext(ConfigContext);
-    const hasPrefix = preffix !== null || preffix !== undefined;
-    const hasSuffix = suffix !== null || suffix !== undefined;
+    const hasPrefix = preffix !== null;
+    const hasSuffix = suffix !== null;
     const [hasFocus, sethasFocus] = useState(false);
 
-    const handleFocus = (ev) => {
-      /* istanbul ignore if */
-      if (rest.onFocus) {
-        rest.onFocus(ev);
-      }
+    const handleFocus = (ev: React.FocusEvent<HTMLInputElement, Element>) => {
       sethasFocus(true);
+      if (onFocus) {
+        onFocus(ev);
+      }
     };
 
-    const handleBlur = (ev) => {
-      /* istanbul ignore if */
-      if (rest.onBlur) {
-        rest.onBlur(ev);
-      }
+    const handleBlur = (ev: React.FocusEvent<HTMLInputElement, Element>) => {
       sethasFocus(false);
+      if (onBlur) {
+        onBlur(ev);
+      }
     };
     return (
       <StyledInput
@@ -92,23 +103,18 @@ const Input = forwardRef<HTMLInputElement, Input>(
         data-testid={id}
       >
         {preffix && <PrefixInput darkDecoration={darkDecoration}>{preffix}</PrefixInput>}
-        <input type={type} ref={ref} onFocus={handleFocus} onBlur={handleBlur} {...rest} id={id} />
+        <input
+          type={type}
+          ref={ref}
+          onFocus={(e) => handleFocus(e)}
+          onBlur={(e) => handleBlur(e)}
+          {...rest}
+          id={id}
+        />
         {suffix && <SuffixInput darkDecoration={darkDecoration}>{suffix}</SuffixInput>}
-        <label htmlFor={id}>{label}</label>
       </StyledInput>
     );
   }
 );
 
 export default Input;
-
-/**
- * Razones para no usar el label animado
- * 1. Es difícil de controlar'
- * 2. Hay cosas que podrían ser más importantes que la animación pero se están haciendo en torno a ella
- * 3. No se puede hacer el onfocus desde los prefijos o sufijos
- * 4. Nunca se va a ver bien con el select múltiple
- * 5. Los prefijos siempre deben ser de cierto tamaño o van a salir recortados hacia los lados, no podría haber un texto como prefijo
- * 6. No se puede agregar un box-shadow (alternativa al outline que se ve mal con los prefijos y sufijos) sin tener que usar addEventListeners cosa que se debe evitar
- * 7. Se necesitan paddings o margins para recuperar el espacio donde el label se solapa, calcularlos es difícil considerando los tamaños de los inputs
- */
