@@ -7,7 +7,7 @@ import { StyledLabel } from './StyledCheckbox';
 /** Checkbox input component */
 export interface Checkbox extends React.InputHTMLAttributes<HTMLInputElement> {
   /** Size of the input */
-  checkSize?: 'xl' | 'lg' | 'md' | 'sm';
+  inputSize?: 'xl' | 'lg' | 'md' | 'sm';
   /** Color for the checkbox */
   color?: string;
   /** Enable/disable input */
@@ -20,21 +20,40 @@ export interface Checkbox extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   /** Spacing for the checkbox */
   spacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
+  /** Input Border radius */
+  radius?: 'none' | 'sm' | 'md' | 'lg';
 }
 
 /**
  * Checkbox input component
- * @param {string} checkSize Size of the input
+ * @param {string} inputSize Size of the input
  * @param {string} color Color for the checkbox
  * @param {boolean} disabled Enable/disable input
  * @param {string} family Font family fot the input
  * @param {string} fontSize Font size of the input
  * @param {string} label Label for the input
  * @param {string} spacing Spacing for the checkbox
+ * @param {string} radius Input Border radius
  */
 
+//TODO: add radius
+//TODO: change hover color
+//TODO: change back size
 const Checkbox = forwardRef<HTMLInputElement, Checkbox>(
-  ({ label, family, checkSize, fontSize, color, onChange, spacing, ...props }: Checkbox, ref) => {
+  (
+    {
+      label,
+      family,
+      inputSize,
+      fontSize,
+      color = 'primary',
+      onChange,
+      spacing,
+      radius,
+      ...props
+    }: Checkbox,
+    ref
+  ) => {
     const { configuration } = useContext(ConfigContext);
     const [check, setCheck] = useState(false);
     return (
@@ -42,11 +61,12 @@ const Checkbox = forwardRef<HTMLInputElement, Checkbox>(
         htmlFor={props.id}
         configuration={configuration}
         family={family}
-        checkSize={checkSize}
+        inputSize={inputSize}
         fontSize={fontSize}
         color={color}
         disabled={props.disabled}
         data-testid={props.id}
+        radius={radius}
       >
         <input
           ref={ref}
