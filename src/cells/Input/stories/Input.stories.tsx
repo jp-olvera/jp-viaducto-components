@@ -2,7 +2,7 @@ import { ArrowArcRight, Eye, EyeClosed } from 'phosphor-react';
 import React, { useState } from 'react';
 import { Input } from '..';
 import { ConfigProvider } from '../../../providers';
-import { BareButton } from '../../../cells';
+import { BareButton, Paragraph } from '../../../cells';
 
 const config: any = {
   title: 'Ballena/Controls/Input',
@@ -26,19 +26,43 @@ export default config;
 
 const Template = ({ ...args }: any) => {
   const [show, setShow] = useState(false);
+
+  const handleBlur = () => {
+    console.log('blur');
+  };
+  const handleFocus = () => {
+    console.log('focus');
+  };
+
   return (
     <ConfigProvider>
       <div style={{ marginTop: 15, display: 'flex', flexDirection: 'column', gap: 36 }}>
-        <Input {...args} preffix={<ArrowArcRight />} />
-        <Input {...args} preffix={<ArrowArcRight />} label='With darkDecoration' darkDecoration />
-        <Input {...args} label='Black & gray' borderColor='black' backgroundColor='lightGray' />
         <Input
           {...args}
-          label='Transparent & gray'
-          borderColor='transparent'
-          backgroundColor='lightGray'
+          preffix={<ArrowArcRight />}
+          suffix={<ArrowArcRight />}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
         />
-        <Input {...args} label='Black & transparent' borderColor='black' />
+        <label>
+          <Paragraph size='sm' weight={'500'}>
+            With darkDecoration
+          </Paragraph>
+          <Input {...args} preffix={<ArrowArcRight />} darkDecoration />
+        </label>
+        <label>
+          <Paragraph size='sm'>Black & gray</Paragraph>
+          <Input {...args} borderColor='black' backgroundColor='lightGray' />
+        </label>
+        <label>
+          <Paragraph size='sm'>Transparent & gray</Paragraph>
+
+          <Input {...args} borderColor='transparent' backgroundColor='lightGray' />
+        </label>
+        <label>
+          <Paragraph size='sm'>Black & transparent</Paragraph>
+          <Input {...args} borderColor='black' />
+        </label>
         <Input
           {...args}
           placeholder='Type your secret password'

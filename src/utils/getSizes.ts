@@ -118,7 +118,7 @@ const getRadioSizes = (size: string) => {
           width: 0.9rem;
         `,
         circle_size: css`
-          background-size: 1.25rem;
+          background-size: calc(0.9rem + 8px);
         `,
       };
     case 'md':
@@ -128,7 +128,7 @@ const getRadioSizes = (size: string) => {
           width: 1.2rem;
         `,
         circle_size: css`
-          background-size: 2.063rem;
+          background-size: calc(1.2rem + 8px);
         `,
       };
     case 'lg':
@@ -139,7 +139,7 @@ const getRadioSizes = (size: string) => {
           width: 1.5rem;
         `,
         circle_size: css`
-          background-size: 2.688rem;
+          background-size: calc(1.5rem + 8px);
         `,
       };
     case 'xl':
@@ -149,7 +149,7 @@ const getRadioSizes = (size: string) => {
           width: 2rem;
         `,
         circle_size: css`
-          background-size: 3.625rem;
+          background-size: calc(2rem + 8px);
         `,
       };
   }
@@ -164,7 +164,7 @@ const getCheckSizes = (size: string) => {
           width: 0.9rem;
         `,
         mark_size: css`
-          background-size: 0.8rem;
+          background-size: calc(0.9rem - 4px);
         `,
       };
     case 'md':
@@ -174,7 +174,7 @@ const getCheckSizes = (size: string) => {
           width: 1.2rem;
         `,
         mark_size: css`
-          background-size: 1rem;
+          background-size: calc(1.2rem - 4px);
         `,
       };
     case 'lg':
@@ -185,7 +185,7 @@ const getCheckSizes = (size: string) => {
           width: 1.5rem;
         `,
         mark_size: css`
-          background-size: 1.5rem;
+          background-size: calc(1.5rem - 4px);
         `,
       };
     case 'xl':
@@ -195,7 +195,7 @@ const getCheckSizes = (size: string) => {
           width: 2rem;
         `,
         mark_size: css`
-          background-size: 2rem;
+          background-size: calc(2rem - 4px);
         `,
       };
   }

@@ -227,7 +227,7 @@ describe('getSizes file', () => {
     test('should have default radio props', () => {
       const smallProps = {
         circle: ['height:1.5rem;width:1.5rem;'],
-        circle_size: ['background-size:2.688rem;'],
+        circle_size: ['background-size:calc(1.5rem + 8px);'],
       };
 
       expect(getRadioSizes('aaa')).toEqual(smallProps);
@@ -235,14 +235,14 @@ describe('getSizes file', () => {
     test('should have sm radio props', () => {
       const defaultProps = {
         circle: ['height:0.9rem;width:0.9rem;'],
-        circle_size: ['background-size:1.25rem;'],
+        circle_size: ['background-size:calc(0.9rem + 8px);'],
       };
       expect(getRadioSizes('sm')).toEqual(defaultProps);
     });
     test('should have md radio props', () => {
       const mdProps = {
         circle: ['height:1.2rem;width:1.2rem;'],
-        circle_size: ['background-size:2.063rem;'],
+        circle_size: ['background-size:calc(1.2rem + 8px);'],
       };
       expect(getRadioSizes('md')).toEqual(mdProps);
     });
