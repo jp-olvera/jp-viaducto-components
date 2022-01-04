@@ -11,11 +11,12 @@ export interface ConfigProvider {
 
 export interface ConfigContext {
   configuration: ConfigProps;
-  updateConfig?: Function;
+  updateConfig: Function;
 }
 
 export const ConfigContext = createContext<ConfigContext>({
   configuration: config,
+  updateConfig: () => {},
 });
 
 const ConfigProvider = ({ children }: ConfigProvider) => {

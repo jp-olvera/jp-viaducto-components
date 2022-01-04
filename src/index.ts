@@ -6,3 +6,5 @@ export * from './organisms';
 export * from './providers';
 export * from './hooks';
 export * from './dialog';
+import config from './utils/config';
+export { config };
