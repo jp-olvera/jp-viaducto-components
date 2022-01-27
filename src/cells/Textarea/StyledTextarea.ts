@@ -19,4 +19,9 @@ export const StyledTextarea = styled.textarea<any>`
   ${(p) =>
     p.borderColor ? `border-color: ${p.borderColor};` : p.configuration.defaultInputBorderColor};
   ${(p) => p.disabled && 'cursor: not-allowed'};
+  outline: none;
+
+  &:focus {
+    filter: drop-shadow(0px 1px 2px #dbdde3);
+  }
 `;
