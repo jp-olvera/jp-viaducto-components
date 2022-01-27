@@ -22,8 +22,8 @@ export const StyledInput = styled.div<StyledInputProps>`
   box-sizing: border-box;
   display: flex;
   height: ${({ size, configuration }) => configuration.controlHeight[size]};
-  box-shadow: ${({ hasFocus }) => (hasFocus ? '0px 1px 3px #cecece' : '')};
-  background-color: ${(p) => p.backgroundColor};
+  filter: ${({ hasFocus }) => (hasFocus ? 'drop-shadow(0px 1px 2px #dbdde3)' : '')};
+  background-color: transparent;
   ${(p) =>
     getBorderRadius(
       p.border,
@@ -35,7 +35,9 @@ export const StyledInput = styled.div<StyledInputProps>`
       false
     )};
   .dark-decoration {
-    background-color: ${(p) => p.borderColor};
+    background-color: ${(p) => p.borderColor} !important;
+    padding-left: 0.694rem !important;
+    padding-right: 0.694rem !important;
   }
 
   input {
@@ -81,6 +83,7 @@ export const StyledInput = styled.div<StyledInputProps>`
 
   .ballena-prefix-input {
     align-items: center;
+    background-color: ${(p) => p.backgroundColor};
     border: none;
     box-sizing: border-box;
     display: flex;
@@ -88,7 +91,7 @@ export const StyledInput = styled.div<StyledInputProps>`
     width: auto;
     min-width: 1.632rem;
     padding-left: 0.694rem;
-    padding-right: 0.694rem;
+    padding-right: 0; // without dark decoration
     ${(p) =>
       getIsValidBorder(
         p.isValid,
@@ -101,19 +104,20 @@ export const StyledInput = styled.div<StyledInputProps>`
   }
   .ballena-suffix-input {
     align-items: center;
+    background-color: ${(p) => p.backgroundColor};
     border: none;
     box-sizing: border-box;
     display: flex;
     height: 100%;
     width: auto;
     min-width: 1.632rem;
-    padding-right: 0.694rem;
-    padding-left: 0.694rem;
+    padding-left: 0; // without dark decoration
+    padding-right: 0.694rem; 
     ${(p) =>
       getIsValidBorder(
         p.isValid,
-        p.configuration.colors.success.default,
-        p.configuration.colors.danger.default
+        p.configuration.colors.success.click,
+        p.configuration.colors.danger.click
       )};
     ${(p) => getSuffixBorderStyle(p.border, p.borderColor)};
     ${(p) =>
