@@ -66,5 +66,4 @@ export const Default = Template.bind({});
 Default.args = {
   range: false,
   shapeColor: 'danger',
-  date: new Date(1998, 6, 19),
 };

@@ -41,7 +41,7 @@ const Calendar = ({ date, shapeColor, range, onDateSelected, ...rest }: Calendar
       d.getDate() === day
     );
   };
-  const [allDays] = useState(getAllDaysInMonth(today.getMonth(), today.getFullYear()));
+  const [allDays, setAllDays] = useState(getAllDaysInMonth(today.getMonth(), today.getFullYear()));
   const [selected, setSelected] = useState<{
     prevSelected?: number;
     prevSelectedDate?: Date;
@@ -59,6 +59,7 @@ const Calendar = ({ date, shapeColor, range, onDateSelected, ...rest }: Calendar
 
   useEffect(() => {
     setToday(today);
+    setAllDays(getAllDaysInMonth(today.getMonth(), today.getFullYear()));
   }, [today]);
 
   return (
