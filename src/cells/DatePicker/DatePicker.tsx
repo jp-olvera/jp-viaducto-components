@@ -46,12 +46,11 @@ const DatePicker = ({
   useEffect(() => {
     setD(new Date(date));
   }, [date]);
-  const handleDateSelected = React.useCallback(onDateSelected, []);
   return (
     <StyledDatePicker config={configuration} range={range} {...rest}>
       <Calendar
         date={d}
-        onDateSelected={handleDateSelected}
+        onDateSelected={onDateSelected}
         shapeColor={shapeColor}
         range={range}
         lang={lang}
