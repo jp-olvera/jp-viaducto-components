@@ -27,6 +27,9 @@ const DatePickerHeader = ({
   const { configuration } = useContext(ConfigContext);
   const { dark } = configuration.colors.text;
 
+  const date = React.useCallback(() => {
+    return months[today.getMonth()] + '-' + today.getFullYear().toString();
+  }, [today]);
   return (
     <>
       <Container expandHorizontal vertical='xs'>
@@ -58,7 +61,7 @@ const DatePickerHeader = ({
             <ChevronDatePicker color={dark} type='l' className='l' />
           </button>
           <Paragraph weight='500' align='center' size='sm'>
-            {months[today.getMonth()]} - {today.getFullYear()}
+            {date()}
           </Paragraph>
           <button
             type='button'

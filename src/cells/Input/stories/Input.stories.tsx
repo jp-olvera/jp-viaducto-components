@@ -2,7 +2,7 @@ import { ArrowArcRight, Eye, EyeClosed } from 'phosphor-react';
 import React, { useState } from 'react';
 import { Input } from '..';
 import { ConfigProvider } from '../../../providers';
-import { BareButton, Paragraph } from '../../../cells';
+import { BareButton, Paragraph, Textarea } from '../../../cells';
 
 const config: any = {
   title: 'Ballena/Controls/Input',
@@ -36,7 +36,7 @@ const Template = ({ ...args }: any) => {
 
   return (
     <ConfigProvider>
-      <div style={{ marginTop: 15, display: 'flex', flexDirection: 'column', gap: 36 }}>
+      <div style={{ padding: 5, marginTop: 15, display: 'flex', flexDirection: 'column', gap: 36, backgroundColor: 'rgb(244, 247, 246)' }}>
         <Input
           {...args}
           preffix={<ArrowArcRight />}
@@ -77,6 +77,7 @@ const Template = ({ ...args }: any) => {
             </button>
           }
         />
+        <Textarea />
       </div>
     </ConfigProvider>
   );

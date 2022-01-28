@@ -21,8 +21,9 @@ export interface Calendar extends React.HTMLAttributes<HTMLDivElement> {
     date: Date | Date[];
     dateString: string | string[];
   }) => void | undefined;
+  lang?: 'en' | 'es';
 }
-const Calendar = ({ date, shapeColor, range, onDateSelected, ...rest }: Calendar) => {
+const Calendar = ({ date, shapeColor, range, onDateSelected, lang = 'en', ...rest }: Calendar) => {
   const [firstDate, setFirstDate] = useState<Date | null>();
   const [secondDate, setSecondDate] = useState<Date | null>();
   const [isSelecting, setIsSelecting] = useState(false);
@@ -41,7 +42,7 @@ const Calendar = ({ date, shapeColor, range, onDateSelected, ...rest }: Calendar
       d.getDate() === day
     );
   };
-  const [allDays] = useState(getAllDaysInMonth(today.getMonth(), today.getFullYear()));
+  const [allDays, setAllDays] = useState(getAllDaysInMonth(today.getMonth(), today.getFullYear()));
   const [selected, setSelected] = useState<{
     prevSelected?: number;
     prevSelectedDate?: Date;
@@ -51,14 +52,13 @@ const Calendar = ({ date, shapeColor, range, onDateSelected, ...rest }: Calendar
     prevSelected: -1,
     selected: -1,
   });
-
-  const lang = 'en';
   const months = MONTHS[lang];
   const days = DAYS[lang];
   const firstDay = getStarterDay(today.getFullYear(), today.getMonth());
 
   useEffect(() => {
     setToday(today);
+    setAllDays(getAllDaysInMonth(today.getMonth(), today.getFullYear()));
   }, [today]);
 
   return (

@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: '10.x'
           registry-url: 'https://registry.npmjs.org'
@@ -17,7 +17,7 @@ jobs:
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           registry-url: 'https://npm.pkg.github.com'
       - run: npm install
@@ -26,8 +26,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Merge into main
-        uses: devmasx/merge-branch@v1.3.1
+        uses: devmasx/merge-branch@master
         with:
+          message: 'merge release into main'
           type: now
           target_branch: main
           github_token: ${{ github.token }}

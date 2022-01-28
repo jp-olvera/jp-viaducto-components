@@ -42,20 +42,23 @@ export interface Paragraph extends React.HTMLAttributes<HTMLParagraphElement> {
  * @param {string} weight Set the bold (font weight) of the letter
  * @param {boolean} ellipsis Break the text into ellipsis
  */
-const Paragraph = ({ children, color = 'dark', ellipsis = false, size, ...props }: Paragraph) => {
-  const { configuration } = useContext(ConfigContext);
+const Paragraph = React.forwardRef<HTMLParagraphElement, Paragraph>(
+  ({ children, color = 'dark', ellipsis = false, size, ...props }: Paragraph, ref) => {
+    const { configuration } = useContext(ConfigContext);
 
-  return (
-    <StyledParagraph
-      color={color}
-      configuration={configuration}
-      ellipsis={ellipsis}
-      size={size}
-      {...props}
-    >
-      {children}
-    </StyledParagraph>
-  );
-};
+    return (
+      <StyledParagraph
+        ref={ref}
+        color={color}
+        configuration={configuration}
+        ellipsis={ellipsis}
+        size={size}
+        {...props}
+      >
+        {children}
+      </StyledParagraph>
+    );
+  }
+);
 
 export default Paragraph;
