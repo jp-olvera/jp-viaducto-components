@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SBConfigI } from '../../../sb';
-import { DatePicker } from '..';
+import { DatePicker, onDateSelectedProps } from '..';
 import { ConfigProvider } from '../../../providers';
 import { Container } from '../..';
 
@@ -19,7 +19,6 @@ const config: SBConfigI = {
     },
     date: {
       control: 'date',
-      table: { defaultValue: { summary: new Date() } },
     },
     shapeColor: {
       table: { defaultValue: { summary: 'danger' } },
@@ -66,4 +65,5 @@ export const Default = Template.bind({});
 Default.args = {
   range: false,
   shapeColor: 'danger',
+  date: new Date(),
 };

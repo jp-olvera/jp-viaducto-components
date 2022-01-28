@@ -26,7 +26,7 @@ Default.args = {
   label: 'Label',
   disabled: false,
   name: 'radio',
-  radioSize: 'lg',
+  inputSize: 'lg',
   fontSize: 'md',
   spacing: 'none',
 };

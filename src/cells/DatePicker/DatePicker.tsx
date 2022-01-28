@@ -21,6 +21,8 @@ export interface DatePicker extends React.HTMLAttributes<HTMLDivElement> {
   shapeColor?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger' | 'tab';
   /** onDateSelected (data: {date Date |Date[], dateString: string|string[]}) => void */
   onDateSelected: (data: onDateSelectedProps) => void | undefined;
+  /** Specifies DatePicker Language for months/days */
+  lang?: 'en' | 'es';
 }
 
 /**
@@ -28,23 +30,32 @@ export interface DatePicker extends React.HTMLAttributes<HTMLDivElement> {
  * @param {boolean} range Set a multi select date on True or just one date on False
  * @param {Date|number} date Set the inital date in calendar (defaults to new Date())
  * @param {string} shapeColor Set the shapeColor of the details
+ * @param {string} lang  Specifies DatePicker Language for months/days
  * @returns onDateSelected (data: {date Date |Date[], dateString: string|string[]}) => void
  */
 const DatePicker = ({
-  date,
+  date = new Date(),
   onDateSelected,
   shapeColor = 'danger',
   range,
+  lang = 'en',
   ...rest
 }: DatePicker) => {
   const { configuration } = useContext(ConfigContext);
-  const [d, setD] = useState<Date | number>(date || new Date());
+  const [d, setD] = useState(new Date(date));
   useEffect(() => {
-    setD(typeof date === 'number' ? new Date(date) : new Date());
+    setD(new Date(date));
   }, [date]);
+  const handleDateSelected = React.useCallback(onDateSelected, []);
   return (
     <StyledDatePicker config={configuration} range={range} {...rest}>
-      <Calendar date={d} onDateSelected={onDateSelected} shapeColor={shapeColor} range={range} />
+      <Calendar
+        date={d}
+        onDateSelected={handleDateSelected}
+        shapeColor={shapeColor}
+        range={range}
+        lang={lang}
+      />
     </StyledDatePicker>
   );
 };
