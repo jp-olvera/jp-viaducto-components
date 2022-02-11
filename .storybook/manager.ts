@@ -8,6 +8,6 @@ addons.setConfig({
 
 addons.register('TitleAddon', (api: any) => {
   api.on(STORY_RENDERED, () => {
-    document.title = `${api.getCurrentStoryData().kind} - BallenaUI`;
+    document.title = `${api.getCurrentStoryData().kind} - FronteraUI`;
   });
 });

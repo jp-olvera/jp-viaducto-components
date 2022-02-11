@@ -6,7 +6,7 @@ import { Button } from '../../../cells';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Dialog/Modal',
+  title: 'FronteraUI/Dialog/Modal',
   component: Modal,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

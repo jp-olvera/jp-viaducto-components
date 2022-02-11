@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { Container } from '../..';
 
 const config: SBConfigI = {
-  title: 'Ballena/Controls/Inputs/DatePicker',
+  title: 'FronteraUI/Controls/Inputs/DatePicker',
   component: DatePicker,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

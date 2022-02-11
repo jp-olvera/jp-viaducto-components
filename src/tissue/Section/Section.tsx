@@ -59,7 +59,7 @@ const Section = ({
           top={top}
           bottom={bottom}
           vertical={vertical}
-          className='ballena-section-content-child'
+          className='frontera-section-content-child'
         >
           {children}
         </ResponsivePadding>

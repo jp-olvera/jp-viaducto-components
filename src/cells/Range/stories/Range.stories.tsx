@@ -4,7 +4,7 @@ import { Range } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Controls/Inputs/Range',
+  title: 'FronteraUI/Controls/Inputs/Range',
   component: Range,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

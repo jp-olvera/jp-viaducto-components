@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { Button, Paragraph, Spacer } from '../../..';
 
 const config: SBConfigI = {
-  title: 'Ballena/Controls/ButtonGroup',
+  title: 'FronteraUI/Controls/ButtonGroup',
   component: ButtonGroup,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {},

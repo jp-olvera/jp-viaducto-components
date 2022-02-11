@@ -1,19 +1,16 @@
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 import styled from 'styled-components';
 
 interface STPI {
   timeFormat: '12h' | '24h';
 }
-export const StyledTimePicker = styled.div < STPI > `
+export const StyledTimePicker = styled.div<STPI>`
   transition: all 0.2s linear;
   width: 100%;
   height: 100%;
   overflow: hidden;
   display: grid;
-  grid-template-columns: repeat(
-    ${(p) => (p.timeFormat === '12h' ? '4' : '3')},
-    1fr
-  );
+  grid-template-columns: repeat(${(p) => (p.timeFormat === '12h' ? '4' : '3')}, 1fr);
   margin: 0;
   .time-column {
     overflow-y: hidden;
@@ -35,16 +32,9 @@ export const StyledTimePicker = styled.div < STPI > `
 
 interface OI {
   config: ConfigProps;
-  shapeColor:
-    | 'primary'
-    | 'secondary'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'danger'
-    | 'tab';
+  shapeColor: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger' | 'tab';
 }
-export const Option = styled.button < OI > `
+export const Option = styled.button<OI>`
   min-width: 3rem;
   width: 100%;
   height: 1.75rem;

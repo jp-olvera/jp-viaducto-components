@@ -1,4 +1,4 @@
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 import styled from 'styled-components';
 import StyledTab from '../../cells/Tab/StyledTab';
 
@@ -14,7 +14,7 @@ interface SGTI {
   spacing: string;
 }
 
-export const StyledGroupTab = styled.div < SGTI > `
+export const StyledGroupTab = styled.div<SGTI>`
   * {
     box-sizing: border-box;
   }

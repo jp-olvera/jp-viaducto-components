@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { getSize } from '../../utils/getSizes';
-import { ConfigProps } from '../../ballena-types';
+import { ConfigProps } from '../../frontera-types';
 
 export const switchSize = (p: { size: string; configuration: ConfigProps }) => ({
   size: p.configuration.controlHeight[p.size],

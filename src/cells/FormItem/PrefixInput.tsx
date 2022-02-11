@@ -2,10 +2,7 @@ import React from 'react';
 
 const PrefixInput = ({ darkDecoration, children, ...rest }) => {
   return (
-    <div
-      {...rest}
-      className={`ballena-prefix-input ${darkDecoration ? 'dark-decoration' : ''}`}
-    >
+    <div {...rest} className={`frontera-prefix-input ${darkDecoration ? 'dark-decoration' : ''}`}>
       {children}
     </div>
   );

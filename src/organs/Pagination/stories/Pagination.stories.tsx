@@ -6,7 +6,7 @@ import { Pagination } from '..';
 import { Button, Paragraph } from '../../..';
 
 const config: { actions?: any } & SBConfigI = {
-  title: 'Ballena/Navigation/Pagination',
+  title: 'FronteraUI/Navigation/Pagination',
   component: Pagination,
   parameters: {
     controls: { sort: 'requiredFirst' },

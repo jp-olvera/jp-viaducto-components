@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 import { StyledGroupTab } from './StyledGroupTab';
 
 import { ConfigContext } from '../../providers';

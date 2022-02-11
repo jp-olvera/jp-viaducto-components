@@ -7,7 +7,7 @@ import { ArrowRight } from 'phosphor-react';
 import { Container, Paragraph, Title } from '../../..';
 
 const config: SBConfigI = {
-  title: 'Ballena/Content/List',
+  title: 'FronteraUI/Content/List',
   component: List,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

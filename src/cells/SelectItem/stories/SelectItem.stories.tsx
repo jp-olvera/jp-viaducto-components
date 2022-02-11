@@ -5,7 +5,7 @@ import { Grid, Row, Paragraph, Container } from '../..';
 import { CaretDown } from 'phosphor-react';
 
 const config: any = {
-  title: 'Ballena/Controls/SelectItem',
+  title: 'FronteraUI/Controls/SelectItem',
   component: SelectItem,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

@@ -17,12 +17,12 @@ export const StyledAnchor = styled.a<any>`
   text-decoration: none;
   &:hover {
     text-decoration: underline;
-    .ballena-anchor-icon {
+    .frontera-anchor-icon {
       transform: translateX(0);
     }
   }
 
-  .ballena-anchor-icon {
+  .frontera-anchor-icon {
     transform: translateX(-0.2rem);
   }
   &:visited {
@@ -30,7 +30,7 @@ export const StyledAnchor = styled.a<any>`
     color: #005fb2;
   }
 
-  .ballena-anchor-icon {
+  .frontera-anchor-icon {
     stroke: #005fb2;
     display: inline-block;
     vertical-align: middle;

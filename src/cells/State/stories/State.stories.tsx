@@ -4,7 +4,7 @@ import { ConfigProvider } from '../../../providers';
 import { State } from '..';
 
 const config: any = {
-  title: 'Ballena/Content/State',
+  title: 'FronteraUI/Content/State',
   component: State,
   parameters: { controls: { sort: 'requiredFirst' } },
 };

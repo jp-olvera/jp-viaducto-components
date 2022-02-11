@@ -7,7 +7,7 @@ export const StyledSection = styled.div<{ sections: number }>`
   justify-content: center;
   align-items: center;
   height: 100%;
-  .ballena-section-content-child {
+  .frontera-section-content-child {
     width: 100% !important;
     height: 100% !important;
   }

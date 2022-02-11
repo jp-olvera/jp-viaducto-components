@@ -1,10 +1,10 @@
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 import styled from 'styled-components';
 
 interface SNI {
   configuration: ConfigProps;
 }
-export const StyledNotification = styled.div < SNI > `
+export const StyledNotification = styled.div<SNI>`
   width: 100%;
   cursor: pointer;
   .notification-hours {

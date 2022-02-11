@@ -5,7 +5,7 @@ import { AvatarWithText } from '../index';
 import { Container, Paragraph } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/Content/AvatarWithText',
+  title: 'FronteraUI/Content/AvatarWithText',
   component: AvatarWithText,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -64,7 +64,7 @@ const Template = (args: typeof Default) => (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <Paragraph color='dark'>John Doe</Paragraph>
           <Paragraph color='darkGray' size='xs'>
-            john@ballena.com
+            john@frontera.com
           </Paragraph>
         </div>
       </AvatarWithText>

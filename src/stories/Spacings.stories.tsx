@@ -175,6 +175,6 @@ Spacings.parameters = {
 };
 
 export default {
-  title: 'Ballena/Tokens/Spacings',
+  title: 'FronteraUI/Tokens/Spacings',
   component: Spacings,
 };

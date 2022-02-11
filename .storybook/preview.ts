@@ -4,7 +4,7 @@ export const parameters = {
     storySort: {
       order: [
         'Getting Started',
-        'Ballena',
+        'FronteraUI',
         [
           'Tokens',
           ['Intro'],
