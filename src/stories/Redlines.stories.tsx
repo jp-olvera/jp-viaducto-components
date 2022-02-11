@@ -47,7 +47,7 @@ export const Redlines = () => (
       Result:
     </Paragraph>
     <Spacer size='sm' />
-    <Container style={{ border: '1px dashed red' }}>
+    <Container vertical='lg' style={{ border: '1px dashed red' }}>
       <div className='large-div'>Hi</div>
     </Container>
     <Spacer size='xl' />
