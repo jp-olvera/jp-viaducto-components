@@ -56,6 +56,8 @@ export interface Tab extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     | 'xxxl';
   /** Set font family */
   fontFamily?: string;
+  /** Click trigger function */
+  handleClick?: () => void;
 }
 
 /**
@@ -74,6 +76,7 @@ export interface Tab extends React.ButtonHTMLAttributes<HTMLButtonElement> {
  * @param {string} tabType Set the color variant (type definition colors) for the tab
  * @param {string} verticalSpacing Set the horizontal spacing taking the tab content as reference
  * @param {string} fontFamily Set font family
+ * @param {Function} handleClick Click trigger function
  */
 
 const Tab = ({
@@ -90,6 +93,7 @@ const Tab = ({
   lineWidth = '100%',
   index = 0,
   fontFamily,
+  handleClick,
   ...rest
 }: Tab) => {
   const { configuration } = useContext(ConfigContext);
@@ -117,6 +121,10 @@ const Tab = ({
       index={index}
       fontFamily={fontFamily}
       className={`fui-redlines ${className}`}
+      onClick={() => {
+        if (handleClick) handleClick();
+        if (rest.onClick) rest.onClick();
+      }}
     >
       <div className='tab-text' style={{ display: 'flex', alignItems: 'center' }}>
         {icon !== null && icon !== '' && lead && <span className='tab-icon-span'>{icon}</span>}
