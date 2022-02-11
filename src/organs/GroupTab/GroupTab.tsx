@@ -128,7 +128,7 @@ const GroupTab = ({
               tabType,
               index,
               active: child.props.active || index === getPosition / 100,
-              onClick: (e: any) => {
+              handleClick: () => {
                 translate(index);
                 /* istanbul ignore else */
                 if (onTabChange) onTabChange(child.props.text);

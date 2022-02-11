@@ -99,7 +99,7 @@ export default config;
 const Template = (args: typeof Default) => (
   <ConfigProvider>
     <GroupTab {...args}>
-      <Tab text='Store' onClick={() => console.log(1)} />
+      <Tab text='Store' onClick={console.log} />
       <Tab text='My apps' />
       <Tab text='Organization Settings' />
       <Tab text='Very large tab name but sill works' />
@@ -118,10 +118,6 @@ Default.args = {
   fontSize: 'md',
   position: 'bottom',
   spacing: 'md',
-  // eslint-disable-next-line no-console
-  onTabChange: (tab: string) => {
-    console.log('tab: ' + tab);
-  },
   transition: 'ease',
   base: 16,
 };
