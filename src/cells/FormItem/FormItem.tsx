@@ -5,7 +5,7 @@ import { ConfigContext } from '../../providers';
 import PrefixInput from './PrefixInput';
 import SuffixInput from './SuffixInput';
 
-interface FormItem {
+export interface FormItemP extends React.HTMLAttributes<HTMLDivElement> {
   /** The border type for the input (full, bottom, overlap) */
   border?: 'outside' | 'overlap' | 'bottom' | 'none' | 'default';
   /** set the color border */
@@ -19,7 +19,7 @@ interface FormItem {
   /** isValid, null (default value) doesn't indicate is valid nor is invalid*/
   isValid?: boolean | null;
   /** prefix */
-  prefix?: React.ReactNode;
+  preffix?: React.ReactNode;
   /** radius */
   radius?: 'none' | 'sm' | 'md' | 'lg';
   /** suffix */
@@ -30,7 +30,7 @@ interface FormItem {
   padding?: string;
 }
 
-const FormItem = forwardRef<HTMLDivElement, FormItem>(
+const FormItem = forwardRef<HTMLDivElement, FormItemP>(
   (
     {
       inputSize = 'default',
@@ -39,18 +39,18 @@ const FormItem = forwardRef<HTMLDivElement, FormItem>(
       family,
       borderColor,
       radius = 'sm',
-      prefix,
+      preffix,
       suffix,
       isValid = null,
       darkDecoration = false,
       padding = '1.563rem 0',
       ...rest
-    },
+    }: FormItemP,
     ref
   ) => {
     const inputRef = useRef<HTMLDivElement>(null);
     const { configuration } = useContext(ConfigContext);
-    const hasPrefix = prefix !== undefined;
+    const hasPrefix = preffix !== undefined;
     const hasSuffix = suffix !== undefined;
 
     let formItem;
@@ -75,8 +75,14 @@ const FormItem = forwardRef<HTMLDivElement, FormItem>(
         }
       }
     }, [inputRef]);
+    const className = rest || '';
     return (
-      <StyledFormControl ref={ref} padding={padding} {...rest}>
+      <StyledFormControl
+        {...rest}
+        className={`fui-redlines ${className}`}
+        ref={ref}
+        padding={padding}
+      >
         <StyledFormItem
           border={border !== 'bottom' && inputSize === 'xsmall' ? 'outside' : border}
           size={inputSize}
@@ -90,7 +96,7 @@ const FormItem = forwardRef<HTMLDivElement, FormItem>(
           ref={inputRef}
         >
           {children}
-          {prefix && <PrefixInput darkDecoration={darkDecoration}>{prefix}</PrefixInput>}
+          {preffix && <PrefixInput darkDecoration={darkDecoration}>{preffix}</PrefixInput>}
           {suffix && <SuffixInput darkDecoration={darkDecoration}>{suffix}</SuffixInput>}
         </StyledFormItem>
       </StyledFormControl>

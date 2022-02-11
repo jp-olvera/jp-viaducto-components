@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface DatoInterface {
   red: number;
   blue: number;
@@ -35,7 +37,7 @@ export interface CohortData {
   }[];
 }
 
-export interface CohortInterface {
+export interface CohortInterface extends React.HTMLAttributes<HTMLDivElement> {
   data: CohortData;
   cellClick?: (columnDetails: CellClickInterface) => void | undefined;
   cellMouseEnter?: (columnDetails: CellClickInterface) => void | undefined;

@@ -77,13 +77,15 @@ const List = ({
   const nodes = React.Children.toArray(children).filter((child) => React.isValidElement(child));
   const type = typeof listStyle === 'string' && listTypes.includes(listStyle) ? listStyle : 'none';
   const isDiv = type === 'none';
+  const className = rest.className || '';
   return isDiv ? (
     <StyledListDiv
+      {...rest}
       listStyle={type}
       verticalSpacing={verticalSpacing}
       config={configuration}
       markerColor={markerColor}
-      {...rest}
+      className={`fui-redlines ${className}`}
     >
       {nodes.map((child: any, index: number) => {
         return (

@@ -56,15 +56,16 @@ const CardCollapsible = ({
   ...rest
 }: CardCollapsible) => {
   const { configuration } = useContext(ConfigContext);
-
+  const className = rest.className || '';
   return (
     <StyledCollapsibleCard
+      {...rest}
       configuration={configuration}
       elevation={elevation}
       elevationDirection={elevationDirection}
       radius={radius}
       family={family}
-      {...rest}
+      className={`fui-redlines ${className}`}
     >
       <div className='header-component'>{mainContent}</div>
       <StyledCollapse

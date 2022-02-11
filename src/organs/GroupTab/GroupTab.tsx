@@ -100,8 +100,10 @@ const GroupTab = ({
   }, [getPosition, space, horizontalSpacing]);
   const toPx: number =
     parseFloat(configuration.spacing[space].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0]) * base;
+  const className = rest.className || '';
   return (
     <StyledGroupTab
+      {...rest}
       horizontalSpacing={horizontalSpacing}
       verticalSpacing={verticalSpacing}
       configuration={configuration}
@@ -112,7 +114,7 @@ const GroupTab = ({
       spacing={spacing || 'none'}
       index={getPosition / 100}
       ref={ref}
-      {...rest}
+      className={`fui-redlines ${className}`}
     >
       <div className='tabs'>
         {React.Children.map<React.ReactNode, React.ReactNode>(children, (child, index) => {

@@ -47,42 +47,49 @@ const State = ({
   spacerSize = 'md',
   clickHandler,
   ...rest
-}: State) => (
-  <div style={{ ...rest.style, display: 'flex', flexDirection: direction }} {...rest}>
+}: State) => {
+  const className = rest.className || '';
+  return (
     <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-      }}
+      {...rest}
+      style={{ ...rest.style, display: 'flex', flexDirection: direction }}
+      className={`fui-redlines ${className}`}
     >
-      {children}
-    </div>
-    <Spacer direction={direction === 'row' ? 'horizontal' : 'vertical'} size='lg' />
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: direction === 'row' ? 'flex-start' : 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Spacer size='md' />
-      <Title level={titleLevel}>{title}</Title>
-      <Spacer size={spacerSize} />
-
-      <Paragraph size='lg'>{description}</Paragraph>
-      <Spacer size={spacerSize} />
-
-      <Button
-        label={buttonLabel}
-        shapeColor={shapeColor}
-        onClick={() => {
-          clickHandler();
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
         }}
-      />
-      <Spacer size='md' />
+      >
+        {children}
+      </div>
+      <Spacer direction={direction === 'row' ? 'horizontal' : 'vertical'} size='lg' />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: direction === 'row' ? 'flex-start' : 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Spacer size='md' />
+        <Title level={titleLevel}>{title}</Title>
+        <Spacer size={spacerSize} />
+
+        <Paragraph size='lg'>{description}</Paragraph>
+        <Spacer size={spacerSize} />
+
+        <Button
+          label={buttonLabel}
+          shapeColor={shapeColor}
+          onClick={() => {
+            clickHandler();
+          }}
+        />
+        <Spacer size='md' />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default State;

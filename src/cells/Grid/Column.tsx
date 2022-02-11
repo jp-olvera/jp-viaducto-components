@@ -101,8 +101,10 @@ const Column = ({
   if (xs === 0) {
     newXs = size;
   }
+  const className = rest.className || '';
   return (
     <Div
+      {...rest}
       gap={gap}
       innerGap={innerGap}
       configuration={configuration}
@@ -111,7 +113,7 @@ const Column = ({
       md={md}
       lg={lg}
       xl={xl}
-      {...rest}
+      className={`fui-redlines ${className}`}
     >
       {children}
     </Div>
