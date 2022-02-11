@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 
 const show = keyframes`
   0% {
@@ -23,7 +23,7 @@ interface SideI {
   transition?: string;
 }
 
-const StyledSidebarSection = styled.div < SideI > `
+const StyledSidebarSection = styled.div<SideI>`
   padding: 0;
   width: 100%;
   box-sizing: border-box;
@@ -86,7 +86,7 @@ const getDecoration = (p: { configuration: ConfigProps }) => css`
   }
 `;
 
-export const MenuItem = styled.div < any > `
+export const MenuItem = styled.div<any>`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -111,9 +111,10 @@ export const MenuItem = styled.div < any > `
   }
   ${(p) => p.active && getDecoration(p)};
 
-  padding: ${(p) => `${p.configuration.spacing.sm} ${
-    p.nested ? p.configuration.spacing.lg : p.configuration.spacing.sm
-  }`};
+  padding: ${(p) =>
+    `${p.configuration.spacing.sm} ${
+      p.nested ? p.configuration.spacing.lg : p.configuration.spacing.sm
+    }`};
 `;
 interface SubmenuProps {
   configuration: ConfigProps;
@@ -122,7 +123,7 @@ interface SubmenuProps {
   isActive: boolean;
 }
 
-export const Submenu = styled.div < SubmenuProps > `
+export const Submenu = styled.div<SubmenuProps>`
   background-color: ${(p) => p.configuration.colors.background};
   display: flex;
   flex-direction: column;
@@ -153,16 +154,17 @@ export const Submenu = styled.div < SubmenuProps > `
       font-size: 1rem;
     }
   }
-  ${(p) => (p.isClosing
-    ? css`
+  ${(p) =>
+    p.isClosing
+      ? css`
           animation: ${hide} 250ms ease;
         `
-    : css`
+      : css`
           animation: ${show} 230ms ${p.transition};
-        `)};
+        `};
 `;
 
-export const StyledMenuTitle = styled.div < any > `
+export const StyledMenuTitle = styled.div<any>`
   align-items: center;
   align-content: center;
   box-sizing: border-box;
@@ -181,7 +183,7 @@ export const StyledMenuTitle = styled.div < any > `
   }
 `;
 
-export const Separator = styled.hr < { configuration: ConfigProps } > `
+export const Separator = styled.hr<{ configuration: ConfigProps }>`
   border-color: ${(p) => p.configuration.colors.defaultInputBorderColor};
   background-color: ${(p) => p.configuration.colors.defaultInputBorderColor};
 `;

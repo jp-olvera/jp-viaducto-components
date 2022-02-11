@@ -6,7 +6,7 @@ import { Button } from '../../../cells';
 import { Modal, Popover } from '../../../dialog';
 
 const config: SBConfigI = {
-  title: 'Ballena/Dialog/Drawer',
+  title: 'FronteraUI/Dialog/Drawer',
   component: Drawer,
   parameters: { controls: { sort: 'requiredFirst' } },
 };

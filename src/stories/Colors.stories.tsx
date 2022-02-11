@@ -217,7 +217,7 @@ Colors.parameters = {
 };
 
 export default {
-  title: 'Ballena/Tokens/Colors',
+  title: 'FronteraUI/Tokens/Colors',
   component: Colors,
 };
 

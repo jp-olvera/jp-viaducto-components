@@ -5,7 +5,7 @@ import { Tooltip } from '..';
 import { Button } from '../../Button';
 
 const config: SBConfigI = {
-  title: 'Ballena/Controls/Tooltip',
+  title: 'FronteraUI/Controls/Tooltip',
   component: Tooltip,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

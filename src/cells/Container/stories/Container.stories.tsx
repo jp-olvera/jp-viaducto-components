@@ -18,7 +18,7 @@ const commonOptions = {
 };
 
 const config: SBConfigI = {
-  title: 'Ballena/Layout/Container',
+  title: 'FronteraUI/Layout/Container',
   component: Container,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

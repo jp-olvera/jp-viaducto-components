@@ -4,7 +4,7 @@ import { Grid, Column, Row } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Layout/Column',
+  title: 'FronteraUI/Layout/Column',
   component: Column,
   parameters: {},
   argTypes: {

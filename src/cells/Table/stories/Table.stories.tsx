@@ -4,7 +4,7 @@ import { WrapperTable } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Layout/WrapperTable',
+  title: 'FronteraUI/Layout/WrapperTable',
   component: WrapperTable,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

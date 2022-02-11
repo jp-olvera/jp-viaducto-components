@@ -68,7 +68,7 @@ module.exports = {
         __dirname,
         '../node_modules/react-toast-notifications'
       ),
-      'ballena-types': path.resolve(__dirname, './src/ballena-types'),
+      'frontera-types': path.resolve(__dirname, './src/frontera-types'),
     },
   },
 };

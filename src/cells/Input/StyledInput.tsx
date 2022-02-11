@@ -1,5 +1,5 @@
 /* eslint-disable radix */
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 import styled, { css } from 'styled-components';
 
 interface StyledInputProps {
@@ -73,15 +73,15 @@ export const StyledInput = styled.div<StyledInputProps>`
   }
 
   input:disabled,
-  input:disabled ~ .ballena-prefix-input,
-  input:disabled ~ .ballena-suffix-input {
+  input:disabled ~ .frontera-prefix-input,
+  input:disabled ~ .frontera-suffix-input {
     cursor: not-allowed;
     background-color: ${(p) => p.configuration.colors.disableColor};
     border-color: ${(p) => p.configuration.colors.disableColor};
     opacity: 1;
   }
 
-  .ballena-prefix-input {
+  .frontera-prefix-input {
     align-items: center;
     background-color: ${(p) => p.backgroundColor};
     border: none;
@@ -102,7 +102,7 @@ export const StyledInput = styled.div<StyledInputProps>`
     ${(p) =>
       getBorderRadius(p.border, false, false, p.radius, p.configuration.radius, true, false)};
   }
-  .ballena-suffix-input {
+  .frontera-suffix-input {
     align-items: center;
     background-color: ${(p) => p.backgroundColor};
     border: none;
@@ -112,7 +112,7 @@ export const StyledInput = styled.div<StyledInputProps>`
     width: auto;
     min-width: 1.632rem;
     padding-left: 0; // without dark decoration
-    padding-right: 0.694rem; 
+    padding-right: 0.694rem;
     ${(p) =>
       getIsValidBorder(
         p.isValid,

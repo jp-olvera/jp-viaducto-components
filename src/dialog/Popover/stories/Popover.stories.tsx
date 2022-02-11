@@ -4,7 +4,7 @@ import { Popover } from '..';
 import { Button } from '../../../';
 
 export default {
-  title: 'Ballena/Dialog/Popover',
+  title: 'FronteraUI/Dialog/Popover',
   component: Popover,
 };
 

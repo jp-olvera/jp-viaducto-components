@@ -65,6 +65,6 @@ Typography.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Tokens/Typography',
+  title: 'FronteraUI/Tokens/Typography',
   component: Typography,
 };

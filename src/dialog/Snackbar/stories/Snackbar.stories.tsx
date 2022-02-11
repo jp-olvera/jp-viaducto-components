@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { Snackbar } from '..';
 
 const config: SBConfigI = {
-  title: 'Ballena/Dialog/Snackbar',
+  title: 'FronteraUI/Dialog/Snackbar',
   component: Snackbar,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

@@ -4,7 +4,7 @@ import { ConfigProvider } from '../../../providers';
 import { Textarea } from '..';
 
 const config: SBConfigI = {
-  title: 'Ballena/Controls/Inputs/Textarea',
+  title: 'FronteraUI/Controls/Inputs/Textarea',
   component: Textarea,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

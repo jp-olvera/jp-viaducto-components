@@ -1,5 +1,5 @@
 /* eslint-disable radix */
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 import { HouseSimple, ThermometerCold } from 'phosphor-react';
 import styled, { css } from 'styled-components';
 import { getAllDaysInMonth } from 'utils/getDateDifference';
@@ -44,7 +44,7 @@ export const StyledFormItem = styled.div<StyledFormItemProps>`
     background-color: ${(p) => p.borderColor};
   }
 
-  .ballena-input {
+  .frontera-input {
     background-color: ${(p) => p.configuration.colors.background};
     box-sizing: border-box;
     border-radius: unset;
@@ -75,15 +75,15 @@ export const StyledFormItem = styled.div<StyledFormItemProps>`
         false
       )};
   }
-  /* .ballena-input:valid,
-  .ballena-input:valid ~ .ballena-prefix-input,
-  .ballena-input:valid ~ .ballena-suffix-input {
+  /* .frontera-input:valid,
+  .frontera-input:valid ~ .frontera-prefix-input,
+  .frontera-input:valid ~ .frontera-suffix-input {
     border-color: ${(p) => p.configuration.colors.success.click};
   } */
 
-  /* .ballena-input:invalid,
-  .ballena-input:invalid ~ .ballena-prefix-input,
-  .ballena-input:invalid ~ .ballena-suffix-input {
+  /* .frontera-input:invalid,
+  .frontera-input:invalid ~ .frontera-prefix-input,
+  .frontera-input:invalid ~ .frontera-suffix-input {
     border-color: ${(p) => p.configuration.colors.danger.click};
   } */
   label {
@@ -100,7 +100,7 @@ export const StyledFormItem = styled.div<StyledFormItemProps>`
     ${(p) => putLabelOutside(p.size, p.border, p.configuration)};
   }
 
-  .ballena-input[required] ~ label {
+  .frontera-input[required] ~ label {
     padding-left: 0.625rem;
     ::after {
       content: '*';
@@ -110,28 +110,28 @@ export const StyledFormItem = styled.div<StyledFormItemProps>`
     }
   }
 
-  .ballena-input[type='number'].ballena-input:not(placeholder-shown).ballena-input:not([value=''])
+  .frontera-input[type='number'].frontera-input:not(placeholder-shown).frontera-input:not([value=''])
     ~ label,
-  .ballena-input:read-only ~ label {
+  .frontera-input:read-only ~ label {
     ${(p) => putLabelOutside(p.size, p.border, p.configuration)};
   }
 
-  .ballena-input:disabled,
-  .ballena-input:disabled ~ .ballena-prefix-input,
-  .ballena-input:disabled ~ .ballena-suffix-input {
+  .frontera-input:disabled,
+  .frontera-input:disabled ~ .frontera-prefix-input,
+  .frontera-input:disabled ~ .frontera-suffix-input {
     cursor: not-allowed;
     background-color: ${(p) => p.configuration.colors.disableColor};
     border-color: ${(p) => p.configuration.colors.disableColor};
     opacity: 1;
   }
-  .ballena-input:disabled ~ label {
+  .frontera-input:disabled ~ label {
     background-color: ${(p) =>
       p.border === 'overlap'
         ? p.configuration.colors.disableColor
         : p.configuration.colors.background} !important;
   }
 
-  .ballena-prefix-input {
+  .frontera-prefix-input {
     align-items: center;
     border: none;
     box-sizing: border-box;
@@ -152,7 +152,7 @@ export const StyledFormItem = styled.div<StyledFormItemProps>`
     ${(p) =>
       getBorderRadius(p.border, false, false, p.radius, p.configuration.radius, true, false)};
   }
-  .ballena-suffix-input {
+  .frontera-suffix-input {
     align-items: center;
     border: none;
     box-sizing: border-box;

@@ -56,6 +56,6 @@ Radius.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Tokens/Radius',
+  title: 'FronteraUI/Tokens/Radius',
   component: Radius,
 };

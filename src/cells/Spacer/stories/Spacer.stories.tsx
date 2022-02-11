@@ -4,7 +4,7 @@ import { Spacer } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Layout/Spacer',
+  title: 'FronteraUI/Layout/Spacer',
   component: Spacer,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
