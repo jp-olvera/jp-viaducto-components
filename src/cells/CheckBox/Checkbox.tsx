@@ -56,6 +56,7 @@ const Checkbox = forwardRef<HTMLInputElement, Checkbox>(
   ) => {
     const { configuration } = useContext(ConfigContext);
     const [check, setCheck] = useState(false);
+
     return (
       <StyledLabel
         htmlFor={props.id}
@@ -69,6 +70,7 @@ const Checkbox = forwardRef<HTMLInputElement, Checkbox>(
         radius={radius}
       >
         <input
+          {...props}
           ref={ref}
           onChange={(event) => {
             setCheck(!check);
@@ -77,7 +79,6 @@ const Checkbox = forwardRef<HTMLInputElement, Checkbox>(
           }}
           type='checkbox'
           id={props.id}
-          {...props}
         />
         <Spacer size={spacing || 'none'} direction='horizontal' />
         <label className='check-label' htmlFor={props.id}>

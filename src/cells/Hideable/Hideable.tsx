@@ -30,9 +30,15 @@ export interface Hideable extends React.HTMLAttributes<HTMLDivElement> {
 
 const Hideable = ({ children, after = true, visibleOn = null, ...rest }: Hideable) => {
   const { configuration } = useContext(ConfigContext);
-
+  const className = rest.className || '';
   return (
-    <StyledHideable visibleOn={visibleOn} after={after} configuration={configuration} {...rest}>
+    <StyledHideable
+      {...rest}
+      visibleOn={visibleOn}
+      after={after}
+      configuration={configuration}
+      className={`fui-redlines ${className}`}
+    >
       {children}
     </StyledHideable>
   );

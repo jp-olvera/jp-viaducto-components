@@ -52,9 +52,10 @@ const Card = ({
 }: Card) => {
   const { configuration } = useContext(ConfigContext);
   const hasOnlyImage: boolean = children === null;
-
+  const className = rest.className || '';
   return (
     <StyledNormalCard
+      {...rest}
       configuration={configuration}
       onlyImage={hasOnlyImage}
       noImage={src === null}
@@ -62,7 +63,7 @@ const Card = ({
       elevationDirection={elevationDirection}
       family={family}
       radius={radius}
-      {...rest}
+      className={`fui-redlines ${className}`}
     >
       {src !== null && <img className='img' src={src} alt={src} />}
 

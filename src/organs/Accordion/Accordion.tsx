@@ -67,9 +67,14 @@ const Accordion = ({
       setOpenIds(() => newState);
     }
   };
+  const className = rest.className || '';
 
   return (
-    <StyledAccordion configuration={configuration} {...rest}>
+    <StyledAccordion
+      {...rest}
+      configuration={configuration}
+      className={`fui-redlines ${className}`}
+    >
       <AccordionContext.Provider value={{ expandMultiple, openIds }}>
         {React.Children.map<React.ReactNode, React.ReactNode>(children, (child, i) => {
           /* istanbul ignore if */

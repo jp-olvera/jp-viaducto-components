@@ -26,9 +26,9 @@ export interface Row extends React.HTMLAttributes<HTMLDivElement> {
  */
 const Row = ({ children = null, style = {}, ...rest }: Row) => {
   const { gap } = useContext(GridContext);
-
+  const className = rest.className || '';
   return (
-    <Div style={style} gap={gap} {...rest}>
+    <Div {...rest} style={style} gap={gap} className={`fui-redlines ${className}`}>
       {children}
     </Div>
   );

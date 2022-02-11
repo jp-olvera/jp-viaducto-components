@@ -38,15 +38,16 @@ const Breadcrum = ({
 }: Breadcrum) => {
   const { configuration } = useContext(ConfigContext);
   const { fontSize, separatorSpacing, family, separator } = useContext(BreadcrumContext);
-  
+  const className = rest.className || '';
   return (
     <StyledBreadcrum
+      {...rest}
       active={active}
       spacing={separatorSpacing}
       configuration={configuration}
       fontSize={fontSize}
       family={family}
-      {...rest}
+      className={`fui-redlines ${className}`}
     >
       {onClick !== undefined ? (
         <button className='v-breadcrum' onClick={onClick} type='button'>
@@ -61,28 +62,23 @@ const Breadcrum = ({
   );
 };
 
-const Content = ({
-  separator,
-  showSeparator = true,
-  children
-}) => {
-  if(showSeparator){
-    return(
-        <>
-          <span className='label'>{children}</span>
-          {separator !== undefined ? (
-            <span className='v-separator'>{separator}</span>
-          ) : (
-            <span className='v-separator'>/</span>
-          )}
-        </>
-    )
-  }
-  return(
+const Content = ({ separator, showSeparator = true, children }) => {
+  if (showSeparator) {
+    return (
       <>
         <span className='label'>{children}</span>
+        {separator !== undefined ? (
+          <span className='v-separator'>{separator}</span>
+        ) : (
+          <span className='v-separator'>/</span>
+        )}
       </>
-  )
-
-}
+    );
+  }
+  return (
+    <>
+      <span className='label'>{children}</span>
+    </>
+  );
+};
 export default Breadcrum;

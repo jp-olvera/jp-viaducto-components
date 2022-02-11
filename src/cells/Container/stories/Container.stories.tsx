@@ -76,7 +76,11 @@ export default config;
 const Template = (args: typeof Default) => (
   <ConfigProvider>
     <div style={{ width: '600px', height: '300px' }}>
-      <Container {...args} style={{ border: '1px solid black' }}>
+      <Container
+        {...args}
+        style={{ border: '1px solid black' }}
+        className='className-non-functional'
+      >
         <div
           style={{
             width: '100%',

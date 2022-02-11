@@ -21,8 +21,15 @@ const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroup>(
     if (nodes.length <= 1) {
       throw Error('You must provide two or more button components as children of ButtonGroup');
     }
+    const className = rest.className || '';
     return (
-      <StyledButtonGroup configuration={configuration} shapeColor={shapeColor} {...rest} ref={ref}>
+      <StyledButtonGroup
+        configuration={configuration}
+        shapeColor={shapeColor}
+        {...rest}
+        ref={ref}
+        className={`fui-redlines ${className}`}
+      >
         {React.Children.map<React.ReactNode, React.ReactNode>(
           children,
           (child: React.ReactNode) => {

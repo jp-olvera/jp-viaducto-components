@@ -6,7 +6,7 @@ import Breadcrum from './Breadcrum';
 /** Breadcrums component, parent of Breadcrum component */
 export interface BreadcrumsProps extends React.OlHTMLAttributes<HTMLOListElement> {
   /** React Elements, use Breadcrum for wrap the children */
-  children: React.ReactNode|React.ReactNode[];
+  children: React.ReactNode | React.ReactNode[];
   /** Set the font size */
   fontSize?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   /** Set font family */
@@ -37,7 +37,7 @@ export interface BreadcrumsProps extends React.OlHTMLAttributes<HTMLOListElement
  * @param {string} family Set font family
  * @param {string} separatorSpacing Horizontal spacing for the item and the separator
  * @param {JSX.Element} separator Set the separator for the item
- * @param {number} itemsToShow  How many items to show 
+ * @param {number} itemsToShow  How many items to show
  */
 
 const Breadcrums = ({
@@ -69,28 +69,32 @@ const Breadcrums = ({
       setIndexesToUse(l);
     }
   }, [itemsToShow]);
-
+  const className = rest.className || '';
   // If you wanna know a little more about Children.toArray and this code
   // https://dev.to/boywithsilverwings/counting-react-children-kde
   return (
-    <StyledBreadcrums aria-label='breadcrum' {...rest}>
+    <StyledBreadcrums {...rest} aria-label='breadcrum' className={`fui-redlines ${className}`}>
       <BreadcrumContext.Provider value={breadcrumConfig}>
         {showAll || Children.toArray(children).length <= itemsToShow ? (
           children
         ) : (
           <>
             {Children.toArray(children)[0]}
-            {Children.toArray(children).filter((child, index) => {
-              if (indexesToUse.includes(index)) {
-                return child;
-              }
-              return null
-            }).map(child => (child))}
-            <Breadcrum onClick={() => {
-               setShowAll(true);
-               }}>
-                 ...
-             </Breadcrum>
+            {Children.toArray(children)
+              .filter((child, index) => {
+                if (indexesToUse.includes(index)) {
+                  return child;
+                }
+                return null;
+              })
+              .map((child) => child)}
+            <Breadcrum
+              onClick={() => {
+                setShowAll(true);
+              }}
+            >
+              ...
+            </Breadcrum>
             {Children.toArray(children)[Children.toArray(children).length - 1]}
           </>
 

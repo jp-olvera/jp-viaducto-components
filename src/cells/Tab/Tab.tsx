@@ -98,8 +98,10 @@ const Tab = ({
   const hoverColor = configuration.colors[tabType].click;
   const activeColor = configuration.colors[tabType].hover;
   const activeTextColor = configuration.colors[tabType].hover;
+  const className = rest.className || '';
   return (
     <StyledTab
+      {...rest}
       color={color}
       hoverColor={hoverColor}
       activeColor={activeColor}
@@ -114,7 +116,7 @@ const Tab = ({
       lineWidth={lineWidth}
       index={index}
       fontFamily={fontFamily}
-      {...rest}
+      className={`fui-redlines ${className}`}
     >
       <div className='tab-text' style={{ display: 'flex', alignItems: 'center' }}>
         {icon !== null && icon !== '' && lead && <span className='tab-icon-span'>{icon}</span>}

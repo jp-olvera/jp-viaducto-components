@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import {
-  CohortData,
-  CohortInterface,
-  DatoInterface,
-  ValorInterface,
-} from './CohortProps';
+import { CohortData, CohortInterface, DatoInterface, ValorInterface } from './CohortProps';
 
 const CohortColumn = styled.div`
   display: flex;
@@ -13,7 +8,7 @@ const CohortColumn = styled.div`
   flex-direction: column;
 `;
 
-const Dato = styled.div < DatoInterface > `
+const Dato = styled.div<DatoInterface>`
   font-family: Arial;
   background-color: ${(p) => p.theme.secondaryBackground};
   box-sizing: border-box;
@@ -27,7 +22,7 @@ const Dato = styled.div < DatoInterface > `
   text-align: center;
 `;
 
-const Valor = styled.button < ValorInterface > `
+const Valor = styled.button<ValorInterface>`
   align-items: center;
   appearance: none;
   background-color: ${(p) => `rgba(${p.red}, ${p.green},${p.blue},${p.opacity}%)`};
@@ -56,10 +51,11 @@ export const CohortTable = ({
   cellMouseEnter,
   compare = false,
   format = null,
+  ...rest
 }: CohortInterface) => {
   if (!data.cohorts.length) {
     throw new Error(
-      'You should provide at least one object with a label and a list ov values in data.cohorts',
+      'You should provide at least one object with a label and a list ov values in data.cohorts'
     );
   }
   let symbol = '';
@@ -82,7 +78,7 @@ export const CohortTable = ({
       refactoredData.push(data.data[0]);
       for (let i = 1; i < data.data.length; i++) {
         const newValues = data.data[i].values.map(
-          (value, valueId) => value - data.data[i - 1].values[valueId],
+          (value, valueId) => value - data.data[i - 1].values[valueId]
         );
         const newColumn = {
           label: data.data[i].label,
@@ -98,9 +94,13 @@ export const CohortTable = ({
       setdataToShow(data);
     }
   }, [compare, data]);
-
+  const className = rest.className || '';
   return (
-    <div style={{ width: '100%', display: 'flex', fontFamily: 'Arial' }}>
+    <div
+      {...rest}
+      style={{ ...rest.style, width: '100%', display: 'flex' }}
+      className={`fui-redlines ${className}`}
+    >
       <div style={{ display: 'flex' }}>
         {dataToShow.cohorts.map((cohort, i) => (
           <CohortColumn key={`cohort-column-${i}`}>
@@ -108,13 +108,7 @@ export const CohortTable = ({
               {cohort.label}
             </Dato>
             {cohort.values.map((d, index) => (
-              <Dato
-                red={245}
-                blue={245}
-                green={245}
-                opacity={100}
-                key={`cohort-value-${index}`}
-              >
+              <Dato red={245} blue={245} green={245} opacity={100} key={`cohort-value-${index}`}>
                 {d}
               </Dato>
             ))}

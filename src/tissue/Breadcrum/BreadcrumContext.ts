@@ -16,7 +16,7 @@ export interface BreadcrumValuesProps {
   fontSize: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   family?: string;
   /** Set the separator for the item */
-  separator?: JSX.Element;
+  separator?: any;
 }
 
 const BreadcrumContext = createContext<BreadcrumValuesProps>({

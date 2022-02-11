@@ -69,9 +69,10 @@ const ResponsivePadding = ({
   if (right !== null) {
     pRight = right;
   }
-
+  const className = rest.className || '';
   return (
     <StyledPadding
+      {...rest}
       minBreakpoint={configuration.breakpoints.xs}
       maxBreakpoint={configuration.breakpoints.xl}
       configuration={configuration}
@@ -79,7 +80,7 @@ const ResponsivePadding = ({
       bottom={pBottom}
       left={pLeft}
       right={pRight}
-      {...rest}
+      className={`fui-redlines ${className}`}
     >
       {children}
     </StyledPadding>

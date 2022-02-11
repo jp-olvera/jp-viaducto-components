@@ -65,9 +65,16 @@ const Grid = ({
   ...rest
 }: Grid) => {
   const { configuration } = useContext(ConfigContext);
+  const className = rest.className || '';
   return (
     <GridContext.Provider value={{ gap: gutter, innerGap: innerGutter }}>
-      <Padding configuration={configuration} gutter={gutter} expanded={expanded} {...rest}>
+      <Padding
+        {...rest}
+        configuration={configuration}
+        gutter={gutter}
+        expanded={expanded}
+        className={`fui-redlines ${className}`}
+      >
         {children}
       </Padding>
     </GridContext.Provider>

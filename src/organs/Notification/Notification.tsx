@@ -43,16 +43,18 @@ const Notification = ({
 
   const difference: string = getMessageDifference(today, time);
 
+  const className = rest.className || '';
   return (
     <StyledNotification
-      configuration={configuration}
       {...rest}
+      configuration={configuration}
       onClick={(e: React.MouseEvent<HTMLDivElement>) => {
         /* istanbul ignore else */
         if (onClick) {
           onClick(e);
         }
       }}
+      className={`fui-redlines ${className}`}
     >
       <Container vertical='xs' horizontal='xs' expandHorizontal className='notification-hours'>
         <AvatarWithText avatar={avatar} spacing={spacing || 'xs'}>
