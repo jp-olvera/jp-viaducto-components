@@ -15,18 +15,15 @@ export interface BreadcrumValuesProps {
     | 'xxxl';
   fontSize: 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
   family?: string;
+  /** Set the separator for the item */
+  separator?: JSX.Element;
 }
 
-export interface BreadcrumContextProps {
-  breadcrumConfig: BreadcrumValuesProps;
-}
-
-const BreadcrumContext = createContext<BreadcrumContextProps>({
-  breadcrumConfig: {
-    separatorSpacing: 'sm',
-    fontSize: 'md',
-    family: 'inherit',
-  },
+const BreadcrumContext = createContext<BreadcrumValuesProps>({
+  separatorSpacing: 'sm',
+  fontSize: 'md',
+  family: 'inherit',
+  separator: undefined,
 });
 
 export default BreadcrumContext;

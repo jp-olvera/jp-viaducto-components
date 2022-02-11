@@ -101,6 +101,19 @@ export default config;
 const Template = (args: typeof Heading) => (
   <ConfigProvider>
     <Title {...args}>The quick brown fox jumps over the lazy dog</Title>
+    <br />
+    <br />
+    <br />
+    These are the rest of the titles, use the controls to customized the one above
+    <Title level='1'>1 The quick brown fox jumps over the lazy dog</Title>
+    <Title level='2'>2 The quick brown fox jumps over the lazy dog</Title>
+    <Title level='3'>3 The quick brown fox jumps over the lazy dog</Title>
+    <Title level='4'>4 The quick brown fox jumps over the lazy dog</Title>
+    <Title level='5'>5 The quick brown fox jumps over the lazy dog</Title>
+    <Title level='D1'>D1 The quick brown fox jumps over the lazy dog</Title>
+    <Title level='D2'>D2 The quick brown fox jumps over the lazy dog</Title>
+    <Title level='D3'>D3 The quick brown fox jumps over the lazy dog</Title>
+    <Title level='D4'>D4 The quick brown fox jumps over the lazy dog</Title>
   </ConfigProvider>
 );
 
