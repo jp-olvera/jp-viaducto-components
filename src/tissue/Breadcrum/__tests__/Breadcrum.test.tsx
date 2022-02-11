@@ -5,25 +5,15 @@ import { render, fireEvent, axe } from '../../../test-utils';
 import { Breadcrums, Breadcrum } from '..';
 
 describe('<Breadcrums/>', () => {
-  test('should render empty component', async () => {
-    const { container } = render(
-      <Breadcrums
-        family={undefined}
-        fontSize={undefined}
-        separatorSpacing={undefined}
-      >
-        {null}
-      </Breadcrums>,
-    );
-    expect(container).toBeInTheDocument();
-    const results = await axe(container);
-    expect(results).toHaveNoViolations();
-  });
   test('Should all children be visible', async () => {
     const { container, getByText } = render(
-      <Breadcrums separatorSpacing='nullable'>
-        <Breadcrum label='1' href='#' active />
-        <Breadcrum label='2' href='#' />
+      <Breadcrums separatorSpacing='none'>
+        <Breadcrum href='#'>
+          1
+        </Breadcrum>
+        <Breadcrum href='#' active >
+          2
+        </Breadcrum>
       </Breadcrums>,
     );
     expect(getByText('1')).toBeInTheDocument();
@@ -34,8 +24,12 @@ describe('<Breadcrums/>', () => {
     const myFunc = jest.fn();
     const { container, getByText } = render(
       <Breadcrums>
-        <Breadcrum label='1' href='#' />;
-        <Breadcrum label='2' onClick={myFunc} />;
+        <Breadcrum href='#' >
+          1
+        </Breadcrum>
+        <Breadcrum href='#' active  onClick={myFunc}>
+          2
+        </Breadcrum>
       </Breadcrums>,
     );
 
@@ -46,21 +40,39 @@ describe('<Breadcrums/>', () => {
   test('Should check the anchor ref is correct', async () => {
     const { container, getByRole } = render(
       <Breadcrums>
-        <Breadcrum label='Go back' href='https://google.com' />;
+        <Breadcrum href='https://google.com' >
+        Go back
+        </Breadcrum>
+
       </Breadcrums>,
     );
     expect(getByRole('link')).toHaveAttribute('href', 'https://google.com');
     expect(await axe(container)).toHaveNoViolations();
   });
-  test('should hide options 2 and 3 and show 3 dots instead', async () => {
+  test('should show 4 elements and hide options 4 and 5 and show 3 dots instead', async () => {
     const { container, queryByText, getByText } = render(
       <Breadcrums>
-        <Breadcrum label='1' href='https://google.com' />;
-        <Breadcrum label='2' href='https://google.com' />;
-        <Breadcrum label='3' href='https://google.com' />;
-        <Breadcrum label='4' href='https://google.com' />;
-        <Breadcrum label='5' href='https://google.com' />;
-        <Breadcrum label='6' href='https://google.com' />;
+        <Breadcrum href='https://google.com'>1</Breadcrum>
+        <Breadcrum href='https://google.com'>2</Breadcrum>
+        <Breadcrum href='https://google.com'>3</Breadcrum>
+        <Breadcrum href='https://google.com'>4</Breadcrum>
+        <Breadcrum href='https://google.com'>5</Breadcrum>
+        <Breadcrum href='https://google.com'>6</Breadcrum>
+      </Breadcrums>,
+    );
+
+    expect(queryByText('4')).toBeNull();
+    expect(queryByText('5')).toBeNull();
+    expect(getByText('...')).toBeInTheDocument();
+    expect(await axe(container)).toHaveNoViolations();
+  });
+  test('should show 2 elements and hide options 2 and 3 and show 3 dots instead', async () => {
+    const { container, queryByText, getByText } = render(
+      <Breadcrums itemsToShow={2}>
+        <Breadcrum href='https://google.com'>1</Breadcrum>
+        <Breadcrum href='https://google.com'>2</Breadcrum>
+        <Breadcrum href='https://google.com'>3</Breadcrum>
+        <Breadcrum href='https://google.com'>6</Breadcrum>
       </Breadcrums>,
     );
 
@@ -72,12 +84,12 @@ describe('<Breadcrums/>', () => {
   test('should show options 2 and 3 after clicking on the 3 dots', async () => {
     const { container, getByText } = render(
       <Breadcrums>
-        <Breadcrum label='1' href='https://google.com' />;
-        <Breadcrum label='2' href='https://google.com' />;
-        <Breadcrum label='3' href='https://google.com' />;
-        <Breadcrum label='4' href='https://google.com' />;
-        <Breadcrum label='5' href='https://google.com' />;
-        <Breadcrum label='6' href='https://google.com' />;
+        <Breadcrum href='https://google.com'>1</Breadcrum>
+        <Breadcrum href='https://google.com'>2</Breadcrum>
+        <Breadcrum href='https://google.com'>3</Breadcrum>
+        <Breadcrum href='https://google.com'>4</Breadcrum>
+        <Breadcrum href='https://google.com'>5</Breadcrum>
+        <Breadcrum href='https://google.com'>6</Breadcrum>
       </Breadcrums>,
     );
 
@@ -89,13 +101,13 @@ describe('<Breadcrums/>', () => {
   });
   test('should show options with active attribute', async () => {
     const { container } = render(
-      <Breadcrums family='Roboto' separatorSpacing='aaaa'>
-        <Breadcrum label='1' href='https://google.com' />;
-        <Breadcrum label='2' href='https://google.com' />;
-        <Breadcrum label='3' href='https://google.com' />;
-        <Breadcrum label='4' href='https://google.com' />;
-        <Breadcrum label='5' href='https://google.com' />;
-        <Breadcrum label='6' href='https://google.com' />;
+      <Breadcrums family='Roboto' separatorSpacing='sm'>
+        <Breadcrum href='https://google.com'>1</Breadcrum>
+        <Breadcrum href='https://google.com'>2</Breadcrum>
+        <Breadcrum href='https://google.com'>3</Breadcrum>
+        <Breadcrum href='https://google.com'>4</Breadcrum>
+        <Breadcrum href='https://google.com'>5</Breadcrum>
+        <Breadcrum href='https://google.com'>6</Breadcrum>
       </Breadcrums>,
     );
     expect(container).toBeInTheDocument();
