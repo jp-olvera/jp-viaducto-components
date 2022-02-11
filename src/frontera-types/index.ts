@@ -127,6 +127,32 @@ export interface ConfigProps {
       xxl: string;
     };
   };
+  textClamp: {
+    mobile: {
+      1: string,
+      2: string,
+      3: string,
+      4: string,
+      5: string,
+      6: string,
+      D1: string,
+      D2: string,
+      D3: string,
+      D4: string,      
+    };
+    desktop: {
+      1: string,
+      2: string,
+      3: string,
+      4: string,
+      5: string,
+      6: string,
+      D1: string,
+      D2: string,
+      D3: string,
+      D4: string,
+    };
+  };
   drawerSizes: {
     sm: string;
     md: string;
