@@ -32,7 +32,7 @@ export default create({
   inputBorderRadius: 2,
 
   // Brand settings
-  brandTitle: 'Ballena - Viaducto',
+  brandTitle: 'FronteraUI',
   brandUrl: 'https://github.com/viaducto',
   brandImage: 'https://github.com/jl-rojas/graph-qlnest/blob/ballena/ballena.png?raw=true',
 });

@@ -4,7 +4,7 @@ import { Anchor, Container, Paragraph, Spacer, Title } from '../cells';
 export const Intro = () => (
   <Container horizontal='sm'>
     <Title level='3' lineHeight='lg'>
-      Welcome to Ballena/Primitives
+      Welcome to FronteraUI/Primitives
     </Title>
     <Paragraph>
       Primitives is the whole configuration file explained to be more comfortable for you to use.
@@ -54,35 +54,35 @@ export const Intro = () => (
         <Anchor
           label='Breakpoints'
           color='#0050B3'
-          href='/?path=/story/ballena-primitives-breakpoints--breakpoints'
+          href='/?path=/story/frontera-primitives-breakpoints--breakpoints'
         />
       </li>
       <li>
         <Anchor
           label='Colors'
           color='#0050B3'
-          href='/?path=/story/ballena-primitives-colors--colors'
+          href='/?path=/story/frontera-primitives-colors--colors'
         />
       </li>
       <li>
         <Anchor
           label='Radius'
           color='#0050B3'
-          href='/?path=/story/ballena-primitives-radius--radius'
+          href='/?path=/story/frontera-primitives-radius--radius'
         />
       </li>
       <li>
         <Anchor
           label='Height'
           color='#0050B3'
-          href='/?path=/story/ballena-primitives-height--height'
+          href='/?path=/story/frontera-primitives-height--height'
         />
       </li>
       <li>
         <Anchor
           label='Typography'
           color='#0050B3'
-          href='/?path=/story/ballena-primitives-typography--typography'
+          href='/?path=/story/frontera-primitives-typography--typography'
         />
       </li>
     </ul>
@@ -101,6 +101,6 @@ Intro.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Tokens/Intro',
+  title: 'FronteraUI/Tokens/Intro',
   component: Intro,
 };

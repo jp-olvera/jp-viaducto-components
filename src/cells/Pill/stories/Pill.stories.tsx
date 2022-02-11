@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import Icon from './iconLead.svg';
 
 const config: SBConfigI = {
-  title: 'Ballena/Controls/Pill',
+  title: 'FronteraUI/Controls/Pill',
   component: Pill,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

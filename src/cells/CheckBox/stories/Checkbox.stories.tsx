@@ -4,7 +4,7 @@ import { Checkbox } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Controls/Inputs/Checkbox',
+  title: 'FronteraUI/Controls/Inputs/Checkbox',
   component: Checkbox,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

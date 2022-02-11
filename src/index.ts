@@ -1,4 +1,4 @@
-export * from './ballena-types';
+export * from './frontera-types';
 export * from './cells';
 export * from './tissue';
 export * from './organs';

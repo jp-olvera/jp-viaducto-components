@@ -17,7 +17,7 @@ const commonOptions = {
 };
 
 const config: any = {
-  title: 'Ballena/Layout/ResponsivePadding',
+  title: 'FronteraUI/Layout/ResponsivePadding',
   component: ResponsivePadding,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

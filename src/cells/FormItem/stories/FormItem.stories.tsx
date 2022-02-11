@@ -6,7 +6,7 @@ import { Popover } from '../../../dialog';
 import { Horse, User, Cube, CaretDown } from 'phosphor-react';
 
 const config: any = {
-  title: 'Ballena/Controls/FormItem',
+  title: 'FronteraUI/Controls/FormItem',
   component: FormItem,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

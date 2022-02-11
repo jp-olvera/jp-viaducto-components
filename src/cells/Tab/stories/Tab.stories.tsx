@@ -5,7 +5,7 @@ import { Tab } from '..';
 import { Container } from '../..';
 
 const config: SBConfigI = {
-  title: 'Ballena/Navigation/Tab',
+  title: 'FronteraUI/Navigation/Tab',
   component: Tab,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

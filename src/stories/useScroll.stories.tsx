@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useRef } from 'react';
-import {
-  Button, Container, Paragraph, Spacer, Title,
-} from '../cells';
+import { Button, Container, Paragraph, Spacer, Title } from '../cells';
 import { useScroll } from '../hooks';
 
 export const ScrollHook = () => {
@@ -14,15 +12,14 @@ export const ScrollHook = () => {
         useScroll hook
       </Title>
       <Paragraph>
-        It is pretty common see web pages with large index and some scroll
-        behaviour, or show a newsletter form when a web article is finished.
+        It is pretty common see web pages with large index and some scroll behaviour, or show a
+        newsletter form when a web article is finished.
       </Paragraph>
       <Paragraph>
         We provide a custom hook for those cases,{' '}
-        <code style={{ color: '#0050B3' }}>useScroll</code> is a hook which tell
-        us when the component referenced is scrolling after some setted value
-        (20px is the default value). If you want to use this hook, take a look
-        of the code implementation:
+        <code style={{ color: '#0050B3' }}>useScroll</code> is a hook which tell us when the
+        component referenced is scrolling after some setted value (20px is the default value). If
+        you want to use this hook, take a look of the code implementation:
       </Paragraph>
       <Spacer size='md' />
       <pre style={{ color: '#0050B3' }}>
@@ -32,12 +29,11 @@ export const ScrollHook = () => {
           {'  '}const ref = useRef();
           <br />
           <br />
-          // We export scroll, setScroll for take the state or force to update
-          it
+          // We export scroll, setScroll for take the state or force to update it
           <br />
           <br />
-          // The first parameter is the component reference, the second is for
-          overwrite the 20px scroll value
+          // The first parameter is the component reference, the second is for overwrite the 20px
+          scroll value
           <br />
           <br />
           {'  const { scroll, /* setScroll */ } = useScroll(ref, /* 20 */);'}
@@ -95,6 +91,6 @@ ScrollHook.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Hooks/useScroll',
+  title: 'FronteraUI/Hooks/useScroll',
   component: ScrollHook,
 };

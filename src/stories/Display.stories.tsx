@@ -122,6 +122,6 @@ Display.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Tokens/Display',
+  title: 'FronteraUI/Tokens/Display',
   component: Display,
 };

@@ -1,8 +1,11 @@
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 import styled, { css } from 'styled-components';
 
-interface SDP { config: ConfigProps; range:boolean }
-export const StyledDatePicker = styled.div < SDP > `
+interface SDP {
+  config: ConfigProps;
+  range: boolean;
+}
+export const StyledDatePicker = styled.div<SDP>`
   background-color: ${(p) => p.config.colors.background};
   max-width: 17rem;
   height: 18rem;
@@ -21,7 +24,7 @@ export const StyledDatePicker = styled.div < SDP > `
       filter: brightness(0.95);
       background-color: #fafafa;
     }
-    &:disabled{
+    &:disabled {
       cursor: not-allowed;
       opacity: 0.3;
     }
@@ -36,7 +39,7 @@ export const StyledDatePicker = styled.div < SDP > `
     display: grid;
     grid-template-columns: repeat(7, 1fr);
   }
-  .date-days-letter{
+  .date-days-letter {
     display: flex !important;
     justify-content: center;
     align-items: center;
@@ -53,18 +56,11 @@ interface DayI {
   isSelecting: boolean;
   config: ConfigProps;
   zero: boolean;
-  shapeColor:
-    | 'primary'
-    | 'secondary'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'danger'
-    | 'tab';
+  shapeColor: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger' | 'tab';
 }
 
-export const Day = styled.button < DayI > `
-  transition: .2s ease;
+export const Day = styled.button<DayI>`
+  transition: 0.2s ease;
   box-sizing: border-box;
   cursor: pointer;
   width: 1.75rem;
@@ -80,7 +76,7 @@ export const Day = styled.button < DayI > `
     filter: brightness(${(p) => (p.isSelecting || p.disabled ? 1 : 0.95)});
     ${(p) => p.isSelecting && !p.disabled && hoverBehevior(p)}
   }
-  &:disabled{
+  &:disabled {
     cursor: not-allowed;
     background-color: ${(p) => p.config.colors.disableColor};
   }
@@ -94,8 +90,8 @@ export const Day = styled.button < DayI > `
   }
 `;
 
-export const hoverBehevior = (p: { config:ConfigProps, shapeColor:string}) => css`
-    background-color: ${p.config.colors[p.shapeColor].default}95 !important;
-    color: ${p.config.colors[p.shapeColor].text} !important;
-    border: 0.063rem dashed ${p.config.colors[p.shapeColor].default} !important;
-  `;
+export const hoverBehevior = (p: { config: ConfigProps; shapeColor: string }) => css`
+  background-color: ${p.config.colors[p.shapeColor].default}95 !important;
+  color: ${p.config.colors[p.shapeColor].text} !important;
+  border: 0.063rem dashed ${p.config.colors[p.shapeColor].default} !important;
+`;

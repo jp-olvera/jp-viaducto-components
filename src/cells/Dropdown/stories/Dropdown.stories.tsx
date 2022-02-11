@@ -3,7 +3,7 @@ import { Dropdown } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Ballena/Navigation/Dropdown',
+  title: 'FronteraUI/Navigation/Dropdown',
   component: Dropdown,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

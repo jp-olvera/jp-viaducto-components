@@ -60,6 +60,6 @@ Height.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Tokens/Height',
+  title: 'FronteraUI/Tokens/Height',
   component: Height,
 };

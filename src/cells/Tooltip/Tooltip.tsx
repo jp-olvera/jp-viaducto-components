@@ -117,7 +117,7 @@ const Tooltip = ({
         ? createPortal(
             <div
               ref={popRef}
-              className='ballena-tooltip-content'
+              className='frontera-tooltip-content'
               style={{
                 position: 'fixed',
                 top: `${coords.top}px`,

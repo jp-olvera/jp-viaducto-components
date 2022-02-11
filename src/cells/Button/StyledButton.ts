@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 import { SIZE, FONT_SIZE } from './constants';
 
 const turnOn = keyframes`

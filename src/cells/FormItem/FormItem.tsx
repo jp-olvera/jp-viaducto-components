@@ -5,7 +5,7 @@ import { ConfigContext } from '../../providers';
 import PrefixInput from './PrefixInput';
 import SuffixInput from './SuffixInput';
 
-interface FormIte {
+interface FormItem {
   /** The border type for the input (full, bottom, overlap) */
   border?: 'outside' | 'overlap' | 'bottom' | 'none' | 'default';
   /** set the color border */
@@ -30,7 +30,7 @@ interface FormIte {
   padding?: string;
 }
 
-const FormItem = forwardRef<HTMLDivElement, FormIte>(
+const FormItem = forwardRef<HTMLDivElement, FormItem>(
   (
     {
       inputSize = 'default',
@@ -58,9 +58,8 @@ const FormItem = forwardRef<HTMLDivElement, FormIte>(
 
     useEffect(() => {
       if (inputRef.current) {
-        let inputTags:
-          | HTMLCollectionOf<HTMLSelectElement>
-          | HTMLCollectionOf<HTMLInputElement> = inputRef.current.getElementsByTagName('input');
+        let inputTags: HTMLCollectionOf<HTMLSelectElement> | HTMLCollectionOf<HTMLInputElement> =
+          inputRef.current.getElementsByTagName('input');
 
         if (inputTags.length) {
           [formItem] = inputTags;
@@ -71,7 +70,7 @@ const FormItem = forwardRef<HTMLDivElement, FormIte>(
           }
         }
         if (formItem) {
-          formItem.classList.add('ballena-input');
+          formItem.classList.add('frontera-input');
           formItemInitialValue = formItem.value;
         }
       }

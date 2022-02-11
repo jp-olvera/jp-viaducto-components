@@ -3,7 +3,7 @@ import { Radio } from '..';
 import { ConfigProvider } from '../../../providers';
 
 export default {
-  title: 'Ballena/Controls/Inputs/Radio',
+  title: 'FronteraUI/Controls/Inputs/Radio',
   component: Radio,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

@@ -1,4 +1,4 @@
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 
 const config: ConfigProps = {
   breakpoints: {

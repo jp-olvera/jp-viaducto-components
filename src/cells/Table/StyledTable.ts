@@ -1,4 +1,4 @@
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 import styled, { css } from 'styled-components';
 import { getSize } from '../../utils/getSizes';
 
@@ -20,7 +20,7 @@ interface TableProps {
   fontSize?: string;
   family?: string;
 }
-export const StyledTable = styled.div < TableProps > `
+export const StyledTable = styled.div<TableProps>`
   & > * {
     box-sizing: border-box;
   }
@@ -36,12 +36,12 @@ export const StyledTable = styled.div < TableProps > `
 
     thead {
       color: ${(p) => p.headerColor || p.configuration.colors.text[p.headerColor || 'dark']};
-      background-color: ${(p) => p.headerBackgroundColor || p.configuration.colors.table.headerColor};
+      background-color: ${(p) =>
+        p.headerBackgroundColor || p.configuration.colors.table.headerColor};
     }
     thead > tr {
-      border-bottom: ${(p) => `0.063rem solid ${
-    p.borderColor || p.configuration.colors.defaultInputBorderColor
-  }`};
+      border-bottom: ${(p) =>
+        `0.063rem solid ${p.borderColor || p.configuration.colors.defaultInputBorderColor}`};
     }
     .selected > td {
       background-color: ${(p) => p.colorSelected || p.configuration.colors.table.selectedColor};
@@ -49,33 +49,29 @@ export const StyledTable = styled.div < TableProps > `
 
     tbody > tr {
       &:nth-of-type(odd) {
-        background-color: ${(p) => (p.zebra
-    ? p.zebraColor || p.configuration.colors.table.zebraColor
-    : 'inherit')};
+        background-color: ${(p) =>
+          p.zebra ? p.zebraColor || p.configuration.colors.table.zebraColor : 'inherit'};
       }
       padding: 0;
       margin: 0;
       &:hover {
-        ${(p) => (p.hover
-    ? `background-color: ${
-      p.hoverColor || p.configuration.colors.table.hoverColor
-    }`
-    : null)};
+        ${(p) =>
+          p.hover
+            ? `background-color: ${p.hoverColor || p.configuration.colors.table.hoverColor}`
+            : null};
       }
     }
-    ${(p) => getBorder(
-    p.border,
-    p.borderColor || p.configuration.colors.defaultInputBorderColor,
-  )};
+    ${(p) => getBorder(p.border, p.borderColor || p.configuration.colors.defaultInputBorderColor)};
     td,
     th {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
       text-align: ${(p) => p.align || 'left'};
-      padding: ${(p) => `${p.configuration.spacing[p.verticalSpacing] || 0} ${
-    p.configuration.spacing[p.horizontalSpacing] || 0
-  }`};
+      padding: ${(p) =>
+        `${p.configuration.spacing[p.verticalSpacing] || 0} ${
+          p.configuration.spacing[p.horizontalSpacing] || 0
+        }`};
       background-color: inherit;
     }
 

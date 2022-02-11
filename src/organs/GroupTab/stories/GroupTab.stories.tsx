@@ -5,7 +5,7 @@ import { GroupTab } from '..';
 import { Tab } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/Navigation/GroupTab',
+  title: 'FronteraUI/Navigation/GroupTab',
   component: GroupTab,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
