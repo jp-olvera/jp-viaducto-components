@@ -77,16 +77,19 @@ const GroupTab = ({
   ...rest
 }: GroupTab) => {
   const { configuration } = useContext(ConfigContext);
-  const [getPosition, setPosition] = useState<number>(0);
+  const [positionTab, setPositionTab] = useState<number>(0);
   const [getWidth, setWidth] = useState<number>(0);
   const [place, setPlace] = useState<number>(0);
   const nodes = React.Children.toArray(children).filter((child) => React.isValidElement(child));
   const ref = useRef<HTMLDivElement>(null);
   const translate = (index: number) => {
-    setPosition(index * 100);
+    setPositionTab(index * 100);
   };
   const pos = position === 'top' ? 'top' : 'bottom';
   const space: string = spacing || 'none';
+  useEffect(() => {
+    translate(0);
+  }, [children]);
   useEffect(() => {
     React.Children.map<React.ReactNode, React.ReactNode>(children, (child, index) => {
       if (React.isValidElement(child)) {
@@ -96,8 +99,8 @@ const GroupTab = ({
       }
       return <></>;
     });
-    onload(ref, getPosition / 100, configuration, space, setPlace, setWidth, base);
-  }, [getPosition, space, horizontalSpacing]);
+    onload(ref, positionTab / 100, configuration, space, setPlace, setWidth, base);
+  }, [positionTab, space, horizontalSpacing, children]);
   const toPx: number =
     parseFloat(configuration.spacing[space].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0]) * base;
   const className = rest.className || '';
@@ -112,7 +115,7 @@ const GroupTab = ({
       tabType={tabType}
       position={position}
       spacing={spacing || 'none'}
-      index={getPosition / 100}
+      index={positionTab / 100}
       ref={ref}
       className={`fui-redlines ${className}`}
     >
@@ -127,7 +130,7 @@ const GroupTab = ({
               position: pos,
               tabType,
               index,
-              active: child.props.active || index === getPosition / 100,
+              active: child.props.active || index === positionTab / 100,
               handleClick: () => {
                 translate(index);
                 /* istanbul ignore else */
@@ -140,7 +143,7 @@ const GroupTab = ({
       <div
         className='line'
         style={{
-          marginLeft: getPosition === 0 ? 0 : `calc(${toPx}px + ${place}px)`,
+          marginLeft: positionTab === 0 ? 0 : `calc(${toPx}px + ${place}px)`,
           width: `${getWidth}px`,
         }}
       />
@@ -152,7 +155,7 @@ export default GroupTab;
 
 export const onload = (
   ref: React.RefObject<HTMLDivElement>,
-  getPosition: number,
+  positionTab: number,
   configuration: ConfigProps,
   spacing: string,
   setPlace: Function,
@@ -160,20 +163,30 @@ export const onload = (
   base: number = 16
 ) => {
   if (ref && ref.current) {
-    if (getPosition === 0) {
+    if (positionTab === 0) {
       setPlace(0);
+      setWidth(ref.current.children[0].children[0].clientWidth || 0);
     } else {
       let counter: number = 0;
-      for (let i = 0; i < getPosition; i++) {
-        counter += ref.current.children[0].children[i].clientWidth;
-        if (i > 0) {
-          counter +=
-            parseFloat(configuration.spacing[spacing].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0]) *
-            base;
+      const realTabs = ref.current.children[0].children.length; // 0
+
+      if (realTabs - 1 >= positionTab) {
+        // 2 y
+        for (let i = 0; i < positionTab; i++) {
+          if (ref.current.children[0].children[i]) {
+            counter += ref.current.children[0].children[i].clientWidth || 0;
+            if (i > 0) {
+              counter +=
+                parseFloat(configuration.spacing[spacing].match(/[-]{0,1}[\d]*[.]{0,1}[\d]+/g)[0]) *
+                base;
+            }
+          }
         }
+        setWidth(ref.current.children[0].children[positionTab].clientWidth || 0);
+      } else {
+        setWidth(ref.current.children[0].children[0].clientWidth || 0);
       }
       setPlace(counter);
     }
-    setWidth(ref.current.children[0].children[getPosition].clientWidth);
   }
 };

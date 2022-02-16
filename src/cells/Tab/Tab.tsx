@@ -122,8 +122,8 @@ const Tab = ({
       fontFamily={fontFamily}
       className={`fui-redlines ${className}`}
       onClick={() => {
-        if (handleClick) handleClick();
         if (rest.onClick) rest.onClick();
+        if (handleClick) handleClick();
       }}
     >
       <div className='tab-text' style={{ display: 'flex', alignItems: 'center' }}>
