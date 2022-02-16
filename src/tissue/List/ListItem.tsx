@@ -19,12 +19,15 @@ const ListItem = ({
   as?: string;
 } & React.HTMLAttributes<HTMLOrSVGElement>) => {
   const { configuration } = useContext(ConfigContext);
+  const className = rest.className || '';
   return as === 'li' ? (
-    <StyledListItem config={configuration} {...rest}>
+    <StyledListItem config={configuration} {...rest} className={`fui-redlines ${className}`}>
       {children}
     </StyledListItem>
   ) : (
-    <StyledListItemDiv {...rest}>{children}</StyledListItemDiv>
+    <StyledListItemDiv {...rest} className={`fui-redlines ${className}`}>
+      {children}
+    </StyledListItemDiv>
   );
 };
 

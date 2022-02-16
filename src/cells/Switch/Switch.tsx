@@ -50,7 +50,7 @@ const Switch = forwardRef<HTMLInputElement, Switch>(
     const { configuration } = useContext(ConfigContext);
     const [check, setCheck] = useState(checked);
     return (
-      <DivWrapper className='ballena-switch-wrapper' configuration={configuration}>
+      <DivWrapper className='frontera-switch-wrapper fui-redlines' configuration={configuration}>
         <StyledSwitch
           htmlFor={rest.id}
           configuration={configuration}

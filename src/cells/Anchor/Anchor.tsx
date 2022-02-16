@@ -74,10 +74,10 @@ const Anchor = ({
       spacing={spacing}
       {...rest}
     >
-      <span className='ballena-anchor-icon' style={{ order: lead ? 1 : 3 }}>
+      <span className='frontera-anchor-icon' style={{ order: lead ? 1 : 3 }}>
         {icon}
       </span>
-      <span className='ballena-anchor-label' style={{ order: lead ? 3 : 1 }}>
+      <span className='frontera-anchor-label' style={{ order: lead ? 3 : 1 }}>
         {label}
       </span>
     </StyledAnchor>

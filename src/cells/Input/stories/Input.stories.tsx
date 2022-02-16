@@ -5,7 +5,7 @@ import { ConfigProvider } from '../../../providers';
 import { BareButton, Paragraph, Textarea } from '../../../cells';
 
 const config: any = {
-  title: 'Ballena/Controls/Input',
+  title: 'FronteraUI/Controls/Input',
   component: Input,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -36,7 +36,16 @@ const Template = ({ ...args }: any) => {
 
   return (
     <ConfigProvider>
-      <div style={{ padding: 5, marginTop: 15, display: 'flex', flexDirection: 'column', gap: 36, backgroundColor: 'rgb(244, 247, 246)' }}>
+      <div
+        style={{
+          padding: 5,
+          marginTop: 15,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 36,
+          backgroundColor: 'rgb(244, 247, 246)',
+        }}
+      >
         <Input
           {...args}
           preffix={<ArrowArcRight />}

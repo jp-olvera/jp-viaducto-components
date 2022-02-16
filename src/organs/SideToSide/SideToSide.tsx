@@ -41,7 +41,8 @@ const SideToSide = ({
   reverse = false,
   columnAlignment = true,
   childrenMaxWidth = '473px',
-}: SideToSide) => {
+  ...rest
+}: SideToSide & React.ComponentProps<typeof Grid>) => {
   const height: React.CSSProperties = { height: '100%' };
   const sizes = columnAlignment
     ? {
@@ -61,8 +62,9 @@ const SideToSide = ({
         flexDirection: 'column',
         justifyContent: childrenVerticalAlignment,
       };
+  const className = rest.className || '';
   return (
-    <Grid expanded gutter={0} style={height}>
+    <Grid {...rest} expanded gutter={0} style={height} className={`fui-redlines ${className}`}>
       <Row>
         {media && (
           <Column

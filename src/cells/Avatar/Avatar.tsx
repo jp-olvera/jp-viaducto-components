@@ -63,6 +63,7 @@ const Avatar = ({
   }
   return (
     <StyledAvatar
+      {...rest}
       circular={circular}
       data-testid='avatar'
       src={src}
@@ -70,7 +71,6 @@ const Avatar = ({
       height={nHeight}
       width={nWidth}
       clipPath={clipPath}
-      {...rest}
     />
   );
 };

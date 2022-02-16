@@ -35,6 +35,7 @@ const Section = ({
   sections,
   childMaxWidth = '1136px',
   children,
+  ...rest
 }: Section) => {
   const ref = useRef<HTMLDivElement>(null);
   const [h, setH] = useState<number | string>('100%');
@@ -44,8 +45,14 @@ const Section = ({
       setH(ref.current.clientHeight);
     }
   }, []);
+  const className = rest.className || '';
   return (
-    <StyledSection sections={sections.length} style={{ height: h }}>
+    <StyledSection
+      {...rest}
+      sections={sections.length}
+      style={{ height: h }}
+      className={`fui-redlines ${className}`}
+    >
       {sections.map((bg: { background: string }, index: number) => (
         <Subsection
           divided={sections.length}
@@ -59,7 +66,7 @@ const Section = ({
           top={top}
           bottom={bottom}
           vertical={vertical}
-          className='ballena-section-content-child'
+          className='frontera-section-content-child'
         >
           {children}
         </ResponsivePadding>

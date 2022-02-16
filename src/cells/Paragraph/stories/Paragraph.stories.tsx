@@ -4,7 +4,7 @@ import { Paragraph } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Typography/Paragraph',
+  title: 'FronteraUI/Typography/Paragraph',
   component: Paragraph,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

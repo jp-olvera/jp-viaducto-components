@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 
 export const StyledButtonGroup = styled.div<{
   configuration: ConfigProps;

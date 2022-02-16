@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 import getElevation from '../../utils/getElevation';
 
 const dropKeyFrames = keyframes`

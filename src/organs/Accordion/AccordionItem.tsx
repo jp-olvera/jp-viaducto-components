@@ -99,14 +99,16 @@ const AccordionItem = ({
       handleOpen(index);
     }
   };
+  const className = rest.className || '';
   return (
     <StyledAccordionItem
+      {...rest}
       paddingX={paddingX}
       paddingY={paddingY}
       expanded={expanded}
       transition={transition}
       configuration={configuration}
-      {...rest}
+      className={`fui-redlines ${className}`}
     >
       <AccordionHeader
         type='button'

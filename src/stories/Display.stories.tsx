@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Paragraph, Spacer, Title, ResponsivePadding, WrapperTable } from '../cells';
+import { Container, Paragraph, Spacer, Title, ResponsivePadding } from '../cells';
 
 const Box = ({ s }: any) => (
   <div
@@ -40,73 +40,71 @@ export const Display = () => (
     </Paragraph>
     <Spacer size='xl' />
 
-    <WrapperTable border='none' hover={false}>
-      <table>
-        <thead>
-          <tr>
-            <th>Size</th>
-            <th>Mobile</th>
-            <th>Desktop</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>xs</td>
-            <td align='right'>
-              2.986rem <Box s='2.986rem' />
-            </td>
-            <td align='right'>
-              3.583rem <Box s='3.583rem' />
-            </td>
-          </tr>
-          <tr>
-            <td>sm</td>
-            <td align='right'>
-              3.012rem <Box s='3.012rem' />
-            </td>
-            <td align='right'>
-              5.16rem <Box s='5.16rem' />
-            </td>
-          </tr>
-          <tr>
-            <td>md</td>
-            <td align='right'>
-              3.213rem <Box s='3.213rem' />
-            </td>
-            <td align='right'>
-              6.192rem <Box s='6.192rem' />
-            </td>
-          </tr>
-          <tr>
-            <td>lg</td>
-            <td align='right'>
-              3.658rem <Box s='3.658rem' />
-            </td>
-            <td align='right'>
-              8.916rem <Box s='8.916rem' />
-            </td>
-          </tr>
-          <tr>
-            <td>xl</td>
-            <td align='right'>
-              4.165rem <Box s='4.165rem' />
-            </td>
-            <td align='right'>
-              12.839rem <Box s='12.839rem' />
-            </td>
-          </tr>
-          <tr>
-            <td>xxl</td>
-            <td align='right'>
-              5.06rem <Box s='5.06rem' />
-            </td>
-            <td align='right'>
-              15.407rem <Box s='15.407rem' />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </WrapperTable>
+    <table>
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Mobile</th>
+          <th>Desktop</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>xs</td>
+          <td align='right'>
+            2.986rem <Box s='2.986rem' />
+          </td>
+          <td align='right'>
+            3.583rem <Box s='3.583rem' />
+          </td>
+        </tr>
+        <tr>
+          <td>sm</td>
+          <td align='right'>
+            3.012rem <Box s='3.012rem' />
+          </td>
+          <td align='right'>
+            5.16rem <Box s='5.16rem' />
+          </td>
+        </tr>
+        <tr>
+          <td>md</td>
+          <td align='right'>
+            3.213rem <Box s='3.213rem' />
+          </td>
+          <td align='right'>
+            6.192rem <Box s='6.192rem' />
+          </td>
+        </tr>
+        <tr>
+          <td>lg</td>
+          <td align='right'>
+            3.658rem <Box s='3.658rem' />
+          </td>
+          <td align='right'>
+            8.916rem <Box s='8.916rem' />
+          </td>
+        </tr>
+        <tr>
+          <td>xl</td>
+          <td align='right'>
+            4.165rem <Box s='4.165rem' />
+          </td>
+          <td align='right'>
+            12.839rem <Box s='12.839rem' />
+          </td>
+        </tr>
+        <tr>
+          <td>xxl</td>
+          <td align='right'>
+            5.06rem <Box s='5.06rem' />
+          </td>
+          <td align='right'>
+            15.407rem <Box s='15.407rem' />
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </Container>
 );
 
@@ -122,6 +120,6 @@ Display.parameters = {
   },
 };
 export default {
-  title: 'Ballena/Tokens/Display',
+  title: 'FronteraUI/Tokens/Display',
   component: Display,
 };

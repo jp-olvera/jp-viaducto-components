@@ -1,4 +1,4 @@
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 
 const config: ConfigProps = {
   breakpoints: {
@@ -133,6 +133,32 @@ const config: ConfigProps = {
       lg: '8.916rem',
       xl: '12.839rem',
       xxl: '15.407rem',
+    },
+  },
+  textClamp: {
+    mobile: {
+      1: '1.467rem',
+      2: '1.383rem',
+      3: '1.296rem',
+      4: '1.215rem',
+      5: '1.138rem',
+      6: '1.138rem',
+      D1: '1.913rem',
+      D2: '1.793rem',
+      D3: '1.68rem',
+      D4: '1.575rem',      
+    },
+    desktop: {
+      1: '2.488rem',
+      2: '2.074rem',
+      3: '1.728rem',
+      4: '1.44rem',
+      5: '1.2rem',
+      6: '1.2rem',
+      D1: '5.16rem',
+      D2: '4.3rem',
+      D3: '3.583rem',
+      D4: '2.986rem',
     },
   },
   radius: {

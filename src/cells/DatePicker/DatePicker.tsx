@@ -34,7 +34,7 @@ export interface DatePicker extends React.HTMLAttributes<HTMLDivElement> {
  * @returns onDateSelected (data: {date Date |Date[], dateString: string|string[]}) => void
  */
 const DatePicker = ({
-  date = new Date(),
+  date,
   onDateSelected,
   shapeColor = 'danger',
   range,
@@ -42,12 +42,18 @@ const DatePicker = ({
   ...rest
 }: DatePicker) => {
   const { configuration } = useContext(ConfigContext);
-  const [d, setD] = useState(new Date(date));
+  const [d, setD] = useState(date ? new Date(date) : new Date());
   useEffect(() => {
-    setD(new Date(date));
+    setD(date ? new Date(date) : new Date());
   }, [date]);
+  const className = rest.className || '';
   return (
-    <StyledDatePicker config={configuration} range={range} {...rest}>
+    <StyledDatePicker
+      {...rest}
+      config={configuration}
+      range={range}
+      className={`fui-redlines ${className}`}
+    >
       <Calendar
         date={d}
         onDateSelected={onDateSelected}

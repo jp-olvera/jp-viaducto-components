@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 export const useScroll = (ref: React.RefObject<any>, top?: number) => {
   const [scroll, setScroll] = useState<boolean>(false);
+  const handleScroll = useCallback((value: boolean) => {
+    setScroll(value);
+  }, []);
   const scrollTop = top || 20;
   useEffect(() => {
     const element = ref;
@@ -9,9 +12,9 @@ export const useScroll = (ref: React.RefObject<any>, top?: number) => {
       const element = el.target as Element;
 
       if (element.scrollTop > scrollTop) {
-        setScroll(true);
+        handleScroll(true);
       } else {
-        setScroll(false);
+        handleScroll(false);
       }
     };
     if (element && element.current) {
@@ -21,5 +24,5 @@ export const useScroll = (ref: React.RefObject<any>, top?: number) => {
       element.current?.removeEventListener('scroll', scroll);
     };
   }, [ref, scrollTop]);
-  return { scroll, setScroll };
+  return { scroll, handleScroll };
 };

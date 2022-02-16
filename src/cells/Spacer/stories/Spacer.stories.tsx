@@ -4,7 +4,7 @@ import { Spacer } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Layout/Spacer',
+  title: 'FronteraUI/Layout/Spacer',
   component: Spacer,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -47,20 +47,18 @@ export default config;
 
 const Template = (args: typeof Vertical) => (
   <ConfigProvider>
-    <Spacer {...args} />
+    <Spacer {...args} style={{ border: '1px solid red' }} />
   </ConfigProvider>
 );
 
 export const Vertical = Template.bind({});
 
 Vertical.args = {
-  size: 'sm',
-  sb: '#000',
+  size: 'xl',
 };
 export const Horizontal = Template.bind({});
 
 Horizontal.args = {
-  size: 'sm',
+  size: 'xxl',
   direction: 'horizontal',
-  sb: '#000',
 };

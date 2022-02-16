@@ -4,7 +4,7 @@ import { Switch } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Controls/Inputs/Switch',
+  title: 'FronteraUI/Controls/Inputs/Switch',
   component: Switch,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

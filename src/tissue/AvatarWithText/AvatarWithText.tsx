@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Avatar as AvatarProps } from '../../cells/Avatar/Avatar';
 import { Avatar, Spacer } from '../../cells';
 
 export const StyledAvatarWithText = styled.div<any>`
@@ -14,7 +13,7 @@ export interface AvatarWithText extends React.HTMLAttributes<HTMLDivElement> {
   /** Child element */
   children: any;
   /** Avatar component props */
-  avatar: AvatarProps;
+  avatar: React.ComponentProps<typeof Avatar>;
   /** Horizontal between avatar and children */
   spacing?: 'none' | 'nano' | 'micro' | 'tiny' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
   /** Set the Avatar as last child */
@@ -35,12 +34,15 @@ const AvatarWithText = ({
   spacing = 'sm',
   reverse = false,
   ...rest
-}: AvatarWithText) => (
-  <StyledAvatarWithText reverse={reverse} {...rest}>
-    <Avatar {...avatar} />
-    <Spacer direction='horizontal' size={spacing} />
-    {children}
-  </StyledAvatarWithText>
-);
+}: AvatarWithText) => {
+  const className = rest.className || '';
+  return (
+    <StyledAvatarWithText reverse={reverse} {...rest} className={`fui-redlines ${className}`}>
+      <Avatar {...avatar} />
+      <Spacer direction='horizontal' size={spacing} />
+      {children}
+    </StyledAvatarWithText>
+  );
+};
 
 export default AvatarWithText;

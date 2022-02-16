@@ -4,7 +4,7 @@ export const parameters = {
     storySort: {
       order: [
         'Getting Started',
-        'Ballena',
+        'FronteraUI',
         [
           'Tokens',
           ['Intro'],
@@ -21,7 +21,6 @@ export const parameters = {
     },
   },
 };
+
 //TODO: cambiar las carpetas a nivel código
-//TODO: exportar los types/interfaces
 //TODO: Ajustar las recipes y añadir un intro
-//TODO: Arreglar switches y añadirles labels

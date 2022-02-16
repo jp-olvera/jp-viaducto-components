@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import { ConfigProps } from 'ballena-types';
+import { ConfigProps } from 'frontera-types';
 import getElevation from '../../utils/getElevation';
 
 const show = keyframes`
@@ -20,10 +20,10 @@ interface StyledModalProps {
   radius: string;
   isClosing: boolean;
 }
-const StyledModal = styled.div < StyledModalProps > `
+const StyledModal = styled.div<StyledModalProps>`
   animation: ${show} 230ms ease-out;
-  background: ${(p) => p.configuration.colors[p.backgroundColor || 'background']
-    || p.backgroundColor};
+  background: ${(p) =>
+    p.configuration.colors[p.backgroundColor || 'background'] || p.backgroundColor};
   border-radius: ${(p) => p.configuration.radius[p.radius]};
   max-width: 100%;
   max-height: calc(100% - 96px);
@@ -31,8 +31,9 @@ const StyledModal = styled.div < StyledModalProps > `
   width: 520px;
   overflow-x: auto;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
-  ${(p) => p.isClosing
-    && css`
+  ${(p) =>
+    p.isClosing &&
+    css`
       transform: scale(0);
       transition: transform 230ms linear;
     `};

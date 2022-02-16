@@ -4,7 +4,7 @@ import { Card } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Content/Card',
+  title: 'FronteraUI/Content/Card',
   component: Card,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

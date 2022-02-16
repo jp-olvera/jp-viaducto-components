@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SBConfigI } from '../../../sb';
 import { ConfigProvider } from '../../../providers';
 import { GroupTab } from '..';
 import { Tab } from '../../../cells';
 
 const config: SBConfigI = {
-  title: 'Ballena/Navigation/GroupTab',
+  title: 'FronteraUI/Navigation/GroupTab',
   component: GroupTab,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
@@ -96,18 +96,31 @@ const config: SBConfigI = {
 
 export default config;
 
-const Template = (args: typeof Default) => (
-  <ConfigProvider>
-    <GroupTab {...args}>
-      <Tab text='Store' onClick={() => console.log(1)} />
-      <Tab text='My apps' />
-      <Tab text='Organization Settings' />
-      <Tab text='Very large tab name but sill works' />
-      <Tab text='Market' />
-      <Tab text='Last Mile' />
-    </GroupTab>
-  </ConfigProvider>
-);
+const Template = (args: typeof Default) => {
+  const [b, setB] = useState(true);
+
+  return (
+    <ConfigProvider>
+      <button onClick={() => setB(!b)}>cambiar</button>
+
+      {b ? (
+        <GroupTab {...args}>
+          <Tab text='Store' />
+          <Tab text='My apps' />
+          <Tab text='Organization Settings' />
+          <Tab text='Very large tab name but sill works' />
+          <Tab text='Market' />
+          <Tab text='Last Mile' />
+        </GroupTab>
+      ) : (
+        <GroupTab {...args}>
+          <Tab text='My apps' />
+          <Tab text='Store' />
+        </GroupTab>
+      )}
+    </ConfigProvider>
+  );
+};
 
 export const Default = Template.bind({});
 
@@ -118,10 +131,6 @@ Default.args = {
   fontSize: 'md',
   position: 'bottom',
   spacing: 'md',
-  // eslint-disable-next-line no-console
-  onTabChange: (tab: string) => {
-    console.log('tab: ' + tab);
-  },
   transition: 'ease',
   base: 16,
 };

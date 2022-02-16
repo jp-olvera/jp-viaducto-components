@@ -4,7 +4,7 @@ import { ConfigProvider } from '../../../providers';
 import { Accordion, AccordionItem } from '..';
 
 export default {
-  title: 'Ballena/Content/Accordion',
+  title: 'FronteraUI/Content/Accordion',
   component: Accordion,
   argTypes: {
     paddingY: {

@@ -4,7 +4,7 @@ import { Progress } from '..';
 import { ConfigProvider } from '../../../providers';
 
 const config: SBConfigI = {
-  title: 'Ballena/Controls/Progress',
+  title: 'FronteraUI/Controls/Progress',
   component: Progress,
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {

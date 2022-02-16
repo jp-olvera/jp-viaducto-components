@@ -166,8 +166,9 @@ const Pagination = ({
       onPageChange(pageNumber);
     }
   };
+  const className = rest.className || '';
   return totalPages > 0 ? (
-    <div {...rest}>
+    <div {...rest} className={`fui-redlines ${className}`}>
       {totalPages > 1 && getPrevious()}
       {getPage(1)}
       {pages.map((page: any, index: number) => (
