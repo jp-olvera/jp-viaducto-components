@@ -62,15 +62,15 @@ export interface SelectItem {
   inputSize?: 'xsmall' | 'small' | 'default' | 'large';
   /** isValid, null (default value) doesn't indicate is valid nor is invalid*/
   isValid?: boolean | null;
-  /** prefix */
-  prefix?: React.ReactNode;
+  /** preffix */
+  preffix?: React.ReactNode;
   /** radius */
   radius?: 'none' | 'sm' | 'md' | 'lg';
   /** suffix */
   suffix?: React.ReactNode;
-  /** Indicates if the prefix and/or suffix should have a background-color */
+  /** Indicates if the preffix and/or suffix should have a background-color */
   darkDecoration?: boolean;
-  /** Indicates if the prefix and/or suffix should have a background-color */
+  /** Indicates if the preffix and/or suffix should have a background-color */
   padding?: string;
   /** Label */
   label?: string;
@@ -91,11 +91,11 @@ export interface SelectItem {
  * @param {React.ReactNode} children children
  * @param {string} inputSize Set the height of the input
  * @param {boolean | null} isValid isValid, null (default value) doesn't indicate is valid nor is invali
- * @param {React.ReactNode} prefix prefix
+ * @param {React.ReactNode} preffix preffix
  * @param {string} radius radius
  * @param {React.ReactNode} suffix suffix
- * @param {boolean} darkDecoration Indicates if the prefix and/or suffix should have a background-color
- * @param {string} padding Indicates if the prefix and/or suffix should have a background-color
+ * @param {boolean} darkDecoration Indicates if the preffix and/or suffix should have a background-color
+ * @param {string} padding Indicates if the preffix and/or suffix should have a background-color
  * @param {string} label Label
  * @param {string} placeholder Placeholder
  * @param {string} id id for a11y

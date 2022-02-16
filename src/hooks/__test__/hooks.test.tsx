@@ -3,18 +3,19 @@ import { createRef } from 'react';
 import { act, renderHook } from '../../test-utils';
 import { useScroll, useWindowResize } from '..';
 
-const mockDelay = (delay: number): Promise<string> => new Promise((resolve) => {
-  setTimeout(() => {
-    resolve('resolved');
-  }, delay);
-});
+const mockDelay = (delay: number): Promise<string> =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('resolved');
+    }, delay);
+  });
 
 describe('useScroll file', () => {
   test('should return false', () => {
     const ref = createRef();
     const { result } = renderHook(() => useScroll(ref));
     act(() => {
-      result.current.setScroll(!result.current.scroll);
+      result.current.handleScroll(!result.current.scroll);
     });
     expect(result.current.scroll).toBe(true);
   });
@@ -45,7 +46,7 @@ describe('useWindowResize file', () => {
     const { result } = renderHook(() => useWindowResize());
     act(() => {
       // change from false to true
-      result.current.setOffset(!result.current.offset);
+      result.current.handleOffset(!result.current.offset);
     });
     expect(result.current.offset).toBe(true);
   });
