@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SBConfigI } from '../../../sb';
 import { Modal } from '..';
-import { Button } from '../../../cells';
+import { Button, Container, Paragraph } from '../../../cells';
 
 import { ConfigProvider } from '../../../providers';
 
@@ -11,7 +11,6 @@ const config: SBConfigI = {
   parameters: { controls: { sort: 'requiredFirst' } },
   argTypes: {
     overlayColor: {
-      description: 'Background color for the overlay',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'rgba(255,255,255,0.5)' },
@@ -19,7 +18,6 @@ const config: SBConfigI = {
       control: 'color',
     },
     backgroundColor: {
-      description: 'Background color for the modal content',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'white' },
@@ -27,7 +25,6 @@ const config: SBConfigI = {
       control: 'color',
     },
     elevation: {
-      description: 'The elevation level it should take, one of 1/2/3',
       table: {
         type: { summary: 'number' },
         defaultValue: { summary: 1 },
@@ -38,11 +35,6 @@ const config: SBConfigI = {
       },
     },
     elevationDirection: {
-      description: "The elevation direction, if '' direction goes everywhere",
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: "''" },
-      },
       options: [
         'radial',
         'top',
@@ -59,38 +51,35 @@ const config: SBConfigI = {
       },
     },
     handleActive: {
-      description: 'function to call to close the modal',
       table: {
         type: { summary: 'Function' },
         defaultValue: { summary: () => {} },
       },
     },
     active: {
-      description: 'Specifies if the modal is gonna be visible at first',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
       },
     },
     allowClickOutside: {
-      description: 'Specifies if the modal could be closed when clicking outside',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
       },
     },
     radius: {
-      description: 'Radius size',
-      type: {
-        summary: 'string',
-        required: false,
-      },
       table: {
         defaultValue: { summary: 'none' },
       },
       options: ['none', 'sm', 'md', 'lg'],
       control: {
         type: 'select',
+      },
+    },
+    size: {
+      table: {
+        defaultValue: { summary: 'md' },
       },
     },
   },
@@ -164,4 +153,160 @@ export const DisableClickOutside = Template.bind({});
 
 DisableClickOutside.args = {
   allowClickOutside: false,
+};
+
+const SimpleModals = (args: typeof Default) => {
+  const [active, setActive] = useState({
+    sm: false,
+    md: false,
+    lg: false,
+    full: false,
+    custom: false,
+  });
+  const handleActive = (key: string, value: boolean) => {
+    setActive((b) => ({ ...b, [key]: value }));
+  };
+
+  return (
+    <ConfigProvider>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 16 }}>
+        <Button
+          label='SM'
+          shapeColor='info'
+          onClick={() => {
+            handleActive('sm', true);
+          }}
+        />
+        <Button
+          label='MD'
+          shapeColor='secondary'
+          onClick={() => {
+            handleActive('md', true);
+          }}
+        />
+        <Button
+          label='LG'
+          shapeColor='danger'
+          onClick={() => {
+            handleActive('lg', true);
+          }}
+        />
+        <Button
+          label='Full'
+          shapeColor='success'
+          onClick={() => {
+            handleActive('full', true);
+          }}
+        />
+        <Button
+          label='CUSTOM: 900px'
+          shapeColor='warning'
+          onClick={() => {
+            handleActive('custom', true);
+          }}
+        />
+      </div>
+      <Modal
+        active={active.full}
+        size={'full'}
+        handleActive={() => {
+          handleActive('full', false);
+        }}
+      >
+        <Container expandHorizontal expandVertical vertical='xxxl' horizontal='xxxl'>
+          <Button
+            label='Close'
+            variant='outline'
+            shapeColor='danger'
+            onClick={() => {
+              handleActive('full', false);
+            }}
+          />
+        </Container>
+      </Modal>
+      <Modal
+        active={active.sm}
+        size='sm'
+        handleActive={() => {
+          handleActive('sm', false);
+        }}
+      >
+        <Container expandHorizontal expandVertical vertical='xxxl' horizontal='xxxl'>
+          <Button
+            label='Close'
+            variant='outline'
+            shapeColor='danger'
+            onClick={() => {
+              handleActive('sm', false);
+            }}
+          />
+        </Container>
+      </Modal>
+      <Modal
+        active={active.md}
+        size='md'
+        handleActive={() => {
+          handleActive('md', false);
+        }}
+      >
+        <Container expandHorizontal expandVertical vertical='xxxl' horizontal='xxxl'>
+          <Button
+            label='Close'
+            variant='outline'
+            shapeColor='danger'
+            onClick={() => {
+              handleActive('md', false);
+            }}
+          />
+        </Container>
+      </Modal>
+      <Modal
+        active={active.lg}
+        size='lg'
+        handleActive={() => {
+          handleActive('lg', false);
+        }}
+      >
+        <Container expandHorizontal expandVertical vertical='xxxl' horizontal='xxxl'>
+          <Button
+            label='Close'
+            variant='outline'
+            shapeColor='danger'
+            onClick={() => {
+              handleActive('lg', false);
+            }}
+          />
+        </Container>
+      </Modal>
+      <Modal
+        active={active.custom}
+        size='900px'
+        handleActive={() => {
+          handleActive('custom', false);
+        }}
+        backgroundColor='#355898'
+        radius='none'
+        elevation={0}
+      >
+        <Container expandHorizontal expandVertical vertical='xxxl' horizontal='xxxl'>
+          <Paragraph color='white'>
+            Size: 900px, no radius (none), no elevation(0), different background(#355898)
+          </Paragraph>
+          <Button
+            label='Close'
+            shapeColor='danger'
+            onClick={() => {
+              handleActive('custom', false);
+            }}
+          />
+        </Container>
+      </Modal>
+    </ConfigProvider>
+  );
+};
+
+export const StyledModals = SimpleModals.bind({});
+
+StyledModals.args = {
+  allowClickOutside: true,
 };
