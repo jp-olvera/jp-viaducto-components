@@ -82,7 +82,11 @@ export const Day = styled.button<DayI>`
   }
   &.date-today {
     background-color: ${(p) => p.config.colors.background} !important;
-    border: 0.063rem dashed ${(p) => p.config.colors[p.shapeColor].default} !important;
+    border: 0.063rem dashed ${(p) => p.config.colors[p.shapeColor].shadow} !important;
+  }
+  &.date-passed {
+    background-color: ${(p) => p.config.colors.background} !important;
+    border: 0.063rem solid ${(p) => p.config.colors[p.shapeColor].default} !important;
   }
   &.date-selected {
     background-color: ${(p) => p.config.colors[p.shapeColor].default} !important;
