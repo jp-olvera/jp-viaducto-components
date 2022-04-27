@@ -125,11 +125,8 @@ const Calendar = ({ date, shapeColor, range, onDateSelected, lang = 'en', ...res
               setClassName(today, secondDate, selected.selectedDate, data + 1)
                 ? 'date-selected'
                 : ''
-            } ${
-              isToday(now, today, data, selected) ||
-              (diffDate && newDate(data + 1) && selected.selected === -1)
-                ? 'date-today'
-                : ''
+            } ${isToday(now, today, data, selected) ? 'date-today' : ''} ${
+              diffDate && newDate(data + 1) && selected.selected === -1 ? 'date-passed' : ''
             }`}
           >
             <Paragraph align='center' size='sm' color='inherit'>

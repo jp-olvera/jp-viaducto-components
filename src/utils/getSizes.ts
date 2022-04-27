@@ -36,7 +36,6 @@ const getLineHeight = (lineHeight = 'md', size = 'md') => {
   }
 };
 // calc(clamp(1rem,calc(1rem + (1.125 - 1) * ((100vw - 20rem) / (90 - 20))),1.125rem); * 1.5)
-// clamp(asdasdadasd);
 const getTitleLineHeight = (lineHeight = 'md', size = '1') => {
   switch (lineHeight) {
     case 'xs':
@@ -200,7 +199,6 @@ const getCheckSizes = (size: string) => {
   }
 };
 
-
 // Note: Keep this to know how the function was created
 // clamp(
 //   3.012rem,
@@ -218,7 +216,7 @@ const getCheckSizes = (size: string) => {
  * @param {string} minbreakpointRem a value for the minbreakpointRem value to use
  * @param {string} maxbreakpointRem a value for the maxbreakpointRem value to use
  */
- const getClamp = (
+const getClamp = (
   minRem: string,
   maxRem: string,
   minbreakpointRem: string,
@@ -249,5 +247,5 @@ export {
   getCheckSizes,
   getBorder,
   getRangeSize,
-  getClamp
+  getClamp,
 };

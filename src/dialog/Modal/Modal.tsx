@@ -35,7 +35,10 @@ export interface Modal extends React.HTMLAttributes<HTMLDivElement> {
   radius?: 'none' | 'sm' | 'md' | 'lg';
   /** z-index value for the overlay, it defaults to 9999 */
   zIndex?: number;
+  /** HTML onClick function */
   onClick?: React.MouseEventHandler<HTMLDivElement> | undefined;
+  /** Modal's size set in the configuration file */
+  size?: 'sm' | 'md' | 'lg' | 'full' | string;
 }
 
 /**
@@ -49,6 +52,7 @@ export interface Modal extends React.HTMLAttributes<HTMLDivElement> {
  * @param {Function} handleActive function to call to close the modal
  * @param {string} overlayColor Background color for the overlay
  * @param {string} radius set the border radius
+ * @param {'sm' | 'md' | 'lg' | 'full' | string} size Modal's size set in the configuration file
  */
 const Modal = ({
   active = false,
@@ -61,6 +65,7 @@ const Modal = ({
   overlayColor = 'rgba(255,255,255,0.5)',
   radius = 'md',
   zIndex = 9999,
+  size = 'md',
   onClick,
   ...rest
 }: Modal) => {
@@ -144,6 +149,7 @@ const Modal = ({
             ref={modalRef}
             radius={radius}
             isClosing={isClosing}
+            size={size}
             onClick={(ev: any) => {
               // Yep! this is needed
               ev.stopPropagation();

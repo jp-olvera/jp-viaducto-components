@@ -19,6 +19,7 @@ interface StyledModalProps {
   ref: any;
   radius: string;
   isClosing: boolean;
+  size: 'sm' | 'md' | 'lg' | 'full' | string;
 }
 const StyledModal = styled.div<StyledModalProps>`
   animation: ${show} 230ms ease-out;
@@ -26,9 +27,9 @@ const StyledModal = styled.div<StyledModalProps>`
     p.configuration.colors[p.backgroundColor || 'background'] || p.backgroundColor};
   border-radius: ${(p) => p.configuration.radius[p.radius]};
   max-width: 100%;
+  min-height: ${(p) => (p.size === 'full' ? '100%' : '30%')};
   max-height: calc(100% - 96px);
-  min-height: 30%;
-  width: 520px;
+  width: ${(p) => modalWidth(p.size)};
   overflow-x: auto;
   ${(p) => getElevation(p.elevation, p.elevationDirection)}
   ${(p) =>
@@ -40,6 +41,20 @@ const StyledModal = styled.div<StyledModalProps>`
 `;
 
 export default StyledModal;
+export const modalWidth = (width: 'sm' | 'md' | 'lg' | 'full' | string) => {
+  switch (width) {
+    case 'md':
+      return `520px`;
+    case 'sm':
+      return `250px`;
+    case 'lg':
+      return `750px`;
+    case 'full':
+      return '100%';
+    default:
+      return width;
+  }
+};
 
 /**
  * .modal-header {
